@@ -32,13 +32,13 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 
 	@Override
 	public ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) {
-		// TODO Auto-generated method stub
-		return null;
+		return exhiRepo.save(exhibitionInfo);
 	}
 
 	@Override
 	public int deleteExhibitionInfo(Integer eiNum) {
-		// TODO Auto-generated method stub
+		exhiRepo.deleteById(eiNum);
+		if(getExhibitionInfo(eiNum)==null) return 1;
 		return 0;
 	}
 
