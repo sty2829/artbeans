@@ -70,11 +70,6 @@ public class ExhibitionInfo {
 	private Date moddat;
 	
 	@ManyToOne
-	@JoinColumn(name = "ui_num")
-	@JsonBackReference
-	private UserInfo userInfo;
-	
-	@ManyToOne
 	@JoinColumn(name = "gi_num")
 	private GalleryInfo galleryInfo;
 		
