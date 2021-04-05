@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.service.ExhibitionService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
 public class ExhibitionController {
 	@Autowired
 	private ExhibitionService eService;
@@ -32,6 +35,7 @@ public class ExhibitionController {
 	
 	@PostMapping("/exhibition-insert")
 	public @ResponseBody Integer saveExhibition(@RequestBody ExhibitionInfo exhibitionInfo) {
+		log.info("exhibitionInfo=>{}",exhibitionInfo);
 		exhibitionInfo = eService.saveExhibitionInfo(exhibitionInfo);
 		return exhibitionInfo.getEiNum();		
 	}

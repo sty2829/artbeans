@@ -2,7 +2,7 @@ package com.artbeans.web.entity;
 
 
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Time;
 
 import javax.persistence.Column;
@@ -17,8 +17,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -46,12 +48,14 @@ public class ExhibitionInfo {
 	@Column(name = "ei_content")
 	private String eiContent;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ei_start_date")
 	private Date eiStartDate;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "ei_end_date")
 	private Date eiEndDate;
-	
+
 	@Column(name = "ei_start_time")
 	private Time eiStartTime;
 	
