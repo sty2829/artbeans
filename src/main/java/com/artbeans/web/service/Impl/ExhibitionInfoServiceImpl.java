@@ -21,8 +21,10 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	}
 
 	@Override
-	public Optional<ExhibitionInfo> getExhibitionInfo(Integer eiNum) {
-		return exhiRepo.findById(eiNum);
+	public ExhibitionInfo getExhibitionInfo(Integer eiNum) {
+		Optional<ExhibitionInfo> opEt = exhiRepo.findById(eiNum);
+		if(opEt.isEmpty()) return null;
+		return opEt.get();
 	}
 
 	@Override

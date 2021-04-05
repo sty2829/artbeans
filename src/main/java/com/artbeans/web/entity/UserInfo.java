@@ -65,8 +65,5 @@ public class UserInfo {
 	@ColumnDefault("now()")
 	private Date moddat;
 	
-	@OneToOne(mappedBy = "userInfo")
-	@JsonManagedReference
-	private ExhibitionInfo exhibitionInfo;
 	
 }

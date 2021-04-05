@@ -84,7 +84,7 @@
           </li>
 
           
-          <li><a href="portfolio.html">전시회/전시관 등록</a></li>
+          <li><a href="/views/exhibition/insert">전시회/전시관 등록</a></li>
         </ul>
 
       </nav><!-- .nav-menu -->

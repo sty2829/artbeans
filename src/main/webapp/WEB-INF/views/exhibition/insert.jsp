@@ -7,7 +7,7 @@
 <title>전시회 등록 페이지</title>
 </head>
 <body>
-전시회명 <input type="text" id="eiName">
+전시회명 <input type="text" id="eiName"><br>
 작가명 <input type="text" id="eiArtist"><br>
 전시회 가격 <input type="number" id="eiCharge"><br>
 전시회 정보 <textarea  id="eiContent" placeholder="나중에 선생님이 주시면 변경"></textarea><br>
