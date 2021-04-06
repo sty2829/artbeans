@@ -23,6 +23,9 @@ public class FileInfo {
 	@Column(name = "fi_num")
 	private Integer fiNum;
 	
+	@Column(name = "fi_type")
+	private String fiType;
+	
 	@Column(name = "fi_originalname")
 	private String fiOriginalname;
 	
