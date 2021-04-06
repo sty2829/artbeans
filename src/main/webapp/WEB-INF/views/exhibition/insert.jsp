@@ -123,9 +123,9 @@ function doInsert(){
 	formData.append('eiEndDate',eiEndDate);
 	formData.append('eiStartTime',eiStartTime);
 	formData.append('eiEndTime',eiEndTime);
-	formData.append('fiFile',document.querySelector('#fiFile').files[0]);
-	formData.append('userInfo',userInfo.uiNum['#uiNum']);
-	formData.append('galleryInfo',galleryInfo.giNum['#giNum']);
+	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
+	formData.append('userInfo.uiNum',);
+	formData.append('galleryInfo.giNum',galleryInfo.giNum['#giNum']);
 	xhr.send(formData);
 }
 

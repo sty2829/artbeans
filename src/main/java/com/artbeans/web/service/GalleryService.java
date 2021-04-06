@@ -5,7 +5,12 @@ import java.util.List;
 import com.artbeans.web.entity.GalleryInfo;
 
 public interface GalleryService {
+	
 	List<GalleryInfo> getGalleryInfos(GalleryInfo galleryInfo);
-	GalleryInfo getGalleryInfo(Integer giNum);	
+	
+	GalleryInfo getGalleryInfo(Integer giNum);
+	
+	int saveGalleryInfo(GalleryInfo GalleryInfo) throws Exception;
+	
 
 }

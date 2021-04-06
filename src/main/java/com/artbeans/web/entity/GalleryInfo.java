@@ -3,8 +3,10 @@ package com.artbeans.web.entity;
 import java.sql.Date;
 import java.sql.Time;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,8 +33,8 @@ public class GalleryInfo {
 	@Column(name = "gi_name")
 	private String giName;
 	
-	@Column(name = "gi_rphone_nubmer")
-	private String giRphoneNubmer;
+	@Column(name = "gi_rphone_number")
+	private String giRphoneNumber;
 	
 	@Column(name = "gi_start_time")
 	private Time giStartTime;
@@ -40,8 +42,8 @@ public class GalleryInfo {
 	@Column(name = "gi_end_time")
 	private Time giEndTime;
 	
-	@Column(name = "gi_hompage")
-	private String giHompage;
+	@Column(name = "gi_homepage")
+	private String giHomepage;
 	
 	@Column(name = "gi_holiday")
 	private String giHoliday;
@@ -66,7 +68,7 @@ public class GalleryInfo {
 	@ColumnDefault("now()")
 	private Date moddat;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "fi_num")
 	private FileInfo fileInfo;
 
