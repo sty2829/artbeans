@@ -8,7 +8,6 @@
 </head>
 <body>
 
-<form method="POST" enctype="multipart/form-data" action="/exhibition-insert">
 
 <div>
 <!-- UserInfo 유효형검사 X , 회원이 아니면 버튼 안보이게.-->
@@ -43,7 +42,7 @@
 
 
 <button onclick="doInsert()">전시회 등록 신청하기</button>
-</form>
+
 
 
 <script>
@@ -124,8 +123,13 @@ function doInsert(){
 	formData.append('eiStartTime',eiStartTime);
 	formData.append('eiEndTime',eiEndTime);
 	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
+<<<<<<< HEAD
 	formData.append('userInfo.uiNum',);
 	formData.append('galleryInfo.giNum',galleryInfo.giNum['#giNum']);
+=======
+	formData.append('userInfo.uiNum',document.querySelector('#uiNum').value);
+	formData.append('galleryInfo.giNum',document.querySelector('#giNum').value);
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 	xhr.send(formData);
 }
 
