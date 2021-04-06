@@ -2,11 +2,13 @@ package com.artbeans.web.entity;
 
 
 
-import java.util.Date;
 import java.sql.Time;
+import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +22,6 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -48,14 +49,14 @@ public class ExhibitionInfo {
 	@Column(name = "ei_content")
 	private String eiContent;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	//패턴 수정 날짜 이상하게들어감 java.sql.date 로 변경
 	@Column(name = "ei_start_date")
 	private Date eiStartDate;
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	//패턴 수정 날짜 이상하게들어감 java.sql.date 로 변경
 	@Column(name = "ei_end_date")
 	private Date eiEndDate;
-
+	
 	@Column(name = "ei_start_time")
 	private Time eiStartTime;
 	
@@ -77,9 +78,16 @@ public class ExhibitionInfo {
 	@JoinColumn(name = "gi_num")
 	private GalleryInfo galleryInfo;
 		
-	@OneToOne
+	//파일인서트 추가
+	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "fi_num")
 	private FileInfo fileInfo;
+	
+	//uiNum 묶여있어서 추가요
+	@ManyToOne
+	@JoinColumn(name = "ui_num")
+	@JsonBackReference
+	private UserInfo userInfo;
 	
 	@OneToOne(mappedBy = "exhibitionInfo")
 	@JsonManagedReference
