@@ -12,6 +12,7 @@ import com.artbeans.web.service.ExhibitionService;
 
 @Service
 public class ExhibitionInfoServiceImpl implements ExhibitionService {
+	
 	@Autowired
 	private ExhibitionInfoRepository exhiRepo;
 
