@@ -8,7 +8,6 @@
 </head>
 <body>
 
-<form method="POST" enctype="multipart/form-data" action="/exhibition-insert">
 
 <div>
 <!-- UserInfo 유효형검사 X , 회원이 아니면 버튼 안보이게.-->
@@ -43,7 +42,7 @@
 
 
 <button onclick="doInsert()">전시회 등록 신청하기</button>
-</form>
+
 
 
 <script>
@@ -123,9 +122,9 @@ function doInsert(){
 	formData.append('eiEndDate',eiEndDate);
 	formData.append('eiStartTime',eiStartTime);
 	formData.append('eiEndTime',eiEndTime);
-	formData.append('fiFile',document.querySelector('#fiFile').files[0]);
-	formData.append('userInfo',userInfo.uiNum['#uiNum']);
-	formData.append('galleryInfo',galleryInfo.giNum['#giNum']);
+	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
+	formData.append('userInfo.uiNum',document.querySelector('#uiNum').value);
+	formData.append('galleryInfo.giNum',document.querySelector('#giNum').value);
 	xhr.send(formData);
 }
 
