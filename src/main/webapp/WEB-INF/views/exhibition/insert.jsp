@@ -7,7 +7,7 @@
 <title>전시회 등록 페이지</title>
 </head>
 <body>
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" action="/exhibition-insert">
 <div>
 <!-- UserInfo 유효형검사 확인(회원인지)안하면 등록 못하게-->
 신청자 성함 <input type="text" id="uiNum"><button onclick="checkUser()">회원확인</button><br>
@@ -69,7 +69,7 @@ function doInsert(){
 	formData.append('eiStartTime',document.querySelector('#eiStartTime').value);
 	formData.append('eiEndTime',document.querySelector('#eiEndTime').value);
 	formData.append('fiFile',document.querySelector('#fiFile').files[0]);
-	formData.append('userInfo',userInfo.uiNum['#uiNum']));
+	formData.append('userInfo',userInfo.uiNum['#uiNum']);
 	formData.append('galleryInfo',galleryInfo.giNum['#giNum']);
 	xhr.send(formData);
 }
