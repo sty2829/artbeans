@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
+import com.artbeans.web.util.FileConverter;
 
 @Service
 public class ExhibitionInfoServiceImpl implements ExhibitionService {
@@ -29,7 +30,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	}
 
 	@Override
-	public ExhibitionInfo saveExhibitionInfo(ExhibitionInfo exhibitionInfo) {
+	public ExhibitionInfo saveExhibitionInfo(ExhibitionInfo exhibitionInfo)  {
 		return exhiRepo.save(exhibitionInfo);
 	}
 

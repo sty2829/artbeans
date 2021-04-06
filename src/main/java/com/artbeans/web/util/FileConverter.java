@@ -1,6 +1,7 @@
 package com.artbeans.web.util;
 
 import java.io.File;
+import java.io.IOException;
 
 import com.artbeans.web.entity.FileInfo;
 
