@@ -44,7 +44,7 @@ public class GalleryInfo {
 	private String giHompage;
 	
 	@Column(name = "gi_holiday")
-	private String gi_Holiday;
+	private String giHoliday;
 	
 	@Column(name = "gi_address")
 	private String giAddress;
