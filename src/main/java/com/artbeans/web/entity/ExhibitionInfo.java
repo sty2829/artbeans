@@ -57,11 +57,13 @@ public class ExhibitionInfo {
 	@Column(name = "ei_end_date")
 	private Date eiEndDate;
 	
+	//Time 스트링 수정
 	@Column(name = "ei_start_time")
-	private Time eiStartTime;
+	private String eiStartTime;
 	
+	//Time 스트링 수정
 	@Column(name = "ei_end_time")
-	private Time eiEndTime;
+	private String eiEndTime;
 	
 	@Column(name = "ei_status", insertable = false)
 	private String eiStatus;
