@@ -25,20 +25,8 @@
 <script>
 var eiNum = '${param.eiNum}';
 function doUpdate(){
-	
-	var uiName = document.querySelector('#uiName');
-	if(uiName.value.trim().length<2){
-		alert('신청자 성함을 2글자 이상 작성해주세요.');
-		uiName.focus();
-		return;
-	}
-	
-	var gallery = document.querySelector('#gallery');
-	if(gallery.value.trim().length<1){
-		alert('갤러리를 선택해주세요.');
-		gallery.focus();
-		return;
-	}
+		
+
 	
 	var eiName = document.querySelector('#eiName');
 	if(eiName.value.trim().length<1){
@@ -108,6 +96,7 @@ function doUpdate(){
 	var eiStartTime = document.querySelector('#eiStartTime');
 	var eiEndTime = document.querySelector('#eiEndTime');
 	var giName = document.querySelector('#giName').value;
+	var uiNum = '${userInfo.eiNum}';
 	formData.append('eiNum',eiNum);
 	formData.append('eiName',eiName);
 	formData.append('eiArtist',eiArtist);
@@ -117,7 +106,7 @@ function doUpdate(){
 	formData.append('eiStartTime',eiStartTime);
 	formData.append('eiEndTime',eiEndTime);
 	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
-	formData.append('userInfo.uiNum',8); //임시 uiNum
+	formData.append('userInfo.uiNum',uiNum); //임시 uiNum
 	formData.append('galleryInfo.giNum',giName);
 	xhr.send(formData);
 }
