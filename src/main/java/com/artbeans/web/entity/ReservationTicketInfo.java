@@ -40,8 +40,9 @@ public class ReservationTicketInfo {
 	@Column(name="rti_date")
 	private Date rtiDate;
 	
+	//Time 스트링 수정
 	@Column(name="rti_time")
-	private Time rtiTime;
+	private String rtiTime;
 	
 	@Column(name="rti_amount")
 	private Integer rtiAmount;
