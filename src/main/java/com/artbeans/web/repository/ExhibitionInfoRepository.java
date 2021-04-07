@@ -8,5 +8,7 @@ import com.artbeans.web.entity.ExhibitionInfo;
 
 public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, Integer> {
 	
+	public List<ExhibitionInfo> findAllByOrderByEiStartDateAsc();
+	public List<ExhibitionInfo> findAllByOrderByEiStartDateDesc();
 
 }

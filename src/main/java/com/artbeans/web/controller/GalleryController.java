@@ -26,6 +26,16 @@ public class GalleryController {
 		return gService.getGalleryInfos(galleryInfo);
 	}
 	
+	@GetMapping("/Gallery-list-area")
+	public @ResponseBody List<GalleryInfo> getGalleryInfoAreaList(@ModelAttribute GalleryInfo galleryInfo){
+		return gService.getGalleryInfoAreaList(galleryInfo);
+	}
+	
+	@GetMapping("/Gallery-list-name")
+	public @ResponseBody List<GalleryInfo> getGalleryInfoNameList(@ModelAttribute GalleryInfo galleryInfo){
+		return gService.getGalleryInfoNameList(galleryInfo);
+	}
+	
 	@GetMapping("/Gallery")
 	public @ResponseBody GalleryInfo getGalleryInfo(@RequestParam Integer giNum){
 		return gService.getGalleryInfo(giNum);

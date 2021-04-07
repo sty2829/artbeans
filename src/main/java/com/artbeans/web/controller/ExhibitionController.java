@@ -28,6 +28,17 @@ public class ExhibitionController {
 		return eService.getExhibitionInfos(exhibitionInfo);
 	}
 	
+	@GetMapping("/exhibition-list-newest")
+	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoNewestList(ExhibitionInfo exhibitionInfo){
+		return eService.getExhibitionInfoNewestList(exhibitionInfo);
+	}
+	
+	@GetMapping("/exhibition-list-deadline")
+	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoDeadlineList(ExhibitionInfo exhibitionInfo){
+		return eService.getExhibitionInfoDeadlineList(exhibitionInfo);
+	}
+	
+	
 	@GetMapping("/exhibition")
 	public @ResponseBody ExhibitionInfo getExhibitionInfo(@RequestParam Integer eiNum){
 		return eService.getExhibitionInfo(eiNum);

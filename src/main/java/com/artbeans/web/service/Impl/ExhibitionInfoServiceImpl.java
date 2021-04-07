@@ -23,6 +23,14 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	public List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo) {
 		return exhiRepo.findAll();
 	}
+	
+	public List<ExhibitionInfo> getExhibitionInfoNewestList(ExhibitionInfo exhibitionInfo) {
+		return exhiRepo.findAllByOrderByEiStartDateAsc();
+	}
+	
+	public List<ExhibitionInfo> getExhibitionInfoDeadlineList(ExhibitionInfo exhibitionInfo) {
+		return exhiRepo.findAllByOrderByEiStartDateDesc();
+	}
 
 	@Override
 	public ExhibitionInfo getExhibitionInfo(Integer eiNum) {
