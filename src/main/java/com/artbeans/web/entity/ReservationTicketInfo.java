@@ -56,7 +56,7 @@ public class ReservationTicketInfo {
 	
 	@ManyToOne
 	@JoinColumn(name = "ui_num")
-	private UserInfo user_info;
+	private UserInfo userInfo;
 	
 	@ManyToOne
 	@JoinColumn(name = "eri_num")

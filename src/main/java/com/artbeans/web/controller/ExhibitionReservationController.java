@@ -13,19 +13,19 @@ import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @Slf4j
-public class ExhibitionReservationInfoController {
+public class ExhibitionReservationController {
 
 	@Autowired
 	private ExhibitionReservationInfoRepository exhibitionReservationInfoRepository;
 	
-	@PostMapping("/exhibitionReservation")
+	@PostMapping("/reservation")
 	public int insert(@RequestBody ExhibitionReservationInfo exhibitionReservationInfo) {
 		log.info("exhibitionReservation => {}", exhibitionReservationInfo);
-		exhibitionReservationInfoRepository.save(exhibitionReservationInfo);
-		return exhibitionReservationInfo.getEriNum();
+		//exhibitionReservationInfoRepository.save(exhibitionReservationInfo);
+		return 1;
 	}
 	
-	@GetMapping("/exhibitionReservation")
+	@GetMapping("/reservation")
 	public ExhibitionReservationInfo getER(@RequestBody Integer eiNum) {
 		return null;
 	}
