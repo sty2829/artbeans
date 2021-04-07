@@ -43,17 +43,39 @@ img[data-col] {
 			<div class="col-lg-5">
 				<img src="/resources/assets/img/blog-1.jpg" class="img-fluid" data-col="eiImg">
           	</div>
-			<div class="col-lg-3">
-	      		<label for="validationServer01">First name</label>
-			    <input type="text" class="form-control is-invalid" id="testVaild" value="">
+			<div class="col-lg-2">
+	      		<label for="eriAudienceRating">관람등급</label>
+			    <input type="text" class="form-control is-valid" id="eriAudienceRating" onkeyup="vaild(this)" required>
      			<div class="valid-feedback">
        		  		잘했네
       			</div>
+      			<label for="eriRunningTime">러닝타임</label>
+			    <input type="text" class="form-control is-invalid" id="eriRunningTime" onkeyup="vaild(this)" required>
      			<div class="invalid-feedback">
-       		  		아이디는 4자 이상 입력해야 합니다.
+       		  		아이디는 10자 이상 입력해야 합니다.
       			</div>
-			</div>
-		</div>
+    			<label for="eriMaxStock">1인당 최대 예매표</label>
+			    <input type="number" class="form-control is-invalid" id="eriMaxStock" onkeyup="vaild(this)" required>
+     			<div class="invalid-feedback">
+       		  		아이디는 10자 이상 입력해야 합니다.
+      			</div>
+      			<label for="eriMaxTicket">시간당 최대 예매표</label>
+			    <input type="number" class="form-control is-invalid" id="eriMaxTicket" onkeyup="vaild(this)" required>
+     			<div class="invalid-feedback">
+       		  		아이디는 10자 이상 입력해야 합니다.
+      			</div>
+		   </div>
+		   <div class="col-lg-2">
+		   		<label for="eriStartDate">예매 시작일</label>
+    	   		<input type="text" class="form-control" id="eriStartDate" style="background-color: white">
+  		        <label for="eriEndDate">예매 종료일</label>
+    			<input type="text" class="form-control" id="eriEndDate" style="background-color: white">
+    			<label for="eriStartTime">예매 시작시간</label>
+    	   		<input type="text" class="form-control" id="eriStartTime" style="background-color: white">
+    	   		<label for="eriEndTime">예매 종료시간</label>
+    	   		<input type="text" class="form-control" id="eriEndTime" style="background-color: white">
+		  </div>
+	 </div>
 		<br>
 		<div class="row">
 			<div class="col-lg-5">
@@ -63,6 +85,32 @@ img[data-col] {
 		</div>
 	</div>
 <script>
+flatpickr('#eriStartDate', {
+	enableTime: true,
+	time_24hr: true,
+	dateFormat: "Y-m-d",
+});
+
+flatpickr('#eriEndDate', {
+	enableTime: true,
+	time_24hr: true,
+	dateFormat: "Y-m-d",
+});
+
+flatpickr('#eriStartTime', {
+	enableTime: true,
+	noCalendar: true,
+	time_24hr: true,
+	dateFormat: "H:i",
+});
+
+flatpickr('#eriEndTime', {
+	enableTime: true,
+	noCalendar: true,
+	time_24hr: true,
+	dateFormat: "H:i",
+});
+
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', '/test/exhibition/2');
@@ -77,11 +125,17 @@ window.onload = function(){
 			}
 		}
 	}
-	xhr.send();
+}
+function vaild(obj){
+	var check = {
+			
+	}
+	console.log(obj);
 }
 
+
 var obj = document.querySelector('#testVaild');
-obj.className = 'form-control is-valid';
+obj.className;
 console.log(obj.getAttribute('class'));
 
 </script>	

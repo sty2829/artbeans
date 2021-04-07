@@ -29,7 +29,7 @@ public class UserInfo {
 	private Integer uiNum;	
 	
 	@Column(name = "ui_id")
-	private String uiId;
+	private String uiName;
 	
 	@Column(name ="ui_pwd")
 	private String uiPwd;

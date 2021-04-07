@@ -154,6 +154,7 @@ function insertGallery(){
 			console.log(xhr.responseText);
 			if(xhr.responseText>0){
 				alert('갤러리 등록 성공');
+				test();
 				location.href='/';
 			}
 		}		
