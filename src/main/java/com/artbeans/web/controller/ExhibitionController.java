@@ -30,6 +30,7 @@ public class ExhibitionController {
 	
 	@GetMapping("/exhibition")
 	public @ResponseBody ExhibitionInfo getExhibitionInfo(@RequestParam Integer eiNum){
+		log.info("eiNum=>{}",eService.getExhibitionInfo(eiNum));
 		return eService.getExhibitionInfo(eiNum);
 	}
 	
@@ -46,9 +47,9 @@ public class ExhibitionController {
 	}
 	
 	@PostMapping("/exhibition-update")
-	public @ResponseBody Integer updateExhibitionInfo(@RequestBody ExhibitionInfo exhibitionInfo) {
-		exhibitionInfo = eService.updateExhibitionInfo(exhibitionInfo);
-		return exhibitionInfo.getEiNum();
+	public @ResponseBody Integer updateExhibitionInfo(@ModelAttribute ExhibitionInfo exhibitionInfo) {
+		log.info("exhibition=>{}",exhibitionInfo);
+		return null;
 	}
 
 }
