@@ -24,7 +24,7 @@ public class ExhibitionController {
 	private ExhibitionService eService;
 	
 	@GetMapping("/exhibition-list")
-	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(@ModelAttribute ExhibitionInfo exhibitionInfo){
+	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
 		return eService.getExhibitionInfos(exhibitionInfo);
 	}
 	

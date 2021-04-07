@@ -28,9 +28,6 @@ public class UserInfo {
 	@Column(name = "ui_num")
 	private Integer uiNum;	
 	
-	@Column(name = "ui_id")
-	private String uiName;
-	
 	@Column(name ="ui_pwd")
 	private String uiPwd;
 	

@@ -48,5 +48,4 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		if(getExhibitionInfo(eiNum)==null) return 1;
 		return 0;
 	}
-
 }
