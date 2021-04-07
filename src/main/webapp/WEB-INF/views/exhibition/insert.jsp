@@ -16,7 +16,7 @@
 <div id="gallertySelectDiv">
 
 <!-- GalleryInfo 유효성검사 갤러리 선택안하면 등록 못하게, 갤러리 없으면 등록하게-->
-신청자 갤러리 <select id="gallery" name="galleryOption()">
+신청자 갤러리 <select id="gallery" name="galleryOption()" data-col="test">
            </select>
            <button onclick="showGalleryDiv()">갤러리 등록하기</button>
 </div>
@@ -263,10 +263,9 @@ function doInsert(){
 	formData.append('eiEndTime',eiEndTime.value);
 	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
 	formData.append('userInfo.uiNum',1); //임시 값
-	formData.append('galleryInfo.giNum',document.querySelector('[id=gallery]:selected').value);
+	formData.append('galleryInfo.giNum',document.querySelector('[id="gallery"]:selected').value);
 	xhr.send(formData);
 }
-
 
 </script>
            
