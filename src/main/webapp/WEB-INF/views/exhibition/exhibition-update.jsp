@@ -8,6 +8,8 @@
 </head>
 <body>
 <div>
+
+갤러리명 <input type ="text" id = "giName" readOnly><br>
 전시회명 <input type="text" id="eiName"><button onclick="checkExhibition()">중복확인</button><br>
 작가명 <input type="text" id="eiArtist"><br>
 전시회 가격 <input type="number" id="eiCharge"><br>
@@ -104,7 +106,8 @@ function doUpdate(){
 	var eiStartDate = document.querySelector('#eiStartDate');
 	var eiEndDate = document.querySelector('#eiEndDate');
 	var eiStartTime = document.querySelector('#eiStartTime');
-	var eiEndTime = document.querySelector('#eiEndTime');	
+	var eiEndTime = document.querySelector('#eiEndTime');
+	var giName = document.querySelector('#giName').value;
 	formData.append('eiNum',eiNum);
 	formData.append('eiName',eiName);
 	formData.append('eiArtist',eiArtist);
@@ -115,29 +118,33 @@ function doUpdate(){
 	formData.append('eiEndTime',eiEndTime);
 	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
 	formData.append('userInfo.uiNum',8); //임시 uiNum
-	formData.append('galleryInfo.giNum',1);//galleryInfo.giNum['#giNum']);//임시 giNum
+	formData.append('galleryInfo.giNum',giName);
 	xhr.send(formData);
 }
 function getExhibition(){
 var xhr = new XMLHttpRequest();
-xhr.open('GET','/exhibition?eiNum='+ eiNum);
+xhr.open('GET','/exhibition?eiNum='+eiNum);
 xhr.onreadystatechange = function(){
 	if(xhr.readyState==4 && xhr.status==200){
 		var html = '';
-		console.log(xhr.responseText);
-		var res = JSON.parse(xhr.responseText);
 		
+		var res = JSON.parse(xhr.responseText);
+
+		console.log(res);
 		for(var key in res){
 			if(document.querySelector('#'+key)){
 				document.querySelector('#'+key).value=res[key];
 			}
-		}  	
+		}
+		document.querySelector('#giName').value = res.galleryInfo.giName;
+		//미구현 document.querySelector('#fiFile').value = res.galleryInfo.giName; 이전 파일 미리보기
+		
 	}
 }
 xhr.send();
 }
 window.onload = getExhibition ;
 </script>
-<%@include file ="/WEB-INF/views/include/footer.jsp"%>
+
 </body>
 </html>

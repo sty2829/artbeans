@@ -61,7 +61,7 @@ public class UserInfo {
 	@ColumnDefault("now()")
 	private Date credat;
 	
-	@Column(name="credat", insertable = false)
+	@Column(name="moddat", insertable = false)
 	@ColumnDefault("now()")
 	private Date moddat;
 	
