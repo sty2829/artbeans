@@ -43,35 +43,35 @@ function doUpdate(){
 	}
 	
 	var eiCharge = document.querySelector('#eiCharge');
-	if(eiArtist.value.trim().length<2){
+	if(eiCharge.value.trim().length<2){
 		alert('전시회 가격을 작성해주세요.');
 		eiCharge.focus();
 		return;
 	}
 	
 	var eiStartDate = document.querySelector('#eiStartDate');
-	if(eiArtist.value.trim().length<1){
+	if(eiStartDate.value.trim().length<1){
 		alert('전시회 시작일을 선택해주세요.');
 		eiStartDate.focus();
 		return;
 	}
 	
 	var eiEndDate = document.querySelector('#eiEndDate');
-	if(eiArtist.value.trim().length<1){
+	if(eiEndDate.value.trim().length<1){
 		alert('전시회 종료일을 선택해주세요.');
 		eiEndDate.focus();
 		return;
 	}
 	
 	var eiStartTime = document.querySelector('#eiStartTime');
-	if(eiArtist.value.trim().length<6){
+	if(eiStartTime.value.trim().length<6){
 		alert('전시회 시작 시간을 작성해주세요.');
 		eiStartTime.focus();
 		return;
 	}
 	
 	var eiEndTime = document.querySelector('#eiEndTime');
-	if(eiArtist.value.trim().length<6){
+	if(eiEndTime.value.trim().length<6){
 		alert('전시회 종료 시간을 작성해주세요.');
 		eiEndTime.focus();
 		return;
