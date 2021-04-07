@@ -46,7 +46,7 @@ public class ExhibitionReservationInfo {
 	private Integer eriMaxTicket;
 	
 	@Column(name="eri_max_stock")
-	private Integer eriMaxstock;
+	private Integer eriMaxStock;
 	
 	@Column(name="eri_audience_rating")
 	private String eriAudienceRating;

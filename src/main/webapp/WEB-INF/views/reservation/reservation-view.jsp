@@ -22,29 +22,26 @@ h5 {
 .list-inline-item {
     margin-top: -15px;
 }
+img[data-col] {
+	width: 500px;
+	height: 350px;
+}
 .btn-outline-success{color:#198754;border-color:#198754}.btn-outline-success:hover{color:#fff;background-color:#198754;border-color:#198754}.btn-check:focus+.btn-outline-success,.btn-outline-success:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-check:active+.btn-outline-success,.btn-check:checked+.btn-outline-success,.btn-outline-success.active,.btn-outline-success.dropdown-toggle.show,.btn-outline-success:active{color:#fff;background-color:#198754;border-color:#198754}.btn-check:active+.btn-outline-success:focus,.btn-check:checked+.btn-outline-success:focus,.btn-outline-success.active:focus,.btn-outline-success.dropdown-toggle.show:focus,.btn-outline-success:active:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-outline-success.disabled,.btn-outline-success:disabled{color:#198754;background-color:transparent}
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
    <div class="container reservationMain">
+      	<div class="row">
+   			<div class="col-lg-10" style="text-align: center;">
+				<div class="section-title">
+		          <p>전시회 예약등록</p>
+		        </div>
+   			</div>
+   		</div>
 		<div class="row">
-			<div class="col-lg-5">
-                <img src="/resources/assets/img/blog-1.jpg" alt="" class="img-fluid"><br>
-                <ul class="list-inline">
-                	<li class="list-inline-item">
-		                <h5 class="mt-5">기간</h5>
-		                <p>2021-04-05 ~ 2021-05-03</p>
-		            </li>
-		            <li class="list-inline-item">
-		                <h5 class="mt-5">관람등급</h5>
-		                <p>전체연령가</p>
-		            </li>
-		            <li class="list-inline-item">
-		                <h5 class="mt-5">러닝타임</h5>
-		                <p style="text-align: center">60분</p>
-		            </li>
-		         </ul>
+			<div class="col-lg-6">
+                <img src="/resources/assets/img/blog-1.jpg" alt="" class="img-fluid" data-col="eiImg"><br>
           	</div>
 			<div class="col-lg-5">
 				<div id="mycal">
@@ -52,9 +49,8 @@ h5 {
 				<h5 class="mt-4">시간 선택</h5>
 			</div>
 		</div>
-		<br>
-		<div class="row" id="checkRadioTop" >
-			<div class="col-lg-5">
+		<div class="row mt-2" id="checkRadioTop" >
+			<div class="col-lg-3">
 	            <input type="text" class="form-control mb-2" name="name" id="name" placeholder="예매자 이름"/>
 	            <div class="validate"></div>
 	            <input type="text" class="form-control mb-2" name="email" id="email" placeholder="예매자 연락처" />
