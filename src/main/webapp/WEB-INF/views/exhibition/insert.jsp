@@ -156,11 +156,12 @@ function insertGallery(){
 			console.log(xhr.responseText);
 			if(xhr.responseText>0){
 				alert('갤러리 등록 성공');
-				test();
-				location.href='/';
+				galleryOption();
+				showGalleryDiv();
 			}
 		}		
 	}
+	console.log(document.querySelector('#fiFile').files[0]);
 	var formData = new FormData();
 	// 값 맞는지 확인하기
 	formData.append('giName',giName.value);
@@ -170,7 +171,7 @@ function insertGallery(){
 	formData.append('giHomepage',document.querySelector('#giHomepage').value);
 	formData.append('giHoliday',document.querySelector('#giHoliday').value);
 	formData.append('giAddress',giAddress.value);
-	formData.append('fileInfo',document.querySelector('#fiFile').files[0]);	
+	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);	
 	xhr.send(formData);
 }
 

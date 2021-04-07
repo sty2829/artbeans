@@ -35,7 +35,8 @@ public class GalleryController {
 	@PostMapping("/gallery")
 	public @ResponseBody int saveGalleryInfo(GalleryInfo galleryInfo) throws Exception {
 		log.info("galleryInfo => {}", galleryInfo);
-		return gService.saveGalleryInfo(galleryInfo);
+		gService.saveGalleryInfo(galleryInfo);
+		return 1;
 	}
 	
 	
