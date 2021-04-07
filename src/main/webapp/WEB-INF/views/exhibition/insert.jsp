@@ -29,7 +29,7 @@
 <input type="text" id="giHomepage" placeholder="갤러리 홈페이지"><br>
 <input type="text" id="giHoliday" placeholder="갤러리 휴일"><br>
 <input type="text" id="giAddress" placeholder="갤러리 주소"><br>
-<input type="file" id="fiFile"><br>
+<input type="file" id="fiFile1"><br>
 <button onclick="insertGallery()">갤러리 등록</button>
 <button onclick="showGalleryDiv()">취소</button>
 </div>
@@ -47,7 +47,7 @@
 <!-- FileInfo 유효성검사 없음 -->
 
 <div>
-전시회 정보 사진 <input type="file" id="fiFile"><br>
+전시회 정보 사진 <input type="file" id="fiFile2"><br>
 전시회 정보 <textarea  id="eiContent" placeholder="나중에 선생님이 주시면 변경"></textarea><br>
 </div>
 
@@ -69,7 +69,7 @@ function galleryOption(){
 			var html = '<option value="">갤러리를 선택하세요</option>';
 			for(var galleryInfo of res){
 				// 선택해도 계속 실행만 됨 물어보기
-				html += '<option value="' + galleryInfo.giNum + ' selected">' + galleryInfo.giName + '</option>';
+				html += '<option value="' + galleryInfo.giNum + '">' + galleryInfo.giName + '</option>';
 			}
 			document.querySelector('#gallery').innerHTML = html;
 		}		
@@ -170,7 +170,7 @@ function insertGallery(){
 	formData.append('giHomepage',document.querySelector('#giHomepage').value);
 	formData.append('giHoliday',document.querySelector('#giHoliday').value);
 	formData.append('giAddress',giAddress.value);
-	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);	
+	formData.append('fileInfo.fiFile',document.querySelector('#fiFile1').files[0]);	
 	xhr.send(formData);
 }
 
@@ -247,10 +247,10 @@ function doInsert(){
 			console.log(xhr.responseText);
 			if(xhr.responseText>0){
 				alert('전시회 등록 성공');
-				galleryOption();
+				location.href='/';
 			}
 		}		
-	}
+	}	
 	var formData = new FormData();
 	// 값 맞는지 확인하기
 	formData.append('eiName',eiName.value);
@@ -260,10 +260,12 @@ function doInsert(){
 	formData.append('eiEndDate',eiEndDate.value);
 	formData.append('eiStartTime',eiStartTime.value);
 	formData.append('eiEndTime',eiEndTime.value);
-	formData.append('userInfo.uiNum',1); //임시 값
-	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);	
+	formData.append('eiContent',document.querySelector('#eiContent').value); //나중에 유효성검사 만들기
+	formData.append('userInfo.uiNum',8); //임시 값
+	formData.append('fileInfo.fiFile',document.querySelector('#fiFile2').files[0]);	
 	formData.append('galleryInfo.giNum',document.querySelector('select#gallery option:checked').value);
-
+	
+	
 	xhr.send(formData);
 }
 

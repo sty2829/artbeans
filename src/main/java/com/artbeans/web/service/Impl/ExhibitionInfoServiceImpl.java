@@ -14,6 +14,8 @@ import com.artbeans.web.util.FileConverter;
 @Service
 public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	
+	private static final String TYPE = "exhibition";
+	
 	@Autowired
 	private ExhibitionInfoRepository exhiRepo;
 
@@ -30,7 +32,8 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	}
 
 	@Override
-	public ExhibitionInfo saveExhibitionInfo(ExhibitionInfo exhibitionInfo)  {
+	public ExhibitionInfo saveExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception  {
+		FileConverter.fileInsert(exhibitionInfo.getFileInfo(), TYPE);
 		return exhiRepo.save(exhibitionInfo);
 	}
 

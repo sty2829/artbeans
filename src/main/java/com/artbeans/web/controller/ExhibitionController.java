@@ -34,7 +34,7 @@ public class ExhibitionController {
 	}
 	
 	@PostMapping("/exhibition-insert")
-	public @ResponseBody Integer saveExhibition(ExhibitionInfo exhibitionInfo) {
+	public @ResponseBody Integer saveExhibition(ExhibitionInfo exhibitionInfo) throws Exception {
 		log.info("exhibitionInfo=>{}",exhibitionInfo);
 		exhibitionInfo = eService.saveExhibitionInfo(exhibitionInfo);
 		return exhibitionInfo.getEiNum();		
