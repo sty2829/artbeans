@@ -16,7 +16,7 @@
 <div id="gallertySelectDiv">
 
 <!-- GalleryInfo 유효성검사 갤러리 선택안하면 등록 못하게, 갤러리 없으면 등록하게-->
-신청자 갤러리 <select id="gallery">
+신청자 갤러리 <select id="gallery" name="galleryOption()">
            </select>
            <button onclick="showGalleryDiv()">갤러리 등록하기</button>
 </div>
@@ -57,7 +57,9 @@
 
 
 <script>
-window.onload = function (){ 
+window.onload = galleryOption();
+	
+function galleryOption(){ 
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/Gallery-list'); //GalleryController
 	xhr.onreadystatechange = function(){
@@ -168,7 +170,7 @@ function insertGallery(){
 	formData.append('giHomepage',document.querySelector('#giHomepage').value);
 	formData.append('giHoliday',document.querySelector('#giHoliday').value);
 	formData.append('giAddress',giAddress.value);
-	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);	
+	formData.append('fileInfo',document.querySelector('#fiFile').files[0]);	
 	xhr.send(formData);
 }
 
@@ -245,7 +247,7 @@ function doInsert(){
 			console.log(xhr.responseText);
 			if(xhr.responseText>0){
 				alert('전시회 등록 성공');
-				location.href='/';
+				galleryOption();
 			}
 		}		
 	}
