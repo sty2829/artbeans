@@ -227,14 +227,14 @@ function doInsert(){
 	}
 	
 	var eiStartTime = document.querySelector('#eiStartTime');
-	if(eiStartTime.value.trim().length<6){
+	if(eiStartTime.value.trim().length<5){
 		alert('전시회 시작 시간을 작성해주세요.');
 		eiStartTime.focus();
 		return;
 	}
 	
 	var eiEndTime = document.querySelector('#eiEndTime');
-	if(eiEndTime.value.trim().length<6){
+	if(eiEndTime.value.trim().length<5){
 		alert('전시회 종료 시간을 작성해주세요.');
 		eiEndTime.focus();
 		return;
