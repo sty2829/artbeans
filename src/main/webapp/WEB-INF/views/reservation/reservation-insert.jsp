@@ -40,42 +40,32 @@ img[data-col] {
    			</div>
    		</div>
 		<div class="row">
-			<div class="col-lg-5">
-				<img src="/resources/assets/img/blog-1.jpg" class="img-fluid" data-col="eiImg">
+			<div class="col-lg-5" style="text-align: center">
+				<img src="/resources/assets/img/blog-1.jpg" class="img-fluid" data-col="fileInfo">
+	          	<h5 class="mt-2" data-col="eiName">제목</h5>
           	</div>
 			<div class="col-lg-3">
 	      		<label for="eriAudienceRating">관람등급</label>
-			    <input type="text" class="form-control is-valid" id="eriAudienceRating" onkeyup="vaild(this)" required>
-     			<div class="valid-feedback">
-       		  		잘했네
-      			</div>
-      			<label for="eriRunningTime">러닝타임</label>
-			    <input type="text" class="form-control is-invalid" id="eriRunningTime" onkeyup="vaild(this)" required>
-     			<div class="invalid-feedback">
-       		  		아이디는 10자 이상 입력해야 합니다.
-      			</div>
-    			<label for="eriMaxStock">1인당 최대 예매표</label>
-			    <input type="number" class="form-control is-invalid" id="eriMaxStock" onkeyup="vaild(this)" min="0" required>
-     			<div class="invalid-feedback">
-       		  		아이디는 10자 이상 입력해야 합니다.
-      			</div>
-      			<label for="eriMaxTicket">시간당 최대 예매표</label>
-			    <input type="number" class="form-control is-invalid" id="eriMaxTicket" onkeyup="vaild(this)" required >
-     			<div class="invalid-feedback">
-       		  		아이디는 10자 이상 입력해야 합니다.
-      			</div>
+			    <input type="text" class="form-control" id="eriAudienceRating" required>
+      			<label for="eriRunningTime" class="mt-2">러닝타임</label>
+			    <input type="text" class="form-control" id="eriRunningTime" required>
+    			<label for="eriMaxStock" class="mt-2">1인당 최대 예매표</label>
+			    <input type="number" class="form-control" id="eriMaxStock" min="1" required>
+      			<label for="eriMaxTicket" class="mt-2">시간당 최대 예매표</label>
+			    <input type="number" class="form-control" id="eriMaxTicket" min="1" required >
 		   </div>
 		   <div class="col-lg-3">
 		   		<label for="eriStartDate">예매 시작일</label>
     	   		<input type="text" class="form-control" id="eriStartDate" style="background-color: white">
-  		        <label for="eriEndDate">예매 종료일</label>
+  		        <label for="eriEndDate" class="mt-2">예매 종료일</label>
     			<input type="text" class="form-control" id="eriEndDate" style="background-color: white">
-    			<label for="eriStartTime">예매 시작시간</label>
+    			<label for="eriStartTime" class="mt-2">예매 시작시간</label>
     	   		<input type="text" class="form-control" id="eriStartTime" style="background-color: white">
-    	   		<label for="eriEndTime">예매 종료시간</label>
-    	   		<input type="text" class="form-control" id="eriEndTime" style="background-color: white">
+    	   		<label for="eriEndTime" class="mt-2">예매 종료시간</label>
+    	   		<input type="text" class="form-control" id="eriEndTime" style="background-color: white"><br>
+    	   		<button type="button" class="btn btn-primary float-right" onclick="insert()">등록</button>
 		  </div>
-	 </div>
+	   </div>
 		<br>
 		<div class="row">
 			<div class="col-lg-5">
@@ -113,30 +103,50 @@ flatpickr('#eriEndTime', {
 
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/test/exhibition/2');
+	xhr.open('GET', '/test/exhibition/5');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
-			console.log(res);
 			var objs = document.querySelectorAll('[data-col]');
-			var path = res.fileInfo.fiPath;
 			for(obj of objs){
-				obj.src = '/resources/assets/img/exhibition/' + path;
+				var key = obj.getAttribute('data-col');
+				var data = res[key];
+				if(key == "fileInfo") {
+					obj.src = '/resources/assets/img/exhibition/' + data.fiPath;
+					data = '';
+				}
+				obj.innerHTML = data;
 			}
 		}
 	}
+	xhr.send();
 }
-function vaild(obj){
-	var check = {
-			
+
+function insert(){
+	var param = {};
+	
+	var objs = document.querySelectorAll('input');
+	for(obj of objs){
+		param[obj.id] = obj.value;
 	}
-	console.log(obj);
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST', "/reservation");
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			if(xhr.responseText >= 1){
+				alert('인서트 성공');
+				location.href = '/views/food/food-info-list';
+				return;
+			}
+			alert('인서트 실패');
+		}
+	}
+	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
+	//xhr.send(JSON.stringify(param));
 }
 
 
-var obj = document.querySelector('#testVaild');
-obj.className;
-console.log(obj.getAttribute('class'));
 
 </script>	
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

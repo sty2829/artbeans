@@ -28,6 +28,9 @@ public class UserInfo {
 	@Column(name = "ui_num")
 	private Integer uiNum;	
 	
+	@Column(name = "ui_name")
+	private String uiName;
+	
 	@Column(name ="ui_pwd")
 	private String uiPwd;
 	
@@ -58,7 +61,7 @@ public class UserInfo {
 	@ColumnDefault("now()")
 	private Date credat;
 	
-	@Column(name="credat", insertable = false)
+	@Column(name="moddat", insertable = false)
 	@ColumnDefault("now()")
 	private Date moddat;
 	

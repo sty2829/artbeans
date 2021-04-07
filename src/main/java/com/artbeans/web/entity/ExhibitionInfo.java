@@ -86,7 +86,6 @@ public class ExhibitionInfo {
 	//uiNum 묶여있어서 추가요
 	@ManyToOne
 	@JoinColumn(name = "ui_num")
-	@JsonBackReference
 	private UserInfo userInfo;
 	
 	@OneToOne(mappedBy = "exhibitionInfo")
