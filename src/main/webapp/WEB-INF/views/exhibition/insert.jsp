@@ -123,13 +123,10 @@ function doInsert(){
 	formData.append('eiStartTime',eiStartTime);
 	formData.append('eiEndTime',eiEndTime);
 	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
-<<<<<<< HEAD
 	formData.append('userInfo.uiNum',);
 	formData.append('galleryInfo.giNum',galleryInfo.giNum['#giNum']);
-=======
 	formData.append('userInfo.uiNum',document.querySelector('#uiNum').value);
 	formData.append('galleryInfo.giNum',document.querySelector('#giNum').value);
->>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 	xhr.send(formData);
 }
 
