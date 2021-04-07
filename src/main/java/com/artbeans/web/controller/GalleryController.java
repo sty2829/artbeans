@@ -38,4 +38,6 @@ public class GalleryController {
 		return gService.saveGalleryInfo(galleryInfo);
 	}
 	
+	
+	
 }
