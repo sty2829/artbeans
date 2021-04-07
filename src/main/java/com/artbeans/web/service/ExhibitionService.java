@@ -8,7 +8,7 @@ import com.artbeans.web.entity.ExhibitionInfo;
 public interface ExhibitionService {
 	List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo);
 	ExhibitionInfo getExhibitionInfo(Integer eiNum);
-	ExhibitionInfo saveExhibitionInfo(ExhibitionInfo exhibitionInfo);
+	ExhibitionInfo saveExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception;
 	ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo);
 	int deleteExhibitionInfo(Integer eiNum);
 

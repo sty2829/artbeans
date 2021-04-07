@@ -33,7 +33,7 @@ img[data-col] {
 <jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
    <div class="container reservationMain">
    		<div class="row">
-   			<div class="col-lg-8" style="text-align: center;">
+   			<div class="col-lg-11" style="text-align: center;">
 				<div class="section-title">
 		          <p>전시회 예약등록</p>
 		        </div>
@@ -43,7 +43,7 @@ img[data-col] {
 			<div class="col-lg-5">
 				<img src="/resources/assets/img/blog-1.jpg" class="img-fluid" data-col="eiImg">
           	</div>
-			<div class="col-lg-2">
+			<div class="col-lg-3">
 	      		<label for="eriAudienceRating">관람등급</label>
 			    <input type="text" class="form-control is-valid" id="eriAudienceRating" onkeyup="vaild(this)" required>
      			<div class="valid-feedback">
@@ -55,17 +55,17 @@ img[data-col] {
        		  		아이디는 10자 이상 입력해야 합니다.
       			</div>
     			<label for="eriMaxStock">1인당 최대 예매표</label>
-			    <input type="number" class="form-control is-invalid" id="eriMaxStock" onkeyup="vaild(this)" required>
+			    <input type="number" class="form-control is-invalid" id="eriMaxStock" onkeyup="vaild(this)" min="0" required>
      			<div class="invalid-feedback">
        		  		아이디는 10자 이상 입력해야 합니다.
       			</div>
       			<label for="eriMaxTicket">시간당 최대 예매표</label>
-			    <input type="number" class="form-control is-invalid" id="eriMaxTicket" onkeyup="vaild(this)" required>
+			    <input type="number" class="form-control is-invalid" id="eriMaxTicket" onkeyup="vaild(this)" required >
      			<div class="invalid-feedback">
        		  		아이디는 10자 이상 입력해야 합니다.
       			</div>
 		   </div>
-		   <div class="col-lg-2">
+		   <div class="col-lg-3">
 		   		<label for="eriStartDate">예매 시작일</label>
     	   		<input type="text" class="form-control" id="eriStartDate" style="background-color: white">
   		        <label for="eriEndDate">예매 종료일</label>
