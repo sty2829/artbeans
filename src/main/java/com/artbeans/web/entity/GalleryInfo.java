@@ -36,11 +36,13 @@ public class GalleryInfo {
 	@Column(name = "gi_rphone_number")
 	private String giRphoneNumber;
 	
+	//Time 스트링 수정
 	@Column(name = "gi_start_time")
-	private Time giStartTime;
+	private String giStartTime;
 	
+	//Time 스트링 수정
 	@Column(name = "gi_end_time")
-	private Time giEndTime;
+	private String giEndTime;
 	
 	@Column(name = "gi_homepage")
 	private String giHomepage;
