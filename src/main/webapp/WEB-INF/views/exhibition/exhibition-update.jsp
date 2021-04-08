@@ -4,13 +4,131 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>전시회 수정</title>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 </head>
+<jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
 <body>
-<div>
 <input type = "hidden" id = "eiNum">
 <input type = "hidden" id = "uiNum">
 <input type = "hidden" id = "giNum">
+<main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">         
+        </div>
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="row mt-2">
+          <div class="col-lg-4">
+            <div class="info">
+             <div class="phone"  id="getExhibitionDivMenu">
+                <h4>나의 전시회 목록</h4>
+              </div>
+              <div class="phone">
+                <h4>갤러리명</h4>
+              </div>
+              <div class="phone">
+                <h4>전시회명</h4>
+              </div>
+              <div class="phone">
+                <h4>작가명</h4>               
+              </div>
+              <div class="phone">
+                <h4>전시회 가격</h4>
+              </div>
+              <div class="phone">
+                <h4>전시회 시작일 </h4>
+              </div>
+              <div class="phone">
+                <h4>전시회 종료일 </h4>
+              </div>
+              <div class="phone">
+                <h4>전시회 시작시간 </h4>
+              </div>
+              <div class="phone">
+                <h4>전시회 종료시간 </h4>
+              </div>
+              
+               <div class="phone">
+                <h4>전시회 포스터사진 </h4>
+              </div>
+               <div class="phone">
+                <h4>전시회 설명 </h4>
+              </div>
+              
+            </div>
+          </div>
+          <div class="col-lg-8 mt-3 mt-lg-4">
+          <div id="getExhibitionDivMenu" class="form-row">
+                <div class="col-md-6 form-group">
+                  <select class="col-md-6 form-group" style="WIDTH: 300pt; HEIGHT: 30pt" onchange="getExhibition(this)" id="exhibition" name="exhibitionOption"></select>
+                </div>
+      	 </div>
+              
+          <div class="form-group">
+                <input type="text" class="form-control" id="giName" placeholder="갤러리명" readonly/>
+               <div style="HEIGHT: 10pt"></div> 
+              </div>
+          <div class="form-group">
+                <input type="text" class="form-control" id="eiName" placeholder="전시회명" />
+               <div style="HEIGHT: 10pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" id="eiArtist" placeholder="작가명" />
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="number" class="form-control" id="eiCharge" placeholder="전시회 가격" />
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="date" class="form-control" id="eiStartDate" />
+                <div style="HEIGHT: 10pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="date" class="form-control" id="eiEndDate"/>
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" id="eiStartTime" placeholder="00:00" />
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" id="eiEndTime" placeholder="00:00" />
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="file" class="form-control" id="fiFile" onchange ="changeImg(this)"/> 
+                <div style="HEIGHT: 10pt"></div>    
+              </div>
+              
+           	 <div id="fiview"></div>
+              
+              <div class="form-group">
+                <textarea class="form-control" id="eiContent" rows="5" placeholder="전시회 설명"></textarea>
+              </div>
+             
+             <button class="get-started-btn ml-auto"  onclick="doUpdate()">전시회 수정</button>
+          </div>
+        </div>
+        </div>
+    </section>
+  </main>
+<!-- <div>
+
 나의 전시회 목록 <select onchange="getExhibition(this)" id="exhibition" name="exhibitionOption" data-col="test">
            </select><br>
 갤러리명 <input type ="text" id = "giName" readOnly><br>
@@ -23,10 +141,9 @@
 전시회 종료시간 <input type="text" id="eiEndTime" ><br>
 전시회 사진 변경 <input type="file" id="fiFile" onchange ="changeImg(this)"><br>
 <div id="fiview"></div>
-<input type="hidden" id = "orgName">
 전시회 정보 <textarea  id="eiContent" placeholder="나중에 선생님이 주시면 변경"></textarea><br>
 <button type="button" onclick="doUpdate()">전시회 수정 하기</button>
-</div>
+</div> -->
 <script>
 function doUpdate(){
 	var eiName = document.querySelector('#eiName');
@@ -133,7 +250,7 @@ xhr.onreadystatechange = function(){
 				}
 			}
 		document.querySelector('#giName').value = res.galleryInfo.giName;
-		document.querySelector('#fiview').innerHTML = '<img width="200" id="preview" src="/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '">';
+		document.querySelector('#getExhibitionDivMenu').innerHTML = '<img width="200" id="preview" src="/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '">';
 		}
 	}
 xhr.send();
@@ -149,5 +266,6 @@ function changeImg(obj){ // change event
 	}
 }
 </script>
+<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
