@@ -9,13 +9,40 @@
 
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
 
+	<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
+		<section id="breadcrumbs" class="breadcrumbs">
+			<div class="container">
+			</div>
+		</section>
+		<!-- End Breadcrumbs -->
 
-<!-- 최신순, 마감순  -->
-<button onclick="newest()">최신순</button> <button onclick="deadline()">마감순</button>  
+		<!-- ======= Portfolio Section ======= -->
+		<section id="portfolio" class="portfolio">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12 d-flex justify-content-center">
+					    <ul id="portfolio-flters">					        
+						    <li id="newest()">전시회 오픈순</li>
+	                 	    <li id="deadline()">전시회 마감순</li>
+	                    </ul>
+					</div>
+				</div>
+			</div>
+		</section>
 
-<div id="exhibitionList"></div>
+		<!-- 최신순, 마감순 <div id="exhibitionList"></div> -->
+<section id="blog" class="blog">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="exhibitionList">
+          
+          </div>
+         </div>
+       </div>
+</section>
+</main>
 
 <script>
 window.onload = function(){
@@ -25,17 +52,30 @@ window.onload = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<div>';
-			
+			var html = '<article class="entry">';
+			html += '<div class="entry-img">';   			
 			// exhibition.eiStatus=2 종료된 전시회
 			for(var exhibition of res){
 				if(exhibition.eiStatus==2){				
-				html += '<h2 onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer"> 전시회명 ' + exhibition.eiName + '</h2>';
-				html += '<p> 작가 ' + exhibition.eiArtist + '</p>';
-				html += '<p> 가격 ' + exhibition.eiCharge + '</p>';
+					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '</div>';
+					html += '<h2 class="entry-title">';
+					html += '<a>' + exhibition.eiName + '</a>';
+					html += '</h2>';
+					html += '<div class="entry-meta">';
+					html += '<ul>';
+					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
+					html += '</ul>';
+					html += '<div class="entry-content">';
+					html += '<div style="HEIGHT: 10pt"></div>';
+					html += '<div class="read-more">';					
+					html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer">상세정보</a>';
+					html += '</div>';
+					html += '</div>';
+					html += '</article>';
 				}
 			}
-			html += '</div>';
 			document.querySelector('#exhibitionList').innerHTML = html;
 		}		
 	}
@@ -49,17 +89,30 @@ function newest(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<div>';
-			
+			var html = '<article class="entry">';
+			html += '<div class="entry-img">';   			
 			// exhibition.eiStatus=2 종료된 전시회
 			for(var exhibition of res){
 				if(exhibition.eiStatus==2){				
-				html += '<h2 onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer"> 전시회명 ' + exhibition.eiName + '</h2>';
-				html += '<p> 작가 ' + exhibition.eiArtist + '</p>';
-				html += '<p> 가격 ' + exhibition.eiCharge + '</p>';
+					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '</div>';
+					html += '<h2 class="entry-title">';
+					html += '<a>' + exhibition.eiName + '</a>';
+					html += '</h2>';
+					html += '<div class="entry-meta">';
+					html += '<ul>';
+					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
+					html += '</ul>';
+					html += '<div class="entry-content">';
+					html += '<div style="HEIGHT: 10pt"></div>';
+					html += '<div class="read-more">';					
+					html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer">상세정보</a>';
+					html += '</div>';
+					html += '</div>';
+					html += '</article>';
 				}
 			}
-			html += '</div>';
 			document.querySelector('#exhibitionList').innerHTML = html;
 		}		
 	}
@@ -73,17 +126,30 @@ function deadline(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<div>';
-			
+			var html = '<article class="entry">';
+			html += '<div class="entry-img">';   			
 			// exhibition.eiStatus=2 종료된 전시회
 			for(var exhibition of res){
 				if(exhibition.eiStatus==2){				
-				html += '<h2 onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer"> 전시회명 ' + exhibition.eiName + '</h2>';
-				html += '<p> 작가 ' + exhibition.eiArtist + '</p>';
-				html += '<p> 가격 ' + exhibition.eiCharge + '</p>';			
-		        }
+					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '</div>';
+					html += '<h2 class="entry-title">';
+					html += '<a>' + exhibition.eiName + '</a>';
+					html += '</h2>';
+					html += '<div class="entry-meta">';
+					html += '<ul>';
+					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
+					html += '</ul>';
+					html += '<div class="entry-content">';
+					html += '<div style="HEIGHT: 10pt"></div>';
+					html += '<div class="read-more">';					
+					html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer">상세정보</a>';
+					html += '</div>';
+					html += '</div>';
+					html += '</article>';
+				}
 			}
-			html += '</div>';
 			document.querySelector('#exhibitionList').innerHTML = html;
 		}		
 	}
