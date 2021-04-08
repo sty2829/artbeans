@@ -45,14 +45,24 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 
 	@Override
-	public List<GalleryInfo> getGalleryInfoAreaList(GalleryInfo galleryInfo) {
+	public List<GalleryInfo> getGalleryInfoAreaListAsc(GalleryInfo galleryInfo) {
 		
 		return gRepo.findAllByOrderByGiAddressAsc();
 	}
+	
+	@Override
+	public List<GalleryInfo> getGalleryInfoAreaListDesc(GalleryInfo galleryInfo) {
+		return gRepo.findAllByOrderByGiAddressDesc();
+	}
+	
+	@Override
+	public List<GalleryInfo> getGalleryInfoNameListAsc(GalleryInfo galleryInfo) {
+		return gRepo.findAllByOrderByGiNameAsc();
+	}	
 
 	@Override
-	public List<GalleryInfo> getGalleryInfoNameList(GalleryInfo galleryInfo) {
-		return gRepo.findAllByOrderByGiNameAsc();
+	public List<GalleryInfo> getGalleryInfoNameListDesc(GalleryInfo galleryInfo) {
+		return gRepo.findAllByOrderByGiNameDesc();
 	}
 
 }

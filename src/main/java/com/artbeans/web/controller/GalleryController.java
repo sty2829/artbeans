@@ -26,14 +26,24 @@ public class GalleryController {
 		return gService.getGalleryInfos(galleryInfo);
 	}
 	
-	@GetMapping("/Gallery-list-area")
-	public @ResponseBody List<GalleryInfo> getGalleryInfoAreaList(@ModelAttribute GalleryInfo galleryInfo){
-		return gService.getGalleryInfoAreaList(galleryInfo);
+	@GetMapping("/Gallery-list-areaAsc")
+	public @ResponseBody List<GalleryInfo> getGalleryInfoAreaListAsc(@ModelAttribute GalleryInfo galleryInfo){
+		return gService.getGalleryInfoAreaListAsc(galleryInfo);
 	}
 	
-	@GetMapping("/Gallery-list-name")
-	public @ResponseBody List<GalleryInfo> getGalleryInfoNameList(@ModelAttribute GalleryInfo galleryInfo){
-		return gService.getGalleryInfoNameList(galleryInfo);
+	@GetMapping("/Gallery-list-areaDesc")
+	public @ResponseBody List<GalleryInfo> getGalleryInfoAreaListDesc(@ModelAttribute GalleryInfo galleryInfo){
+		return gService.getGalleryInfoAreaListDesc(galleryInfo);
+	}
+	
+	@GetMapping("/Gallery-list-nameAsc")
+	public @ResponseBody List<GalleryInfo> getGalleryInfoNameListAsc(@ModelAttribute GalleryInfo galleryInfo){
+		return gService.getGalleryInfoNameListAsc(galleryInfo);
+	}
+	
+	@GetMapping("/Gallery-list-nameDesc")
+	public @ResponseBody List<GalleryInfo> getGalleryInfoNameListDesc(@ModelAttribute GalleryInfo galleryInfo){
+		return gService.getGalleryInfoNameListAsc(galleryInfo);
 	}
 	
 	@GetMapping("/Gallery")
