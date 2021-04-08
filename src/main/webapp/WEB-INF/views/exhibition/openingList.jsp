@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>진행중인 전시회 목록</title>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
 <!-- 최신순, 마감순  -->
 <button onclick="newest()">최신순</button> <button onclick="deadline()">마감순</button>
 <div id="exhibitionList"></div>
@@ -84,5 +87,7 @@ function deadline(){
 	xhr.send();
 }
 </script>
+
+<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
