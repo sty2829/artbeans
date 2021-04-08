@@ -10,7 +10,7 @@
 
 
 <div>
-<!-- UserInfo 유효형검사 X , 회원이 아니면 버튼 안보이게.-->
+<!-- UserInfo , 회원이 아니면 버튼 안보이게. 회원확인 안하면 등록 안되게.-->
 신청자 성함 <input type="text" id="uiName"><button onclick="checkUser()">회원확인</button><br>
 </div>
 <div id="gallertySelectDiv">
@@ -44,17 +44,13 @@
 전시회 시작시간 <input type="text" id="eiStartTime"><br>
 전시회 종료시간 <input type="text" id="eiEndTime" ><br>
 </div>
-<!-- FileInfo 유효성검사 없음 -->
 
+<!-- FileInfo 유효성검사 없음 -->
 <div>
 전시회 정보 사진 <input type="file" id="fiFile2"><br>
 전시회 정보 <textarea  id="eiContent" placeholder="나중에 선생님이 주시면 변경"></textarea><br>
 </div>
-
-
 <button onclick="doInsert()">전시회 등록 신청하기</button>
-
-
 
 <script>
 window.onload = galleryOption();
@@ -68,7 +64,6 @@ function galleryOption(){
 			var res = JSON.parse(xhr.responseText);
 			var html = '<option value="">갤러리를 선택하세요</option>';
 			for(var galleryInfo of res){
-				// 선택해도 계속 실행만 됨 물어보기
 				html += '<option value="' + galleryInfo.giNum + '">' + galleryInfo.giName + '</option>';
 			}
 			document.querySelector('#gallery').innerHTML = html;
@@ -162,7 +157,6 @@ function insertGallery(){
 		}		
 	}
 	var formData = new FormData();
-	// 값 맞는지 확인하기
 	formData.append('giName',giName.value);
 	formData.append('giRphoneNumber',giRphoneNumber.value);
 	formData.append('giStartTime',giStartTime.value);
@@ -252,7 +246,6 @@ function doInsert(){
 		}		
 	}	
 	var formData = new FormData();
-	// 값 맞는지 확인하기
 	formData.append('eiName',eiName.value);
 	formData.append('eiArtist',eiArtist.value);
 	formData.append('eiCharge',eiCharge.value);
@@ -264,8 +257,6 @@ function doInsert(){
 	formData.append('userInfo.uiNum',8); //임시 값
 	formData.append('fileInfo.fiFile',document.querySelector('#fiFile2').files[0]);	
 	formData.append('galleryInfo.giNum',document.querySelector('select#gallery option:checked').value);
-	
-	
 	xhr.send(formData);
 }
 
