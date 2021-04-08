@@ -5,52 +5,205 @@
 <head>
 <meta charset="UTF-8">
 <title>전시회 등록 페이지</title>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
 
 
-<div>
-<!-- UserInfo , 회원이 아니면 버튼 안보이게. 회원확인 안하면 등록 안되게.-->
-신청자 성함 <input type="text" id="uiName"><button onclick="checkUser()">회원확인</button><br>
-</div>
-<div id="gallertySelectDiv">
+<main id="main">
+    <!-- ======= Breadcrumbs ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">         
+        </div>
+      </div>
+    </section><!-- End Breadcrumbs -->
 
-<!-- GalleryInfo 유효성검사 갤러리 선택안하면 등록 못하게, 갤러리 없으면 등록하게-->
-신청자 갤러리 <select id="gallery" name="galleryOption()" data-col="test">
-           </select>
-           <button onclick="showGalleryDiv()">갤러리 등록하기</button>
-</div>
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <h4>신청자 성함</h4>               
+              </div>
+              <div class="phone"  id="gallertySelectDivMenu">
+                <h4>신청자 갤러리</h4>
+              </div>
+             
+              <!-- 갤러리 등록 -->
+              <div id="galleryInsertDivMenu" style="display:none" class="phone">
+                  <div class="address">
+                      <h4>갤러리명</h4>
+                      <div style="HEIGHT: 8pt"></div>              
+                  </div>
+                  <div class="address">
+                      <h4>갤러리 전화번호</h4>   
+                      <div style="HEIGHT: 8pt"></div>             
+                  </div>
+                  <div class="address">
+                      <h4>갤러리 오픈시간</h4>            
+                      <div style="HEIGHT: 10pt"></div>    
+                  </div>
+                  <div class="address">
+                      <h4>갤러리 종료시간</h4>            
+                      <div style="HEIGHT: 15pt"></div>    
+                  </div>
+                  <div class="address">
+                      <h4>갤러리 홈페이지</h4>            
+                      <div style="HEIGHT: 10pt"></div>    
+                  </div>
+                  <div class="address">
+                      <h4>갤러리 휴일</h4>               
+                      <div style="HEIGHT: 10pt"></div> 
+                  </div>
+                  <div class="address">
+                      <h4>갤러리 주소</h4>               
+                      <div style="HEIGHT: 10pt"></div> 
+                  </div>
+                  <div class="address">
+                      <h4>갤러리 이미지</h4>   
+                      <div style="HEIGHT: 30pt"></div>             
+                  </div>
+              
+              </div>
+              
+              <div class="phone">
+                <h4>전시회명</h4>
+              </div>
+              <div class="phone">
+                <h4>작가명</h4>               
+              </div>
+              <div class="phone">
+                <h4>전시회 가격</h4>
+              </div>
+              <div class="phone">
+                <h4>전시회 시작일 </h4>
+              </div>
+              <div class="phone">
+                <h4>전시회 종료일 </h4>
+              </div>
+              <div class="phone">
+                <h4>전시회 시작시간 </h4>
+              </div>
+              <div class="phone">
+                <h4>전시회 종료시간 </h4>
+              </div>
+              
+               <div class="phone">
+                <h4>전시회 포스터사진 </h4>
+              </div>
+               <div class="phone">
+                <h4>전시회 설명 </h4>
+              </div>
+              
+            </div>
+          </div>
+          
+          <!-- 입력란 -->
+          <div class="col-lg-8 mt-5 mt-lg-0">
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  <input type="text" id="uiName" class="form-control" placeholder="신청자 성함"/>
+                </div>
+                <button class="get-started-btn ml-auto" style="WIDTH: 150pt; HEIGHT: 30pt" onclick="checkUser()">회원확인</button>
+              </div>
+              
+              <div id="gallertySelectDiv" class="form-row">
+                <div class="col-md-6 form-group">
+                  <select class="col-md-6 form-group" style="WIDTH: 250pt; HEIGHT: 30pt" id="gallery" name="galleryOption()"></select>
+                </div>
+                <button class="get-started-btn ml-auto" style="WIDTH: 150pt; HEIGHT: 30pt" onclick="showGalleryDiv()">갤러리 등록하기</button>
+              </div>
+              
+               
+              <!-- 갤러리 등록 -->
+              <div id="galleryInsertDiv" style="display:none">
+                  <div class="form-group">
+                      <input type="text" id="giName" placeholder="갤러리명">
+                  </div>
+                  <div class="form-group">
+                      <input type="number" id="giRphoneNumber" placeholder="갤러리 전화번호">
+                  </div>
+                  <div class="form-group">
+                          <input type="text" id="giStartTime" placeholder="갤러리 오픈시간">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" id="giEndTime" placeholder="갤러리 종료시간">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" id="giHomepage" placeholder="갤러리 홈페이지">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" id="giHoliday" placeholder="갤러리 휴일">
+                  </div>
+                  <div class="form-group">
+                      <input type="text" id="giAddress" placeholder="갤러리 주소">
+                  </div>
+                  <div class="form-group">
+                      <input type="file" id="fiFile1">
+                  </div>
+                  <div class="form-group">
+                      <button class="get-started-btn ml-auto" style="WIDTH: 70pt; HEIGHT: 30pt" onclick="insertGallery()">등록</button>
+                      <button class="get-started-btn ml-auto" style="WIDTH: 70pt; HEIGHT: 30pt" onclick="showGalleryDiv()">취소</button>
+                  </div>
+              </div>
+              <!-- 갤러리 등록 -->
+              
+              <div class="form-group">
+                <input type="text" class="form-control" id="eiName" placeholder="전시회명" />
+               <div style="HEIGHT: 10pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" id="eiArtist" placeholder="작가명" />
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="number" class="form-control" id="eiCharge" placeholder="전시회 가격" />
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="date" class="form-control" id="eiStartDate" />
+                <div style="HEIGHT: 10pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="date" class="form-control" id="eiEndDate"/>
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" id="eiStartTime" placeholder="00:00" />
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" id="eiEndTime" placeholder="00:00" />
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="file" class="form-control" id="fiFile2"/> 
+                <div style="HEIGHT: 10pt"></div>    
+              </div>
+              
+              <div class="form-group">
+                <textarea class="form-control" id="eiContent" rows="5" placeholder="전시회 설명"></textarea>
+              </div>
+             
+             <button class="get-started-btn ml-auto" onclick="doInsert()" >전시회등록 신청</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<div id="galleryInsertDiv" style="display:none">
-<input type="text" id="giName" placeholder="갤러리명"><br>
-<input type="number" id="giRphoneNumber" placeholder="갤러리 전화번호"><br>
-<input type="text" id="giStartTime" placeholder="갤러리 오픈시간"><br>
-<input type="text" id="giEndTime" placeholder="갤러리 종료시간"><br>
-<input type="text" id="giHomepage" placeholder="갤러리 홈페이지"><br>
-<input type="text" id="giHoliday" placeholder="갤러리 휴일"><br>
-<input type="text" id="giAddress" placeholder="갤러리 주소"><br>
-<input type="file" id="fiFile1"><br>
-<button onclick="insertGallery()">갤러리 등록</button>
-<button onclick="showGalleryDiv()">취소</button>
-</div>
-
-<div>
-<!-- ExhibitionInfo 유효성검사 null만-->
-전시회명 <input type="text" id="eiName"><br>
-작가명 <input type="text" id="eiArtist"><br>
-전시회 가격 <input type="number" id="eiCharge"><br>
-전시회 시작일 <input type="date" id="eiStartDate"><br>
-전시회 종료일 <input type="date" id="eiEndDate"><br>
-전시회 시작시간 <input type="text" id="eiStartTime"><br>
-전시회 종료시간 <input type="text" id="eiEndTime" ><br>
-</div>
-
-<!-- FileInfo 유효성검사 없음 -->
-<div>
-전시회 정보 사진 <input type="file" id="fiFile2"><br>
-전시회 정보 <textarea  id="eiContent" placeholder="나중에 선생님이 주시면 변경"></textarea><br>
-</div>
-<button onclick="doInsert()">전시회 등록 신청하기</button>
 
 <script>
 window.onload = galleryOption();
@@ -62,7 +215,7 @@ function galleryOption(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<option value="">갤러리를 선택하세요</option>';
+			var html = '<option value="">갤러리 선택</option>';
 			for(var galleryInfo of res){
 				html += '<option value="' + galleryInfo.giNum + '">' + galleryInfo.giName + '</option>';
 			}
@@ -100,14 +253,20 @@ function checkUser(){
 
 function showGalleryDiv(){
 	var dis = document.querySelector('#gallertySelectDiv').style.display;
+	var dis = document.querySelector('#gallertySelectDivMenu').style.display;
 	if(dis){
 		document.querySelector('#gallertySelectDiv').style.display = '';
 		document.querySelector('#galleryInsertDiv').style.display = 'none';
+		document.querySelector('#gallertySelectDivMenu').style.display = '';
+		document.querySelector('#galleryInsertDivMenu').style.display = 'none';
 	}else{
 		document.querySelector('#gallertySelectDiv').style.display = 'none';
 		document.querySelector('#galleryInsertDiv').style.display = '';
+		document.querySelector('#gallertySelectDivMenu').style.display = 'none';
+		document.querySelector('#galleryInsertDivMenu').style.display = '';
 	}
 }
+
 
 function insertGallery(){
 	var giName = document.querySelector('#giName');
@@ -261,6 +420,8 @@ function doInsert(){
 }
 
 </script>
-           
+
+<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
+
 </html>
