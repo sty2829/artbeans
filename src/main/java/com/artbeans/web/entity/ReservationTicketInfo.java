@@ -17,6 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -45,8 +46,8 @@ public class ReservationTicketInfo {
 	@Column(name="rti_time")
 	private String rtiTime;
 	
-	@Column(name="rti_amount")
-	private Integer rtiAmount;
+	@Column(name="rtiNumber")
+	private Integer rtiNumber;
 	
 	@Column(name="rti_status", insertable = false)
 	@ColumnDefault("PENDING")
@@ -63,6 +64,7 @@ public class ReservationTicketInfo {
 	@ManyToOne
 	@JoinColumn(name = "eri_num")
 	@JsonBackReference
+	@ToString.Exclude
 	private ExhibitionReservationInfo exhibitionReservationInfo;
 	
 
