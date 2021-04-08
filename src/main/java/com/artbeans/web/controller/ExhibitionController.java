@@ -24,6 +24,7 @@ public class ExhibitionController {
 	
 	@GetMapping("/exhibition-list")
 	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
+		log.info("exhibitionList=>{}",eService.getExhibitionInfos(exhibitionInfo));
 		return eService.getExhibitionInfos(exhibitionInfo);
 	}
 	
@@ -59,7 +60,7 @@ public class ExhibitionController {
 	@PostMapping("/exhibition-update")
 	public @ResponseBody Integer updateExhibitionInfo(@ModelAttribute ExhibitionInfo exhibitionInfo) throws Exception {
 		exhibitionInfo = eService.updateExhibitionInfo(exhibitionInfo);
-		return exhibitionInfo.getEiNum();
+		return null;
 	}
 
 }

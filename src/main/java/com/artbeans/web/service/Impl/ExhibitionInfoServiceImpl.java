@@ -11,6 +11,8 @@ import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
 import com.artbeans.web.util.FileConverter;
 
+import lombok.extern.java.Log;
+
 @Service
 public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	
@@ -21,6 +23,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 
 	@Override
 	public List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo) {
+		
 		return exhiRepo.findAll();
 	}
 	

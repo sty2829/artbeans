@@ -211,7 +211,7 @@ function doUpdate(){
 	formData.append('eiEndDate',eiEndDate.value);
 	formData.append('eiStartTime',eiStartTime.value);
 	formData.append('eiEndTime',eiEndTime.value);
-	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
+	formData.append('fileInfo.fiNum',document.querySelector('#fiFile').files[0]);
 	formData.append('userInfo.uiNum',uiNum);
 	formData.append('galleryInfo.giNum',giNum);
 	xhr.send(formData);
