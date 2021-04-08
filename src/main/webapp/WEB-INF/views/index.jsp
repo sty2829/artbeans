@@ -87,7 +87,7 @@
           <li class="drop-down"><a href="#">전시회 등록 및 수정</a>
             <ul>                           
               <li><a href="/views/exhibition/insert">전시회 등록</a></li>
-              <li><a href="/views/exhibition/update">전시회 수정</a></li>              
+              <li><a href="/views/exhibition/update-main">전시회 수정</a></li>              
             </ul>
           </li>
         </ul>
