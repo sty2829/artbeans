@@ -4,9 +4,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>전시회 상세정보</title>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+
 </head>
 <body>
+<jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
 
+
+<script>
+
+</script>
+
+<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -52,8 +52,10 @@
       
       
     <div class="container d-flex align-items-center">
-
-      <h1 class="logo"><img src="/resources/assets/img/logo.png" class="img-fluid"></h1>
+    
+      <div onclick="location.href='/'">
+      <h1 class="logo"><img src="/resources/assets/img/logo.png" class="img-fluid" ></h1>
+      </div>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -79,8 +81,8 @@
                   <li><a href="#">이용방법</a></li>
                 </ul>
               </li>              
-              <li><a href="team.html">후기/추천</a></li>
-              <li><a href="testimonials.html">Q&A</a></li>              
+              <li><a href="#">후기/추천</a></li>
+              <li><a href="#">Q&A</a></li>              
             </ul>
           </li>
           

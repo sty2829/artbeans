@@ -189,7 +189,7 @@
               </div>
               
               <div class="form-group">
-                <input type="file" class="form-control" id="fiFile2"/> 
+                <input type="file" class="form-control" id="fiFile2" />                
                 <div style="HEIGHT: 10pt"></div>    
               </div>
               

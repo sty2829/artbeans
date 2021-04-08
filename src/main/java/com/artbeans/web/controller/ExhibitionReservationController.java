@@ -1,13 +1,16 @@
 package com.artbeans.web.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.artbeans.web.entity.ExhibitionReservationInfo;
-import com.artbeans.web.repository.ExhibitionReservationInfoRepository;
+import com.artbeans.web.service.ExhibitionReservationService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,17 +19,26 @@ import lombok.extern.slf4j.Slf4j;
 public class ExhibitionReservationController {
 
 	@Autowired
-	private ExhibitionReservationInfoRepository exhibitionReservationInfoRepository;
+	private ExhibitionReservationService eriService;
 	
-	@PostMapping("/reservation")
+	@PostMapping("/exhibition-reservation")
 	public int insert(@RequestBody ExhibitionReservationInfo exhibitionReservationInfo) {
 		log.info("exhibitionReservation => {}", exhibitionReservationInfo);
-		//exhibitionReservationInfoRepository.save(exhibitionReservationInfo);
-		return 1;
+		eriService.saveExhibitionReservation(exhibitionReservationInfo);
+		return exhibitionReservationInfo.getEriNum();
 	}
 	
-	@GetMapping("/reservation")
-	public ExhibitionReservationInfo getER(@RequestBody Integer eiNum) {
-		return null;
+	@GetMapping("/exhibition-reservations")
+	public List<ExhibitionReservationInfo> getList() {
+		List<ExhibitionReservationInfo> eriList = eriService.getExhibitionReservations();
+		log.info("eriList => {}", eriList);
+		return eriService.getExhibitionReservations();
+	}
+	
+	@GetMapping("/exhibition-reservations/{eriNum}")
+	public ExhibitionReservationInfo get(@PathVariable Integer eriNum) {
+		ExhibitionReservationInfo eri = eriService.getExhibitionReservation(eriNum);
+		log.info("eriList => {}", eri);
+		return eriService.getExhibitionReservation(eriNum);
 	}
 }
