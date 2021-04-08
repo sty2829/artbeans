@@ -4,14 +4,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>전시회 예약 정보</title>
+<title>전시회 예약 등록</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <link href="/resources/node_modules/flatpickr/dist/flatpickr.css" rel="stylesheet"/>
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
+<script src=/resources/node_modules/flatpickr/dist/l10n/ko.js></script>
 <style>
 .reservationMain {
 	margin-top: 150px;
 	margin-left: 450px;
+	height: 1000px;
 }
 h5 {
 	font-weight: bold;
@@ -20,49 +22,73 @@ h5 {
 	display: none;
 }
 .list-inline-item {
-    margin-top: -15px;
+    margin-top: 5px;
+}
+img[data-col] {
+	width: 512px;
+	height: 378px;
 }
 .btn-outline-success{color:#198754;border-color:#198754}.btn-outline-success:hover{color:#fff;background-color:#198754;border-color:#198754}.btn-check:focus+.btn-outline-success,.btn-outline-success:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-check:active+.btn-outline-success,.btn-check:checked+.btn-outline-success,.btn-outline-success.active,.btn-outline-success.dropdown-toggle.show,.btn-outline-success:active{color:#fff;background-color:#198754;border-color:#198754}.btn-check:active+.btn-outline-success:focus,.btn-check:checked+.btn-outline-success:focus,.btn-outline-success.active:focus,.btn-outline-success.dropdown-toggle.show:focus,.btn-outline-success:active:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-outline-success.disabled,.btn-outline-success:disabled{color:#198754;background-color:transparent}
+
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
    <div class="container reservationMain">
+      	<div class="row">
+   			<div class="col-lg-9" style="text-align: center;">
+				<div class="section-title">
+		          <p>전시회 예약</p>
+		        </div>
+   			</div>
+   		</div>
 		<div class="row">
 			<div class="col-lg-5">
-                <img src="/resources/assets/img/blog-1.jpg" alt="" class="img-fluid"><br>
-                <ul class="list-inline">
-                	<li class="list-inline-item">
-		                <h5 class="mt-5">기간</h5>
-		                <p>2021-04-05 ~ 2021-05-03</p>
-		            </li>
-		            <li class="list-inline-item">
-		                <h5 class="mt-5">관람등급</h5>
-		                <p>전체연령가</p>
-		            </li>
-		            <li class="list-inline-item">
-		                <h5 class="mt-5">러닝타임</h5>
-		                <p style="text-align: center">60분</p>
-		            </li>
-		         </ul>
+                <img src="/resources/assets/img/blog-1.jpg" alt="" class="img-fluid" data-col="eiImg"><br>
           	</div>
-			<div class="col-lg-5">
+			<div class="col-lg-5" style="height: 300px">
 				<div id="mycal">
 				</div>
-				<h5 class="mt-4">시간 선택</h5>
 			</div>
 		</div>
-		<br>
-		<div class="row" id="checkRadioTop" >
+		<div class="row mt-2">
 			<div class="col-lg-5">
-	            <input type="text" class="form-control mb-2" name="name" id="name" placeholder="예매자 이름"/>
-	            <div class="validate"></div>
-	            <input type="text" class="form-control mb-2" name="email" id="email" placeholder="예매자 연락처" />
-	            <div class="validate"></div>
-	            <input type="email" class="form-control mb-2" name="email" id="email" placeholder="예매자 이메일" />
-	            <div class="validate"></div>
+					<h5 class="text-center">백남준전</h5>
+			<div class="row mt-3">
+				<div class="col-lg-6">
+					<h5>기간</h5>
+					<p>2021-04-21 ~ 2021-05-23</p>
+					<h5>관람연령</h5>
+					<p>전체관람가</p>
+					<h5>러닝타임</h5>
+					<p>60분</p>
+				</div>
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-lg-6">
+							<h5>예매일자</h5>
+							<p>2021-04-21</p>
+						</div>
+						<div class="col-lg-6">
+							<h5>예매일자</h5>
+							<p>11:00</p>
+						</div>
+					</div>
+					<div class="row mb-1">
+						<div class="col-lg-5 align-self-end">
+							<h5>예매수</h5>
+						</div>
+						<div class="col-lg-7">
+							<input type="number" class="form-control" id="eriAudienceRating" required>
+						</div>
+					</div>
+					<h5 class="mt-4">합계금액</h5>
+					<p>25000</p>
+				</div>
 			</div>
-			<div class="col-lg-6">
+			</div>
+			<div class="col-lg-5 mt-2" style="height: 102px">
+				<h5 class="mt-3">시간 선택</h5>
 				<ul class="list-inline">
 				  <li class="list-inline-item">
 				  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
@@ -89,14 +115,23 @@ h5 {
 					<label class="btn btn-outline-success" for="success-outlined">11:00</label>
 				  </li>
 				</ul>
+				<button type="button" class="btn btn-primary align-items-end" style="width: inherit;" onclick="insert()">결제</button>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-lg-5">
+			</div>
+			<div class="col-lg-5">
+			</div>
+		</div>	
 	</div>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
+flatpickr.localize(flatpickr.l10ns.ko);
 flatpickr('#mycal', {
 	inline: true,
 	time_24hr: true,
+	
 });
 window.onload = function(){
 	var xhr = new XMLHttpRequest();

@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<button>검색</button>
+<!-- 최신순, 마감순  -->
+<button onclick="newest()">최신순</button> <button onclick="deadline()">마감순</button>
 <div id="exhibitionList"></div>
 
 <script>
@@ -26,8 +27,55 @@ window.onload = function(){
 				html += '<h2 onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer"> 전시회명 ' + exhibition.eiName + '</h2>';
 				html += '<p> 작가 ' + exhibition.eiArtist + '</p>';
 				html += '<p> 가격 ' + exhibition.eiCharge + '</p>';
-				//html += '<td><img src="/resources/' + fi.fiiFilePath + '" width="50"></td>';
-		    }
+				}
+			}
+			html += '</div>';
+			document.querySelector('#exhibitionList').innerHTML = html;
+		}		
+	}
+	xhr.send();
+}
+
+function newest(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/exhibition-list-newest'); //ExhibitionController
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			console.log(xhr.responseText);
+			var res = JSON.parse(xhr.responseText);
+			var html = '<div>';
+			
+			// exhibition.eiStatus=1 전지중인 전시회
+			for(var exhibition of res){
+				if(exhibition.eiStatus==1){				
+				html += '<h2 onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer"> 전시회명 ' + exhibition.eiName + '</h2>';
+				html += '<p> 작가 ' + exhibition.eiArtist + '</p>';
+				html += '<p> 가격 ' + exhibition.eiCharge + '</p>';
+				}
+			}
+			html += '</div>';
+			document.querySelector('#exhibitionList').innerHTML = html;
+		}		
+	}
+	xhr.send();
+}
+
+function deadline(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/exhibition-list-deadline'); //ExhibitionController
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			console.log(xhr.responseText);
+			var res = JSON.parse(xhr.responseText);
+			var html = '<div>';
+			
+			// exhibition.eiStatus=1 전지중인 전시회
+			for(var exhibition of res){
+				if(exhibition.eiStatus==1){				
+				html += '<h2 onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer"> 전시회명 ' + exhibition.eiName + '</h2>';
+				html += '<p> 작가 ' + exhibition.eiArtist + '</p>';
+				html += '<p> 가격 ' + exhibition.eiCharge + '</p>';
+				}
 			}
 			html += '</div>';
 			document.querySelector('#exhibitionList').innerHTML = html;

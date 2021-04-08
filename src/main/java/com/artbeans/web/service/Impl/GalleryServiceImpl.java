@@ -44,4 +44,15 @@ public class GalleryServiceImpl implements GalleryService {
 		return galleryInfo.getGiNum();
 	}
 
+	@Override
+	public List<GalleryInfo> getGalleryInfoAreaList(GalleryInfo galleryInfo) {
+		
+		return gRepo.findAllByOrderByGiAddressAsc();
+	}
+
+	@Override
+	public List<GalleryInfo> getGalleryInfoNameList(GalleryInfo galleryInfo) {
+		return gRepo.findAllByOrderByGiNameAsc();
+	}
+
 }

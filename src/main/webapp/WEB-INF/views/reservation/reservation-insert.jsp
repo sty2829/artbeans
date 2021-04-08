@@ -24,7 +24,7 @@ h5 {
 }
 img[data-col] {
 	width: 400px;
-	height: 400px;
+	height: 350px;
 }
 .btn-outline-success{color:#198754;border-color:#198754}.btn-outline-success:hover{color:#fff;background-color:#198754;border-color:#198754}.btn-check:focus+.btn-outline-success,.btn-outline-success:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-check:active+.btn-outline-success,.btn-check:checked+.btn-outline-success,.btn-outline-success.active,.btn-outline-success.dropdown-toggle.show,.btn-outline-success:active{color:#fff;background-color:#198754;border-color:#198754}.btn-check:active+.btn-outline-success:focus,.btn-check:checked+.btn-outline-success:focus,.btn-outline-success.active:focus,.btn-outline-success.dropdown-toggle.show:focus,.btn-outline-success:active:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-outline-success.disabled,.btn-outline-success:disabled{color:#198754;background-color:transparent}
 </style>
@@ -123,7 +123,13 @@ window.onload = function(){
 }
 
 function insert(){
-	var param = {};
+	var param = {
+			exhibitionInfo : {
+				eiNum : 1
+			}
+	};
+	
+	// 전시회(번호) Request Param 으로 넘어온 거 추가 임시로 일단 직접입력
 	
 	var objs = document.querySelectorAll('input');
 	for(obj of objs){
@@ -136,12 +142,14 @@ function insert(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			if(xhr.responseText >= 1){
 				alert('인서트 성공');
-				location.href = '/views/food/food-info-list';
 				return;
 			}
 			alert('인서트 실패');
 		}
 	}
+	
+	
+	
 	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
 	xhr.send(JSON.stringify(param));
 }
