@@ -46,7 +46,7 @@ public class ReservationTicketInfo {
 	@Column(name="rti_time")
 	private String rtiTime;
 	
-	@Column(name="rtiNumber")
+	@Column(name="rti_Number")
 	private Integer rtiNumber;
 	
 	@Column(name="rti_status", insertable = false)

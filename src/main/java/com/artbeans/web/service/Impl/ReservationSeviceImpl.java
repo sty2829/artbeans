@@ -1,9 +1,12 @@
 package com.artbeans.web.service.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.artbeans.web.domain.ReservationDateExclude;
+import com.artbeans.web.dto.TicketSumDate;
 import com.artbeans.web.entity.ExhibitionReservationInfo;
 import com.artbeans.web.entity.ReservationTicketInfo;
 import com.artbeans.web.repository.ExhibitionReservationInfoRepository;
@@ -28,13 +31,16 @@ public class ReservationSeviceImpl implements ReservationService {
 
 	@Override
 	public ExhibitionReservationInfo getReservationView(Integer eiNum) {
-		ExhibitionReservationInfo eri = eriRepo.findByExhibitionInfoEiNum(eiNum);
-		rde.exclude(eri);
+		List<TicketSumDate> tsdList = eriRepo.ticketSumGroupByDate(eiNum);
+		
+		log.info("eriList => {}", tsdList);
+		
+		//List<TicketSumDate> sumDate = eriRepo.ticketSumGroupByDate(2);
+		//log.info("sumDate => {}",sumDate);
+		
 		//List<ReservationTicketInfo> rtiList = rtiRepo.findAllByExhibitionReservationInfoEriNum(eri.getEriNum());
 		
-		DateUtil.compareDate(eri.getEriStartDate());
-		log.info("eri => {}", eri);
-		return eri;
+		return null;
 	}
 
 	@Override

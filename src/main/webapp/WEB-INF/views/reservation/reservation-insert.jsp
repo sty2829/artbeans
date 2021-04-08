@@ -126,7 +126,7 @@ window.onload = function(){
 function insert(){
 	var param = {
 			exhibitionInfo : {
-				eiNum : 1
+				eiNum : 2
 			}
 	};
 	

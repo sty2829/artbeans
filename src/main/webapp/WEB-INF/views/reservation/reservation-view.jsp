@@ -151,11 +151,20 @@ img[data-col] {
 	</div>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
+var i = 0;
+var x = 6;
+var disable = ["2021-04-08"]
+disable.push(function(date) {
+    return (date.getDay() === i || date.getDay() === x);
+},)
+
 flatpickr.localize(flatpickr.l10ns.ko);
 flatpickr('#mycal', {
 	inline: true,
 	time_24hr: true,
-	
+	minDate: "2021-04-08",
+    disable: disable,
+    defualtDate: ["2021-04-09"]
 });
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
