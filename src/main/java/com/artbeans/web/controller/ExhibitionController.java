@@ -57,9 +57,9 @@ public class ExhibitionController {
 	}
 	
 	@PostMapping("/exhibition-update")
-	public @ResponseBody Integer updateExhibitionInfo(@ModelAttribute ExhibitionInfo exhibitionInfo) {
-		log.info("exhibition=>{}",exhibitionInfo);
-		return null;
+	public @ResponseBody Integer updateExhibitionInfo(@ModelAttribute ExhibitionInfo exhibitionInfo) throws Exception {
+		exhibitionInfo = eService.updateExhibitionInfo(exhibitionInfo);
+		return exhibitionInfo.getEiNum();
 	}
 
 }

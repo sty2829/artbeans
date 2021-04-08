@@ -11,7 +11,7 @@ public interface ExhibitionService {
 	List<ExhibitionInfo> getExhibitionInfoDeadlineList(ExhibitionInfo exhibitionInfo);
 	ExhibitionInfo getExhibitionInfo(Integer eiNum);
 	ExhibitionInfo saveExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception;
-	ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo);
+	ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception;
 	int deleteExhibitionInfo(Integer eiNum);
 
 }

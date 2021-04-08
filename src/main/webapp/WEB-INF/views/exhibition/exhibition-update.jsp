@@ -10,6 +10,7 @@
 <div>
 <input type = "hidden" id = "eiNum">
 <input type = "hidden" id = "uiNum">
+<input type = "hidden" id = "giNum">
 나의 전시회 목록 <select onchange="getExhibition(this)" id="exhibition" name="exhibitionOption" data-col="test">
            </select><br>
 갤러리명 <input type ="text" id = "giName" readOnly><br>
@@ -22,6 +23,7 @@
 전시회 종료시간 <input type="text" id="eiEndTime" ><br>
 전시회 사진 변경 <input type="file" id="fiFile" onchange ="changeImg(this)"><br>
 <div id="fiview"></div>
+<input type="hidden" id = "orgName">
 전시회 정보 <textarea  id="eiContent" placeholder="나중에 선생님이 주시면 변경"></textarea><br>
 <button type="button" onclick="doUpdate()">전시회 수정 하기</button>
 </div>
@@ -75,32 +77,26 @@ function doUpdate(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status ==200){
 			if(xhr.responseText&& xhr.responseText!= null){
-				alert('전시회 수정이 완료되었습니다.');				
+				alert('전시회 수정이 완료되었습니다.');
+				location.href='/';
 			}
 		}
 	}
 	var formData = new FormData();
-	var eiName = document.querySelector('#eiName');
-	var eiArtist = document.querySelector('#eiArtist');
-	var eiCharge = document.querySelector('#eiCharge');
-	var eiStartDate = document.querySelector('#eiStartDate');
-	var eiEndDate = document.querySelector('#eiEndDate');
-	var eiStartTime = document.querySelector('#eiStartTime');
-	var eiEndTime = document.querySelector('#eiEndTime');
-	var giName = document.querySelector('#giName').value;
-	var uiNum = 
+	var eiNum = document.querySelector('#eiNum').value;	
+	var uiNum = document.querySelector('#uiNum').value;
+	var giNum = document.querySelector('#giNum').value;
 	formData.append('eiNum',eiNum);
-	formData.append('eiName',eiName);
-	formData.append('eiArtist',eiArtist);
-	formData.append('eiCharge',eiCharge);
-	formData.append('eiStartDate',eiStartDate);
-	formData.append('eiEndDate',eiEndDate);
-	formData.append('eiStartTime',eiStartTime);
-	formData.append('eiEndTime',eiEndTime);
+	formData.append('eiName',eiName.value);
+	formData.append('eiArtist',eiArtist.value);
+	formData.append('eiCharge',eiCharge.value);
+	formData.append('eiStartDate',eiStartDate.value);
+	formData.append('eiEndDate',eiEndDate.value);
+	formData.append('eiStartTime',eiStartTime.value);
+	formData.append('eiEndTime',eiEndTime.value);
 	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
 	formData.append('userInfo.uiNum',uiNum);
-	formData.append('galleryInfo.giNum',giName);
-	console.log(formData);
+	formData.append('galleryInfo.giNum',giNum);
 	xhr.send(formData);
 }
 
@@ -110,8 +106,8 @@ function exhibitionOption(){
 	xhr.open('GET','/exhibition-list');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
 			var res =JSON.parse(xhr.responseText);
+			console.log(res);
 			var html = '<option value="">전시회를 선택하세요</option>';
 			for(var exhibitionInfo of res){
 				html += '<option value ="' + exhibitionInfo.eiNum+'">'+exhibitionInfo.eiName+'</option>';
@@ -131,7 +127,6 @@ xhr.onreadystatechange = function(){
 		var html = '';
 		
 		var res = JSON.parse(xhr.responseText);
-		console.log(res);
 		for(var key in res){
 			if(document.querySelector('#'+key)){
 				document.querySelector('#'+key).value=res[key];
@@ -147,10 +142,8 @@ xhr.send();
 function changeImg(obj){ // change event
 	if (obj.files && obj.files[0]){
 		var reader = new FileReader();
-		reader.onload = function(e){
-		
-		document.querySelector('#preview').src = e.target.result;
-		
+		reader.onload = function(e){		
+		document.querySelector('#preview').src = e.target.result;		
 	}
 	reader.readAsDataURL(obj.files[0]);
 	}

@@ -46,7 +46,8 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	}
 
 	@Override
-	public ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) {
+	public ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception {
+		FileConverter.fileInsert(exhibitionInfo.getFileInfo(), TYPE);
 		return exhiRepo.save(exhibitionInfo);
 	}
 
