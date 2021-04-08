@@ -34,4 +34,10 @@ public class DateUtil {
 		 
 		return null;
 	}
+	
+	public static String getDate() {
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat(YYYY_MM_DD);
+		return sdf.format(date);
+	}
 }

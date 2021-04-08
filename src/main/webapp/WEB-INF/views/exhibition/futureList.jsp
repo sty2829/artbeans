@@ -12,7 +12,6 @@
 <body>
 
 	<main id="main">
-
 		<!-- ======= Breadcrumbs ======= -->
 		<section id="breadcrumbs" class="breadcrumbs">
 			<div class="container">
@@ -52,15 +51,14 @@ window.onload = function(){
 	xhr.open('GET','/exhibition-list'); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '<article class="entry">';
 			html += '<div class="entry-img">';            
 			// exhibition.eiStatus=0 진행할 전시회
 			for(var exhibition of res){
-				console.log(exhibition);
 				if(exhibition.eiStatus==0){
-					html += '<img src="/resources/assets/img/exhibition/"' + exhibition.fileInfo.fiPath + '"class="img-fluid">';
+					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -78,9 +76,7 @@ window.onload = function(){
 					html += '</div>';
 					html += '</article>';
 				}
-				
 			}
-			
 			document.querySelector('#exhibitionList').innerHTML = html;
 		}		
 	}
@@ -92,14 +88,14 @@ function newest(){
 	xhr.open('GET','/exhibition-list-newest'); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '<article class="entry">';
 			html += '<div class="entry-img">';            
 			// exhibition.eiStatus=0 진행할 전시회
 			for(var exhibition of res){
 				if(exhibition.eiStatus==0){
-					html += '<img src="/resources/assets/img/features-4.png" class="img-fluid">';
+					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -131,14 +127,14 @@ function deadline(){
 	xhr.open('GET','/exhibition-list-deadline'); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '<article class="entry">';
 			html += '<div class="entry-img">';            
 			// exhibition.eiStatus=0 진행할 전시회
 			for(var exhibition of res){
 				if(exhibition.eiStatus==0){
-					html += '<img src="/resources/assets/img/features-4.png" class="img-fluid">';
+					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -156,9 +152,7 @@ function deadline(){
 					html += '</div>';
 					html += '</article>';
 				}
-				
 			}
-			
 			document.querySelector('#exhibitionList').innerHTML = html;
 		}		
 	}
