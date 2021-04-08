@@ -1,7 +1,6 @@
 package com.artbeans.web.entity;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,14 +12,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name="reservation_ticket_info")
-@DynamicUpdate
 public class ReservationTicketInfo {
 	
 	@Id
@@ -37,6 +37,7 @@ public class ReservationTicketInfo {
 	@Column(name="rti_phone_nubmer")
 	private String rtiPhoneNubmer;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="rti_date")
 	private Date rtiDate;
 	
@@ -61,6 +62,7 @@ public class ReservationTicketInfo {
 	
 	@ManyToOne
 	@JoinColumn(name = "eri_num")
+	@JsonBackReference
 	private ExhibitionReservationInfo exhibitionReservationInfo;
 	
 

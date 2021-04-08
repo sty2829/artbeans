@@ -9,9 +9,10 @@
 <link href="/resources/node_modules/flatpickr/dist/flatpickr.css" rel="stylesheet"/>
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
 <style>
-.reservationMain {
+.reservationInsertMain {
 	margin-top: 150px;
 	margin-left: 450px;
+	height: 700px;
 }
 h5 {
 	font-weight: bold;
@@ -31,7 +32,7 @@ img[data-col] {
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
-   <div class="container reservationMain">
+   <div class="container reservationInsertMain">
    		<div class="row">
    			<div class="col-lg-11" style="text-align: center;">
 				<div class="section-title">
@@ -63,7 +64,7 @@ img[data-col] {
     	   		<input type="text" class="form-control" id="eriStartTime" style="background-color: white">
     	   		<label for="eriEndTime" class="mt-2">예매 종료시간</label>
     	   		<input type="text" class="form-control" id="eriEndTime" style="background-color: white"><br>
-    	   		<button type="button" class="btn btn-primary float-right" onclick="insert()">등록</button>
+    	   		<button type="button" class="btn btn-primary" style="width: inherit;" onclick="insert()">등록</button>
 		  </div>
 	   </div>
 		<br>
@@ -137,18 +138,17 @@ function insert(){
 	}
 	
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', "/reservation");
+	xhr.open('POST', "/exhibition-reservation");
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			if(xhr.responseText >= 1){
 				alert('인서트 성공');
+				location.href = '/';
 				return;
 			}
 			alert('인서트 실패');
 		}
 	}
-	
-	
 	
 	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
 	xhr.send(JSON.stringify(param));

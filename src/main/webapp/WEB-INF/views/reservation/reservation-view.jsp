@@ -10,7 +10,7 @@
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
 <script src=/resources/node_modules/flatpickr/dist/l10n/ko.js></script>
 <style>
-.reservationMain {
+.reservationViewMain {
 	margin-top: 150px;
 	margin-left: 450px;
 	height: 1000px;
@@ -34,7 +34,7 @@ img[data-col] {
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
-   <div class="container reservationMain">
+   <div class="container reservationViewMain">
       	<div class="row">
    			<div class="col-lg-9" style="text-align: center;">
 				<div class="section-title">
@@ -53,69 +53,93 @@ img[data-col] {
 		</div>
 		<div class="row mt-2">
 			<div class="col-lg-5">
+				<div class="row">
+					<div class="col-lg-12">
 					<h5 class="text-center">백남준전</h5>
-			<div class="row mt-3">
-				<div class="col-lg-6">
-					<h5>기간</h5>
-					<p>2021-04-21 ~ 2021-05-23</p>
-					<h5>관람연령</h5>
-					<p>전체관람가</p>
-					<h5>러닝타임</h5>
-					<p>60분</p>
+					</div>
 				</div>
-				<div class="col-lg-6">
-					<div class="row">
-						<div class="col-lg-6">
-							<h5>예매일자</h5>
-							<p>2021-04-21</p>
-						</div>
-						<div class="col-lg-6">
-							<h5>예매일자</h5>
-							<p>11:00</p>
-						</div>
+				<div class="row mt-3">
+					<div class="col-lg-6">
+						<h5>기간</h5>
+						<p>2021-04-21 ~ 2021-05-23</p>
 					</div>
-					<div class="row mb-1">
-						<div class="col-lg-5 align-self-end">
-							<h5>예매수</h5>
-						</div>
-						<div class="col-lg-7">
-							<input type="number" class="form-control" id="eriAudienceRating" required>
-						</div>
+					<div class="col-lg-3">
+						<h5>예매일자</h5>
+						<p>2021-04-21</p>
 					</div>
-					<h5 class="mt-4">합계금액</h5>
-					<p>25000</p>
+					<div class="col-lg-3">
+						<h5>예매시간</h5>
+						<p>11:00</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<h5>관람연령</h5>
+						<p>전체관람가</p>
+					</div>
+					<div class="col-lg-6">
+						<ul class="list-inline">
+						  	<li class="list-inline-item">
+								<h5>예매수</h5>
+							</li>
+							<li class="list-inline-item">
+								<input style="width:130px; height: 30px; text-align: center" type="number" class="form-control" id="eriAudienceRating" required>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<h5>러닝타임</h5>
+						<p>60분</p>
+					</div>
+					<div class="col-lg-6">
+						<h5>합계금액</h5>
+						<p>25000</p>
+					</div>
 				</div>
 			</div>
-			</div>
-			<div class="col-lg-5 mt-2" style="height: 102px">
-				<h5 class="mt-3">시간 선택</h5>
-				<ul class="list-inline">
-				  <li class="list-inline-item">
-				  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-					<label class="btn btn-outline-success" for="success-outlined">11:00</label>
-				  </li>
-	  			  <li class="list-inline-item">
-				  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-					<label class="btn btn-outline-success" for="success-outlined">11:00</label>
-				  </li>
-	  			  <li class="list-inline-item">
-				  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-					<label class="btn btn-outline-success" for="success-outlined">11:00</label>
-				  </li>
-	  			  <li class="list-inline-item">
-				  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-					<label class="btn btn-outline-success" for="success-outlined">11:00</label>
-				  </li>
-	  			  <li class="list-inline-item">
-				  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-					<label class="btn btn-outline-success" for="success-outlined">11:00</label>
-				  </li>
-  	  			  <li class="list-inline-item">
-				  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-					<label class="btn btn-outline-success" for="success-outlined">11:00</label>
-				  </li>
-				</ul>
-				<button type="button" class="btn btn-primary align-items-end" style="width: inherit;" onclick="insert()">결제</button>
+			<div class="col-lg-5">
+				<div class="row">
+					<div class="col-lg-12">
+						<h5 class="mt-3">시간 선택</h5>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<ul class="list-inline">
+						  <li class="list-inline-item">
+						  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+							<label class="btn btn-outline-success" for="success-outlined">11:00</label>
+						  </li>
+			  			  <li class="list-inline-item">
+						  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+							<label class="btn btn-outline-success" for="success-outlined">11:00</label>
+						  </li>
+			  			  <li class="list-inline-item">
+						  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+							<label class="btn btn-outline-success" for="success-outlined">11:00</label>
+						  </li>
+			  			  <li class="list-inline-item">
+						  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+							<label class="btn btn-outline-success" for="success-outlined">11:00</label>
+						  </li>
+			  			  <li class="list-inline-item">
+						  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+							<label class="btn btn-outline-success" for="success-outlined">11:00</label>
+						  </li>
+		  	  			  <li class="list-inline-item">
+						  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
+							<label class="btn btn-outline-success" for="success-outlined">11:00</label>
+						  </li>
+						</ul>
+					</div>
+				</div>
+				<div class="row mt-5">
+					<div class="col-lg-12">
+						<button type="button" class="btn btn-primary" style="width: 385px;" onclick="insert()">결제</button>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="row">

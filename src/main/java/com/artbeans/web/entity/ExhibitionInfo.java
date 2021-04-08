@@ -89,9 +89,5 @@ public class ExhibitionInfo {
 	@ManyToOne
 	@JoinColumn(name = "ui_num")
 	private UserInfo userInfo;
-	
-	@OneToOne(mappedBy = "exhibitionInfo")
-	@JsonManagedReference
-	private ExhibitionReservationInfo exhibitionReservationInfo;
 
 }

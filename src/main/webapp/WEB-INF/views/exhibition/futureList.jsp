@@ -58,8 +58,9 @@ window.onload = function(){
 			html += '<div class="entry-img">';            
 			// exhibition.eiStatus=0 진행할 전시회
 			for(var exhibition of res){
+				console.log(exhibition);
 				if(exhibition.eiStatus==0){
-					html += '<img src="/resources/assets/img/features-4.png" class="img-fluid">';
+					html += '<img src="/resources/assets/img/exhibition/"' + exhibition.fileInfo.fiPath + '"class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';

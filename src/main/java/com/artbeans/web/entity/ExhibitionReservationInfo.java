@@ -1,7 +1,7 @@
 package com.artbeans.web.entity;
 
-import java.sql.Time;
-import java.sql.Date;
+import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,12 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -28,9 +29,11 @@ public class ExhibitionReservationInfo {
 	@Column(name="eri_num")
 	private Integer eriNum;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="eri_start_date")
 	private Date eriStartDate;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="eri_end_date")
 	private Date eriEndDate;
 	
@@ -54,9 +57,12 @@ public class ExhibitionReservationInfo {
 	@Column(name="eri_running_time")
 	private String eriRunningTime;
 	
+	@OneToMany(mappedBy = "exhibitionReservationInfo")
+	@JsonManagedReference
+	private List<ReservationTicketInfo> rtiList;
+	
 	@OneToOne
 	@JoinColumn(name= "ei_num")
-	@JsonBackReference
 	private ExhibitionInfo exhibitionInfo;
 	
 }
