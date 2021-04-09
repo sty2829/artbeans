@@ -36,12 +36,10 @@
 		<!-- 최신순, 마감순 <div id="exhibitionList"></div> -->
 <section id="blog" class="blog">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="galleryList">
+        <div class="row" id="galleryList">
           
-          </div>
-         </div>
-       </div>
+        </div>
+      </div>
 </section>
 </main>
 
@@ -55,9 +53,11 @@ window.onload = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';
+			var html = '';
 			for(var galleryInfo of res){
+				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+				html += '<article class="entry">';
+				html += '<div class="entry-img">';
 				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
@@ -76,6 +76,7 @@ window.onload = function(){
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
+				html += '</div>';
 			}
 			document.querySelector('#galleryList').innerHTML = html;
 		}		
@@ -90,9 +91,11 @@ function areaAsc(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';
+			var html = '';
 			for(var galleryInfo of res){
+				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+				html += '<article class="entry">';
+				html += '<div class="entry-img">';
 				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
@@ -111,6 +114,7 @@ function areaAsc(){
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
+				html += '</div>';
 			}
 			document.querySelector('#galleryList').innerHTML = html;
 		}		
@@ -125,9 +129,11 @@ function areaDesc(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';
+			var html = '';
 			for(var galleryInfo of res){
+				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+				html += '<article class="entry">';
+				html += '<div class="entry-img">';
 				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
@@ -146,6 +152,7 @@ function areaDesc(){
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
+				html += '</div>';
 			}
 			document.querySelector('#galleryList').innerHTML = html;
 		}		
@@ -160,9 +167,11 @@ function nameAsc(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';
+			var html = '';
 			for(var galleryInfo of res){
+				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+				html += '<article class="entry">';
+				html += '<div class="entry-img">';
 				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
@@ -181,6 +190,7 @@ function nameAsc(){
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
+				html += '</div>';
 			}
 			document.querySelector('#galleryList').innerHTML = html;
 		}		
@@ -195,9 +205,11 @@ function nameDesc(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';
+			var html = '';
 			for(var galleryInfo of res){
+				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+				html += '<article class="entry">';
+				html += '<div class="entry-img">';
 				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
@@ -216,6 +228,7 @@ function nameDesc(){
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
+				html += '</div>';
 			}
 			document.querySelector('#galleryList').innerHTML = html;
 		}		
