@@ -3,6 +3,8 @@ package com.artbeans.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.artbeans.web.dto.DataTable;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.service.ExhibitionService;
 
@@ -28,6 +31,12 @@ public class ExhibitionController {
 		return eService.getExhibitionInfos(exhibitionInfo);
 	}
 	
+//	@GetMapping("/exhibition-list")
+//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable, DataTable<ExhibitionInfo> exhibitionInfo){
+//		
+//		return eService.getExhibitionInfos(pageable, exhibitionInfo);
+//	}
+	
 	@GetMapping("/exhibition-list-newest")
 	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoNewestList(ExhibitionInfo exhibitionInfo){
 		return eService.getExhibitionInfoNewestList(exhibitionInfo);
@@ -41,13 +50,13 @@ public class ExhibitionController {
 	
 	@GetMapping("/exhibition")
 	public @ResponseBody ExhibitionInfo getExhibitionInfo(@RequestParam Integer eiNum){
-		//log.info("eiNum=>{}",eService.getExhibitionInfo(eiNum));
+		log.info("eiNum=>{}",eService.getExhibitionInfo(eiNum));
 		return eService.getExhibitionInfo(eiNum);
 	}
 	
 	@PostMapping("/exhibition-insert")
 	public @ResponseBody Integer saveExhibition(ExhibitionInfo exhibitionInfo) throws Exception {
-		//log.info("exhibitionInfo=>{}",exhibitionInfo);
+		log.info("exhibitionInfo=>{}",exhibitionInfo);
 		exhibitionInfo = eService.saveExhibitionInfo(exhibitionInfo);
 		return exhibitionInfo.getEiNum();		
 	}
@@ -59,8 +68,10 @@ public class ExhibitionController {
 	
 	@PostMapping("/exhibition-update")
 	public @ResponseBody Integer updateExhibitionInfo(@ModelAttribute ExhibitionInfo exhibitionInfo) throws Exception {
+		log.info("exhibitionInfo=>{}",exhibitionInfo);
 		exhibitionInfo = eService.updateExhibitionInfo(exhibitionInfo);
-		return null;
+		log.info("exhibition-update=>{}",exhibitionInfo);
+		return exhibitionInfo.getEiNum();
 	}
 
 }

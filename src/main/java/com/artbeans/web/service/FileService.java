@@ -9,6 +9,6 @@ import com.artbeans.web.entity.FileInfo;
 public interface FileService {
 
 	FileInfo saveFileInfo(FileInfo fileInfo) throws IllegalStateException, IOException;
-
+	
 
 }
