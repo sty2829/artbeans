@@ -153,7 +153,7 @@ img[data-col] {
 <script>
 var i = 0;
 var x = 6;
-var disable = ["2021-04-08"]
+var disable = ["2021-04-08", "2021-04-09"]
 disable.push(function(date) {
     return (date.getDay() === i || date.getDay() === x);
 },)
@@ -164,7 +164,6 @@ flatpickr('#mycal', {
 	time_24hr: true,
 	minDate: "2021-04-08",
     disable: disable,
-    defualtDate: ["2021-04-09"]
 });
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
