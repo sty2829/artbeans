@@ -47,7 +47,7 @@ public class ExhibitionController {
 	
 	@PostMapping("/exhibition-insert")
 	public @ResponseBody Integer saveExhibition(ExhibitionInfo exhibitionInfo) throws Exception {
-		//log.info("exhibitionInfo=>{}",exhibitionInfo);
+		log.info("exhibitionInfo=>{}",exhibitionInfo);
 		exhibitionInfo = eService.saveExhibitionInfo(exhibitionInfo);
 		return exhibitionInfo.getEiNum();		
 	}
@@ -59,7 +59,9 @@ public class ExhibitionController {
 	
 	@PostMapping("/exhibition-update")
 	public @ResponseBody Integer updateExhibitionInfo(@ModelAttribute ExhibitionInfo exhibitionInfo) throws Exception {
+		log.info("exhibitionInfo=>{}",exhibitionInfo);
 		exhibitionInfo = eService.updateExhibitionInfo(exhibitionInfo);
+		log.info("exhibition-update=>{}",exhibitionInfo);
 		return null;
 	}
 
