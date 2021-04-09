@@ -74,7 +74,7 @@ public class ExhibitionInfo {
 	private Date moddat;
 	
 	@ManyToOne
-	@JoinColumn(name = "gi_num",insertable = false, updatable = false)
+	@JoinColumn(name = "gi_num",insertable = false, updatable = true)
 	private GalleryInfo galleryInfo;
 		
 	//파일인서트 추가
