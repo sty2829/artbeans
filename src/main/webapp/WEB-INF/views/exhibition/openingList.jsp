@@ -36,11 +36,9 @@
 		<!-- 최신순, 마감순 <div id="exhibitionList"></div> -->
 <section id="blog" class="blog">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="exhibitionList">
+        <div class="row" id="exhibitionList">
           
-          </div>
-         </div>
+        </div>
        </div>
 </section>
 </main>
@@ -53,11 +51,13 @@ window.onload = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';			
+			var html = '';
 			// exhibition.eiStatus=1 진행중인 전시회
 			for(var exhibition of res){
-				if(exhibition.eiStatus==1){				
+				if(exhibition.eiStatus==1){
+					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+					html += '<article class="entry">';
+					html += '<div class="entry-img">';
 					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
@@ -68,6 +68,7 @@ window.onload = function(){
 					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
 					html += '</ul>';
+					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div class="read-more">';					
@@ -75,6 +76,7 @@ window.onload = function(){
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
+					html += '</div>';
 				}
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;
@@ -90,11 +92,13 @@ function newest(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';			
+			var html = '';
 			// exhibition.eiStatus=1 진행중인 전시회
 			for(var exhibition of res){
-				if(exhibition.eiStatus==1){				
+				if(exhibition.eiStatus==1){
+					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+					html += '<article class="entry">';
+					html += '<div class="entry-img">';
 					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
@@ -105,6 +109,7 @@ function newest(){
 					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
 					html += '</ul>';
+					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div class="read-more">';					
@@ -112,6 +117,7 @@ function newest(){
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
+					html += '</div>';
 				}
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;
@@ -120,6 +126,7 @@ function newest(){
 	xhr.send();
 }
 
+
 function deadline(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition-list-deadline'); //ExhibitionController
@@ -127,11 +134,13 @@ function deadline(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';			
+			var html = '';
 			// exhibition.eiStatus=1 진행중인 전시회
 			for(var exhibition of res){
-				if(exhibition.eiStatus==1){				
+				if(exhibition.eiStatus==1){
+					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+					html += '<article class="entry">';
+					html += '<div class="entry-img">';
 					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
@@ -142,6 +151,7 @@ function deadline(){
 					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
 					html += '</ul>';
+					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div class="read-more">';					
@@ -149,6 +159,7 @@ function deadline(){
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
+					html += '</div>';
 				}
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;
@@ -156,6 +167,7 @@ function deadline(){
 	}
 	xhr.send();
 }
+
 </script>
 
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

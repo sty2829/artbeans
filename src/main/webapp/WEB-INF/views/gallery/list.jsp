@@ -36,22 +36,14 @@
 		<!-- 최신순, 마감순 <div id="exhibitionList"></div> -->
 <section id="blog" class="blog">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="galleryList">
+        <div class="row" id="galleryList">
           
-          </div>
-         </div>
-       </div>
+        </div>
+      </div>
 </section>
 </main>
 
 
-<!-- 지역순, 이름순 , 나중에 드랍다운으로 바꿔서-->
-<button onclick="areaAsc()">지역순 (오름차순)</button>
-<button onclick="areaDesc()">지역순 (내림차순)</button>
- <button onclick="nameAsc()">이름순 (오름차순)</button>
- <button onclick="nameDesc()">이름순 (내림차순)</button>
-<div id="galleryList"></div>
 
 <script>
 window.onload = function(){
@@ -61,9 +53,11 @@ window.onload = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';
+			var html = '';
 			for(var galleryInfo of res){
+				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+				html += '<article class="entry">';
+				html += '<div class="entry-img">';
 				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
@@ -74,6 +68,7 @@ window.onload = function(){
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
 				html += '</ul>';
+				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
 				html += '<div class="read-more">';					
@@ -81,6 +76,7 @@ window.onload = function(){
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
+				html += '</div>';
 			}
 			document.querySelector('#galleryList').innerHTML = html;
 		}		
@@ -95,9 +91,11 @@ function areaAsc(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';
+			var html = '';
 			for(var galleryInfo of res){
+				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+				html += '<article class="entry">';
+				html += '<div class="entry-img">';
 				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
@@ -108,6 +106,7 @@ function areaAsc(){
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
 				html += '</ul>';
+				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
 				html += '<div class="read-more">';					
@@ -115,6 +114,7 @@ function areaAsc(){
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
+				html += '</div>';
 			}
 			document.querySelector('#galleryList').innerHTML = html;
 		}		
@@ -129,9 +129,11 @@ function areaDesc(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';
+			var html = '';
 			for(var galleryInfo of res){
+				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+				html += '<article class="entry">';
+				html += '<div class="entry-img">';
 				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
@@ -142,6 +144,7 @@ function areaDesc(){
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
 				html += '</ul>';
+				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
 				html += '<div class="read-more">';					
@@ -149,6 +152,7 @@ function areaDesc(){
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
+				html += '</div>';
 			}
 			document.querySelector('#galleryList').innerHTML = html;
 		}		
@@ -163,9 +167,11 @@ function nameAsc(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';
+			var html = '';
 			for(var galleryInfo of res){
+				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+				html += '<article class="entry">';
+				html += '<div class="entry-img">';
 				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
@@ -176,6 +182,7 @@ function nameAsc(){
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
 				html += '</ul>';
+				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
 				html += '<div class="read-more">';					
@@ -183,6 +190,7 @@ function nameAsc(){
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
+				html += '</div>';
 			}
 			document.querySelector('#galleryList').innerHTML = html;
 		}		
@@ -197,9 +205,11 @@ function nameDesc(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';
+			var html = '';
 			for(var galleryInfo of res){
+				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+				html += '<article class="entry">';
+				html += '<div class="entry-img">';
 				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
@@ -210,6 +220,7 @@ function nameDesc(){
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
 				html += '</ul>';
+				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
 				html += '<div class="read-more">';					
@@ -217,6 +228,7 @@ function nameDesc(){
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
+				html += '</div>';
 			}
 			document.querySelector('#galleryList').innerHTML = html;
 		}		
@@ -224,5 +236,7 @@ function nameDesc(){
 	xhr.send();
 }
 </script>
+
+<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
