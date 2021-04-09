@@ -55,17 +55,17 @@ img[data-col] {
 			<div class="col-lg-5">
 				<div class="row">
 					<div class="col-lg-12">
-					<h5 class="text-center" data-col="exhibitionName">백남준전</h5>
+					<h5 class="text-center" data-col="exhibitionName"></h5>
 					</div>
 				</div>
 				<div class="row mt-3">
 					<div class="col-lg-6">
 						<h5>기간</h5>
-						<p data-col="period">2021-04-21 ~ 2021-05-23</p>
+						<p data-col="period"></p>
 					</div>
 					<div class="col-lg-3">
 						<h5>예매일자</h5>
-						<p>2021-04-21</p>
+						<p id="reservationDay">2021-04-21</p>
 					</div>
 					<div class="col-lg-3">
 						<h5>예매시간</h5>
@@ -91,9 +91,13 @@ img[data-col] {
 				<div class="row">
 					<div class="col-lg-6">
 						<h5>러닝타임</h5>
-						<p data-cal="runningTime">60분</p>
+						<p data-col="runningTime"></p>
 					</div>
-					<div class="col-lg-6">
+					<div class="col-lg-3">
+						<h5>관람료</h5>
+						<p data-col="charge"></p>
+					</div>
+					<div class="col-lg-3">
 						<h5>합계금액</h5>
 						<p>25000</p>
 					</div>
@@ -172,13 +176,12 @@ window.onload = function(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
-			console.log(res);
 			var objs = document.querySelectorAll('[data-col]');
+			document.querySelector('#reservationDay').innerHTML = res.minDate;
 			for(obj of objs){
 				var key = obj.getAttribute('data-col');
 				var data = res[key];
 				if(key === "imgPath") {
-					console.log(data);
 					obj.src = '/resources/assets/img/exhibition/' + data;
 					data = '';
 				}
@@ -191,7 +194,23 @@ window.onload = function(){
 				maxDate: res.maxDate,
 			    disable: res.disable,
 			    defaultDate: res.minDate,
+			    onChange: function(selectedDates, dateStr, instance) {
+			    	document.querySelector('#reservationDay').innerHTML = dateStr;
+			    	getTimeList(dateStr);
+			    }
 			});
+		}
+	}
+	xhr.send();
+}
+
+function getTimeList(day) {
+	var xhr = new XMLHttpRequest();
+	console.log(day);
+	xhr.open('GET', '/reservation-time/2/' + day);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var res = JSON.parse(xhr.responseText);
 		}
 	}
 	xhr.send();

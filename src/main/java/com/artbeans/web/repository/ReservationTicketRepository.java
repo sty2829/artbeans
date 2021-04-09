@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.artbeans.web.dto.SumTicketTime;
 import com.artbeans.web.entity.ReservationTicketInfo;
 
 public interface ReservationTicketRepository extends JpaRepository<ReservationTicketInfo, Integer> {
@@ -16,6 +17,12 @@ public interface ReservationTicketRepository extends JpaRepository<ReservationTi
 	
 	@Query("SELECT rti.rtiDate AS date FROM ReservationTicketInfo rti where rti.exhibitionReservationInfo.eriNum = ?1 GROUP BY rti.rtiDate HAVING sum(rti.rtiNumber) = ?2")
 	List<Date> excludeGroupByDate(Integer eriNum, Long max);
+	
+	
+	
+	@Query("SELECT new com.artbeans.web.dto.SumTicketTime(rti.rtiTime AS time, sum(rti.rtiNumber) AS sum) FROM ReservationTicketInfo rti LEFT JOIN rti.exhibitionReservationInfo eri where rti.exhibitionReservationInfo.eriNum = ?1 AND rti.rtiDate = ?2 GROUP BY rti.rtiTime")
+	List<SumTicketTime> sumTicketGroupByTime(Integer eriNum, Date date);
+
 }
 
 

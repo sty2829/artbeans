@@ -10,7 +10,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.artbeans.web.dto.ReservationTime;
 import com.artbeans.web.dto.ReservationView;
+import com.artbeans.web.dto.SumTicketTime;
 import com.artbeans.web.entity.ExhibitionReservationInfo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +23,14 @@ public class Reservation {
 	
 	private static final String YYYY_MM_DD = "yyyy-MM-dd";
 	
+	public ReservationTime reservationTimeList(ExhibitionReservationInfo eri, List<SumTicketTime> sttList) {
+		Integer maxStock = eri.getEriMaxStock();
+		
+		return null;
+	}
 	
-	public ReservationView ReservationSchedule(ExhibitionReservationInfo eri, List<Date> excludeDateList) {
+	
+	public ReservationView reservationSchedule(ExhibitionReservationInfo eri, List<Date> excludeDateList) {
 		Date eriStartDate = eri.getEriStartDate();
 		Date eriEndDate = eri.getEriEndDate();
 		int eriHoliday = eri.getEriHoliday();
@@ -42,9 +50,9 @@ public class Reservation {
 		String imgPath = eri.getExhibitionInfo().getFileInfo().getFiPath();
 		String exhibitionName = eri.getExhibitionInfo().getEiName();
 		//시작날짜 변환
-		String startDate = dateFormatConvert(eriStartDate);
+		String startDate = dateToString(eriStartDate);
 		//종료날짜 변환
-		String endDate = dateFormatConvert(eriEndDate);
+		String endDate = dateToString(eriEndDate);
 		String period = startDate + " ~ " + endDate;
 		String AudienceRating = eri.getEriAudienceRating();
 		String runningTime = eri.getEriRunningTime();
@@ -144,9 +152,9 @@ public class Reservation {
 		//간격 계산위해 시작시간 인트로 변환
 		int eriStartTimeInt = Integer.parseInt(eriStartTime);
 		//시간당 최대티켓수 가져오기
-		int eriMaxTicket = eri.getEriMaxTicket();
+		int eriMaxStock = eri.getEriMaxStock();
 		//(시간당최대티켓 * (종료시간 - 시작시간))
-		long max = (eriMaxTicket * (eriEndTimeInt - eriStartTimeInt));
+		long max = (eriMaxStock * (eriEndTimeInt - eriStartTimeInt));
 		
 		return max;
 	}
@@ -167,9 +175,22 @@ public class Reservation {
 	}
 	
 	
-	public static String dateFormatConvert(Date date) {
+	public String dateToString(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat(YYYY_MM_DD);
 		return sdf.format(date);
+	}
+	
+	public Date StringToDate(String dateStr) {
+		SimpleDateFormat sdf = new SimpleDateFormat(YYYY_MM_DD);
+		Date date;
+		try {
+			date = sdf.parse(dateStr);
+			return date;
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 	
 }

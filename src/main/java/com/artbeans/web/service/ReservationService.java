@@ -8,4 +8,6 @@ public interface ReservationService {
 	ReservationView getReservationView(Integer eiNum);
 	
 	ReservationTicketInfo saveReservationTicek(ReservationTicketInfo rti);
+	
+	void getReservationTimeList(Integer eriNum, String day);
 }
