@@ -23,10 +23,10 @@
 				<div class="row">
 					<div class="col-lg-12 d-flex justify-content-center">
 					    <ul id="portfolio-flters">
-					        <li id="nameAsc()">이름 오름차순</li>
-	                 	    <li id="nameDesc()">이름 내림차순</li>					        
-						    <li id="areaAsc()">지역 오름차순</li>
-	                 	    <li id="areaDesc()">지역 내림차순</li>
+					        <li onclick="nameAsc()">이름 오름차순</li>
+	                 	    <li onclick="nameDesc()">이름 내림차순</li>					        
+						    <li onclick="areaAsc()">지역 오름차순</li>
+	                 	    <li onclick="areaDesc()">지역 내림차순</li>
 	                    </ul>
 					</div>
 				</div>
@@ -51,14 +51,15 @@ window.onload = function(){
 	xhr.open('GET','/Gallery-list'); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			for(var galleryInfo of res){
+				console.log(galleryInfo.fileInfo.fiPath);
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
-				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
+				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
 				html += '<a>' + galleryInfo.giName + '</a>';
@@ -96,7 +97,7 @@ function areaAsc(){
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
-				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
+				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
 				html += '<a>' + galleryInfo.giName + '</a>';
@@ -134,7 +135,7 @@ function areaDesc(){
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
-				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
+				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
 				html += '<a>' + galleryInfo.giName + '</a>';
@@ -172,7 +173,7 @@ function nameAsc(){
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
-				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
+				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
 				html += '<a>' + galleryInfo.giName + '</a>';
@@ -210,7 +211,7 @@ function nameDesc(){
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
-				html += '<img src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
+				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
 				html += '<a>' + galleryInfo.giName + '</a>';

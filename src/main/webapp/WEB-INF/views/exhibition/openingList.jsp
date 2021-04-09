@@ -25,8 +25,8 @@
 				<div class="row">
 					<div class="col-lg-12 d-flex justify-content-center">
 					    <ul id="portfolio-flters">					        
-						    <li id="newest()">전시회 오픈순</li>
-	                 	    <li id="deadline()">전시회 마감순</li>
+						    <li onclick="newest()">전시회 오픈순</li>
+	                 	    <li onclick="deadline()">전시회 마감순</li>
 	                    </ul>
 					</div>
 				</div>
@@ -58,7 +58,7 @@ window.onload = function(){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -99,7 +99,7 @@ function newest(){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -141,7 +141,7 @@ function deadline(){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';

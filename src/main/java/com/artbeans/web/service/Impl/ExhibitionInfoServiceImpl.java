@@ -6,8 +6,11 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.artbeans.web.dto.DataTable;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.FileInfo;
 import com.artbeans.web.repository.ExhibitionInfoRepository;
@@ -72,4 +75,13 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		if(getExhibitionInfo(eiNum)==null) return 1;
 		return 0;
 	}
+
+//	@Override
+//	public DataTable<ExhibitionInfo> getExhibitionInfos(Pageable pageable, DataTable<ExhibitionInfo> exhibitionInfo) {
+//		Page<ExhibitionInfo> pageExhibition = exhiRepo.findAll(pageable);
+//		exhibitionInfo.setData(pageExhibition.getContent());
+//		exhibitionInfo.setRecordsTotal(pageExhibition.getTotalElements());
+//		exhibitionInfo.setRecordsFiltered(pageExhibition.getTotalElements());		
+//		return exhibitionInfo;
+//	}
 }

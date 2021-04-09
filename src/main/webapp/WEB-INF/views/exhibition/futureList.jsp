@@ -25,8 +25,8 @@
 				<div class="row">
 					<div class="col-lg-12 d-flex justify-content-center">
 					    <ul id="portfolio-flters">					        
-						    <li id="newest()">전시회 오픈순</li>
-	                 	    <li id="deadline()">전시회 마감순</li>
+						    <li onclick="newest()">전시회 오픈순</li>
+	                 	    <li onclick="deadline()">전시회 마감순</li>
 	                    </ul>
 					</div>
 				</div>
@@ -43,7 +43,7 @@
 </main>
 
 <script>
-window.onload = function(){
+window.onload = function (){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition-list'); //ExhibitionController
 	xhr.onreadystatechange = function(){
@@ -54,10 +54,11 @@ window.onload = function(){
 			// exhibition.eiStatus=0 진행할 전시회
 			for(var exhibition of res){
 				if(exhibition.eiStatus==0){
+					console.log(exhibition.fileInfo.fiPath);
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -78,11 +79,22 @@ window.onload = function(){
 					html += '</div>';
 				}
 			}
-			document.querySelector('#exhibitionList').innerHTML = html;
+			document.querySelector('#exhibitionList').innerHTML += html;
 		}		
 	}
 	xhr.send();
 }
+
+/*
+var count = 0;
+window.onscroll = function(e) {
+    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        count++;
+        get();
+    }
+};
+window.onload = get();
+*/
 
 function newest(){
 	var xhr = new XMLHttpRequest();
@@ -98,7 +110,7 @@ function newest(){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -141,7 +153,7 @@ function deadline(){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
