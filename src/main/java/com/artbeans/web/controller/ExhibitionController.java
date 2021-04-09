@@ -27,7 +27,7 @@ public class ExhibitionController {
 	
 	@GetMapping("/exhibition-list")
 	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
-		log.info("exhibitionList=>{}",eService.getExhibitionInfos(exhibitionInfo));
+		log.info("exhibitionList=>{}",exhibitionInfo.getEiName());
 		return eService.getExhibitionInfos(exhibitionInfo);
 	}
 	

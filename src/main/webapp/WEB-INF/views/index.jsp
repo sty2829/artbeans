@@ -54,7 +54,7 @@
     <div class="container d-flex align-items-center">
     
       <div onclick="location.href='/'">
-      <h1 class="logo"><img src="/resources/assets/img/logo.png" class="img-fluid" ></h1>
+      <h1 class="logo" style="cursor: pointer""><img src="/resources/assets/img/logo.png" class="img-fluid" ></h1>
       </div>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->

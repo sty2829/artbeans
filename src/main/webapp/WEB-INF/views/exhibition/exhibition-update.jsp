@@ -23,8 +23,8 @@
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
-        <div class="row mt-2">
-          <div class="col-lg-4">
+        <div class="row mt-0">
+          <div class="col-lg-0">
             <div class="info">
              <div class="phone"  id="getExhibitionDivMenu">
                 <h4>나의 전시회 목록</h4>
@@ -63,15 +63,15 @@
               
             </div>
           </div>
-          <div class="col-lg-8 mt-3 mt-lg-4">
+          <div class="col-lg-4 mt-3 mt-lg-4">
           <div id="getExhibitionDivMenu" class="form-row">
-                <div class="col-md-6 form-group">
-                  <select class="col-md-6 form-group" style="WIDTH: 300pt; HEIGHT: 30pt" onchange="getExhibition(this)" id="exhibition" name="exhibitionOption"></select>
+                <div class="col-md-10 form-group">
+                  <select class="col-md-6 form-group" style="WIDTH: 300; HEIGHT: 28pt" onchange="getExhibition(this)" id="exhibition" name="exhibitionOption"></select>
                 </div>
       	 </div>
       	 <div id="getExhibitionDivMenu" class="form-row">
-                <div class="col-md-6 form-group">
-                  <select class="col-md-6 form-group" style="WIDTH: 300pt; HEIGHT: 30pt" id="giName" name="gallery"></select>
+                <div class="col-md-10 form-group">
+                  <select class="col-md-6 form-group" style="WIDTH: 300pt; HEIGHT: 28pt" id="giName" name="gallery"></select>
                 </div>
       	 </div>
         
@@ -248,11 +248,14 @@ xhr.onreadystatechange = function(){
 		var html = '';
 		
 		var res = JSON.parse(xhr.responseText);
+		console.log(res);
+		console.log(res.galleryInfo['giNum']);
 		for(var key in res){
 			if(document.querySelector('#'+key)){
 				document.querySelector('#'+key).value=res[key];
 				}
 			}
+		document.querySelector('#giName').value = res.galleryInfo['giNum'];
 		document.querySelector('#fileInfo-fiNum').value = res['fileInfo']['fiNum'];
 		document.querySelector('#uiNum').value = res['userInfo']['uiNum'];
 		//document.querySelector('#giNum').value = res['galleryInfo']['giNum'];
@@ -271,7 +274,7 @@ function getGalleyList(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var html ='';
 			var res = JSON.parse(xhr.responseText);
-			console.log(res);
+			
 			var html = '<option value=""></option>';
 			for(var galleryInfo of res){
 				html += '<option value ="' + galleryInfo.giNum+'">'+galleryInfo.giName+'</option>';
