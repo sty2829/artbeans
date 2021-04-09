@@ -1,6 +1,6 @@
 package com.artbeans.web.controller;
 
-import java.util.Date;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,11 +32,11 @@ public class ReservationController {
 
 	
 	@GetMapping("/reservation-time/{eiNum}/{dateStr}")
-	public int getView(@PathVariable Integer eiNum, @PathVariable String dateStr) {
+	public Map<String,Integer> getView(@PathVariable Integer eiNum, @PathVariable String dateStr) {
 		log.info("eiNum =>{}", eiNum);
 		log.info("day =>{}", dateStr);
-		rService.getReservationTimeList(eiNum, dateStr);
-		return 1;
+		
+		return rService.getReservationTimeMap(eiNum, dateStr);
 	}
 	
 	//이용자가 예약하고 난 데이터를 저장하는 메서드

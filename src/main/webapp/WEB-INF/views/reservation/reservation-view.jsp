@@ -11,7 +11,7 @@
 <script src=/resources/node_modules/flatpickr/dist/l10n/ko.js></script>
 <style>
 .reservationViewMain {
-	margin-top: 150px;
+	margin-top: 300px;
 	margin-left: 450px;
 	height: 1000px;
 }
@@ -65,17 +65,17 @@ img[data-col] {
 					</div>
 					<div class="col-lg-3">
 						<h5>예매일자</h5>
-						<p id="reservationDay">2021-04-21</p>
+						<p id="rtiDate"></p>
 					</div>
 					<div class="col-lg-3">
 						<h5>예매시간</h5>
-						<p>11:00</p>
+						<p id="rtiTime"></p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-6">
 						<h5>관람연령</h5>
-						<p data-col="audienceRating">전체관람가</p>
+						<p data-col="audienceRating" id="rtiAudienceRating">전체관람가</p>
 					</div>
 					<div class="col-lg-6">
 						<ul class="list-inline">
@@ -83,7 +83,7 @@ img[data-col] {
 								<h5>예매수</h5>
 							</li>
 							<li class="list-inline-item">
-								<input style="width:130px; height: 30px; text-align: center" type="number" class="form-control" id="eriAudienceRating" required>
+								<input type="number" class="form-control" id="rtiNumber" onchange="changeNumber(this)" min="0" max="5" style="width:130px; height: 30px; text-align: center">
 							</li>
 						</ul>
 					</div>
@@ -111,31 +111,7 @@ img[data-col] {
 				</div>
 				<div class="row">
 					<div class="col-lg-12">
-						<ul class="list-inline">
-						  <li class="list-inline-item">
-						  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-							<label class="btn btn-outline-success" for="success-outlined">11:00</label>
-						  </li>
-			  			  <li class="list-inline-item">
-						  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-							<label class="btn btn-outline-success" for="success-outlined">11:00</label>
-						  </li>
-			  			  <li class="list-inline-item">
-						  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-							<label class="btn btn-outline-success" for="success-outlined">11:00</label>
-						  </li>
-			  			  <li class="list-inline-item">
-						  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-							<label class="btn btn-outline-success" for="success-outlined">11:00</label>
-						  </li>
-			  			  <li class="list-inline-item">
-						  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-							<label class="btn btn-outline-success" for="success-outlined">11:00</label>
-						  </li>
-		  	  			  <li class="list-inline-item">
-						  	<input type="radio" class="btn-check radio-hidden" name="options-outlined" id="success-outlined" autocomplete="off" checked>
-							<label class="btn btn-outline-success" for="success-outlined">11:00</label>
-						  </li>
+						<ul class="list-inline" id="timeList">
 						</ul>
 					</div>
 				</div>
@@ -146,13 +122,8 @@ img[data-col] {
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-lg-5">
-			</div>
-			<div class="col-lg-5">
-			</div>
-		</div>	
 	</div>
+	<input type="hidden" data-col="maxTicket" id="eriMaxTicket">
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
 /* var i = 0;
@@ -173,7 +144,6 @@ flatpickr('#mycal', {
 =======
     defualtDate: ["2021-04-09"]
 }); */
->>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', '/reservation/1');
@@ -181,7 +151,8 @@ window.onload = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			var objs = document.querySelectorAll('[data-col]');
-			document.querySelector('#reservationDay').innerHTML = res.minDate;
+			document.querySelector('#rtiDate').innerHTML = res.minDate;
+			document.querySelector('#eriMaxTicket').value = res.maxTicket;
 			for(obj of objs){
 				var key = obj.getAttribute('data-col');
 				var data = res[key];
@@ -191,6 +162,7 @@ window.onload = function(){
 				}
 				obj.innerHTML = data;
 			}
+			getTimeList(res.minDate);
 			flatpickr('#mycal', {
 				inline: true,
 				time_24hr: true,
@@ -199,8 +171,9 @@ window.onload = function(){
 			    disable: res.disable,
 			    defaultDate: res.minDate,
 			    onChange: function(selectedDates, dateStr, instance) {
-			    	document.querySelector('#reservationDay').innerHTML = dateStr;
+			    	document.querySelector('#rtiDate').innerHTML = dateStr;
 			    	getTimeList(dateStr);
+			    	
 			    }
 			});
 		}
@@ -210,14 +183,56 @@ window.onload = function(){
 
 function getTimeList(day) {
 	var xhr = new XMLHttpRequest();
-	console.log(day);
 	xhr.open('GET', '/reservation-time/2/' + day);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
+			var keys = [];
+			for(var key in res){
+				keys.push(Number(key.substring(0,2)));
+			}
+			keys.sort(function(a, b) {
+				return a - b;
+			});
+			var html = '';
+			for(var i=0; i<keys.length; i++) {
+				var key = keys[i] + ':00';
+				
+				if(key.length != 5){
+					key = '0' + key;
+				}
+				html += '<li class="list-inline-item">';
+				html += '<input type="radio" class="btn-check radio-hidden" name="rtiTime" id="time' + (i+1) + '" autocomplete="off" value="' + key +'" onclick="selectTime(this)" data-ticket="' + res[key] +'">';
+				html += '<label class="btn btn-outline-success" for="time' + (i+1) + '" >' + key + '<br>' + res[key] +'매 </label>';
+			  	html += '</li>';
+			}
+			document.querySelector('#timeList').innerHTML = html;
+			var first = document.querySelector("#time1");
+			first.checked = true;
+			document.querySelector('#rtiTime').innerHTML = first.value;
+			var rtiNumber = document.querySelector('#rtiNumber');
+			var maxTicket = Number(document.querySelector('#eriMaxTicket').value);
+			var remainTicket = Number(first.getAttribute('data-ticket'));
+			rtiNumber.max = remainTicket > maxTicket ? maxTicket : remainTicket;
 		}
 	}
 	xhr.send();
+}
+
+function selectTime(obj){
+	var maxTicket = Number(document.querySelector('#eriMaxTicket').value);
+	var remainTicket = Number(obj.getAttribute('data-ticket'));
+	console.log(maxTicket);
+	console.log(remainTicket);
+	
+	var rtiTime = document.querySelector('#rtiTime');
+	rtiTime.innerHTML = obj.value;	
+	
+}
+
+function changeNumber(obj){
+	
+	console.log(obj);
 }
 </script>
 </body>

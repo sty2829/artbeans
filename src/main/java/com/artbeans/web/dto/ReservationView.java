@@ -23,10 +23,14 @@ public class ReservationView {
 	
 	private Integer charge;
 	
+	private Integer maxTicket;
+	
 	private List<String> disable;
 
-	public ReservationView(String imgPath, String exhibitionName, String period, String audienceRating, String runningTime, String minDate, String maxDate,
-			Integer charge, List<String> disable) {
+	public ReservationView(String imgPath, String exhibitionName, String period, String audienceRating,
+			String runningTime, String minDate, String maxDate, Integer charge, Integer maxTicket,
+			List<String> disable) {
+		super();
 		this.imgPath = imgPath;
 		this.exhibitionName = exhibitionName;
 		this.period = period;
@@ -35,6 +39,7 @@ public class ReservationView {
 		this.minDate = minDate;
 		this.maxDate = maxDate;
 		this.charge = charge;
+		this.maxTicket = maxTicket;
 		this.disable = disable;
 	}
 	

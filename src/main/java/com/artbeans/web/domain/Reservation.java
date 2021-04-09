@@ -6,11 +6,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.artbeans.web.dto.ReservationTime;
 import com.artbeans.web.dto.ReservationView;
 import com.artbeans.web.dto.SumTicketTime;
 import com.artbeans.web.entity.ExhibitionReservationInfo;
@@ -23,10 +24,37 @@ public class Reservation {
 	
 	private static final String YYYY_MM_DD = "yyyy-MM-dd";
 	
-	public ReservationTime reservationTimeList(ExhibitionReservationInfo eri, List<SumTicketTime> sttList) {
+	public Map<String,Integer> reservationTimeList(ExhibitionReservationInfo eri, List<SumTicketTime> sttList) {
+		//시간대별 최대 티켓수 
 		Integer maxStock = eri.getEriMaxStock();
+		String startTime = eri.getEriStartTime();
+		String endTime = eri.getEriEndTime();
+		int startTimeInt = Integer.parseInt(startTime.substring(0,2));
+		int endTimeInt = Integer.parseInt(endTime.substring(0,2));
+		int length = endTimeInt - startTimeInt;
 		
-		return null;
+		Map<String,Integer> timeMap = new HashMap<>();
+		
+		for(SumTicketTime stt : sttList) {
+			int sum = stt.getSum().intValue();
+			timeMap.put(stt.getTime(), maxStock-sum);
+		}
+		
+		for(int i=0; i<length; i++) {
+			String time = startTimeInt + ":00";
+			if(time.length() != 5) {
+				time = "0"+time;
+			}
+			
+			if(!timeMap.containsKey(time)) {
+				timeMap.put(time, maxStock);
+			}
+			startTimeInt++;
+		}
+		
+		log.info("timeMap => {}",timeMap);
+		
+		return timeMap;
 	}
 	
 	
@@ -57,8 +85,9 @@ public class Reservation {
 		String AudienceRating = eri.getEriAudienceRating();
 		String runningTime = eri.getEriRunningTime();
 		Integer charge = eri.getExhibitionInfo().getEiCharge();
+		Integer maxTicket = eri.getEriMaxTicket();
 		
-		ReservationView reservationView = new ReservationView(imgPath, exhibitionName, period, AudienceRating, runningTime, minDate, endDate, charge, disable);
+		ReservationView reservationView = new ReservationView(imgPath, exhibitionName, period, AudienceRating, runningTime, minDate, endDate, charge, maxTicket, disable);
 		
 		return reservationView;
 		
