@@ -29,15 +29,51 @@
       </div>
     </section>
     
-    <!-- 나중에 지도 바꾸기 -->
-     <section id="contact" class="contact">
-      <div class="container">
-        <div>
-          <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
+    <!-- 나중에 지도 바꾸기 -->  
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hevj9bqhd5"></script>
+ <section id="contact" class="contact">
+      <div class="container" >
+
+        <div style="border:0; width: 100%; height: 270px;" id="map">
+          
         </div>
       </div>
-    </section>
-  </main>
+ </section>
+
+<script>
+var mapOptions = {
+    center: new naver.maps.LatLng(37.5630858, 126.9709054),
+    zoom: 16
+};
+var map = new naver.maps.Map('map', mapOptions);
+ 
+var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(37.5630858, 126.9709054),
+    title: '서울시립미술관',
+    map: map
+});
+ 
+var contentString = [
+        '<div style="padding:4px 4px;">',
+        '   <div style="font-weight:bold;padding-bottom:3px;">서울시립미술관</div>',
+        '</div>'
+    ].join('');
+ 
+var infowindow = new naver.maps.InfoWindow({
+    content: contentString
+});
+ 
+naver.maps.Event.addListener(marker, "click", function(e) {
+    if (infowindow.getMap()) {
+        infowindow.close();
+    } else {
+        infowindow.open(map, marker);
+    }
+});
+ 
+infowindow.open(map, marker);
+</script>
+
   
 <script>
 var eiNum = ${param.eiNum}
