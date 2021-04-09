@@ -2,7 +2,6 @@ package com.artbeans.web.entity;
 
 
 
-import java.sql.Time;
 import java.sql.Date;
 
 import javax.persistence.CascadeType;
@@ -19,9 +18,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -77,17 +74,17 @@ public class ExhibitionInfo {
 	private Date moddat;
 	
 	@ManyToOne
-	@JoinColumn(name = "gi_num")
+	@JoinColumn(name = "gi_num",insertable = false, updatable = false)
 	private GalleryInfo galleryInfo;
 		
 	//파일인서트 추가
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
-	@JoinColumn(name = "fi_num")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fi_num", updatable = true ,nullable = false, referencedColumnName = "fi_num")
 	private FileInfo fileInfo;
 	
 	//uiNum 묶여있어서 추가요
 	@ManyToOne
-	@JoinColumn(name = "ui_num")
+	@JoinColumn(name = "ui_num",insertable = false, updatable = false)
 	private UserInfo userInfo;
 
 }

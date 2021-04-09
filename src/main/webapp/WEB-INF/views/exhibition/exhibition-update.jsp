@@ -111,6 +111,7 @@
               </div>
               
               <div class="form-group">
+              	<input type="hidden" id="fileInfo-fiNum">
                 <input type="file" class="form-control" id="fiFile" onchange ="changeImg(this)"/> 
                 <div style="HEIGHT: 10pt"></div>    
               </div>
@@ -211,7 +212,9 @@ function doUpdate(){
 	formData.append('eiEndDate',eiEndDate.value);
 	formData.append('eiStartTime',eiStartTime.value);
 	formData.append('eiEndTime',eiEndTime.value);
-	formData.append('fileInfo.fiNum',document.querySelector('#fiFile').files[0]);
+	formData.append('eiContent','test');
+	formData.append('fileInfo.fiNum',document.querySelector('#fileInfo-fiNum').value);
+	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
 	formData.append('userInfo.uiNum',uiNum);
 	formData.append('galleryInfo.giNum',giNum);
 	xhr.send(formData);
@@ -249,6 +252,10 @@ xhr.onreadystatechange = function(){
 				document.querySelector('#'+key).value=res[key];
 				}
 			}
+		document.querySelector('#fileInfo-fiNum').value = res['fileInfo']['fiNum'];
+		document.querySelector('#uiNum').value = res['userInfo']['uiNum'];
+		document.querySelector('#giNum').value = res['galleryInfo']['giNum'];
+		
 		document.querySelector('#giName').value = res.galleryInfo.giName;
 		document.querySelector('#getExhibitionDivMenu').innerHTML = '<img width="200" id="preview" src="/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '">';
 		}
