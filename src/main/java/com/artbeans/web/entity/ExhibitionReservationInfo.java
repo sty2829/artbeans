@@ -57,9 +57,8 @@ public class ExhibitionReservationInfo {
 	@Column(name="eri_running_time")
 	private String eriRunningTime;
 	
-	@OneToMany(mappedBy = "exhibitionReservationInfo")
-	@JsonManagedReference
-	private List<ReservationTicketInfo> rtiList;
+	@Column(name="eri_holiday")
+	private int eriHoliday;
 	
 	@OneToOne
 	@JoinColumn(name= "ei_num")

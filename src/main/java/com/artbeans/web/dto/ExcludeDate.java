@@ -5,17 +5,13 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class TicketSumDate {
+public class ExcludeDate {
 
 	private Date date;
 	
-	private Long sum;
 
-	public TicketSumDate(Date date, Long sum) {
+	public ExcludeDate(Date date) {
 		this.date = date;
-		this.sum = sum;
 	}
-	
-	
-	
+
 }

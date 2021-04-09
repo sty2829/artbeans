@@ -1,11 +1,12 @@
 package com.artbeans.web.util;
 
-import java.util.Date;
-
-import lombok.extern.slf4j.Slf4j;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class DateUtil {
@@ -35,9 +36,7 @@ public class DateUtil {
 		return null;
 	}
 	
-	public static String getDate() {
-		Date date = new Date();
-		SimpleDateFormat sdf = new SimpleDateFormat(YYYY_MM_DD);
-		return sdf.format(date);
-	}
+
+	
+
 }

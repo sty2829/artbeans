@@ -1,18 +1,18 @@
 package com.artbeans.web.service.Impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.artbeans.web.domain.ReservationDateExclude;
-import com.artbeans.web.dto.TicketSumDate;
+import com.artbeans.web.domain.Reservation;
+import com.artbeans.web.dto.ReservationView;
 import com.artbeans.web.entity.ExhibitionReservationInfo;
 import com.artbeans.web.entity.ReservationTicketInfo;
 import com.artbeans.web.repository.ExhibitionReservationInfoRepository;
 import com.artbeans.web.repository.ReservationTicketRepository;
 import com.artbeans.web.service.ReservationService;
-import com.artbeans.web.util.DateUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,20 +27,18 @@ public class ReservationSeviceImpl implements ReservationService {
 	private ReservationTicketRepository rtiRepo;
 	
 	@Autowired 
-	private ReservationDateExclude rde;
+	private Reservation reservation;
 
 	@Override
-	public ExhibitionReservationInfo getReservationView(Integer eiNum) {
-		List<TicketSumDate> tsdList = eriRepo.ticketSumGroupByDate(eiNum);
+	public ReservationView getReservationView(Integer eiNum) {
+		ExhibitionReservationInfo eri = eriRepo.findByExhibitionInfoEiNum(eiNum);
 		
-		log.info("eriList => {}", tsdList);
+		Integer eriNum = eri.getEriNum();
+		long max = reservation.dayMaximumTicket(eri);
 		
-		//List<TicketSumDate> sumDate = eriRepo.ticketSumGroupByDate(2);
-		//log.info("sumDate => {}",sumDate);
-		
-		//List<ReservationTicketInfo> rtiList = rtiRepo.findAllByExhibitionReservationInfoEriNum(eri.getEriNum());
-		
-		return null;
+        List<Date> excludeDateList = rtiRepo.excludeGroupByDate(eriNum, max);
+        
+        return reservation.ReservationSchedule(eri, excludeDateList);
 	}
 
 	@Override
