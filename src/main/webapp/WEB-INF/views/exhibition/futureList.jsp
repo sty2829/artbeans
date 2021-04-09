@@ -25,8 +25,8 @@
 				<div class="row">
 					<div class="col-lg-12 d-flex justify-content-center">
 					    <ul id="portfolio-flters">					        
-						    <li id="newest()">전시회 오픈순</li>
-	                 	    <li id="deadline()">전시회 마감순</li>
+						    <li onclick="newest()">전시회 오픈순</li>
+	                 	    <li onclick="deadline()">전시회 마감순</li>
 	                    </ul>
 					</div>
 				</div>
@@ -36,29 +36,29 @@
 		<!-- 최신순, 마감순 <div id="exhibitionList"></div> -->
 <section id="blog" class="blog">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="exhibitionList">
-          
-          </div>
-         </div>
+        <div class="row" id="exhibitionList">
+        </div>
        </div>
 </section>
 </main>
 
 <script>
-window.onload = function(){
+window.onload = function (){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition-list'); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';            
+			var html = '';
 			// exhibition.eiStatus=0 진행할 전시회
 			for(var exhibition of res){
 				if(exhibition.eiStatus==0){
-					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					console.log(exhibition.fileInfo.fiPath);
+					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+					html += '<article class="entry">';
+					html += '<div class="entry-img">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -68,6 +68,7 @@ window.onload = function(){
 					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
 					html += '</ul>';
+					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div class="read-more">';					
@@ -75,13 +76,25 @@ window.onload = function(){
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
+					html += '</div>';
 				}
 			}
-			document.querySelector('#exhibitionList').innerHTML = html;
+			document.querySelector('#exhibitionList').innerHTML += html;
 		}		
 	}
 	xhr.send();
 }
+
+/*
+var count = 0;
+window.onscroll = function(e) {
+    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        count++;
+        get();
+    }
+};
+window.onload = get();
+*/
 
 function newest(){
 	var xhr = new XMLHttpRequest();
@@ -90,12 +103,14 @@ function newest(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';            
+			var html = '';      
 			// exhibition.eiStatus=0 진행할 전시회
 			for(var exhibition of res){
 				if(exhibition.eiStatus==0){
-					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+					html += '<article class="entry">';
+					html += '<div class="entry-img">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -105,6 +120,7 @@ function newest(){
 					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
 					html += '</ul>';
+					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div class="read-more">';					
@@ -112,6 +128,7 @@ function newest(){
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
+					html += '</div>';
 				}
 				
 			}
@@ -129,12 +146,14 @@ function deadline(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '<article class="entry">';
-			html += '<div class="entry-img">';            
+			var html = '';
 			// exhibition.eiStatus=0 진행할 전시회
 			for(var exhibition of res){
 				if(exhibition.eiStatus==0){
-					html += '<img src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+					html += '<article class="entry">';
+					html += '<div class="entry-img">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -144,6 +163,7 @@ function deadline(){
 					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
 					html += '</ul>';
+					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div class="read-more">';					
@@ -151,6 +171,7 @@ function deadline(){
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
+					html += '</div>';
 				}
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;

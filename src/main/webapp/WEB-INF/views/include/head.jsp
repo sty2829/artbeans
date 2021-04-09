@@ -38,7 +38,11 @@
       <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
   <div class="container">          
-       <input type="text" placeholder="전시회, 전시관 검색">
+  		<form action="/serach" method="get">
+       <input type="text" name="keyword" placeholder="전시회, 전시관 검색">
+       <button>검색</button>
+       </form>
+      
        
        <a href="" style="float:right"  class="get-started-btn ml-auto">로그인/회원가입</a>
       

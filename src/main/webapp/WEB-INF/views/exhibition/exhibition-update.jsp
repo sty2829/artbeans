@@ -11,7 +11,6 @@
 <body>
 <input type = "hidden" id = "eiNum">
 <input type = "hidden" id = "uiNum">
-<input type = "hidden" id = "giNum">
 <main id="main">
     <!-- ======= Breadcrumbs ======= -->
     <section id="breadcrumbs" class="breadcrumbs">
@@ -24,8 +23,8 @@
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
       <div class="container">
-        <div class="row mt-2">
-          <div class="col-lg-4">
+        <div class="row mt-0">
+          <div class="col-lg-0">
             <div class="info">
              <div class="phone"  id="getExhibitionDivMenu">
                 <h4>나의 전시회 목록</h4>
@@ -64,17 +63,18 @@
               
             </div>
           </div>
-          <div class="col-lg-8 mt-3 mt-lg-4">
+          <div class="col-lg-4 mt-3 mt-lg-4">
           <div id="getExhibitionDivMenu" class="form-row">
-                <div class="col-md-6 form-group">
-                  <select class="col-md-6 form-group" style="WIDTH: 300pt; HEIGHT: 30pt" onchange="getExhibition(this)" id="exhibition" name="exhibitionOption"></select>
+                <div class="col-md-10 form-group">
+                  <select class="col-md-6 form-group" style="WIDTH: 300; HEIGHT: 28pt" onchange="getExhibition(this)" id="exhibition" name="exhibitionOption"></select>
                 </div>
       	 </div>
-              
-          <div class="form-group">
-                <input type="text" class="form-control" id="giName" placeholder="갤러리명" readonly/>
-               <div style="HEIGHT: 10pt"></div> 
-              </div>
+      	 <div id="getExhibitionDivMenu" class="form-row">
+                <div class="col-md-10 form-group">
+                  <select class="col-md-6 form-group" style="WIDTH: 300pt; HEIGHT: 28pt" id="giName" name="gallery"></select>
+                </div>
+      	 </div>
+        
           <div class="form-group">
                 <input type="text" class="form-control" id="eiName" placeholder="전시회명" />
                <div style="HEIGHT: 10pt"></div> 
@@ -111,6 +111,7 @@
               </div>
               
               <div class="form-group">
+              	<input type="hidden" id="fileInfo-fiNum">
                 <input type="file" class="form-control" id="fiFile" onchange ="changeImg(this)"/> 
                 <div style="HEIGHT: 10pt"></div>    
               </div>
@@ -202,7 +203,7 @@ function doUpdate(){
 	var formData = new FormData();
 	var eiNum = document.querySelector('#eiNum').value;	
 	var uiNum = document.querySelector('#uiNum').value;
-	var giNum = document.querySelector('#giNum').value;
+	var giNum = document.querySelector('#giName').value; //<option vallue = giNum>
 	formData.append('eiNum',eiNum);
 	formData.append('eiName',eiName.value);
 	formData.append('eiArtist',eiArtist.value);
@@ -211,7 +212,9 @@ function doUpdate(){
 	formData.append('eiEndDate',eiEndDate.value);
 	formData.append('eiStartTime',eiStartTime.value);
 	formData.append('eiEndTime',eiEndTime.value);
-	formData.append('fileInfo.fiNum',document.querySelector('#fiFile').files[0]);
+	formData.append('eiContent','test');
+	formData.append('fileInfo.fiNum',document.querySelector('#fileInfo-fiNum').value);
+	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
 	formData.append('userInfo.uiNum',uiNum);
 	formData.append('galleryInfo.giNum',giNum);
 	xhr.send(formData);
@@ -224,7 +227,7 @@ function exhibitionOption(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res =JSON.parse(xhr.responseText);
-			console.log(res);
+			
 			var html = '<option value="">전시회를 선택하세요</option>';
 			for(var exhibitionInfo of res){
 				html += '<option value ="' + exhibitionInfo.eiNum+'">'+exhibitionInfo.eiName+'</option>';
@@ -236,6 +239,7 @@ function exhibitionOption(){
 }
 
 function getExhibition(obj){ //전시회 선택시 입력정보 AJAX
+	getGalleyList();
 var eiNum = obj.value;
 var xhr = new XMLHttpRequest();
 xhr.open('GET','/exhibition?eiNum='+eiNum);
@@ -244,16 +248,41 @@ xhr.onreadystatechange = function(){
 		var html = '';
 		
 		var res = JSON.parse(xhr.responseText);
+		console.log(res);
+		console.log(res.galleryInfo['giNum']);
 		for(var key in res){
 			if(document.querySelector('#'+key)){
 				document.querySelector('#'+key).value=res[key];
 				}
 			}
-		document.querySelector('#giName').value = res.galleryInfo.giName;
+		document.querySelector('#giName').value = res.galleryInfo['giNum'];
+		document.querySelector('#fileInfo-fiNum').value = res['fileInfo']['fiNum'];
+		document.querySelector('#uiNum').value = res['userInfo']['uiNum'];
+		//document.querySelector('#giNum').value = res['galleryInfo']['giNum'];
+		
+		//document.querySelector('#giName').value = res.galleryInfo.giName;
 		document.querySelector('#getExhibitionDivMenu').innerHTML = '<img width="200" id="preview" src="/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '">';
 		}
 	}
 xhr.send();
+}
+
+function getGalleyList(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/Gallery-list');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			var html ='';
+			var res = JSON.parse(xhr.responseText);
+			
+			var html = '<option value=""></option>';
+			for(var galleryInfo of res){
+				html += '<option value ="' + galleryInfo.giNum+'">'+galleryInfo.giName+'</option>';
+			}
+			document.querySelector('#giName').innerHTML = html;
+		}
+	}
+	xhr.send();
 }
 
 function changeImg(obj){ // change event

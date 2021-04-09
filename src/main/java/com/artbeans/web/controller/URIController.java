@@ -1,6 +1,7 @@
 package com.artbeans.web.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import lombok.extern.slf4j.Slf4j;
@@ -17,4 +18,6 @@ public class URIController {
 	public String hello() {
 		return "views/index";
 	}
+	
+	
 }
