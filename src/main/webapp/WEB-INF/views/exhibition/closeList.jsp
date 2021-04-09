@@ -36,7 +36,7 @@
 <section id="blog" class="blog">
       <div class="container">
         <div class="row">
-          <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="exhibitionList">
+          <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up"  id="exhibitionList">
           
           </div>
          </div>
@@ -67,6 +67,7 @@ window.onload = function(){
 					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
 					html += '</ul>';
+					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div class="read-more">';					
@@ -104,6 +105,7 @@ function newest(){
 					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
 					html += '</ul>';
+					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div class="read-more">';					
@@ -141,6 +143,7 @@ function deadline(){
 					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
 					html += '</ul>';
+					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div class="read-more">';					

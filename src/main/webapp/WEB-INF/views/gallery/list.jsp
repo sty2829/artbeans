@@ -46,12 +46,6 @@
 </main>
 
 
-<!-- 지역순, 이름순 , 나중에 드랍다운으로 바꿔서-->
-<button onclick="areaAsc()">지역순 (오름차순)</button>
-<button onclick="areaDesc()">지역순 (내림차순)</button>
- <button onclick="nameAsc()">이름순 (오름차순)</button>
- <button onclick="nameDesc()">이름순 (내림차순)</button>
-<div id="galleryList"></div>
 
 <script>
 window.onload = function(){
@@ -74,6 +68,7 @@ window.onload = function(){
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
 				html += '</ul>';
+				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
 				html += '<div class="read-more">';					
@@ -108,6 +103,7 @@ function areaAsc(){
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
 				html += '</ul>';
+				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
 				html += '<div class="read-more">';					
@@ -142,6 +138,7 @@ function areaDesc(){
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
 				html += '</ul>';
+				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
 				html += '<div class="read-more">';					
@@ -176,6 +173,7 @@ function nameAsc(){
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
 				html += '</ul>';
+				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
 				html += '<div class="read-more">';					
@@ -210,6 +208,7 @@ function nameDesc(){
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
 				html += '</ul>';
+				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
 				html += '<div class="read-more">';					
@@ -224,5 +223,7 @@ function nameDesc(){
 	xhr.send();
 }
 </script>
+
+<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
