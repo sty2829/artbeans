@@ -79,7 +79,7 @@ public class ExhibitionInfo {
 		
 	//파일인서트 추가
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "fi_num", nullable = false, referencedColumnName = "fi_num")
+	@JoinColumn(name = "fi_num", updatable = true ,nullable = false, referencedColumnName = "fi_num")
 	private FileInfo fileInfo;
 	
 	//uiNum 묶여있어서 추가요

@@ -59,10 +59,10 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	public ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception {
 		FileConverter.fileInsert(exhibitionInfo.getFileInfo(), TYPE);
 		log.info("fiNum=>{}",exhibitionInfo.getFileInfo().getFiNum());
-//		FileInfo fi = exhibitionInfo.getFileInfo();
-//		if(fi.getFiNum()!=null && fileRepo.findById(fi.getFiNum()).get()!=null) {
-//			fileRepo.saveAndFlush(fi);
-//		}
+		FileInfo fi = exhibitionInfo.getFileInfo();
+		if(fi.getFiNum()!=null && fileRepo.findById(fi.getFiNum()).get()!=null) {
+			fileRepo.saveAndFlush(fi);
+		}
 		return exhiRepo.save(exhibitionInfo);
 	}
 

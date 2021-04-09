@@ -62,7 +62,7 @@ public class ExhibitionController {
 		log.info("exhibitionInfo=>{}",exhibitionInfo);
 		exhibitionInfo = eService.updateExhibitionInfo(exhibitionInfo);
 		log.info("exhibition-update=>{}",exhibitionInfo);
-		return null;
+		return exhibitionInfo.getEiNum();
 	}
 
 }
