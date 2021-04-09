@@ -44,7 +44,7 @@ img[data-col] {
    		</div>
 		<div class="row">
 			<div class="col-lg-5">
-                <img src="/resources/assets/img/blog-1.jpg" alt="" class="img-fluid" data-col="eiImg"><br>
+                <img src="/resources/assets/img/blog-1.jpg" alt="" class="img-fluid" data-col="imgPath"><br>
           	</div>
 			<div class="col-lg-5" style="height: 300px">
 				<div id="mycal">
@@ -55,17 +55,17 @@ img[data-col] {
 			<div class="col-lg-5">
 				<div class="row">
 					<div class="col-lg-12">
-					<h5 class="text-center">백남준전</h5>
+					<h5 class="text-center" data-col="exhibitionName"></h5>
 					</div>
 				</div>
 				<div class="row mt-3">
 					<div class="col-lg-6">
 						<h5>기간</h5>
-						<p>2021-04-21 ~ 2021-05-23</p>
+						<p data-col="period"></p>
 					</div>
 					<div class="col-lg-3">
 						<h5>예매일자</h5>
-						<p>2021-04-21</p>
+						<p id="reservationDay">2021-04-21</p>
 					</div>
 					<div class="col-lg-3">
 						<h5>예매시간</h5>
@@ -75,7 +75,7 @@ img[data-col] {
 				<div class="row">
 					<div class="col-lg-6">
 						<h5>관람연령</h5>
-						<p>전체관람가</p>
+						<p data-col="audienceRating">전체관람가</p>
 					</div>
 					<div class="col-lg-6">
 						<ul class="list-inline">
@@ -91,9 +91,13 @@ img[data-col] {
 				<div class="row">
 					<div class="col-lg-6">
 						<h5>러닝타임</h5>
-						<p>60분</p>
+						<p data-col="runningTime"></p>
 					</div>
-					<div class="col-lg-6">
+					<div class="col-lg-3">
+						<h5>관람료</h5>
+						<p data-col="charge"></p>
+					</div>
+					<div class="col-lg-3">
 						<h5>합계금액</h5>
 						<p>25000</p>
 					</div>
@@ -151,7 +155,7 @@ img[data-col] {
 	</div>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
-var i = 0;
+/* var i = 0;
 var x = 6;
 var disable = ["2021-04-08"]
 disable.push(function(date) {
@@ -165,53 +169,51 @@ flatpickr('#mycal', {
 	minDate: "2021-04-08",
     disable: disable,
     defualtDate: ["2021-04-09"]
-});
+}); */
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition?eiNum=1');
+	xhr.open('GET', '/reservation/1');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
-			console.log(res.exhibitionReservationInfo);
-			var eri = res.exhibitionReservationInfo;
-			var htmlTop = '<div class="col-md-5"></div>';
-			var htmlBottom = '<div class="col-md-5"></div>';
-			min = eri.eriStartDate;
-			max = eri.eriEndDate;
-			var est = eri.eriStartTime.substring(0,2);
-			var eet = eri.eriEndTime.substring(0,2);
-			var startTime = est;
-			for(var i=0; i<eet-est; i++){
-				if(i>4){
-					htmlBottom += '<div class="col-lg-1">';
-					htmlBottom += '<input type="radio" class="btn-check" name="viewTime" id="viewTime' + (i+1) + '" autocomplete="off">';
-					htmlBottom += '<label class="btn btn-outline-success" for="viewTime' + (i+1) + '">'+ startTime++ +'시 <br>' + eri.eriMaxstock +'매</label>';
-					htmlBottom += '</div>';
-				}else{
-					htmlTop += '<div class="col-lg-1">';
-					htmlTop += '<input type="radio" class="btn-check" name="viewTime" id="viewTime' + (i+1) + '" autocomplete="off">';
-					htmlTop += '<label class="btn btn-outline-success" for="viewTime' + (i+1) + '">'+ startTime++ +'시 <br>' + eri.eriMaxstock + '매</label>';
-					htmlTop += '</div>';
+			var objs = document.querySelectorAll('[data-col]');
+			document.querySelector('#reservationDay').innerHTML = res.minDate;
+			for(obj of objs){
+				var key = obj.getAttribute('data-col');
+				var data = res[key];
+				if(key === "imgPath") {
+					obj.src = '/resources/assets/img/exhibition/' + data;
+					data = '';
 				}
-
+				obj.innerHTML = data;
 			}
-			document.querySelector('#checkRadioTop').innerHTML = htmlTop;
-			document.querySelector('#checkRadioBottom').innerHTML = htmlBottom;
-			
 			flatpickr('#mycal', {
 				inline: true,
 				time_24hr: true,
-				minDate: min,  
-				maxDate: max,
-			    disable: [
-			        function(date) {
-			            return (date.getDay() === 0);
-
-			        }
-			    ],
+				minDate: res.minDate,
+				maxDate: res.maxDate,
+			    disable: res.disable,
+			    defaultDate: res.minDate,
+			    onChange: function(selectedDates, dateStr, instance) {
+			    	document.querySelector('#reservationDay').innerHTML = dateStr;
+			    	getTimeList(dateStr);
+			    }
 			});
 		}
 	}
+	xhr.send();
+}
+
+function getTimeList(day) {
+	var xhr = new XMLHttpRequest();
+	console.log(day);
+	xhr.open('GET', '/reservation-time/2/' + day);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var res = JSON.parse(xhr.responseText);
+		}
+	}
+	xhr.send();
 }
 </script>
 </body>

@@ -63,8 +63,6 @@ public class ReservationTicketInfo {
 	
 	@ManyToOne
 	@JoinColumn(name = "eri_num")
-	@JsonBackReference
-	@ToString.Exclude
 	private ExhibitionReservationInfo exhibitionReservationInfo;
 	
 
