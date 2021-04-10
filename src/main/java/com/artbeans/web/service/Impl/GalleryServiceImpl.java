@@ -1,26 +1,26 @@
 package com.artbeans.web.service.Impl;
 
-import java.io.File;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.artbeans.web.entity.FileInfo;
+import com.artbeans.web.api.Result;
 import com.artbeans.web.entity.GalleryInfo;
-import com.artbeans.web.repository.FileInfoRepository;
 import com.artbeans.web.repository.GalleryRepository;
 import com.artbeans.web.service.GalleryService;
 import com.artbeans.web.util.FileConverter;
+import com.artbeans.web.util.NaverMapApi;
 
-import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 public class GalleryServiceImpl implements GalleryService {
 	
 	private static final String TYPE = "gallery";
+	
+	@Autowired 
+	private NaverMapApi naverMapApi; 
 	
 	@Autowired
 	private GalleryRepository gRepo;
@@ -40,6 +40,11 @@ public class GalleryServiceImpl implements GalleryService {
 	@Override
 	public int saveGalleryInfo(GalleryInfo galleryInfo) throws Exception {
 		FileConverter.fileInsert(galleryInfo.getFileInfo(), TYPE);
+		Result result = naverMapApi.getResult(galleryInfo.getGiAddress());
+		String x = result.getAddresses().get(0).getX();
+		String y = result.getAddresses().get(0).getY();
+		galleryInfo.setGiAddressX(x);
+		galleryInfo.setGiAddressY(y);		
 		gRepo.save(galleryInfo);
 		return galleryInfo.getGiNum();
 	}

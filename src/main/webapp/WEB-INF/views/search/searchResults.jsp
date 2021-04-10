@@ -22,7 +22,7 @@
 		<section id="portfolio" class="portfolio">
 		<div class="col-lg-12 d-flex justify-content-center"><h1>통 합 검 색</h1></div><br>
 		<input type=text id = "search" class="col-md-6 d-flex justify-content-center">
-		<button onchange = "totalSearch()">검색</button>
+		<button onclick = "totalSearch()">검색</button> -->
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 d-flex justify-content-center">
@@ -40,10 +40,20 @@
 <section id="blog" class="blog">
       <div class="container">
         <div class="row" id="exhibitionList">
-          
+          </div>
         </div>
-      </div>
+ 
 </section>
+
+<section id="blog" class="blog">
+      <div class="container">
+        <div class="row" id="galleryList">
+          </div>
+        </div>
+ 
+</section>
+
+
 </main>
 
 
@@ -51,19 +61,20 @@
 <script>
 var keyword ='${keyword}';// header부분 검색 keyword
 var search = document.querySelector('#search').value; //통합검색 페이지 검색
-function searchFunc(){
+function totalSearch(){
 	var xhr = new XMLHttpRequest();
 	var param = '?';
 	if(search.trim()){
-		param += 'eiName='+ document.querySelector('#search').value.trim()+'&';	
+		param += 'eiName='+ search.trim()+'&' +'giName='+ search.trim();	
 	}
 	if(keyword.trim()){
-		param += keyword.trim();	
+		param += 'eiName='+keyword.trim()+'&'+'giName='+ keyword.trim();	
 	}
+	getGallery();
+	console.log(param);
 	xhr.open('GET','/exhibition-list'+param);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			for(var exhibition of res){
@@ -97,7 +108,55 @@ function searchFunc(){
 	}
 	xhr.send();
 }
-window.onload = searchFunc;
+window.onload = totalSearch;
+
+function getGallery(){
+	var param = '?';
+	if(search.trim()){
+		param += 'eiName='+ search.trim()+'&' +'giName='+ search.trim();	
+	}
+	if(keyword.trim()){
+		param += 'eiName='+keyword.trim()+'&'+'giName='+ keyword.trim();	
+	}
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/Gallery-list'+param);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4&&xhr.status==200){
+			var get = JSON.parse(xhr.responseText);
+			console.log(get);
+			var html ='';
+			for(var gallery of get){
+				if(gallery.giNum!=0){
+					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+					html += '<article class="entry">';
+					html += '<div class="entry-img">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +gallery.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '</div>';
+					html += '<h2 class="entry-title">';
+					html += '<a>' + gallery.giName + '</a>';
+					html += '</h2>';
+					html += '<div class="entry-meta">';
+					html += '<ul>';
+					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + gallery.giAddress + '</a></li>';
+					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ gallery.giRphoneNumber +'</a></li>';
+					html += '</ul>';
+					html += '</div>';
+					html += '<div class="entry-content">';
+					html += '<div style="HEIGHT: 10pt"></div>';
+					html += '<div class="read-more">';					
+					html += '<a onclick="location.href=\'/views/gallery/views?giNum=' + gallery.giNum + '\'" style="cursor:pointer">상세정보</a>';
+					html += '</div>';
+					html += '</div>';
+					html += '</article>';
+					html += '</div>';
+					
+				}
+			}
+			document.querySelector('#galleryList').innerHTML = html;	
+		}
+	}
+	xhr.send();
+}
 </script>
 
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
