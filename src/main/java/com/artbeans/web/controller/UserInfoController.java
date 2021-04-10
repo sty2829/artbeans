@@ -2,10 +2,14 @@ package com.artbeans.web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.artbeans.web.entity.UserInfo;
@@ -36,5 +40,10 @@ public class UserInfoController {
 	@GetMapping("/users")
 	public List<UserInfo> getList(){
 		return userInfoRepository.findAll();
+	}
+	
+	@PostMapping("/login")
+	public @ResponseBody UserInfo login(@RequestBody UserInfo userInfo, HttpServletRequest req) {
+		 return userInfoRepository.findByUiEmailAndUiPwd(userInfo.getUiEmail(), userInfo.getUiPwd());
 	}
 }
