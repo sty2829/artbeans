@@ -40,24 +40,27 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">반갑습니다!</h1>
                                     </div>
+                                    <!-- 
                                     <form class="user">
+                                     -->
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="uiEmail" aria-describedby="emailHelp"
-                                                placeholder="이메일">
+                                            <input type="text" class="form-control form-control-user" id="uiEmail" aria-describedby="emailHelp" placeholder="이메일">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="uiPwd" placeholder="비밀번호">
+                                            <input type="password" class="form-control form-control-user" id="uiPwd" placeholder="비밀번호">
                                         </div>
                                      
+                                     <!-- 
                                         <a href="/views/index" class="btn btn-danger btn-user btn-block" onclick="goLogin()">
-                                            로그인
+                                          
                                         </a>
-                                        <hr>
+                                         -->
+                                          <button onclick="goLogin()">로그인</button>
+                                        <!--  <hr>-->
                                     
-                                  
+                                  <!-- 
                                     </form>
+                                     -->
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="/views/menu/forget-id">아이디 찾기</a> / <a class="small" href="/views/menu/forget-password">비밀번호 찾기</a>
@@ -114,25 +117,28 @@ function goLogin(){
 		return;
 	}
 	
-	var param = {
-			uiEmail : document.querySelector('#uiEmail').value,
-			uiPwd : document.querySelector('#uiPwd').value
-				}
-	
-		var xhr = new XMLHttpRequest();
-		xhr.open('POST','/login');
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState==4 && xhr.status==200){
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST','/login');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+				console.log(xhr.responseText);
+				if(xhr.responseText) {
 					var res = JSON.parse(xhr.responseText);
-					if(xhr.responseText) {
-						console.log(xhr.responseText);
-						location.href= '/views/index';
-						return;	 
-						}
+					console.log(res.userNam);
+					alert(res.uiName + "님 반갑습니다.")
+					location.href= '/';
+					return;	 
 					}
 				}
-		xhr.send(JSON.stringfy(param));
-}
+			}
+		xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
+		var param = {
+				uiEmail : uiEmail.value,
+				uiPwd : uiPwd.value
+				}
+		console.log(param);
+		xhr.send(JSON.stringify(param));
+    }
 </script>
 </body>
 </html>

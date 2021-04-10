@@ -45,7 +45,7 @@
   <div class="container">          
        <input type="text" placeholder="전시회, 전시관 검색">
        
-       <a href="" style="float:right"  class="get-started-btn ml-auto">로그인/회원가입</a>
+       <a href="/views/login" style="float:right"  class="get-started-btn ml-auto">로그인/회원가입</a>
       
        
   </div>
