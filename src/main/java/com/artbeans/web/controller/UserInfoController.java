@@ -50,6 +50,12 @@ public class UserInfoController {
 			session.setAttribute("userInfo", user);
 		}
 		return user;
-				 
 	}
+	
+	@PostMapping("/user-insert")
+	   public Integer userInsert(@RequestBody UserInfo ui) {
+	      log.info("ui=>{}",ui);
+	      UserInfo userInfo = userService.saveUser(ui);
+	      return userInfo.getUiNum();
+	   }
 }
