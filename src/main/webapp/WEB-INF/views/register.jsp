@@ -54,33 +54,29 @@ div {
 									style="width: 95px">회원가입
 							</h1>
 							<div class="text-align-center"></div>
-							<form class="user">
+							<!-- <form class="user"> -->
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0" id="nameTag">
-										<input type="text" class="form-control form-control-user"
-											id="uiName" placeholder="이름">
+										<input type="text" class="form-control form-control-user" id="uiName" placeholder="이름">
 									</div>
 
 								</div>
 								<div class="form-group">
-									<input type="email" class="form-control form-control-user"
-										id="uiEmail" placeholder="이메일주소">
+									<input type="email" class="form-control form-control-user" id="uiEmail" placeholder="이메일주소">
 								</div>
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<input type="password" class="form-control form-control-user"
-											id="uiPwd" placeholder="비밀번호">
+										<input type="password" class="form-control form-control-user" id="uiPwd" placeholder="비밀번호">
 									</div>
 									<div class="col-sm-6 mb-3 mb-sm-0">
-										<input type="password" class="form-control form-control-user"
-											id="uiPwd2" placeholder="비밀번호 확인">
+										<input type="password" class="form-control form-control-user" id="uiPwd2" placeholder="비밀번호 확인">
 									</div>
 								</div>
 
 								<div class="select">
-									<select class="col-sm-6" name="uiRegion">
-										<option>지역선택</option>
-										<option value="서울" id="uiRegion">서울</option>
+									<select class="col-sm-6" id="uiRegion">
+										<option value="" >지역선택</option>
+										<option value="서울" id=uiRegion>서울</option>
 										<option value="경기" id="uiRegion">경기</option>
 										<option value="부산" id="uiRegion">부산</option>
 										<option value="대구" id="uiRegion">대구</option>
@@ -101,21 +97,14 @@ div {
 
 
 
-								<div class="btn-group btn-group-toggle" data-toggle="buttons"
-									id="ageButton">
-									<label class="btn btn-outline-dark active"> <input
-										type="radio" name="options" id="uiGender1" autocomplete="off"
-										checked>남성
-									</label> <label class="btn btn-outline-dark"> <input
-										type="radio" name="options" id="uiGender2" autocomplete="off">여성
+								<div class="btn-group btn-group-toggle" data-toggle="buttons" id="ageButton">
+									<label class="btn btn-outline-dark active"> <input type="radio" name="options" id="uiGender1" autocomplete="off" checked>남성
+									</label> <label class="btn btn-outline-dark"> <input type="radio" name="options" id="uiGender2" autocomplete="off">여성
 									</label>
 								</div>
 
-								<div class="btn-group btn-group-toggle" data-toggle="buttons"
-									id="ageButton">
-									<label class="btn btn-outline-dark active"> <input
-										type="radio" name="options" id="uiAge1" autocomplete="off"
-										checked>10대
+								<div class="btn-group btn-group-toggle" data-toggle="buttons" id="ageButton">
+									<label class="btn btn-outline-dark active"> <input type="radio" name="options" id="uiAge1" autocomplete="off" checked>10대
 									</label> <label class="btn btn-outline-dark"> <input
 										type="radio" name="options" id="uiAge2" autocomplete="off">20대
 									</label> <label class="btn btn-outline-dark"> <input
@@ -653,10 +642,12 @@ div {
 								</div>
 						</div>
 
-
+<!-- 
 						<a href="" class="btn btn-secondary btn-user btn-block"
 							onclick="goLogin()"> 로그인 </a>
-						<hr>
+						<hr> -->
+						
+						<button onclick="goInsert()"> 회원가입 </button>
 
 
 						<hr>
@@ -735,10 +726,11 @@ div {
 				uiPwd2.focus();
 				return;
 			}
-
-			var region = document.querySelector('#region');
-			var uiRegion = document.querySelectorAll('#uiRegion:selected');
-			if (uiRegion.value.trim().length ==0) {
+			//document.querySelector('select#gallery option:checked').value
+			
+			//var region = document.querySelector('select#region option:checked');
+			var uiRegion = document.querySelector('select#uiRegion option:checked')
+			if (uiRegion.value.trim().length <1) {
 				alert('지역을 선택해주세요.');
 				region.focus();
 				return;
@@ -766,7 +758,7 @@ div {
 				genre.focus();
 				return;
 			}
-/* 
+
 			var check1 = document.querySelector('#termsService');
 			var checks = document.querySelectorAll('#termsService:checked');
 			if (checks.value.trim().length ==0) {
@@ -777,7 +769,7 @@ div {
 			var checks2 = document.querySelectorAll('#termsPrivacy:checked');
 			if (checks2.value.trim().length ==0) {
 				alert('개인정보 수집/이용 동의해주세요.');
-			} */
+			} 
 
 			var xhr = new HttpRequest();
 			xhr.open('POST', '/user-insert');
