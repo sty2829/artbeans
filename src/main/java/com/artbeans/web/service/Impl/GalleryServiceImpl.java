@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.artbeans.web.api.Result;
 import com.artbeans.web.entity.GalleryInfo;
-import com.artbeans.web.entity.NaverMapApi.Result;
 import com.artbeans.web.repository.GalleryRepository;
 import com.artbeans.web.service.GalleryService;
 import com.artbeans.web.util.FileConverter;

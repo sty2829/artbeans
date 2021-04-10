@@ -1,4 +1,4 @@
-package com.artbeans.web.entity.NaverMapApi;
+package com.artbeans.web.api;
 
 import java.util.List;
 
