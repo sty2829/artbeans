@@ -21,15 +21,13 @@ var data = {
 
 IMP.request_pay({
     pg : 'inicis',
-    pay_method : 'card',
+    pay_method : 'cultureland',
     merchant_uid : 'merchant_' + new Date().getTime(),
     name : '주문명:결제테스트',
     amount : 100,
     buyer_email : 'iamport@siot.do',
     buyer_name : '구매자이름',
     buyer_tel : '010-1234-5678',
-    buyer_addr : '서울특별시 강남구 삼성동',
-    buyer_postcode : '123-456'
     
 }, function(rsp) {
     if ( rsp.success ) {

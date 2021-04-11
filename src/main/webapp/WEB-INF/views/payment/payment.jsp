@@ -40,19 +40,18 @@ h5 {
 		<div class="row">
 	         <div class="col-lg-6">
 	            <div class="member d-flex align-items-start">
-	              <div class="pic"><img src="/resources/assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+	              <div class="pic" style="text-align: center"><img src="/resources/assets/img/team/team-1.jpg" class="img-fluid" alt=""><h4 class="mt-3">백남준전</h4></div>
 	              <div class="member-info">
 	              	<div class="row">
 	              		<div class="col-lg-12">
-		                <h4>백남준전</h4>
 		                <ul class="list-inline mt-4">
 	                 		<li class="list-inline-item">
 		   		  				 <h4>예매일</h4>
-				                 <p>2021-04-21</p>
+				                 <p id="rtiDate" class="check">2021-04-21</p>
 		                 	</li>
            					<li class="list-inline-item">
 		   		  				 <h4>예매시간</h4>
-				                 <p>11:00</p>
+				                 <p style="text-align: center" id="rtiTime" class="check">11:00</p>
 		                 	</li>
 			            </ul>
 		                </div>
@@ -60,11 +59,11 @@ h5 {
 		                	<ul class="list-inline">
 								<li class="list-inline-item">
 			   		  				 <h4 class="mt-2">예매수</h4>
-					                 <p>3장</p>
+					                 <p style="text-align: center" id="rtiNumber" class="check">3</p>
 			                 	</li>
 			                 	<li class="list-inline-item">
-					                 <h4 class="mt-2">결제금액</h4>
-					                 <p>60000</p>
+					                 <h4 class="mt-2 ml-3">결제금액</h4>
+					                 <p style="text-align: center" id="piPrice" class="check">60000</p>
 					            </li>    
 			                 </ul>
 		                </div>
@@ -72,49 +71,100 @@ h5 {
 	              </div>
 	            </div>
           	</div>
-			<div class="col-lg-5">
+			<div class="col-lg-4">
 	      		<label for="eriAudienceRating">예매자 성함</label>
-			    <input type="text" class="form-control" id="eriAudienceRating" required>
+			    <input type="text" class="form-control" id="rtiName" required>
       			<label for="eriRunningTime" class="mt-2">예매자 이메일</label>
-			    <input type="text" class="form-control" id="eriRunningTime" required>
+			    <input type="email" class="form-control" id="rtiEmail" required>
     			<label for="eriMaxStock" class="mt-2">예매자 연락처</label>
-			    <input type="number" class="form-control" id="eriMaxStock" min="1" required>
+			    <input type="text" class="form-control" id="rtiPhoneNumber" required>
 		   </div>
 	   </div>
-		<br>
 		<div class="row">
-			<div class="col-lg-5">
-			</div>
 			<div class="col-lg-6">
+			</div>
+			<div class="col-lg-5">
+				<ul class="list-inline">
+					<li class="list-inline-item mt-3">
+						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="card" value="card" autocomplete="off">
+						<label class="btn btn-outline-success" for="card" >신용카드</label>
+					</li>
+					<li class="list-inline-item mt-3">
+						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="trans" value="trans" autocomplete="off">
+						<label class="btn btn-outline-success" for="trans" >계좌이체</label>
+					</li>
+					<li class="list-inline-item mt-3">
+						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="vbank" value="vbank" autocomplete="off">
+						<label class="btn btn-outline-success" for="vbank" >가상계좌</label>
+					</li>
+					<li class="list-inline-item mt-3">
+						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="phone" value="phone" autocomplete="off">
+						<label class="btn btn-outline-success" for="phone" >휴대폰소액결제</label>
+					</li>
+					<li class="list-inline-item mt-3">
+						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="samsung" value="samsung" autocomplete="off">
+						<label class="btn btn-outline-success" for="samsung" >삼성페이</label>
+					</li>
+					<li class="list-inline-item mt-3 mr-5">
+						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="cultureland" value="cultureland" autocomplete="off">
+						<label class="btn btn-outline-success" for="cultureland" >컬쳐랜드</label>
+					</li>
+					<li class="list-inline-item mt-3">
+						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="smartculture" value="smartculture" autocomplete="off">
+						<label class="btn btn-outline-success" for="smartculture" >스마트문상</label>
+					</li>
+					<li class="list-inline-item mt-3">
+						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="happymoney" value="happymoney" autocomplete="off">
+						<label class="btn btn-outline-success" for="happymoney" >해피머니</label>
+					</li>
+					<li class="list-inline-item mt-3">
+						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="booknlife" value="booknlife" autocomplete="off">
+						<label class="btn btn-outline-success" for="booknlife" >도서문화상품권</label>
+					</li>
+				</ul>
+				<button type="button" class="btn btn-primary" style="width: 365px" onclick="payment()">결제</button>
 			</div>
 		</div>
 	</div>
 </section>
 <script>
-function insert(){
+function payment(){
+	
 	var param = {
-			exhibitionInfo : {
-				eiNum : 2
+			reservationTicketInfo : {
+				exhibitionReservationInfo : {},
+				userInfo : {}
 			}
 	};
-	
-	// 전시회(번호) Request Param 으로 넘어온 거 추가 임시로 일단 직접입력
-	
-	var objs = document.querySelectorAll('input');
+	var objs = document.querySelectorAll('p[class="check"],input[class="form-control"]');
+	var piMethod = document.querySelector('input[type="radio"]:checked');
+	param[piMethod.name] = piMethod.value; 
 	for(obj of objs){
-		param[obj.id] = obj.value;
+		if(obj.tagName == 'INPUT'){
+			if(obj.id.includes('rti')){
+				param['reservationTicketInfo'][obj.id] = obj.value;
+			}
+		}else{
+			if(obj.id.includes('rti')){
+				param['reservationTicketInfo'][obj.id] = obj.innerText;
+			}else{
+				param[obj.id] = obj.innerText;
+			}
+		}
 	}
 	
+	//임시로 eriNum 추가해야댐
+	param['reservationTicketInfo']['exhibitionReservationInfo']['eriNum'] = 2;
+	//임시로 uiNum 추가해야댐
+	param['reservationTicketInfo']['userInfo']['uiNum'] = 8;
+	
+	console.log(param);
+	
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', "/exhibition-reservation");
+	xhr.open('POST', "/payment");
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			if(xhr.responseText >= 1){
-				alert('인서트 성공');
-				location.href = '/';
-				return;
-			}
-			alert('인서트 실패');
+			console.log(xhr.responesText);
 		}
 	}
 	

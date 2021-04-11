@@ -35,8 +35,8 @@ public class ReservationTicketInfo {
 	@Column(name="rti_email")
 	private String rtiEmail;
 	
-	@Column(name="rti_phone_nubmer")
-	private String rtiPhoneNubmer;
+	@Column(name="rti_phone_number")
+	private String rtiPhoneNumber;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name="rti_date")

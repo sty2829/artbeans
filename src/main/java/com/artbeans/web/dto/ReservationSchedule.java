@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class ReservationView {
+public class ReservationSchedule {
 	
 	private String imgPath;
 	
@@ -27,7 +27,7 @@ public class ReservationView {
 	
 	private List<String> disable;
 
-	public ReservationView(String imgPath, String exhibitionName, String period, String audienceRating,
+	public ReservationSchedule(String imgPath, String exhibitionName, String period, String audienceRating,
 			String runningTime, String minDate, String maxDate, Integer charge, Integer maxTicket,
 			List<String> disable) {
 		super();
