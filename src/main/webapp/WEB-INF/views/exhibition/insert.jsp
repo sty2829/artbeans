@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>전시회 등록 페이지</title>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+
 
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 
 
 <main id="main">
