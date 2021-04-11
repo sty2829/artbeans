@@ -1,11 +1,7 @@
 package com.artbeans.web.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.data.domain.Pageable;
-
-import com.artbeans.web.dto.DataTable;
 import com.artbeans.web.entity.ExhibitionInfo;
 
 public interface ExhibitionService {

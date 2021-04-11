@@ -27,6 +27,9 @@ public class GalleryServiceImpl implements GalleryService {
 	
 	@Override
 	public List<GalleryInfo> getGalleryInfos(GalleryInfo galleryInfo) {
+		if(galleryInfo.getGiName()!=null) {
+			return gRepo.findAllByGiNameLikeOrderByGiNum("%"+galleryInfo.getGiName()+"%");
+		}
 		return gRepo.findAll();
 	}
 

@@ -9,7 +9,7 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
   <div class="container">          
-  		<form action="/serach" method="get">
+  		<form action="/search" method="get">
        <input type="text" name="keyword" placeholder="전시회, 전시관 검색">
        <button>검색</button>
        </form>
@@ -18,6 +18,7 @@
       
        
   </div>
+
       
       
     <div class="container d-flex align-items-center">

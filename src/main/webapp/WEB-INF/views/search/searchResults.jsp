@@ -69,12 +69,12 @@ function topSearch(){
 		param += 'eiName='+keyword.trim()+'&'+'giName='+ keyword.trim();	
 	}
 	getGallery();
-	console.log(param);
+	console.log('param1=>{}',param);
 	xhr.open('GET','/exhibition-list'+param);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
-			var html = '';
+			var html = '<div><h4>검색결과 : '+res.length+'개</h4></div><br>';
 			
 			console.log(res.length);
 			for(var exhibition of res){
@@ -108,6 +108,7 @@ function topSearch(){
 				html += '<h3>검색 결과가 없습니다.</h3>';
 				html += '</div>';
 			}
+			
 			document.querySelector('#exhibitionList').innerHTML = html;			
 		}		
 	}
@@ -117,13 +118,14 @@ window.onload = topSearch;
 
 
 function totalSearch(){
-	var search = document.querySelector('#search').value; //통합검색 페이지 검색
+	var search = document.querySelector('#search').value.trim(); //통합검색 페이지 검색
 	var xhr = new XMLHttpRequest();
 	var param = '?';
-	if(search.trim()){
-		param += 'eiName='+ search.trim()+'&' +'giName='+ search.trim();	
+	if(search){
+		param += 'eiName='+ search;
+		getGallery(search);
 	}
-	getGallery();
+	
 	console.log(param);
 	xhr.open('GET','/exhibition-list'+param);
 	xhr.onreadystatechange = function(){
@@ -167,11 +169,15 @@ function totalSearch(){
 	xhr.send();
 }
 
-function getGallery(){
+function getGallery(obj){
 	var param = '?';
-	if(keyword.trim()){
-		param += 'eiName='+keyword.trim()+'&'+'giName='+ keyword.trim();	
+	var search = obj; 
+	if(keyword.trim()!=null){
+		param += 'giName='+ keyword.trim();	
+	}else{
+		param += 'giName='+ search;
 	}
+	console.log('param2=>',param);
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/Gallery-list'+param);
 	xhr.onreadystatechange = function(){

@@ -12,5 +12,6 @@ public interface GalleryRepository extends JpaRepository<GalleryInfo, Integer> {
 	public List<GalleryInfo> findAllByOrderByGiNameDesc();
 	public List<GalleryInfo> findAllByOrderByGiAddressAsc();
 	public List<GalleryInfo> findAllByOrderByGiAddressDesc();
+	public List<GalleryInfo> findAllByGiNameLikeOrderByGiNum(String giName);
 
 }
