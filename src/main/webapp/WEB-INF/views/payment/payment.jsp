@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>결제</title>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <link href="/resources/node_modules/flatpickr/dist/flatpickr.css" rel="stylesheet"/>
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
 <style>
@@ -27,7 +26,7 @@ h5 {
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <section id="team" class="team section-bg">
    <div class="container paymentMain">
    		<div class="row">

@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>전시회 예약 등록</title>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <link href="/resources/node_modules/flatpickr/dist/flatpickr.css" rel="stylesheet"/>
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
 <script src=/resources/node_modules/flatpickr/dist/l10n/ko.js></script>
@@ -33,7 +32,7 @@ img[data-col] {
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
    <div class="container reservationViewMain">
       	<div class="row">
    			<div class="col-lg-9" style="text-align: center;">
