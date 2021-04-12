@@ -75,53 +75,45 @@ div {
 								
 									<select class="col-sm-6" id="uiRegion">
 										<option value="" >지역선택</option>
-										<option value="서울" id=uiRegion>서울</option>
-										<option value="경기" id="uiRegion">경기</option>
-										<option value="부산" id="uiRegion">부산</option>
-										<option value="대구" id="uiRegion">대구</option>
-										<option value="인천" id="uiRegion">인천</option>
-										<option value="광주" id="uiRegion">광주</option>
-										<option value="대전" id="uiRegion">대전</option>
-										<option value="울산" id="uiRegion">울산</option>
-										<option value="세종" id="uiRegion">세종</option>
-										<option value="경남" id="uiRegion">경남</option>
-										<option value="경북" id="uiRegion">경북</option>
-										<option value="전남" id="uiRegion">전남</option>
-										<option value="전북" id="uiRegion">전북</option>
-										<option value="제주" id="uiRegion">제주</option>
-										<option value="충남" id="uiRegion">충남</option>
-										<option value="충북" id="uiRegion">충북</option>
+										<option value="서울" id=uiRegion1>서울</option>
+										<option value="경기" id="uiRegion1">경기</option>
+										<option value="부산" id="uiRegion1">부산</option>
+										<option value="대구" id="uiRegion1">대구</option>
+										<option value="인천" id="uiRegion1">인천</option>
+										<option value="광주" id="uiRegion1">광주</option>
+										<option value="대전" id="uiRegion1">대전</option>
+										<option value="울산" id="uiRegion1">울산</option>
+										<option value="세종" id="uiRegion1">세종</option>
+										<option value="경남" id="uiRegion1">경남</option>
+										<option value="경북" id="uiRegion1">경북</option>
+										<option value="전남" id="uiRegion1">전남</option>
+										<option value="전북" id="uiRegion1">전북</option>
+										<option value="제주" id="uiRegion1">제주</option>
+										<option value="충남" id="uiRegion1">충남</option>
+										<option value="충북" id="uiRegion1">충북</option>
 									</select>
 								</div>
 
 
 
-								<div class="btn-group btn-group-toggle" data-toggle="buttons" id="ageButton">
-									<label class="btn btn-outline-dark active"> <input type="radio" name="options" id="uiGender1" autocomplete="off" checked>남성
-									</label> <label class="btn btn-outline-dark"> <input type="radio" name="options" id="uiGender2" autocomplete="off">여성
-									</label>
+								<div class="btn-group btn-group-toggle" data-toggle="buttons" id="uiGender">
+									<label class="btn btn-outline-dark active"> <input type="radio" id="uiGender1" value="남성" autocomplete="off" >남성</label>
+									 <label class="btn btn-outline-dark"> <input type="radio" id="uiGender1" value="여성" autocomplete="off">여성</label>
 								</div>
 
 								<div class="btn-group btn-group-toggle" data-toggle="buttons" id="ageButton">
-									<label class="btn btn-outline-dark active"> <input type="radio" name="options" id="uiAge1" autocomplete="off" checked>10대
-									</label> <label class="btn btn-outline-dark"> <input
-										type="radio" name="options" id="uiAge2" autocomplete="off">20대
-									</label> <label class="btn btn-outline-dark"> <input
-										type="radio" name="options" id="uiAge3" autocomplete="off">30대
-									</label> <label class="btn btn-outline-dark"> <input
-										type="radio" name="options" id="uiAge4" autocomplete="off">40대
-									</label> <label class="btn btn-outline-dark"> <input
-										type="radio" name="options" id="uiAge5" autocomplete="off">50대
-									</label> <label class="btn btn-outline-dark"> <input
-										type="radio" name="options" id="uiAge6" autocomplete="off">60대
-										이상
-									</label>
+									<label class="btn btn-outline-dark active"><input type="radio" id="uiAge" value="10대" autocomplete="off">10대</label>
+									<label class="btn btn-outline-dark"> <input type="radio" id="uiAge" value="20대" autocomplete="off">20대</label>
+									<label class="btn btn-outline-dark"> <input type="radio" id="uiAge" value="30대" autocomplete="off">30대</label>
+									<label class="btn btn-outline-dark"> <input type="radio" id="uiAge" value="40대" autocomplete="off">40대</label>
+									<label class="btn btn-outline-dark"> <input type="radio" id="uiAge" value="50대" autocomplete="off">50대</label>
+									<label class="btn btn-outline-dark"> <input type="radio" id="uiAge" value="60대이상" autocomplete="off">60대 이상</label>
 								</div>
 
 
 
 								<div class="select">
-									<select class="form-group" id="genre">
+									<select class="form-group" id="uiGenre">
 										<option value="">선호하는 장르를 선택해주세요</option>
 										<option value="서양화" id="uiGenre">서양화</option>
 										<option value="동양화" id="uiGenre">동양화</option>
@@ -647,11 +639,9 @@ div {
 						<a href="" class="btn btn-secondary btn-user btn-block"
 							onclick="goLogin()"> 로그인 </a>
 						<hr> -->
-						
+						<!-- 
 						<button onclick="goInsert()"> 회원가입 </button>
-
-
-						<hr>
+						<hr> -->
 						
 					</div>
 				</div>
@@ -669,9 +659,7 @@ div {
 	<!-- Custom scripts for all pages-->
 	<script src="/resources/js/sb-admin-2.min.js"></script>
 	<script>
-	
 	function goInsert(){
-	
 			var uiName = document.querySelector('#uiName');
 			if (uiName.value.trim().length < 1) {
 				alert('이름을 정확히 입력해주십시오.');
@@ -708,20 +696,27 @@ div {
 				return false;
 			}
 
-			var uiRegion = document.querySelector('select#uiRegion option:checked')
-			if (uiRegion.value.trim().length <1) {
+			var uiRegion = document.querySelector('select#uiRegion option:checked');
+			console.log(uiRegion.value);
+			if (uiRegion.value.trim().length <1) {				
 				alert('지역을 선택해주세요.');
-				region.focus();
+				uiRegion.focus();
 				return;
 			}
 
-			var uiGender = document.querySelector('select#uiGender option:checked');
+			var uiGender = document.querySelector('input[id="uiGender1"]:checked');
+			console.log(uiGender);
+			console.log(uiGender.value);
 			if (uiGender.value.trim().length <1) {
 				alert('성별을 선택해주세요.');
 				gender.focus();
 				return;
 			}
-			var uiAge = document.querySelector('select#uiAge option:checked');
+			
+			
+			var uiAge = document.querySelector('input[id="uiAge"]:checked');
+			console.log(uiAge);
+			console.log(uiAge.value);
 			if (uiAge.value.trim().length <1) {
 				alert('나이를 선택해주세요.');
 				age.focus();
@@ -730,7 +725,9 @@ div {
 
 
 			var uiGenre = document.querySelector('select#uiGenre option:checked');
-			if (uiGenre.value.trim().length <1) {
+			console.log(uiGenre);
+			console.log(uiGenre.value);
+			if (uiGenre.value.length <1) {
 				alert('장르를 선택해주세요.');
 				genre.focus();
 				return;
