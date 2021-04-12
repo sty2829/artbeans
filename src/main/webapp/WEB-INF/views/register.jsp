@@ -54,11 +54,7 @@ div {
 									style="width: 95px">회원가입
 							</h1>
 							<div class="text-align-center"></div>
-<<<<<<< HEAD
-							
-=======
-							<!-- <form class="user"> -->
->>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
+
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0" id="nameTag">
 										<input type="text" class="form-control form-control-user" id="uiName" placeholder="이름">
@@ -644,10 +640,8 @@ div {
 									</ul>
 								</div>
 						</div>
-<<<<<<< HEAD
 						
 						<button onclick="goInsert()">회원가입</button>
-=======
 
 <!-- 
 						<a href="" class="btn btn-secondary btn-user btn-block"
@@ -656,7 +650,6 @@ div {
 						
 						<button onclick="goInsert()"> 회원가입 </button>
 
->>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 
 						<hr>
 						
@@ -664,7 +657,6 @@ div {
 				</div>
 			</div>
 		</div>
-	</div>
 
 
 	<!-- Bootstrap core JavaScript-->
@@ -715,14 +707,7 @@ div {
 				uiPwd2.focus();
 				return false;
 			}
-<<<<<<< HEAD
 
-	
-=======
-			//document.querySelector('select#gallery option:checked').value
-			
-			//var region = document.querySelector('select#region option:checked');
->>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 			var uiRegion = document.querySelector('select#uiRegion option:checked')
 			if (uiRegion.value.trim().length <1) {
 				alert('지역을 선택해주세요.');
@@ -750,28 +735,20 @@ div {
 				genre.focus();
 				return;
 			}
-<<<<<<< HEAD
- 
-			var check1 = document.querySelector('select#termService option:checked');
-			if (check1.value.trim().length <1) {
-=======
+
 
 			var check1 = document.querySelector('#termsService');
 			var checks = document.querySelectorAll('#termsService:checked');
 			if (checks.value.trim().length ==0) {
->>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 				alert('이용약관에 동의해주세요.');
 			}
 
 			var check2 = document.querySelector('select#termPrivacy option:checked');
 			if (checks2.value.trim().length <1) {
 				alert('개인정보 수집/이용 동의해주세요.');
-<<<<<<< HEAD
 			}
-=======
-			} 
->>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 
+			
 			var xhr = new HttpRequest();
 			xhr.open('POST', '/user-insert');
 			xhr.onreadystatechange = function() {
