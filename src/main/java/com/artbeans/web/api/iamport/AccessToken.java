@@ -1,4 +1,4 @@
-package com.artbeans.web.api.imaport;
+package com.artbeans.web.api.iamport;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

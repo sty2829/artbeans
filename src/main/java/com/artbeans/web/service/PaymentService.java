@@ -4,5 +4,7 @@ import com.artbeans.web.entity.PaymentInfo;
 
 public interface PaymentService {
 
-	int savePayment(PaymentInfo paymentInfo);
+	PaymentInfo savePayment(PaymentInfo paymentInfo);
+	
+	int paymentVaild(String ImpUid, String merchantUid, Integer piNum);
 }

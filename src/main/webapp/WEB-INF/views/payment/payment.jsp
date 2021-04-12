@@ -7,6 +7,8 @@
 <title>결제</title>
 <link href="/resources/node_modules/flatpickr/dist/flatpickr.css" rel="stylesheet"/>
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 .paymentMain {
 	margin-top: 150px;
@@ -39,18 +41,18 @@ h5 {
 		<div class="row">
 	         <div class="col-lg-6">
 	            <div class="member d-flex align-items-start">
-	              <div class="pic" style="text-align: center"><img src="/resources/assets/img/team/team-1.jpg" class="img-fluid" alt=""><h4 class="mt-3">백남준전</h4></div>
+	              <div class="pic" style="text-align: center"><img src="/resources/assets/img/team/team-1.jpg" class="img-fluid" alt=""><h4 class="mt-3"></h4></div>
 	              <div class="member-info">
 	              	<div class="row">
 	              		<div class="col-lg-12">
 		                <ul class="list-inline mt-4">
 	                 		<li class="list-inline-item">
 		   		  				 <h4>예매일</h4>
-				                 <p id="rtiDate" class="check">2021-04-21</p>
+				                 <p id="rtiDate" class="check">${userReservation.rtiDate}</p>
 		                 	</li>
            					<li class="list-inline-item">
 		   		  				 <h4>예매시간</h4>
-				                 <p style="text-align: center" id="rtiTime" class="check">11:00</p>
+				                 <p style="text-align: center" id="rtiTime" class="check">${userReservation.rtiTime}</p>
 		                 	</li>
 			            </ul>
 		                </div>
@@ -58,11 +60,11 @@ h5 {
 		                	<ul class="list-inline">
 								<li class="list-inline-item">
 			   		  				 <h4 class="mt-2">예매수</h4>
-					                 <p style="text-align: center" id="rtiNumber" class="check">3</p>
+					                 <p style="text-align: center" id="rtiNumber" class="check">${userReservation.rtiNumber}</p>
 			                 	</li>
 			                 	<li class="list-inline-item">
 					                 <h4 class="mt-2 ml-3">결제금액</h4>
-					                 <p style="text-align: center" id="piPrice" class="check">60000</p>
+					                 <p style="text-align: center" id="piPrice" class="check">${userReservation.piPrice}</p>
 					            </li>    
 			                 </ul>
 		                </div>
@@ -127,6 +129,8 @@ h5 {
 	</div>
 </section>
 <script>
+IMP.init('imp08010397');
+
 function payment(){
 	
 	var param = {
@@ -157,21 +161,61 @@ function payment(){
 	//임시로 uiNum 추가해야댐
 	param['reservationTicketInfo']['userInfo']['uiNum'] = 8;
 	
-	console.log(param);
-	
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', "/payment");
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			console.log(xhr.responesText);
+			var res = JSON.stirngify(xhr.responseText);
+			IMP.request_pay({
+			    pg : 'inicis',
+			    pay_method : res.piMethod,
+			    merchant_uid : res.piPaymentCode,
+			    name : '예약명 : 전시회 예약',
+			    amount : res.piPrice,
+			    buyer_email : res.reservationTicketInfo.rtiName,
+			    buyer_name : res.reservationTicketInfo.rtiEmail,
+			    buyer_tel : res.reservationTicketInfo.rtiPhone,
+			    
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+			    	jQuery.ajax({
+			    		url: "/payment/complete", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+			    		method: 'POST',
+			    		headers: { "Content-Type": "application/json" },
+			    		data: {
+			    		    imp_uid: rsp.imp_uid,
+			                merchant_uid: rsp.merchant_uid,
+			                piNum : res.piNum
+			    		}
+			    	}).done(function(data) {
+			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+			    		if ( everythings_fine ) {
+			    			var msg = '결제가 완료되었습니다.';
+			    			msg += '\n고유ID : ' + rsp.imp_uid;
+			    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+			    			msg += '\결제 금액 : ' + rsp.paid_amount;
+			    			msg += '카드 승인번호 : ' + rsp.apply_num;
+
+			    			alert(msg);
+			    		} else {
+			    			//[3] 아직 제대로 결제가 되지 않았습니다.
+			    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+			    		}
+			    	});
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+
+			        alert(msg);
+			    }
+			});
 		}
 	}
 	
 	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
 	xhr.send(JSON.stringify(param));
 }
-
-
 
 </script>	
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
