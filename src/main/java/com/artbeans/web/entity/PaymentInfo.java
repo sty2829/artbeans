@@ -33,8 +33,8 @@ public class PaymentInfo {
 	@Column(name="pi_price")
 	private Integer piPrice;
 	
-	@Column(name ="payment_code")
-	private String paymentCode;
+	@Column(name ="pi_code")
+	private String piCode;
 	
 	@Column(name="pi_date", insertable = false, updatable = false)
 	@ColumnDefault("now()")

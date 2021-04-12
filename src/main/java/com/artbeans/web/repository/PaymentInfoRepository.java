@@ -6,4 +6,5 @@ import com.artbeans.web.entity.PaymentInfo;
 
 public interface PaymentInfoRepository extends JpaRepository<PaymentInfo, Integer> {
 
+	PaymentInfo findByPiCode(String merchantUid);
 }

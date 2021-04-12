@@ -165,15 +165,15 @@ function payment(){
 	xhr.open('POST', "/payment");
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			var res = JSON.stirngify(xhr.responseText);
+			var res = JSON.parse(xhr.responseText);
 			IMP.request_pay({
 			    pg : 'inicis',
 			    pay_method : res.piMethod,
-			    merchant_uid : res.piPaymentCode,
+			    merchant_uid : res.piCode,
 			    name : '예약명 : 전시회 예약',
 			    amount : res.piPrice,
-			    buyer_email : res.reservationTicketInfo.rtiName,
-			    buyer_name : res.reservationTicketInfo.rtiEmail,
+			    buyer_name : res.reservationTicketInfo.rtiName,
+			    buyer_email : res.reservationTicketInfo.rtiEmail,
 			    buyer_tel : res.reservationTicketInfo.rtiPhone,
 			    
 			}, function(rsp) {
@@ -183,11 +183,11 @@ function payment(){
 			    		url: "/payment/complete", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
 			    		method: 'POST',
 			    		headers: { "Content-Type": "application/json" },
-			    		data: {
+			    		data: JSON.stringify ({
 			    		    imp_uid: rsp.imp_uid,
 			                merchant_uid: rsp.merchant_uid,
-			                piNum : res.piNum
-			    		}
+			    		}),
+			    		
 			    	}).done(function(data) {
 			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
 			    		if ( everythings_fine ) {

@@ -15,6 +15,7 @@ import com.artbeans.web.repository.ExhibitionReservationInfoRepository;
 import com.artbeans.web.repository.PaymentInfoRepository;
 import com.artbeans.web.service.PaymentService;
 import com.artbeans.web.util.CodeGenerator;
+import com.artbeans.web.vo.PaymentVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,31 +48,30 @@ public class PaymentServiceImpl implements PaymentService {
 		if(piPrice != (eiCharge * rtiNumber)) {
 			throw new RuntimeException("가격이 불일치 합니다.");
 		}
-		paymentInfo.setPaymentCode(CodeGenerator.getPaymentCode());
+		paymentInfo.setPiCode(CodeGenerator.getPaymentCode());
 		
 		return piRepo.save(paymentInfo);
 	}
 
 	@Override
-	public int paymentVaild(String ImpUid, String merchantUid, Integer piNum) {
+	public int paymentVaild(PaymentVO paymentVO) {
 		//아임포트 impUid 로 서버조회
-		IamportResult<Payment> paymentById = iamport.getPaymentById(ImpUid);
-		//아임포트에 저장된 MercahntUid
-		String importMercahntUid = paymentById.getResponse().getMerchantUid();
-		log.info("importMercahntUid => {}", importMercahntUid);
+		IamportResult<Payment> paymentByImpUid = iamport.getPaymentById(paymentVO.getImpUid());
+		
 		//아임포트에 결제된 결제금액
-		BigDecimal importAmount = paymentById.getResponse().getAmount();
-		log.info("importAmount => {}", importAmount);
+		Integer iamportAmount = paymentByImpUid.getResponse().getAmount().intValue();
+		log.info("importAmount => {}", iamportAmount);
 		
-		PaymentInfo paymentInfo = piRepo.findById(piNum).get();
-		
-		//데이터베이스에 저장된 결제코드(MercahntUid)
-		String paymentCode = paymentInfo.getPaymentCode();
-		log.info("paymentCode => {}", paymentCode);
+		//뷰에서 생성된 코드로 예약결제 조회
+		PaymentInfo paymentInfo = piRepo.findByPiCode(paymentVO.getMerchantUid());
 		
 		//데이터베이스에 저장된 결제금액 
 		Integer piPrice = paymentInfo.getPiPrice();
 		log.info("piPrice => {}", piPrice);
+		
+		if(iamportAmount != piPrice) {
+			throw new RuntimeException("결제정보가 일치하지 않습니다");
+		}
 		
 		return 0;
 	}

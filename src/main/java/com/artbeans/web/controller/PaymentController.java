@@ -8,11 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.artbeans.web.api.iamport.Iamport;
-import com.artbeans.web.api.iamport.IamportResult;
-import com.artbeans.web.api.iamport.Payment;
 import com.artbeans.web.entity.PaymentInfo;
 import com.artbeans.web.service.PaymentService;
+import com.artbeans.web.vo.PaymentVO;
 import com.artbeans.web.vo.UserReservation;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,8 +38,9 @@ public class PaymentController {
 	
 	 
 	@PostMapping("/payment/complete")
-	public @ResponseBody int complete(@RequestBody String imp_uid, String merchant_uid, Integer piNum) {
-		paymentService.paymentVaild(imp_uid, merchant_uid, piNum);
+	public @ResponseBody int complete(@RequestBody PaymentVO paymentVO) {
+		log.info("paymentVO => {}", paymentVO);
+		paymentService.paymentVaild(paymentVO);
 		return 1;
 		
 	}
