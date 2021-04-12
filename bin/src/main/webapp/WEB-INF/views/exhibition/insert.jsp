@@ -141,7 +141,8 @@
                       <input type="text" id="giHoliday" placeholder="갤러리 휴일">
                   </div>
                   <div class="form-group">
-                      <input type="text" id="giAddress" placeholder="갤러리 주소">
+                      <input type="text" id="giAddress" placeholder="갤러리 주소"> 
+                      <button class="get-started-btn ml-auto" onclick="searhMap()">주소검색</button>
                   </div>
                   <div class="form-group">
                       <input type="file" id="fiFile1">
@@ -250,6 +251,28 @@ function checkUser(){
 	}
 	xhr.send();
 }
+
+function searchMap(){
+	var html;
+	html += '<div class="modal" tabindex="-1">';
+	html += '<div class="modal-dialog">';
+	html += '<div class="modal-content">';
+	html += '<div class="modal-header">';
+	html += ' <h5 class="modal-title">Modal title</h5>';
+	html += ' <button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+	html += ' <span aria-hidden="true">&times;</span></button></div>';
+	html += ' <div class="modal-body">';
+	html += '<p>Modal body text goes here.</p></div>';
+	html += '<div class="modal-footer">';
+	html += '<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>';
+	html += ' <button type="button" class="btn btn-primary">Save changes</button>';
+	html += '</div></div></div></div>';
+	
+	
+	
+	
+}
+
 
 function showGalleryDiv(){
 	var dis = document.querySelector('#gallertySelectDiv').style.display;

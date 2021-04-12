@@ -39,45 +39,7 @@
         </div>
       </div>
  </section>
-
-<script>
-/*
-var mapOptions = {
-    center: new naver.maps.LatLng(37.5630858, 126.9709054),
-    zoom: 16
-};
-var map = new naver.maps.Map('map', mapOptions);
- 
-var marker = new naver.maps.Marker({
-    position: new naver.maps.LatLng(37.5630858, 126.9709054),
-    title: '서울시립미술관',
-    map: map
-});
- 
-var contentString = [
-        '<div style="padding:4px 4px;">',
-        '   <div style="font-weight:bold;padding-bottom:3px;">서울시립미술관</div>',
-        '</div>'
-    ].join('');
- 
-var infowindow = new naver.maps.InfoWindow({
-    content: contentString
-});
- 
-naver.maps.Event.addListener(marker, "click", function(e) {
-    if (infowindow.getMap()) {
-        infowindow.close();
-    } else {
-        infowindow.open(map, marker);
-    }
-});
- 
-infowindow.open(map, marker);
-
-*/
-</script>
-
-  
+</main>  
 <script>
 var eiNum = ${param.eiNum}
 window.onload = function (){
