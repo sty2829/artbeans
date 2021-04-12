@@ -5,11 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>전시회 상세정보</title>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-
 </head>
 <body>
-
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
   <main id="main">
   
    <!-- ======= Breadcrumbs ======= -->

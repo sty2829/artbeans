@@ -27,7 +27,7 @@ public class ExhibitionController {
 	
 	@GetMapping("/exhibition-list")
 	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
-		log.info("exhibitionList=>{}",exhibitionInfo.getEiName());
+		log.info("exhibitionList=>{}",exhibitionInfo);
 		return eService.getExhibitionInfos(exhibitionInfo);
 	}
 	
@@ -50,13 +50,12 @@ public class ExhibitionController {
 	
 	@GetMapping("/exhibition")
 	public @ResponseBody ExhibitionInfo getExhibitionInfo(@RequestParam Integer eiNum){
-		log.info("eiNum=>{}",eService.getExhibitionInfo(eiNum));
+//		log.info("eiNum=>{}",eService.getExhibitionInfo(eiNum));
 		return eService.getExhibitionInfo(eiNum);
 	}
 	
 	@PostMapping("/exhibition-insert")
 	public @ResponseBody Integer saveExhibition(ExhibitionInfo exhibitionInfo) throws Exception {
-		log.info("exhibitionInfo=>{}",exhibitionInfo);
 		exhibitionInfo = eService.saveExhibitionInfo(exhibitionInfo);
 		return exhibitionInfo.getEiNum();		
 	}

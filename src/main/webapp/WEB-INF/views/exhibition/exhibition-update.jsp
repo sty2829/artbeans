@@ -3,12 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>전시회 수정</title>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 </head>
-<jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
 <body>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <input type = "hidden" id = "eiNum">
 <input type = "hidden" id = "uiNum">
 <main id="main">

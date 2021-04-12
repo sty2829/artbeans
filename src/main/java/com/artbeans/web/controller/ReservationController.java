@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.artbeans.web.dto.ReservationView;
+import com.artbeans.web.entity.ReservationSchedule;
 import com.artbeans.web.entity.ReservationTicketInfo;
 import com.artbeans.web.service.ReservationService;
 
@@ -23,11 +23,10 @@ public class ReservationController {
 	private ReservationService rService;
 	
 	
-	//이용자가 예약정보 화면에서 봐야할 데이터를 보내는 메서드
+	//예약구매자가 전시회 예약화면으로 이동시 전시회예약 스케쥴
 	@GetMapping("/reservation/{eiNum}")
-	public ReservationView getView(@PathVariable Integer eiNum) {
-		ReservationView reservationView = rService.getReservationView(eiNum);
-		return reservationView;
+	public ReservationSchedule getSchedule(@PathVariable Integer eiNum) {
+		return rService.getReservationSchedule(eiNum);
 	}
 
 	
@@ -39,11 +38,11 @@ public class ReservationController {
 		return rService.getReservationTimeMap(eiNum, dateStr);
 	}
 	
-	//이용자가 예약하고 난 데이터를 저장하는 메서드
+	//전시회관련 유저가 전시회 예약정보 인서트
 	@PostMapping("/reservation")
-	public int insert(@RequestBody ReservationTicketInfo rti) {
+	public int save(@RequestBody ReservationTicketInfo rti) {
 		log.info("eti => {}", rti);
-		rService.saveReservationTicek(rti);
+		rService.saveReservationTicket(rti);
 		return rti.getRtiNum();
 	}
 }

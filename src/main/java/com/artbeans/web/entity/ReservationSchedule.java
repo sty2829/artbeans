@@ -1,4 +1,4 @@
-package com.artbeans.web.domain;
+package com.artbeans.web.entity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,59 +12,66 @@ import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
-import com.artbeans.web.dto.ReservationView;
 import com.artbeans.web.dto.SumTicketTime;
-import com.artbeans.web.entity.ExhibitionReservationInfo;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
-@Component
+@Data
 @Slf4j
-public class Reservation {
+@Component
+public class ReservationSchedule {
 	
 	private static final String YYYY_MM_DD = "yyyy-MM-dd";
 	
-	public Map<String,Integer> reservationTimeList(ExhibitionReservationInfo eri, List<SumTicketTime> sttList) {
-		//시간대별 최대 티켓수 
-		Integer maxStock = eri.getEriMaxStock();
-		String startTime = eri.getEriStartTime();
-		String endTime = eri.getEriEndTime();
-		int startTimeInt = Integer.parseInt(startTime.substring(0,2));
-		int endTimeInt = Integer.parseInt(endTime.substring(0,2));
-		int length = endTimeInt - startTimeInt;
+	private String imgPath;
+	
+	private String exhibitionName;
+
+	private String period;
+	
+	private String audienceRating;
+	
+	private String runningTime;
+	
+	private String minDate;
+	
+	private String maxDate;
+	
+	private Integer charge;
+	
+	private Integer maxTicket;
+	
+	private List<String> disable;
+
+	public ReservationSchedule(){
 		
-		Map<String,Integer> timeMap = new HashMap<>();
-		
-		for(SumTicketTime stt : sttList) {
-			int sum = stt.getSum().intValue();
-			timeMap.put(stt.getTime(), maxStock-sum);
-		}
-		
-		for(int i=0; i<length; i++) {
-			String time = startTimeInt + ":00";
-			if(time.length() != 5) {
-				time = "0"+time;
-			}
-			
-			if(!timeMap.containsKey(time)) {
-				timeMap.put(time, maxStock);
-			}
-			startTimeInt++;
-		}
-		
-		log.info("timeMap => {}",timeMap);
-		
-		return timeMap;
+	}
+	
+	public ReservationSchedule(String imgPath, String exhibitionName, String period, String audienceRating,
+			String runningTime, String minDate, String maxDate, Integer charge, Integer maxTicket,
+			List<String> disable) {
+		this.imgPath = imgPath;
+		this.exhibitionName = exhibitionName;
+		this.period = period;
+		this.audienceRating = audienceRating;
+		this.runningTime = runningTime;
+		this.minDate = minDate;
+		this.maxDate = maxDate;
+		this.charge = charge;
+		this.maxTicket = maxTicket;
+		this.disable = disable;
 	}
 	
 	
-	public ReservationView reservationSchedule(ExhibitionReservationInfo eri, List<Date> excludeDateList) {
+	
+	public ReservationSchedule createSchedule(ExhibitionReservationInfo eri, List<Date> excludeDateList) {
 		Date eriStartDate = eri.getEriStartDate();
 		Date eriEndDate = eri.getEriEndDate();
 		int eriHoliday = eri.getEriHoliday();
 		
 
-		//휴무일 제외리스에 추가
+		//휴무일 제외리스트에 추가
 		List<Date> excludeDateAndHolidayList = disableHoliday(excludeDateList, eriStartDate, eriEndDate, eriHoliday);
 		
 		//minDate시작날짜 선정
@@ -74,7 +81,6 @@ public class Reservation {
 		List<String> disable = disableDateFormat(excludeDateAndHolidayList);
 		
 		
-		
 		String imgPath = eri.getExhibitionInfo().getFileInfo().getFiPath();
 		String exhibitionName = eri.getExhibitionInfo().getEiName();
 		//시작날짜 변환
@@ -82,14 +88,14 @@ public class Reservation {
 		//종료날짜 변환
 		String endDate = dateToString(eriEndDate);
 		String period = startDate + " ~ " + endDate;
-		String AudienceRating = eri.getEriAudienceRating();
+		String audienceRating = eri.getEriAudienceRating();
 		String runningTime = eri.getEriRunningTime();
 		Integer charge = eri.getExhibitionInfo().getEiCharge();
 		Integer maxTicket = eri.getEriMaxTicket();
 		
-		ReservationView reservationView = new ReservationView(imgPath, exhibitionName, period, AudienceRating, runningTime, minDate, endDate, charge, maxTicket, disable);
+		ReservationSchedule reservationSchedule = new ReservationSchedule(imgPath, exhibitionName, period, audienceRating, runningTime, minDate, endDate, charge, maxTicket, disable);
 		
-		return reservationView;
+		return reservationSchedule;
 		
 	}
 	
@@ -170,24 +176,7 @@ public class Reservation {
 		//minDate 스트링 포맷 변환
 		return sdf.format(minDate); 
 	}
-	
-	public long dayMaximumTicket(ExhibitionReservationInfo eri) {
-		//종료시간 앞2자리만 가져옴
-		String eriEndTime = eri.getEriEndTime().substring(0,2);
-		//시작시간 앞2자리만 가져옴
-		String eriStartTime = eri.getEriStartTime().substring(0,2);
-		//간격 계산위해 종료시간 인트로 변환
-		int eriEndTimeInt = Integer.parseInt(eriEndTime);
-		//간격 계산위해 시작시간 인트로 변환
-		int eriStartTimeInt = Integer.parseInt(eriStartTime);
-		//시간당 최대티켓수 가져오기
-		int eriMaxStock = eri.getEriMaxStock();
-		//(시간당최대티켓 * (종료시간 - 시작시간))
-		long max = (eriMaxStock * (eriEndTimeInt - eriStartTimeInt));
-		
-		return max;
-	}
-	
+
 	public List<String> disableDateFormat(List<Date> excludeDateList) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		//제외리스트 스트링으로 포맷변환 리스트 생성
@@ -220,6 +209,57 @@ public class Reservation {
 		}
 		
 		return null;
+	}
+	
+	
+	public long dayMaximumTicket(ExhibitionReservationInfo eri) {
+		//종료시간 앞2자리만 가져옴
+		String eriEndTime = eri.getEriEndTime().substring(0,2);
+		//시작시간 앞2자리만 가져옴
+		String eriStartTime = eri.getEriStartTime().substring(0,2);
+		//간격 계산위해 종료시간 인트로 변환
+		int eriEndTimeInt = Integer.parseInt(eriEndTime);
+		//간격 계산위해 시작시간 인트로 변환
+		int eriStartTimeInt = Integer.parseInt(eriStartTime);
+		//시간당 최대티켓수 가져오기
+		int eriMaxStock = eri.getEriMaxStock();
+		//(시간당최대티켓 * (종료시간 - 시작시간))
+		long max = (eriMaxStock * (eriEndTimeInt - eriStartTimeInt));
+		
+		return max;
+	}
+
+	public Map<String,Integer> reservationTimeList(ExhibitionReservationInfo eri, List<SumTicketTime> sttList) {
+		//시간대별 최대 티켓수 
+		Integer maxStock = eri.getEriMaxStock();
+		String startTime = eri.getEriStartTime();
+		String endTime = eri.getEriEndTime();
+		int startTimeInt = Integer.parseInt(startTime.substring(0,2));
+		int endTimeInt = Integer.parseInt(endTime.substring(0,2));
+		int length = endTimeInt - startTimeInt;
+		
+		Map<String,Integer> timeMap = new HashMap<>();
+		
+		for(SumTicketTime stt : sttList) {
+			int sum = stt.getSum().intValue();
+			timeMap.put(stt.getTime(), maxStock-sum);
+		}
+		
+		for(int i=0; i<length; i++) {
+			String time = startTimeInt + ":00";
+			if(time.length() != 5) {
+				time = "0"+time;
+			}
+			
+			if(!timeMap.containsKey(time)) {
+				timeMap.put(time, maxStock);
+			}
+			startTimeInt++;
+		}
+		
+		log.info("timeMap => {}",timeMap);
+		
+		return timeMap;
 	}
 	
 }

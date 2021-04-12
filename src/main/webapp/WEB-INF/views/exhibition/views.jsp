@@ -41,6 +41,7 @@
  </section>
 
 <script>
+/*
 var mapOptions = {
     center: new naver.maps.LatLng(37.5630858, 126.9709054),
     zoom: 16
@@ -72,6 +73,8 @@ naver.maps.Event.addListener(marker, "click", function(e) {
 });
  
 infowindow.open(map, marker);
+
+*/
 </script>
 
   
@@ -84,10 +87,6 @@ window.onload = function (){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			//console.log(res);			
-			//console.log(res.eiName);
-			console.log(res.fileInfo['fiPath']);
-						
 			var html = '<div class="col-lg-8">';
 			html += '<h2 class="portfolio-title">' + res.eiName + '</h2>';
 			html += '<div class="entry-img ">';
@@ -105,8 +104,37 @@ window.onload = function (){
 			html += '</ul>';
 			html += '<p>' + res.eiContent + '</p>';
 			html += '</div>';
-			
 			document.querySelector('#exhibition').innerHTML += html;
+			
+			//console.log(res);
+			//console.log(res.galleryInfo['giAddressX']);
+			//console.log(res.galleryInfo['giAddressY']);
+			var mapOptions = {
+				    center: new naver.maps.LatLng(res.galleryInfo['giAddressY'],res.galleryInfo['giAddressX']),
+				    zoom: 16
+				};
+				var map = new naver.maps.Map('map', mapOptions);				 
+				var marker = new naver.maps.Marker({
+				    position: new naver.maps.LatLng(res.galleryInfo['giAddressY'], res.galleryInfo['giAddressX']),
+				    title: res.galleryInfo['giName'],
+				    map: map
+				});				 
+				var contentString = [
+				        '<div style="padding:4px 4px;">',
+				        '   <div style="font-weight:bold;padding-bottom:3px;">'+ res.galleryInfo['giName'] + '</div>',
+				        '</div>'
+				    ].join('');				 
+				var infowindow = new naver.maps.InfoWindow({
+				    content: contentString
+				});				 
+				naver.maps.Event.addListener(marker, "click", function(e) {
+				    if (infowindow.getMap()) {
+				        infowindow.close();
+				    } else {
+				        infowindow.open(map, marker);
+				    }
+				});				 
+				infowindow.open(map, marker);
 		}		
 	}
 	xhr.send();

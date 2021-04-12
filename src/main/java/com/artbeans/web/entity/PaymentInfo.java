@@ -2,8 +2,10 @@ package com.artbeans.web.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -25,23 +27,24 @@ public class PaymentInfo {
 	@Column(name="pi_num")
 	private Integer piNum;
 	
-	@Column(name="pi_kind")
-	private String piKind;
+	@Column(name="pi_method")
+	private String piMethod;
 	
 	@Column(name="pi_price")
 	private Integer piPrice;
 	
-	@Column(name="pi_depositor")
-	private Integer piDepositor;
+	@Column(name ="payment_code")
+	private String paymentCode;
 	
 	@Column(name="pi_date", insertable = false, updatable = false)
 	@ColumnDefault("now()")
 	private Date piDate;
 	
-	@Column(name="pi_status")
+	@Column(name="pi_status", insertable = false)
+	@ColumnDefault("0")
 	private String piStatus;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "rti_num")
 	private ReservationTicketInfo reservationTicketInfo;
 	

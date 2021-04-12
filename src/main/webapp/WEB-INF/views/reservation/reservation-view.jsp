@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>전시회 예약 등록</title>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <link href="/resources/node_modules/flatpickr/dist/flatpickr.css" rel="stylesheet"/>
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
 <script src=/resources/node_modules/flatpickr/dist/l10n/ko.js></script>
@@ -33,7 +32,7 @@ img[data-col] {
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
    <div class="container reservationViewMain">
       	<div class="row">
    			<div class="col-lg-9" style="text-align: center;">
@@ -83,7 +82,7 @@ img[data-col] {
 								<h5>예매수</h5>
 							</li>
 							<li class="list-inline-item">
-								<input type="number" class="form-control" id="rtiNumber" onchange="changeNumber(this)" min="0" max="5" style="width:130px; height: 30px; text-align: center">
+								<input type="number" class="form-control" id="rtiNumber"  onclick="changeNumber(this)" min="0" style="width:130px; height: 30px; text-align: center">
 							</li>
 						</ul>
 					</div>
@@ -99,7 +98,7 @@ img[data-col] {
 					</div>
 					<div class="col-lg-3">
 						<h5>합계금액</h5>
-						<p>25000</p>
+						<p id="piPrice">0</p>
 					</div>
 				</div>
 			</div>
@@ -117,13 +116,21 @@ img[data-col] {
 				</div>
 				<div class="row mt-5">
 					<div class="col-lg-12">
-						<button type="button" class="btn btn-primary" style="width: 385px;" onclick="insert()">결제</button>
+						<button type="button" class="btn btn-primary" style="width: 385px;" onclick="goPayment()">결제하기</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<input type="hidden" data-col="maxTicket" id="eriMaxTicket">
+	<form action="/payment" method="GET" id="reservationForm">
+		<input type="hidden" name="rtiDate" value="">
+		<input type="hidden" name="rtiTime" value="">
+		<input type="hidden" name="rtiNumber" value="">
+		<input type="hidden" name="piPrice" value="">
+	</form>
+	
+	
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
 /* var i = 0;
@@ -231,8 +238,35 @@ function selectTime(obj){
 }
 
 function changeNumber(obj){
+	var maxTicket = Number(document.querySelector('#eriMaxTicket').value);
+	var selectTicket = Number(obj.value);
+	var remainTicket = Number(obj.max);
+	if(selectTicket > maxTicket){
+		alert('1인당 구매가능한 수량은 ' + maxTicket + '입니다.' );
+		return
+	}else if(selectTicket > remainTicket){
+		alert('현재 남은수량은 ' + remainTicket + ' 입니다.');
+		return
+	}else if(selectTicket < 0 ){
+		alert('티켓을 한개 이상 선택해주세요.');
+		returndocument.querySelector('#piPrice').innerHTMLdocument.querySelector('#piPrice').innerHTML
+	}
+	var charge = Number(document.querySelector('[data-col="charge"]').innerText);
+	document.querySelector('#piPrice').innerHTML = selectTicket * charge;
+}
+
+function goPayment(){
+	var rtiDate = document.querySelector('#rtiDate').innerText;
+	var rtiTime = document.querySelector('#rtiTime').innerText;
+	var rtiNumber = document.querySelector('#rtiNumber').value;
+	var piPrice = document.querySelector('#piPrice').innerText;
 	
-	console.log(obj);
+	document.querySelector('input[name="rtiDate"]').value = rtiDate;
+	document.querySelector('input[type="hidden"][name="rtiTime"]').value = rtiTime;
+	document.querySelector('input[name="rtiNumber"]').value = rtiNumber;
+	document.querySelector('input[name="piPrice"]').value = piPrice;
+
+	document.querySelector('#reservationForm').submit();
 }
 </script>
 </body>

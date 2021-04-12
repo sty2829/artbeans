@@ -1,106 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>ArtBeans</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="/resources/assets/img/favicon.png" rel="icon">
-  <link href="/resources/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="/resources/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/resources/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="/resources/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="/resources/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="/resources/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="/resources/assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link href="/resources/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="/resources/assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Sailor - v2.3.1
-  * Template URL: https://bootstrapmade.com/sailor-free-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-
 </head>
 <body>
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top ">
-  <div class="container">          
-       <input type="text" placeholder="전시회, 전시관 검색">
-       
-       <a href="" style="float:right"  class="get-started-btn ml-auto">로그인/회원가입</a>
-      
-       
-  </div>
-      
-      
-    <div class="container d-flex align-items-center">
-    
-      <div onclick="location.href='/'">
-      <h1 class="logo" style="cursor: pointer""><img src="/resources/assets/img/logo.png" class="img-fluid" ></h1>
-      </div>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 
-      <nav class="nav-menu d-none d-lg-block">
-
-        <ul>          
-          <li class="drop-down"><a href="#">전시회 목록</a>
-            <ul>                           
-              <li><a href="/views/exhibition/openingList">진행중인 전시회</a></li>
-              <li><a href="/views/exhibition/closeList">종료된 전시회</a></li>            
-              <li><a href="/views/exhibition/futureList">진행 예정 전시회</a></li>   
-            </ul>
-          </li>
-          
-          <li class="active"><a href="/views/gallery/list">전시관 목록</a></li>
-
-          <li class="drop-down"><a href="#">커뮤니티 목록</a>
-            <ul>
-              <li class="drop-down"><a href="#">공지사항</a>
-                <ul>
-                  <li><a href="#">공지사항</a></li>
-                  <li><a href="#">예매/취소 방법</a></li>
-                  <li><a href="#">이용방법</a></li>
-                </ul>
-              </li>              
-              <li><a href="#">후기/추천</a></li>
-              <li><a href="#">Q&A</a></li>              
-            </ul>
-          </li>
-          
-          <li class="drop-down"><a href="#">전시회 등록 및 수정</a>
-            <ul>                           
-              <li><a href="/views/exhibition/insert">전시회 등록</a></li>
-              <li><a href="/views/exhibition/update-main">전시회 수정</a></li>              
-            </ul>
-          </li>
-        </ul>
-
-      </nav><!-- .nav-menu -->
-
-
-    </div>
-  </header><!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
+ <!-- ======= Hero Section ======= -->
   <section id="hero">
     <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
 
@@ -156,7 +64,7 @@
     </div>
   </section><!-- End Hero -->
 
-
+ <main id="main">
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
       <div class="container">
@@ -311,68 +219,6 @@
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="footer-info">
-              <h3>ArtBeans</h3>
-              <p>                
-                <strong>Phone:</strong> 02-2222-2122<br>
-                <strong>Email:</strong> info@example.com<br>
-              </p>              
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-6 footer-links">
-            <h4>전시회/전시관</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">전체 전시회 목록</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">진행중인 전시회</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">종료된 전시회</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">전시관 목록</a></li>              
-            </ul>
-          </div>
-
-        
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>뉴스 레터</h4>
-            <p>저희의 뉴스레터를 받아보고 싶으시면<br> 이메일을 작성해주세요.</p>
-            <form action="" method="post">
-              <input type="email" name="email" placeholder="email"><input type="submit" value="Subscribe">
-            </form>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="credits">        
-        Designed by <a href="">ArtBeans</a>
-      </div>
-    </div>
-  </footer><!-- End Footer -->
-
-  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src="/resources/assets/vendor/jquery/jquery.min.js"></script>
-  <script src="/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/resources/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="/resources/assets/vendor/php-email-form/validate.js"></script>
-  <script src="/resources/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="/resources/assets/vendor/venobox/venobox.min.js"></script>
-  <script src="/resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="/resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="/resources/assets/js/main.js"></script>
-
+<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
