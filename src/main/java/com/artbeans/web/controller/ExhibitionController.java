@@ -27,9 +27,10 @@ public class ExhibitionController {
 	
 	@GetMapping("/exhibition-list")
 	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
-		log.info("exhibitionList=>{}",exhibitionInfo);
+
 		return eService.getExhibitionInfos(exhibitionInfo);
 	}
+	
 	
 //	@GetMapping("/exhibition-list")
 //	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable, DataTable<ExhibitionInfo> exhibitionInfo){

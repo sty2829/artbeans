@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <!DOCTYPE html>
 <html>
+
 <head>
+
 <meta charset="UTF-8">
 <title>통합 검색</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+crossorigin="anonymous"></script>
 </head>
 <body>
+
 <main id="main">
 		<!-- ======= Breadcrumbs ======= -->
 		<section id="breadcrumbs" class="breadcrumbs">
@@ -22,11 +29,19 @@
 		<div class="col-lg-12 d-flex justify-content-center">
 		<h1>통 합 검 색</h1>
 		</div><br>
-		<form action="/search" method="get">
+		
+			
+					<!--검 색 창   -->
+		<form action="/search" method="get" name = "frm">
 		<div class="col-lg-12 d-flex justify-content-center">	
-	<input type=text name = "keyword" class="col-md-6 d-flex justify-content-center">
-            <button>검색</button>           
+	<input type=text name = "keyword" class="col-md-6 d-flex justify-content-center"
+	onkeyup="startSuggest(this);">
+            <button type="button" id="btn_search">검색</button>
+            <ul id = "suggest"></ul>
+            <!-- 검색리스트 나오는 영역 -->           
        </div> </form><br>
+       
+       
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 d-flex justify-content-center">
@@ -61,6 +76,32 @@
 </section>
 </main>
 <script>
+function startSuggest(target){
+var tKeyword ='?eiName='+ target.value;
+var encodeWord = encodeURI(tKeyword);
+var xhr = new XMLHttpRequest();
+xhr.open('GET','/exhibition-list'+tKeyword);
+xhr.onreadystatechange = function(){
+	if(xhr.readyState==4&& xhr.status==200){
+		var res = JSON.parse(xhr.responseText);
+		console.log(res);
+		html = '';
+		for(var exhibition of res){
+			html +=	'<li class="suggest" value="' + exhibition.eiName + '">';
+			html += '<a>' + exhibition.eiName + '</a>'
+			html += '</li>';
+		}
+		document.querySelector('#suggest').innerHTML = html;
+		}
+	}
+	xhr.send();
+}
+</script>
+
+
+<script>
+			
+
 var keyword ='${keyword}';// header부분 검색 keyword
 function topSearch(){
 	var xhr = new XMLHttpRequest();
