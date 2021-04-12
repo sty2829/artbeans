@@ -22,10 +22,11 @@
 		<div class="col-lg-12 d-flex justify-content-center">
 		<h1>통 합 검 색</h1>
 		</div><br>
-		<div class="col-lg-12 d-flex justify-content-center">
-     <input type=text id = "search" class="col-md-6 d-flex justify-content-center">
-       <input type= "button" onclick = "totalSearch();" value="검색" >
-       </div><br>
+		<form action="/search" method="get">
+		<div class="col-lg-12 d-flex justify-content-center">	
+	<input type=text name = "keyword" class="col-md-6 d-flex justify-content-center">
+            <button>검색</button>           
+       </div> </form><br>
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 d-flex justify-content-center">
@@ -117,7 +118,7 @@ function topSearch(){
 window.onload = topSearch;
 
 
-function totalSearch(){
+/* function totalSearch(){
 	var search = document.querySelector('#search').value.trim(); //통합검색 페이지 검색
 	var xhr = new XMLHttpRequest();
 	var param = '?';
@@ -167,7 +168,7 @@ function totalSearch(){
 		}		
 	}
 	xhr.send();
-}
+} */
 
 function getGallery(obj){
 	var param = '?';
@@ -184,7 +185,7 @@ function getGallery(obj){
 		if(xhr.readyState==4&&xhr.status==200){
 			var get = JSON.parse(xhr.responseText);
 			console.log(get);
-			var html ='';
+			var html ='<div><h4>검색결과 : '+get.length+'개</h4></div><br>';
 			for(var gallery of get){
 				if(gallery.giNum!=0){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
