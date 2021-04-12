@@ -196,26 +196,26 @@
 				<div id="calendar"></div>
 			</div>
 	
-			<div id="newEventModal">
+			<!--  <div id="newEventModal">
 		      <h2>시간 예약</h2>
 		
-		      <!--  <input id="eventTitleInput" placeholder="Event Title" /> -->
+		      <input id="eventTitleInput" placeholder="Event Title" /> 
 				<div id="eventTitleInput">
 					
 				</div>
 				
 		      <button id="saveButton"  class="button">Save</button>
 		      <button id="cancelButton"  class="button">Cancel</button>
-		    </div>
+		    </div>-->
 
-		    <div id="deleteEventModal">
+		   <!--   <div id="deleteEventModal">
 		      <h2>Event</h2>
 		
 		      <p id="eventText"></p>
 		
 		      <button id="deleteButton"  class="button">Delete</button>
 		      <button id="closeButton"  class="button">Close</button>
-		    </div>
+		    </div>-->
 
 		    <div id="modalBackDrop"></div>
 			<!-- 달력 끝-->
