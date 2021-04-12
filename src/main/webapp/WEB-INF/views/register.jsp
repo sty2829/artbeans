@@ -12,16 +12,16 @@
 <meta name="author" content="">
 
 <title>ArtBeans2 - Register</title>
-
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <!-- Custom fonts for this template-->
-<link href="/resources/user/vendor/fontawesome-free/css/all.min.css"
+<link href="/resources/vendor/fontawesome-free/css/all.min.css"
 	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="/resources/user/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="/resources/css/sb-admin-2.min.css" rel="stylesheet">
 <style>
 div {
 	text-align : center;
@@ -37,7 +37,7 @@ div {
 }
 </style>
 </head>
-
+<jsp:include page="/WEB-INF/views/include/menu.jsp"></jsp:include>
 
 <body class="bg-gradient-danger">
 
@@ -54,7 +54,7 @@ div {
 									style="width: 95px">회원가입
 							</h1>
 							<div class="text-align-center"></div>
-							<form class="user">
+							
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0" id="nameTag">
 										<input type="text" class="form-control form-control-user"
@@ -79,7 +79,7 @@ div {
 
 								<div class="select">
 									<select class="col-sm-6" name="uiRegion">
-										<option>지역선택</option>
+										<option value="" >지역선택</option>
 										<option value="서울" id="uiRegion">서울</option>
 										<option value="경기" id="uiRegion">경기</option>
 										<option value="부산" id="uiRegion">부산</option>
@@ -652,24 +652,11 @@ div {
 									</ul>
 								</div>
 						</div>
-
-
-						<a href="" class="btn btn-secondary btn-user btn-block"
-							onclick="goLogin()"> 로그인 </a>
-						<hr>
-
+						
+						<button onclick="goInsert()">회원가입</button>
 
 						<hr>
-						<div id="footer" role="contentinfo">
-							<address>
-								<em><a href="https://www.artbeans.site/" target="_blank"
-									class="logo"><span class="blind">artBeans</span></a></em> <em
-									class="copy">Copyright</em> <em class="u_cri">&copy;</em> <a
-									href="https://www.artbeans.site/" target="_blank" class="u_cra">artBeans
-									Corp.</a> <span class="all_r">All Rights Reserved.</span>
-							</address>
-						</div>
-						<!-- //footer -->
+						
 					</div>
 				</div>
 			</div>
@@ -678,25 +665,15 @@ div {
 
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="/resources/user/vendor/jquery/jquery.min.js"></script>
-	<script src="/resources/user/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<!-- Core plugin JavaScript-->
 	<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 	<!-- Custom scripts for all pages-->
-	<script src="/resources/user/js/sb-admin-2.min.js"></script>
+	<script src="/resources/js/sb-admin-2.min.js"></script>
 	<script>
-	function checkTerms(){
-		var res = true;
-		
-		if($("#termsService").is(":checked") ==false || $("#termsPrivacy").is(":checked") ==false) {
-			res = false;
-			alert('아트맵 이용약관과 개인정보 수집 및 이용 안내에 동의해주세요.');
-		}else{
-			return res;
-		}
-	}	
 	
 	function goInsert(){
 	
@@ -727,71 +704,81 @@ div {
 				uiPwd.focus();
 				return;
 			}
-
-			var uiPwd2 = document.querySelector('#uiPwd');
-			if (uiPwd !== uiPwd2) {
+			
+			var uiPwd2 = document.querySelector('#uiPwd2');
+			if (uiPwd.value != uiPwd2.value) {
 				alert('비밀번호가 일치하지 않습니다.');
 				uiPwd2.value = "";
 				uiPwd2.focus();
-				return;
+				return false;
 			}
 
-			var region = document.querySelector('#region');
-			var uiRegion = document.querySelectorAll('#uiRegion:selected');
-			if (uiRegion.value.trim().length ==0) {
+	
+			var uiRegion = document.querySelector('select#uiRegion option:checked')
+			if (uiRegion.value.trim().length <1) {
 				alert('지역을 선택해주세요.');
 				region.focus();
 				return;
 			}
 
-			var gender = document.querySelector('#gender');
-			var uiGender = document.querySelectorAll('#uiGender:checked');
-			if (uiGender.value.trim().length ==0) {
+			var uiGender = document.querySelector('select#uiGender option:checked');
+			if (uiGender.value.trim().length <1) {
 				alert('성별을 선택해주세요.');
 				gender.focus();
 				return;
 			}
-			var age = document.querySelector('#age');
-			var uiAge = document.querySelectorAll('#uiAge:checked');
-			if (uiAge.value.trim().length ==0) {
+			var uiAge = document.querySelector('select#uiAge option:checked');
+			if (uiAge.value.trim().length <1) {
 				alert('나이를 선택해주세요.');
 				age.focus();
 				return;
 			}
 
-			var genre = document.querySelector('#genre');
-			var uiGenre = document.querySelectorAll('#uiGenre:selected');
-			if (uiGenre.value.trim().length ==0) {
+
+			var uiGenre = document.querySelector('select#uiGenre option:checked');
+			if (uiGenre.value.trim().length <1) {
 				alert('장르를 선택해주세요.');
 				genre.focus();
 				return;
 			}
-/* 
-			var check1 = document.querySelector('#termsService');
-			var checks = document.querySelectorAll('#termsService:checked');
-			if (checks.value.trim().length ==0) {
+ 
+			var check1 = document.querySelector('select#termService option:checked');
+			if (check1.value.trim().length <1) {
 				alert('이용약관에 동의해주세요.');
 			}
 
-			var chekc2 = document.querySelector('#termsPrivacy');
-			var checks2 = document.querySelectorAll('#termsPrivacy:checked');
-			if (checks2.value.trim().length ==0) {
+			var check2 = document.querySelector('select#termPrivacy option:checked');
+			if (checks2.value.trim().length <1) {
 				alert('개인정보 수집/이용 동의해주세요.');
-			} */
+			}
 
 			var xhr = new HttpRequest();
 			xhr.open('POST', '/user-insert');
 			xhr.onreadystatechange = function() {
-				if (xhr.readyState ==4 && xhr.status ==200) {
+				if(xhr.readyState==4 && xhr.status==200) {
 					console.log(xhr.responseText);
 						if(xhr.responseText){
 							alert('회원 가입을 완료하였습니다.');
 					}					
 				}
 			}
-			xhr.send();
+			var param = {
+					uiName : document.querySelector('#uiName').value,
+					uiEmail : document.querySelector('#uiEmail').value,
+					uiPwd : document.querySelector('#uiPwd').value,
+					uiPwd2 : document.querySelector('#uiPwd2').value,
+					uiRegion : document.querySelector('#uiRegion').value,
+					uiGender : document.querySelector('#uiGender').value,
+					uiAge : document.querySelector('#uiAge').value,
+					uiGenre : document.querySelector('#uiGenre').value,
+					checks1 : document.querySelector('#termsService').value,
+					checks2 : document.querySelector('#termsPrivacy').value
+					}
+			
+			xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
+			xhr.send(JSON.stringify(param));
 		}
 	</script>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>	
 </body>
-
 </html>
