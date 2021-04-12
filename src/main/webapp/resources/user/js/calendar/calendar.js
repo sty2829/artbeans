@@ -28,6 +28,8 @@ function openModal(date) {
 }
 
 function load() {
+	
+	
 	const dt = new Date();
 
 	if (nav !== 0) {
@@ -56,40 +58,67 @@ function load() {
 		`${dt.toLocaleDateString('ko-kr', { month: 'long' })} ${year}`;
 
 	calendar.innerHTML = '';
-
+	
+	let eiName='';
+	let eventTitleInput='';
+	let exNumList=[];
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/exhibition-list-newest'); //ExhibitionController
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState==4 && xhr.status==200){
+			
+			var res = JSON.parse(xhr.responseText);
+			// exhibition.eiStatus=0 진행할 전시회
+			
+			for (var exhibition of res){
+				if (exhibition.eiStatus == 0) {
+					//exhibition.eiName
+					//exhibition.eiStartDate ->2021-10-06
+					var exNum=exhibition.eiStartDate.split('-');
+					var monthNum=month + 1;
+					if(exNum[1]==(monthNum) && exNum[0]==year){
+						if(exNum[2].indexOf(0)==0){
+							exNum[2]=exNum[2].substring(1);
+						}
+						console.log(exNum[2]);
+						exNumList+=exNum[2]+',';
+					}	
+					exNumList
+					//console.log(exNumList);
+				}
+			}
+		}
+	}
+	xhr.send();
+	
+	
+	
 	for(let i = 1; i <= paddingDays + daysInMonth; i++) {
 		const daySquare = document.createElement('div');
 		daySquare.classList.add('day');
 		//하루 하루 일자 들어가는 구간
-		//public List<ExhibitionInfo> getExhibitionInfoNewestList(ExhibitionInfo exhibitionInfo) {
-		//	return exhiRepo.findAllByOrderByEiStartDateAsc();
-		//}
+		
 		const dayString = `${month + 1}/${i - paddingDays}/${year}`;
-
+		// 월/일/년 순으로 표기된다.
+		let dsNum=dayString.split('/');
+		//console.log(dsNum[1]);//1,2,3,날짜가 나옴
+		
 		if (i > paddingDays) {
 			daySquare.innerText = i - paddingDays;
 			
 			const eventForDay = events.find(e => e.date === dayString);
+			//const eventForDay = events.find(e => e.date === dayString);
 			//여기서부터 전시회를 달력에 넣는 부분
 			//console.log(eventForDay); 달력 일자 수대로 30개 undefined 나옴
-			var xhr = new XMLHttpRequest();
-			xhr.open('GET', '/exhibition-list-newest'); //ExhibitionController
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState==4 && xhr.status==200){
-					var res = JSON.parse(xhr.responseText);
-					// exhibition.eiStatus=0 진행할 전시회
-					for (var exhibition of res){
-						if (exhibition.eiStatus == 0) {
-							eventForDay=exhibition.eiName
-						}
-					}
-				}
-			}
+			
 			
 		if (i - paddingDays === day && nav === 0) {
 			daySquare.id = 'currentDay';
 		}
-
+ 		
+		
+	
 		if (eventForDay) {
 			const eventDiv = document.createElement('div');
 			eventDiv.classList.add('event');
