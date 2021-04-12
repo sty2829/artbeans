@@ -1,17 +1,17 @@
 package com.artbeans.web.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.artbeans.web.api.imaport.Iamport;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
+@Slf4j
 public class URIController {
 	
 	@GetMapping("/views/**")
 	public void goView() {
-		
+		log.info("테스트");
 	}
 	
 	@GetMapping("/")
