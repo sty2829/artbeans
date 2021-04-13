@@ -43,6 +43,16 @@
 </main>
 
 <script>
+window.onload = get();
+
+var count = 0;
+window.onscroll = function(e) {
+    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        count++;
+        get();
+    }
+};
+
 function get(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition-list?size=11&sort=eiNum,asc&page='+ count); //ExhibitionController
@@ -87,19 +97,9 @@ function get(){
 	xhr.send();
 }
 
-
-var count = 0;
-window.onscroll = function(e) {
-    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        count++;
-        get();
-    }
-};
-window.onload = get();
-
 function newest(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,Desc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
@@ -135,7 +135,7 @@ function newest(){
 					html += '</div>';
 				}
 			}
-			document.querySelector('#exhibitionList').innerHTML += html;
+			document.querySelector('#exhibitionList').innerHTML = html;
 		}		
 	}
 	xhr.send();
@@ -185,6 +185,52 @@ function newest(){
 	xhr.send();
 }
 */
+
+function deadline(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,Desc&page='+ count); //ExhibitionController
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			//console.log(xhr.responseText);
+			var res = JSON.parse(xhr.responseText);
+			var html = '';
+			// exhibition.eiStatus=0 진행할 전시회
+			//console.log(res);
+			for(var exhibition of res.data){				
+				if(exhibition.eiStatus==0){
+					//console.log(exhibition);
+					//console.log(exhibition.fileInfo.fiPath);
+					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+					html += '<article class="entry">';
+					html += '<div class="entry-img">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '</div>';
+					html += '<h2 class="entry-title">';
+					html += '<a>' + exhibition.eiName + '</a>';
+					html += '</h2>';
+					html += '<div class="entry-meta">';
+					html += '<ul>';
+					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ exhibition.eiStartDate +'</a></li>';
+					html += '</ul>';
+					html += '</div>';
+					html += '<div class="entry-content">';
+					html += '<div style="HEIGHT: 10pt"></div>';
+					html += '<div class="read-more">';					
+					html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer">상세정보</a>';
+					html += '</div>';
+					html += '</div>';
+					html += '</article>';
+					html += '</div>';
+				}
+			}
+			document.querySelector('#exhibitionList').innerHTML = html;
+		}		
+	}
+	xhr.send();
+}
+
+/*
 function deadline(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition-list-deadline'); //ExhibitionController
@@ -225,6 +271,7 @@ function deadline(){
 	}
 	xhr.send();
 }
+*/
 </script>
 
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
