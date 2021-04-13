@@ -4,9 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.artbeans.web.api.Result;
+import com.artbeans.web.dto.DataTable;
+import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.GalleryInfo;
 import com.artbeans.web.repository.GalleryRepository;
 import com.artbeans.web.service.GalleryService;
@@ -53,24 +57,35 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 
 	@Override
-	public List<GalleryInfo> getGalleryInfoAreaListAsc(GalleryInfo galleryInfo) {
-		
-		return gRepo.findAllByOrderByGiAddressAsc();
+	public DataTable<GalleryInfo> getGalleryLists(Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo) {
+		Page<GalleryInfo> pb = gRepo.findAll(pageable);
+		dtGalleryInfo.setData(pb.getContent());
+		dtGalleryInfo.setRecordsTotal(pb.getTotalElements());
+		dtGalleryInfo.setRecordsFiltered(pb.getTotalElements());
+	    return dtGalleryInfo;
 	}
 	
-	@Override
-	public List<GalleryInfo> getGalleryInfoAreaListDesc(GalleryInfo galleryInfo) {
-		return gRepo.findAllByOrderByGiAddressDesc();
-	}
 	
-	@Override
-	public List<GalleryInfo> getGalleryInfoNameListAsc(GalleryInfo galleryInfo) {
-		return gRepo.findAllByOrderByGiNameAsc();
-	}	
 
-	@Override
-	public List<GalleryInfo> getGalleryInfoNameListDesc(GalleryInfo galleryInfo) {
-		return gRepo.findAllByOrderByGiNameDesc();
-	}
+//	@Override
+//	public List<GalleryInfo> getGalleryInfoAreaListAsc(GalleryInfo galleryInfo) {
+//		
+//		return gRepo.findAllByOrderByGiAddressAsc();
+//	}
+//	
+//	@Override
+//	public List<GalleryInfo> getGalleryInfoAreaListDesc(GalleryInfo galleryInfo) {
+//		return gRepo.findAllByOrderByGiAddressDesc();
+//	}
+//	
+//	@Override
+//	public List<GalleryInfo> getGalleryInfoNameListAsc(GalleryInfo galleryInfo) {
+//		return gRepo.findAllByOrderByGiNameAsc();
+//	}	
+//
+//	@Override
+//	public List<GalleryInfo> getGalleryInfoNameListDesc(GalleryInfo galleryInfo) {
+//		return gRepo.findAllByOrderByGiNameDesc();
+//	}
 
 }
