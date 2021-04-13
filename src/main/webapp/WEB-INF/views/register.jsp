@@ -129,11 +129,10 @@ div {
 
 								<div class="terms">
 									<ul class="terms_bx_list">
-										<li class="terms_bx"><span class="input_chk"> <input
-												type="checkbox" id="termsService" name="termsService"
-												class="chk"> <label for="termsService"> 이용
-													약관 동의<span class="terms_danger-300">(필수)</span>
-											</label>
+										<li class="terms_bx">
+										<span class="input_chk">
+										 <input type="checkbox" id="termsService" class="chk" value="1">
+										 <label for="termsService" > 이용 약관 동의<span class="terms_danger-300">(필수)</span></label>
 										</span>
 											<div class="terms_box" tabindex="0" id="ServiceTerms"
 												style="overflow: scroll; width: 500px; height: 300px;">
@@ -479,8 +478,8 @@ div {
 													</p>
 												</div>
 											</div>
-										<li class="terms_bx"><span class="input_chk"> <input
-												type="checkbox" id="termsPrivacy" name="termsPrivacy"
+										<li class="terms_bx"><span class="input_chk">
+										 <input type="checkbox" id="termsPrivacy" name="termsPrivacy" value="1"
 												class="chk"> <label for="termsPrivacy"
 												class="collect_personal">개인정보 수집 및 이용 동의 <span
 													class="terms_choice">(필수)</span></label>
@@ -706,8 +705,8 @@ div {
 
 			var uiGender = document.querySelector('input[id="uiGender1"]:checked');
 			console.log(uiGender);
-			console.log(uiGender.value);
-			if (uiGender.value.trim().length <1) {
+			//console.log(uiGender.value);
+			if (!uiGender) {
 				alert('성별을 선택해주세요.');
 				gender.focus();
 				return;
@@ -734,16 +733,19 @@ div {
 			}
 
 
-			var check1 = document.querySelector('#termsService');
-			var checks = document.querySelectorAll('#termsService:checked');
-			if (checks.value.trim().length ==0) {
+			var check1 = document.querySelector('#termsService:checked');
+			console.log(check1.value);
+			var checks = document.querySelector('#termsPrivacy:checked');
+			console.log(check1.value);
+			if (check1.value.trim().length <1) {
 				alert('이용약관에 동의해주세요.');
 			}
-
-			var check2 = document.querySelector('select#termPrivacy option:checked');
-			if (checks2.value.trim().length <1) {
+			if (checks.value.trim().length <1) {
 				alert('개인정보 수집/이용 동의해주세요.');
 			}
+
+			//var check2 = document.querySelector('select#termPrivacy option:checked');
+			
 
 			
 			var xhr = new HttpRequest();

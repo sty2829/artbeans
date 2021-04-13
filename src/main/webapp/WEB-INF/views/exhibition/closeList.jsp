@@ -43,20 +43,29 @@
 </main>
 
 <script>
-window.onload = function(){
+window.onload = get();
+
+var count = 0;
+window.onscroll = function(e) {
+    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        count++;
+        get();
+    }
+};
+
+function get(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list'); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=11&sort=eiNum,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '';	
+			var html = '';
 			// exhibition.eiStatus=2 종료된 전시회
-			for(var exhibition of res){
-				if(exhibition.eiStatus==2){			
-					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">';
+			for(var exhibition of res.data){				
+				if(exhibition.eiStatus==2){
+					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
-					html += '<div class="entry-img">'; 
+					html += '<div class="entry-img">';
 					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
@@ -78,7 +87,7 @@ window.onload = function(){
 					html += '</div>';
 				}
 			}
-			document.querySelector('#exhibitionList').innerHTML = html;
+			document.querySelector('#exhibitionList').innerHTML += html;
 		}		
 	}
 	xhr.send();
@@ -86,18 +95,17 @@ window.onload = function(){
 
 function newest(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list-newest'); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '';	
+			var html = '';
 			// exhibition.eiStatus=2 종료된 전시회
-			for(var exhibition of res){
-				if(exhibition.eiStatus==2){			
-					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">';
+			for(var exhibition of res.data){				
+				if(exhibition.eiStatus==2){
+					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
-					html += '<div class="entry-img">'; 
+					html += '<div class="entry-img">';
 					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
@@ -119,7 +127,7 @@ function newest(){
 					html += '</div>';
 				}
 			}
-			document.querySelector('#exhibitionList').innerHTML = html;
+			document.querySelector('#exhibitionList').innerHTML += html;
 		}		
 	}
 	xhr.send();
@@ -127,18 +135,17 @@ function newest(){
 
 function deadline(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list-deadline'); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,Desc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
-			var html = '';	
+			var html = '';
 			// exhibition.eiStatus=2 종료된 전시회
-			for(var exhibition of res){
-				if(exhibition.eiStatus==2){			
-					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">';
+			for(var exhibition of res.data){				
+				if(exhibition.eiStatus==2){
+					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
-					html += '<div class="entry-img">'; 
+					html += '<div class="entry-img">';
 					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
@@ -160,7 +167,7 @@ function deadline(){
 					html += '</div>';
 				}
 			}
-			document.querySelector('#exhibitionList').innerHTML = html;
+			document.querySelector('#exhibitionList').innerHTML += html;
 		}		
 	}
 	xhr.send();
