@@ -31,15 +31,11 @@ public class ReservationSeviceImpl implements ReservationService {
 	private ReservationSchedule reservationSchedule;
 
 	@Override
-	public ReservationSchedule getReservationSchedule(Integer eiNum) {
-		//전시회 PK로 전시회예약정보 호출
-		ExhibitionReservationInfo eri = eriRepo.findByExhibitionInfoEiNum(eiNum);
-		//하루 맥시멈 티켓 
-		long dayMaximum = reservationSchedule.dayMaximumTicket(eri);
-		//전시회예약정보 키와 맥시멈티켓수로 더이상 예약할수 없는 날짜 리스트 호출
-        List<Date> excludeDateList = rtiRepo.excludeGroupByDate(eri.getEriNum(), dayMaximum);
-        //전시회 예약정보와 제외날짜리스트로 스케쥴구성
-        return reservationSchedule.createSchedule(eri, excludeDateList);
+	public com.artbeans.web.dto.ReservationSchedule getReservationSchedule(Integer eiNum) {
+		//전시회 PK로 전시회스케쥴 호출
+		
+		
+        return eriRepo.getReservationSchedule(eiNum);
 	}
 	
 	@Override

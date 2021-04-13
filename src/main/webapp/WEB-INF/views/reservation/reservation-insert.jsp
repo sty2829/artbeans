@@ -4,69 +4,115 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>전시회 예약 정보</title>
+<title>전시회 등록 페이지</title>
 <link href="/resources/node_modules/flatpickr/dist/flatpickr.css" rel="stylesheet"/>
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
 <style>
-.reservationInsertMain {
-	margin-top: 150px;
-	height: 1000px;
+.reservationInsertMain{
+	margin-top: 100px;
 }
-h5 {
-	font-weight: bold;
-}
-.row{
-	margin-left: 200px;
-}
-.radio-hidden{
-	display: none;
-}
-.list-inline-item {
-    margin-top: -15px;
-}
-img[data-col] {
-	width: 400px;
-	height: 350px;
-}
-.btn-outline-success{color:#198754;border-color:#198754}.btn-outline-success:hover{color:#fff;background-color:#198754;border-color:#198754}.btn-check:focus+.btn-outline-success,.btn-outline-success:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-check:active+.btn-outline-success,.btn-check:checked+.btn-outline-success,.btn-outline-success.active,.btn-outline-success.dropdown-toggle.show,.btn-outline-success:active{color:#fff;background-color:#198754;border-color:#198754}.btn-check:active+.btn-outline-success:focus,.btn-check:checked+.btn-outline-success:focus,.btn-outline-success.active:focus,.btn-outline-success.dropdown-toggle.show:focus,.btn-outline-success:active:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-outline-success.disabled,.btn-outline-success:disabled{color:#198754;background-color:transparent}
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-   <div class="container reservationInsertMain">
-   		<div class="row ml-5">
-   			<div class="col-lg-8" style="text-align: center;">
+    <section id="contact" class="contact">
+      <div class="container reservationInsertMain">
+    	<div class="row">
+   			<div class="col-lg-10" style="text-align: center;">
 				<div class="section-title">
 		          <p>전시회 예약등록</p>
 		        </div>
    			</div>
    		</div>
-		<div class="row ml-5">
-			<div class="col-lg-8">
-				  <label for="exampleFormControlSelect1">예약전시회</label>
-				  <select class="form-control" id="exampleFormControlSelect1">
-			  		 <option>전시회를 선택해주세요</option>
-				  </select>
-	      		<label for="eriAudienceRating">관람등급</label>
-			    <input type="text" class="form-control" id="eriAudienceRating" required>
-      			<label for="eriRunningTime" class="mt-2">러닝타임</label>
-			    <input type="text" class="form-control" id="eriRunningTime" required>
-    			<label for="eriMaxStock" class="mt-2">1인당 최대 예매표</label>
-			    <input type="number" class="form-control" id="eriMaxStock" min="1" required>
-      			<label for="eriMaxTicket" class="mt-2">시간당 최대 예매표</label>
-			    <input type="number" class="form-control" id="eriMaxTicket" min="1" required >
-			    <label for="eriStartDate">예매 시작일</label>
-    	   		<input type="text" class="form-control" id="eriStartDate" style="background-color: white">
-  		        <label for="eriEndDate" class="mt-2">예매 종료일</label>
-    			<input type="text" class="form-control" id="eriEndDate" style="background-color: white">
-    			<label for="eriStartTime" class="mt-2">예매 시작시간</label>
-    	   		<input type="text" class="form-control" id="eriStartTime" style="background-color: white">
-    	   		<label for="eriEndTime" class="mt-2">예매 종료시간</label>
-    	   		<input type="text" class="form-control" id="eriEndTime" style="background-color: white"><br>
-    	   		<button type="button" class="btn btn-primary" style="width: inherit;" onclick="insert()">등록</button>
-		   </div>
-	   </div>
-	</div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="info mt-3">
+              <div class="address">
+                <h4>예약 전시회</h4>               
+              </div>
+              <div class="phone">
+                <h4>관람등급</h4>
+              </div>
+              
+              <div class="phone">
+                <h4>러닝타임</h4>
+              </div>
+              <div class="phone">
+                <h4>1인당 최대 예매표</h4>               
+              </div>
+              <div class="phone">
+                <h4>시간당 최대 예매표</h4>
+              </div>
+              <div class="phone">
+                <h4>예매 시작일</h4>
+              </div>
+              <div class="phone">
+                <h4>예매 종료일</h4>
+              </div>
+              <div class="phone">
+                <h4>예매 시작시간</h4>
+              </div>
+              <div class="phone">
+                <h4>예매 종료시간</h4>
+              </div>
+            </div>
+          </div>
+          <!-- 입력란 -->
+          <div class="col-lg-5 mt-5 mt-lg-0">
+              <div class="form-row mt-3">
+                <div class="col-md-6 form-group">
+                  <select class="form-control" id="eiNum" style="width: 250px">
+                  	<option>전시회를 선택해주세요</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" id="eriAudienceRating" required>
+               <div style="HEIGHT: 13pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" id="eriRunningTime" required>
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="number" class="form-control" id="eriMaxStock" min="1" required>
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="number" class="form-control" id="eriMaxTicket" min="1" required >
+                <div style="HEIGHT: 10pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" id="eriStartDate" style="background-color: white">
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+               <div class="form-group">
+                <input type="text" class="form-control" id="eriEndDate" style="background-color: white">
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" id="eriStartTime" style="background-color: white">
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+              <div class="form-group">
+                <input type="text" class="form-control" id="eriEndTime" style="background-color: white">
+                <div style="HEIGHT: 8pt"></div> 
+              </div>
+              
+             <button class="get-started-btn ml-auto" onclick="insert()" >전시회 예약등록 신청</button>
+          </div>
+        </div>
+      </div>
+    </section>
+<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
 flatpickr('#eriStartDate', {
 	enableTime: true,
@@ -96,29 +142,26 @@ flatpickr('#eriEndTime', {
 
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/test/exhibition/5');
+	//추후에 유저번호 받아야함
+	xhr.open('GET', '/exhibition-reservation/' + 8);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
-			var objs = document.querySelectorAll('[data-col]');
-			for(obj of objs){
-				var key = obj.getAttribute('data-col');
-				var data = res[key];
-				if(key == "fileInfo") {
-					obj.src = '/resources/assets/img/exhibition/' + data.fiPath;
-					data = '';
-				}
-				obj.innerHTML = data;
+			var html = '<option>예약 전시회를 선택해 주세요</option>';
+			for(var exhibition of res){
+				html += '<option value="' + exhibition.eiNum + '">' + exhibition.eiName + '</option>';
 			}
+			document.querySelector('#eiNum').innerHTML = html;
 		}
 	}
 	xhr.send();
 }
 
 function insert(){
+	var eiNum = document.querySelector('#eiNum');
 	var param = {
 			exhibitionInfo : {
-				eiNum : 2
+				eiNum : eiNum.value
 			}
 	};
 	
@@ -134,11 +177,11 @@ function insert(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			if(xhr.responseText >= 1){
-				alert('인서트 성공');
+				alert('전시회 예약등록에 성공하였습니다.');
 				location.href = '/';
 				return;
 			}
-			alert('인서트 실패');
+			alert('전시회 예약등록에 실패하였습니다.');
 		}
 	}
 	
@@ -148,7 +191,7 @@ function insert(){
 
 
 
-</script>	
-<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+</script>
 </body>
+
 </html>

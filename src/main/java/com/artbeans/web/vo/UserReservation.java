@@ -13,4 +13,5 @@ public class UserReservation {
 	
 	private Integer piPrice;
 	
+	private Integer eriNum;
 }

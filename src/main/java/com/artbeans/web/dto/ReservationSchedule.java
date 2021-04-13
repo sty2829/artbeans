@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class ReservationSchedule {
-	
+
 	private String imgPath;
 	
 	private String exhibitionName;
@@ -25,12 +25,15 @@ public class ReservationSchedule {
 	
 	private Integer maxTicket;
 	
-	private List<String> disable;
+	private Integer eriNum;
+	
+	private String disable;
+	
+	private List<String> disableList;
 
 	public ReservationSchedule(String imgPath, String exhibitionName, String period, String audienceRating,
-			String runningTime, String minDate, String maxDate, Integer charge, Integer maxTicket,
-			List<String> disable) {
-		super();
+			String runningTime, String minDate, String maxDate, Integer charge, Integer maxTicket, Integer eriNum,
+			String disable) {
 		this.imgPath = imgPath;
 		this.exhibitionName = exhibitionName;
 		this.period = period;
@@ -40,7 +43,9 @@ public class ReservationSchedule {
 		this.maxDate = maxDate;
 		this.charge = charge;
 		this.maxTicket = maxTicket;
+		this.eriNum = eriNum;
 		this.disable = disable;
 	}
+	
 	
 }

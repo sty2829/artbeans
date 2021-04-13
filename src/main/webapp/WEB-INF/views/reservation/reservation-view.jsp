@@ -43,7 +43,7 @@ img[data-col] {
    		</div>
 		<div class="row">
 			<div class="col-lg-5">
-                <img src="/resources/assets/img/blog-1.jpg" alt="" class="img-fluid" data-col="imgPath"><br>
+                <img class="img-fluid" data-col="imgPath"><br>
           	</div>
 			<div class="col-lg-5" style="height: 300px">
 				<div id="mycal">
@@ -128,6 +128,7 @@ img[data-col] {
 		<input type="hidden" name="rtiTime" value="">
 		<input type="hidden" name="rtiNumber" value="">
 		<input type="hidden" name="piPrice" value="">
+		<input type="hidden" name="eriNum" value="">
 	</form>
 	
 	
@@ -135,10 +136,12 @@ img[data-col] {
 <script>
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
+	//추후에 전시회번호 바꿔야함
 	xhr.open('GET', '/reservation/1');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
+			console.log(res);
 			var objs = document.querySelectorAll('[data-col]');
 			document.querySelector('#rtiDate').innerHTML = res.minDate;
 			document.querySelector('#eriMaxTicket').value = res.maxTicket;
@@ -170,9 +173,9 @@ window.onload = function(){
 	xhr.send();
 }
 
-function getTimeList(day) {
+function getTimeList(dateStr) {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/reservation-time/2/' + day);
+	xhr.open('GET', '/reservation-time/2/' + dateStr);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
@@ -195,7 +198,9 @@ function getTimeList(day) {
 				html += '<label class="btn btn-outline-success" for="time' + (i+1) + '" >' + key + '<br>' + res[key] +'매 </label>';
 			  	html += '</li>';
 			}
+			//타임리스트
 			document.querySelector('#timeList').innerHTML = html;
+			//1인당 최대값
 			var first = document.querySelector("#time1");
 			first.checked = true;
 			document.querySelector('#rtiTime').innerHTML = first.value;

@@ -23,12 +23,16 @@ public class ExhibitionReservationController {
 	@Autowired
 	private ExhibitionReservationService eriService;
 	
+	
+	//전시회 예약정보 세이브
 	@PostMapping("/exhibition-reservation")
 	public int insert(@RequestBody ExhibitionReservationInfo exhibitionReservationInfo) {
 		log.info("exhibitionReservation => {}", exhibitionReservationInfo);
 		eriService.saveExhibitionReservation(exhibitionReservationInfo);
 		return exhibitionReservationInfo.getEriNum();
 	}
+	
+	
 	
 	@GetMapping("/exhibition-reservations")
 	public List<ExhibitionReservationInfo> getList() {
@@ -37,15 +41,16 @@ public class ExhibitionReservationController {
 		return eriService.getExhibitionReservations();
 	}
 	
+	//전시회예약정보 PK로 검색
 	@GetMapping("/exhibition-reservations/{eriNum}")
 	public ExhibitionReservationInfo get(@PathVariable Integer eriNum) {
 		ExhibitionReservationInfo eri = eriService.getExhibitionReservation(eriNum);
-		log.info("eriList => {}", eri);
+		log.info("eri => {}", eri);
 		return eriService.getExhibitionReservation(eriNum);
 	}
 
-	//유저ID로 예약전시회 찾는 컨트롤러..
-	@GetMapping("/exhibition/{uiNum}")
+	//유저ID로 예약전시회 찾는 컨트롤러
+	@GetMapping("/exhibition-reservation/{uiNum}")
 	public @ResponseBody List<ExhibitionInfo> getUserExhibition(@PathVariable Integer uiNum){
 		return eriService.getExhibitionFindByUiNum(uiNum);
 	}

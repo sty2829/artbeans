@@ -2,12 +2,12 @@ package com.artbeans.web.service;
 
 import java.util.Map;
 
-import com.artbeans.web.entity.ReservationSchedule;
+import com.artbeans.web.dto.ReservationScheduleDTO;
 import com.artbeans.web.entity.ReservationTicketInfo;
 
 public interface ReservationService {
 
-	ReservationSchedule getReservationSchedule(Integer eiNum);
+	com.artbeans.web.dto.ReservationSchedule getReservationSchedule(Integer eiNum);
 	
 	ReservationTicketInfo saveReservationTicket(ReservationTicketInfo rti);
 

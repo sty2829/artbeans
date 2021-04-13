@@ -1,13 +1,21 @@
 package com.artbeans.web.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.entity.ExhibitionReservationInfo;
 
 public interface ExhibitionReservationInfoRepository extends JpaRepository<ExhibitionReservationInfo, Integer> {
 	
 	//전시회PK로 검색
 	ExhibitionReservationInfo findByExhibitionInfoEiNum(Integer eiNum);
+	
+	@Query(name = "find_reservation_schedule_dto", nativeQuery = true)
+	ReservationSchedule getReservationSchedule(@Param("eiNum") Integer eiNum);
+	
+	
 	
 	//@Query("SELECT new com.artbeans.web.dto.TicketSumDate(rti.rtiDate AS date, sum(rti.rtiNumber) AS sum) FROM ReservationTicketInfo rti LEFT JOIN rti.exhibitionReservationInfo eri where eri.eriNum = ?1 GROUP BY rti.rtiDate")
 	//List<TicketSumDate> ticketSumGroupByDate(Integer eriNum);
