@@ -248,12 +248,26 @@ function searhMap(){
 	        map.setBounds(bounds);
 	    } 
 	}
+	
+	
+    
+    
 	// 지도에 마커를 표시하는 함수입니다
 	function displayMarker(place) {
+		//추가
+		var imageSrc = "/resources/assets/img/marker.png";
+		imageSize = new kakao.maps.Size(30, 39), // 마커이미지의 크기입니다
+	    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다
+	    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);      
+	    //추가
+	    
 	    // 마커를 생성하고 지도에 표시합니다
 	    var marker = new kakao.maps.Marker({
 	        map: map,
-	        position: new kakao.maps.LatLng(place.y, place.x) 
+	        position: new kakao.maps.LatLng(place.y, place.x),
+	        //추가
+	        image: markerImage
+	        //추가
 	    });
 	    // 마커에 클릭이벤트를 등록합니다
 	    kakao.maps.event.addListener(marker, 'click', function() {
@@ -266,6 +280,8 @@ function searhMap(){
 	    
 	}
 }          
+
+ 
 </script>
           <!-- 모달 바디 -->
         </div>
