@@ -37,9 +37,21 @@ public class ExhibitionController {
 		return eService.getExhibitionInfoLists(pageable, dtExhibitionInfo);
 	}
 	
+//	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
+//
+//		return eService.getExhibitionInfos(exhibitionInfo);
+//	}
+	
+
 //	@GetMapping("/exhibition-list-newest")
 //	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoNewestList(ExhibitionInfo exhibitionInfo){
 //		return eService.getExhibitionInfoNewestList(exhibitionInfo);
+
+	
+//	@GetMapping("/exhibition-list")
+//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable, DataTable<ExhibitionInfo> exhibitionInfo){
+//		
+//		return eService.getExhibitionInfos(pageable, exhibitionInfo);
 //	}
 	
 	@GetMapping("/exhibition-list-newest")

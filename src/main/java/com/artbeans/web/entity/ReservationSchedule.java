@@ -141,6 +141,12 @@ public class ReservationSchedule {
 		
 		//투데이 생성
 		Date date = new Date();
+		String format = sdf.format(date);
+		try {
+			date = sdf.parse(format);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		
 		//투데이가 스타트date(mindate)보다 크다면 mindate에 투데이 입력 
 		if(date.compareTo(minDate) > 0) {
@@ -163,10 +169,12 @@ public class ReservationSchedule {
 		//mindate랑 제외리스트를 비교하면서 mindate 선정   
 		for(Date d : excludeDateAndHolidayList) {
 			minDate = cal.getTime();
+			log.info("d =>{}", d);
 			if(d.compareTo(minDate) > 0) {
 				//제외날짜가 mindate보다 크면 for문 나감
-			}else if(d.compareTo(minDate) == 0){
 				log.info("minDate =>{}", minDate);
+				break;
+			}else if(d.compareTo(minDate) == 0){
 				//mindate가 제외날짜와 같다면 하루 추가
 				cal.add(Calendar.DATE, 1);
 				log.info("minDate =>{}", minDate);

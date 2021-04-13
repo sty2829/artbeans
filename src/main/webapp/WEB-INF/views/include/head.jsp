@@ -9,15 +9,43 @@
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
   <div class="container">          
-  		<form action="/search" method="get">
-       <input type="text" name="keyword" placeholder="전시회, 전시관 검색">
-       <button>검색</button>
-       </form>
+					<!--검 색 창   -->
+		<form action="/search" method="get" name = "frm">
+		<div class="col-lg-5 d-flex justify-content-center">	
+	<input type=text name = "keyword" class="col-md-6 d-flex justify-content-center"
+	onkeyup="startSuggest(this);">
+            <button type="button" id="btn_search">검색</button>
+            <ul id = "suggest"></ul>
+            <!-- 검색리스트 나오는 영역 -->           
+       </div> </form><br>
        
        <a href="/views/login" style="float:right"  class="get-started-btn ml-auto">로그인/회원가입</a>
       
        
   </div>
+  <script>
+function startSuggest(target){
+var tKeyword ='?eiName='+ target.value;
+var encodeWord = encodeURI(tKeyword);
+var xhr = new XMLHttpRequest();
+xhr.open('GET','/exhibition-list'+tKeyword);
+xhr.onreadystatechange = function(){
+	if(xhr.readyState==4&& xhr.status==200){
+		var res = JSON.parse(xhr.responseText);
+		console.log(res);
+		html = '';
+		for(var exhibition of res){
+			html +=	'<li class="suggest" value="' + exhibition.eiName + '">';
+			html += '<a>' + exhibition.eiName + '</a>'
+			html += '</li>';
+		}
+		document.querySelector('#suggest').innerHTML = html;
+		}
+	}
+	xhr.send();
+}
+</script>
+  
 
       
       

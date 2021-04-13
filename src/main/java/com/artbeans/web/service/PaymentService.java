@@ -1,8 +1,11 @@
 package com.artbeans.web.service;
 
 import com.artbeans.web.entity.PaymentInfo;
+import com.artbeans.web.vo.PaymentVO;
 
 public interface PaymentService {
 
-	int savePayment(PaymentInfo paymentInfo);
+	PaymentInfo savePayment(PaymentInfo paymentInfo);
+	
+	int paymentVaild(PaymentVO paymentVO);
 }
