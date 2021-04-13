@@ -144,7 +144,7 @@
                       <input type="text" id="giAddress" placeholder="갤러리 주소">
                       <!-- map 수정 -->
                       <!-- map 수정 -->
-                  <button type="button" data-toggle="modal" data-target="#myModal" class="get-started-btn ml-auto">주소검색</button>
+                  <button type="button" onclick="sample4_execDaumPostcode()" data-toggle="modal" data-target="#myModal" class="get-started-btn ml-auto">주소검색</button>
 
 
 <div class="modal fade" id="myModal" role="dialog">
@@ -155,12 +155,12 @@
       <!-- 주소찾기 --> 
       <input type="hidden" id="sample4_postcode" >
       <input type="hidden" id="sample4_extraAddress">
-      <input type="text" size="50px" id="sample4_roadAddress" placeholder="도로명주소">
+      <input type="hidden" size="50px" id="sample4_roadAddress" placeholder="도로명주소">
       <input type="hidden" id="sample4_jibunAddress" placeholder="지번주소">
       <span id="guide" style="color:#999;display:none"></span>
       <input type="hidden" size="40px" id="sample4_detailAddress" placeholder="상세주소">
-      <button onclick="sample4_execDaumPostcode()" class="get-started-btn ml-auto">주소찾기</button>
-      
+      <!-- <button onclick="sample4_execDaumPostcode()" class="get-started-btn ml-auto">주소찾기</button>
+       -->
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -204,6 +204,7 @@
                         guideTextBox.innerHTML = '';
                         guideTextBox.style.display = 'none';
                     }
+                    searhMap();
                    // dOpen.close();
                 }
             }).open();
@@ -211,7 +212,7 @@
     </script>
 <!-- 주소로 맵 
       <input type="hidden" id="searhMapKey">-->
-      <button onclick="searhMap()" class="get-started-btn ml-auto">주소검색</button>
+      <!-- <button onclick="searhMap()" class="get-started-btn ml-auto">주소검색</button> -->
       </div>
         <div class="modal-body">
           <!-- 모달 바디 -->
@@ -220,13 +221,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f6ce9d8468a6bd79f89c359862923de3&libraries=services"></script>
 <script>
 function searhMap(){
-	//console.log(document.querySelector('#searhMapKey').value);
 	var value = document.querySelector('#sample4_roadAddress').value;
-	console.log(valueRoadAddress);
-	//var valueDetailAddress = document.querySelector('#sample4_detailAddress').value;
-	//console.log(valueDetailAddress);
-	//var value = valueRoadAddress  + ' ' +  valueDetailAddress;
-	//console.log(value);
 	var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	    mapOption = {
@@ -351,7 +346,7 @@ window.onload = galleryOption();
 	
 function galleryOption(){ 
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/Gallery-list'); //GalleryController
+	xhr.open('GET','/Gallery-lists'); //GalleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			console.log(xhr.responseText);

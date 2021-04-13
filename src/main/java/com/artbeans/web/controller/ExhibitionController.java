@@ -37,34 +37,6 @@ public class ExhibitionController {
 		return eService.getExhibitionInfoLists(pageable, dtExhibitionInfo);
 	}
 	
-//	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
-//
-//		return eService.getExhibitionInfos(exhibitionInfo);
-//	}
-	
-
-//	@GetMapping("/exhibition-list-newest")
-//	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoNewestList(ExhibitionInfo exhibitionInfo){
-//		return eService.getExhibitionInfoNewestList(exhibitionInfo);
-
-	
-//	@GetMapping("/exhibition-list")
-//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable, DataTable<ExhibitionInfo> exhibitionInfo){
-//		
-//		return eService.getExhibitionInfos(pageable, exhibitionInfo);
-//	}
-	
-	@GetMapping("/exhibition-list-newest")
-	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoNewestList(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
-		return eService.getExhibitionInfoNewestLists(pageable, dtExhibitionInfo);
-	}
-	
-	@GetMapping("/exhibition-list-deadline")
-	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoDeadlineList(ExhibitionInfo exhibitionInfo){
-		return eService.getExhibitionInfoDeadlineList(exhibitionInfo);
-	}
-	
-	
 	@GetMapping("/exhibition")
 	public @ResponseBody ExhibitionInfo getExhibitionInfo(@RequestParam Integer eiNum){
 //		log.info("eiNum=>{}",eService.getExhibitionInfo(eiNum));

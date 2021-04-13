@@ -46,16 +46,25 @@
 
 
 <script>
-window.onload = function(){
+window.onload = get();
+
+var count = 0;
+window.onscroll = function(e) {
+    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        count++;
+        get();
+    }
+};
+
+function get(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/Gallery-list'); //galleryController
+	xhr.open('GET','/Gallery-list?size=11&sort=giNum,asc&page='+ count); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			for(var galleryInfo of res){
-				console.log(galleryInfo.fileInfo.fiPath);
+			for(var galleryInfo of res.data){				
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
@@ -79,7 +88,7 @@ window.onload = function(){
 				html += '</article>';
 				html += '</div>';
 			}
-			document.querySelector('#galleryList').innerHTML = html;
+			document.querySelector('#galleryList').innerHTML += html;
 		}		
 	}
 	xhr.send();
@@ -87,13 +96,13 @@ window.onload = function(){
 
 function areaAsc(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/Gallery-list-areaAsc'); //galleryController
+	xhr.open('GET','/Gallery-list?size=11&sort=giAddress,asc&page='+ count); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			for(var galleryInfo of res){
+			for(var galleryInfo of res.data){				
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
@@ -125,13 +134,13 @@ function areaAsc(){
 
 function areaDesc(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/Gallery-list-areaDesc'); //galleryController
+	xhr.open('GET','/Gallery-list?size=11&sort=giAddress,Desc&page='+ count); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			for(var galleryInfo of res){
+			for(var galleryInfo of res.data){				
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
@@ -163,13 +172,13 @@ function areaDesc(){
 
 function nameAsc(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/Gallery-list-nameAsc'); //galleryController
+	xhr.open('GET','/Gallery-list?size=11&sort=giName,asc&page='+ count); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			for(var galleryInfo of res){
+			for(var galleryInfo of res.data){				
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
@@ -201,13 +210,13 @@ function nameAsc(){
 
 function nameDesc(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/Gallery-list-nameDesc'); //galleryController
+	xhr.open('GET','/Gallery-list?size=11&sort=giName,desc&page='+ count); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
+			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			for(var galleryInfo of res){
+			for(var galleryInfo of res.data){				
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';

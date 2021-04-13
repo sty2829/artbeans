@@ -705,8 +705,8 @@ div {
 
 			var uiGender = document.querySelector('input[id="uiGender1"]:checked');
 			console.log(uiGender);
-			console.log(uiGender.value);
-			if (uiGender.value.trim().length <1) {
+			//console.log(uiGender.value);
+			if (!uiGender) {
 				alert('성별을 선택해주세요.');
 				gender.focus();
 				return;

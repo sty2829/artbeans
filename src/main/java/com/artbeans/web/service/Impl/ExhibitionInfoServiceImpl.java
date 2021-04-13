@@ -37,24 +37,6 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		
 		return exhiRepo.findAll();
 	}
-	
-	public List<ExhibitionInfo> getExhibitionInfoNewestList(ExhibitionInfo exhibitionInfo) {
-		return  exhiRepo.findAllByOrderByEiStartDateDesc();
-	}
-	
-	public List<ExhibitionInfo> getExhibitionInfoNewestLists(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		Page<ExhibitionInfo> pb = (Page<ExhibitionInfo>) exhiRepo.findAllByOrderByEiStartDateAsc(pageable);
-		dtExhibitionInfo.setData(pb.getContent());
-		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
-		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
-		return (List<ExhibitionInfo>) dtExhibitionInfo;
-		
-		
-	}
-	
-	public List<ExhibitionInfo> getExhibitionInfoDeadlineList(ExhibitionInfo exhibitionInfo) {
-		return exhiRepo.findAllByOrderByEiStartDateDesc();
-	}
 
 	@Override
 	public ExhibitionInfo getExhibitionInfo(Integer eiNum) {
