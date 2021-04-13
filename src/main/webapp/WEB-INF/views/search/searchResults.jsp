@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -10,73 +10,107 @@
 <title>통합 검색</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <script src="https://code.jquery.com/jquery-3.6.0.js"
-integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-crossorigin="anonymous"></script>
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<style>
+
+.searchInput {
+  height: 3em;
+  width: 400px;
+  padding: 0 10px;
+  box-shadow: 3px 3px 10px #566270;
+  outline: none;
+  border: none;
+  border-radius: 6px;
+}
+::placeholder {
+	color: #d2d2d2;
+}
+
+
+#totalSuggestListDiv {
+	width: 400px;
+	margin-top: 50px;
+	position: absolute;
+	background: white;
+	padding: 0 2px;
+	border-radius: 6px;
+}
+
+.totalItem {
+	height: 1.8em;
+	width: 400px;
+	outline: none;
+}
+
+.totalItem:hover {
+	color: #black;
+	background: #dcdcdc;
+}
+.text {
+	font-weight: bold;
+}
+
+</style>
 </head>
 <body>
 
-<main id="main">
+	<main id="main">
 		<!-- ======= Breadcrumbs ======= -->
 		<section id="breadcrumbs" class="breadcrumbs">
-			<div class="container">
-			
-			</div>
+			<div class="container"></div>
 		</section>
 		<!-- End Breadcrumbs -->
 
 		<!-- ======= Portfolio Section ======= -->
 		<section id="portfolio" class="portfolio">
-		<div class="col-lg-12 d-flex justify-content-center">
-		<h1>통 합 검 색</h1>
-		</div><br>
-		
-			
-					<!--검 색 창   -->
-		<form action="/search" method="get" name = "frm">
-		<div class="col-lg-12 d-flex justify-content-center">	
-	<input type=text name = "keyword" class="col-md-6 d-flex justify-content-center"
-	onkeyup="startSuggest(this);">
-            <button type="button" id="btn_search">검색</button>
-            <ul id = "suggest"></ul>
-            <!-- 검색리스트 나오는 영역 -->           
-       </div> </form><br>
-       
-       
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12 d-flex justify-content-center">
-					    <ul id="portfolio-flters">
-					        <li>A L L</li>
-	                 	    <li>전 시 회</li>					        
-						    <li>전 시 관</li>
-	                    </ul>
+			<div class="col-lg-12 d-flex justify-content-center">
+				<h1>통 합 검 색</h1>
+			</div>
+			<br>
+
+			<form action="/search" method="get" name="frm">
+				<div>
+					<div>
+						<div class="col-lg-12 d-flex justify-content-center">
+							<input autocomplete="off" type=text name="keyword" placeholder="전시관,전시회 검색"
+								class="searchInput" onkeyup="startSuggest(this);">
+							<div style="display: none;">
+								<button id="btn_search">검색</button>
+							</div>
+							<div id="totalSuggestListDiv"></div>
+						</div>
 					</div>
 				</div>
-			</div>
+			</form>
+			<br>
+
 		</section>
-<section id="blog" class="blog">
-<div class="col-lg-12 d-flex justify-content-center">
-<h2>전시회</h2>
-</div>
-      <div class="container">
-        <div class="row" id="exhibitionList">
-          </div>
-        </div>
- 
-</section>
-<section id="blog" class="blog">
-<div class="col-lg-12 d-flex justify-content-center">
-<h2>전시관</h2>
-</div>
-      <div class="container">
-        <div class="row" id="galleryList">
-          </div>
-        </div>
- 
-</section>
-</main>
-<script>
+		<section id="blog" class="blog">
+			<div class="col-lg-12 d-flex justify-content-center">
+				<h2>전시회</h2>
+			</div>
+			<div class="container">
+				<div class="row" id="exhibitionList"></div>
+			</div>
+
+		</section>
+		<section id="blog" class="blog">
+			<div class="col-lg-12 d-flex justify-content-center">
+				<h2>전시관</h2>
+			</div>
+			<div class="container">
+				<div class="row" id="galleryList"></div>
+			</div>
+
+		</section>
+	</main>
+	<script>
 function startSuggest(target){
+	console.log(target.value);
+	if(!target.value.trim()) return;
 var tKeyword ='?eiName='+ target.value;
 var encodeWord = encodeURI(tKeyword);
 var xhr = new XMLHttpRequest();
@@ -87,11 +121,12 @@ xhr.onreadystatechange = function(){
 		console.log(res);
 		html = '';
 		for(var exhibition of res){
-			html +=	'<li class="suggest" value="' + exhibition.eiName + '">';
-			html += '<a>' + exhibition.eiName + '</a>'
-			html += '</li>';
+			html +=	'<div class="totalItem">';
+			html += exhibition.eiName;
+			html +=	'<span class="text"></span>';
+			html += '</div>';
 		}
-		document.querySelector('#suggest').innerHTML = html;
+		document.querySelector('#totalSuggestListDiv').innerHTML = html;
 		}
 	}
 	xhr.send();
@@ -99,7 +134,7 @@ xhr.onreadystatechange = function(){
 </script>
 
 
-<script>
+	<script>
 			
 
 var keyword ='${keyword}';// header부분 검색 keyword
@@ -266,6 +301,6 @@ function getGallery(obj){
 }
 </script>
 
-<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
