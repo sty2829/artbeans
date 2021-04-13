@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artbeans.web.dto.DataTable;
 import com.artbeans.web.entity.ExhibitionInfo;
+import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -25,21 +26,25 @@ public class ExhibitionController {
 	@Autowired
 	private ExhibitionService eService;
 	
+//	@GetMapping("/exhibition-list")
+//	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
+//		log.info("exhibitionList=>{}",exhibitionInfo);
+//		return eService.getExhibitionInfos(exhibitionInfo);
+//	}
+	
 	@GetMapping("/exhibition-list")
-	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
-		log.info("exhibitionList=>{}",exhibitionInfo);
-		return eService.getExhibitionInfos(exhibitionInfo);
+	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
+		return eService.getExhibitionInfoLists(pageable, dtExhibitionInfo);
 	}
 	
-//	@GetMapping("/exhibition-list")
-//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable, DataTable<ExhibitionInfo> exhibitionInfo){
-//		
-//		return eService.getExhibitionInfos(pageable, exhibitionInfo);
+//	@GetMapping("/exhibition-list-newest")
+//	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoNewestList(ExhibitionInfo exhibitionInfo){
+//		return eService.getExhibitionInfoNewestList(exhibitionInfo);
 //	}
 	
 	@GetMapping("/exhibition-list-newest")
-	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoNewestList(ExhibitionInfo exhibitionInfo){
-		return eService.getExhibitionInfoNewestList(exhibitionInfo);
+	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoNewestList(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
+		return eService.getExhibitionInfoNewestLists(pageable, dtExhibitionInfo);
 	}
 	
 	@GetMapping("/exhibition-list-deadline")
