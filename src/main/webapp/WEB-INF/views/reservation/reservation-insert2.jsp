@@ -5,24 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>전시회 등록 페이지</title>
-
 <link href="/resources/node_modules/flatpickr/dist/flatpickr.css" rel="stylesheet"/>
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
+<style></style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<main id="main">
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center">         
-        </div>
-      </div>
-    </section><!-- End Breadcrumbs -->
-
-    <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
-      <div class="container">
+      <div class="container reservationInsertMain">
     	<div class="row">
    			<div class="col-lg-10" style="text-align: center;">
 				<div class="section-title">
@@ -119,7 +109,6 @@
         </div>
       </div>
     </section>
-  </main>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
 flatpickr('#eriStartDate', {

@@ -106,16 +106,10 @@ xhr.onreadystatechange = function(){
 	xhr.send();
 }
 </script>
-<<<<<<< HEAD
-=======
-  
-
-      
-      
     <div class="container d-flex align-items-center">
     
       <div onclick="location.href='/'">
-      <h1 class="logo" style="cursor: pointer""><img src="/resources/assets/img/logo.png" class="img-fluid" ></h1>
+      <h1 class="logo" style="cursor: pointer"><img src="/resources/assets/img/logo.png" class="img-fluid" ></h1>
       </div>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
@@ -157,7 +151,9 @@ xhr.onreadystatechange = function(){
         </ul>
 
       </nav><!-- .nav-menu -->
->>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
+     </div>
+    
+
 
 
 
@@ -165,7 +161,7 @@ xhr.onreadystatechange = function(){
 		<div class="container d-flex align-items-center">
 
 			<div onclick="location.href='/'">
-				<h1 class="logo" style="cursor: pointer"">
+				<h1 class="logo" style="cursor: pointer">
 					<img src="/resources/assets/img/logo.png" class="img-fluid">
 				</h1>
 			</div>
@@ -200,13 +196,12 @@ xhr.onreadystatechange = function(){
 						<ul>
 							<li><a href="/views/exhibition/insert">전시회 등록</a></li>
 							<li><a href="/views/exhibition/exhibition-update">전시회 수정</a></li>
-						</ul></li>
+							<li><a href="/views/reservation/reservation-insert">전시회 예약 등록</a></li>
+						</ul>
 				</ul>
 
 			</nav>
 			<!-- .nav-menu -->
-
-
 		</div>
 	</header>
 	<!-- End Header -->
