@@ -2,6 +2,7 @@ package com.artbeans.web.service;
 
 import java.util.List;
 
+import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.ExhibitionReservationInfo;
 
 public interface ExhibitionReservationService {
@@ -12,4 +13,5 @@ public interface ExhibitionReservationService {
 	
 	ExhibitionReservationInfo getExhibitionReservation(Integer eiNum);
 	
+	List<ExhibitionInfo> getExhibitionFindByUiNum(Integer uiNum);
 }

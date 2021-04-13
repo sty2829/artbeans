@@ -18,6 +18,7 @@ public interface ExhibitionService {
 	DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo);
 	List<ExhibitionInfo> getExhibitionInfoNewestLists(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo);
 	
+	
 	//DataTable<ExhibitionInfo> getExhibitionInfos(Pageable pageable, DataTable<ExhibitionInfo> exhibitionInfo);
 
 }

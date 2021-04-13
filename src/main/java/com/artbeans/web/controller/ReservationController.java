@@ -1,5 +1,6 @@
 package com.artbeans.web.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,8 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.ReservationSchedule;
 import com.artbeans.web.entity.ReservationTicketInfo;
 import com.artbeans.web.service.ReservationService;
@@ -21,7 +24,6 @@ public class ReservationController {
 
 	@Autowired
 	private ReservationService rService;
-	
 	
 	//예약구매자가 전시회 예약화면으로 이동시 전시회예약 스케쥴
 	@GetMapping("/reservation/{eiNum}")

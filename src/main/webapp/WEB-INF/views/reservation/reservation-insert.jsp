@@ -10,11 +10,13 @@
 <style>
 .reservationInsertMain {
 	margin-top: 150px;
-	margin-left: 450px;
-	height: 700px;
+	height: 1000px;
 }
 h5 {
 	font-weight: bold;
+}
+.row{
+	margin-left: 200px;
 }
 .radio-hidden{
 	display: none;
@@ -32,19 +34,19 @@ img[data-col] {
 <body>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
    <div class="container reservationInsertMain">
-   		<div class="row">
-   			<div class="col-lg-11" style="text-align: center;">
+   		<div class="row ml-5">
+   			<div class="col-lg-8" style="text-align: center;">
 				<div class="section-title">
 		          <p>전시회 예약등록</p>
 		        </div>
    			</div>
    		</div>
-		<div class="row">
-			<div class="col-lg-5" style="text-align: center">
-				<img src="/resources/assets/img/blog-1.jpg" class="img-fluid" data-col="fileInfo">
-	          	<h5 class="mt-2" data-col="eiName">제목</h5>
-          	</div>
-			<div class="col-lg-3">
+		<div class="row ml-5">
+			<div class="col-lg-8">
+				  <label for="exampleFormControlSelect1">예약전시회</label>
+				  <select class="form-control" id="exampleFormControlSelect1">
+			  		 <option>전시회를 선택해주세요</option>
+				  </select>
 	      		<label for="eriAudienceRating">관람등급</label>
 			    <input type="text" class="form-control" id="eriAudienceRating" required>
       			<label for="eriRunningTime" class="mt-2">러닝타임</label>
@@ -53,9 +55,7 @@ img[data-col] {
 			    <input type="number" class="form-control" id="eriMaxStock" min="1" required>
       			<label for="eriMaxTicket" class="mt-2">시간당 최대 예매표</label>
 			    <input type="number" class="form-control" id="eriMaxTicket" min="1" required >
-		   </div>
-		   <div class="col-lg-3">
-		   		<label for="eriStartDate">예매 시작일</label>
+			    <label for="eriStartDate">예매 시작일</label>
     	   		<input type="text" class="form-control" id="eriStartDate" style="background-color: white">
   		        <label for="eriEndDate" class="mt-2">예매 종료일</label>
     			<input type="text" class="form-control" id="eriEndDate" style="background-color: white">
@@ -64,15 +64,8 @@ img[data-col] {
     	   		<label for="eriEndTime" class="mt-2">예매 종료시간</label>
     	   		<input type="text" class="form-control" id="eriEndTime" style="background-color: white"><br>
     	   		<button type="button" class="btn btn-primary" style="width: inherit;" onclick="insert()">등록</button>
-		  </div>
+		   </div>
 	   </div>
-		<br>
-		<div class="row">
-			<div class="col-lg-5">
-			</div>
-			<div class="col-lg-6">
-			</div>
-		</div>
 	</div>
 <script>
 flatpickr('#eriStartDate', {

@@ -5,12 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.ExhibitionReservationInfo;
+import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.repository.ExhibitionReservationInfoRepository;
 import com.artbeans.web.service.ExhibitionReservationService;
 
 @Service
 public class ExhibitionReservationServiceImpl implements ExhibitionReservationService {
+	
+	@Autowired
+	private ExhibitionInfoRepository eiRepo;
 	
 	@Autowired
 	private ExhibitionReservationInfoRepository eriRepo;
@@ -28,6 +33,11 @@ public class ExhibitionReservationServiceImpl implements ExhibitionReservationSe
 	@Override
 	public ExhibitionReservationInfo getExhibitionReservation(Integer eiNum) {
 		return eriRepo.findById(eiNum).get();
+	}
+
+	@Override
+	public List<ExhibitionInfo> getExhibitionFindByUiNum(Integer uiNum) {
+		return eiRepo.findAllByUserInfoUiNum(uiNum);
 	}
 
 }
