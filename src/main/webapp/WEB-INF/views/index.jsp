@@ -14,41 +14,13 @@
 
       <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
-      <div class="carousel-inner" role="listbox">
+      <div  id="mainSlide" class="carousel-inner" role="listbox">
 
-        <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(/resources/assets/img/slide/slide-1.jpg)">
-          <div class="carousel-container">
-            <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">진행중인 전시회1 </h2>
-              <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">상세정보</a>
-            </div>
-          </div>
-        </div>
+<!--         Slide 1
+        <div id="mainSlide" class="carousel-item active" style="background-image: url(/resources/assets/img/slide/slide-1.jpg)">
+        </div> -->
 
-        <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url(/resources/assets/img/slide/slide-2.jpg)">
-          <div class="carousel-container">
-            <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">진행중인 전시회2</h2>
-              <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">상세정보</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url(/resources/assets/img/slide/slide-3.jpg)">
-          <div class="carousel-container">
-            <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">진행중인 전시회3</h2>
-              <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">상세정보</a>
-            </div>
-          </div>
-        </div>
-
+ 
       </div>
 
       <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
@@ -63,6 +35,37 @@
 
     </div>
   </section><!-- End Hero -->
+  <script>
+ 
+			function slideExhibition() {
+				var xhr = new XMLHttpRequest();
+				xhr.open('GET', '/exhibition-search');
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						var res = JSON.parse(xhr.responseText);
+					
+					var eiNum =null;
+						html = '';
+						for(var slideExhibitions of res){
+							eiNum = slideExhibitions.eiNum;
+							console.log(slideExhibitions);
+							if(eiNum==0){
+								html+= '<div class="carousel-item active" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';	
+							}
+							html+= '<div class="carousel-item" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';  
+							html+= '<div class="carousel-container">';	
+							html+= '<div class="container">';
+					      	html+='</div>';
+					      	html+='</div>';
+					      	html+='</div>';						
+						}
+						document.querySelector('#mainSlide').innerHTML = html;
+					}
+				}
+				xhr.send();
+			}
+			window.onload = slideExhibition;
+		</script>
 
  <main id="main">
     <!-- ======= Portfolio Section ======= -->

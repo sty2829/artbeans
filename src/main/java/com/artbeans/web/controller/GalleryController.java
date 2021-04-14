@@ -29,10 +29,10 @@ public class GalleryController {
 		return gService.getGalleryLists(pageable, dtGalleryInfo);
 	}
 	
-	@GetMapping("/Gallery-lists")
-	public @ResponseBody List<GalleryInfo> getGalleryInfoList(@ModelAttribute GalleryInfo galleryInfo){
-		return gService.getGalleryInfos(galleryInfo);
-	}
+//	@GetMapping("/Gallery-lists")
+//	public @ResponseBody List<GalleryInfo> getGalleryInfoList(@ModelAttribute GalleryInfo galleryInfo){
+//		return gService.getGalleryInfos(galleryInfo);
+//	}
 	
 	@GetMapping("/Gallery")
 	public @ResponseBody GalleryInfo getGalleryInfo(@RequestParam Integer giNum){

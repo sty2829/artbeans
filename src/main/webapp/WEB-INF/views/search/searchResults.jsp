@@ -108,7 +108,7 @@
 	</main>
 	<script>
 function startSuggest(target){
-	console.log(target.value);
+	
 	if(target.value.trim()==''){
 		return hide();		
 	}
