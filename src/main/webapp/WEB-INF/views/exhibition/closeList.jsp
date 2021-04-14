@@ -43,7 +43,7 @@
 </main>
 
 <script>
-window.onload = get();
+window.onload = get;
 
 var count = 0;
 window.onscroll = function(e) {
@@ -54,6 +54,7 @@ window.onscroll = function(e) {
 };
 
 function get(){
+	count = 0;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition-list?size=11&sort=eiNum,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
@@ -94,6 +95,7 @@ function get(){
 }
 
 function newest(){
+	count = 0;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
@@ -134,6 +136,7 @@ function newest(){
 }
 
 function deadline(){
+	count = 0;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,Desc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){

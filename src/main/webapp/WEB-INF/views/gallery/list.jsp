@@ -46,7 +46,7 @@
 
 
 <script>
-window.onload = get();
+window.onload = get;
 
 var count = 0;
 window.onscroll = function(e) {
@@ -95,6 +95,7 @@ function get(){
 }
 
 function areaAsc(){
+	count = 0;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/Gallery-list?size=11&sort=giAddress,asc&page='+ count); //galleryController
 	xhr.onreadystatechange = function(){
@@ -133,6 +134,7 @@ function areaAsc(){
 }
 
 function areaDesc(){
+	count = 0;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/Gallery-list?size=11&sort=giAddress,Desc&page='+ count); //galleryController
 	xhr.onreadystatechange = function(){
@@ -171,6 +173,7 @@ function areaDesc(){
 }
 
 function nameAsc(){
+	count = 0;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/Gallery-list?size=11&sort=giName,asc&page='+ count); //galleryController
 	xhr.onreadystatechange = function(){
@@ -209,6 +212,7 @@ function nameAsc(){
 }
 
 function nameDesc(){
+	count = 0;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/Gallery-list?size=11&sort=giName,desc&page='+ count); //galleryController
 	xhr.onreadystatechange = function(){

@@ -43,7 +43,7 @@
 </main>
 
 <script>
-window.onload = get();
+window.onload = get;
 
 var count = 0;
 window.onscroll = function(e) {
@@ -98,6 +98,7 @@ function get(){
 }
 
 function newest(){
+	count = 0;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
@@ -106,7 +107,7 @@ function newest(){
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			// exhibition.eiStatus=0 진행할 전시회
-			//console.log(res);
+			console.log(res);
 			for(var exhibition of res.data){				
 				if(exhibition.eiStatus==0){
 					//console.log(exhibition);
@@ -142,6 +143,7 @@ function newest(){
 }
 
 function deadline(){
+	count = 0;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,Desc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
