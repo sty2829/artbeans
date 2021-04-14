@@ -28,11 +28,11 @@ width: 200px;
 }
 #suggestListDiv {
 	width: 200px;
-	margin-top: 2px;
+	top: 33%;
 	position: absolute;
 	background: white;
 	padding: 0 2px;
-	border-radius: 5px;
+	border-radius: 6px;
 }
 
 .item {
@@ -42,7 +42,7 @@ width: 200px;
 }
 
 .item:hover {
-	color: #black;
+	color: #red;
 	background: #dcdcdc;
 	
 }
@@ -83,27 +83,70 @@ width: 200px;
 		</div>
 		<script>
 function headSuggest(target){
-	console.log(target.value);
-	if(!target.value.trim()) return;
-var tKeyword ='?eiName='+ target.value;
-var encodeWord = encodeURI(tKeyword);
+	if(target.value.trim()==''){
+		return hide();		
+	}
+	headSuggestGallery(target);
+	
+ if(!target.value.trim()) return;
+
+
+	console.log(target.value.trim());
+var eKeyword ='?eiName='+ target.value;
 var xhr = new XMLHttpRequest();
-xhr.open('GET','/exhibition-list'+tKeyword);
+xhr.open('GET','/exhibition-search'+eKeyword);
 xhr.onreadystatechange = function(){
 	if(xhr.readyState==4&& xhr.status==200){
 		var res = JSON.parse(xhr.responseText);
-		console.log(res);
 		html = '';
 		for(var exhibition of res){
-			html +=	'<div class="item">';
-			html += exhibition.eiName;
+			html +=	'<div class="item">'; 
+			html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ exhibition.eiName +'\'">'+exhibition.eiName+'</a>';
 			html +=	'<span class="text"></span>';
 			html += '</div>';
 		}
 		document.querySelector('#suggestListDiv').innerHTML = html;
+		show();
 		}
 	}
 	xhr.send();
+}
+
+function headSuggestGallery(obj){ 
+	if(obj.value.trim()==''){
+		return hide();		
+	}
+	var gKeyword ='?giName='+ obj.value;
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/Gallery-lists'+gKeyword);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4&&xhr.status==200){
+			var get = JSON.parse(xhr.responseText);
+			
+			console.log(get);
+			var html ='';
+			for(var gallery of get){
+			
+					html +=	'<div class="item">'; 
+					html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ gallery.giName +'\'">'+gallery.giName+'</a>';
+					html +=	'<span class="text"></span>';
+					html += '</div>';		
+		}
+			document.querySelector('#suggestListDiv').innerHTML = html;
+			show();
+		}
+	}
+	xhr.send();
+}
+
+
+function hide(){
+	var suggestListDiv = document.querySelector('#suggestListDiv');
+	suggestListDiv.style.display='none';
+}
+function show(){
+	var suggestListDiv = document.querySelector('#suggestListDiv');
+	suggestListDiv.style.display='block';
 }
 </script>
     <div class="container d-flex align-items-center">
