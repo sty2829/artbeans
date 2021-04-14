@@ -78,4 +78,6 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	    dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
 	    return dtExhibitionInfo;
     }
+	
+	
 }

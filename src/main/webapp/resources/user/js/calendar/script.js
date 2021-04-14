@@ -9,7 +9,7 @@ function getDate(date) {
 
 window.onload = function load() {
 	const Tday = new Date();
-
+	
 	const nowMonth = Tday.getMonth()+nav;
 
 	const [y, m] = getDate(new Date(Tday.setMonth(nowMonth)));
@@ -210,7 +210,7 @@ function nextButton() {
 
 	nav++;
 	const Tday = new Date();
-
+	
 	const nowMonth = Tday.getMonth()+nav;
 
 	const [y, m] = getDate(new Date(Tday.setMonth(nowMonth)));

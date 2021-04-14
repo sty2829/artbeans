@@ -36,6 +36,10 @@
     <div class="grid date_form dateSel"></div>
 
   </div>
-
+  <div><br></div>
+  <div><br></div>
+  <div><br></div>
+  <div><br></div>
+<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

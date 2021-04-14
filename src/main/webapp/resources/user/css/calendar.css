@@ -22,6 +22,7 @@
 	background: #f03d3d;
 	color: #fff;
 	text-align: center;
+	min-width: 150px;
 }
 
 .date_form {
@@ -43,6 +44,7 @@
 	padding: 1rem 1.3rem;
 	border-radius: 10px;
 	border: 1px solid #f7f7f7;
+	min-width: 150px;
 }
 
 .background {
@@ -79,10 +81,11 @@
 	font-weight: bold;
 	color: #ffffff;
 	min-height: 10px;
+	min-width: 100px;
 	/*padding: 0px 10px 10px 0px; */
 	padding: 1rem 0.5rem 1.7rem 1rem;
 	border-radius: 10px;
 	border: 1px solid #f7f7f7;
 	text-align: left;
-
+	
 }
