@@ -65,9 +65,8 @@ window.onload = function (){
 			html += '</ul>';
 			html += '</div>';
 			
-			html += '<div class="col-lg-8">';
-			html += '<div style="border:1px solid; margin-top: 50px;  text-align:center">' + res.eiContent + '</div>';
-			html += '</div>';
+			html += '<div style="border:5px solid; padding-top: 40px; padding-bottom: 40px; margin-top: 40px; margin-left:15px; margin-right:15px; width:100%;  text-align:center">' + res.eiContent + '</div>';
+			
 			
 			document.querySelector('#exhibition').innerHTML = html;
 			
