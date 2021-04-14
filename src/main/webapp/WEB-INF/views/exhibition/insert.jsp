@@ -94,7 +94,7 @@
               </div>
               
                <div class="phone">
-                <h4>전시회 포스터사진 </h4>
+                <h4>대표 포스터사진 </h4>
               </div>
                <div class="phone">
                 <h4>전시회 설명 </h4>
@@ -107,9 +107,9 @@
           <div class="col-lg-8 mt-5 mt-lg-0">
               <div class="form-row">
                 <div class="col-md-6 form-group">
-                  <input type="text" id="uiName" class="form-control" placeholder="신청자 성함"/>
-                </div>
-                <button class="get-started-btn ml-auto" style="WIDTH: 150pt; HEIGHT: 30pt" onclick="checkUser()">회원확인</button>
+                <!-- 나중에 변경 -->
+                  <input type="text" id="uiName" class="form-control" placeholder="나중에 신청자 성함 세션으로 받아서 픽스시키기"/>
+                </div>                
               </div>
               
               <div id="gallertySelectDiv" class="form-row">
@@ -249,10 +249,6 @@ function searhMap(){
 	        map.setBounds(bounds);
 	    } 
 	}
-	
-	
-    
-    
 	// 지도에 마커를 표시하는 함수입니다
 	function displayMarker(place) {
 		//추가
@@ -282,13 +278,13 @@ function searhMap(){
 	}
 }          
 
- 
 </script>
           <!-- 모달 바디 -->
         </div>
+        <!-- 
         <div class="modal-footer">
           <p>지도에서 선택 후, esc를 눌러주세요</p>
-        </div>
+        </div> -->
       </div>
       
     </div>
@@ -346,10 +342,46 @@ function searhMap(){
                 <div style="HEIGHT: 10pt"></div>    
               </div>
               
-              <div class="form-group">
-                <textarea class="form-control" id="eiContent" rows="5" placeholder="전시회 설명"></textarea>
+              <!-- ckeditor 추가 테스트 중-->
+              <div class="form-group" >
+                <div id="editor">This is some sample content.</div>
+                <button onclick="save()">저장</button>
               </div>
-             
+              
+              <textarea id="eiContent" style=display:none></textarea>
+              
+<script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
+<script>
+var editor;
+ClassicEditor
+.create( document.querySelector('#editor'),{
+	ckfinder : {
+		uploadUrl : '/upload/image'
+	}
+})
+.then(obj => {editor = obj;})
+.catch(error => {console.error(error);});
+
+function save(){
+	console.log(editor.getData());
+	var eiContent = editor.getData();
+	document.querySelector('#eiContent').innerHTML = eiContent;
+	console.log(document.querySelector('#eiContent'));
+}
+
+/*
+function load(){
+	console.log(editor.setData('<p>123123123123123</p><figure class="image"><img src="/resources/다운로드 (2).jfif"></figure><p>1312312312342424252524</p><figure class="image"><img src="/resources/다운로드 (1).jfif"></figure>'))
+}*/
+</script>
+
+               <!-- ckeditor 추가 테스트 중-->
+               
+              <!-- 
+              <div class="form-group" >
+                <textarea class="form-control" id="eiContent" rows="5" placeholder="전시회 설명"></textarea>
+              </div>-->
+              
              <button class="get-started-btn ml-auto" onclick="doInsert()" >전시회등록 신청</button>
           </div>
         </div>

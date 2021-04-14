@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>전시회 상세정보</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-
 </head>
 <body>
 
@@ -64,7 +63,7 @@ window.onload = function (){
 			html += '<li><strong>전시회 일정</strong>:' + res.eiStartDate + '~' + res.eiEndDate + '</li>';
 			html += '<li><strong>전시회 시간</strong>:' + res.eiStartTime + '~' + res.eiEndTime + '</li>';
 			html += '</ul>';
-			html += '<p>' + res.eiContent + '</p>';
+			html += '<div>' + res.eiContent + '</div>';
 			html += '</div>';
 			document.querySelector('#exhibition').innerHTML += html;
 			
