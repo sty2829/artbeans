@@ -19,6 +19,8 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
 
 @Data
@@ -35,14 +37,16 @@ import lombok.Data;
 				+ "ei.ei_charge charge,\r\n"
 				+ "eri.eri_max_ticket maxTicket,\r\n"
 				+ "eri.eri_num eriNum,\r\n"
-				+ "(SELECT\r\n"
-				+ "concat(holiday(eri.eri_start_date, eri.eri_end_date, eri.eri_holiday), ',' ,GROUP_CONCAT(distinct rti_date)) disableList\r\n"
-				+ "from exhibition_reservation_info eri LEFT JOIN reservation_ticket_info rti \r\n"
-				+ "ON eri.eri_num = rti.eri_num WHERE eri.eri_num = :eiNum AND rti_date IN(SELECT rti.rti_date\r\n"
-				+ "from exhibition_reservation_info eri LEFT JOIN reservation_ticket_info rti \r\n"
-				+ "ON eri.eri_num = rti.eri_num WHERE eri.eri_num = :eiNum GROUP BY rti.rti_Date HAVING sum(rti_number) >= eri.eri_max_stock * (eri.eri_end_time - eri.eri_start_time))) disable\r\n"
+				+ "concat(IFNULL(holiday(eri.eri_start_date, eri.eri_end_date, eri.eri_holiday), ''),\r\n"
+				+ "IFNULL((SELECT IFNULL(CONCAT(',', GROUP_CONCAT(distinct rti.rti_date)), null) FROM exhibition_info ei \r\n"
+				+ "LEFT JOIN exhibition_reservation_info eri ON ei.ei_num = eri.ei_num \r\n"
+				+ "LEFT JOIN reservation_ticket_info rti ON eri.eri_num = rti.eri_num WHERE ei.ei_num = :eiNum AND rti.rti_date \r\n"
+				+ "IN(SELECT rti_date FROM (\r\n"
+				+ "SELECT rti.rti_date, eri.eri_max_stock * (eri.eri_end_time - eri.eri_start_time) max FROM exhibition_info ei \r\n"
+				+ "LEFT JOIN exhibition_reservation_info eri ON ei.ei_num = eri.ei_num \r\n"
+				+ "LEFT JOIN reservation_ticket_info rti ON eri.eri_num = rti.eri_num WHERE ei.ei_num = :eiNum GROUP BY rti_date HAVING SUM(rti_number) >= max) a)), '')) disable\r\n"
 				+ "FROM exhibition_info ei \r\n"
-				+ "LEFT JOIN file_info fi ON ei.ei_num = fi.fi_num \r\n"
+				+ "LEFT JOIN file_info fi ON ei.ei_num = fi.fi_num\r\n"
 				+ "LEFT JOIN exhibition_reservation_info eri \r\n"
 				+ "ON ei.ei_num = eri.ei_num \r\n"
 				+ "WHERE ei.ei_num = :eiNum",
@@ -108,6 +112,7 @@ public class ExhibitionReservationInfo {
 	
 	@OneToOne
 	@JoinColumn(name= "ei_num")
+	@JsonBackReference
 	private ExhibitionInfo exhibitionInfo;
 	
 }

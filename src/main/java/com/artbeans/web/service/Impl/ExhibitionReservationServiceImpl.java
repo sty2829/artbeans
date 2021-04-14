@@ -35,9 +35,10 @@ public class ExhibitionReservationServiceImpl implements ExhibitionReservationSe
 		return eriRepo.findById(eiNum).get();
 	}
 
+	//전시회 인서트에서 uiNum으로 예약등록가능한 전시회리스트 보여줌
 	@Override
 	public List<ExhibitionInfo> getExhibitionFindByUiNum(Integer uiNum) {
-		return eiRepo.findAllByUserInfoUiNum(uiNum);
+		return eiRepo.findAllByUserInfoUiNumAndExhibitionReservationInfoIsNull(uiNum);
 	}
 
 }

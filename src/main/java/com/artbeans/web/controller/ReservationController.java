@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.artbeans.web.dto.ReservationScheduleDTO;
 import com.artbeans.web.entity.ReservationTicketInfo;
 import com.artbeans.web.service.ReservationService;
 

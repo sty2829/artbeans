@@ -7,5 +7,5 @@ public interface PaymentService {
 
 	PaymentInfo savePayment(PaymentInfo paymentInfo);
 	
-	int paymentVaild(PaymentVO paymentVO);
+	int paymentConfirm(PaymentVO paymentVO);
 }

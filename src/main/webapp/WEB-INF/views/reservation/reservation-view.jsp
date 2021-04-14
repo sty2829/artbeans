@@ -123,15 +123,7 @@ img[data-col] {
 		</div>
 	</div>
 	<input type="hidden" data-col="maxTicket" id="eriMaxTicket">
-	<form action="/payment" method="GET" id="reservationForm">
-		<input type="hidden" name="rtiDate" value="">
-		<input type="hidden" name="rtiTime" value="">
-		<input type="hidden" name="rtiNumber" value="">
-		<input type="hidden" name="piPrice" value="">
-		<input type="hidden" name="eriNum" value="">
-	</form>
-	
-	
+	<input type="hidden" id="eriNum">			
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
 window.onload = function(){
@@ -141,8 +133,8 @@ window.onload = function(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
-			console.log(res);
 			var objs = document.querySelectorAll('[data-col]');
+			document.querySelector('#eriNum').value = res.eriNum;
 			document.querySelector('#rtiDate').innerHTML = res.minDate;
 			document.querySelector('#eriMaxTicket').value = res.maxTicket;
 			for(obj of objs){
@@ -160,7 +152,7 @@ window.onload = function(){
 				time_24hr: true,
 				minDate: res.minDate,
 				maxDate: res.maxDate,
-			    disable: res.disable,
+			    disable: res.disableList,
 			    defaultDate: res.minDate,
 			    onChange: function(selectedDates, dateStr, instance) {
 			    	document.querySelector('#rtiDate').innerHTML = dateStr;
@@ -247,13 +239,15 @@ function goPayment(){
 	var rtiTime = document.querySelector('#rtiTime').innerText;
 	var rtiNumber = document.querySelector('#rtiNumber').value;
 	var piPrice = document.querySelector('#piPrice').innerText;
+	var eriNum = document.querySelector("#eriNum").value;
 	
-	document.querySelector('input[name="rtiDate"]').value = rtiDate;
-	document.querySelector('input[type="hidden"][name="rtiTime"]').value = rtiTime;
-	document.querySelector('input[name="rtiNumber"]').value = rtiNumber;
-	document.querySelector('input[name="piPrice"]').value = piPrice;
-
-	document.querySelector('#reservationForm').submit();
+	var param = '?rtiDate=' + rtiDate + '&';
+	param += 'rtiTime=' + rtiTime + '&';
+	param += 'rtiNumber=' + rtiNumber + '&';
+	param += 'piPrice=' + piPrice + '&';
+	param += 'eriNum=' + eriNum + '&';
+	
+	location.href = '/views/payment/payment/' + param
 }
 </script>
 </body>

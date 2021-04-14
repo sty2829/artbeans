@@ -12,9 +12,8 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	public List<ExhibitionInfo> findAllByOrderByEiStartDateAsc(Pageable pageable);
 	public List<ExhibitionInfo> findAllByOrderByEiStartDateDesc();
 	public List<ExhibitionInfo> findAllByEiNameLikeOrderByEiNum(String eiName);
-	//유저가 가지고있는 전시회리스트 예약정보.. 씀
 	
-	//@Query("SELECT ei FROM ExhibitionInfo ei LEFT JOIN ExhibitionReservationInfo eri where  ")
-	public List<ExhibitionInfo> findAllByUserInfoUiNum(Integer uiNum);
+	//심태윤- 전시회예약정보 인서트시 보여줄 전시회리스트
+	public List<ExhibitionInfo> findAllByUserInfoUiNumAndExhibitionReservationInfoIsNull(Integer uiNum);
  
 }

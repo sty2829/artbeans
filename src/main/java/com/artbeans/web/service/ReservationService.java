@@ -2,7 +2,6 @@ package com.artbeans.web.service;
 
 import java.util.Map;
 
-import com.artbeans.web.dto.ReservationScheduleDTO;
 import com.artbeans.web.entity.ReservationTicketInfo;
 
 public interface ReservationService {

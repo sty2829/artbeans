@@ -3,12 +3,17 @@ package com.artbeans.web.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import com.artbeans.web.dto.ReservationScheduleDTO;
+import com.artbeans.web.dto.ReservationSchedule;
+import com.artbeans.web.dto.SumTicketTime;
+import com.artbeans.web.entity.ExhibitionReservationInfo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,14 +23,16 @@ public class DateUtil {
 	private static final String YYYY_MM_DD = "yyyy-MM-dd";
 	
 	
-	public static ReservationScheduleDTO getMinDate(ReservationScheduleDTO rsDTO) {
+	public static ReservationSchedule getMinDate(ReservationSchedule rs) {
 		SimpleDateFormat sdf = new SimpleDateFormat(YYYY_MM_DD);
 
-		String[] dateStrList = rsDTO.getdisable().get(0).split(",");
+		List<String> disableList = Arrays.asList(rs.getDisable().split(","));
+		
+		rs.setDisableList(disableList);
 		
 		List<Date> dateList = new ArrayList<>();
 		
-		for(String dateStr : dateStrList) {
+		for(String dateStr : disableList) {
 			try {
 				Date parseDate = sdf.parse(dateStr);
 				dateList.add(parseDate);
@@ -44,7 +51,7 @@ public class DateUtil {
 			e.printStackTrace();
 		}
 		
-		Date minDate = StringToDate(rsDTO.getminDate());
+		Date minDate = StringToDate(rs.getMinDate());
 		
 		//투데이가 스타트date(mindate)보다 크다면 mindate에 투데이 입력 
 		if(date.compareTo(minDate) > 0) {
@@ -79,7 +86,43 @@ public class DateUtil {
 			}
 		}
 		
-	    return rsDTO;
+		
+		rs.setMinDate(dateToString(minDate));
+		
+	    return rs;
+	}
+	
+	public Map<String,Integer> getTimeList(ExhibitionReservationInfo eri, List<SumTicketTime> sttList) {
+		//시간대별 최대 티켓수 
+		Integer maxStock = eri.getEriMaxStock();
+		String startTime = eri.getEriStartTime();
+		String endTime = eri.getEriEndTime();
+		int startTimeInt = Integer.parseInt(startTime.substring(0,2));
+		int endTimeInt = Integer.parseInt(endTime.substring(0,2));
+		int length = endTimeInt - startTimeInt;
+		
+		Map<String,Integer> timeMap = new HashMap<>();
+		
+		for(SumTicketTime stt : sttList) {
+			int sum = stt.getSum().intValue();
+			timeMap.put(stt.getTime(), maxStock-sum);
+		}
+		
+		for(int i=0; i<length; i++) {
+			String time = startTimeInt + ":00";
+			if(time.length() != 5) {
+				time = "0"+time;
+			}
+			
+			if(!timeMap.containsKey(time)) {
+				timeMap.put(time, maxStock);
+			}
+			startTimeInt++;
+		}
+		
+		log.info("timeMap => {}",timeMap);
+		
+		return timeMap;
 	}
 	
 	public static String dateToString(Date date) {

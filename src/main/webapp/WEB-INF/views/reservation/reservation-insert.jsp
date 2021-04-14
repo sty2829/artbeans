@@ -31,9 +31,11 @@
                 <h4>예약 전시회</h4>               
               </div>
               <div class="phone">
+                <h4>휴무일</h4>
+              </div>
+              <div class="phone">
                 <h4>관람등급</h4>
               </div>
-              
               <div class="phone">
                 <h4>러닝타임</h4>
               </div>
@@ -61,12 +63,25 @@
           <div class="col-lg-5 mt-5 mt-lg-0">
               <div class="form-row mt-3">
                 <div class="col-md-6 form-group">
-                  <select class="form-control" id="eiNum" style="width: 250px">
+                  <select class="form-control" id="eiNum" style="width: 300px">
                   	<option>전시회를 선택해주세요</option>
                   </select>
                 </div>
               </div>
-              
+              <div class="form-row mt-3">
+                <div class="col-md-6 form-group">
+                  <select class="form-control" id="eiHoliday" style="width: 300px">
+                  	<option>휴무일을 선택해주세요</option>
+                  	<option value="1">일요일</option>
+                  	<option value="2">월요일</option>
+                  	<option value="3">화요일</option>
+                  	<option value="4">수요일</option>
+                  	<option value="5">목요일</option>
+                  	<option value="6">금요일</option>
+                  	<option value="7">토요일</option>
+                  </select>
+                </div>
+              </div>
               <div class="form-group">
                 <input type="text" class="form-control" id="eriAudienceRating" required>
                <div style="HEIGHT: 13pt"></div> 
@@ -164,13 +179,11 @@ function insert(){
 				eiNum : eiNum.value
 			}
 	};
-	
-	// 전시회(번호) Request Param 으로 넘어온 거 추가 임시로 일단 직접입력
-	
-	var objs = document.querySelectorAll('input');
+	var objs = document.querySelectorAll('input,select[id="eiHoliday"]');
 	for(obj of objs){
 		param[obj.id] = obj.value;
 	}
+	console.log(param);
 	
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', "/exhibition-reservation");
@@ -186,7 +199,7 @@ function insert(){
 	}
 	
 	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
-	xhr.send(JSON.stringify(param));
+	//xhr.send(JSON.stringify(param));
 }
 
 

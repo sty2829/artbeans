@@ -64,7 +64,6 @@ window.onload = function (){
 			html += '<li><strong>전시회 시간</strong>:' + res.eiStartTime + '~' + res.eiEndTime + '</li>';
 			html += '</ul>';
 			html += '</div>';
-			
 			html += '<div style="border:5px solid; padding-top: 40px; padding-bottom: 40px; margin-top: 40px; margin-left:15px; margin-right:15px; width:100%;  text-align:center">' + res.eiContent + '</div>';
 			
 			

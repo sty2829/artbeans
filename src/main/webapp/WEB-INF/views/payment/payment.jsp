@@ -48,11 +48,11 @@ h5 {
 		                <ul class="list-inline mt-4">
 	                 		<li class="list-inline-item">
 		   		  				 <h4>예매일</h4>
-				                 <p id="rtiDate" class="check">${userReservation.rtiDate}</p>
+				                 <p id="rtiDate" class="check">${param.rtiDate}</p>
 		                 	</li>
            					<li class="list-inline-item">
 		   		  				 <h4>예매시간</h4>
-				                 <p style="text-align: center" id="rtiTime" class="check">${userReservation.rtiTime}</p>
+				                 <p style="text-align: center" id="rtiTime" class="check">${param.rtiTime}</p>
 		                 	</li>
 			            </ul>
 		                </div>
@@ -60,11 +60,11 @@ h5 {
 		                	<ul class="list-inline">
 								<li class="list-inline-item">
 			   		  				 <h4 class="mt-2">예매수</h4>
-					                 <p style="text-align: center" id="rtiNumber" class="check">${userReservation.rtiNumber}</p>
+					                 <p style="text-align: center" id="rtiNumber" class="check">${param.rtiNumber}</p>
 			                 	</li>
 			                 	<li class="list-inline-item">
 					                 <h4 class="mt-2 ml-3">결제금액</h4>
-					                 <p style="text-align: center" id="piPrice" class="check">${userReservation.piPrice}</p>
+					                 <p style="text-align: center" id="piPrice" class="check">${param.piPrice}</p>
 					            </li>    
 			                 </ul>
 		                </div>
@@ -132,10 +132,11 @@ h5 {
 IMP.init('imp08010397');
 
 function payment(){
-	
 	var param = {
 			reservationTicketInfo : {
-				exhibitionReservationInfo : {},
+				exhibitionReservationInfo : {
+					eriNum : ${param.eriNum}
+				},
 				userInfo : {}
 			}
 	};
@@ -156,8 +157,6 @@ function payment(){
 		}
 	}
 	
-	//임시로 eriNum 추가해야댐
-	param['reservationTicketInfo']['exhibitionReservationInfo']['eriNum'] = 2;
 	//임시로 uiNum 추가해야댐
 	param['reservationTicketInfo']['userInfo']['uiNum'] = 8;
 	
@@ -189,18 +188,10 @@ function payment(){
 			    		}),
 			    		
 			    	}).done(function(data) {
-			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
-			    		if ( everythings_fine ) {
-			    			var msg = '결제가 완료되었습니다.';
-			    			msg += '\n고유ID : ' + rsp.imp_uid;
-			    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
-			    			msg += '\결제 금액 : ' + rsp.paid_amount;
-			    			msg += '카드 승인번호 : ' + rsp.apply_num;
-
-			    			alert(msg);
+			    		if (data == 1) {
+			    			alert('결제가 완료되었습니다.');
 			    		} else {
-			    			//[3] 아직 제대로 결제가 되지 않았습니다.
-			    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+			    			alert('결제 금액이 일치 하지 않습니다');
 			    		}
 			    	});
 			    } else {

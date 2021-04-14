@@ -14,6 +14,7 @@ import com.artbeans.web.entity.ReservationTicketInfo;
 import com.artbeans.web.repository.ExhibitionReservationInfoRepository;
 import com.artbeans.web.repository.ReservationTicketRepository;
 import com.artbeans.web.service.ReservationService;
+import com.artbeans.web.util.DateUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,9 +34,11 @@ public class ReservationSeviceImpl implements ReservationService {
 	@Override
 	public com.artbeans.web.dto.ReservationSchedule getReservationSchedule(Integer eiNum) {
 		//전시회 PK로 전시회스케쥴 호출
+		com.artbeans.web.dto.ReservationSchedule rs = eriRepo.getReservationSchedule(eiNum);
+		log.info("rs => {}", rs);
 		
-		
-        return eriRepo.getReservationSchedule(eiNum);
+		//mindate 계산후 반환
+        return DateUtil.getMinDate(rs);
 	}
 	
 	@Override

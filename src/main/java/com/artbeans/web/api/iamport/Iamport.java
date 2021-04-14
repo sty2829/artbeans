@@ -34,7 +34,6 @@ public class Iamport {
 	private final String PAYMENT_URL;
 	private final String KEY;
 	private final String SECRET;
-	private String TOKEN;
 	
 	public Iamport(String aUTH_URL, String pAYMENT_URL, String kEY, String sECRET) {
 		AUTH_URL = aUTH_URL;
@@ -74,9 +73,7 @@ public class Iamport {
 		return null;
 	}
 
-	//시작시 토큰값 저장
-	@PostConstruct
-	public void initToken() {
+	public String getToken() {
 		HttpURLConnection conn = null;
 		
 	    try {
@@ -107,22 +104,24 @@ public class Iamport {
 			IamportResult<AccessToken> result = getResult(sb.toString(), AccessToken.class);
 			 log.info("result => {}", result);
 			
-			this.TOKEN = result.getResponse().getToken();
+			return result.getResponse().getToken();
 	       
 	    } catch (IOException e) {
 			e.printStackTrace();
 
 		}
+	    
+	    return null;
 
 	}
 	
-	public IamportResult<Payment> getPaymentById(String impId) {
+	public IamportResult<Payment> getPaymentByImpId(String impId) {
 		HttpURLConnection conn = null;
 		
 	    try {
 	        conn = getHttpURLConnection("https://api.iamport.kr/payments/" + impId);
 	        conn.setRequestMethod("GET");
-	        conn.setRequestProperty("Authorization", TOKEN);
+	        conn.setRequestProperty("Authorization", getToken());
 	        
 	        conn.connect();
 	        
@@ -138,6 +137,46 @@ public class Iamport {
 			}			
 			
 			return getResult(sb.toString(), Payment.class);
+	       
+	    } catch (IOException e) {
+			e.printStackTrace();
+
+		}
+
+		return null;
+	}
+	
+	
+	public IamportResult<Cancle> canclePaymentByImpId(String impId) {
+		HttpURLConnection conn = null;
+		
+	    try {
+	        conn = getHttpURLConnection("https://api.iamport.kr/payments/cancel");
+	        conn.setRequestMethod("POST");
+	        conn.setRequestProperty("Authorization", getToken());
+	        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+	        conn.setDoOutput(true);
+	        DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+	        
+			String param = "imp_uid=" + impId;
+			dos.write(param.getBytes("UTF-8"));
+			dos.flush();
+			dos.close();
+	        
+	        conn.connect();
+	        
+	        int responseCode = conn.getResponseCode();
+	        log.info("responseCode => {}", responseCode);
+	        StringBuffer sb = new StringBuffer();
+	        InputStreamReader in = new InputStreamReader(conn.getInputStream());
+			BufferedReader br = new BufferedReader(in);
+			
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+			}			
+			
+			return getResult(sb.toString(), Cancle.class);
 	       
 	    } catch (IOException e) {
 			e.printStackTrace();

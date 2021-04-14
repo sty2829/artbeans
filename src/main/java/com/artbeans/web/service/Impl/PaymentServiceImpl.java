@@ -1,11 +1,11 @@
 package com.artbeans.web.service.Impl;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.artbeans.web.api.iamport.Cancle;
 import com.artbeans.web.api.iamport.Iamport;
 import com.artbeans.web.api.iamport.IamportResult;
 import com.artbeans.web.api.iamport.Payment;
@@ -54,12 +54,12 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public int paymentVaild(PaymentVO paymentVO) {
+	public int paymentConfirm(PaymentVO paymentVO) {
 		//아임포트 impUid 로 서버조회
-		IamportResult<Payment> paymentByImpUid = iamport.getPaymentById(paymentVO.getImpUid());
+		IamportResult<Payment> iamportPayment = iamport.getPaymentByImpId(paymentVO.getImpUid());
 		
 		//아임포트에 결제된 결제금액
-		Integer iamportAmount = paymentByImpUid.getResponse().getAmount().intValue();
+		BigDecimal iamportAmount = iamportPayment.getResponse().getAmount();
 		log.info("importAmount => {}", iamportAmount);
 		
 		//뷰에서 생성된 코드로 예약결제 조회
@@ -69,11 +69,16 @@ public class PaymentServiceImpl implements PaymentService {
 		Integer piPrice = paymentInfo.getPiPrice();
 		log.info("piPrice => {}", piPrice);
 		
-		if(iamportAmount != piPrice) {
+		if(!iamportAmount.equals(new BigDecimal(piPrice))) {
+			//결제정보 불일이 아임포트에 취소요청
+			IamportResult<Cancle> cancle = iamport.canclePaymentByImpId(paymentVO.getImpUid());
+			if(!"cancelled".equals(cancle.getResponse().getStatus())){
+				log.info("취소상태가 수상합니다..");
+			}
 			throw new RuntimeException("결제정보가 일치하지 않습니다");
 		}
 		
-		return 0;
+		return 1;
 	}
 	
 

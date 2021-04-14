@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -86,5 +87,10 @@ public class ExhibitionInfo {
 	@ManyToOne
 	@JoinColumn(name = "ui_num")
 	private UserInfo userInfo;
+	
+	//양방향설정
+	@OneToOne(mappedBy = "exhibitionInfo")
+	@JsonManagedReference
+	private ExhibitionReservationInfo exhibitionReservationInfo;
 
 }

@@ -12,9 +12,9 @@ public interface ExhibitionReservationInfoRepository extends JpaRepository<Exhib
 	//전시회PK로 검색
 	ExhibitionReservationInfo findByExhibitionInfoEiNum(Integer eiNum);
 	
+	//예약스케쥴쿼리
 	@Query(name = "find_reservation_schedule_dto", nativeQuery = true)
 	ReservationSchedule getReservationSchedule(@Param("eiNum") Integer eiNum);
-	
 	
 	
 	//@Query("SELECT new com.artbeans.web.dto.TicketSumDate(rti.rtiDate AS date, sum(rti.rtiNumber) AS sum) FROM ReservationTicketInfo rti LEFT JOIN rti.exhibitionReservationInfo eri where eri.eriNum = ?1 GROUP BY rti.rtiDate")

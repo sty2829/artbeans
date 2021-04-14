@@ -49,7 +49,7 @@ public class ExhibitionReservationController {
 		return eriService.getExhibitionReservation(eriNum);
 	}
 
-	//유저ID로 예약전시회 찾는 컨트롤러
+	//유저ID로 예약전시회 찾는 컨트롤러 전시회예약정보 없는 전시회만
 	@GetMapping("/exhibition-reservation/{uiNum}")
 	public @ResponseBody List<ExhibitionInfo> getUserExhibition(@PathVariable Integer uiNum){
 		return eriService.getExhibitionFindByUiNum(uiNum);
