@@ -1,153 +1,178 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+.preView {
+position: absolute;
+  height: 3em;
+  width: 200px;
+  margin-left: 82%;
+  margin-top : 1%;
+}
+</style>
 <title>전시회 수정</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<input type = "hidden" id = "eiNum">
-<input type = "hidden" id = "uiNum">
-<main id="main">
-    <!-- ======= Breadcrumbs ======= -->
-    <section id="breadcrumbs" class="breadcrumbs">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center">         
-        </div>
-      </div>
-    </section><!-- End Breadcrumbs -->
+	<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+	<input type="hidden" id="eiNum">
+	<input type="hidden" id="uiNum">
+	<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
+		<section id="breadcrumbs" class="breadcrumbs">
+			<div class="container">
+				<div class="d-flex justify-content-between align-items-center">
+				</div>
+			</div>
+		</section>
+		<!-- End Breadcrumbs -->
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
-     
-      <div class="container">      
-        <div class="row mt-7">
-           
-          <div class="col-lg-4">
-          
-            <div class="info">
-             <div class="phone"  id="getExhibitionDivMenu">
-                <h4>나의 전시회 목록</h4>
-              </div>
-              
-              <div class="phone">
-                <h4>갤러리명</h4>
-       
-              </div>
-              <div class="phone">
-                <h4>전시회명</h4>
-                   </div>
-              <div class="phone">
-                <h4>작가명</h4>               
- 
-              </div>
-              <div class="phone">
-                <h4>전시회 가격</h4>
-      
-              </div>
-              <div class="phone">
-                <h4>전시회 시작일 </h4>
-      
-              </div>
-              <div class="phone">
-                <h4>전시회 종료일 </h4>
-            
-              </div>
-              <div class="phone">
-                <h4>전시회 시작시간 </h4>
-            
-              </div>
-              <div class="phone">
-                <h4>전시회 종료시간 </h4>
-              
-              </div>
-              
-               <div class="phone">
-                <h4>전시회 포스터사진 </h4>
+		<!-- ======= Contact Section ======= -->
+		<section id="contact" class="contact">
+		<div id= "pView"  class="preView"></div>
 
-              </div>
-               <div class="phone">
-                <h4>전시회 설명 </h4>
+			<div class="container">
+				<div class="row mt-4">
 
-              </div>
-              
-            </div>
-          </div>
-          <div class="col-lg-8 mt-0 mt-lg-4">
-          <div id="getExhibitionDivMenu" class="form-row">
-                <div class="col-md-10 form-group">
-                  <select class="col-md-6 form-group" style="WIDTH: 300; HEIGHT: 28pt" onchange="getExhibition(this)" id="exhibition" name="exhibitionOption"></select>
-                  <div id= "pView"  style="float : right"></div>
-                </div>
-                
-      	 </div>
-      	 
-      	 <div id="getExhibitionDivMenu" class="form-row">
-                <div class="col-md-10 form-group">
-                  <select class="col-md-6 form-group" style="WIDTH: 300pt; HEIGHT: 28pt" id="giName" name="gallery"></select>
-                  
-                </div>
-      	 </div>
-        
-          <div class="form-group">
-                <input type="text" class="form-control" id="eiName" placeholder="전시회명" />
-               <div style="HEIGHT: 10pt"></div> 
-              </div>
-              
-              <div class="form-group">
-                <input type="text" class="form-control" id="eiArtist" placeholder="작가명" />
-                <div style="HEIGHT: 8pt"></div> 
-              </div>
-              
-              <div class="form-group">
-                <input type="number" class="form-control" id="eiCharge" placeholder="전시회 가격" />
-                <div style="HEIGHT: 8pt"></div> 
-              </div>
-              
-              <div class="form-group">
-                <input type="date" class="form-control" id="eiStartDate" />
-                <div style="HEIGHT: 10pt"></div> 
-              </div>
-              
-              <div class="form-group">
-                <input type="date" class="form-control" id="eiEndDate"/>
-                <div style="HEIGHT: 8pt"></div> 
-              </div>
-              
-              <div class="form-group">
-                <input type="text" class="form-control" id="eiStartTime" placeholder="00:00" />
-                <div style="HEIGHT: 8pt"></div> 
-              </div>
-              
-              <div class="form-group">
-                <input type="text" class="form-control" id="eiEndTime" placeholder="00:00" />
-                <div style="HEIGHT: 8pt"></div> 
-              </div>
-              
-              <div class="form-group">
-              	<input type="hidden" id="fileInfo-fiNum">
-                <input type="file" class="form-control" id="fiFile" onchange ="changeImg(this)"/> 
-                <div style="HEIGHT: 5pt"></div>    
-              </div>
-              
-       
-              
-              <div class="form-group">
-                <textarea class="form-control" id="eiContent" rows="5" placeholder="전시회 설명"></textarea>
-              </div>
-             
-             <button class="get-started-btn ml-auto"  onclick="doUpdate()">전시회 수정</button>
-          </div>
-          
-        </div>
-        </div>
+					<div class="col-lg-3">
 
-        
-    </section>
-  </main>
+						<div class="info">
+						
+					
+							<div class="phone" id="getExhibitionDivMenu">
+								<h4>나의 전시회 목록</h4>
+							</div>
+							
 
-<!-- <div>
+							<div class="phone">
+								<h4>갤러리명</h4>
+
+							</div>
+							<div class="phone">
+								<h4>전시회명</h4>
+							</div>
+							<div class="phone">
+								<h4>작가명</h4>
+
+							</div>
+							<div class="phone">
+								<h4>전시회 가격</h4>
+
+							</div>
+							<div class="phone">
+								<h4>전시회 시작일</h4>
+
+							</div>
+							<div class="phone">
+								<h4>전시회 종료일</h4>
+
+							</div>
+							<div class="phone">
+								<h4>전시회 시작시간</h4>
+
+							</div>
+							<div class="phone">
+								<h4>전시회 종료시간</h4>
+
+							</div>
+
+							<div class="phone">
+								<h4>전시회 포스터사진</h4>
+
+							</div>
+							<div class="phone">
+								<h4>전시회 설명</h4>
+
+							</div>
+
+						</div>
+					</div>
+					<div class="col-lg-8 mt-0 mt-lg-4">
+						<div id="getExhibitionDivMenu" class="form-row">
+							<div class="col-md-10 form-group">
+								<select class="col-md-6 form-group"
+									style="WIDTH: 300; HEIGHT: 28pt" onchange="getExhibition(this)"
+									id="exhibition" name="exhibitionOption"></select>
+
+							</div>
+
+						</div>
+
+						<div id="getExhibitionDivMenu" class="form-row">
+							<div class="col-md-10 form-group">
+								<select class="col-md-6 form-group"
+									style="WIDTH: 300pt; HEIGHT: 28pt" id="giName" name="gallery"></select>
+
+							</div>
+						</div>
+
+						<div class="form-group">
+							<input type="text" class="form-control" id="eiName"
+								placeholder="전시회명" />
+							<div style="HEIGHT: 10pt"></div>
+						</div>
+
+						<div class="form-group">
+							<input type="text" class="form-control" id="eiArtist"
+								placeholder="작가명" />
+							<div style="HEIGHT: 8pt"></div>
+						</div>
+
+						<div class="form-group">
+							<input type="number" class="form-control" id="eiCharge"
+								placeholder="전시회 가격" />
+							<div style="HEIGHT: 8pt"></div>
+						</div>
+
+						<div class="form-group">
+							<input type="date" class="form-control" id="eiStartDate" />
+							<div style="HEIGHT: 10pt"></div>
+						</div>
+
+						<div class="form-group">
+							<input type="date" class="form-control" id="eiEndDate" />
+							<div style="HEIGHT: 8pt"></div>
+						</div>
+
+						<div class="form-group">
+							<input type="text" class="form-control" id="eiStartTime"
+								placeholder="00:00" />
+							<div style="HEIGHT: 8pt"></div>
+						</div>
+
+						<div class="form-group">
+							<input type="text" class="form-control" id="eiEndTime"
+								placeholder="00:00" />
+							<div style="HEIGHT: 8pt"></div>
+						</div>
+
+						<div class="form-group">
+							<input type="hidden" id="fileInfo-fiNum"> <input
+								type="file" class="form-control" id="fiFile"
+								onchange="changeImg(this)" />
+							<div style="HEIGHT: 5pt"></div>
+						</div>
+
+
+
+						<div class="form-group">
+							<textarea class="form-control" id="eiContent" rows="5"
+								placeholder="전시회 설명"></textarea>
+						</div>
+
+						<button class="get-started-btn ml-auto" onclick="doUpdate()">전시회
+							수정</button>
+					</div>
+
+				</div>
+			</div>
+
+
+		</section>
+	</main>
+
+	<!-- <div>
 
 나의 전시회 목록 <select onchange="getExhibition(this)" id="exhibition" name="exhibitionOption" data-col="test">
            </select><br>
@@ -164,7 +189,7 @@
 전시회 정보 <textarea  id="eiContent" placeholder="나중에 선생님이 주시면 변경"></textarea><br>
 <button type="button" onclick="doUpdate()">전시회 수정 하기</button>
 </div> -->
-<script>
+	<script>
 function doUpdate(){
 	var eiName = document.querySelector('#eiName');
 	if(eiName.value.trim().length<1){
@@ -242,7 +267,7 @@ function doUpdate(){
 window.onload = exhibitionOption();//유저가 등록한 전시회 목록
 function exhibitionOption(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list');
+	xhr.open('GET','/exhibition-search');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res =JSON.parse(xhr.responseText);
@@ -288,7 +313,7 @@ xhr.send();
 
 function getGalleyList(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/Gallery-list');
+	xhr.open('GET','/Gallery-lists');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var html ='';
@@ -314,6 +339,6 @@ function changeImg(obj){ // change event
 	}
 }
 </script>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

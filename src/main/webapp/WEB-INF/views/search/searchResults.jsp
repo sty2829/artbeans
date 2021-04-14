@@ -25,7 +25,7 @@
   border: none;
   border-radius: 6px;
 }
-::placeholder {
+.searchInput::placeholder {
 	color: #d2d2d2;
 }
 
@@ -48,10 +48,9 @@
 .totalItem:hover {
 	color: #black;
 	background: #dcdcdc;
+	width: 400px;
 }
-.text {
-	font-weight: bold;
-}
+
 
 </style>
 </head>
@@ -71,12 +70,12 @@
 			</div>
 			<br>
 
-			<form action="/search" method="get" name="frm">
+			<form action="/search" method="get" name="frm" onsubmit="return check('searchInput')">
 				<div>
 					<div>
 						<div class="col-lg-12 d-flex justify-content-center">
 							<input autocomplete="off" type=text name="keyword" placeholder="전시관,전시회 검색"
-								class="searchInput" onkeyup="startSuggest(this);">
+								class="searchInput" onkeyup="startSuggest(this);" id="searchInput">
 							<div style="display: none;">
 								<button id="btn_search">검색</button>
 							</div>
@@ -110,27 +109,69 @@
 	<script>
 function startSuggest(target){
 	console.log(target.value);
+	if(target.value.trim()==''){
+		return hide();		
+	}
+	totalSuggestGallery(target);
 	if(!target.value.trim()) return;
 var tKeyword ='?eiName='+ target.value;
 var encodeWord = encodeURI(tKeyword);
 var xhr = new XMLHttpRequest();
-xhr.open('GET','/exhibition-list'+tKeyword);
+xhr.open('GET','/exhibition-search'+tKeyword);
 xhr.onreadystatechange = function(){
 	if(xhr.readyState==4&& xhr.status==200){
 		var res = JSON.parse(xhr.responseText);
 		console.log(res);
 		html = '';
 		for(var exhibition of res){
-			html +=	'<div class="totalItem">';
-			html += exhibition.eiName;
+			html +=	'<div class="totalItem">'; 
+			html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ exhibition.eiName +'\'">'+exhibition.eiName+'</a>';
 			html +=	'<span class="text"></span>';
 			html += '</div>';
 		}
 		document.querySelector('#totalSuggestListDiv').innerHTML = html;
+		show();
 		}
 	}
 	xhr.send();
 }
+
+function totalSuggestGallery(obj){ 
+	if(obj.value.trim()==''){
+		return hide();		
+	}
+	var gKeyword ='?giName='+ obj.value;
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/Gallery-lists'+gKeyword);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4&&xhr.status==200){
+			var get = JSON.parse(xhr.responseText);
+			
+			console.log(get);
+			var html ='';
+			for(var gallery of get){
+			
+					html +=	'<div class="totalitem">'; 
+					html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ gallery.giName +'\'">'+gallery.giName+'</a>';
+					html +=	'<span class="text"></span>';
+					html += '</div>';		
+		}
+			document.querySelector('#totalSuggestListDiv').innerHTML = html;
+			show();
+		}
+	}
+	xhr.send();
+}
+
+function hide(){
+	var suggestListDiv = document.querySelector('#suggestListDiv');
+	suggestListDiv.style.display='none';
+}
+function show(){
+	var suggestListDiv = document.querySelector('#suggestListDiv');
+	suggestListDiv.style.display='block';
+}
+
 </script>
 
 
@@ -147,7 +188,7 @@ function topSearch(){
 	}
 	getGallery();
 	console.log('param1=>{}',param);
-	xhr.open('GET','/exhibition-list'+param);
+	xhr.open('GET','/exhibition-search'+param);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
@@ -256,7 +297,7 @@ function getGallery(obj){
 	}
 	console.log('param2=>',param);
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/Gallery-list'+param);
+	xhr.open('GET','/Gallery-lists'+param);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4&&xhr.status==200){
 			var get = JSON.parse(xhr.responseText);

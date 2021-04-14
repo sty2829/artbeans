@@ -3,17 +3,7 @@
 <html>
 <head>
 <style>
-.center {
-width: 200px;
-  position: absolute;
-  top: 75%;
-  left: 52%;
-  height: 100px;
-  margin-top: -40px;
-  margin-left: -200px;
-  border-radius: 2px;
-  
-}
+
 .headsearchInput {
   height: 2em;
   width: 200px;
@@ -23,26 +13,26 @@ width: 200px;
 
 }
 
-.headPlacholder {
+.headsearchInput::placeholder {
 	color: #d2d2d2;
 }
 #suggestListDiv {
 	width: 200px;
-	margin-top: 2px;
+	top: 40%;
 	position: absolute;
 	background: white;
 	padding: 0 2px;
-	border-radius: 5px;
+	border-radius: 6px;
 }
 
 .item {
-	height: 1.8em;
+	height: 2em;
 	width: 200px;
 	outline: none;
 }
 
 .item:hover {
-	color: #black;
+	color: #red;
 	background: #dcdcdc;
 	
 }
@@ -58,14 +48,13 @@ width: 200px;
 	<!-- ======= Header ======= -->
 	<header id="header" class="fixed-top ">
 		<div class="container">
-
 			<!--검 색 창   -->
-			<form action="/search" method="get" name="frm">
+			<form action="/search" method="get" name="frm" onsubmit="return check('headsearchInput')">
 				<div>
 					<div>
 						<div class="container d-flex align-items-center"">
-							<input autocomplete="off" type=text name="keyword" id="headPlacholder" placeholder="전시관,전시회 검색"
-								class="headsearchInput" id="searchInput"
+							<input autocomplete="off" type=text name="keyword"  placeholder="전시관,전시회 검색"
+								class="headsearchInput" id="headsearchInput"
 								onkeyup="headSuggest(this);">
 							<div id="divBtnDelete" style="display: none;">
 								<button id="btn_search">검색</button>
@@ -81,29 +70,79 @@ width: 200px;
 
 
 		</div>
-		<script>
+<script>
+function check(id){
+	if(!document.querySelector('#' + id).value.trim()){
+		return false;
+	}
+	return true;
+}
 function headSuggest(target){
-	console.log(target.value);
-	if(!target.value.trim()) return;
-var tKeyword ='?eiName='+ target.value;
-var encodeWord = encodeURI(tKeyword);
-var xhr = new XMLHttpRequest();
-xhr.open('GET','/exhibition-list'+tKeyword);
-xhr.onreadystatechange = function(){
-	if(xhr.readyState==4&& xhr.status==200){
-		var res = JSON.parse(xhr.responseText);
-		console.log(res);
-		html = '';
-		for(var exhibition of res){
-			html +=	'<div class="item">';
-			html += exhibition.eiName;
-			html +=	'<span class="text"></span>';
-			html += '</div>';
+	if(target.value.trim()==''){
+		return hide();		
+	}
+	
+	headSuggestGallery(target);
+	
+ 	if(!target.value.trim()) return;
+
+	console.log(target.value.trim());
+	var eKeyword ='?eiName='+ target.value;
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/exhibition-search'+eKeyword);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4&& xhr.status==200){
+			var res = JSON.parse(xhr.responseText);
+			html = '';
+			for(var exhibition of res){
+				html +=	'<div class="item">'; 
+				html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ exhibition.eiName +'\'">'+exhibition.eiName+'</a>';
+				html +=	'<span class="text"></span>';
+				html += '</div>';
+			}
+			document.querySelector('#suggestListDiv').innerHTML = html;
+			show();
+			}
+	}
+	xhr.send();
+}
+
+
+function headSuggestGallery(obj){ 
+	if(obj.value.trim()==''){
+		return hide();		
+	}
+	var gKeyword ='?giName='+ obj.value;
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/Gallery-lists'+gKeyword);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4&&xhr.status==200){
+			var get = JSON.parse(xhr.responseText);
+			
+			console.log(get);
+			var html ='';
+			for(var gallery of get){
+			
+					html +=	'<div class="item">'; 
+					html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ gallery.giName +'\'">'+gallery.giName+'</a>';
+					html +=	'<span class="text"></span>';
+					html += '</div>';		
 		}
-		document.querySelector('#suggestListDiv').innerHTML = html;
+			document.querySelector('#suggestListDiv').innerHTML = html;
+			show();
 		}
 	}
 	xhr.send();
+}
+
+
+function hide(){
+	var suggestListDiv = document.querySelector('#suggestListDiv');
+	suggestListDiv.style.display='none';
+}
+function show(){
+	var suggestListDiv = document.querySelector('#suggestListDiv');
+	suggestListDiv.style.display='block';
 }
 </script>
     <div class="container d-flex align-items-center">
