@@ -25,7 +25,7 @@
   border: none;
   border-radius: 6px;
 }
-::placeholder {
+.searchInput::placeholder {
 	color: #d2d2d2;
 }
 
@@ -70,12 +70,12 @@
 			</div>
 			<br>
 
-			<form action="/search" method="get" name="frm">
+			<form action="/search" method="get" name="frm" onsubmit="return check('searchInput')">
 				<div>
 					<div>
 						<div class="col-lg-12 d-flex justify-content-center">
 							<input autocomplete="off" type=text name="keyword" placeholder="전시관,전시회 검색"
-								class="searchInput" onkeyup="startSuggest(this);">
+								class="searchInput" onkeyup="startSuggest(this);" id="searchInput">
 							<div style="display: none;">
 								<button id="btn_search">검색</button>
 							</div>

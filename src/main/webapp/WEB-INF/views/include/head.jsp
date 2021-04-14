@@ -3,17 +3,7 @@
 <html>
 <head>
 <style>
-.center {
-width: 200px;
-  position: absolute;
-  top: 75%;
-  left: 52%;
-  height: 100px;
-  margin-top: -40px;
-  margin-left: -200px;
-  border-radius: 2px;
-  
-}
+
 .headsearchInput {
   height: 2em;
   width: 200px;
@@ -23,12 +13,12 @@ width: 200px;
 
 }
 
-.headPlacholder {
+.headsearchInput::placeholder {
 	color: #d2d2d2;
 }
 #suggestListDiv {
 	width: 200px;
-	top: 33%;
+	top: 40%;
 	position: absolute;
 	background: white;
 	padding: 0 2px;
@@ -36,7 +26,7 @@ width: 200px;
 }
 
 .item {
-	height: 1.8em;
+	height: 2em;
 	width: 200px;
 	outline: none;
 }
@@ -58,14 +48,13 @@ width: 200px;
 	<!-- ======= Header ======= -->
 	<header id="header" class="fixed-top ">
 		<div class="container">
-
 			<!--검 색 창   -->
-			<form action="/search" method="get" name="frm">
+			<form action="/search" method="get" name="frm" onsubmit="return check('headsearchInput')">
 				<div>
 					<div>
 						<div class="container d-flex align-items-center"">
-							<input autocomplete="off" type=text name="keyword" id="headPlacholder" placeholder="전시관,전시회 검색"
-								class="headsearchInput" id="searchInput"
+							<input autocomplete="off" type=text name="keyword"  placeholder="전시관,전시회 검색"
+								class="headsearchInput" id="headsearchInput"
 								onkeyup="headSuggest(this);">
 							<div id="divBtnDelete" style="display: none;">
 								<button id="btn_search">검색</button>
@@ -81,36 +70,43 @@ width: 200px;
 
 
 		</div>
-		<script>
+<script>
+function check(id){
+	if(!document.querySelector('#' + id).value.trim()){
+		return false;
+	}
+	return true;
+}
 function headSuggest(target){
 	if(target.value.trim()==''){
 		return hide();		
 	}
+	
 	headSuggestGallery(target);
 	
- if(!target.value.trim()) return;
-
+ 	if(!target.value.trim()) return;
 
 	console.log(target.value.trim());
-var eKeyword ='?eiName='+ target.value;
-var xhr = new XMLHttpRequest();
-xhr.open('GET','/exhibition-search'+eKeyword);
-xhr.onreadystatechange = function(){
-	if(xhr.readyState==4&& xhr.status==200){
-		var res = JSON.parse(xhr.responseText);
-		html = '';
-		for(var exhibition of res){
-			html +=	'<div class="item">'; 
-			html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ exhibition.eiName +'\'">'+exhibition.eiName+'</a>';
-			html +=	'<span class="text"></span>';
-			html += '</div>';
-		}
-		document.querySelector('#suggestListDiv').innerHTML = html;
-		show();
-		}
+	var eKeyword ='?eiName='+ target.value;
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/exhibition-search'+eKeyword);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4&& xhr.status==200){
+			var res = JSON.parse(xhr.responseText);
+			html = '';
+			for(var exhibition of res){
+				html +=	'<div class="item">'; 
+				html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ exhibition.eiName +'\'">'+exhibition.eiName+'</a>';
+				html +=	'<span class="text"></span>';
+				html += '</div>';
+			}
+			document.querySelector('#suggestListDiv').innerHTML = html;
+			show();
+			}
 	}
 	xhr.send();
 }
+
 
 function headSuggestGallery(obj){ 
 	if(obj.value.trim()==''){
