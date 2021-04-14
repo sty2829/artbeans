@@ -7,9 +7,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.dto.SumTicketTime;
 import com.artbeans.web.entity.ExhibitionReservationInfo;
-import com.artbeans.web.entity.ReservationSchedule;
 import com.artbeans.web.entity.ReservationTicketInfo;
 import com.artbeans.web.repository.ExhibitionReservationInfoRepository;
 import com.artbeans.web.repository.ReservationTicketRepository;
@@ -27,12 +27,9 @@ public class ReservationSeviceImpl implements ReservationService {
 	
 	@Autowired
 	private ReservationTicketRepository rtiRepo;
-	
-	@Autowired 
-	private ReservationSchedule reservationSchedule;
 
 	@Override
-	public com.artbeans.web.dto.ReservationSchedule getReservationSchedule(Integer eiNum) {
+	public ReservationSchedule getReservationSchedule(Integer eiNum) {
 		//전시회 PK로 전시회스케쥴 호출
 		com.artbeans.web.dto.ReservationSchedule rs = eriRepo.getReservationSchedule(eiNum);
 		log.info("rs => {}", rs);
@@ -44,13 +41,13 @@ public class ReservationSeviceImpl implements ReservationService {
 	@Override
 	public Map<String,Integer> getReservationTimeMap(Integer eriNum, String dateStr) {
 		//view에서 받은 해당날짜를 date로 변환
-		Date date = reservationSchedule.StringToDate(dateStr);
+		Date date = DateUtil.StringToDate(dateStr);
 		//해당 전시회 예약정보 호출
 		ExhibitionReservationInfo eri = eriRepo.findById(eriNum).get();
 		//해당 전시회 예약정보키 와 해당 날짜로 시간대별 티켓합 리스트 호출
 		List<SumTicketTime> sttList = rtiRepo.sumTicketGroupByTime(eriNum, date);
 		//전시회예약정보와 시간대별 티켓합산 리스트로 시간대별 리스트 구성
-		return reservationSchedule.reservationTimeList(eri, sttList);
+		return  DateUtil.getTimeList(eri, sttList);
 	}
 
 	@Override

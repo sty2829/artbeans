@@ -92,7 +92,7 @@ public class DateUtil {
 	    return rs;
 	}
 	
-	public Map<String,Integer> getTimeList(ExhibitionReservationInfo eri, List<SumTicketTime> sttList) {
+	public static Map<String,Integer> getTimeList(ExhibitionReservationInfo eri, List<SumTicketTime> sttList) {
 		//시간대별 최대 티켓수 
 		Integer maxStock = eri.getEriMaxStock();
 		String startTime = eri.getEriStartTime();
