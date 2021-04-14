@@ -355,14 +355,16 @@ function searhMap(){
 var editor;
 ClassicEditor
 .create( document.querySelector('#editor'),{
+	removePlugins: ['Table', 'MediaEmbed'],
 	ckfinder : {
-		uploadUrl : '/upload/image'
+		uploadUrl : '/exhibition-insert-editorimage'
 	}
 })
 .then(obj => {editor = obj;})
 .catch(error => {console.error(error);});
 
 function save(){
+	//console.log(editor);
 	console.log(editor.getData());
 	var eiContent = editor.getData();
 	document.querySelector('#eiContent').innerHTML = eiContent;

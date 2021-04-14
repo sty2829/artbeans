@@ -32,9 +32,8 @@
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hevj9bqhd5"></script>
  <section id="contact" class="contact">
       <div class="container" >
-
-        <div style="border:0; width: 100%; height: 270px;" id="map">
-          
+      
+        <div style="border:0; margin-left:130px; width: 75%; height: 270px;" id="map">
         </div>
       </div>
  </section>
@@ -64,8 +63,14 @@ window.onload = function (){
 			html += '<li><strong>전시회 시간</strong>:' + res.eiStartTime + '~' + res.eiEndTime + '</li>';
 			html += '</ul>';
 			html += '</div>';
-			html += '<div style="border:5px solid; padding-top: 40px; padding-bottom: 40px; margin-top: 40px; margin-left:15px; margin-right:15px; width:100%;  text-align:center">' + res.eiContent + '</div>';
+
 			
+			html += '<hr style="border:solid 3px; width:70%; align:center">';
+			html += '<div style="padding-top:10px; padding-bottom: 10px; margin-top: 20px; margin-left:15px; margin-right:15px; width:100%;  text-align:center">' + res.eiContent + '</div>';
+			html += '<hr style="border:solid 3px; width:70%; align:center">';
+
+			
+			console.log(res.eiContent);
 			
 			document.querySelector('#exhibition').innerHTML = html;
 			
