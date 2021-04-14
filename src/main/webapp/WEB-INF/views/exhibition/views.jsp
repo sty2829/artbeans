@@ -63,9 +63,13 @@ window.onload = function (){
 			html += '<li><strong>전시회 일정</strong>:' + res.eiStartDate + '~' + res.eiEndDate + '</li>';
 			html += '<li><strong>전시회 시간</strong>:' + res.eiStartTime + '~' + res.eiEndTime + '</li>';
 			html += '</ul>';
-			html += '<div>' + res.eiContent + '</div>';
 			html += '</div>';
-			document.querySelector('#exhibition').innerHTML += html;
+			
+			html += '<div class="col-lg-8">';
+			html += '<div style="border:1px solid; margin-top: 50px;  text-align:center">' + res.eiContent + '</div>';
+			html += '</div>';
+			
+			document.querySelector('#exhibition').innerHTML = html;
 			
 			//console.log(res);
 			//console.log(res.galleryInfo['giAddressX']);
