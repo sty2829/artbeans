@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>전시회 등록 페이지</title>
-<link href="/resources/node_modules/flatpickr/dist/flatpickr.css" rel="stylesheet"/>
+<link href="/resources/node_modules/flatpickr/dist/flatpickr.min.css" rel="stylesheet"/>
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
 <style>
 .reservationInsertMain{
@@ -24,7 +24,7 @@
 		        </div>
    			</div>
    		</div>
-        <div class="row">
+        <div class="row" style="margin-left: 100px">
           <div class="col-lg-4">
             <div class="info mt-3">
               <div class="address">
@@ -60,18 +60,17 @@
             </div>
           </div>
           <!-- 입력란 -->
-          <div class="col-lg-5 mt-5 mt-lg-0">
+          <div class="col-lg-4 mt-5 mt-lg-0" id="inputDiv">
               <div class="form-row mt-3">
                 <div class="col-md-6 form-group">
-                  <select class="form-control" id="eiNum" style="width: 300px">
-                  	<option>전시회를 선택해주세요</option>
+                  <select class="custom-select is-invalid" id="eiNum" name=selectBox style="width: 311.66px" onchange="check(this)">
                   </select>
                 </div>
               </div>
-              <div class="form-row mt-3">
+              <div class="form-row mt-3 mb-2">
                 <div class="col-md-6 form-group">
-                  <select class="form-control" id="eiHoliday" style="width: 300px">
-                  	<option>휴무일을 선택해주세요</option>
+                  <select class="custom-select is-invalid" id="eiHoliday" name="selectBox" style="width: 311.66px" onchange="check(this)" >
+                  	<option selected disabled>휴무일을 선택해주세요</option>
                   	<option value="1">일요일</option>
                   	<option value="2">월요일</option>
                   	<option value="3">화요일</option>
@@ -82,77 +81,74 @@
                   </select>
                 </div>
               </div>
-              <div class="form-group">
-                <input type="text" class="form-control" id="eriAudienceRating" required>
-               <div style="HEIGHT: 13pt"></div> 
-              </div>
-              
-              <div class="form-group">
-                <input type="text" class="form-control" id="eriRunningTime" required>
-                <div style="HEIGHT: 8pt"></div> 
-              </div>
-              
-              <div class="form-group">
-                <input type="number" class="form-control" id="eriMaxStock" min="1" required>
-                <div style="HEIGHT: 8pt"></div> 
-              </div>
-              
-              <div class="form-group">
-                <input type="number" class="form-control" id="eriMaxTicket" min="1" required >
-                <div style="HEIGHT: 10pt"></div> 
-              </div>
-              
-              <div class="form-group">
-                <input type="text" class="form-control" id="eriStartDate" style="background-color: white">
-                <div style="HEIGHT: 8pt"></div> 
-              </div>
-              
-               <div class="form-group">
-                <input type="text" class="form-control" id="eriEndDate" style="background-color: white">
-                <div style="HEIGHT: 8pt"></div> 
-              </div>
-              
-              <div class="form-group">
-                <input type="text" class="form-control" id="eriStartTime" style="background-color: white">
-                <div style="HEIGHT: 8pt"></div> 
-              </div>
-              
-              <div class="form-group">
-                <input type="text" class="form-control" id="eriEndTime" style="background-color: white">
-                <div style="HEIGHT: 8pt"></div> 
-              </div>
-              
-             <button class="get-started-btn ml-auto" onclick="insert()" >전시회 예약등록 신청</button>
+              <input type="text" class="form-control is-invalid" id="eriAudienceRating" onchange="check(this)">
+              <label class="mt-2"></label>
+              <input type="text" class="form-control is-invalid" id="eriRunningTime" onchange="check(this)">
+              <label class="mt-2"></label>
+              <input type="number" class="form-control is-invalid" id="eriMaxStock" onchange="check(this)" min="1" required>
+              <label class="mt-3"></label>
+              <input type="number" class="form-control is-invalid" id="eriMaxTicket" onchange="check(this)" min="1" required >
+           	  <label class="mt-3"></label>
+              <input type="text" class="form-control is-invalid" id="eriStartDate" onchange="check(this)" style="background-color: white">
+              <label class="mt-3"></label>	
+              <input type="text" class="form-control is-invalid" id="eriEndDate" onchange="check(this)" style="background-color: white">
+              <label class="mt-3"></label>
+              <input type="text" class="form-control is-invalid" id="eriStartTime" onchange="check(this)" style="background-color: white">
+              <label class="mt-3"></label>
+              <input type="text" class="form-control is-invalid" id="eriEndTime" onchange="check(this)" style="background-color: white">
+              <label class="mt-3"></label>
+              <br>
+              <button class="get-started-btn ml-auto" onclick="insert()" >전시회 예약등록 신청</button>
           </div>
         </div>
       </div>
     </section>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
-flatpickr('#eriStartDate', {
-	enableTime: true,
+var sDate =flatpickr('#eriStartDate', {
+	time_24hr: true,
+	dateFormat: 'Y-m-d',
+	minDate: 'today',
+	onChange: function(selectedDates) {
+		var date = selectedDates[0];
+		date.setDate(date.getDate() + 1);
+		var year = date.getFullYear();
+		var month = ("0" + (1 + date.getMonth())).slice(-2);
+		var day = ("0" + date.getDate()).slice(-2);
+		eDate.config.minDate = (year + '-' + month + '-' + day);
+		date.setDate(date.getDate() - 1);
+		
+    },
+});
+var eDate = flatpickr('#eriEndDate', {
 	time_24hr: true,
 	dateFormat: "Y-m-d",
+	onChange: function(selectedDates) {
+		var date = selectedDates[0];
+		date.setDate(date.getDate() - 1);
+		var year = date.getFullYear();
+		var month = ("0" + (1 + date.getMonth())).slice(-2);
+		var day = ("0" + date.getDate()).slice(-2);
+		sDate.config.maxDate = (year + '-' + month + '-' + day);
+		date.setDate(date.getDate() + 1);
+		
+    },
 });
-
-flatpickr('#eriEndDate', {
-	enableTime: true,
-	time_24hr: true,
-	dateFormat: "Y-m-d",
-});
-
 flatpickr('#eriStartTime', {
 	enableTime: true,
 	noCalendar: true,
 	time_24hr: true,
 	dateFormat: "H:i",
+	defaultHour: 09,
+	minuteIncrement: 60
 });
-
 flatpickr('#eriEndTime', {
 	enableTime: true,
 	noCalendar: true,
 	time_24hr: true,
 	dateFormat: "H:i",
+	defaultHour: 18,
+	minuteIncrement: 60
 });
 
 window.onload = function(){
@@ -162,7 +158,7 @@ window.onload = function(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
-			var html = '<option>예약 전시회를 선택해 주세요</option>';
+			var html = '<option selected disabled>예약 전시회를 선택해 주세요</option>';
 			for(var exhibition of res){
 				html += '<option value="' + exhibition.eiNum + '">' + exhibition.eiName + '</option>';
 			}
@@ -171,19 +167,53 @@ window.onload = function(){
 	}
 	xhr.send();
 }
+function check(obj){
+	var validation = {
+			eriAudienceRating : {
+				min : 2,
+				max : 10,
+				msg : '관람연령은 최소 2글자이상 최대 10글자 이하로 입력해주세요'
+			},
+			eriRunningTime : {
+				min : 2,
+				max : 5,
+				msg : '러닝타임은 최소 2글자이상 최대 5글자 이하로 입력해주세요'
+			}
+	}
+	if(obj.type == 'text' && validation[obj.id]){
+		var value = obj.value.trim().length;
+		if(value < validation[obj.id].min || value > validation[obj.id].max){
+			obj.className = 'form-control is-invalid';
+			obj.focus();
+			alert(validation[obj.id].msg);
+			return;
+		}
+	}
+	
+	obj.className = 'form-control is-valid';
+}
+
 
 function insert(){
-	var eiNum = document.querySelector('#eiNum');
-	var param = {
-			exhibitionInfo : {
-				eiNum : eiNum.value
-			}
-	};
-	var objs = document.querySelectorAll('input,select[id="eiHoliday"]');
+	var objs = document.querySelectorAll('div[id="inputDiv"] > input, [name="selectBox"]');
 	for(obj of objs){
-		param[obj.id] = obj.value;
+		if(obj.className == 'form-control is-invalid'){
+			obj.focus();
+			alert('입력값을 확인해주세요');
+			return;
+		}
 	}
-	console.log(param);
+	var param = {
+			exhibitionInfo : {}
+	};
+	
+	for(obj of objs){
+		if(obj.id == 'eiNum') {
+			param['exhibitionInfo'][obj.id] = obj.value;
+		}else{
+			param[obj.id] = obj.value;
+		}
+	}
 	
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', "/exhibition-reservation");
@@ -199,7 +229,7 @@ function insert(){
 	}
 	
 	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
-	//xhr.send(JSON.stringify(param));
+	xhr.send(JSON.stringify(param));
 }
 
 
