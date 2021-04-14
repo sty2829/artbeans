@@ -16,11 +16,11 @@
   <br><br><br><br><br><br><br>
   <h2 class='date_text' style="text-align: center; padding: 2rem 0"></h2>
 	
-	<div>
+	<div class='button_box' style="margin: 0 auto; width: 159px;">
 		<button id="backButton" class="button" onclick="backButton()">뒤로</button>
 		<button id="nextButton" class="button" onclick="nextButton()">다음</button>
 	</div>
-
+	<br>
   <div class='date_item rap'>
 
     <div class="grid date_form date_head">
