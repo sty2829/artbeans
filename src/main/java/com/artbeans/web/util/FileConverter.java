@@ -2,6 +2,11 @@ package com.artbeans.web.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.artbeans.web.entity.FileInfo;
 
@@ -18,6 +23,8 @@ public class FileConverter {
 	 */
 	private final static String PROJECT_PATH = System.getProperty("user.dir");
 	private final static String ROOT = "\\src\\main\\webapp\\resources\\assets\\img\\";
+	
+	private final static String editorPath = "C:\\Users\\Administrator\\git\\artbeans\\src\\main\\webapp\\resources\\assets\\img\\editor\\";
 	
 	public static void fileInsert(FileInfo fileInfo, String fiType) throws Exception {
 		String fiName = fileInfo.getFiFile().getOriginalFilename();
@@ -38,5 +45,23 @@ public class FileConverter {
 		File file = new File(PROJECT_PATH + ROOT + fiType + "\\\\" + path);
 		fileInfo.getFiFile().transferTo(file);
 		
+	}
+	
+	public static Map<String,String> ckeditorUploadImg(MultipartFile upload){
+		String fileName = upload.getOriginalFilename();
+		File target = new File(editorPath + fileName);
+		try {
+			upload.transferTo(target);
+			Map<String,String> rMap = new HashMap<>();
+			rMap.put("uploaded","true");
+			rMap.put("url","/resources/" + fileName);
+			return rMap;
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 }

@@ -1,6 +1,7 @@
 package com.artbeans.web.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,11 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.artbeans.web.dto.DataTable;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
+import com.artbeans.web.util.FileConverter;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -47,6 +50,11 @@ public class ExhibitionController {
 	public @ResponseBody Integer saveExhibition(ExhibitionInfo exhibitionInfo) throws Exception {
 		exhibitionInfo = eService.saveExhibitionInfo(exhibitionInfo);
 		return exhibitionInfo.getEiNum();		
+	}
+	
+	@PostMapping("/exhibition-insert-editorimage")
+	public @ResponseBody Map<String,String> uploadImg(@RequestParam MultipartFile upload){
+		return FileConverter.ckeditorUploadImg(upload);
 	}
 	
 	@DeleteMapping("/exhibition")
