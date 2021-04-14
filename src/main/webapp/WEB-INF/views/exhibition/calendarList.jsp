@@ -8,69 +8,7 @@
     <script src="/resources/user/js/calendar/script.js"></script>
     <title>전시회 월별 개봉일</title>
     <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  box-sizing: border-box;
-}
-
-/* 달력 */
-
-.rap {
-  max-width: 1400px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.date_head {
-  margin-bottom: 10px;
-}
-
-.date_head div {
-  background: #f03d3d;
-  color: #fff;
-  text-align: center;
-}
-
-.date_form {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 10px;
-}
-
-.date_form div {
-  padding: 10px 10px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.dateSel div {
-  font-weight: bold;
-  color: #333;
-  min-height: 150px;
-  padding: 1rem 1.3rem;
-  border-radius: 10px;
-  border: 1px solid #f7f7f7;
-}
-
-.background {
-  background: #f7f7f7;
-}
-
-.button {
-	width: 75px;
-	cursor: pointer;
-	box-shadow: 0px 0px 2px gray;
-	border: none;
-	outline: none;
-	padding: 5px;
-	border-radius: 5px;
-	color: black;
-}	
-
-</style>
+	<link rel="stylesheet" href="/resources/user/css/calendar.css">
 </head>
 
 
