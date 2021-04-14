@@ -80,7 +80,11 @@ window.onload = function load() {
 				html += `<div id="insertEiNameSuper" class="dateSel ${cls}" >${d}`;
 				for(let j=0; j<exNumExName.length; j++){
 					if(exNumExName[j].exNum==d){
-						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendarListOneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNumExName[j].exName+'</div>';
+						let exNameGet=exNumExName[j].exName;
+						if(exNumExName[j].exName.length>4){
+							exNameGet=exNumExName[j].exName.substring(0,4)+'...';
+						}
+						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendarListOneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNameGet+'</div>';
 					}
 				}
 				html +='</div>';
@@ -182,7 +186,11 @@ function backButton() {
 				html += `<div id="insertEiNameSuper" class="dateSel ${cls}" >${d}`;
 				for(let j=0; j<exNumExName.length; j++){
 					if(exNumExName[j].exNum==d){
-						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendarListOneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNumExName[j].exName+'</div>';
+						let exNameGet=exNumExName[j].exName;
+						if(exNumExName[j].exName.length>4){
+							exNameGet=exNumExName[j].exName.substring(0,4)+'...';
+						}
+						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendarListOneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNameGet+'</div>';
 					}
 				}
 				html +='</div>';
@@ -193,6 +201,7 @@ function backButton() {
 		}
 	}
 	xhr.send();
+
 
 
 }
@@ -272,7 +281,11 @@ function nextButton() {
 				html += `<div id="insertEiNameSuper" class="dateSel ${cls}" >${d}`;
 				for(let j=0; j<exNumExName.length; j++){
 					if(exNumExName[j].exNum==d){
-						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendarListOneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNumExName[j].exName+'</div>';
+						let exNameGet=exNumExName[j].exName;
+						if(exNumExName[j].exName.length>4){
+							exNameGet=exNumExName[j].exName.substring(0,4)+'...';
+						}
+						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendarListOneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNameGet+'</div>';
 					}
 				}
 				html +='</div>';
@@ -283,6 +296,8 @@ function nextButton() {
 		}
 	}
 	xhr.send();
+
+
 
 
 }

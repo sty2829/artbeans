@@ -58,19 +58,31 @@
 	padding: 5px;
 	border-radius: 5px;
 	color: black;
-	text-align: center;
+	text-align: center;	
+}
+.button_box div{
+	 position : absolute;
+	 width : 100px;
+	 height : 100px;
+	 top:50%;
+	 left:50%;
+	 margin:-50px 0 0 -50px;
 }
 
 #insertEiName {
+	
+	
 	background: #aa55ff;
 	width: auto;
 	height: 5px;
 	font-size: 14px;
 	font-weight: bold;
 	color: #ffffff;
-	min-height: 13px;
-	padding: 1rem 1.3rem;
+	min-height: 10px;
+	/*padding: 0px 10px 10px 0px; */
+	padding: 1rem 0.5rem 1.7rem 1rem;
 	border-radius: 10px;
 	border: 1px solid #f7f7f7;
 	text-align: left;
+
 }
