@@ -391,9 +391,38 @@ function load(){
     </section>
   </main>
 
+<!-- 마우스 오른쪽버튼 막기 -->
+<body oncontextmenu="return false">
 
 <script>
-window.onload = galleryOption();
+
+//윈도우 새로고침 막기
+function noEvent() {
+    if (event.keyCode == 116) {
+        event.keyCode= 2;
+        return false;
+    }
+    else if(event.ctrlKey && (event.keyCode==78 || event.keyCode == 82))
+    {
+        return false;
+    }
+}
+document.onkeydown = noEvent;
+
+//페이지 이동시 막기
+window.onbeforeunload = function(event) {
+   //event.returnValue = true;
+   event.returnValue = "";
+   
+   if(event.returnValue){
+		console.log('delete');
+		//여기서 파일 지우면 되는데.. 확인버튼 누르면 지우게 바꾸기
+	}
+};
+
+
+//갤러리 옵션
+window.onload = galleryOption;
 	
 function galleryOption(){ 
 	var xhr = new XMLHttpRequest();
@@ -571,6 +600,13 @@ function doInsert(){
 	if(eiEndTime.value.trim().length<5){
 		alert('전시회 종료 시간을 작성해주세요.');
 		eiEndTime.focus();
+		return;
+	}
+	
+	var eiContent = document.querySelector('#eiContent');
+	if(eiContent.value.trim().length<1){
+		alert('전시회 설명을 작성해주세요.');
+		eiContent.focus();
 		return;
 	}
 	
