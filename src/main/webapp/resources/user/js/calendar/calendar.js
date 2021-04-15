@@ -84,7 +84,7 @@ window.onload = function load() {
 						if(exNumExName[j].exName.length>4){
 							exNameGet=exNumExName[j].exName.substring(0,4)+'...';
 						}
-						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendarListOneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNameGet+'</div>';
+						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendar-list-oneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNameGet+'</div>';
 					}
 				}
 				html +='</div>';
@@ -190,7 +190,7 @@ function backButton() {
 						if(exNumExName[j].exName.length>4){
 							exNameGet=exNumExName[j].exName.substring(0,4)+'...';
 						}
-						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendarListOneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNameGet+'</div>';
+						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendar-list-oneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNameGet+'</div>';
 					}
 				}
 				html +='</div>';
@@ -285,7 +285,7 @@ function nextButton() {
 						if(exNumExName[j].exName.length>4){
 							exNameGet=exNumExName[j].exName.substring(0,4)+'...';
 						}
-						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendarListOneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNameGet+'</div>';
+						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendar-list-oneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNameGet+'</div>';
 					}
 				}
 				html +='</div>';

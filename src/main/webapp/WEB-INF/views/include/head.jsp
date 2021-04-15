@@ -171,13 +171,11 @@ function show(){
             <ul>
               <li class="drop-down"><a href="#">공지사항</a>
                 <ul>
-                  <li><a href="#">공지사항</a></li>
-                  <li><a href="#">예매/취소 방법</a></li>
-                  <li><a href="#">이용방법</a></li>
+                  <li><a href="/views/admin/usinghomepage">이용방법</a></li>
+                  <li><a href="/views/admin/questions">자주하는 질문</a></li>
                 </ul>
               </li>              
-              <li><a href="#">후기/추천</a></li>
-              <li><a href="#">Q&A</a></li>              
+              <li><a href="#">후기/추천</a></li>            
             </ul>
           </li>
           

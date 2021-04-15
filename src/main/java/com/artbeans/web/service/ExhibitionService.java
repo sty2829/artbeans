@@ -14,7 +14,7 @@ public interface ExhibitionService {
 	ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception;
 	int deleteExhibitionInfo(Integer eiNum);
 	DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo);
-	
+	List<ExhibitionInfo> getEiBannerLists(ExhibitionInfo exhibitionInfo);
 	
 	
 	//DataTable<ExhibitionInfo> getExhibitionInfos(Pageable pageable, DataTable<ExhibitionInfo> exhibitionInfo);

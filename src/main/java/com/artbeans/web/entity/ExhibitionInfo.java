@@ -47,6 +47,10 @@ public class ExhibitionInfo {
 	@Column(name = "ei_content")
 	private String eiContent;
 	
+	@Column(name = "ei_banner",insertable = false)
+	@ColumnDefault("0")
+	private Integer eiBanner;
+	
 	//패턴 수정 날짜 이상하게들어감 java.sql.date 로 변경
 	@Column(name = "ei_start_date")
 	private Date eiStartDate;

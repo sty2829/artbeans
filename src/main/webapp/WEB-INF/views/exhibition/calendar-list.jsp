@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/resources/user/js/calendar/script.js"></script>
+    <script src="/resources/user/js/calendar/calendar.js"></script>
     <title>전시회 월별 개봉일</title>
     <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 	<link rel="stylesheet" href="/resources/user/css/calendar.css">

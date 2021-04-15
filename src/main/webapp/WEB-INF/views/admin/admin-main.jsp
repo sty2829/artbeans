@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 모드 메인</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <style>
 h3{
@@ -46,7 +46,7 @@ p{
   <div class="row">
     <div class="col-sm-4">
       <p>exhibition_info 수정페이지</p>
-      <div class="image" onclick="location.href='/views/admin/admin-exhibition'" style="cursor:pointer"><img src="/resources/admin/img/admin-page-icon1.jpg"alt="Image"></div>
+      <div class="image" onclick="location.href='/views/admin/admin-ei'" style="cursor:pointer"><img src="/resources/admin/img/admin-page-icon1.jpg"alt="Image"></div>
     </div>
     <div class="col-sm-4">
       <p>exhibition_info 수정페이지</p>
