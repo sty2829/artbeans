@@ -3,14 +3,20 @@ package com.artbeans.web.service.Impl;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.artbeans.web.api.iamport.Cancel;
+import com.artbeans.web.api.iamport.Iamport;
+import com.artbeans.web.api.iamport.IamportResult;
 import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.dto.SumTicketTime;
 import com.artbeans.web.entity.ExhibitionReservationInfo;
+import com.artbeans.web.entity.PaymentInfo;
 import com.artbeans.web.entity.ReservationTicketInfo;
+import com.artbeans.web.entity.TicketCancelInfo;
 import com.artbeans.web.repository.ExhibitionReservationInfoRepository;
 import com.artbeans.web.repository.ReservationTicketRepository;
 import com.artbeans.web.service.ReservationService;
@@ -27,6 +33,9 @@ public class ReservationSeviceImpl implements ReservationService {
 	
 	@Autowired
 	private ReservationTicketRepository rtiRepo;
+	
+	@Autowired
+	private Iamport iamport;
 
 	@Override
 	public ReservationSchedule getReservationSchedule(Integer eiNum) {
@@ -51,8 +60,22 @@ public class ReservationSeviceImpl implements ReservationService {
 	}
 
 	@Override
-	public ReservationTicketInfo saveReservationTicket(ReservationTicketInfo rti) {
-		return rtiRepo.save(rti);
+	public void cancleReservation(TicketCancelInfo tci) {
+		Integer rtiNum = tci.getReservationTicketInfo().getRtiNum();
+		//예약티켓 pk로 전시회정보 조회
+		ReservationTicketInfo rti = rtiRepo.findById(rtiNum).get();
+		//결제정보 
+		PaymentInfo pi = rti.getPaymentInfo();
+		//결제정보 MerchantId 로 캔슬요청
+		IamportResult<Cancel> cancel = iamport.canclePaymentByMerchantId(pi.getPiCode());
+		String cancleStatus = cancel.getResponse().getStatus();
+		//iamport 응답 결제상태 비교
+		if(!"cancelled".equals(cancleStatus)) {
+			throw new RuntimeException("결제상태가 취소되지 않았습니다.");
+		}
+		rti.setRtiState("CANCEL");
+		pi.setPiState("CANCEL");
+		
 	}
 
 	

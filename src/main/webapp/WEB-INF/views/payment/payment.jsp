@@ -41,7 +41,7 @@ h5 {
 		<div class="row">
 	         <div class="col-lg-6">
 	            <div class="member d-flex align-items-start">
-	              <div class="pic" style="text-align: center"><img src="/resources/assets/img/team/team-1.jpg" class="img-fluid" alt=""><h4 class="mt-3"></h4></div>
+	              <div class="pic" style="text-align: center"><img src="/resources/assets/img/exhibition/${param.imgPath}" class="img-fluid" alt="" style="width: 200px; height: 150px"><h4 class="mt-3"></h4></div>
 	              <div class="member-info">
 	              	<div class="row">
 	              		<div class="col-lg-12">
@@ -190,6 +190,8 @@ function payment(){
 			    	}).done(function(data) {
 			    		if (data == 1) {
 			    			alert('결제가 완료되었습니다.');
+			    			//추후에 마이페이지 이동? 결제완료페이지 ㅎ
+			    			location.href = '/';
 			    		} else {
 			    			alert('결제 금액이 일치 하지 않습니다');
 			    		}

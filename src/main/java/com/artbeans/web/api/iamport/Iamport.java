@@ -147,7 +147,7 @@ public class Iamport {
 	}
 	
 	
-	public IamportResult<Cancle> canclePaymentByImpId(String impId) {
+	public IamportResult<Cancel> canclePaymentByImpId(String impId) {
 		HttpURLConnection conn = null;
 		
 	    try {
@@ -176,7 +176,46 @@ public class Iamport {
 				sb.append(line);
 			}			
 			
-			return getResult(sb.toString(), Cancle.class);
+			return getResult(sb.toString(), Cancel.class);
+	       
+	    } catch (IOException e) {
+			e.printStackTrace();
+
+		}
+
+		return null;
+	}
+	
+	public IamportResult<Cancel> canclePaymentByMerchantId(String merchantId) {
+		HttpURLConnection conn = null;
+		
+	    try {
+	        conn = getHttpURLConnection("https://api.iamport.kr/payments/cancel");
+	        conn.setRequestMethod("POST");
+	        conn.setRequestProperty("Authorization", getToken());
+	        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+	        conn.setDoOutput(true);
+	        DataOutputStream dos = new DataOutputStream(conn.getOutputStream());
+	        
+			String param = "merchant_uid=" + merchantId;
+			dos.write(param.getBytes("UTF-8"));
+			dos.flush();
+			dos.close();
+	        
+	        conn.connect();
+	        
+	        int responseCode = conn.getResponseCode();
+	        log.info("responseCode => {}", responseCode);
+	        StringBuffer sb = new StringBuffer();
+	        InputStreamReader in = new InputStreamReader(conn.getInputStream());
+			BufferedReader br = new BufferedReader(in);
+			
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+			}			
+			
+			return getResult(sb.toString(), Cancel.class);
 	       
 	    } catch (IOException e) {
 			e.printStackTrace();

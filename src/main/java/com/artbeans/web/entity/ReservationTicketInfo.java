@@ -2,19 +2,23 @@ package com.artbeans.web.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.ToString;
@@ -49,9 +53,10 @@ public class ReservationTicketInfo {
 	@Column(name="rti_Number")
 	private Integer rtiNumber;
 	
-	@Column(name="rti_status", insertable = false)
-	@ColumnDefault("PENDING")
-	private String rtiStatus;
+	@Column(name="rti_state", insertable = false)
+	@Convert(converter = StateConverter.class)
+	@ColumnDefault(value = "PENDING")
+	private String rtiState;
 	
 	@Column(name="rti_reivew_status", insertable = false)
 	@ColumnDefault("0")
@@ -65,5 +70,8 @@ public class ReservationTicketInfo {
 	@JoinColumn(name = "eri_num")
 	private ExhibitionReservationInfo exhibitionReservationInfo;
 	
+	@OneToOne(mappedBy = "reservationTicketInfo", cascade = CascadeType.ALL, optional = false)
+	@JsonManagedReference
+	private PaymentInfo paymentInfo;
 
 }

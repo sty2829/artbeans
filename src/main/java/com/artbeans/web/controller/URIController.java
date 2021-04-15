@@ -11,7 +11,6 @@ public class URIController {
 	
 	@GetMapping("/views/**")
 	public void goView() {
-		log.info("테스트");
 	}
 	
 	@GetMapping("/")
