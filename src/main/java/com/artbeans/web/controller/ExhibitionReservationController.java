@@ -32,8 +32,6 @@ public class ExhibitionReservationController {
 		return exhibitionReservationInfo.getEriNum();
 	}
 	
-	
-	
 	@GetMapping("/exhibition-reservations")
 	public List<ExhibitionReservationInfo> getList() {
 		List<ExhibitionReservationInfo> eriList = eriService.getExhibitionReservations();

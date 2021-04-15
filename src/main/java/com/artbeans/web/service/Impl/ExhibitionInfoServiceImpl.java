@@ -33,11 +33,15 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	public List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo) {
 		if(exhibitionInfo.getEiName()!=null) {
 			return exhiRepo.findAllByEiNameLikeOrderByEiNum("%"+exhibitionInfo.getEiName()+"%");
-		}
-		
+		}		
 		return exhiRepo.findAll();
 	}
-
+	@Override
+	public List<ExhibitionInfo> getEiBannerLists(ExhibitionInfo exhibitionInfo) {
+		
+			return exhiRepo.findAllByEiBanner(1);
+		
+	}
 	@Override
 	public ExhibitionInfo getExhibitionInfo(Integer eiNum) {
 		Optional<ExhibitionInfo> opEt = exhiRepo.findById(eiNum);

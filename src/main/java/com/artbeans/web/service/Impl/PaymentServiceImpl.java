@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.artbeans.web.api.iamport.Cancle;
+import com.artbeans.web.api.iamport.Cancel;
 import com.artbeans.web.api.iamport.Iamport;
 import com.artbeans.web.api.iamport.IamportResult;
 import com.artbeans.web.api.iamport.Payment;
@@ -60,10 +60,10 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		//아임포트에 결제된 결제금액
 		BigDecimal iamportAmount = iamportPayment.getResponse().getAmount();
-		log.info("importAmount => {}", iamportAmount);
 		
 		//뷰에서 생성된 코드로 예약결제 조회
 		PaymentInfo paymentInfo = piRepo.findByPiCode(paymentVO.getMerchantUid());
+		log.info("paymentInfo", paymentInfo);
 		
 		//데이터베이스에 저장된 결제금액 
 		Integer piPrice = paymentInfo.getPiPrice();
@@ -71,12 +71,17 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		if(!iamportAmount.equals(new BigDecimal(piPrice))) {
 			//결제정보 불일이 아임포트에 취소요청
-			IamportResult<Cancle> cancle = iamport.canclePaymentByImpId(paymentVO.getImpUid());
+			IamportResult<Cancel> cancle = iamport.canclePaymentByImpId(paymentVO.getImpUid());
 			if(!"cancelled".equals(cancle.getResponse().getStatus())){
-				log.info("취소상태가 수상합니다..");
+				log.info("결제상태가 취소되지 않았습니다.");
 			}
 			throw new RuntimeException("결제정보가 일치하지 않습니다");
 		}
+		
+		//결제상태변경
+		paymentInfo.setPiState("CONFIRM");
+		paymentInfo.getReservationTicketInfo().setRtiState("CONFIRM");
+		piRepo.save(paymentInfo);
 		
 		return 1;
 	}

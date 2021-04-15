@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+<script src="/resources/user/js/exhibition/mainList.js"></script>
 </head>
 <body>
 
@@ -13,8 +14,11 @@
       <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
       <div  id="mainSlide" class="carousel-inner" role="listbox">
 <!--         Slide 1
-        <div id="mainSlide" class="carousel-item active" style="background-image: url(/resources/assets/img/slide/slide-1.jpg)">
-        </div> -->
+        <div id="mainSlide" class="carousel-item active" style="background-image: url(/resources/assets/img/slide/slide-1.jpg)">-->
+         
+      </div> 
+      
+      <div id ="slide" class="carousel-inner" role="listbox">
       </div>
       <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon icofont-simple-left" aria-hidden="true"></span>
@@ -36,23 +40,44 @@
 						html += '<div class="carousel-item active" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
 						html += '<div class="carousel-item" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
 						html += '<div class="carousel-container">';
+
+		function bannerExhibition() {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', '/exhibition-banner');
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					var res = JSON.parse(xhr.responseText);
+					console.log(res);
+					var html ='';
+					for(var i=0;i<res.length;i++){
+						if(res[i]==res[0]){
+						html +='<div class="carousel-item active" style="background-image: url(resources/assets/img/exhibition/'+res[i].fileInfo.fiPath+')">';
+						html +='<div class="carousel-container">';
 						html += '<div class="container">';
+						html +='<h2 class="animate__animated animate__fadeInDown"><span>'+res[i].eiName+'</span></h2>';
+						html +=' <p class="animate__animated animate__fadeInUp"></p>';
+						html += '<a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">상세보기</a>';
+						html +='</div>';
 						html += '</div>';
 						html += '</div>';
+						}
+						html +='<div class="carousel-item" style="background-image: url(resources/assets/img/exhibition/'+res[i].fileInfo.fiPath+')">';
+						html +='<div class="carousel-container">';
+						html += '<div class="container">';
+						html +='<h2 class="animate__animated animate__fadeInDown"><span>'+res[i].eiName+'</span></h2>';
+						html +='<p class="animate__animated animate__fadeInUp"></p>';
+						html += '<a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">상세보기</a>';
+						html +='</div>';
 						html += '</div>';
-					}
-					html += '<div class="carousel-item active" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
-					html += '<div class="carousel-item" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
-					html += '<div class="carousel-container">';
-					html += '<div class="container">';
-					html += '</div>';
-					html += '</div>';
-					html += '</div>';
+						html += '</div>';
+					}document.querySelector('#slide').innerHTML = html;	
+								
 				}
-				document.querySelector('#mainSlide').innerHTML = html;
 			}
-			window.onload = slideExhibition;
-		</script>
+			xhr.send();
+		}
+window.onload = bannerExhibition;
+</script>
 
   <main id="main">
     <!-- ======= Portfolio Section ======= -->
@@ -80,42 +105,6 @@
       </div>
     </section><!-- End Portfolio Section -->
   </main><!-- End #main -->
-
-<script>
-
-    var html = '';
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list?size=9&sort=eiStartDate,asc'); //ExhibitionController
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState==4 && xhr.status==200){			
-			var res = JSON.parse(xhr.responseText);
-			// exhibition.eiStatus=0 수락전
-			for(var exhibition of res.data){
-				if(exhibition.eiStatus==0){
-						
-					html += '<div class="col-lg-4 col-md-6 portfolio-item filter-app">';					
-					html += '<div alt="" class="portfolio-wrap" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
-					html += '<img src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" >';
-					html += '<div class="portfolio-info">';
-					html += '<h4>' + exhibition.eiName + '</h4>';
-					html += '<p>' + exhibition.eiArtist + '</p>';					
-					html += '</div></div></div>';
-					html += '<div class="col-lg-4 col-md-6 portfolio-item filter-card">';
-					html += '<div class="portfolio-wrap" onclick="location.href=\'/views/gallery/views?giNum=' + exhibition.galleryInfo.giNum + '\'">';
-					html += '<img src=\'/resources/assets/img/gallery/' + exhibition.galleryInfo.fileInfo.fiPath + '\'" class="img-fluid" >';
-					html += '<div class="portfolio-info">';
-					html += '<h4>' + exhibition.galleryInfo.giName + '</h4>';
-					html += '<p>' + exhibition.galleryInfo.giAddress + '</p>';					
-					html += '</div></div></div>';
-				}
-			}
-			
-			document.querySelector('#exhibitionList').innerHTML += html;
-		}		
-	}
-	xhr.send();
-
-</script>
 
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>

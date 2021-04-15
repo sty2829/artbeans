@@ -43,7 +43,7 @@ img[data-col] {
    		</div>
 		<div class="row">
 			<div class="col-lg-5">
-                <img class="img-fluid" data-col="imgPath"><br>
+                <img class="img-fluid" data-col="imgPath" id="imgPath"><br>
           	</div>
 			<div class="col-lg-5" style="height: 300px">
 				<div id="mycal">
@@ -240,12 +240,16 @@ function goPayment(){
 	var rtiNumber = document.querySelector('#rtiNumber').value;
 	var piPrice = document.querySelector('#piPrice').innerText;
 	var eriNum = document.querySelector("#eriNum").value;
+	var idx = document.querySelector("#imgPath").src.lastIndexOf('/');
+	var imgPath = document.querySelector("#imgPath").src.substring(idx+1);
 	
 	var param = '?rtiDate=' + rtiDate + '&';
 	param += 'rtiTime=' + rtiTime + '&';
 	param += 'rtiNumber=' + rtiNumber + '&';
 	param += 'piPrice=' + piPrice + '&';
 	param += 'eriNum=' + eriNum + '&';
+	param += 'eriNum=' + eriNum + '&';
+	param += 'imgPath=' + imgPath + '&';
 	
 	location.href = '/views/payment/payment/' + param
 }

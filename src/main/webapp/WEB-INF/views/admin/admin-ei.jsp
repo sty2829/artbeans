@@ -71,14 +71,7 @@
 						<div class="table100-body js-pscroll">
 							<table>
 								<tbody id="tBody">
-							
-									<!--  	<tr class="row100 body">
-									<td class="cell100 column1">Virtual Cycle</td>
-									<td class="cell100 column2">Gym</td>
-									<td class="cell100 column3">8:00 AM - 9:00 AM</td>
-									<td class="cell100 column4">Randy Porter</td>
-									<td class="cell100 column5">20</td>
-								</tr>-->
+									<!-- 게시물 들어갈 공간 -->
 								</tbody>
 							</table>
 						</div>

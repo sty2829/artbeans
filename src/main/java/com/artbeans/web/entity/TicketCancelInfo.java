@@ -2,8 +2,10 @@ package com.artbeans.web.entity;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,9 +29,6 @@ public class TicketCancelInfo {
 	
 	@Column(name="tci_reason")
 	private String tciReason;
-	
-	@Column(name="tci_depositor")
-	private String tciDepositor;
 	
 	@Column(name="tci_price")
 	private Integer tciPrice;
