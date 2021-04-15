@@ -40,6 +40,12 @@ public class SearchController {
 		return eService.getExhibitionInfos(exhibitionInfo);
 	}
 	
+	@GetMapping("/exhibition-banner")
+	public @ResponseBody List<ExhibitionInfo> getEiBannerList(ExhibitionInfo exhibitionInfo){
+		log.info("exhibition-banner=>{}",exhibitionInfo);
+		return eService.getEiBannerLists(exhibitionInfo);
+	}
+	
 	@GetMapping("/Gallery-lists")
 	public @ResponseBody List<GalleryInfo> getGalleryInfoList(@ModelAttribute GalleryInfo galleryInfo){
 		return gService.getGalleryInfos(galleryInfo);

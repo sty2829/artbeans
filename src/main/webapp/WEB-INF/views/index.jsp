@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
 </head>
 <body>
@@ -14,13 +13,9 @@
 
       <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
 
-      <div  id="mainSlide" class="carousel-inner" role="listbox">
+      <div id ="slide" class="carousel-inner" role="listbox">
 
-<!--         Slide 1
-        <div id="mainSlide" class="carousel-item active" style="background-image: url(/resources/assets/img/slide/slide-1.jpg)">
-        </div> -->
 
- 
       </div>
 
       <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
@@ -35,33 +30,44 @@
 
     </div>
   </section><!-- End Hero -->
-  <script>
- 
-			function slideExhibition() {
-				
-				for (var i = 0; i < 3; i++) {
-					if (i = 0) {
-
-						html += '<div class="carousel-item active" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
-						html += '<div class="carousel-item" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
-						html += '<div class="carousel-container">';
+  <script> 
+		function bannerExhibition() {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', '/exhibition-banner');
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					var res = JSON.parse(xhr.responseText);
+					console.log(res);
+					var html ='';
+					for(var i=0;i<res.length;i++){
+						if(res[i]==res[0]){
+						html +='<div class="carousel-item active" style="background-image: url(resources/assets/img/exhibition/'+res[i].fileInfo.fiPath+')">';
+						html +='<div class="carousel-container">';
 						html += '<div class="container">';
+						html +='<h2 class="animate__animated animate__fadeInDown"><span>'+res[i].eiName+'</span></h2>';
+						html +=' <p class="animate__animated animate__fadeInUp"></p>';
+						html += '<a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">상세보기</a>';
+						html +='</div>';
 						html += '</div>';
 						html += '</div>';
+						}
+						html +='<div class="carousel-item" style="background-image: url(resources/assets/img/exhibition/'+res[i].fileInfo.fiPath+')">';
+						html +='<div class="carousel-container">';
+						html += '<div class="container">';
+						html +='<h2 class="animate__animated animate__fadeInDown"><span>'+res[i].eiName+'</span></h2>';
+						html +='<p class="animate__animated animate__fadeInUp"></p>';
+						html += '<a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">상세보기</a>';
+						html +='</div>';
 						html += '</div>';
-					}
-					html += '<div class="carousel-item active" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
-					html += '<div class="carousel-item" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
-					html += '<div class="carousel-container">';
-					html += '<div class="container">';
-					html += '</div>';
-					html += '</div>';
-					html += '</div>';
+						html += '</div>';
+					}document.querySelector('#slide').innerHTML = html;	
+								
 				}
-				document.querySelector('#mainSlide').innerHTML = html;
 			}
-			window.onload = slideExhibition;
-		</script>
+			xhr.send();
+		}
+window.onload = bannerExhibition;
+</script>
 
  <main id="main">
     <!-- ======= Portfolio Section ======= -->
