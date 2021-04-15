@@ -16,7 +16,7 @@
               <h3>ArtBeans</h3>
               <p>                
                 <strong>Phone:</strong> 02-2222-2122<br>
-                <strong>Email:</strong> info@example.com<br>
+                <strong>Email:</strong> artbeans@example.com<br>
               </p>              
             </div>
           </div>
@@ -24,15 +24,14 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>전시회/전시관</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">전체 전시회 목록</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">진행중인 전시회</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">종료된 전시회</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">전시관 목록</a></li>              
+              <li><i class="bx bx-chevron-right"></i> <a href="/views/exhibition/openingList">진행중인 전시회</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/views/exhibition/calendar-list">월별 개봉 전시회</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/views/exhibition/insert">전시회 등록하기</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="/views/admin/questions">자주하는 질문</a></li>              
             </ul>
           </div>
 
         
-
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>뉴스 레터</h4>
             <p>저희의 뉴스레터를 받아보고 싶으시면<br> 이메일을 작성해주세요.</p>

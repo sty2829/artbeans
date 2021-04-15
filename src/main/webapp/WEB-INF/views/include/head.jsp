@@ -165,7 +165,7 @@ function show(){
             </ul>
           </li>
           
-          <li class="active"><a href="/views/gallery/list">전시관 목록</a></li>
+          <li class=""><a href="/views/gallery/list">전시관 목록</a></li>
 
           <li class="drop-down"><a href="#">커뮤니티 목록</a>
             <ul>
