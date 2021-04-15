@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관리자 모드 메인</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <style>
 h3{
