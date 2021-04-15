@@ -1,10 +1,8 @@
 package com.artbeans.web.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.artbeans.web.dto.DataTable;
 import com.artbeans.web.entity.ExhibitionInfo;
-import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
 import com.artbeans.web.util.FileConverter;
 

@@ -22,7 +22,6 @@
 	</div>
 	<br>
   <div class='date_item rap'>
-
     <div class="grid date_form date_head">
       <div>일</div>
       <div>월</div>
@@ -32,9 +31,7 @@
       <div>금</div>
       <div>토</div>
     </div>
-
     <div class="grid date_form dateSel"></div>
-
   </div>
   <div><br></div>
   <div><br></div>
