@@ -22,9 +22,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
+@ToString(exclude = "exhibitionInfo")
 @NamedNativeQuery(
 		name = "find_reservation_schedule_dto",
 		query = "SELECT \r\n"
