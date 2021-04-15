@@ -41,7 +41,7 @@ public class ExhibitionReservationController {
 	
 	//전시회예약정보 PK로 검색
 	@GetMapping("/exhibition-reservations/{eriNum}")
-	public ExhibitionReservationInfo get(@PathVariable Integer eriNum) {
+	public ExhibitionReservationInfo getExhibition(@PathVariable Integer eriNum) {
 		ExhibitionReservationInfo eri = eriService.getExhibitionReservation(eriNum);
 		log.info("eri => {}", eri);
 		return eriService.getExhibitionReservation(eriNum);

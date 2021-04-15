@@ -20,13 +20,11 @@ public class Payment {
 	@JsonProperty("pay_method")
 	private String payMethod;
 	
-	@JsonProperty("amount")
 	private BigDecimal amount;
 	
 	@JsonProperty("cancel_amount")
 	private BigDecimal cancelAmount;
 
-	@JsonProperty("currency")
 	private String currency;
 	
 	@JsonProperty("buyer_name")

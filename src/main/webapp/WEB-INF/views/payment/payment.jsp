@@ -30,7 +30,7 @@ h5 {
 <body>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <section id="team" class="team section-bg">
-   <div class="container paymentMain">
+   <div class="container reservationSaveMain">
    		<div class="row">
    			<div class="col-lg-11" style="text-align: center;">
 				<div class="section-title">
@@ -72,7 +72,7 @@ h5 {
 	              </div>
 	            </div>
           	</div>
-			<div class="col-lg-4">
+			<div class="col-lg-4" id="saveDiv">
 	      		<label for="eriAudienceRating">예매자 성함</label>
 			    <input type="text" class="form-control" id="rtiName" required>
       			<label for="eriRunningTime" class="mt-2">예매자 이메일</label>
@@ -123,7 +123,7 @@ h5 {
 						<label class="btn btn-outline-success" for="booknlife" >도서문화상품권</label>
 					</li>
 				</ul>
-				<button type="button" class="btn btn-primary" style="width: 365px" onclick="payment()">결제</button>
+				<button type="button" class="btn btn-primary" style="width: 365px" onclick="saveReservation()">결제</button>
 			</div>
 		</div>
 	</div>
@@ -131,61 +131,61 @@ h5 {
 <script>
 IMP.init('imp08010397');
 
-function payment(){
+function saveReservation(){
+	//임시로 uiNum 추가해야댐
 	var param = {
-			reservationTicketInfo : {
-				exhibitionReservationInfo : {
-					eriNum : ${param.eriNum}
-				},
-				userInfo : {}
+			paymentInfo : {},
+			exhibitionReservationInfo : {
+				eriNum: ${param.eriNum}
+			},
+			userInfo : {
+				uiNum: 8
 			}
 	};
-	var objs = document.querySelectorAll('p[class="check"],input[class="form-control"]');
+	var objs = document.querySelectorAll('p[class="check"],input[class="form-control"],input[type="radio"]:checked');
 	var piMethod = document.querySelector('input[type="radio"]:checked');
-	param[piMethod.name] = piMethod.value; 
 	for(obj of objs){
 		if(obj.tagName == 'INPUT'){
 			if(obj.id.includes('rti')){
-				param['reservationTicketInfo'][obj.id] = obj.value;
+				param[obj.id] = obj.value;
+			}else{
+				param['paymentInfo'][obj.name] = obj.value;
 			}
 		}else{
 			if(obj.id.includes('rti')){
-				param['reservationTicketInfo'][obj.id] = obj.innerText;
-			}else{
 				param[obj.id] = obj.innerText;
+			}else{
+				param['paymentInfo'][obj.id] = obj.innerText;
 			}
 		}
 	}
 	
-	//임시로 uiNum 추가해야댐
-	param['reservationTicketInfo']['userInfo']['uiNum'] = 8;
-	
+	console.log(param);
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', "/payment");
+	xhr.open('POST', "/reservation/" + ${param.eriNum});
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			IMP.request_pay({
 			    pg : 'inicis',
-			    pay_method : res.piMethod,
-			    merchant_uid : res.piCode,
+			    pay_method : res.paymentInfo.piMethod,
+			    merchant_uid : res.paymentInfo.piMerchantId,
 			    name : '예약명 : 전시회 예약',
-			    amount : res.piPrice,
-			    buyer_name : res.reservationTicketInfo.rtiName,
-			    buyer_email : res.reservationTicketInfo.rtiEmail,
-			    buyer_tel : res.reservationTicketInfo.rtiPhone,
+			    amount : res.paymentInfo.piPrice,
+			    buyer_name : res.rtiName,
+			    buyer_email : res.rtiEmail,
+			    buyer_tel : res.rtiPhone,
 			    
 			}, function(rsp) {
 			    if ( rsp.success ) {
 			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 			    	jQuery.ajax({
-			    		url: "/payment/complete", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+			    		url: "/reservation/confirm", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
 			    		method: 'POST',
-			    		headers: { "Content-Type": "application/json" },
-			    		data: JSON.stringify ({
-			    		    imp_uid: rsp.imp_uid,
-			                merchant_uid: rsp.merchant_uid,
-			    		}),
+			    		data: {
+			    		    impId: rsp.imp_uid,
+			                merchantId: rsp.merchant_uid,
+			    		},
 			    		
 			    	}).done(function(data) {
 			    		if (data == 1) {

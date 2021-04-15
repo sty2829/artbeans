@@ -3,12 +3,12 @@
  */
 
 
- var html = '';
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition-list?size=9&sort=eiStartDate,asc'); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){			
 			var res = JSON.parse(xhr.responseText);
+			 var html = '';
 			// exhibition.eiStatus=0 수락전
 			for(var exhibition of res.data){
 				if(exhibition.eiStatus==0){
@@ -33,3 +33,4 @@
 		}		
 	}
 	xhr.send();
+	

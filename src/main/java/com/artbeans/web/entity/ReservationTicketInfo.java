@@ -17,11 +17,9 @@ import javax.persistence.Table;
 import org.hibernate.annotations.ColumnDefault;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
-import lombok.ToString;
 
 @Data
 @Entity
@@ -73,5 +71,5 @@ public class ReservationTicketInfo {
 	@OneToOne(mappedBy = "reservationTicketInfo", cascade = CascadeType.ALL, optional = false)
 	@JsonManagedReference
 	private PaymentInfo paymentInfo;
-
+	
 }

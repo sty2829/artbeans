@@ -167,7 +167,8 @@ window.onload = function(){
 
 function getTimeList(dateStr) {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/reservation-time/2/' + dateStr);
+	var eriNum = document.querySelector("#eriNum").value;
+	xhr.open('GET', '/reservation/' + eriNum + '/' + dateStr);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
@@ -248,10 +249,9 @@ function goPayment(){
 	param += 'rtiNumber=' + rtiNumber + '&';
 	param += 'piPrice=' + piPrice + '&';
 	param += 'eriNum=' + eriNum + '&';
-	param += 'eriNum=' + eriNum + '&';
 	param += 'imgPath=' + imgPath + '&';
 	
-	location.href = '/views/payment/payment/' + param
+	location.href = '/views/reservation/reservation-save/' + param
 }
 </script>
 </body>

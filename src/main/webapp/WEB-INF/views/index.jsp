@@ -5,6 +5,7 @@
 <head>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <script src="/resources/user/js/exhibition/mainList.js"></script>
+<script src="/resources/user/js/exhibition/slide.js"></script>
 </head>
 <body>
 
@@ -30,56 +31,8 @@
       </a>
     </div>
   </section><!-- End Hero -->
-  
-  <script>
-			function slideExhibition() {
-				
-				for (var i = 0; i < 3; i++) {
-					if (i = 0) {
 
-						html += '<div class="carousel-item active" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
-						html += '<div class="carousel-item" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
-						html += '<div class="carousel-container">';
-
-		function bannerExhibition() {
-			var xhr = new XMLHttpRequest();
-			xhr.open('GET', '/exhibition-banner');
-			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					var res = JSON.parse(xhr.responseText);
-					console.log(res);
-					var html ='';
-					for(var i=0;i<res.length;i++){
-						if(res[i]==res[0]){
-						html +='<div class="carousel-item active" style="background-image: url(resources/assets/img/exhibition/'+res[i].fileInfo.fiPath+')">';
-						html +='<div class="carousel-container">';
-						html += '<div class="container">';
-						html +='<h2 class="animate__animated animate__fadeInDown"><span>'+res[i].eiName+'</span></h2>';
-						html +=' <p class="animate__animated animate__fadeInUp"></p>';
-						html += '<a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">상세보기</a>';
-						html +='</div>';
-						html += '</div>';
-						html += '</div>';
-						}
-						html +='<div class="carousel-item" style="background-image: url(resources/assets/img/exhibition/'+res[i].fileInfo.fiPath+')">';
-						html +='<div class="carousel-container">';
-						html += '<div class="container">';
-						html +='<h2 class="animate__animated animate__fadeInDown"><span>'+res[i].eiName+'</span></h2>';
-						html +='<p class="animate__animated animate__fadeInUp"></p>';
-						html += '<a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">상세보기</a>';
-						html +='</div>';
-						html += '</div>';
-						html += '</div>';
-					}document.querySelector('#slide').innerHTML = html;	
-								
-				}
-			}
-			xhr.send();
-		}
-window.onload = bannerExhibition;
-</script>
-
-  <main id="main">
+ <main id="main">
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
       <div class="container">

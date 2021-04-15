@@ -19,9 +19,11 @@ import org.hibernate.annotations.ColumnDefault;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
+@ToString(exclude = "reservationTicketInfo")
 @Table(name="payment_info")
 public class PaymentInfo {
 	
@@ -36,8 +38,8 @@ public class PaymentInfo {
 	@Column(name="pi_price")
 	private Integer piPrice;
 	
-	@Column(name ="pi_code")
-	private String piCode;
+	@Column(name ="pi_merchant_id")
+	private String piMerchantId;
 	
 	@Column(name="pi_date", insertable = false, updatable = false)
 	@ColumnDefault("now()")

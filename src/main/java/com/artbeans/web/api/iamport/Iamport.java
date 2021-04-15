@@ -91,7 +91,7 @@ public class Iamport {
 	        conn.connect();
 	        
 	        int responseCode = conn.getResponseCode();
-	        log.info("responseCode => {}", responseCode);
+	        
 	        StringBuffer sb = new StringBuffer();
 	        InputStreamReader in = new InputStreamReader(conn.getInputStream());
 			BufferedReader br = new BufferedReader(in);
@@ -102,7 +102,6 @@ public class Iamport {
 			}			
 			
 			IamportResult<AccessToken> result = getResult(sb.toString(), AccessToken.class);
-			 log.info("result => {}", result);
 			
 			return result.getResponse().getToken();
 	       
@@ -126,7 +125,9 @@ public class Iamport {
 	        conn.connect();
 	        
 	        int responseCode = conn.getResponseCode();
+	        
 	        log.info("responseCode => {}", responseCode);
+	        
 	        StringBuffer sb = new StringBuffer();
 	        InputStreamReader in = new InputStreamReader(conn.getInputStream());
 			BufferedReader br = new BufferedReader(in);
@@ -175,7 +176,7 @@ public class Iamport {
 			while ((line = br.readLine()) != null) {
 				sb.append(line);
 			}			
-			
+			log.info("line => {}", line);
 			return getResult(sb.toString(), Cancel.class);
 	       
 	    } catch (IOException e) {

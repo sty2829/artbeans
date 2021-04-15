@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.entity.ReservationTicketInfo;
+import com.artbeans.web.entity.TicketCancelInfo;
 import com.artbeans.web.service.ReservationService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,17 +33,30 @@ public class ReservationController {
 
 	//추후에 eriNum으로 수정하는게 날듯
 	//해당전시회 선택한 예약날짜의 예매시간리스트 가져옴
-	@GetMapping("/reservation-time/{eiNum}/{dateStr}")
-	public Map<String,Integer> getView(@PathVariable Integer eiNum, @PathVariable String dateStr) {
-		log.info("eiNum =>{}", eiNum);
-		log.info("day =>{}", dateStr);
+	@GetMapping("/reservation/{eriNum}/{dateStr}")
+	public Map<String,Integer> getTime(@PathVariable Integer eriNum, @PathVariable String dateStr) {
+		return rService.getReservationTimeMap(eriNum, dateStr);
+	}
+	
+	//예약정보세이브
+	@PostMapping("/reservation/{eriNum}")
+	public ReservationTicketInfo save(@RequestBody ReservationTicketInfo rti, @PathVariable Integer eriNum) {
+		log.info("rti => {}", rti);
+		return rService.saveReservation(rti, eriNum);
+	}
+	
+	//서버에서 결제정보 컨펌
+	@PostMapping("/reservation/confirm")
+	public int confirm(String impId, String merchantId) {
+		log.info("impId => {}", impId);
+		log.info("merchantId => {}", merchantId);
+		return rService.confirmReservation(impId, merchantId);
 		
-		return rService.getReservationTimeMap(eiNum, dateStr);
 	}
 	
 	// 전시회 유저예약취소
-	@DeleteMapping("/reservation")
-	public void cancel() {
-		
+	@DeleteMapping("/reservation/cancel/{rtiNum}")
+	public int cancel(@PathVariable Integer rtiNum) {
+		return rService.cancleReservation(rtiNum);
 	}
 }
