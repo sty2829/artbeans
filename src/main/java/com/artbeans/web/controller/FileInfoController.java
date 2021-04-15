@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.artbeans.web.entity.FileInfo;
 import com.artbeans.web.service.FileService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Controller
 public class FileInfoController {
 	@Autowired
@@ -25,5 +23,7 @@ public class FileInfoController {
 		fileService.saveFileInfo(fileInfo);	
 		return fileInfo.getFiNum();
 	}
+	
+
 
 }

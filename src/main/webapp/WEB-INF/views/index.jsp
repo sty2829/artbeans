@@ -38,31 +38,27 @@
   <script>
  
 			function slideExhibition() {
-				var xhr = new XMLHttpRequest();
-				xhr.open('GET', '/exhibition-search');
-				xhr.onreadystatechange = function() {
-					if (xhr.readyState == 4 && xhr.status == 200) {
-						var res = JSON.parse(xhr.responseText);
-					
-					var eiNum =null;
-						html = '';
-						for(var slideExhibitions of res){
-							eiNum = slideExhibitions.eiNum;
-							console.log(slideExhibitions);
-							if(eiNum==0){
-								html+= '<div class="carousel-item active" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';	
-							}
-							html+= '<div class="carousel-item" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';  
-							html+= '<div class="carousel-container">';	
-							html+= '<div class="container">';
-					      	html+='</div>';
-					      	html+='</div>';
-					      	html+='</div>';						
-						}
-						document.querySelector('#mainSlide').innerHTML = html;
+				
+				for (var i = 0; i < 3; i++) {
+					if (i = 0) {
+
+						html += '<div class="carousel-item active" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
+						html += '<div class="carousel-item" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
+						html += '<div class="carousel-container">';
+						html += '<div class="container">';
+						html += '</div>';
+						html += '</div>';
+						html += '</div>';
 					}
+					html += '<div class="carousel-item active" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
+					html += '<div class="carousel-item" style="background-image: url(/resources/assets/img/exhibition/' + slideExhibitions['fileInfo']['fiPath']+'">';
+					html += '<div class="carousel-container">';
+					html += '<div class="container">';
+					html += '</div>';
+					html += '</div>';
+					html += '</div>';
 				}
-				xhr.send();
+				document.querySelector('#mainSlide').innerHTML = html;
 			}
 			window.onload = slideExhibition;
 		</script>

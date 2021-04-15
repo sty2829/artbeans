@@ -36,19 +36,21 @@
 	position: absolute;
 	background: white;
 	padding: 0 2px;
-	border-radius: 6px;
+	border-radius: 5px;
 }
 
 .totalItem {
 	height: 1.8em;
 	width: 400px;
 	outline: none;
+	border-radius: 5px;
 }
 
 .totalItem:hover {
 	color: #black;
 	background: #dcdcdc;
 	width: 400px;
+	border-radius: 5px;
 }
 
 
@@ -192,7 +194,7 @@ function topSearch(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
-			var html = '<div><h4>검색결과 : '+res.length+'개</h4></div><br>';
+			var html = '<div><h5>검색결과 : '+res.length+'개</h5></div><br>';
 			
 			console.log(res.length);
 			for(var exhibition of res){
@@ -223,7 +225,7 @@ function topSearch(){
 			}
 			if( res.length==0){
 				html += '<div class="col-lg-12 d-flex justify-content-center">';
-				html += '<h3>검색 결과가 없습니다.</h3>';
+				html += '<h5>검색 결과가 없습니다.</h5>';
 				html += '</div>';
 			}
 			
@@ -302,7 +304,7 @@ function getGallery(obj){
 		if(xhr.readyState==4&&xhr.status==200){
 			var get = JSON.parse(xhr.responseText);
 			console.log(get);
-			var html ='<div><h4>검색결과 : '+get.length+'개</h4></div><br>';
+			var html ='<div><h5>검색결과 : '+get.length+'개</h5></div><br>';
 			for(var gallery of get){
 				if(gallery.giNum!=0){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
@@ -332,7 +334,7 @@ function getGallery(obj){
 			}
 			if( get.length==0){
 				html += '<div class="col-lg-12 d-flex justify-content-center">';
-				html += '<h3>검색 결과가 없습니다.</h3>';
+				html += '<h5>검색 결과가 없습니다.</h5>';
 				html += '</div>';
 			}
 			document.querySelector('#galleryList').innerHTML = html;	
