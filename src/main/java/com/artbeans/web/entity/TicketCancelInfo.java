@@ -37,7 +37,7 @@ public class TicketCancelInfo {
 	@ColumnDefault("now()")
 	private Date tciDate;
 	
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name = "rti_num")
 	private ReservationTicketInfo reservationTicketInfo;
 }

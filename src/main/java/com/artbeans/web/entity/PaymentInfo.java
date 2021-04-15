@@ -48,7 +48,7 @@ public class PaymentInfo {
 	@ColumnDefault("PENDING")
 	private String piState;
 
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+	@OneToOne
 	@JoinColumn(name = "rti_num")
 	@JsonBackReference
 	private ReservationTicketInfo reservationTicketInfo;
