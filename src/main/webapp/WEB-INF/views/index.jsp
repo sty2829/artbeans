@@ -7,32 +7,8 @@
 	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
 	crossorigin="anonymous"></script>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<style>
-#sidebar {
-	width: 300px;
-	position: fixed;
-	top: 0;
-	right: -300px;
-	height: 100%;
-	z-index: 999;
-	background: #c8c8c8;
-	color: #fff;
-	transition: all 0.3s;
-}
+ 
 
-#sidebar.active {
-	right: 0;
-}
-
-.overlay {
-	position: fixed;
-	width: 100vw;
-	height: 100vh;
-	background: rgba(0, 0, 0, 0);
-	z-index: 998;
-	display: none;
-}
-</style>
 </head>
 <body>
 	<!-- ======= Hero Section ======= -->
@@ -81,16 +57,13 @@
 							<li data-filter=".filter-gallery">갤러리</li>
 						</ul>
 
-						<div id="wrap">
-							<nav id="sidebar"></nav>
-							<button id="sidebarCollapse">지도</button>
-							</div>
+						
 					</div>
 
 				</div>
 
 				<div class="row portfolio-container" id="exhibitionList"></div>
-				<div class="overlay"></div>
+		
 			</div>
 
 		</section>
@@ -98,22 +71,13 @@
 	</main>
 
 
-	<script>
-		$('#sidebarCollapse').on('click', function() {
-			$('#sidebar').addClass('active');
-			$('.overlay').fadeIn();
-		});
 
-		$('.overlay').on('click', function() {
-			$('#sidebar').removeClass('active');
-			$('.overlay').fadeOut();
-		});
-	</script>
 	<!-- End #main -->
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 
 	<script src="/resources/user/js/exhibition/mainList.js"></script>
 	<script src="/resources/user/js/exhibition/slide.js"></script>
+	
 </body>
 
 </html>

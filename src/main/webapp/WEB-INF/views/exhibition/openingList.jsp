@@ -8,6 +8,7 @@
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <script src="/resources/user/js/window/infinityScroll.js"></script>
 <script src="/resources/user/js/exhibition/openingList.js"></script>
+<link rel="stylesheet" href="/resources/user/css/right-menu.css">
 </head>
 <body>
 	<main id="main">
@@ -26,8 +27,13 @@
 							<li onclick="newest()">전시회 오픈순</li>
 							<li onclick="deadline()">전시회 마감순</li>
 						</ul>
+						<div id="wrap">
+							<nav id="sidebar"></nav>
+							<button id="sidebarCollapse">지도</button>
+							</div>
 					</div>
 				</div>
+						<div class="overlay"></div>
 			</div>
 		</section>
 		
@@ -38,5 +44,6 @@
 		</section>
 	</main>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<script src="/resources/user/js/map/right-menu.js"></script>
 </body>
 </html>
