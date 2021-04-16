@@ -14,9 +14,6 @@
 	margin-left: 450px;
 	height: 1000px;
 }
-h5 {
-	font-weight: bold;
-}
 .radio-hidden{
 	display: none;
 }
@@ -34,29 +31,44 @@ img[data-col] {
 <body>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 	<div class="container reservationCancleMain">
-		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">취소</button>
-		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel"><span>전시회 예약</span></h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		          <div class="form-group">
-		            <label for="message-text" class="col-form-label">취소사유</label>
-		            <textarea class="form-control" id="tciReason"></textarea>
-		          </div>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
-		        <button type="button" class="btn btn-primary" onclick="cancel()">예매취소</button>
-		      </div>
+		<div class="card mb-3" style="max-width: 540px;">
+		  <div class="row no-gutters">
+		    <div class="col-md-4">
+		      <img src="/resources/assets/img/exhibition/1197354369033300.JPG" style="width: 180px; height: 190px">
 		    </div>
+		    <div class="col-md-8">
+		      <div class="row">
+			      <div class="col-lg-12 ml-2" style="height: 40px">
+		  			    <p style="font-size: 1.5em; margin-bottom: 0px">백남준전<p>
+		           </div>
+	         	<div class="col-lg-12 ml-2" style="height: 70px">
+	              <ul class="list-inline">
+	             		<li class="list-inline-item">
+	  		  				 <p style="font-size: 1.4em; margin-bottom: 0px">예매일<p>
+	                 		 <span style="display: block">2021-04-12</span>
+	                	</li>
+	   			    	<li class="list-inline-item">
+	  		  				 <p style="font-size: 1.4em; margin-bottom: 0px">예매일<p>
+	                 		 <span style="display: block">2021-04-12</span>
+	                	</li>
+	            	</ul>
+	           </div>
+	           <div class="col-lg-12 ml-2">
+	            	<ul class="list-inline">
+						<li class="list-inline-item">
+	 		  				 <p style="font-size: 1.4em; margin-bottom: 0px">예매일<p>
+	                 		 <span style="display: block">2021-04-12</span>
+	               		</li>
+	               		<li class="list-inline-item">
+			                 <p style="font-size: 1.4em; margin-bottom: 0px">예매일<p>
+	                 		 <span style="display: block">2021-04-12</span>
+	           			 </li>    
+	               	</ul>
+	             </div>
+        		</div>
+			    </div>
 		  </div>
-		</div>
+	</div>
 	</div>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>

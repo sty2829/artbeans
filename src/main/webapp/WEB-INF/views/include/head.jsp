@@ -216,7 +216,7 @@ function logout(){
 				</c:if>
 				<c:if test="${userInfo ne null }">
 				<a href="/views/login" style="float: right"
-				class="get-started-btn ml-auto">로그아웃</a>
+				class="get-started-btn ml-auto" onclick="logout()">로그아웃</a>
 				</c:if>
 			<!-- .nav-menu -->
 		</div>
