@@ -5,7 +5,7 @@
 <jsp:include page="/WEB-INF/views/include/css.jsp"></jsp:include>
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hevj9bqhd5"></script>
-<script src="/resources/user/js/map/footerMap.js"></script>
+ <script src="/resources/user/js/map/footerMap.js"></script>
 </head>
 <body>
 	<!-- ======= Footer ======= -->
@@ -62,7 +62,7 @@
 	<script src="/resources/assets/vendor/venobox/venobox.min.js"></script>
 	<script src="/resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
 	<script src="/resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-	<!-- Template Main JS File
+	<!-- Template Main JS File 
 <script src="/resources/assets/js/main.js"></script> -->
 </body>
 </html>

@@ -24,5 +24,4 @@ function loadMap() {
 	});
 	infowindow.open(map, marker);
 }
-
-window.onload = loadMap;
+window.addEventListener('load', loadMap);
