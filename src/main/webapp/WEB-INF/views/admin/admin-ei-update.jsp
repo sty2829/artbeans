@@ -14,7 +14,7 @@
 <title>관리자 수정 페이지</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <script src="/resources/user/js/window/moveblock.js"></script>
-<script src="/resources/user/js/exhibition/insert.js"></script>
+<script src="/resources/user/js/admin/admin-ei-update.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f6ce9d8468a6bd79f89c359862923de3&libraries=services"></script>
 <script src="/resources/user/js/map/addrsearch.js"></script>
@@ -39,47 +39,13 @@
 					<div class="col-lg-4">
 						<div class="info">
 							<div class="address">
-								<h4>신청자 성함</h4>
+								<h4>전시회 번호</h4>
+							</div>
+							<div class="phone">
+								<h4>전시회 상태값</h4>
 							</div>
 							<div class="phone" id="gallertySelectDivMenu">
-								<h4>신청자 갤러리</h4>
-							</div>
-
-							<!-- 갤러리 등록 -->
-							<div id="galleryInsertDivMenu" style="display: none"
-								class="phone">
-								<div class="address">
-									<h4>갤러리명</h4>
-									<div style="HEIGHT: 8pt"></div>
-								</div>
-								<div class="address">
-									<h4>갤러리 전화번호</h4>
-									<div style="HEIGHT: 8pt"></div>
-								</div>
-								<div class="address">
-									<h4>갤러리 오픈시간</h4>
-									<div style="HEIGHT: 10pt"></div>
-								</div>
-								<div class="address">
-									<h4>갤러리 종료시간</h4>
-									<div style="HEIGHT: 15pt"></div>
-								</div>
-								<div class="address">
-									<h4>갤러리 홈페이지</h4>
-									<div style="HEIGHT: 10pt"></div>
-								</div>
-								<div class="address">
-									<h4>갤러리 휴일</h4>
-									<div style="HEIGHT: 10pt"></div>
-								</div>
-								<div class="address">
-									<h4>갤러리 주소</h4>
-									<div style="HEIGHT: 10pt"></div>
-								</div>
-								<div class="address">
-									<h4>갤러리 이미지</h4>
-									<div style="HEIGHT: 30pt"></div>
-								</div>
+								<h4>현재 갤러리</h4>
 							</div>
 
 							<div class="phone">
@@ -119,8 +85,20 @@
 						<div class="form-row">
 							<div class="col-md-6 form-group">
 								<!-- 나중에 변경 -->
-								<input type="text" id="uiName" class="form-control"
-									placeholder="나중에 신청자 성함 세션으로 받아서 픽스시키기" />
+								<input type="text" id="eiNum" class="form-control" readonly/>
+								<div style="HEIGHT: 3pt"></div>
+							</div>
+						</div>
+						
+						<div class="form-row">
+							<div class="col-md-6 form-group">
+								<!-- 나중에 변경 -->
+									<select class="col-md-6 form-group"
+									style="WIDTH: 250pt; HEIGHT: 30pt" id="eiStatus"
+									>
+										<option value="0">0</option>
+										<option value="1">1</option>
+									</select>
 							</div>
 						</div>
 
@@ -130,69 +108,13 @@
 									style="WIDTH: 250pt; HEIGHT: 30pt" id="gallery"
 									name="galleryOption()"></select>
 							</div>
-							<button class="get-started-btn ml-auto"
-								style="WIDTH: 150pt; HEIGHT: 30pt" onclick="showGalleryDiv()">갤러리 등록하기</button>
+							
 						</div>
-
-						<!-- 갤러리 등록 -->
-						<div id="galleryInsertDiv" style="display: none">
-							<div class="form-group">
-								<input type="text" id="giName" placeholder="갤러리명">
-							</div>
-							<div class="form-group">
-								<input type="number" id="giRphoneNumber" placeholder="갤러리 전화번호">
-							</div>
-							<div class="form-group">
-								<input type="text" id="giStartTime" placeholder="갤러리 오픈시간 00:00">
-							</div>
-							<div class="form-group">
-								<input type="text" id="giEndTime" placeholder="갤러리 종료시간 00:00">
-							</div>
-							<div class="form-group">
-								<input type="text" id="giHomepage" placeholder="갤러리 홈페이지">
-							</div>
-							<div class="form-group">
-								<input type="text" id="giHoliday" placeholder="갤러리 휴일">
-							</div>
-							<div class="form-group">
-								<input type="text" id="giAddress" placeholder="갤러리 주소">
-								<button type="button" onclick="sample4_execDaumPostcode()" data-toggle="modal" data-target="#myModal" class="get-started-btn ml-auto">주소검색</button>
-								
-								<div class="modal fade" id="myModal" role="dialog">
-									<div class="modal-dialog modal-xl">
-										<!-- Modal content-->
-										<div class="modal-content">
-											<div class="modal-header">
-												<!-- 주소찾기 -->
-												<input type="hidden" id="sample4_postcode">
-												<input type="hidden" id="sample4_extraAddress">
-												<input type="hidden" size="50px" id="sample4_roadAddress">
-												<input type="hidden" id="sample4_jibunAddress">
-												<span id="guide" style="color: #999; display: none"></span>
-												<input type="hidden" size="40px" id="sample4_detailAddress">
-											</div>
-											<div class="modal-body">
-												<div id="map" style="width: 100%; height: 350px;"></div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-							</div>
-							<div class="form-group">
-								<input type="file" id="fiFile1">
-							</div>
-							<div class="form-group">
-								<button class="get-started-btn ml-auto" style="WIDTH: 70pt; HEIGHT: 30pt" onclick="insertGallery()">등록</button>
-								<button class="get-started-btn ml-auto" style="WIDTH: 70pt; HEIGHT: 30pt" onclick="showGalleryDiv()">취소</button>
-							</div>
-						</div>
-						
-						<!-- 갤러리 등록 -->
+												
 						<div class="form-group">
 							<input type="text" class="form-control" id="eiName"
 								placeholder="전시회명" />
-							<div style="HEIGHT: 10pt"></div>
+							<div style="HEIGHT: 5pt"></div>
 						</div>
 
 						<div class="form-group">

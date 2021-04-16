@@ -39,7 +39,7 @@ public class ExhibitionController {
 	
 	@GetMapping("/exhibition")
 	public @ResponseBody ExhibitionInfo getExhibitionInfo(@RequestParam Integer eiNum){
-//		log.info("eiNum=>{}",eService.getExhibitionInfo(eiNum));
+		//log.info("eiNum=>{}",eService.getExhibitionInfo(eiNum));
 		return eService.getExhibitionInfo(eiNum);
 	}
 	
