@@ -28,7 +28,7 @@
 				class="carousel-control-next-icon icofont-simple-right"
 				aria-hidden="true"></span> <span class="sr-only">Next</span>
 			</a>
-		</div>
+		</div> 
 	</section>
 	<!-- End Hero -->
 
