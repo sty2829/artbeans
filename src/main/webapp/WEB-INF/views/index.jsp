@@ -33,7 +33,7 @@
   </section><!-- End Hero -->
 
  <main id="main">
-    <!-- ======= Portfolio Section ======= -->
+    <!-- ======= mainList Section ======= -->
     <section id="portfolio" class="portfolio">
       <div class="container">
 
@@ -56,9 +56,8 @@
         </div>
 
       </div>
-    </section><!-- End Portfolio Section -->
+    </section><!-- End mainList Section -->
   </main><!-- End #main -->
-
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 
