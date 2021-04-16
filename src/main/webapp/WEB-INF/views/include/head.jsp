@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
 <html>
 <head>
 <style>
@@ -128,6 +129,19 @@ function show(){
 	var suggestListDiv = document.querySelector('#suggestListDiv');
 	suggestListDiv.style.display='block';
 }
+
+function logout(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST','/logout')
+	xhr.onreadystatechange = function(){
+		if(xhr.status==200 && xhr.readyState==4){
+			if(xhr.responseText=='true'){
+				location.href = '/';
+			}
+		}
+	}
+	xhr.send();
+}
 </script>
 		<div class="container d-flex align-items-center">
 
@@ -158,14 +172,14 @@ function show(){
 			<nav class="nav-menu d-none d-lg-block">
 
 				<ul>
-				<!-- <c:if test="{userInfo eq null}">
+				<c:if test="${userInfo ne null}">
 					<li class="drop-down"><a href="#">마이페이지</a>
 						<ul>
 							<li><a href="/views/exhibition/openingList">나의 회원정보</a></li>
 							<li><a href="/views/exhibition/closeList">예약정보</a></li>
 							<li><a href="/views/exhibition/futureList">찜한 전시회 목록</a></li>
-						</ul></li> -->
-				
+						</ul></li> 
+					</c:if>
 					<li class="drop-down"><a href="#">전시회 목록</a>
 						<ul>
 							<li><a href="/views/exhibition/openingList">진행중인 전시회</a></li>
@@ -196,11 +210,18 @@ function show(){
 				</ul>
 
 			</nav>
+				<c:if test="${userInfo eq null }">
 			<a href="/views/login" style="float: right"
 				class="get-started-btn ml-auto">로그인/회원가입</a>
+				</c:if>
+				<c:if test="${userInfo ne null }">
+				<a href="/views/login" style="float: right"
+				class="get-started-btn ml-auto">로그아웃</a>
+				</c:if>
 			<!-- .nav-menu -->
 		</div>
 	</header>
 	<!-- End Header -->
+	
 </body>
 </html>
