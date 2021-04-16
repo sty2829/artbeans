@@ -13,7 +13,6 @@
 <meta charset="UTF-8">
 <title>관리자 수정 페이지</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<script src="/resources/user/js/admin/admin-ei-update.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f6ce9d8468a6bd79f89c359862923de3&libraries=services"></script>
 <script src="/resources/user/js/map/addrsearch.js"></script>
@@ -301,7 +300,21 @@ function getOpen() {
 	}
 	xhr.send();
 }
-
+function galleryOption() {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/Gallery-lists'); //GalleryController
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var res = JSON.parse(xhr.responseText);
+			var html = '<option value="">갤러리 선택</option>';
+			for (var galleryInfo of res) {
+				html += '<option value="' + galleryInfo.giNum + '">' + galleryInfo.giName + '</option>';
+			}
+			document.querySelector('#gallery').innerHTML = html;
+		}
+	}
+	xhr.send();
+}
 
 
 /*
