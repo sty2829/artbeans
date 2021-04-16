@@ -175,9 +175,9 @@ function logout(){
 				<c:if test="${userInfo ne null}">
 					<li class="drop-down"><a href="#">마이페이지</a>
 						<ul>
-							<li><a href="/views/exhibition/openingList">나의 회원정보</a></li>
-							<li><a href="/views/exhibition/closeList">예약정보</a></li>
-							<li><a href="/views/exhibition/futureList">찜한 전시회 목록</a></li>
+							<li><a href="/views/menu/mypage">나의 회원정보</a></li>
+							<li><a href="/views/menu/myReservation">예약정보</a></li>
+							<li><a href="/views/menu/favorite-exhibition">찜한 전시회 목록</a></li>
 						</ul></li> 
 					</c:if>
 					<li class="drop-down"><a href="#">전시회 목록</a>
@@ -216,7 +216,7 @@ function logout(){
 				</c:if>
 				<c:if test="${userInfo ne null }">
 				<a href="/views/login" style="float: right"
-				class="get-started-btn ml-auto">로그아웃</a>
+				class="get-started-btn ml-auto" onclick="logout()">로그아웃</a>
 				</c:if>
 			<!-- .nav-menu -->
 		</div>
