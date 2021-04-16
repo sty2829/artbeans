@@ -13,7 +13,6 @@
 <meta charset="UTF-8">
 <title>관리자 수정 페이지</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<script src="/resources/user/js/window/moveblock.js"></script>
 <script src="/resources/user/js/admin/admin-ei-update.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f6ce9d8468a6bd79f89c359862923de3&libraries=services"></script>
@@ -38,6 +37,8 @@
 				<div class="row mt-5">
 					<div class="col-lg-4">
 						<div class="info">
+						
+							
 							<div class="address">
 								<h4>전시회 번호</h4>
 							</div>
@@ -69,14 +70,16 @@
 							<div class="phone">
 								<h4>전시회 종료시간</h4>
 							</div>
-
+							
 							<div class="phone">
-								<h4>대표 포스터사진</h4>
+								<h4>전시회 포스터사진</h4>
+
 							</div>
 							<div class="phone">
 								<h4>전시회 설명</h4>
-							</div>
 
+							</div>
+					
 						</div>
 					</div>
 
@@ -150,41 +153,170 @@
 								placeholder="00:00" />
 							<div style="HEIGHT: 8pt"></div>
 						</div>
-
+						
 						<div class="form-group">
-							<input type="file" class="form-control" id="fiFile2" />
-							<div style="HEIGHT: 10pt"></div>
+							<input type="hidden" id="fileInfo-fiNum"> <input
+								type="file" class="form-control" id="fiFile"
+								 />
+							<div style="HEIGHT: 5pt"></div>
 						</div>
 
-						<!-- ckeditor -->
 						<div class="form-group">
-							<div id="editor">내용을 입력하고 저장을 눌러주세요.</div>
-							<button onclick="save()">저장</button>
+							<textarea class="form-control" id="eiContent" rows="5"
+								placeholder="전시회 설명"></textarea>
 						</div>
 
-						<script>
-						 var editor;
-							ClassicEditor
-							.create( document.querySelector('#editor'),{
-								removePlugins: ['Table', 'MediaEmbed'],
-								ckfinder : {
-									uploadUrl : '/exhibition-insert-editorimage'
-								}
-							 })
-						.then(obj => {editor = obj;})
-						.catch(error => {console.error(error);});
-					    </script>
-
-						<textarea id="eiContent" style="display: none"></textarea>
-						<button class="get-started-btn ml-auto" onclick="doInsert()">전시회등록 신청</button>
+						<input type="hidden" class="form-control" id="uiNum"
+								placeholder="uiNum히든" />	
+							
+						<button class="get-started-btn ml-auto" onclick="doUpdate()">전시회 정보 수정 및 권한부여</button>
 					</div>
 				</div>
 			</div>
 		</section>
 	</main>
 
+	
+	<script>
+	galleryOption()
+	getOpen();
 
+	
+function getParameterByName(name) {
+	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+		results = regex.exec(location.search);
+	return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+var getValue = getParameterByName("eiNum");
+getValue=Number(getValue);
+
+
+
+
+function doUpdate(){
+	var eiName = document.querySelector('#eiName');
+	if(eiName.value.trim().length<1){
+		alert('전시회 이름을 1글자 이상 작성해주세요.');
+		eiName.focus();
+		return;
+	}	
+	var eiArtist = document.querySelector('#eiArtist');
+	if(eiArtist.value.trim().length<1){
+		alert('전시회 작가명을 1글자 이상 작성해주세요.');
+		eiArtist.focus();
+		return;
+	}	
+	var eiCharge = document.querySelector('#eiCharge');
+	if(eiCharge.value.trim().length<2){
+		alert('전시회 가격을 작성해주세요.');
+		eiCharge.focus();
+		return;
+	}	
+	var eiStartDate = document.querySelector('#eiStartDate');
+	if(eiStartDate.value.trim().length<1){
+		alert('전시회 시작일을 선택해주세요.');
+		eiStartDate.focus();
+		return;
+	}	
+	var eiEndDate = document.querySelector('#eiEndDate');
+	if(eiEndDate.value.trim().length<1){
+		alert('전시회 종료일을 선택해주세요.');
+		eiEndDate.focus();
+		return;
+	}	
+	var eiStartTime = document.querySelector('#eiStartTime');
+	if(eiStartTime.value.trim().length<5){
+		alert('전시회 시작 시간을 작성해주세요.');
+		eiStartTime.focus();
+		return;
+	}
+	
+	var eiEndTime = document.querySelector('#eiEndTime');
+	if(eiEndTime.value.trim().length<5){
+		alert('전시회 종료 시간을 작성해주세요.');
+		eiEndTime.focus();
+		return;
+	}	
+	var xhr = new XMLHttpRequest();
+	xhr.open('POST','/exhibition-update')
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status ==200){
+			if(xhr.responseText&& xhr.responseText!= null){
+				alert('전시회 수정이 완료되었습니다.');
+				location.href='/views/admin/admin-ei';
+			}
+		}
+	}
+	var formData = new FormData();
+
+	formData.append('eiNum', document.querySelector('#eiNum').value);
+	formData.append('eiStatus', document.querySelector('#eiStatus').value);
+	formData.append('galleryInfo.giNum', document.querySelector('select#gallery option:checked').value);
+	formData.append('eiName', document.querySelector('#eiName').value);
+	formData.append('eiArtist', document.querySelector('#eiArtist').value);
+	formData.append('eiCharge', document.querySelector('#eiCharge').value);
+	formData.append('eiStartDate', document.querySelector('#eiStartDate').value);
+	formData.append('eiEndDate', document.querySelector('#eiEndDate').value);
+	formData.append('eiStartTime', document.querySelector('#eiStartTime').value);
+	formData.append('eiEndTime', document.querySelector('#eiEndTime').value);
+	
+	formData.append('fileInfo.fiNum',document.querySelector('#fileInfo-fiNum').value);
+	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
+	
+	formData.append('eiContent', document.querySelector('#eiContent').value);
+	
+	formData.append('userInfo.uiNum', document.querySelector('#uiNum').value);
+	
+	xhr.send(formData);
+}
+
+function getOpen() {
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/exhibition-list'); //ExhibitionController
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var res = JSON.parse(xhr.responseText);
+			for(exhibition of res.data){
+				if(exhibition.eiNum==getValue){
+					console.log(exhibition);
+					document.getElementById('eiNum').value=exhibition.eiNum;
+					document.getElementById('eiStatus').value=exhibition.eiStatus;
+					document.getElementById('gallery').value=exhibition.galleryInfo.giNum;
+					document.getElementById('eiName').value=exhibition.eiName;
+					document.getElementById('eiArtist').value=exhibition.eiArtist;
+					document.getElementById('eiCharge').value=exhibition.eiCharge;
+					document.getElementById('eiStartDate').value=exhibition.eiStartDate;
+					document.getElementById('eiEndDate').value=exhibition.eiEndDate;
+					document.getElementById('eiStartTime').value=exhibition.eiStartTime;
+					document.getElementById('eiEndTime').value=exhibition.eiEndTime;
+					document.getElementById('fiFile').files[0]=exhibition.fileInfo;
+					document.getElementById('eiContent').value=exhibition.eiContent;
+					
+					document.getElementById('uiNum').value=exhibition.userInfo.uiNum;
+					
+				}
+			}
+		}
+	}
+	xhr.send();
+}
+
+
+
+/*
+
+
+		document.querySelector('#giName').value = res.galleryInfo['giNum'];
+		document.querySelector('#fileInfo-fiNum').value = res['fileInfo']['fiNum'];
+		document.querySelector('#uiNum').value = res['userInfo']['uiNum'];
+		document.querySelector('#giNum').value = res['galleryInfo']['giNum'];
+		
+		document.querySelector('#giName').value = res.galleryInfo.giName;
+		document.querySelector('#pView').innerHTML = '<img id="preView" width="200" src="/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '">';
+*/
+
+</script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
-
 </html>
