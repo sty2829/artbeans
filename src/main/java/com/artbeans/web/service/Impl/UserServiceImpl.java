@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.artbeans.web.dto.UserTicketDTO;
 import com.artbeans.web.entity.UserInfo;
+import com.artbeans.web.repository.ReservationTicketRepository;
 import com.artbeans.web.repository.UserInfoRepository;
 import com.artbeans.web.service.UserService;
 
@@ -15,6 +17,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserInfoRepository uRepo;
+	
+	@Autowired
+	private ReservationTicketRepository rtiRepo;
 	
 	@Override
 	public List<UserInfo> getList(UserInfo userInfo) {
@@ -45,6 +50,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserInfo login(UserInfo ui) {
 		return uRepo.findByUiEmailAndUiPwd(ui.getUiEmail(), ui.getUiPwd());
+	}
+
+	@Override
+	public List<UserTicketDTO> getTicketList(Integer uiNum) {
+		return rtiRepo.findAllUserTicket(uiNum);
 	}
 
 }

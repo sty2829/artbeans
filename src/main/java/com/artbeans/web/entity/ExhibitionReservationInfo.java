@@ -48,7 +48,7 @@ import lombok.ToString;
 				+ "LEFT JOIN exhibition_reservation_info eri ON ei.ei_num = eri.ei_num \r\n"
 				+ "LEFT JOIN reservation_ticket_info rti ON eri.eri_num = rti.eri_num WHERE ei.ei_num = :eiNum GROUP BY rti_date HAVING SUM(rti_number) >= max) a)), '')) disable\r\n"
 				+ "FROM exhibition_info ei \r\n"
-				+ "LEFT JOIN file_info fi ON ei.ei_num = fi.fi_num\r\n"
+				+ "LEFT JOIN file_info fi ON ei.fi_num = fi.fi_num\r\n"
 				+ "LEFT JOIN exhibition_reservation_info eri \r\n"
 				+ "ON ei.ei_num = eri.ei_num \r\n"
 				+ "WHERE ei.ei_num = :eiNum",
@@ -116,5 +116,7 @@ public class ExhibitionReservationInfo {
 	@JoinColumn(name= "ei_num")
 	@JsonBackReference
 	private ExhibitionInfo exhibitionInfo;
+	
+	
 	
 }

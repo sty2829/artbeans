@@ -69,7 +69,7 @@
               </div>
               <div class="form-row mt-3 mb-2">
                 <div class="col-md-6 form-group">
-                  <select class="custom-select is-invalid" id="eiHoliday" name="selectBox" style="width: 311.66px" onchange="check(this)" >
+                  <select class="custom-select is-invalid" id="eriHoliday" name="selectBox" style="width: 311.66px" onchange="check(this)" >
                   	<option selected disabled>휴무일을 선택해주세요</option>
                   	<option value="1">일요일</option>
                   	<option value="2">월요일</option>
@@ -85,9 +85,9 @@
               <label class="mt-2"></label>
               <input type="text" class="form-control is-invalid" id="eriRunningTime" onchange="check(this)">
               <label class="mt-2"></label>
-              <input type="number" class="form-control is-invalid" id="eriMaxStock" onchange="check(this)" min="1" required>
+              <input type="number" class="form-control is-invalid" id="eriMaxTicket" onchange="check(this)" min="1" required>
               <label class="mt-3"></label>
-              <input type="number" class="form-control is-invalid" id="eriMaxTicket" onchange="check(this)" min="1" required >
+              <input type="number" class="form-control is-invalid" id="eriMaxStock" onchange="check(this)" min="1" required >
            	  <label class="mt-3"></label>
               <input type="text" class="form-control is-invalid" id="eriStartDate" onchange="check(this)" style="background-color: white">
               <label class="mt-3"></label>	

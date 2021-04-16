@@ -129,7 +129,7 @@ img[data-col] {
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
 	//추후에 전시회번호 바꿔야함
-	xhr.open('GET', '/reservation/1');
+	xhr.open('GET', '/reservation/32');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);

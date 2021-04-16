@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.artbeans.web.dto.ReservationDTO;
 import com.artbeans.web.dto.SumTicketTime;
+import com.artbeans.web.dto.UserTicketDTO;
 import com.artbeans.web.entity.ReservationTicketInfo;
 
 public interface ReservationTicketRepository extends JpaRepository<ReservationTicketInfo, Integer> {
@@ -23,6 +24,17 @@ public interface ReservationTicketRepository extends JpaRepository<ReservationTi
 	//타임리스트
 	@Query("SELECT new com.artbeans.web.dto.SumTicketTime(rti.rtiTime AS time, sum(rti.rtiNumber) AS sum) FROM ReservationTicketInfo rti LEFT JOIN rti.exhibitionReservationInfo eri where rti.exhibitionReservationInfo.eriNum = ?1 AND rti.rtiDate = ?2 GROUP BY rti.rtiTime")
 	List<SumTicketTime> sumTicketGroupByTime(Integer eriNum, Date date);
+	
+	//유저번호로 예매티켓리스트 조회
+	@Query("SELECT gi.giName AS giName, pi.piMerchantId AS piMerchantId, "
+			+ " rti.rtiDate AS rtiDate, rti.rtiTime AS rtiTime "
+			+ " FROM ReservationTicketInfo rti left join "
+			+ " rti.paymentInfo pi left join"
+			+ " rti.exhibitionReservationInfo eri left join"
+			+ " eri.exhibitionInfo ei left join"
+			+ " ei.fileInfo fi left join"
+			+ " ei.galleryInfo gi where rti.userInfo.uiNum = ?1")
+	List<UserTicketDTO> findAllUserTicket(Integer uiNum); 
 
 	ReservationDTO findByRtiNum(Integer i);
 }
