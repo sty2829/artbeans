@@ -158,6 +158,14 @@ function show(){
 			<nav class="nav-menu d-none d-lg-block">
 
 				<ul>
+				<!-- <c:if test="{userInfo eq null}">
+					<li class="drop-down"><a href="#">마이페이지</a>
+						<ul>
+							<li><a href="/views/exhibition/openingList">나의 회원정보</a></li>
+							<li><a href="/views/exhibition/closeList">예약정보</a></li>
+							<li><a href="/views/exhibition/futureList">찜한 전시회 목록</a></li>
+						</ul></li> -->
+				
 					<li class="drop-down"><a href="#">전시회 목록</a>
 						<ul>
 							<li><a href="/views/exhibition/openingList">진행중인 전시회</a></li>

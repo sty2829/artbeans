@@ -47,7 +47,7 @@ public class UserInfoController {
 		return userService.getList(userInfo);
 	}
 	
-	
+	@PostMapping("/login")
 	public UserInfo login(@RequestBody UserInfo userInfo, HttpServletRequest req) {
 		UserInfo user = userService.login(userInfo); 
 		log.info("user=>{}",user);
