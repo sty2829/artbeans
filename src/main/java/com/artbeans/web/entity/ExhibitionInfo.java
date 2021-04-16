@@ -83,7 +83,7 @@ public class ExhibitionInfo {
 	private GalleryInfo galleryInfo;
 		
 	//파일인서트 추가
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fi_num")
 	private FileInfo fileInfo;
 	
@@ -93,7 +93,7 @@ public class ExhibitionInfo {
 	private UserInfo userInfo;
 	
 	//양방향설정
-	@OneToOne(mappedBy = "exhibitionInfo")
+	@OneToOne(mappedBy = "exhibitionInfo", fetch = FetchType.EAGER)
 	@JsonManagedReference
 	private ExhibitionReservationInfo exhibitionReservationInfo;
 

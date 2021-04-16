@@ -63,8 +63,7 @@
   <script src="/resources/assets/vendor/venobox/venobox.min.js"></script>
   <script src="/resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
   <script src="/resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="/resources/assets/js/main.js"></script>
+<!-- Template Main JS File
+<script src="/resources/assets/js/main.js"></script> -->
   </body>
   </html>
