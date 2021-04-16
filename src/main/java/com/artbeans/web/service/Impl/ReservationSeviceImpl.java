@@ -82,6 +82,14 @@ public class ReservationSeviceImpl implements ReservationService {
 		log.info("rti => {}", rti);
 		return rtiRepo.save(rti);
 	}
+
+
+	@Override
+	public List<ReservationTicketInfo> getReservations(ReservationTicketInfo rti) {
+		return rtiRepo.findAll();
+	}
+
+
 	
 	@Override
 	public int confirmReservation(String impId, String merchantId) {

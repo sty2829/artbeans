@@ -14,14 +14,11 @@
 <title>ArtBeans2 - Register</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <!-- Custom fonts for this template-->
-<link href="/resources/vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="/resources/css/sb-admin-2.min.css" rel="stylesheet">
 <style>
 div {
 	text-align : center;
@@ -40,20 +37,28 @@ div {
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 
 <body class="bg-gradient-danger">
-
+	<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
+		<section id="breadcrumbs" class="breadcrumbs">
+			<div class="container"></div>
+		</section>
 	<div class="container">
 
-		<div class="card o-hidden border-0 shadow-lg my-5">
+		<div class="card o-hidden border-0 ">
 			<div class="card-body p-0">
 				<!-- Nested Row within Card Body -->
 				<div class="row">
 					<div class="col-lg-7">
 						<div class="p-5">
 							<h1>
-								<img src="/resources/artbeans.png" class="img-fluid"
+								<img src="/resources/user/artbeans.png" class="img-fluid"
 									style="width: 95px">회원가입
 							</h1>
+<<<<<<< HEAD
+							<div class="text-align-center">
+=======
 							<div class="text-align-center"></div>
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 
 								<div class="form-group row">
 									<div class="col-sm-6 mb-3 mb-sm-0" id="nameTag">
@@ -97,17 +102,31 @@ div {
 
 
 								<div class="btn-group btn-group-toggle" data-toggle="buttons" id="uiGender">
+<<<<<<< HEAD
+									<label class="btn btn-outline-dark active"> <input type="radio" name="uiGender" value="남성" autocomplete="off" >남성</label>
+									 <label class="btn btn-outline-dark"> <input type="radio" name="uiGender" value="여성" autocomplete="off">여성</label>
+=======
 									<label class="btn btn-outline-dark active"> <input type="radio" id="uiGender1" value="남성" autocomplete="off" >남성</label>
 									 <label class="btn btn-outline-dark"> <input type="radio" id="uiGender1" value="여성" autocomplete="off">여성</label>
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 								</div>
 
 								<div class="btn-group btn-group-toggle" data-toggle="buttons" id="ageButton">
+<<<<<<< HEAD
+									<label class="btn btn-outline-dark active"><input type="radio" name="uiAge" value="10대" autocomplete="off">10대</label>
+									<label class="btn btn-outline-dark"> <input type="radio" name="uiAge" value="20대" autocomplete="off">20대</label>
+									<label class="btn btn-outline-dark"> <input type="radio" name="uiAge" value="30대" autocomplete="off">30대</label>
+									<label class="btn btn-outline-dark"> <input type="radio" name="uiAge" value="40대" autocomplete="off">40대</label>
+									<label class="btn btn-outline-dark"> <input type="radio" name="uiAge" value="50대" autocomplete="off">50대</label>
+									<label class="btn btn-outline-dark"> <input type="radio" name="uiAge" value="60대이상" autocomplete="off">60대 이상</label>
+=======
 									<label class="btn btn-outline-dark active"><input type="radio" id="uiAge" value="10대" autocomplete="off">10대</label>
 									<label class="btn btn-outline-dark"> <input type="radio" id="uiAge" value="20대" autocomplete="off">20대</label>
 									<label class="btn btn-outline-dark"> <input type="radio" id="uiAge" value="30대" autocomplete="off">30대</label>
 									<label class="btn btn-outline-dark"> <input type="radio" id="uiAge" value="40대" autocomplete="off">40대</label>
 									<label class="btn btn-outline-dark"> <input type="radio" id="uiAge" value="50대" autocomplete="off">50대</label>
 									<label class="btn btn-outline-dark"> <input type="radio" id="uiAge" value="60대이상" autocomplete="off">60대 이상</label>
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 								</div>
 
 
@@ -115,13 +134,13 @@ div {
 								<div class="select">
 									<select class="form-group" id="uiGenre">
 										<option value="">선호하는 장르를 선택해주세요</option>
-										<option value="서양화" id="uiGenre">서양화</option>
-										<option value="동양화" id="uiGenre">동양화</option>
-										<option value="유화" id="uiGenre">유화</option>
-										<option value="조각" id="uiGenre">조각</option>
-										<option value="설치미술" id="uiGenre">설치미술</option>
-										<option value="미디어아트" id="uiGenre">미디어아트</option>
-										<option value="사진" id="uiGenre">사진</option>
+										<option value="서양화" >서양화</option>
+										<option value="동양화">동양화</option>
+										<option value="유화">유화</option>
+										<option value="조각" >조각</option>
+										<option value="설치미술">설치미술</option>
+										<option value="미디어아트">미디어아트</option>
+										<option value="사진">사진</option>
 									</select> <br>
 								</div>
 
@@ -629,11 +648,19 @@ div {
 												</div>
 											</div></li>
 									</ul>
+<<<<<<< HEAD
+								
+						</div>
+						<button type="button" class="btn btn-outline-danger" onclick="goInsert()">회원가입</button>
+						</div>
+						</div>
+=======
 								</div>
 						</div>
 						
 						<button onclick="goInsert()">회원가입</button>
 
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 <!-- 
 						<a href="" class="btn btn-secondary btn-user btn-block"
 							onclick="goLogin()"> 로그인 </a>
@@ -646,17 +673,7 @@ div {
 				</div>
 			</div>
 		</div>
-
-
-	<!-- Bootstrap core JavaScript-->
-	<script src="/resources/vendor/jquery/jquery.min.js"></script>
-	<script src="/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="/resources/js/sb-admin-2.min.js"></script>
+		</main>
 	<script>
 	function goInsert(){
 			var uiName = document.querySelector('#uiName');
@@ -692,63 +709,109 @@ div {
 				alert('비밀번호가 일치하지 않습니다.');
 				uiPwd2.value = "";
 				uiPwd2.focus();
-				return false;
-			}
-
-			var uiRegion = document.querySelector('select#uiRegion option:checked');
-			console.log(uiRegion.value);
-			if (uiRegion.value.trim().length <1) {				
-				alert('지역을 선택해주세요.');
-				uiRegion.focus();
 				return;
 			}
 
+			var uiRegion = document.querySelector('select#uiRegion option:checked');
+<<<<<<< HEAD
+			//console.log(uiRegion.value);
+=======
+			console.log(uiRegion.value);
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
+			if (uiRegion.value.trim().length <1) {				
+				alert('지역을 선택해주세요.');
+<<<<<<< HEAD
+=======
+				uiRegion.focus();
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
+				return;
+			}
+
+<<<<<<< HEAD
+			var uiGender = document.querySelector('input[name="uiGender"]:checked');
+			//console.log(uiGender.value);
+			if (!uiGender) { 
+=======
 			var uiGender = document.querySelector('input[id="uiGender1"]:checked');
 			console.log(uiGender);
 			//console.log(uiGender.value);
 			if (!uiGender) {
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 				alert('성별을 선택해주세요.');
-				gender.focus();
 				return;
 			}
 			
 			
+<<<<<<< HEAD
+			var uiAge = document.querySelector('input[name="uiAge"]:checked');
+			if (!uiAge) {
+				alert('연령대를 선택해주세요.');
+=======
 			var uiAge = document.querySelector('input[id="uiAge"]:checked');
 			console.log(uiAge);
 			console.log(uiAge.value);
 			if (uiAge.value.trim().length <1) {
 				alert('나이를 선택해주세요.');
 				age.focus();
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 				return;
 			}
 
 
+<<<<<<< HEAD
+			var uiGenre = document.querySelector('#uiGenre');
+=======
 			var uiGenre = document.querySelector('select#uiGenre option:checked');
 			console.log(uiGenre);
 			console.log(uiGenre.value);
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 			if (uiGenre.value.length <1) {
 				alert('장르를 선택해주세요.');
-				genre.focus();
 				return;
 			}
 
 
 			var check1 = document.querySelector('#termsService:checked');
+<<<<<<< HEAD
+=======
 			console.log(check1.value);
 			var checks = document.querySelector('#termsPrivacy:checked');
 			console.log(check1.value);
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 			if (check1.value.trim().length <1) {
 				alert('이용약관에 동의해주세요.');
 			}
+<<<<<<< HEAD
+			var checks = document.querySelector('#termsPrivacy:checked');
+			 if (checks.value.trim().length <1) {
+=======
 			if (checks.value.trim().length <1) {
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 				alert('개인정보 수집/이용 동의해주세요.');
 			}
+<<<<<<< HEAD
+=======
 
 			//var check2 = document.querySelector('select#termPrivacy option:checked');
 			
 
+>>>>>>> branch 'master' of https://github.com/sty2829/artbeans.git
 			
-			var xhr = new HttpRequest();
+			var param = {
+					uiName : document.querySelector('#uiName').value,
+					uiEmail : document.querySelector('#uiEmail').value,
+					uiPwd : document.querySelector('#uiPwd').value,
+					uiPwd2 : document.querySelector('#uiPwd2').value,
+					uiRegion : document.querySelector('#uiRegion').value,
+					uiGender : uiGender.value,
+					uiAge : uiAge.value,
+					uiGenre : document.querySelector('#uiGenre').value,
+					checks1 : document.querySelector('#termsService').value,
+					checks : document.querySelector('#termsPrivacy').value
+					}
+			
+			
+			var xhr = new XMLHttpRequest();
 			xhr.open('POST', '/user-insert');
 			xhr.onreadystatechange = function() {
 				if(xhr.readyState==4 && xhr.status==200) {
@@ -757,20 +820,7 @@ div {
 							alert('회원 가입을 완료하였습니다.');
 					}					
 				}
-			}
-			var param = {
-					uiName : document.querySelector('#uiName').value,
-					uiEmail : document.querySelector('#uiEmail').value,
-					uiPwd : document.querySelector('#uiPwd').value,
-					uiPwd2 : document.querySelector('#uiPwd2').value,
-					uiRegion : document.querySelector('#uiRegion').value,
-					uiGender : document.querySelector('#uiGender').value,
-					uiAge : document.querySelector('#uiAge').value,
-					uiGenre : document.querySelector('#uiGenre').value,
-					checks1 : document.querySelector('#termsService').value,
-					checks2 : document.querySelector('#termsPrivacy').value
-					}
-			
+			}			
 			xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
 			xhr.send(JSON.stringify(param));
 		}

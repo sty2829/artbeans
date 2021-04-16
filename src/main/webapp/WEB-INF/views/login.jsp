@@ -7,17 +7,19 @@
 <title>Insert title here</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 </head>
-<link href="/resources/vendor/fontawesome-free/css/all.min.css"
-	rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="/resources/css/sb-admin-2.min.css" rel="stylesheet">
-<body>
-<body class="bg-gradient-danger" style="text-align: center">
 
+<body class="bg-gradient-danger" style="text-align: center">
+<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
+		<section id="breadcrumbs" class="breadcrumbs">
+			<div class="container">
+			</div>
+		</section>
 	<div class="container">
 
 		<!-- Outer Row -->
@@ -43,11 +45,11 @@
 											id="uiPwd" placeholder="비밀번호">
 									</div>
 
-									<button onclick="goLogin()">로그인</button>
+									<button type="button" class="btn btn-danger" onclick="goLogin()">로그인</button>
 									<hr>
 									<div class="text-center">
-										<a class="small" href="/views/menu/id">아이디 찾기</a> / <a
-											class="small" href="/views/menu/password">비밀번호 찾기</a>
+										<a class="small" href="/views/login/forgetId">아이디 찾기</a> / <a
+											class="small" href="/views/login/forgetPwd">비밀번호 찾기</a>
 									</div>
 									<div class="text-center">
 										<a class="small" href="/views/register">회원가입</a>
@@ -66,10 +68,11 @@
 
 
 	</div>
+	</main>
 	<script>
 		function goLogin() {
 
-			var uiEmail = document.querySelector('#uiEmail');
+		var uiEmail = document.querySelector('#uiEmail');
 			if (uiEmail.value.trim().length < 1) {
 				alert('이메일을 입력해주세요.');
 				uiEmail.focus();
@@ -82,30 +85,32 @@
 				uiPwd.focus();
 				return;
 			}
-			
+
 			var param = {
-					uiEmail : document.querySelector('#uiEmail').value,
-					uiPwd : document.querySelector('#uiPwd').value
-				}
-			
-		var xhr = new XMLHttpRequest();
+				uiEmail : document.querySelector('#uiEmail').value,
+				uiPwd : document.querySelector('#uiPwd').value
+			}
+
+			var xhr = new XMLHttpRequest();
 			xhr.open('POST', '/login');
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState == 4 && xhr.status == 200) {
 					console.log(xhr.responseText);
 					if (xhr.responseText) {
+						console.log(xhr.responseText);
 						var res = JSON.parse(xhr.responseText);
 						alert('반갑습니다');
 						location.href = '/';
 						return;
-						}
-					alert('아이디나 비밀번호를 확인해주세요.');
 					}
+					alert('아이디나 비밀번호를 확인해주세요.');
 				}
-			xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
+			}
+			xhr.setRequestHeader('content-type',
+					'application/json;charset=UTF-8');
 			xhr.send(JSON.stringify(param));
 		}
 	</script>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>	
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>	
 </body>
 </html>

@@ -52,6 +52,8 @@ public class ReservationTicketInfo {
 	private Integer rtiNumber;
 	
 	@Column(name="rti_state", insertable = false)
+
+
 	@Convert(converter = StateConverter.class)
 	@ColumnDefault(value = "PENDING")
 	private String rtiState;

@@ -1,5 +1,6 @@
 package com.artbeans.web.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.artbeans.web.dto.ReservationSchedule;
@@ -31,6 +33,19 @@ public class ReservationController {
 		return rService.getReservationSchedule(eiNum);
 	}
 
+
+	@GetMapping("/reservation-ticket")
+	public @ResponseBody List<ReservationTicketInfo> getList(ReservationTicketInfo rti) {
+		log.info("rti=>{}",rti);
+		return rService.getReservations(rti);
+	}
+	
+	@GetMapping("/reservation-time/{eiNum}/{dateStr}")
+	public Map<String,Integer> getView(@PathVariable Integer eiNum, @PathVariable String dateStr) {
+		log.info("eiNum =>{}", eiNum);
+		log.info("day =>{}", dateStr);
+		return rService.getReservationTimeMap(eiNum, dateStr);
+	}
 	//추후에 eriNum으로 수정하는게 날듯
 	//해당전시회 선택한 예약날짜의 예매시간리스트 가져옴
 	@GetMapping("/reservation/{eriNum}/{dateStr}")

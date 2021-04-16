@@ -32,7 +32,7 @@ public class TestController {
 	
 	@PostMapping("/test/reservation")
 	public int getSave(@RequestBody ReservationTicketInfo rti) {
-		rtiRepo.save(rti);
+		//rtiRepo.save(rti);
 		return 1;
 	}
 	
