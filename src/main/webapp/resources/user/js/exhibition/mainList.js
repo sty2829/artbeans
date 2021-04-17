@@ -4,6 +4,7 @@
 
 function getImageList() {
 	var xhr = new XMLHttpRequest();
+	// uri 나중에 변경
 	xhr.open('GET', '/exhibition-listDemo?size=9&sort=eiStartDate,asc'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
