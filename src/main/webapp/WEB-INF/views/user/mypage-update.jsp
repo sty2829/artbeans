@@ -109,20 +109,14 @@
 				return; 
 			}	
 			
-			//var userInfo = ${userInfo};
-			//console.log(userInfo);
-			var uiAge = '${userInfo.uiAge}';
-			var uiGender = '${userInfo.uiGender}';
-			console.log(uiAge,uiGender);
-			
 			var param = {
 					uiNum : document.querySelector('#uiNum').value,
 					uiName : document.querySelector('#uiName').value,
 					uiEmail : document.querySelector('#uiEmail').value,
 					uiPwd : document.querySelector('#uiPwd').value,
 					uiGenre : document.querySelector('#uiGenre').value,
-					uiAge : uiAge,
-					uiGender : uiGender
+					uiAge : ${userInfo.uiAge},
+					uiGender : ${userInfo.uiGender}
 				}
 
 			var xhr = new XMLHttpRequest();
@@ -138,12 +132,11 @@
 					}
 				}	
 				xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
-				console.log(param);
 				xhr.send(JSON.stringify(param));
 			}	
 			
 			function goOut() {
-				location.href = '/views/index';
+				location.href = '/';
 			}
 
 		</script>
