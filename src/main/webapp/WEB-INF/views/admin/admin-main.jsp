@@ -49,8 +49,8 @@ p{
       <div class="image" onclick="location.href='/views/admin/admin-ei'" style="cursor:pointer"><img src="/resources/admin/img/admin-page-icon1.jpg"alt="Image"></div>
     </div>
     <div class="col-sm-4">
-      <p>exhibition_info 수정페이지</p>
-      <div class="image"><img src="/resources/admin/img/admin-page-icon1.jpg"alt="Image"></div>
+      <p>exhibition_reservation_info 수정페이지</p>
+      <div class="image"  onclick="location.href='/views/admin/admin-eri'" style="cursor:pointer"><img src="/resources/admin/img/admin-page-icon2.jpg"alt="Image"></div>
     </div>
     <div class="col-sm-4">
       <p>exhibition_info 수정페이지</p>
