@@ -154,7 +154,7 @@ function logout(){
 				onsubmit="return check('headsearchInput')">
 				<div>
 					<div>
-						<div class="container d-flex align-items-center"">
+						<div class="container d-flex align-items-center">
 							<input autocomplete="off" type=text name="keyword"
 								placeholder="전시관,전시회 검색" class="headsearchInput"
 								id="headsearchInput" onkeyup="headSuggest(this);">
@@ -210,14 +210,17 @@ function logout(){
 				</ul>
 
 			</nav>
-				<c:if test="${userInfo eq null }">
+			<div style=" position: relative; margin-left: 5%;" >
+			<c:if test="${userInfo eq null }">
 			<a href="/views/user/login" style="float: right"
 				class="get-started-btn ml-auto">로그인/회원가입</a>
 				</c:if>
 				<c:if test="${userInfo ne null }">
-				<a href="/views/user/login" style="float: right"
-				class="get-started-btn ml-auto" onclick="logout()">로그아웃</a>
+				<a href="/views/user/login" class="get-started-btn ml-auto" onclick="logout()">로그아웃</a>
 				</c:if>
+			</div>
+				
+				
 			<!-- .nav-menu -->
 		</div>
 	</header>
