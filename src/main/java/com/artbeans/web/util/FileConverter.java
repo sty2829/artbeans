@@ -49,12 +49,14 @@ public class FileConverter {
 	
 	public static Map<String,String> ckeditorUploadImg(MultipartFile upload){
 		String fileName = upload.getOriginalFilename();
+		log.info("fileName=>{}",fileName);
 		File target = new File(editorPath + fileName);
 		try {
 			upload.transferTo(target);
 			Map<String,String> rMap = new HashMap<>();
 			rMap.put("uploaded","true");
-			rMap.put("url","/resources/" + fileName);
+			rMap.put("url","/resources/assets/img/editor/" + fileName);
+			log.info("rMap=>{}",rMap);
 			return rMap;
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
