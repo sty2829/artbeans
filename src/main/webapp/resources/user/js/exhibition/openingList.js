@@ -30,7 +30,7 @@ function get() {
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div style="display:none" class="read-more">';
-					html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" >';
+					html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" value3="'+ exhibition.eiNum + '">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
@@ -71,7 +71,7 @@ function newest() {
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div style="display:none" class="read-more">';
-					html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" >';
+					html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" value3="'+ exhibition.eiNum + '">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
@@ -112,7 +112,7 @@ function deadline() {
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div style="display:none" class="read-more">';
-					html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" >';
+					html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" value3="'+ exhibition.eiNum + '">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
@@ -121,6 +121,38 @@ function deadline() {
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;
 		}
+	}
+	xhr.send();
+
+
+}
+
+function sideExhibition(obj) {
+	
+	var eiNum = obj.getAttribute('value3');
+	console.log(eiNum);
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/exhibition-search');
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var rres = JSON.parse(xhr.responseText);
+			var html = '';
+			
+			for(var res of rres) {
+			
+				html += '<div id="' + res.eiNum + '">';
+				html +=  '<div class="map_view1" onclick="moveMap(this) value1=' + res.galleryInfo.giAddressY + 'value2='+   res.galleryInfo.giAddressX + '">';
+				html += '<img  style="width:50px; cursor:pointer; height:50px" src=\'/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '\'" onclick="location.href=\'/views/exhibition/views?eiNum=' + res.eiNum + '\'">';
+				html += '</div>';
+				html +=  '<div class="map_view2" onclick="moveMap(this)value1=' +  res.galleryInfo.giAddressY + 'value2=' + res.galleryInfo.giAddressX +   '">';
+				html += '<span></span><br>';
+				html +='<span>'+res.galleryInfo.giName+'</span>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';			
+		}
+		
+		}document.querySelector('#sideMapList').innerHTML = html;
 	}
 	xhr.send();
 }

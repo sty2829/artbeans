@@ -35,9 +35,8 @@
 					<div class="overlay">
 					</div>
 					<div id="sidebar">
-					<div
-								style="border: 0px; border-radius: 20px; top: 0%; margin-left: 0%; width: 100%; height: 420px; position: relative; overflow: hidden; background: url(&quot;http://static.naver.net/maps/mantle/1x/pattern_1.png&quot;) 0px 0px repeat transparent;"
-								id="map" tabindex="0">
+					<div style="border: 0px; border-radius: 20px; top: 0%; margin-left: 0%; width: 100%; height: 420px; position: relative; overflow: hidden; background: url(&quot;http://static.naver.net/maps/mantle/1x/pattern_1.png&quot;) 0px 0px repeat transparent;"
+							id="map" tabindex="0">
 								<div
 									style="position: absolute; display: block; margin: 0px; padding: 0px; border: 0px none; top: 0px; left: 0px; overflow: visible; width: 100%; height: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); z-index: 0; cursor: url(&quot;http://static.naver.net/maps/mantle/1x/openhand.cur&quot;), default;">
 									<div
@@ -471,6 +470,7 @@
 									</div>
 								</div>
 							</div>
+							<div id ="sideMapList"></div>
 							
 
 							<ul id="side1">
@@ -496,36 +496,27 @@
 		</section>
 
 		<script>
+		
 			function sideMap(obj) {
+				sideExhibition(obj);
 				var giAddressX = obj.getAttribute('value1');
 				var giAddressY = obj.getAttribute('value2');
 				var mapOptions = {
 					center : new naver.maps.LatLng(giAddressY, giAddressX),
 					zoom : 16
 				};
+				
+				function moveMap(move){
+					var giAddressX = move.getAttribute('value1');
+					var giAddressY = move.getAttribute('value2');
+					 mapOptions = {
+							center : new naver.maps.LatLng(giAddressY, giAddressX),
+							zoom : 14
+						};			
+				}
 				var map = new naver.maps.Map('map', mapOptions);
-				/* var marker = new naver.maps.Marker({
-				    position: new naver.maps.LatLng(res.galleryInfo['giAddressY'], res.galleryInfo['giAddressX']),
-				    title: res.galleryInfo['giName'],
-				    map: map
-				});				 
-				var contentString = [
-				        '<div style="padding:4px 4px;">',
-				        '   <div style="font-weight:bold;padding-bottom:3px;">'+ res.galleryInfo['giName'] + '</div>',
-				        '</div>'
-				    ].join('');				 
-				var infowindow = new naver.maps.InfoWindow({
-				    content: contentString
-				});				 
-				naver.maps.Event.addListener(marker, "click", function(e) {
-				    if (infowindow.getMap()) {
-				        infowindow.close();
-				    } else {
-				        infowindow.open(map, marker);
-				    }
-				});				 
-				infowindow.open(map, marker); */
-			}
+				
+			}			
 		</script>
 	</main>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
