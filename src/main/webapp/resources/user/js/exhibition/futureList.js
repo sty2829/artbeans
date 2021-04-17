@@ -20,7 +20,7 @@ function get(){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -33,8 +33,8 @@ function get(){
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';					
-					html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer">상세정보</a>';
+					html += '<div style="display:none" class="read-more">';
+					html += '<input type="checkbox" onclick="sideMap()">';					
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
@@ -65,7 +65,7 @@ function newest(){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -78,8 +78,8 @@ function newest(){
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';					
-					html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer">상세정보</a>';
+					html += '<div style="display:none" class="read-more">';
+					html += '<input type="checkbox" onclick="sideMap()">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
@@ -110,7 +110,7 @@ function deadline(){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -123,8 +123,8 @@ function deadline(){
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';					
-					html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer">상세정보</a>';
+					html += '<div style="display:none" class="read-more">';
+					html += '<input type="checkbox" onclick="sideMap()">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';

@@ -5,20 +5,21 @@
 window.onload = get;
 
 function get(){
-	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list?size=11&sort=eiNum,asc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=50&sort=eiNum,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
-		if(xhr.readyState==4 && xhr.status==200){
+		if(xhr.readyState==4 && xhr.status==200){		
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			// exhibition.eiStatus=2 종료된 전시회
-			for(var exhibition of res.data){				
-				if(exhibition.eiStatus==2){
+			//console.log(res.data);			
+			for(var exhibition of res.data){
+			//console.log(exhibition.eiStatus);
+			//console.log(exhibition.eiStatus==1);				
+				if(exhibition.eiStatus==1){				
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -31,8 +32,8 @@ function get(){
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';					
-					html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer">상세정보</a>';
+					html += '<div style="display:none" class="read-more">';
+					html += '<input type="checkbox" onclick="sideMap()">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
@@ -48,18 +49,17 @@ function get(){
 function newest(){
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,asc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=50&sort=eiStartDate,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			// exhibition.eiStatus=2 종료된 전시회
 			for(var exhibition of res.data){				
-				if(exhibition.eiStatus==2){
+				if(exhibition.eiStatus==1){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -72,15 +72,15 @@ function newest(){
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';					
-					html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer">상세정보</a>';
+					html += '<div style="display:none" class="read-more">';
+					html += '<input type="checkbox" onclick="sideMap()">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
 					html += '</div>';
 				}
 			}
-			document.querySelector('#exhibitionList').innerHTML += html;
+			document.querySelector('#exhibitionList').innerHTML = html;
 		}		
 	}
 	xhr.send();
@@ -89,18 +89,17 @@ function newest(){
 function deadline(){
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,Desc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=50&sort=eiStartDate,Desc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			// exhibition.eiStatus=2 종료된 전시회
 			for(var exhibition of res.data){				
-				if(exhibition.eiStatus==2){
+				if(exhibition.eiStatus==1){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibition.eiName + '</a>';
@@ -113,15 +112,15 @@ function deadline(){
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';					
-					html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'" style="cursor:pointer">상세정보</a>';
+					html += '<div style="display:none" class="read-more">';
+					html += '<input type="checkbox" onclick="sideMap()">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
 					html += '</div>';
 				}
 			}
-			document.querySelector('#exhibitionList').innerHTML += html;
+			document.querySelector('#exhibitionList').innerHTML = html;
 		}		
 	}
 	xhr.send();

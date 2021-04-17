@@ -14,7 +14,7 @@ function get(){
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
-				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
+				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
 				html += '<a>' + galleryInfo.giName + '</a>';
@@ -27,8 +27,8 @@ function get(){
 				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
-				html += '<div class="read-more">';					
-				html += '<a onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'" style="cursor:pointer">상세정보</a>';
+				html += '<div style="display:none" class="read-more">';
+				html += '<input type="checkbox" onclick="sideMap()">';
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
@@ -53,7 +53,7 @@ function areaAsc(){
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
-				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
+				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
 				html += '<a>' + galleryInfo.giName + '</a>';
@@ -66,8 +66,8 @@ function areaAsc(){
 				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
-				html += '<div class="read-more">';					
-				html += '<a onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'" style="cursor:pointer">상세정보</a>';
+				html += '<div style="display:none" class="read-more">';
+				html += '<input type="checkbox" onclick="sideMap()">';
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
@@ -92,7 +92,7 @@ function areaDesc(){
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
-				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
+				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
 				html += '<a>' + galleryInfo.giName + '</a>';
@@ -105,8 +105,8 @@ function areaDesc(){
 				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
-				html += '<div class="read-more">';					
-				html += '<a onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'" style="cursor:pointer">상세정보</a>';
+				html += '<div style="display:none" class="read-more">';
+				html += '<input type="checkbox" onclick="sideMap()">';
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
@@ -131,7 +131,7 @@ function nameAsc(){
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
-				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
+				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
 				html += '<a>' + galleryInfo.giName + '</a>';
@@ -144,8 +144,8 @@ function nameAsc(){
 				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
-				html += '<div class="read-more">';					
-				html += '<a onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'" style="cursor:pointer">상세정보</a>';
+				html += '<div style="display:none" class="read-more">';
+				html += '<input type="checkbox" onclick="sideMap()">';
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
@@ -170,7 +170,7 @@ function nameDesc(){
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
-				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
+				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">';
 				html += '</div>';
 				html += '<h2 class="entry-title">';
 				html += '<a>' + galleryInfo.giName + '</a>';
@@ -183,8 +183,8 @@ function nameDesc(){
 				html += '</div>';
 				html += '<div class="entry-content">';
 				html += '<div style="HEIGHT: 10pt"></div>';
-				html += '<div class="read-more">';					
-				html += '<a onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'" style="cursor:pointer">상세정보</a>';
+				html += '<div style="display:none" class="read-more">';
+				html += '<input type="checkbox" onclick="sideMap()">';
 				html += '</div>';
 				html += '</div>';
 				html += '</article>';
