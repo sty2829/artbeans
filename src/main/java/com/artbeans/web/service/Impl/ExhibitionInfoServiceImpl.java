@@ -76,7 +76,8 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 
 	@Override
     public DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
-	    Page<ExhibitionInfo> pb = exhiRepo.findAll(pageable);
+		
+	    Page<ExhibitionInfo> pb =  exhiRepo.findAllByEiStatus("1", pageable);
 	    dtExhibitionInfo.setData(pb.getContent());
 	    dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
 	    dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
