@@ -30,7 +30,7 @@ function get() {
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div style="display:none" class="read-more">';
-					html += '<input type="checkbox" onclick="sideMap()">';
+					html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" >';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
@@ -71,7 +71,7 @@ function newest() {
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div style="display:none" class="read-more">';
-					html += '<input type="checkbox">';
+					html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" >';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
@@ -112,7 +112,7 @@ function deadline() {
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div style="display:none" class="read-more">';
-					html += '<input type="checkbox" type="hidden">';
+					html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" >';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
