@@ -19,8 +19,11 @@ import com.artbeans.web.repository.FileInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
 import com.artbeans.web.util.FileConverter;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Service
+@Slf4j
 public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	
 	private static final String TYPE = "exhibition";
@@ -57,14 +60,15 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 
 	@Override
 	@Transactional
-	public ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception {
+	public ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception {//file 유무 확인해서 조건문 작성할것
+		log.info("exhibitionInfo>{}",exhibitionInfo);
 		FileConverter.fileInsert(exhibitionInfo.getFileInfo(), TYPE);
 		//log.info("fiNum=>{}",exhibitionInfo.getFileInfo().getFiNum());
 		FileInfo fi = exhibitionInfo.getFileInfo();
 		if(fi.getFiNum()!=null && fileRepo.findById(fi.getFiNum()).get()!=null) {
 			fileRepo.saveAndFlush(fi);
 		}
-		return exhiRepo.save(exhibitionInfo);
+		return exhiRepo.saveAndFlush(exhibitionInfo);
 	}
 
 	@Override

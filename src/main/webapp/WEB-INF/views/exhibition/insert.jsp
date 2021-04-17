@@ -244,6 +244,8 @@
 							 })
 						.then(obj => {editor = obj;})
 						.catch(error => {console.error(error);});
+							
+							
 					    </script>			
 		
 						<textarea id="eiContent" style="display: none"></textarea>
@@ -251,6 +253,7 @@
 						<script>
 						var uiNum = ${userInfo.uiNum}
 						var uiName = ${userInfo.uiName}
+						
 						</script>
 						
 						<button class="get-started-btn ml-auto" onclick="doInsert()">전시회등록 신청</button>
