@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.entity.ReservationTicketInfo;
-import com.artbeans.web.entity.TicketCancelInfo;
 import com.artbeans.web.service.ReservationService;
 
 import lombok.extern.slf4j.Slf4j;

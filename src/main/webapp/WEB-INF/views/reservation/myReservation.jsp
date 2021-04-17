@@ -18,12 +18,12 @@
 .card-text{
 	font-size: small;
 	margin-bottom: 5px;
+}
 </style>
-
 </head>
 
 <body>
-	<div class="container myReservation">
+	<div class="container myReservation" style="height: 100%;">
       	<div class="row">
       		<div class="col-lg-1">
       		</div>
@@ -43,7 +43,7 @@
 		<div class="row">
 			<div class="col-lg-1">
       		</div>
-			<div class="col-lg-4">
+			<div class="col-lg-4" id="leftReservation">
 				<div class="card mb-3">
 				  <img src="/resources/assets/img/exhibition/542015988898000.png" class="card-img-top" style="width: 348px; height: 200px">
 				  <div class="card-body">
@@ -59,7 +59,7 @@
           	</div>
           	<div class="col-lg-1">
       		</div>
-			<div class="col-lg-4">
+			<div class="col-lg-4" id="rightReservation">
 					<div class="card">
 					  <img src="/resources/assets/img/exhibition/542015988898000.png" class="card-img-top" style="width: 348px; height: 200px">
 					  <div class="card-body">
@@ -75,40 +75,77 @@
           		</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-lg-4">
-			</div>
-			<div class="col-lg-4">
-			</div>
-		</div>
 <script>
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET',url);
+	//유저번호 변경
+	xhr.open('GET', '/user/ticket/8');
 	xhr.onreadystatechange = function(){
-		if(xhr.readyState==4 && xhr.status==200){
+		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
-			console.log(xhr.responseText);
-			for(var i=0 ;i<res.length;i++){
-			var reservationTicketInfo = res[i];
-				var html = '';
-				html += '<tr>';
-				html += '<td>' + reservationTicketInfo.rtiName +'</td>'; 
-				html += '<td>' + reservationTicketInfo.rtiDate +'</td>'; 
-				html += '<td>' + reservationTicketInfo.rtiTime +'</td>'; 
-				html += '<td>' + reservationTicketInfo.rtiNumber +'</td>';  
-				html += '</tr>';				
-				html += '<button type="button"	class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=">'
-					+ '예약 수정' + '</button>';
-				html += '<button type="button"	class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=">'
-						+ '예약 취소' + '</button>';
+			var leftHtml = '';
+			var rightHtml = '';
+			for(var ticket of res){
+				var dateTime = new Date(ticket.dateTime);
+				var today = new Date();
+				if(dateTime.getTime() > today.getTime()){
+					leftHtml += '<div class="card mb-3">';
+					leftHtml += '<img src="/resources/assets/img/exhibition/'+ ticket.imgPath + '" class="card-img-top" style="width: 348px; height: 200px">';
+					leftHtml += '<div class="card-body">';
+					leftHtml += '<h5 class="card-title">' + ticket.eiName + '</h5>';
+					leftHtml += '<hr>';
+					leftHtml += '<p class="card-text">예매번호 : <span>' + ticket.piMerchantId + '</span></p>';
+					leftHtml += '<p class="card-text">장소 : <span>' + ticket.giName + '</span></p>';
+					leftHtml += '<p class="card-text">관람일시 : <span>' + ticket.rtiDate + '</span> <span>' + ticket.rtiTime +'</span></p>';
+					leftHtml += '<p class="card-text">예매수 : <span>'+ ticket.rtiNumber + '</span>장</p>';
+					leftHtml += '<hr>';
+					leftHtml += '<button type="button" class="btn btn-outline-danger" style="width: 300px; height: 38px" data-rtiNum="' + ticket.rtiNum + '" onclick="cancel(this)">예매취소</button>';
+					leftHtml += '</div>';
+					leftHtml += '</div>';  
+				}else{
+					rightHtml += '<div class="card mb-3">';
+					rightHtml += '<img src="/resources/assets/img/exhibition/'+ ticket.imgPath + '" class="card-img-top" style="width: 348px; height: 200px">';
+					rightHtml += '<div class="card-body">'; 
+					rightHtml += '<h5 class="card-title">' + ticket.eiName + '</h5>';
+					rightHtml += '<hr>';
+					rightHtml += '<p class="card-text">예매번호 : <span>' + ticket.piMerchantId + '</span></p>';
+					rightHtml += '<p class="card-text">장소 : <span>' + ticket.giName + '</span></p>';
+					rightHtml += '<p class="card-text">관람일시 : <span>' + ticket.rtiDate + '</span> <span>' + ticket.rtiTime +'</span></p>';
+					rightHtml += '<p class="card-text">예매수 : <span>'+ ticket.rtiNumber + '</span>장</p>';
+					rightHtml += '<hr>';
+					rightHtml += '<button type="button" class="btn btn-outline-primary" style="width: 300px; height: 38px">리뷰작성</button>';
+					rightHtml += '</div>';
+					rightHtml += '</div>';  
 				}
-					document.querySelector('#myreservation').innerHTML = html;
+			}	
+			document.querySelector('#leftReservation').innerHTML = leftHtml;
+			document.querySelector('#rightReservation').innerHTML = rightHtml;
+		}
+	}
+	xhr.send();
+}
+function cancel(obj){
+	var rtiNum = obj.getAttribute('data-rtiNum')
+	
+	var xhr = new XMLHttpRequest();
+	
+	xhr.open('DELETE', '/reservation/cancel/' + rtiNum );
+
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var res = JSON.parse(xhr.responseText);
+			if(res){
+				alert('예매취소');
+				window.location.reload();
+			}else{
+				alert('예매취소에 실패하였습니다.');
 			}
 		}
-	//xhr.send();
+	}
+	
+	xhr.send();
+	
 }
- 
 </script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
