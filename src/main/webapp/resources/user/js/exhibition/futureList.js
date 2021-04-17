@@ -5,7 +5,7 @@ window.onload = get;
 
 function get(){
 	var xhr = new XMLHttpRequest();
-	// uri 나중에 변경
+	// 전부 uri 나중에 변경
 	xhr.open('GET','/exhibition-listDemo?size=11&sort=eiNum,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
@@ -51,7 +51,7 @@ function get(){
 function newest(){
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,asc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibition-listDemo?size=11&sort=eiStartDate,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
@@ -96,7 +96,7 @@ function newest(){
 function deadline(){
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,Desc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibition-listDemo?size=11&sort=eiStartDate,Desc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
