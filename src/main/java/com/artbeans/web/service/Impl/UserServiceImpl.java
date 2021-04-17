@@ -12,7 +12,10 @@ import com.artbeans.web.repository.ReservationTicketRepository;
 import com.artbeans.web.repository.UserInfoRepository;
 import com.artbeans.web.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
@@ -38,10 +41,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserInfo updateUser(UserInfo ui) {
-		Optional<UserInfo> opFi = uRepo.findById(ui.getUiNum());
-	      if(opFi.isEmpty()) return null;
-	      return opFi.get();
+	public UserInfo updateUser(UserInfo ui) {	    
+	    return uRepo.saveAndFlush(ui);
 	}
 
 	@Override

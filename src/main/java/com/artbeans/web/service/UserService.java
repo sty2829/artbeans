@@ -8,12 +8,12 @@ import com.artbeans.web.entity.UserInfo;
 
 
 public interface UserService {
-	List<UserInfo> getList(UserInfo ui);
+	List<UserInfo> getList(UserInfo userInfo);
 	UserInfo getUser(Integer uiNum);
 	UserInfo saveUser(UserInfo ui);
 	UserInfo updateUser(UserInfo ui);
 	int deleteUser(Integer uiNum);
-	UserInfo login(UserInfo ui);
+	UserInfo login(UserInfo userInfo);
 	List<UserTicketDTO> getTicketList(Integer uiNum);
 	
 }

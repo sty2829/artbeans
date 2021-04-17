@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -45,6 +46,12 @@ public class UserInfoController {
 		return userService.getList(userInfo);
 	}
 	
+	@GetMapping("/user")
+	public UserInfo getUser(@RequestParam Integer uiNum){
+		log.info("uiNum=>{}",userService.getUser(uiNum));
+		return userService.getUser(uiNum);
+	}
+	
 	@PostMapping("/login")
 	public UserInfo login(@RequestBody UserInfo userInfo, HttpServletRequest req) {
 		UserInfo user = userService.login(userInfo); 
@@ -64,8 +71,8 @@ public class UserInfoController {
 	}
 	
 	@PostMapping("/user-update")
-	public @ResponseBody Integer update(@RequestBody UserInfo userInfo) {
-		userInfo = userService.updateUser(userInfo);
+	public Integer update(@RequestBody UserInfo ui) {
+		UserInfo userInfo = userService.updateUser(ui);
 		return userInfo.getUiNum();
 	}
 	

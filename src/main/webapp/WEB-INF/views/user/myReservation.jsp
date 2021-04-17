@@ -38,7 +38,7 @@
 	</div>
 
 <script>
-var url = '/reservation-ticket';
+var url = '/user/ticket?uiNum=${userInfo.uiNum}';
  window.onload = function(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET',url);
