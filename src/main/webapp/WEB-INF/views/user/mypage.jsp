@@ -60,8 +60,8 @@
 					html += '<td>' + res.uiGenre + '</td>';
 					html += '</tr>';
 					html += '</tbody>'
-					html += '<button type="button"	class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=\'/views/menu/mypage-update?uiNum=${userInfo.uiNum}\'">'
-							+ '회원정보 수정' + '</button>' + '<button type="button" class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=\'/views/menu/byebye?uiNum=${userInfo.uiNum}\'">'
+					html += '<button type="button"	class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=\'/views/user/mypage-update?uiNum=${userInfo.uiNum}\'">'
+							+ '회원정보 수정' + '</button>' + '<button type="button" class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=\'/views/user?uiNum=${userInfo.uiNum}\'">'
 							+ '회원 탈퇴' + '</button>';
 							
 					document.querySelector('#myInformation').innerHTML = html;

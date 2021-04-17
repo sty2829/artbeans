@@ -1,11 +1,9 @@
 /**
  * 
  */
-
 window.onload = get;
 
 function get() {
-	count = 0;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', '/exhibition-list?size=11&sort=eiNum,asc&page=' + count); //ExhibitionController
 	xhr.onreadystatechange = function() {
@@ -31,7 +29,7 @@ function get() {
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';
+					html += '<div style="display:none" class="read-more">';
 					html += '<input type="checkbox" onclick="sideMap()">';
 					html += '</div>';
 					html += '</div>';
@@ -45,16 +43,6 @@ function get() {
 	xhr.send();
 }
 
-function newest() {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list?size=11&sort=eiStartDate,asc&page=' + count); //ExhibitionController
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var res = JSON.parse(xhr.responseText);
-			var html = '';
-		}
-	}
-}
 function newest() {
 	count = 0;
 	var xhr = new XMLHttpRequest();
@@ -82,7 +70,7 @@ function newest() {
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';
+					html += '<div style="display:none" class="read-more">';
 					html += '<input type="checkbox">';
 					html += '</div>';
 					html += '</div>';
@@ -90,7 +78,7 @@ function newest() {
 					html += '</div>';
 				}
 			}
-			document.querySelector('#exhibitionList').innerHTML += html;
+			document.querySelector('#exhibitionList').innerHTML = html;
 		}
 	}
 	xhr.send();
@@ -123,15 +111,15 @@ function deadline() {
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';
-					html += '<input type="checkbox">';
+					html += '<div style="display:none" class="read-more">';
+					html += '<input type="checkbox" type="hidden">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
 					html += '</div>';
 				}
 			}
-			document.querySelector('#exhibitionList').innerHTML += html;
+			document.querySelector('#exhibitionList').innerHTML = html;
 		}
 	}
 	xhr.send();

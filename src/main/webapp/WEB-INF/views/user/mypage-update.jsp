@@ -115,8 +115,9 @@
 					uiEmail : document.querySelector('#uiEmail').value,
 					uiPwd : document.querySelector('#uiPwd').value,
 					uiGenre : document.querySelector('#uiGenre').value,
-					uiAge : ${userInfo.uiAge},
-					uiGender : ${userInfo.uiGender}
+					uiAge : '${userInfo.uiAge}',
+					uiGender : '${userInfo.uiGender}',
+					uiRegion : '${userInfo.uiRegion}'
 				}
 
 			var xhr = new XMLHttpRequest();
@@ -124,8 +125,10 @@
 			xhr.onreadystatechange = function() {
 				if (xhr.status==200 && xhr.readyState==4) {
 					console.log(xhr.responseText);
-					if(xhr.responseText){
+					
+					if(xhr.responseText>0){
 						alert('수정완료되었습니다.');
+						//return location.href= '/';
 					} else {
 						alert('수정에 실패하였습니다. 다시 시도해주세요.');
 						}
@@ -136,7 +139,7 @@
 			}	
 			
 			function goOut() {
-				location.href = '/views/index';
+				location.href = '/';
 			}
 
 		</script>
