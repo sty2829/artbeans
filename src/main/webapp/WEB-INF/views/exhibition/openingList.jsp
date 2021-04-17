@@ -53,7 +53,7 @@
 				<div class="row" id="exhibitionList"></div>
 			</div>
 		</section>
-	</main>
+		</main>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script src="/resources/user/js/map/right-menu.js"></script>
 </body>
