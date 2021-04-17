@@ -1,14 +1,24 @@
 package com.artbeans.web.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public interface UserTicketDTO {
+	
+	Integer getRtiNum();
 
+	String getEiName();
+	
 	String getGiName();
 	
 	String getPiMerchantId();
 	
-	Date getRtiDate();
+	String getImgPath();
+	
+	String getRtiDate();
 	
 	String getRtiTime();
+	
+	Integer getRtiNumber();
+	
+	LocalDateTime getDateTime();
 }

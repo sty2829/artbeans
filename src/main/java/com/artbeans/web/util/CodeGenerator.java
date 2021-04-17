@@ -7,7 +7,6 @@ import java.util.Random;
 public class CodeGenerator {
 	private static final String BASIC_CODE = "0123456789abcdefghijklmnopqrstuvwuxyABCDEFGHIJKLMNOPQRSTUVWUXY";
 	private static final int CODE_LENGTH = 6;
-	private static final String PAYMENT_PREFIX = "PAYMENT_";
 	private static final int PAYMENT_CODE_LENGTH = 13;
 	
 	public static String getRandomCode() {
@@ -28,7 +27,6 @@ public class CodeGenerator {
 	
 	public static String getPaymentCode() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(PAYMENT_PREFIX);
 		Random r;
 		try {
 			r = SecureRandom.getInstanceStrong();

@@ -73,11 +73,11 @@ h5 {
 	            </div>
           	</div>
 			<div class="col-lg-4" id="saveDiv">
-	      		<label for="eriAudienceRating">예매자 성함</label>
+	      		<label for="rtiName">예매자 성함</label>
 			    <input type="text" class="form-control" id="rtiName" required>
-      			<label for="eriRunningTime" class="mt-2">예매자 이메일</label>
+      			<label for="rtiEmail" class="mt-2">예매자 이메일</label>
 			    <input type="email" class="form-control" id="rtiEmail" required>
-    			<label for="eriMaxStock" class="mt-2">예매자 연락처</label>
+    			<label for="rtiPhoneNumber" class="mt-2">예매자 연락처</label>
 			    <input type="text" class="form-control" id="rtiPhoneNumber" required>
 		   </div>
 	   </div>

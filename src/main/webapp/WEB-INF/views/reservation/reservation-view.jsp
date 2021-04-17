@@ -129,7 +129,7 @@ img[data-col] {
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
 	//추후에 전시회번호 바꿔야함
-	xhr.open('GET', '/reservation/32');
+	xhr.open('GET', '/reservation/33');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
@@ -229,7 +229,8 @@ function changeNumber(obj){
 		return
 	}else if(selectTicket < 0 ){
 		alert('티켓을 한개 이상 선택해주세요.');
-		returndocument.querySelector('#piPrice').innerHTMLdocument.querySelector('#piPrice').innerHTML
+		return
+		//document.querySelector('#piPrice').innerHTMLdocument.querySelector('#piPrice').innerHTML
 	}
 	var charge = Number(document.querySelector('[data-col="charge"]').innerText);
 	document.querySelector('#piPrice').innerHTML = selectTicket * charge;
