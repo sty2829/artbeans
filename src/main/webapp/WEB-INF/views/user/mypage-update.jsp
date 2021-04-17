@@ -125,9 +125,10 @@
 			xhr.onreadystatechange = function() {
 				if (xhr.status==200 && xhr.readyState==4) {
 					console.log(xhr.responseText);
-					if(xhr.responseText){
+					
+					if(xhr.responseText>0){
 						alert('수정완료되었습니다.');
-						return '/';
+						//return location.href= '/';
 					} else {
 						alert('수정에 실패하였습니다. 다시 시도해주세요.');
 						}

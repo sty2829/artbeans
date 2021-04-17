@@ -72,7 +72,6 @@ public class UserInfoController {
 	
 	@PostMapping("/user-update")
 	public Integer update(@RequestBody UserInfo ui) {
-		log.info("userInfo=>{}",ui);
 		UserInfo userInfo = userService.updateUser(ui);
 		return userInfo.getUiNum();
 	}
