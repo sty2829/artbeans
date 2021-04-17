@@ -211,11 +211,11 @@ function logout(){
 
 			</nav>
 				<c:if test="${userInfo eq null }">
-			<a href="/views/login" style="float: right"
+			<a href="/views/user/login" style="float: right"
 				class="get-started-btn ml-auto">로그인/회원가입</a>
 				</c:if>
 				<c:if test="${userInfo ne null }">
-				<a href="/views/login" style="float: right"
+				<a href="/views/user/login" style="float: right"
 				class="get-started-btn ml-auto" onclick="logout()">로그아웃</a>
 				</c:if>
 			<!-- .nav-menu -->
