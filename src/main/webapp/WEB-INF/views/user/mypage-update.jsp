@@ -115,8 +115,8 @@
 					uiEmail : document.querySelector('#uiEmail').value,
 					uiPwd : document.querySelector('#uiPwd').value,
 					uiGenre : document.querySelector('#uiGenre').value,
-					uiAge : ${userInfo.uiAge},
-					uiGender : ${userInfo.uiGender}
+					uiAge : '${userInfo.uiAge}',
+					uiGender : '${userInfo.uiGender}'
 				}
 
 			var xhr = new XMLHttpRequest();
@@ -136,7 +136,7 @@
 			}	
 			
 			function goOut() {
-				location.href = '/views/index';
+				location.href = '/';
 			}
 
 		</script>

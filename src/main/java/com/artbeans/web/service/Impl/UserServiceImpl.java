@@ -39,7 +39,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserInfo updateUser(UserInfo ui) {
-		return uRepo.save(ui);
+		Optional<UserInfo> opFi = uRepo.findById(ui.getUiNum());
+	      if(opFi.isEmpty()) return null;
+	      return opFi.get();
 	}
 
 	@Override

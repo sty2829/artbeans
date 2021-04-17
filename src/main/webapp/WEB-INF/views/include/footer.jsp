@@ -5,9 +5,9 @@
 <jsp:include page="/WEB-INF/views/include/css.jsp"></jsp:include>
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hevj9bqhd5"></script>
-	<!--  맵 잠시 제외
+	<!--  맵 잠시 제외 -->
  <script src="/resources/user/js/map/footerMap.js"></script>
-  -->
+ 
 </head>
 <body>
 	<!-- ======= Footer ======= -->
@@ -36,13 +36,13 @@
 						</ul>
 					</div>
 					
-					<!--  맵 잠시 제외
+					<!--  맵 잠시 제외-->
 					<div class="col-lg-4 col-md-6 footer-newsletter">
 						<div class="container">
 							<div style="border: 0; width: 700px; height: 200px;" id="map"></div>
 						</div>
 					</div>
-					-->
+					
 				</div>
 			</div>
 		</div>
@@ -66,7 +66,7 @@
 	<script src="/resources/assets/vendor/venobox/venobox.min.js"></script>
 	<script src="/resources/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
 	<script src="/resources/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-	<!-- Template Main JS File 
+	<!--   Template Main JS File 
 <script src="/resources/assets/js/main.js"></script> -->
 </body>
 </html>
