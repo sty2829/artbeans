@@ -57,12 +57,12 @@
 
 									<tr class="row100 head">
 										<th class="cell100 column1">번호</th>
-										<th class="cell100 column2">전시회 이름</th>
-										<th class="cell100 column3">아티스트</th>
-										<th class="cell100 column4">시작일</th>
-										<th class="cell100 column5">종료일</th>
-										<th class="cell100 column6">전시회 상태값</th>
-										<th class="cell100 column7">수정날짜</th>
+										<th class="cell100 column2">예약 전시회</th>
+										<th class="cell100 column3">휴무일</th>
+										<th class="cell100 column4">관람등급</th>
+										<th class="cell100 column5">러닝타임</th>
+										<th class="cell100 column6">예매 시작일</th>
+										<th class="cell100 column7">예매 종료일</th>
 									</tr>
 								</thead>
 							</table>
@@ -103,28 +103,60 @@
 	</script>
 	<!--===============================================================================================-->
 	<script src="/resources/admin/board/js/main.js"></script>
-
 	<script>
+	
 
-window.onload= function(){
+window.onload=eriLoad();
+eiLoad();
+
+var eiName='';
+
+function eiLoad(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', '/exhibition-list'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
 			var html='';
-			
+			console.log(res.data.exhibitionReservationInfo);
 			for (var exhibition of res.data) {
-				console.log(exhibition);
+				console.log(exhibition.exhibitionReservationInfo);
+				if(exhibition.exhibitionReservationInfo!=null){
+					console.log(exhibition.eiName);
+					document.querySelector('#eiName').innerHTML = exhibition.eiName;
+					}
+				}
+			}
+		}
+	xhr.send();
+	
+}
+
+function eriLoad(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/exhibition-reservations'); //ExhibitionReservationController
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var res = JSON.parse(xhr.responseText);
+			var html='';
+			console.log(eiName);
+			for (var i=0; i<res.length; i++) {
+				//(var eri of res)
+				var eri=res[i];
+				var eriStartDate = eri.eriStartDate;//안 맞는 시간을 맞추기 위한 작업
+				eriStartDate=eriStartDate.substring(0,eriStartDate.indexOf('T'));
 				
-				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-ei-update?eiNum='+exhibition.eiNum+'\'">';
-				html+='<td class="cell100 column1">'+exhibition.eiNum+'</td>';
-				html+='<td class="cell100 column2">'+exhibition.eiName+'</td>';
-				html+='<td class="cell100 column3">'+exhibition.eiArtist+'</td>';
-				html+='<td class="cell100 column4">'+exhibition.eiStartDate+'</td>';
-				html+='<td class="cell100 column5">'+exhibition.eiEndDate+'</td>';
-				html+='<td class="cell100 column6">'+exhibition.eiStatus+'</td>';
-				html+='<td class="cell100 column7">'+exhibition.moddat+'</td>';
+			    var eriEndDate = eri.eriEndDate;
+			    eriEndDate=eriEndDate.substring(0,eriEndDate.indexOf('T'));    
+				
+				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-eri-update?eiNum='+eri.eriNum+'\'">';
+				html+='<td class="cell100 column1">'+eri.eriNum+'</td>';
+				html+='<td class="cell100 column2" id="eiName"></td>';
+				html+='<td class="cell100 column3">'+eri.eriHoliday+'</td>';
+				html+='<td class="cell100 column4">'+eri.eriAudienceRating+'</td>';
+				html+='<td class="cell100 column5">'+eri.eriRunningTime+'</td>';
+				html+='<td class="cell100 column6">'+eriStartDate+'</td>';
+				html+='<td class="cell100 column7">'+eriEndDate+'</td>';
 				html+="</tr>";
 				}
 			document.querySelector('#tBody').innerHTML = html;
@@ -132,7 +164,11 @@ window.onload= function(){
 		}
 	xhr.send();
 }
-	
+
+
+
+
+
 
 </script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

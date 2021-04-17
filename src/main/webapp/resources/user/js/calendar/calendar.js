@@ -297,7 +297,4 @@ function nextButton() {
 	}
 	xhr.send();
 
-
-
-
 }
