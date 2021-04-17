@@ -48,11 +48,11 @@
 									<button type="button" class="btn btn-danger" onclick="goLogin()">로그인</button>
 									<hr>
 									<div class="text-center">
-										<a class="small" href="/views/login/forgetId">아이디 찾기</a> / <a
-											class="small" href="/views/login/forgetPwd">비밀번호 찾기</a>
+										<a class="small" href="/views/user/forgetId">아이디 찾기</a> / <a
+											class="small" href="/views/user/forgetPwd">비밀번호 찾기</a>
 									</div>
 									<div class="text-center">
-										<a class="small" href="/views/register">회원가입</a>
+										<a class="small" href="/views/user/register">회원가입</a>
 									</div>
 									
 

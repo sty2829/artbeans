@@ -136,7 +136,7 @@
 			}	
 			
 			function goOut() {
-				location.href = '/views/index';
+				location.href = '/';
 			}
 
 		</script>
