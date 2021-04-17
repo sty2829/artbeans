@@ -3,7 +3,7 @@
  */
 //갤러리 옵션
 window.onload = galleryOption;
-	
+
 function galleryOption(){ 
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/Gallery-lists'); //GalleryController
