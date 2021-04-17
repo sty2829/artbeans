@@ -1,7 +1,6 @@
 /**
  * 
  */
-
 window.onload = get;
 
 function get() {
@@ -31,7 +30,7 @@ function get() {
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';
+					html += '<div style="display:none" class="read-more">';
 					html += '<input type="checkbox" onclick="sideMap()">';
 					html += '</div>';
 					html += '</div>';
@@ -82,7 +81,7 @@ function newest() {
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';
+					html += '<div style="display:none" class="read-more">';
 					html += '<input type="checkbox">';
 					html += '</div>';
 					html += '</div>';
@@ -123,8 +122,8 @@ function deadline() {
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';
-					html += '<input type="checkbox">';
+					html += '<div style="display:none" class="read-more">';
+					html += '<input type="checkbox" type="hidden">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';

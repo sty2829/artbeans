@@ -1,23 +1,32 @@
 @charset "UTF-8";
+
 #sidebar {
-	width: 300px;
+	width: 350px;
 	position: fixed;
 	top: 0;
-	right: -300px;
+	right: -350px;
 	height: 100%;
-	z-index: 999;
-	background: #c8c8c8;
+	z-index: 0;
+	background: rgb(232, 232, 236);
 	color: #fff;
-	transition: all 0.3s;
+	transition: all 0.5s;
 }
+
 #sidebar.active {
 	right: 0;
 }
+#sidebarCollapse{
+	height: 35px;
+	position: relative;
+	margin-left : 80%
+	
+}
+
 .overlay {
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
-	background: rgba(0, 0, 0, 0);
-	z-index: 998;
+	background: rgba(0,0,0,0);
+	z-index: 0;
 	display: none;
 }
