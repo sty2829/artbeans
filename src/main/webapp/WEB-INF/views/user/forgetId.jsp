@@ -34,82 +34,102 @@ width : 400px;
 }
 </style>
 </head>
+<body>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<body class="bg-gradient-danger">
 <main id="main">
-		<!-- ======= Breadcrumbs ======= -->
+		======= Breadcrumbs =======
 		<section id="breadcrumbs" class="breadcrumbs">
-			<div class="container">
-			</div>
+			<div class="container"></div>
 		</section>
 
-		<div class="container">
-				<!-- 	<div class="card o-hidden border-0 ">
-						<div class="card-body p-0"> -->
-							<div class="form-group">
-								<div class="row">
-								<div class="col-lg-6">
-									<div class="p-5">
-										<h4 class="h4 text-gray-900 mb-4">아이디 찾기</h4>
-										
-								<!--  	<div class="content">--> 
+		<div class="container" >
 
-										<div class="form-group-row">
-											<div class="col-sm-6 mb-3 mb-sm-0" id="nameTag">
-												<input type="text" class="form-control form-control-user"
-												id="uiName" aria-describedby="emailHelp" placeholder="이름">
-											</div>
-										</div>
-										
-										<div class="btn-group btn-group-toggle" data-toggle="buttons" id="uiGender">
-											<label class="btn btn-outline-dark active"><input type="radio" name="uiGender" value="남성" autocomplete="off">남성</label> 
-											<label class="btn btn-outline-dark"><input type="radio" name="uiGender" value="여성" autocomplete="off">여성</label>
-										</div>
-											
-										<div class="btn-group btn-group-toggle" data-toggle="buttons" id="ageButton">
-											<label class="btn btn-outline-dark active"><input type="radio" name="uiAge" value="10대" autocomplete="off">10대</label> 
-											<label class="btn btn-outline-dark"><input type="radio" name="uiAge" value="20대" autocomplete="off">20대</label> 
-											<label class="btn btn-outline-dark"><input type="radio" name="uiAge"  value="30대" autocomplete="off">30대</label>
-											<label class="btn btn-outline-dark"><input type="radio" name="uiAge"  value="40대" autocomplete="off">40대</label> 
-											<label class="btn btn-outline-dark"><input type="radio" name="uiAge"  value="50대" autocomplete="off">50대</label> 
-											<label class="btn btn-outline-dark"><input type="radio" name="uiAge"  value="60대이상" autocomplete="off">60대이상</label>
-										</div>	
-											
-											
-										<select class="col-sm-6" id="uiRegion">
-											<option value="" >지역선택</option>
-											<option value="서울">서울</option>
-											<option value="경기">경기</option>
-											<option value="부산">부산</option>
-											<option value="대구">대구</option>
-											<option value="인천">인천</option>
-											<option value="광주">광주</option>
-											<option value="대전">대전</option>
-											<option value="울산">울산</option>
-											<option value="세종">세종</option>
-											<option value="경남">경남</option>
-											<option value="경북">경북</option>
-											<option value="전남">전남</option>
-											<option value="전북">전북</option>
-											<option value="제주">제주</option>
-											<option value="충남">충남</option>
-											<option value="충북">충북</option>
-										</select><br>
-										
-									</div>		
-											<div><button type="button" class="btn btn-outline-danger" onclick="goCheck()">확인</button></div>
-										<hr>
-									</div>
-								</div>
+			<div class="row " style="">
+
+				<div class="col-2"></div>
+				<div class="col-4 text-center">
+
+
+					<div class="card" style="padding: 8px">
+
+						<h4>아이디 찾기</h4>
+						<div class="input-group flex-nowrap" style="padding: 8px">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="addon-wrapping">이름</span>
+							</div>
+							<input type="text" name="user_name" id="user_name"
+								class="form-control" placeholder="" required
+								aria-label="Username" aria-describedby="addon-wrapping">
+						</div>
+
+						<div class="input-group flex-nowrap" style="padding: 8px">
+							<div class="btn-group btn-group-toggle" data-toggle="buttons"
+								id="uiGender">
+								<label class="btn btn-outline-dark active"><input
+									type="radio" name="uiGender" value="남성" autocomplete="off">남성</label>
+								<label class="btn btn-outline-dark"><input type="radio"
+									name="uiGender" value="여성" autocomplete="off">여성</label>
+							</div>
+
+						</div>
+						<div class="input-group flex-nowrap" style="padding: 8px">
+							<div class="btn-group btn-group-toggle" data-toggle="buttons"
+								id="ageButton">
+								<label class="btn btn-outline-dark active"><input
+									type="radio" name="uiAge" value="10대" autocomplete="off">10대</label>
+								<label class="btn btn-outline-dark"><input type="radio"
+									name="uiAge" value="20대" autocomplete="off">20대</label> <label
+									class="btn btn-outline-dark"><input type="radio"
+									name="uiAge" value="30대" autocomplete="off">30대</label> <label
+									class="btn btn-outline-dark"><input type="radio"
+									name="uiAge" value="40대" autocomplete="off">40대</label> <label
+									class="btn btn-outline-dark"><input type="radio"
+									name="uiAge" value="50대" autocomplete="off">50대</label> <label
+									class="btn btn-outline-dark"><input type="radio"
+									name="uiAge" value="60대이상" autocomplete="off">60대이상</label>
 							</div>
 						</div>
-					</div>
 
+
+						<div class="input-group flex-nowrap" style="padding: 8px">
+							<select class="col-sm-6" id="uiRegion">
+								<option value="">지역선택</option>
+								<option value="서울">서울</option>
+								<option value="경기">경기</option>
+								<option value="부산">부산</option>
+								<option value="대구">대구</option>
+								<option value="인천">인천</option>
+								<option value="광주">광주</option>
+								<option value="대전">대전</option>
+								<option value="울산">울산</option>
+								<option value="세종">세종</option>
+								<option value="경남">경남</option>
+								<option value="경북">경북</option>
+								<option value="전남">전남</option>
+								<option value="전북">전북</option>
+								<option value="제주">제주</option>
+								<option value="충남">충남</option>
+								<option value="충북">충북</option>
+							</select><br>
+						</div>
+					</div>
+			
+			<div class="input-group flex-nowrap" style="padding: 8px">
+					<button type="submit" style="margin: 8px"
+						class="btn btn-outline-danger" name="button">아이디 찾기</button>
+			</div>
 				</div>
 
-			</div>
 
-</main>
+
+			</div>
+		</div>
+
+		<section id="breadcrumbs" class="breadcrumbs">
+			<div class="container"></div>
+		</section>
+
+	</main>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
 function goCheck(){
@@ -139,7 +159,7 @@ function goCheck(){
 				}
 				
 				var xhr = new XMLHttpRequest();
-				xhr.open('GET', '/users');
+				xhr.open('GET', '/users?uiName=${userInfo.uiName}');
 				xhr.onreadystatechange = function() {
 					if (xhr.status ==200 & xhr.readyState ==4) {
 							if(xhr.responseText){

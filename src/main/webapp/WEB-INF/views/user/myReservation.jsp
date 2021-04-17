@@ -38,29 +38,31 @@
 	</div>
 
 <script>
-var url = '/user/ticket?uiNum=${userInfo.uiNum}';
+var url = '/reservation-ticket';
  window.onload = function(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET',url);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			var res = JSON.parse(xhr.responseText);
-			console.log(xhr.responseText);
-			for(var i=0 ;i<res.length;i++){
-			var reservationTicketInfo = res[i];
-				var html = '';
-				html += '<tr>';
-				html += '<td>' + reservationTicketInfo.rtiName +'</td>'; 
-				html += '<td>' + reservationTicketInfo.rtiDate +'</td>'; 
-				html += '<td>' + reservationTicketInfo.rtiTime +'</td>'; 
-				html += '<td>' + reservationTicketInfo.rtiNumber +'</td>';  
-				html += '</tr>';				
-				html += '<button type="button"	class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=">'
-					+ '예약 수정' + '</button>';
-				html += '<button type="button"	class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=">'
-						+ '예약 취소' + '</button>';
+			var res = JSON.parse(xhr.responseText);	
+				for(var reservationTicketInfo of res){
+				console.log(res);
+				if(res.reservationTicketInfo.userInfo.uiNum==${userInfo.uiNum}){
+					var reservationTicketInfo = res[i];
+					var html = '';
+					html += '<tr>';
+					html += '<td>' + reservationTicketInfo.rtiName +'</td>'; 
+					html += '<td>' + reservationTicketInfo.rtiDate +'</td>'; 
+					html += '<td>' + reservationTicketInfo.rtiTime +'</td>'; 
+					html += '<td>' + reservationTicketInfo.rtiNumber +'</td>';  
+					html += '</tr>';				
+					html += '<button type="button"	class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=">'
+						+ '예약 수정' + '</button>';
+					html += '<button type="button"	class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=">'
+							+ '예약 취소' + '</button>';
+					}	
 				}
-					document.querySelector('#myreservation').innerHTML = html;
+				document.querySelector('#myreservation').innerHTML = html;
 			}
 		}
 	xhr.send();
