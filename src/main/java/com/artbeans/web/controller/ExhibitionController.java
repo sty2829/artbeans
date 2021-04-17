@@ -30,7 +30,13 @@ public class ExhibitionController {
 //	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
 //		log.info("exhibitionList=>{}",exhibitionInfo);
 //		return eService.getExhibitionInfos(exhibitionInfo);
-//	}
+//	}Demo
+	
+	//나중에 지울 것
+	@GetMapping("/exhibition-listDemo")
+	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoListDemo(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
+		return eService.getExhiListDemo(pageable, dtExhibitionInfo);
+	}//
 	
 	@GetMapping("/exhibition-list")
 	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){

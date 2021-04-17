@@ -4,7 +4,7 @@
 
 function getImageList() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list?size=9&sort=eiStartDate,asc'); //ExhibitionController
+	xhr.open('GET', '/exhibition-listDemo?size=9&sort=eiStartDate,asc'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);

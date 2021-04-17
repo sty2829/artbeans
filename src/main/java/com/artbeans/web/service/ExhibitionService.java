@@ -16,6 +16,8 @@ public interface ExhibitionService {
 	DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo);
 	List<ExhibitionInfo> getEiBannerLists(ExhibitionInfo exhibitionInfo);
 	
+	//나중에 지울 것
+	DataTable<ExhibitionInfo> getExhiListDemo(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo);//
 	
 	//DataTable<ExhibitionInfo> getExhibitionInfos(Pageable pageable, DataTable<ExhibitionInfo> exhibitionInfo);
 
