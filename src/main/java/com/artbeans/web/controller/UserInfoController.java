@@ -2,6 +2,7 @@ package com.artbeans.web.controller;
 
 import java.util.List;
 
+import javax.mail.Multipart;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.artbeans.web.dto.UserTicketDTO;
+import com.artbeans.web.entity.ReviewInfo;
 import com.artbeans.web.entity.UserInfo;
 import com.artbeans.web.service.UserService;
 

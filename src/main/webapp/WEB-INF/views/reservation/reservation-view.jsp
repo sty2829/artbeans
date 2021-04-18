@@ -64,17 +64,17 @@ img[data-col] {
 					</div>
 					<div class="col-lg-3">
 						<h5>예매일자</h5>
-						<p id="rtiDate"></p>
+						<p id="tiDate"></p>
 					</div>
 					<div class="col-lg-3">
 						<h5>예매시간</h5>
-						<p id="rtiTime"></p>
+						<p id="tiTime"></p>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-6">
 						<h5>관람연령</h5>
-						<p data-col="audienceRating" id="rtiAudienceRating">전체관람가</p>
+						<p data-col="audienceRating" id="tiAudienceRating">전체관람가</p>
 					</div>
 					<div class="col-lg-6">
 						<ul class="list-inline">
@@ -82,7 +82,7 @@ img[data-col] {
 								<h5>예매수</h5>
 							</li>
 							<li class="list-inline-item">
-								<input type="number" class="form-control" id="rtiNumber"  onclick="changeNumber(this)" min="0" style="width:130px; height: 30px; text-align: center">
+								<input type="number" class="form-control" id="tiNumber"  onclick="changeNumber(this)" min="0" style="width:130px; height: 30px; text-align: center">
 							</li>
 						</ul>
 					</div>
@@ -122,8 +122,10 @@ img[data-col] {
 			</div>
 		</div>
 	</div>
-	<input type="hidden" data-col="maxTicket" id="eriMaxTicket">
-	<input type="hidden" id="eriNum">			
+	<input type="hidden" data-col="maxTicket" id="riMaxTicket">
+	<input type="hidden" id="riNum">
+	<input type="hidden" id="x">
+	<input type="hidden" id="y">
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
 window.onload = function(){
@@ -134,9 +136,11 @@ window.onload = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			var objs = document.querySelectorAll('[data-col]');
-			document.querySelector('#eriNum').value = res.eriNum;
-			document.querySelector('#rtiDate').innerHTML = res.minDate;
-			document.querySelector('#eriMaxTicket').value = res.maxTicket;
+			document.querySelector('#riNum').value = res.riNum;
+			document.querySelector('#x').value = res.x;
+			document.querySelector('#y').value = res.y;
+			document.querySelector('#tiDate').innerHTML = res.minDate;
+			document.querySelector('#riMaxTicket').value = res.maxTicket;
 			for(obj of objs){
 				var key = obj.getAttribute('data-col');
 				var data = res[key];
@@ -155,7 +159,7 @@ window.onload = function(){
 			    disable: res.disableList,
 			    defaultDate: res.minDate,
 			    onChange: function(selectedDates, dateStr, instance) {
-			    	document.querySelector('#rtiDate').innerHTML = dateStr;
+			    	document.querySelector('#tiDate').innerHTML = dateStr;
 			    	getTimeList(dateStr);
 			    	
 			    }
@@ -167,8 +171,8 @@ window.onload = function(){
 
 function getTimeList(dateStr) {
 	var xhr = new XMLHttpRequest();
-	var eriNum = document.querySelector("#eriNum").value;
-	xhr.open('GET', '/reservation/' + eriNum + '/' + dateStr);
+	var riNum = document.querySelector("#riNum").value;
+	xhr.open('GET', '/reservation/' + riNum + '/' + dateStr);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
@@ -196,29 +200,29 @@ function getTimeList(dateStr) {
 			//1인당 최대값
 			var first = document.querySelector("#time1");
 			first.checked = true;
-			document.querySelector('#rtiTime').innerHTML = first.value;
-			var rtiNumber = document.querySelector('#rtiNumber');
-			var maxTicket = Number(document.querySelector('#eriMaxTicket').value);
+			document.querySelector('#tiTime').innerHTML = first.value;
+			var tiNumber = document.querySelector('#tiNumber');
+			var maxTicket = Number(document.querySelector('#riMaxTicket').value);
 			var remainTicket = Number(first.getAttribute('data-ticket'));
-			rtiNumber.max = remainTicket > maxTicket ? maxTicket : remainTicket;
+			tiNumber.max = remainTicket > maxTicket ? maxTicket : remainTicket;
 		}
 	}
 	xhr.send();
 }
 
 function selectTime(obj){
-	var maxTicket = Number(document.querySelector('#eriMaxTicket').value);
+	var maxTicket = Number(document.querySelector('#riMaxTicket').value);
 	var remainTicket = Number(obj.getAttribute('data-ticket'));
 	console.log(maxTicket);
 	console.log(remainTicket);
 	
-	var rtiTime = document.querySelector('#rtiTime');
+	var rtiTime = document.querySelector('#tiTime');
 	rtiTime.innerHTML = obj.value;	
 	
 }
 
 function changeNumber(obj){
-	var maxTicket = Number(document.querySelector('#eriMaxTicket').value);
+	var maxTicket = Number(document.querySelector('#riMaxTicket').value);
 	var selectTicket = Number(obj.value);
 	var remainTicket = Number(obj.max);
 	if(selectTicket > maxTicket){
@@ -237,20 +241,24 @@ function changeNumber(obj){
 }
 
 function goPayment(){
-	var rtiDate = document.querySelector('#rtiDate').innerText;
-	var rtiTime = document.querySelector('#rtiTime').innerText;
-	var rtiNumber = document.querySelector('#rtiNumber').value;
+	var tiDate = document.querySelector('#tiDate').innerText;
+	var tiTime = document.querySelector('#tiTime').innerText;
+	var tiNumber = document.querySelector('#tiNumber').value;
 	var piPrice = document.querySelector('#piPrice').innerText;
-	var eriNum = document.querySelector("#eriNum").value;
+	var riNum = document.querySelector("#riNum").value;
 	var idx = document.querySelector("#imgPath").src.lastIndexOf('/');
 	var imgPath = document.querySelector("#imgPath").src.substring(idx+1);
+	var x = document.querySelector("#x").value;
+	var y = document.querySelector("#y").value;
 	
-	var param = '?rtiDate=' + rtiDate + '&';
-	param += 'rtiTime=' + rtiTime + '&';
-	param += 'rtiNumber=' + rtiNumber + '&';
+	var param = '?tiDate=' + tiDate + '&';
+	param += 'tiTime=' + tiTime + '&';
+	param += 'tiNumber=' + tiNumber + '&';
 	param += 'piPrice=' + piPrice + '&';
-	param += 'eriNum=' + eriNum + '&';
+	param += 'riNum=' + riNum + '&';
 	param += 'imgPath=' + imgPath + '&';
+	param += 'x=' + x + '&';
+	param += 'y=' + y + '&';
 	
 	location.href = '/views/reservation/reservation-save/' + param
 }

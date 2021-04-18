@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public interface UserTicketDTO {
 	
-	Integer getRtiNum();
+	Integer getTiNum();
 
 	String getEiName();
 	
@@ -14,11 +14,11 @@ public interface UserTicketDTO {
 	
 	String getImgPath();
 	
-	String getRtiDate();
+	String getTiDate();
 	
-	String getRtiTime();
+	String getTiTime();
 	
-	Integer getRtiNumber();
+	Integer getTiNumber();
 	
 	LocalDateTime getDateTime();
 }

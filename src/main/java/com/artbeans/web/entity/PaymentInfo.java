@@ -2,11 +2,9 @@ package com.artbeans.web.entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,7 +21,7 @@ import lombok.ToString;
 
 @Data
 @Entity
-@ToString(exclude = "reservationTicketInfo")
+@ToString(exclude = "ticketInfo")
 @Table(name="payment_info")
 public class PaymentInfo {
 	
@@ -51,9 +49,9 @@ public class PaymentInfo {
 	private String piState;
 
 	@OneToOne
-	@JoinColumn(name = "rti_num")
+	@JoinColumn(name = "ti_num")
 	@JsonBackReference
-	private ReservationTicketInfo reservationTicketInfo;
+	private TicketInfo ticketInfo;
 	
 
 }

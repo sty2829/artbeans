@@ -1,5 +1,6 @@
 package com.artbeans.web.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -73,4 +75,11 @@ public class ExhibitionController {
 		return exhibitionInfo.getEiNum();
 	}
 
+	//유저ID로 예약전시회 찾는 컨트롤러 전시회예약정보 없는 전시회만
+	//전시회 정보 찾기위해.. 추가함
+	@GetMapping("/exhibition/{uiNum}")
+	public @ResponseBody List<ExhibitionInfo> getUserExhibition(@PathVariable Integer uiNum){
+		return eService.getExhibitionFindByUiNum(uiNum);
+	}
+	
 }

@@ -20,5 +20,9 @@ public interface ExhibitionService {
 	DataTable<ExhibitionInfo> getExhiListDemo(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo);//
 	
 	//DataTable<ExhibitionInfo> getExhibitionInfos(Pageable pageable, DataTable<ExhibitionInfo> exhibitionInfo);
+	
+	
+	//전시회정보찾기 위해 추가
+	List<ExhibitionInfo> getExhibitionFindByUiNum(Integer uiNum);
 
 }

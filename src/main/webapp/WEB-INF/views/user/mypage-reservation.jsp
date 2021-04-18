@@ -78,8 +78,8 @@
 <script>
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
-	//유저번호 변경
-	xhr.open('GET', '/user/ticket/8');
+	var uiNum = ${userInfo.uiNum}
+	xhr.open('GET', '/user/ticket/' + uiNum);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
@@ -96,10 +96,10 @@ window.onload = function(){
 					leftHtml += '<hr>';
 					leftHtml += '<p class="card-text">예매번호 : <span>' + ticket.piMerchantId + '</span></p>';
 					leftHtml += '<p class="card-text">장소 : <span>' + ticket.giName + '</span></p>';
-					leftHtml += '<p class="card-text">관람일시 : <span>' + ticket.rtiDate + '</span> <span>' + ticket.rtiTime +'</span></p>';
-					leftHtml += '<p class="card-text">예매수 : <span>'+ ticket.rtiNumber + '</span>장</p>';
+					leftHtml += '<p class="card-text">관람일시 : <span>' + ticket.tiDate + '</span> <span>' + ticket.tiTime +'</span></p>';
+					leftHtml += '<p class="card-text">예매수 : <span>'+ ticket.tiNumber + '</span>장</p>';
 					leftHtml += '<hr>';
-					leftHtml += '<button type="button" class="btn btn-outline-danger" style="width: 300px; height: 38px" data-rtiNum="' + ticket.rtiNum + '" onclick="cancel(this)">예매취소</button>';
+					leftHtml += '<button type="button" class="btn btn-outline-danger" style="width: 300px; height: 38px" data-rtiNum="' + ticket.tiNum + '" onclick="cancel(this)">예매취소</button>';
 					leftHtml += '</div>';
 					leftHtml += '</div>';  
 				}else{
@@ -110,10 +110,10 @@ window.onload = function(){
 					rightHtml += '<hr>';
 					rightHtml += '<p class="card-text">예매번호 : <span>' + ticket.piMerchantId + '</span></p>';
 					rightHtml += '<p class="card-text">장소 : <span>' + ticket.giName + '</span></p>';
-					rightHtml += '<p class="card-text">관람일시 : <span>' + ticket.rtiDate + '</span> <span>' + ticket.rtiTime +'</span></p>';
-					rightHtml += '<p class="card-text">예매수 : <span>'+ ticket.rtiNumber + '</span>장</p>';
+					rightHtml += '<p class="card-text">관람일시 : <span>' + ticket.tiDate + '</span> <span>' + ticket.tiTime +'</span></p>';
+					rightHtml += '<p class="card-text">예매수 : <span>'+ ticket.tiNumber + '</span>장</p>';
 					rightHtml += '<hr>';
-					rightHtml += '<button type="button" class="btn btn-outline-primary" style="width: 300px; height: 38px">리뷰작성</button>';
+					rightHtml += '<button type="button" class="btn btn-outline-primary" onclick="goReview(this)" data-rtiNum="' + ticket.tiNum + '" style="width: 300px; height: 38px">리뷰작성</button>';
 					rightHtml += '</div>';
 					rightHtml += '</div>';  
 				}
@@ -125,11 +125,11 @@ window.onload = function(){
 	xhr.send();
 }
 function cancel(obj){
-	var rtiNum = obj.getAttribute('data-rtiNum')
+	var rtiNum = obj.getAttribute('data-tiNum')
 	
 	var xhr = new XMLHttpRequest();
 	
-	xhr.open('DELETE', '/reservation/cancel/' + rtiNum );
+	xhr.open('DELETE', '/ticket/cancel/' + tiNum );
 
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
@@ -145,6 +145,10 @@ function cancel(obj){
 	
 	xhr.send();
 	
+}
+function goReview(obj){
+	var tiNum = obj.getAttribute('data-tiNum')
+	location.href = '/views/user/review/?tiNum=' + tiNum;
 }
 </script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

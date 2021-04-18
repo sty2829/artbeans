@@ -12,24 +12,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.DynamicUpdate;
 
 import lombok.Data;
 
 
 @Entity
-@Table(name="exhibition_review_comment")
+@Table(name="comment_info")
 @Data
-@DynamicUpdate
-public class ExhibitionReviewComment {
+public class CommentInfo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="erc_num")
-	private int ercNum;
+	@Column(name="ci_num")
+	private int ciNum;
 	
-	@Column(name="erc_content")
-	private String ercContent;
+	@Column(name="ci_content")
+	private String ciContent;
 	
 	@Column(name="credat", insertable = false, updatable = false)
 	@ColumnDefault("now()")
@@ -44,6 +42,6 @@ public class ExhibitionReviewComment {
 	private UserInfo userInfo;
 	
 	@ManyToOne
-	@JoinColumn(name = "er_num")
-	private ExhibitionReview exhibitionReview;
+	@JoinColumn(name = "rvi_num")
+	private ReviewInfo reviewInfo;
 }

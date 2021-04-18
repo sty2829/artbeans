@@ -3,7 +3,7 @@ package com.artbeans.web.service;
 import java.util.List;
 
 import com.artbeans.web.dto.UserTicketDTO;
-import com.artbeans.web.entity.ReservationTicketInfo;
+import com.artbeans.web.entity.ReviewInfo;
 import com.artbeans.web.entity.UserInfo;
 
 
@@ -14,6 +14,7 @@ public interface UserService {
 	UserInfo updateUser(UserInfo ui);
 	int deleteUser(Integer uiNum);
 	UserInfo login(UserInfo userInfo);
+	//예약티켓 리스트 조회
 	List<UserTicketDTO> getTicketList(Integer uiNum);
 	
 }

@@ -5,12 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>결제</title>
-<link href="/resources/node_modules/flatpickr/dist/flatpickr.css" rel="stylesheet"/>
-<script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hevj9bqhd5"></script>
 <style>
-.paymentMain {
+.reservationSaveMain {
 	margin-top: 150px;
 	margin-left: 450px;
 	height: 700px;
@@ -29,7 +28,6 @@ h5 {
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<section id="team" class="team section-bg">
    <div class="container reservationSaveMain">
    		<div class="row">
    			<div class="col-lg-11" style="text-align: center;">
@@ -40,51 +38,55 @@ h5 {
    		</div>
 		<div class="row">
 	         <div class="col-lg-6">
-	            <div class="member d-flex align-items-start">
-	              <div class="pic" style="text-align: center"><img src="/resources/assets/img/exhibition/${param.imgPath}" class="img-fluid" alt="" style="width: 200px; height: 150px"><h4 class="mt-3"></h4></div>
-	              <div class="member-info">
-	              	<div class="row">
-	              		<div class="col-lg-12">
-		                <ul class="list-inline mt-4">
-	                 		<li class="list-inline-item">
-		   		  				 <h4>예매일</h4>
-				                 <p id="rtiDate" class="check">${param.rtiDate}</p>
-		                 	</li>
-           					<li class="list-inline-item">
-		   		  				 <h4>예매시간</h4>
-				                 <p style="text-align: center" id="rtiTime" class="check">${param.rtiTime}</p>
-		                 	</li>
-			            </ul>
-		                </div>
-		                <div class="col-lg-12">
-		                	<ul class="list-inline">
-								<li class="list-inline-item">
-			   		  				 <h4 class="mt-2">예매수</h4>
-					                 <p style="text-align: center" id="rtiNumber" class="check">${param.rtiNumber}</p>
-			                 	</li>
-			                 	<li class="list-inline-item">
-					                 <h4 class="mt-2 ml-3">결제금액</h4>
-					                 <p style="text-align: center" id="piPrice" class="check">${param.piPrice}</p>
-					            </li>    
-			                 </ul>
-		                </div>
-	                </div>
-	              </div>
-	            </div>
+				<div class="card mb-2">
+			  		<div class="row no-gutters">
+			    		<div class="col-md-4">
+			      			<img src="/resources/assets/img/exhibition/${param.imgPath}" style="width: 180px; height: 190px">
+		   				</div>
+			    		<div class="col-md-7">
+			      			<div class="col-lg-12 ml-2 mt-3" style="height: 40px">
+			  			  		<p style="font-size: 1.2em; margin-bottom: 0px">백남준전<p>
+			           		 </div>
+		         			 <div class="col-lg-12 ml-2" style="height: 70px">
+		         			 	<div class="row">
+		         			 		<div class="col-lg-5">
+		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매일<p>
+				                 		<span id="tiDate">${param.tiDate}</span>
+		         			 		</div>
+		         			 		<div class="col-lg-5">
+		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매시간<p>
+				                 		<span id="tiTime">${param.tiTime}</span>
+		         			 		</div>
+		         			 	</div>
+		         			 	<div class="row">
+		         			 		<div class="col-lg-5">
+		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매수<p>
+				                 		<span id="tiNumber" style="text-align: center">${param.tiNumber}</span>장
+		         			 		</div>
+		         			 		<div class="col-lg-5">
+		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매금액<p>
+				                 		<span id="piPrice" style="text-align: center">${param.piPrice}</span>원
+		         			 		</div>
+		         			 	</div>
+		           		   </div>
+		       		   </div>
+				    </div>
+			    </div>
           	</div>
 			<div class="col-lg-4" id="saveDiv">
-	      		<label for="rtiName">예매자 성함</label>
-			    <input type="text" class="form-control" id="rtiName" required>
-      			<label for="rtiEmail" class="mt-2">예매자 이메일</label>
-			    <input type="email" class="form-control" id="rtiEmail" required>
-    			<label for="rtiPhoneNumber" class="mt-2">예매자 연락처</label>
-			    <input type="text" class="form-control" id="rtiPhoneNumber" required>
+	      		<label for="tiName">예매자 성함</label>
+			    <input type="text" class="form-control"  id="tiName" style="width: 330px" required>
+      			<label for="tiEmail" class="mt-2">예매자 이메일</label>
+			    <input type="email" class="form-control" id="tiEmail" style="width: 330px" required>
+    			<label for="tiPhoneNumber" class="mt-2">예매자 연락처</label>
+			    <input type="text" class="form-control" id="tiPhoneNumber" style="width: 330px" required>
 		   </div>
 	   </div>
 		<div class="row">
 			<div class="col-lg-6">
+				<div style="border: 0; width: 540px; height: 240px;" id="map"></div>
 			</div>
-			<div class="col-lg-5">
+			<div class="col-lg-4">
 				<ul class="list-inline">
 					<li class="list-inline-item mt-3">
 						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="card" value="card" autocomplete="off">
@@ -95,18 +97,15 @@ h5 {
 						<label class="btn btn-outline-success" for="trans" >계좌이체</label>
 					</li>
 					<li class="list-inline-item mt-3">
-						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="vbank" value="vbank" autocomplete="off">
-						<label class="btn btn-outline-success" for="vbank" >가상계좌</label>
-					</li>
-					<li class="list-inline-item mt-3">
-						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="phone" value="phone" autocomplete="off">
-						<label class="btn btn-outline-success" for="phone" >휴대폰소액결제</label>
-					</li>
-					<li class="list-inline-item mt-3">
 						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="samsung" value="samsung" autocomplete="off">
 						<label class="btn btn-outline-success" for="samsung" >삼성페이</label>
 					</li>
-					<li class="list-inline-item mt-3 mr-5">
+					<li class="list-inline-item mt-3">
+						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="happymoney" value="happymoney" autocomplete="off">
+						<label class="btn btn-outline-success" for="happymoney" >해피머니</label>
+						
+					</li>
+					<li class="list-inline-item mt-3">
 						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="cultureland" value="cultureland" autocomplete="off">
 						<label class="btn btn-outline-success" for="cultureland" >컬쳐랜드</label>
 					</li>
@@ -115,28 +114,54 @@ h5 {
 						<label class="btn btn-outline-success" for="smartculture" >스마트문상</label>
 					</li>
 					<li class="list-inline-item mt-3">
-						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="happymoney" value="happymoney" autocomplete="off">
-						<label class="btn btn-outline-success" for="happymoney" >해피머니</label>
+						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="phone" value="phone" autocomplete="off">
+						<label class="btn btn-outline-success" for="phone" >휴대폰소액결제</label>
 					</li>
 					<li class="list-inline-item mt-3">
 						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="booknlife" value="booknlife" autocomplete="off">
 						<label class="btn btn-outline-success" for="booknlife" >도서문화상품권</label>
 					</li>
 				</ul>
-				<button type="button" class="btn btn-primary" style="width: 365px" onclick="saveReservation()">결제</button>
+				<button type="button" class="btn btn-primary" style="width: 330px" onclick="saveReservation()">결제</button>
 			</div>
 		</div>
 	</div>
-</section>
 <script>
+var mapOptions = {
+	    center: new naver.maps.LatLng(${param.y},${param.x}),
+	    zoom: 16
+	};
+	var map = new naver.maps.Map('map', mapOptions);				 
+	var marker = new naver.maps.Marker({
+	    position: new naver.maps.LatLng(${param.y}, ${param.x}),
+	    title: 'test',
+	    map: map
+	});				 
+	var contentString = [
+	        '<div style="padding:4px 4px;">',
+	        '   <div style="font-weight:bold;padding-bottom:3px;"> 이건모임? </div>',
+	        '</div>'
+	    ].join('');	 
+	var infowindow = new naver.maps.InfoWindow({
+	    content: contentString
+	});				 
+	naver.maps.Event.addListener(marker, "click", function(e) {
+	    if (infowindow.getMap()) {
+	        infowindow.close();
+	    } else {
+	        infowindow.open(map, marker);
+	    }
+	});				 
+	infowindow.open(map, marker);
+
 IMP.init('imp08010397');
 
 function saveReservation(){
 	//임시로 uiNum 추가해야댐
 	var param = {
 			paymentInfo : {},
-			exhibitionReservationInfo : {
-				eriNum: ${param.eriNum}
+			reservationInfo : {
+				riNum: ${param.riNum}
 			},
 			userInfo : {
 				uiNum: 8
@@ -146,13 +171,13 @@ function saveReservation(){
 	var piMethod = document.querySelector('input[type="radio"]:checked');
 	for(obj of objs){
 		if(obj.tagName == 'INPUT'){
-			if(obj.id.includes('rti')){
+			if(obj.id.includes('ti')){
 				param[obj.id] = obj.value;
 			}else{
 				param['paymentInfo'][obj.name] = obj.value;
 			}
 		}else{
-			if(obj.id.includes('rti')){
+			if(obj.id.includes('ti')){
 				param[obj.id] = obj.innerText;
 			}else{
 				param['paymentInfo'][obj.id] = obj.innerText;
@@ -160,7 +185,7 @@ function saveReservation(){
 		}
 	}
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', "/reservation/" + ${param.eriNum});
+	xhr.open('POST', "/ticket/" + ${param.riNum});
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
@@ -170,15 +195,15 @@ function saveReservation(){
 			    merchant_uid : res.paymentInfo.piMerchantId,
 			    name : '예약명 : 전시회 예약',
 			    amount : res.paymentInfo.piPrice,
-			    buyer_name : res.rtiName,
-			    buyer_email : res.rtiEmail,
-			    buyer_tel : res.rtiPhone,
+			    buyer_name : res.tiName,
+			    buyer_email : res.tiEmail,
+			    buyer_tel : res.tiPhone,
 			    
 			}, function(rsp) {
 			    if ( rsp.success ) {
 			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 			    	jQuery.ajax({
-			    		url: "/reservation/confirm", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+			    		url: "/ticket/confirm", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
 			    		method: 'POST',
 			    		data: {
 			    		    impId: rsp.imp_uid,
@@ -207,6 +232,7 @@ function saveReservation(){
 	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
 	xhr.send(JSON.stringify(param));
 }
+
 
 </script>	
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

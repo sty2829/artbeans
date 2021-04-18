@@ -23,54 +23,52 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="reservation_ticket_info")
-public class ReservationTicketInfo {
+@Table(name="ticket_info")
+public class TicketInfo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="rti_num")
-	private Integer rtiNum;
+	@Column(name="ti_num")
+	private Integer tiNum;
 	
-	@Column(name="rti_name")
-	private String rtiName;
+	@Column(name="ti_name")
+	private String tiName;
 	
-	@Column(name="rti_email")
-	private String rtiEmail;
+	@Column(name="ti_email")
+	private String tiEmail;
 	
-	@Column(name="rti_phone_number")
-	private String rtiPhoneNumber;
+	@Column(name="ti_phone_number")
+	private String tiPhoneNumber;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(name="rti_date")
-	private Date rtiDate;
+	@Column(name="ti_date")
+	private Date tiDate;
 	
 	//Time 스트링 수정
-	@Column(name="rti_time")
-	private String rtiTime;
+	@Column(name="ti_time")
+	private String tiTime;
 	
-	@Column(name="rti_Number")
-	private Integer rtiNumber;
+	@Column(name="ti_Number")
+	private Integer tiNumber;
 	
-	@Column(name="rti_state", insertable = false)
-
-
+	@Column(name="ti_state", insertable = false)
 	@Convert(converter = StateConverter.class)
 	@ColumnDefault(value = "PENDING")
-	private String rtiState;
+	private String tiState;
 	
-	@Column(name="rti_reivew_status", insertable = false)
+	@Column(name="ti_reivew_status", insertable = false)
 	@ColumnDefault("0")
-	private String rtiReivewStatus;
+	private String tiReivewStatus;
 	
 	@ManyToOne
 	@JoinColumn(name = "ui_num")
 	private UserInfo userInfo;
 	
 	@ManyToOne
-	@JoinColumn(name = "eri_num")
-	private ExhibitionReservationInfo exhibitionReservationInfo;
+	@JoinColumn(name = "ri_num")
+	private ReservationInfo reservationInfo;
 	
-	@OneToOne(mappedBy = "reservationTicketInfo", cascade = CascadeType.ALL, optional = false)
+	@OneToOne(mappedBy = "ticketInfo", cascade = CascadeType.ALL, optional = false)
 	@JsonManagedReference
 	private PaymentInfo paymentInfo;
 	

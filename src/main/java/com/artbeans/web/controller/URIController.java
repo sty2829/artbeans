@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
-@Slf4j
 public class URIController {
 	
 	@GetMapping("/views/**")
@@ -17,6 +16,4 @@ public class URIController {
 	public String hello() {
 		return "views/index";
 	}
-	
-	
 }

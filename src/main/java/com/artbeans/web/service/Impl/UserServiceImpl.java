@@ -7,10 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.artbeans.web.dto.UserTicketDTO;
+import com.artbeans.web.entity.ReviewInfo;
 import com.artbeans.web.entity.UserInfo;
-import com.artbeans.web.repository.ReservationTicketRepository;
+import com.artbeans.web.repository.TicketInfoRepository;
+import com.artbeans.web.repository.ReviewInfoRepository;
 import com.artbeans.web.repository.UserInfoRepository;
 import com.artbeans.web.service.UserService;
+import com.artbeans.web.util.FileConverter;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,7 +25,7 @@ public class UserServiceImpl implements UserService {
 	private UserInfoRepository uRepo;
 	
 	@Autowired
-	private ReservationTicketRepository rtiRepo;
+	private TicketInfoRepository rtiRepo;
 	
 	@Override
 	public List<UserInfo> getList(UserInfo userInfo) {
