@@ -139,7 +139,7 @@ function sideExhibition(obj) {
 			var html = '';
 			
 			for(var res of rres) {
-			
+			if(res.eiNum==eiNum){
 				html += '<div id="' + res.eiNum + '">';
 				html +=  '<div class="map_view1" onclick="moveMap(this) value1=' + res.galleryInfo.giAddressY + 'value2='+   res.galleryInfo.giAddressX + '">';
 				html += '<img  style="width:50px; cursor:pointer; height:50px" src=\'/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '\'" onclick="location.href=\'/views/exhibition/views?eiNum=' + res.eiNum + '\'">';
@@ -149,7 +149,8 @@ function sideExhibition(obj) {
 				html +='<span>'+res.galleryInfo.giName+'</span>';
 				html += '</div>';
 				html += '</div>';
-				html += '</div>';			
+				html += '</div>';
+				}			
 		}
 		
 		}document.querySelector('#sideMapList').innerHTML = html;

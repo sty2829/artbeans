@@ -36,7 +36,10 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	public List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo) {
 		if(exhibitionInfo.getEiName()!=null) {
 			return exhiRepo.findAllByEiNameLikeOrderByEiNum("%"+exhibitionInfo.getEiName()+"%");
-		}		
+		}
+		if(exhibitionInfo.getEiNum()!=null) {
+			return exhiRepo.findAllByEiNum(exhibitionInfo.getEiNum());
+		}
 		return exhiRepo.findAll();
 	}
 	@Override
