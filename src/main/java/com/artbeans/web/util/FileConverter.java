@@ -20,11 +20,12 @@ public class FileConverter {
 	
 	/*
 	 * 파일위치 안건드리셔도 됩니다.
+	 * 에디터 경로수정 
 	 */
 	private final static String PROJECT_PATH = System.getProperty("user.dir");
 	private final static String ROOT = "\\src\\main\\webapp\\resources\\assets\\img\\";
 	
-	private final static String editorPath = "C:\\Users\\Administrator\\git\\artbeans\\src\\main\\webapp\\resources\\assets\\img\\editor\\";
+	private final static String editorPath = "\\src\\main\\webapp\\resources\\assets\\img\\editor\\";
 	
 	public static void fileInsert(FileInfo fileInfo, String fiType) throws Exception {
 		String fiName = fileInfo.getFiFile().getOriginalFilename();
@@ -49,12 +50,14 @@ public class FileConverter {
 	
 	public static Map<String,String> ckeditorUploadImg(MultipartFile upload){
 		String fileName = upload.getOriginalFilename();
-		File target = new File(editorPath + fileName);
+		File target = new File(PROJECT_PATH + editorPath + fileName);
+		log.info("fileName=>{}",fileName);
 		try {
 			upload.transferTo(target);
 			Map<String,String> rMap = new HashMap<>();
 			rMap.put("uploaded","true");
-			rMap.put("url","/resources/" + fileName);
+			rMap.put("url","/resources/assets/img/editor/" + fileName);
+			log.info("rMap=>{}",rMap);
 			return rMap;
 		} catch (IllegalStateException e) {
 			e.printStackTrace();

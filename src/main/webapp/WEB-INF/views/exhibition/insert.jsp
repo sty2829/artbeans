@@ -112,8 +112,7 @@
 						<div class="form-row">
 							<div class="col-md-6 form-group">
 								<!-- 나중에 변경 -->
-								<input type="text" id="uiName" class="form-control"
-									placeholder="나중에 신청자 성함 세션으로 받아서 픽스시키기" />
+								<input type="text" id="uiName" class="form-control" readonly />
 							</div>
 						</div>
 
@@ -232,7 +231,8 @@
 							<div id="editor">내용을 입력하고 저장을 눌러주세요.</div>
 							<button onclick="save()">저장</button>
 						</div>
-
+						
+						
 						<script>
 						 var editor;
 							ClassicEditor
@@ -244,9 +244,18 @@
 							 })
 						.then(obj => {editor = obj;})
 						.catch(error => {console.error(error);});
-					    </script>
-
+							
+							
+					    </script>			
+		
 						<textarea id="eiContent" style="display: none"></textarea>
+						
+						<script>
+						var uiNum = ${userInfo.uiNum}
+						var uiName = ${userInfo.uiName}
+						
+						</script>
+						
 						<button class="get-started-btn ml-auto" onclick="doInsert()">전시회등록 신청</button>
 					</div>
 				</div>

@@ -154,7 +154,7 @@ function logout(){
 				onsubmit="return check('headsearchInput')">
 				<div>
 					<div>
-						<div class="container d-flex align-items-center"">
+						<div class="container d-flex align-items-center">
 							<input autocomplete="off" type=text name="keyword"
 								placeholder="전시관,전시회 검색" class="headsearchInput"
 								id="headsearchInput" onkeyup="headSuggest(this);">
@@ -175,9 +175,9 @@ function logout(){
 				<c:if test="${userInfo ne null}">
 					<li class="drop-down"><a href="#">마이페이지</a>
 						<ul>
-							<li><a href="/views/menu/mypage">나의 회원정보</a></li>
-							<li><a href="/views/menu/myReservation">예약정보</a></li>
-							<li><a href="/views/menu/favorite-exhibition">찜한 전시회 목록</a></li>
+							<li><a href="/views/user/mypage">나의 회원정보</a></li>
+							<li><a href="/views/user/mypage-reservation">예약정보</a></li>
+							<li><a href="/views/user/favorite-exhibition">찜한 전시회 목록</a></li>
 						</ul></li> 
 					</c:if>
 					<li class="drop-down"><a href="#">전시회 목록</a>
@@ -197,7 +197,7 @@ function logout(){
 									<li><a href="/views/admin/usinghomepage">이용방법</a></li>
 									<li><a href="/views/admin/questions">자주하는 질문</a></li>
 								</ul></li>
-							<li><a href="#">후기/추천</a></li>
+							<li><a href="/views/community/review-list">후기/추천</a></li>
 						</ul></li>
 
 					<li class="drop-down"><a href="#">전시회 등록 및 수정</a>
@@ -210,14 +210,17 @@ function logout(){
 				</ul>
 
 			</nav>
-				<c:if test="${userInfo eq null }">
-			<a href="/views/login" style="float: right"
+			<div style=" position: relative; margin-left: 5%;" >
+			<c:if test="${userInfo eq null }">
+			<a href="/views/user/login" style="float: right"
 				class="get-started-btn ml-auto">로그인/회원가입</a>
 				</c:if>
 				<c:if test="${userInfo ne null }">
-				<a href="/views/login" style="float: right"
-				class="get-started-btn ml-auto" onclick="logout()">로그아웃</a>
+				<a href="/views/user/login" class="get-started-btn ml-auto" onclick="logout()">로그아웃</a>
 				</c:if>
+			</div>
+				
+				
 			<!-- .nav-menu -->
 		</div>
 	</header>

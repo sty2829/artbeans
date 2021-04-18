@@ -1,11 +1,9 @@
 /**
  * 
  */
-
 window.onload = get;
 
 function get() {
-	count = 0;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', '/exhibition-list?size=11&sort=eiNum,asc&page=' + count); //ExhibitionController
 	xhr.onreadystatechange = function() {
@@ -31,8 +29,8 @@ function get() {
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';
-					html += '<input type="checkbox" onclick="sideMap()">';
+					html += '<div style="display:none" class="read-more">';
+					html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" value3="'+ exhibition.eiNum + '">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
@@ -45,16 +43,6 @@ function get() {
 	xhr.send();
 }
 
-function newest() {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list?size=11&sort=eiStartDate,asc&page=' + count); //ExhibitionController
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var res = JSON.parse(xhr.responseText);
-			var html = '';
-		}
-	}
-}
 function newest() {
 	count = 0;
 	var xhr = new XMLHttpRequest();
@@ -82,15 +70,15 @@ function newest() {
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';
-					html += '<input type="checkbox">';
+					html += '<div style="display:none" class="read-more">';
+					html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" value3="'+ exhibition.eiNum + '">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
 					html += '</div>';
 				}
 			}
-			document.querySelector('#exhibitionList').innerHTML += html;
+			document.querySelector('#exhibitionList').innerHTML = html;
 		}
 	}
 	xhr.send();
@@ -123,16 +111,49 @@ function deadline() {
 					html += '</div>';
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div class="read-more">';
-					html += '<input type="checkbox">';
+					html += '<div style="display:none" class="read-more">';
+					html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" value3="'+ exhibition.eiNum + '">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
 					html += '</div>';
 				}
 			}
-			document.querySelector('#exhibitionList').innerHTML += html;
+			document.querySelector('#exhibitionList').innerHTML = html;
 		}
+	}
+	xhr.send();
+
+
+}
+
+function sideExhibition(obj) {
+	
+	var eiNum = obj.getAttribute('value3');
+	console.log(eiNum);
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET', '/exhibition-search');
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var rres = JSON.parse(xhr.responseText);
+			var html = '';
+			
+			for(var res of rres) {
+			if(res.eiNum==eiNum){
+				html += '<div id="' + res.eiNum + '">';
+				html +=  '<div class="map_view1" onclick="moveMap(this) value1=' + res.galleryInfo.giAddressY + 'value2='+   res.galleryInfo.giAddressX + '">';
+				html += '<img  style="width:50px; cursor:pointer; height:50px" src=\'/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '\'" onclick="location.href=\'/views/exhibition/views?eiNum=' + res.eiNum + '\'">';
+				html += '</div>';
+				html +=  '<div class="map_view2" onclick="moveMap(this)value1=' +  res.galleryInfo.giAddressY + 'value2=' + res.galleryInfo.giAddressX +   '">';
+				html += '<span></span><br>';
+				html +='<span>'+res.galleryInfo.giName+'</span>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				}			
+		}
+		
+		}document.querySelector('#sideMapList').innerHTML = html;
 	}
 	xhr.send();
 }

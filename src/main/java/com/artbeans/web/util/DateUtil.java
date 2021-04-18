@@ -13,7 +13,7 @@ import java.util.Map;
 
 import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.dto.SumTicketTime;
-import com.artbeans.web.entity.ExhibitionReservationInfo;
+import com.artbeans.web.entity.ReservationInfo;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -92,11 +92,11 @@ public class DateUtil {
 	    return rs;
 	}
 	
-	public static Map<String,Integer> getTimeList(ExhibitionReservationInfo eri, List<SumTicketTime> sttList) {
+	public static Map<String,Integer> getTimeList(ReservationInfo ri, List<SumTicketTime> sttList) {
 		//시간대별 최대 티켓수 
-		Integer maxStock = eri.getEriMaxStock();
-		String startTime = eri.getEriStartTime();
-		String endTime = eri.getEriEndTime();
+		Integer maxStock = ri.getRiMaxStock();
+		String startTime = ri.getRiStartTime();
+		String endTime = ri.getRiEndTime();
 		int startTimeInt = Integer.parseInt(startTime.substring(0,2));
 		int endTimeInt = Integer.parseInt(endTime.substring(0,2));
 		int length = endTimeInt - startTimeInt;

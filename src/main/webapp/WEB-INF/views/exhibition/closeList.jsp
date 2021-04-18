@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>종료된 전시회 목록</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<script src="/resources/user/js/window/infinityScroll.js"></script>
 <script src="/resources/user/js/exhibition/closeList.js"></script>
+<script src="/resources/user/js/window/infinityScroll.js"></script>
 </head>
 <body>
 

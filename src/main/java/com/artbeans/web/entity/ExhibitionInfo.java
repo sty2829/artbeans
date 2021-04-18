@@ -95,6 +95,6 @@ public class ExhibitionInfo {
 	//양방향설정
 	@OneToOne(mappedBy = "exhibitionInfo", fetch = FetchType.EAGER)
 	@JsonManagedReference
-	private ExhibitionReservationInfo exhibitionReservationInfo;
+	private ReservationInfo exhibitionReservationInfo;
 
 }

@@ -69,7 +69,7 @@
               </div>
               <div class="form-row mt-3 mb-2">
                 <div class="col-md-6 form-group">
-                  <select class="custom-select is-invalid" id="eiHoliday" name="selectBox" style="width: 311.66px" onchange="check(this)" >
+                  <select class="custom-select is-invalid" id="riHoliday" name="selectBox" style="width: 311.66px" onchange="check(this)" >
                   	<option selected disabled>휴무일을 선택해주세요</option>
                   	<option value="1">일요일</option>
                   	<option value="2">월요일</option>
@@ -81,21 +81,21 @@
                   </select>
                 </div>
               </div>
-              <input type="text" class="form-control is-invalid" id="eriAudienceRating" onchange="check(this)">
+              <input type="text" class="form-control is-invalid" id="riAudienceRating" onchange="check(this)">
               <label class="mt-2"></label>
-              <input type="text" class="form-control is-invalid" id="eriRunningTime" onchange="check(this)">
+              <input type="text" class="form-control is-invalid" id="riRunningTime" onchange="check(this)">
               <label class="mt-2"></label>
-              <input type="number" class="form-control is-invalid" id="eriMaxStock" onchange="check(this)" min="1" required>
+              <input type="number" class="form-control is-invalid" id="riMaxTicket" onchange="check(this)" min="1" required>
               <label class="mt-3"></label>
-              <input type="number" class="form-control is-invalid" id="eriMaxTicket" onchange="check(this)" min="1" required >
+              <input type="number" class="form-control is-invalid" id="riMaxStock" onchange="check(this)" min="1" required >
            	  <label class="mt-3"></label>
-              <input type="text" class="form-control is-invalid" id="eriStartDate" onchange="check(this)" style="background-color: white">
+              <input type="text" class="form-control is-invalid" id="riStartDate" onchange="check(this)" style="background-color: white">
               <label class="mt-3"></label>	
-              <input type="text" class="form-control is-invalid" id="eriEndDate" onchange="check(this)" style="background-color: white">
+              <input type="text" class="form-control is-invalid" id="riEndDate" onchange="check(this)" style="background-color: white">
               <label class="mt-3"></label>
-              <input type="text" class="form-control is-invalid" id="eriStartTime" onchange="check(this)" style="background-color: white">
+              <input type="text" class="form-control is-invalid" id="riStartTime" onchange="check(this)" style="background-color: white">
               <label class="mt-3"></label>
-              <input type="text" class="form-control is-invalid" id="eriEndTime" onchange="check(this)" style="background-color: white">
+              <input type="text" class="form-control is-invalid" id="riEndTime" onchange="check(this)" style="background-color: white">
               <label class="mt-3"></label>
               <br>
               <button class="get-started-btn ml-auto" onclick="insert()" >전시회 예약등록 신청</button>
@@ -105,7 +105,7 @@
     </section>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
-var sDate =flatpickr('#eriStartDate', {
+var sDate =flatpickr('#riStartDate', {
 	time_24hr: true,
 	dateFormat: 'Y-m-d',
 	minDate: 'today',
@@ -120,7 +120,7 @@ var sDate =flatpickr('#eriStartDate', {
 		
     },
 });
-var eDate = flatpickr('#eriEndDate', {
+var eDate = flatpickr('#riEndDate', {
 	time_24hr: true,
 	dateFormat: "Y-m-d",
 	onChange: function(selectedDates) {
@@ -134,7 +134,7 @@ var eDate = flatpickr('#eriEndDate', {
 		
     },
 });
-flatpickr('#eriStartTime', {
+flatpickr('#riStartTime', {
 	enableTime: true,
 	noCalendar: true,
 	time_24hr: true,
@@ -142,7 +142,7 @@ flatpickr('#eriStartTime', {
 	defaultHour: 09,
 	minuteIncrement: 60
 });
-flatpickr('#eriEndTime', {
+flatpickr('#riEndTime', {
 	enableTime: true,
 	noCalendar: true,
 	time_24hr: true,
@@ -154,7 +154,7 @@ flatpickr('#eriEndTime', {
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
 	//추후에 유저번호 받아야함
-	xhr.open('GET', '/exhibition-reservation/' + 8);
+	xhr.open('GET', '/exhibition/' + 8);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
@@ -169,12 +169,12 @@ window.onload = function(){
 }
 function check(obj){
 	var validation = {
-			eriAudienceRating : {
+			riAudienceRating : {
 				min : 2,
 				max : 10,
 				msg : '관람연령은 최소 2글자이상 최대 10글자 이하로 입력해주세요'
 			},
-			eriRunningTime : {
+			riRunningTime : {
 				min : 2,
 				max : 5,
 				msg : '러닝타임은 최소 2글자이상 최대 5글자 이하로 입력해주세요'
@@ -216,7 +216,7 @@ function insert(){
 	}
 	
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', "/exhibition-reservation");
+	xhr.open('POST', "/reservation");
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			if(xhr.responseText >= 1){
@@ -227,7 +227,6 @@ function insert(){
 			alert('전시회 예약등록에 실패하였습니다.');
 		}
 	}
-	
 	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
 	xhr.send(JSON.stringify(param));
 }

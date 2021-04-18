@@ -19,8 +19,11 @@ import com.artbeans.web.repository.FileInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
 import com.artbeans.web.util.FileConverter;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Service
+@Slf4j
 public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	
 	private static final String TYPE = "exhibition";
@@ -33,7 +36,10 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	public List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo) {
 		if(exhibitionInfo.getEiName()!=null) {
 			return exhiRepo.findAllByEiNameLikeOrderByEiNum("%"+exhibitionInfo.getEiName()+"%");
-		}		
+		}
+		if(exhibitionInfo.getEiNum()!=null) {
+			return exhiRepo.findAllByEiNum(exhibitionInfo.getEiNum());
+		}
 		return exhiRepo.findAll();
 	}
 	@Override
@@ -57,14 +63,15 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 
 	@Override
 	@Transactional
-	public ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception {
+	public ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception {//file 유무 확인해서 조건문 작성할것
+		log.info("exhibitionInfo>{}",exhibitionInfo);
 		FileConverter.fileInsert(exhibitionInfo.getFileInfo(), TYPE);
 		//log.info("fiNum=>{}",exhibitionInfo.getFileInfo().getFiNum());
 		FileInfo fi = exhibitionInfo.getFileInfo();
 		if(fi.getFiNum()!=null && fileRepo.findById(fi.getFiNum()).get()!=null) {
 			fileRepo.saveAndFlush(fi);
 		}
-		return exhiRepo.save(exhibitionInfo);
+		return exhiRepo.saveAndFlush(exhibitionInfo);
 	}
 
 	@Override
@@ -76,12 +83,28 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 
 	@Override
     public DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
-	    Page<ExhibitionInfo> pb = exhiRepo.findAll(pageable);
+	    Page<ExhibitionInfo> pb =  exhiRepo.findAllByEiStatus("1", pageable);
 	    dtExhibitionInfo.setData(pb.getContent());
 	    dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
 	    dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
 	    return dtExhibitionInfo;
     }
 	
+	
+	//나중에 지울 것
+	@Override
+    public DataTable<ExhibitionInfo> getExhiListDemo(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
+	    Page<ExhibitionInfo> pb =  exhiRepo.findAll( pageable);
+	    dtExhibitionInfo.setData(pb.getContent());
+	    dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+	    dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+	    return dtExhibitionInfo;
+    }//
+	
+	
+	@Override
+	public List<ExhibitionInfo> getExhibitionFindByUiNum(Integer uiNum) {
+		return exhiRepo.findAllByUserInfoUiNumAndExhibitionReservationInfoIsNull(uiNum);
+	}
 	
 }

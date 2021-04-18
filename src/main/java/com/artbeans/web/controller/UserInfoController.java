@@ -2,23 +2,25 @@ package com.artbeans.web.controller;
 
 import java.util.List;
 
+import javax.mail.Multipart;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.artbeans.web.dto.UserTicketDTO;
+import com.artbeans.web.entity.ReviewInfo;
 import com.artbeans.web.entity.UserInfo;
-import com.artbeans.web.repository.UserInfoRepository;
 import com.artbeans.web.service.UserService;
-import com.artbeans.web.dto.DataTable;
-import com.artbeans.web.service.UserService;
+
 import lombok.extern.slf4j.Slf4j;
 
 /*
@@ -47,6 +49,12 @@ public class UserInfoController {
 		return userService.getList(userInfo);
 	}
 	
+	@GetMapping("/user")
+	public UserInfo getUser(@RequestParam Integer uiNum){
+		log.info("uiNum=>{}",userService.getUser(uiNum));
+		return userService.getUser(uiNum);
+	}
+	
 	@PostMapping("/login")
 	public UserInfo login(@RequestBody UserInfo userInfo, HttpServletRequest req) {
 		UserInfo user = userService.login(userInfo); 
@@ -66,8 +74,8 @@ public class UserInfoController {
 	}
 	
 	@PostMapping("/user-update")
-	public @ResponseBody Integer update(@RequestBody UserInfo userInfo) {
-		userInfo = userService.updateUser(userInfo);
+	public Integer update(@RequestBody UserInfo ui) {
+		UserInfo userInfo = userService.updateUser(ui);
 		return userInfo.getUiNum();
 	}
 	
@@ -83,10 +91,16 @@ public class UserInfoController {
 	//}
 
 	@PostMapping("/user-insert")
-	   public Integer userInsert(@RequestBody UserInfo ui) {
-	      log.info("ui=>{}",ui);
-	      UserInfo userInfo = userService.saveUser(ui);
-	      return userInfo.getUiNum();
-	   }
+    public Integer userInsert(@RequestBody UserInfo ui) {
+      log.info("ui=>{}",ui);
+      UserInfo userInfo = userService.saveUser(ui);
+      return userInfo.getUiNum();
+    }
 
+	//유저예약정보 컨트롤러 작성..
+	@GetMapping("/user/ticket/{uiNum}")
+	public List<UserTicketDTO> getTickets(@PathVariable Integer uiNum) {
+		return userService.getTicketList(uiNum);
+	}
+	
 }

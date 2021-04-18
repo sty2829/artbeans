@@ -37,7 +37,7 @@ window.onload = function load() {
 	let html = '';
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list'); //ExhibitionController
+	xhr.open('GET', '/exhibition-listDemo'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
@@ -143,7 +143,7 @@ function backButton() {
 	let html = '';
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list'); //ExhibitionController
+	xhr.open('GET', '/exhibition-listDemo'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
@@ -238,7 +238,7 @@ function nextButton() {
 	let html = '';
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list'); //ExhibitionController
+	xhr.open('GET', '/exhibition-listDemo'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
@@ -296,8 +296,5 @@ function nextButton() {
 		}
 	}
 	xhr.send();
-
-
-
 
 }
