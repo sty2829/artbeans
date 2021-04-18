@@ -14,6 +14,7 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	public List<ExhibitionInfo> findAllByOrderByEiStartDateDesc();
 	public List<ExhibitionInfo> findAllByEiNameLikeOrderByEiNum(String eiName);
 	public List<ExhibitionInfo> findAllByEiBanner(Integer eiBanner);
+	public List<ExhibitionInfo> findAllByEiNum(Integer eiNum);
 	
 	public Page<ExhibitionInfo> findAllByEiStatus(String eiStatus, Pageable pageable);
 	
