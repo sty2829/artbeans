@@ -107,7 +107,7 @@ public class UserInfoController {
 	@GetMapping("/user-email")
 	public UserInfo findId(String uiPhoneNumber){
 		//UserInfo user = userService.FindId(userInfo);
-		log.info("userInfo=>{}",userService.FindId(uiPhoneNumber));
-		return userService.FindId(uiPhoneNumber);
+		log.info("userInfo=>{}",userService.findId(uiPhoneNumber));
+		return userService.findId(uiPhoneNumber);
 	}
 }

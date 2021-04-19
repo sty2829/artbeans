@@ -12,6 +12,7 @@
 
 <title>ArtBeans - Login</title>
 
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
@@ -22,15 +23,15 @@
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 	<main id="main">
+	
 		 ======= Breadcrumbs ======= 
 		<section id="breadcrumbs" class="breadcrumbs">
 			<div class="container"></div>
 		</section>
 		
 		<div class="container">
-		
+		 
 		<div class="card o-hidden border-0" style="padding: 8px; height: 300px;">
 			
 			<div class="card-body">
@@ -52,17 +53,17 @@
 				</div>
 				
 				<div class="card-content" style="padding: 8px">
-				<input type="password" class="form-control form-control-user"
+					<input type="password" class="input-control"
 						id="uiPwd" placeholder="비밀번호">
 				</div>
 				
 				<div class="card-content" style="padding: 8px">
-				<input type="password" class="form-control form-control-user"
+					<input type="password" class="input-control"
 						id="uiPwd2" placeholder="비밀번호 확인">
 				</div>
 				
 				<div class="card-content" style="padding: 8px">
-				<select class="col-sm-6" id="uiRegion">
+					<select class="form-group" id="uiRegion">
 									<option value="">지역선택</option>
 									<option value="서울">서울</option>
 									<option value="경기">경기</option>
@@ -84,14 +85,14 @@
 				</div>
 				
 				<div class="card-content" style="padding: 8px">
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" id="uiGender">
+					<div class="btn-group btn-group-toggle" data-toggle="buttons" id="uiGender">
 									<label class="btn btn-outline-dark active"> <input type="radio" name="uiGender" value="남성" autocomplete="off" >남성</label>
 									 <label class="btn btn-outline-dark"> <input type="radio" name="uiGender" value="여성" autocomplete="off">여성</label>
 							</div>
 				</div>
 				
 				<div class="card-content" style="padding: 8px">
-				<div class="btn-group btn-group-toggle" data-toggle="buttons" id="ageButton">
+					 <div class="btn-group btn-group-toggle" data-toggle="buttons" id="uiAge">
 								<label class="btn btn-outline-dark active"><input type="radio" name="uiAge" value="10대" autocomplete="off">10대</label>
 									<label class="btn btn-outline-dark"> <input type="radio" name="uiAge"value="20대" autocomplete="off">20대</label>
 									<label class="btn btn-outline-dark"> <input type="radio" name="uiAge" value="30대" autocomplete="off">30대</label>
@@ -654,9 +655,9 @@
 			return;
 		}
 	
-		 if (!validation('#uiPhoneNumber', 1, 13, '-를 포함한 휴대폰번호를 다시 입력해주세요.')) { //디자인 수정
-	         return false;
-	      }
+// 		 if (!validation('#uiPhoneNumber', 1, 13, '-를 포함한 휴대폰번호를 다시 입력해주세요.')) { //디자인 수정
+// 	         return false;
+// 	      }
 		
 
 		var uiEmail = document.querySelector('#uiEmail');
@@ -730,7 +731,9 @@
 		if (checks.value.trim().length < 1) {
 			alert('개인정보 수집/이용약관에 동의해주세요.');
 		}
-
+			
+		console(uiAge.value);
+		
 		var param = {
 			uiName : document.querySelector('#uiName').value,
 			uiEmail : document.querySelector('#uiEmail').value,
@@ -755,9 +758,10 @@
 			}
 		}
 
-		xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
-		xhr.send(JSON.stringify(param));
+		//xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
+		//xhr.send(JSON.stringify(param));
 	}
 		</script>
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

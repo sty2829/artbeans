@@ -40,7 +40,7 @@
 				style="padding: 8px; height: 300px;">
 
 				<div class="card-body">
-					<h3 class="card-title" style="text-align: center">아이디 찾기</h3>
+					<h4 class="card-title" >아이디 찾기</h4>
 						
 					<div class="card-content" style="padding: 8px">
 						 <input type="text" id="uiName" class="input-control"
@@ -91,7 +91,7 @@ function goCheck(){
 							var res = JSON.parse(xhr.responseText);
 							if(res){
 								alert('회원님의 아이디는' + res.uiEmail +' 입니다.');
-								return '/user/login'; 
+								location.href= '/views/user/login'; 
 							} else{
 								alert('존재하지 않는 사용자입니다.');
 							}

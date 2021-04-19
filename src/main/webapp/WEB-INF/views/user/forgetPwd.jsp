@@ -15,100 +15,96 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+<style>
+.card-body {
+	text-align: center;
+}
+</style>
 </head>
 <body>
-<main id="main">
-		<!-- ======= Breadcrumbs ======= -->
+	<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+	<main id="main">
+		======= Breadcrumbs =======
 		<section id="breadcrumbs" class="breadcrumbs">
-			<div class="container">
-			</div>
+			<div class="container"></div>
 		</section>
-	<div class="bg-gradient-danger" style="">
 
 		<div class="container">
-			<div class="row justify-content-center">
 
-				<div class="col-xl-10 col-lg-12 col-md-9">
+			<div class="card o-hidden border-0"
+				style="padding: 8px; height: 300px;">
+				<div class="card-body">
 
-					<div class="card o-hidden border-0 shadow-lg my-5">
-						<div class="card-body p-0">
-							<div class="form-group">
-
-								<div class="col-lg-6">
-
-									<div class="p-5">
-										<div class="text-center">
-											<h4 class="h4 text-gray-900 mb-4">비밀번호 찾기</h4>
-										</div>
-
-										<div class="form-group">
-											<input type="text" class="form-control form-control-user"
-												id="uiName" placeholder="이름">
-										</div>
-										<div class="form-group">
-											<input type="email" class="form-control form-control-user"
-												id="uiEmail" placeholder="이메일">
-										</div>
-										<button type="button"
-											class="btn btn-outline-danger btn-md btn-block"
-											onclick="goUpdate()">확인</button>
-										<hr>
-									</div>
-								</div>
-							</div>
-						</div>
+					<div class="card-body">
+						<h4 class="card-title">비밀번호 찾기</h4>
 					</div>
 
+					<div class="card-content" style="padding: 8px">
+						<input type="text" class="input-control" id="uiName"
+							placeholder="이름">
+					</div>
+					<div class="card-content" style="padding: 8px">
+						<input type="email" class="input-control" id="uiEmail"
+							placeholder="이메일">
+					</div>
+
+					<div class="card-content" style="padding: 8px">
+						<button type="button" style="margin: 8px" 
+							class="btn btn-outline-danger"
+							onclick="goUpdate()">확인</button>
+						<hr>
+					</div>
 				</div>
-
 			</div>
-
 		</div>
-</div>
-</main>
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>		
-		<script>
-		
-		var uiName = document.querySelector('#uiName');
-		if (!uiName.value) {
-			alert('이름을 입력해주세요.');
-			uiName.focus();
-			return;
-		}
-
-		var uiEmail = document.querySelector('#uiEmail');
-		if (!uiEmail.value) {
-			alert('이메일 입력해주세요.');
-			uiEmail.focus();
-			return;
-			}else {          
-				if(!goEmail(uiEmail.value))	{
-				alert("이메일 형식이 잘못되었습니다");
-				uiEmail.focus();
-				return;
-				}                
-			}                      
-		}
-
+		<section id="breadcrumbs" class="breadcrumbs">
+			<div class="container"></div>
+		</section>
+	</main>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<script>
 		
 		function goUpdate(){
+			
+			var uiName = document.querySelector('#uiName');
+			if (!uiName.value) {
+				alert('이름을 입력해주세요.');
+				uiName.focus();
+				return;
+			}
+
+			var uiEmail = document.querySelector('#uiEmail');
+			if (!uiEmail.value) {
+				alert('이메일을 입력해주세요.');
+				uiEmail.focus();
+				return;
+			}         
+				                      
+			
+			var param = {
+					uiName : document.querySelector('#uiName').value,
+					uiEmail : document.querySelector('#uiEmail').value
+					
+			}
+				// console.log(uiEmail.value);
+				
 				var xhr = new XMLHttpRequest();
-				xhr.open('GET', '/mailCheck?uiEmail' + uiEmail);
+				xhr.open('POST', '/mail');
 				xhr.onreadystatechange = function() {
 					if (xhr.status ==200 & xhr.readyState ==4) {
 						var res = JSON.parse(xhr.responseText);
 						if(xhr.responseText){
 						console.log(xhr.responseText);
-						if(userInfo.uiEmail == uiEmail){
+						if(res){
 							alert('해당 이메일로 인증번호가 전송되었습니다.');
-								}
+							}
 						}else{
 							alert('존재하지 않는 사용자입니다.');
+						}
 					}
 				}
-				xhr.send();
+				xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
+				xhr.send(JSON.stringify(param));
 			}
 		</script>
 </body>

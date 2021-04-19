@@ -177,7 +177,7 @@ function logout(){
 						<ul>
 							<li><a href="/views/user/mypage">나의 회원정보</a></li>
 							<li><a href="/views/user/myReservation">예약정보</a></li>
-							<li><a href="/views/user/favorite-exhibition">찜한 전시회 목록</a></li>
+							<li><a href="/views/user/favorite-exhibition">찜한 전시회목록</a></li>
 						</ul></li> 
 					</c:if>
 					<li class="drop-down"><a href="#">전시회 목록</a>
