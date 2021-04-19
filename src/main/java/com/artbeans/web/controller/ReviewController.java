@@ -55,4 +55,10 @@ public class ReviewController {
 	public List<CommentDTO> getComments(@PathVariable Integer rviNum) {
 		return reviewService.getCommentInfos(rviNum);
 	}
+	
+	//리뷰관련 comments 삭제
+	@GetMapping("/review/delete/{ciNum}")
+	public int deleteComment(@PathVariable Integer ciNum) {
+		return reviewService.deleteComment(ciNum);
+	}
 }

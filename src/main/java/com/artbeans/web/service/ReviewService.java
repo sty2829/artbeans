@@ -19,4 +19,7 @@ public interface ReviewService {
 	int saveComment(CommentInfo commentInfo);
 	
 	List<CommentDTO> getCommentInfos(Integer rviNum);
+
+	int deleteComment(Integer ciNum);
+
 }

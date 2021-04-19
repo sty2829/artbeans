@@ -11,7 +11,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>베너 관리 페이지</title>
+<title>리뷰 관리 페이지</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -36,35 +36,59 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/admin/board/css/util.css">
 <link rel="stylesheet" type="text/css"
-	href="/resources/admin/board/css/admin-banner.css">
+	href="/resources/admin/board/css/admin-rvi-ci-update.css">
 
 <!--===============================================================================================-->
 </head>
 <body>
+	
 
-	<div class="limiter">
-
+	<div class="limiter1">
 		<div class="container-table100">
+			<div style="height:300px"></div>
+			<div><img src="/resources/admin/img/admin-rvi-ci-update-review.jpg" alt="Image" style="width:700px; height:200px;"></div>
+			
 			<div class="wrap-table100">
-
 				<div class="table-name">
-					관리자 페이지
+					리뷰
 					<div class="table100 ver2 m-b-110">
 						<div class="table100-head">
 							<table>
-								<thead>
-									<!--  -->
+								<thead>  
+								    <tr class="row100 head">
+										<th class="cell100 column1">리뷰 타이틀</th>
+										<th class="cell100 column2">리뷰</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
 
-									<tr class="row100 head">
-										<th class="cell100 column1">번호</th>
-										<th class="cell100 column2">전시회 이름</th>
-										<th class="cell100 column3">아티스트</th>
-										<th class="cell100 column4">시작일</th>
-										<th class="cell100 column5"></th>
-										<th class="cell100 column6">전시회 상태값</th>
-										<th class="cell100 column7">수정날짜</th>
-										<th class="cell100 column8">수정날짜</th>
-										<th class="cell100 column9">수정날짜</th>
+						<div class="table100-body js-pscroll">
+							<table>
+								<tbody id="tBodyReview">
+									<!-- 게시물 들어갈 공간 -->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+				
+	<div class="limiter2">
+		<div class="container-table100">					
+			<div class="wrap-table100">
+				<div class="table-name">
+					커멘트 관리자 페이지
+					<div class="table100 ver2 m-b-110">
+						<div class="table100-head">
+							<table>
+								<thead>  
+								    <tr class="row100 head">
+										<th class="cell100 column1">등록 유저</th>
+										<th class="cell100 column2">등록 내용</th>
+										<th class="cell100 column3">삭제 버튼</th>
 									</tr>
 								</thead>
 							</table>
@@ -78,9 +102,9 @@
 							</table>
 						</div>
 					</div>
-
 				</div>
 			</div>
+			
 		</div>
 	</div>
 
@@ -107,37 +131,87 @@
 	<script src="/resources/admin/board/js/main.js"></script>
 
 	<script>
+	
+	 
+function getParameterByName(name) {
+	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+		results = regex.exec(location.search);
+	return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+var getValue = getParameterByName("rviNum");
+getValue=Number(getValue);
 
-window.onload= function(){
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list'); //ExhibitionController
+getReviewInfo();
+getComment();
+
+function getReviewInfo(){
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', '/review/'+getValue); //ReviewController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			var res = JSON.parse(xhr.responseText);
-			var html='';
+			let review = JSON.parse(xhr.responseText);
+			let html='';
 			
-			for (var exhibition of res.data) {
-				console.log(exhibition);
-				
-				html+='<tr class="row100 body">';
-				html+='<td class="cell100 column1">'+exhibition.eiNum+'</td>';
-				html+='<td class="cell100 column2">'+exhibition.eiName+'</td>';
-				html+='<td class="cell100 column3">'+exhibition.eiArtist+'</td>';
-				html+='<td class="cell100 column4"><div class="permission">허가</div></td>';
-				html+='<td class="cell100 column5"></td>';
-				html+='<td class="cell100 column6">'+exhibition.eiStatus+'</td>';
-				html+='<td class="cell100 column7">'+exhibition.moddat+'</td>';
-				html+='<td class="cell100 column8">'+exhibition.moddat+'</td>';
-				html+='<td class="cell100 column9"><div class="deny">불허</div></td>';
-				
+			let ContentPtag = review.rviContent;
+			let cList=ContentPtag.split('<figure class="image">');
+			
+			console.log(cList);
+			ContentPtag=cList[1].replace('</figure>','');
+			
+			html+='<tr class="row100 body" onclick="">';
+			html+='<td class="cell100 columnRe1">'+review.rviTitle+'</td>';
+			html+='<td class="cell100 columnRe2">'+ContentPtag+'</td>';
+			html+="</tr>";
+	
+			document.querySelector('#tBodyReview').innerHTML = html;
+			}
+		}
+	xhr.send();
+}
+	 
+function getComment(){
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', '/review/comment/'+getValue); //ReviewController /review/comment/{rviNum}
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			let res = JSON.parse(xhr.responseText);
+			let html='';
+			console.log(res);
+			for (var comment of res) {
+				html+='<tr class="row100 body" onclick="">';
+				html+='<td class="cell100 column1">'+comment.uiEmail+'</td>';
+				html+='<td class="cell100 column2">'+comment.ciContent+'</td>';
+				html+='<td class="cell100 column3"><div class="deleteComment" onclick="deleteComment('+comment.ciNum+')">삭제</div></td>';
 				html+="</tr>";
+
 				}
 			document.querySelector('#tBody').innerHTML = html;
 			}
 		}
 	xhr.send();
 }
-	
+
+function deleteComment(obj){
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', '/review/delete/'+obj); //ReviewController /review/delete/{ciNum}
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			let res = JSON.parse(xhr.responseText);
+			console.log(obj);
+			if(res==0){
+				alert('삭제가 완료되었습니다.');
+				location.href='/views/admin/admin-rvi-ci-update?rviNum='+getValue;
+			}else{
+				alert('삭제가 완료되지 않았습니다. 새로고침 후 다시 시도해주세요.');
+			}
+			}
+		}
+	xhr.send();
+}
+
+
+
 
 </script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

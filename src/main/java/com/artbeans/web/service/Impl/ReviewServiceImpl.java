@@ -52,6 +52,11 @@ public class ReviewServiceImpl implements ReviewService {
 		return ciRepo.findAllByReviewInfoRviNum(rviNum);
 	}
 
-	
+	@Override
+	public int deleteComment(Integer ciNum) {
+		ciRepo.deleteById(ciNum);
+		if(getCommentInfos(ciNum)==null) return 1;
+		return 0;
+	}
 
 }
