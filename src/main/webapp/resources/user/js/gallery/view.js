@@ -8,10 +8,7 @@ window.onload = function (){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
 			
-			//console.log(res.exhibitionInfos);			
-			
-			
-			
+			//console.log(res.exhibitionInfos);		
 			var html = '<div class="col-lg-8">';
 			html += '<h2 class="portfolio-title">' + res.giName + '</h2>';
 			html += '<div class="entry-img ">';
@@ -25,14 +22,6 @@ window.onload = function (){
 			html += '<li><strong>휴일</strong>: ' + res.giHoliday +'</li>';
 			html += '<li><strong>홈페이지</strong>: ' + res.giHomepage +'</li>';
 			html += '<li><strong>운영시간</strong>: ' + res.giStartTime + '~' + res.giEndTime + '</li>';
-			
-			console.log(res.exhibitionInfos[1].eiNum )
-			for(var i=0;i<res.exhibitionInfos.length;i++){
-			  if(res.exhibitionInfos[i].eiStatus == 0){
-			    html += '<li style="cursor:pointer" onclick="location.href=\'/views/exhibition/views?eiNum=' + res.exhibitionInfos[i].eiNum + '\'"><strong>진행중인 전시회</strong>: ' + res.exhibitionInfos[i].eiName  + '</li>';
-			  }
-			}
-			
 			html += '</ul>';
 			html += '</div>';
 			

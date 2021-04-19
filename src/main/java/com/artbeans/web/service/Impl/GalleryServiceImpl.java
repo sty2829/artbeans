@@ -68,6 +68,7 @@ public class GalleryServiceImpl implements GalleryService {
 	    return dtGalleryInfo;
 	}
 	
+	//test
 	@Override
 	public DataTable<GalleryInfo> getGalleryListss(String giAddress, Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo) {
 		log.info("giAddress=>{}","%"+giAddress+"%");

@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.artbeans.web.dto.DataTable;
 import com.artbeans.web.entity.ExhibitionInfo;
+import com.artbeans.web.entity.GalleryInfo;
 
 public interface ExhibitionService {
 	List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo);
@@ -20,7 +21,8 @@ public interface ExhibitionService {
 	DataTable<ExhibitionInfo> getExhiListDemo(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo);//
 	
 	//DataTable<ExhibitionInfo> getExhibitionInfos(Pageable pageable, DataTable<ExhibitionInfo> exhibitionInfo);
-	
+	//test
+	DataTable<ExhibitionInfo> getExhiListDemoss(String giAddress, Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo);
 	
 	//전시회정보찾기 위해 추가
 	List<ExhibitionInfo> getExhibitionFindByUiNum(Integer uiNum);

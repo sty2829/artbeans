@@ -250,8 +250,8 @@
 						<textarea id="eiContent" style="display: none"></textarea>
 						
 						<script>
-						//var uiNum = ${userInfo.uiNum}
-						//var uiName = ${userInfo.uiName}
+						var uiNum = '${userInfo.uiNum}';
+						var uiName = '${userInfo.uiName}';
 						
 						flatpickr('#eiStartTime', {
 							enableTime: true,

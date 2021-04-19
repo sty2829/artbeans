@@ -81,9 +81,15 @@ console.log(document.querySelector('#fiFile1').value);
 	}
 	
 	var giHomepage = document.querySelector('#giHomepage');
-	console.log(giHomepage);
+	//console.log(giHomepage);
 	if(giHomepage.value.trim().length<1){
 		giHomepage.value = '없음';
+	}
+	
+	var giHoliday = document.querySelector('#giHoliday');
+	//console.log(giHoliday);
+	if(giHoliday.value.trim().length<1){
+		giHoliday.value = '없음';
 	}
 	
 	var fiFile = document.querySelector('#fiFile1')
@@ -110,7 +116,7 @@ console.log(document.querySelector('#fiFile1').value);
 	formData.append('giStartTime',giStartTime.value);
 	formData.append('giEndTime',giEndTime.value);
 	formData.append('giHomepage',giHomepage.value);
-	formData.append('giHoliday',document.querySelector('#giHoliday').value);
+	formData.append('giHoliday',giHoliday.value);
 	formData.append('giAddress',giAddress.value);
 	formData.append('fileInfo.fiFile',document.querySelector('#fiFile1').files[0]);	
 	xhr.send(formData);
