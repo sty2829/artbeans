@@ -72,8 +72,6 @@ public class GalleryServiceImpl implements GalleryService {
 	public DataTable<GalleryInfo> getGalleryListss(String giAddress, Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo) {
 		log.info("giAddress=>{}","%"+giAddress+"%");
 		Page<GalleryInfo> pb = gRepo.findAllByGiAddressLike("%"+giAddress+"%", pageable);
-				
-				//findAll(pageable);
 		dtGalleryInfo.setData(pb.getContent());
 		dtGalleryInfo.setRecordsTotal(pb.getTotalElements());
 		dtGalleryInfo.setRecordsFiltered(pb.getTotalElements());
