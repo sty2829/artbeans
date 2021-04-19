@@ -75,7 +75,9 @@ function get(){
 			var html = '';
 			
 			for(var exhibitionInfo of res.data){
+				console.log(exhibitionInfo);
 				if(exhibitionInfo.eiStartDate==getValue){
+				
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
