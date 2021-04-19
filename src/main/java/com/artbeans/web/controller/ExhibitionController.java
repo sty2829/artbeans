@@ -38,7 +38,16 @@ public class ExhibitionController {
 	@GetMapping("/exhibition-listDemo")
 	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoListDemo(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
 		return eService.getExhiListDemo(pageable, dtExhibitionInfo);
-	}//
+	}
+	
+	//test
+	@GetMapping("/exhibition-listDemoss/{giAddress}")
+	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoListDemo(@PathVariable String giAddress, Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
+		log.info("giAddress=>{}",giAddress);
+		return eService.getExhiListDemoss(giAddress, pageable, dtExhibitionInfo);
+	}
+	
+	//
 	
 	@GetMapping("/exhibition-list")
 	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){

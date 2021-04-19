@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.artbeans.web.dto.DataTable;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.FileInfo;
+import com.artbeans.web.entity.GalleryInfo;
 import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.repository.FileInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
@@ -106,6 +107,18 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	@Override
 	public List<ExhibitionInfo> getExhibitionFindByUiNum(Integer uiNum) {
 		return exhiRepo.findAllByUserInfoUiNumAndReservationInfoIsNull(uiNum);
+	}
+	
+	//test
+	@Override
+	public DataTable<ExhibitionInfo> getExhiListDemoss(String giAddress, Pageable pageable,
+			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+		log.info("giAddress=>{}","%"+giAddress+"%");
+		Page<ExhibitionInfo> pb = exhiRepo.findAllByGalleryInfoGiAddressLike("%"+giAddress+"%", pageable);
+		dtExhibitionInfo.setData(pb.getContent());
+		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+	    return dtExhibitionInfo;
 	}
 	
 }

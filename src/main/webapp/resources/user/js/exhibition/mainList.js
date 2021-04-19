@@ -4,15 +4,20 @@
 
 function getImageList() {
 	var xhr = new XMLHttpRequest();
-	// uri 나중에 변경
-	xhr.open('GET', '/exhibition-listDemo?size=9&sort=eiStartDate,asc'); //ExhibitionController
+	xhr.open('GET', '/exhibition-list?size=11&sort=eiStartDate,asc'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			// exhibition.eiStatus=0 수락전
 			for (var exhibition of res.data) {
-				if (exhibition.eiStatus == 0) {
+			var startDate = new Date(exhibition.eiStartDate);
+			var today = new Date();
+			var endDate = new Date(exhibition.eiEndDate);
+			//console.log(exhibition.eiStatus==1) //진행중인 전시회
+			//console.log("진행중" +  (startDate <= today && today <= endDate));
+				if (exhibition.eiStatus == 1) {
+				  if (startDate <= today && today <= endDate) {
 					html += '<div class="col-lg-4 col-md-6 portfolio-item filter-exhibition">';
 					html += '<div alt="" class="portfolio-wrap" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 					html += '<img src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" >';
@@ -27,6 +32,7 @@ function getImageList() {
 					html += '<h4>' + exhibition.galleryInfo.giName + '</h4>';
 					html += '<p>' + exhibition.galleryInfo.giAddress + '</p>';
 					html += '</div></div></div>';
+				  }
 				}
 			}
 
