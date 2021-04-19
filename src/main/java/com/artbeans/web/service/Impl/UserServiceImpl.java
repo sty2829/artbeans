@@ -64,8 +64,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserInfo FindId(String uiPhoneNumber) {
+	public UserInfo findId(String uiPhoneNumber) {
 		UserInfo opUi = uRepo.findByUiPhoneNumber(uiPhoneNumber);
 		return opUi;
 	}
+	
 }
