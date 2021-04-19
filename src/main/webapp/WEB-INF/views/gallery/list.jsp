@@ -50,24 +50,19 @@
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
     <button class="dropdown-item" type="button" onclick="areaAsc()">전체지역</button>
-    <button class="dropdown-item" type="button" onclick="areaDesc()" id="addr1" name="addrValue" value="서울">서울</button>
-    <button class="dropdown-item" type="button" onclick="areaDesc()" id="addr2" name="addrValue" value="경기도">경기도</button>
-    <button class="dropdown-item" type="button" onclick="areaDesc()" id="addr3" name="addrValue" value="강원도">강원도</button>
-    <button class="dropdown-item" type="button" onclick="areaDesc()" id="addr4" name="addrValue" value="충청남도">충청남도</button>
-    <button class="dropdown-item" type="button" onclick="areaDesc()" id="addr5" name="addrValue" value="충청북도">충청남도</button>
-    <button class="dropdown-item" type="button" onclick="areaDesc()" id="addr6" name="addrValue" value="전라남도">전라남도</button>
-    <button class="dropdown-item" type="button" onclick="areaDesc()" id="addr7" name="addrValue" value="전라북도">전라북도</button>
-    <button class="dropdown-item" type="button" onclick="areaDesc()" id="addr8" name="addrValue" value="경상북도">경상북도</button>
-    <button class="dropdown-item" type="button" onclick="areaDesc()" id="addr9" name="addrValue" value="경상남도">경상남도</button>
-    <button class="dropdown-item" type="button" onclick="areaDesc()" id="addr10" name="addrValue" value="부산">부산</button>
+    <button class="dropdown-item" type="button" onclick="areaDesc(this)" id="addr1" name="addrValue" value="서울">서울</button>
+    <button class="dropdown-item" type="button" onclick="areaDesc(this)" id="addr2" name="addrValue" value="경기도">경기도</button>
+    <button class="dropdown-item" type="button" onclick="areaDesc(this)" id="addr3" name="addrValue" value="강원도">강원도</button>
+    <button class="dropdown-item" type="button" onclick="areaDesc(this)" id="addr4" name="addrValue" value="충청남도">충청남도</button>
+    <button class="dropdown-item" type="button" onclick="areaDesc(this)" id="addr5" name="addrValue" value="충청북도">충청남도</button>
+    <button class="dropdown-item" type="button" onclick="areaDesc(this)" id="addr6" name="addrValue" value="전라남도">전라남도</button>
+    <button class="dropdown-item" type="button" onclick="areaDesc(this)" id="addr7" name="addrValue" value="전라북도">전라북도</button>
+    <button class="dropdown-item" type="button" onclick="areaDesc(this)" id="addr8" name="addrValue" value="경상북도">경상북도</button>
+    <button class="dropdown-item" type="button" onclick="areaDesc(this)" id="addr9" name="addrValue" value="경상남도">경상남도</button>
+    <button class="dropdown-item" type="button" onclick="areaDesc(this)" id="addr10" name="addrValue" value="부산">부산</button>
    
   </div>
 </div>
- <script>
- var giAddress = document.querySelector('[name="addrValue"]:clicked').value;
- console.log(giAddress);
-
- </script>
 </div>
 </div>
 

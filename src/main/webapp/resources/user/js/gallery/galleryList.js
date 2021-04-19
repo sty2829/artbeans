@@ -81,10 +81,11 @@ function areaAsc(){
 
 
 //테스트중
-function areaDesc(){
+function areaDesc(obj){
 	count = 0;
+	console.log(obj.value);
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/Gallery-listss/'+ giAddress + '?size=11&sort=giAddress,Desc&page='+ count); //galleryController
+	xhr.open('GET','/Gallery-listss/'+ obj.value + '?size=11&sort=giAddress,Desc&page='+ count); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
