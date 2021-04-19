@@ -39,6 +39,7 @@ import lombok.ToString;
 				+ "ri.ri_num riNum,\r\n"
 				+ "gi.gi_address_x x,\r\n"
 				+ "gi.gi_address_y y,\r\n"
+				+ "gi.gi_name giName,"
 				+ "concat(IFNULL(holiday(ri.ri_start_date, ri.ri_end_date, ri.ri_holiday), ''),\r\n"
 				+ "IFNULL((SELECT IFNULL(CONCAT(',', GROUP_CONCAT(distinct ti.ti_date)), null) FROM exhibition_info ei \r\n"
 				+ "LEFT JOIN reservation_info ri ON ei.ei_num = ri.ei_num \r\n"
@@ -71,7 +72,8 @@ import lombok.ToString;
 						@ColumnResult(name = "riNum", type = Integer.class),
 						@ColumnResult(name = "disable", type = String.class),
 						@ColumnResult(name = "x", type = String.class),
-						@ColumnResult(name = "y", type = String.class)
+						@ColumnResult(name = "y", type = String.class),
+						@ColumnResult(name = "giName", type = String.class)
 				})
 )
 

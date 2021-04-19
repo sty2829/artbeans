@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -80,6 +81,7 @@ public class ExhibitionInfo {
 	
 	@ManyToOne
 	@JoinColumn(name = "gi_num")
+	@JsonBackReference
 	private GalleryInfo galleryInfo;
 		
 	//파일인서트 추가

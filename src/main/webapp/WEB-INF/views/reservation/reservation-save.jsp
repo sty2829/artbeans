@@ -127,32 +127,38 @@ h5 {
 		</div>
 	</div>
 <script>
+var giName =  ${param.giName};
+
+
 var mapOptions = {
-	    center: new naver.maps.LatLng(${param.y},${param.x}),
-	    zoom: 16
-	};
-	var map = new naver.maps.Map('map', mapOptions);				 
-	var marker = new naver.maps.Marker({
-	    position: new naver.maps.LatLng(${param.y}, ${param.x}),
-	    title: 'test',
-	    map: map
-	});				 
-	var contentString = [
-	        '<div style="padding:4px 4px;">',
-	        '   <div style="font-weight:bold;padding-bottom:3px;"> 이건모임? </div>',
-	        '</div>'
-	    ].join('');	 
-	var infowindow = new naver.maps.InfoWindow({
-	    content: contentString
-	});				 
-	naver.maps.Event.addListener(marker, "click", function(e) {
-	    if (infowindow.getMap()) {
-	        infowindow.close();
-	    } else {
-	        infowindow.open(map, marker);
-	    }
-	});				 
-	infowindow.open(map, marker);
+    center: new naver.maps.LatLng(${param.y},${param.x}),
+    zoom: 16
+};
+
+var map = new naver.maps.Map('map', mapOptions);	
+
+var marker = new naver.maps.Marker({
+    position: new naver.maps.LatLng(${param.y},${param.x}),
+    map: map
+});
+
+
+var contentString = [
+        '<div style="padding:4px 4px;">',
+        '	<div style="font-weight:bold;padding-bottom:3px;">haha </div>',
+        '</div>'
+    ].join('');	 
+var infowindow = new naver.maps.InfoWindow({
+    content: contentString
+});				 
+naver.maps.Event.addListener(marker, "click", function(e) {
+    if (infowindow.getMap()) {
+        infowindow.close();
+    } else {
+        infowindow.open(map, marker);
+    }
+});				 
+infowindow.open(map, marker);
 
 IMP.init('imp08010397');
 
