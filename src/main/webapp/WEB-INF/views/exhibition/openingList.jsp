@@ -7,7 +7,6 @@
 <title>진행중인 전시회 목록</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <script src="/resources/user/js/window/infinityScroll.js"></script>
-<script src="/resources/user/js/exhibition/openingList.js"></script>
 <link rel="stylesheet" href="/resources/user/css/right-menu.css">
 <style>
 #side1 {
@@ -496,19 +495,200 @@
 		</section>
 
 		<script>
-		
-			function sideMap(obj) {
-				sideExhibition(obj);
-				var giAddressX = obj.getAttribute('value1');
-				var giAddressY = obj.getAttribute('value2');
+		window.onload = get;
+
+		function get() {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', '/exhibition-list?size=11&sort=eiNum,asc&page=' + count); //ExhibitionController
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					var res = JSON.parse(xhr.responseText);
+					var html = '';
+					var idx = 1;
+					// exhibition.eiStatus=1 진행중인 전시회
+					for (var exhibition of res.data) {
+						if (exhibition.eiStatus == 1) {
+							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="ei' + idx + '">';
+							html += '<article class="entry">';
+							html += '<div class="entry-img">';
+							html += '<img name="imgPath" style="width:400px; cursor:pointer; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+							html += '</div>';
+							html += '<h2 class="entry-title">';
+							html += '<a>' + exhibition.eiName + '</a>';
+							html += '</h2>';
+							html += '<div class="entry-meta">';
+							html += '<ul>';
+							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+							html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
+							html += '</ul>';
+							html += '</div>';
+							html += '<div class="entry-content">';
+							html += '<div style="HEIGHT: 10pt"></div>';
+							html += '<div style="display:none" class="read-more">';
+							html += '<input name="checkMap" type="checkbox" onclick="sideMap(' + idx + ')" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" value3="'+ exhibition.eiNum + '">';
+							html += '</div>';
+							html += '</div>';
+							html += '</article>';
+							html += '</div>';
+							idx++;
+						}
+						
+					}
+					document.querySelector('#exhibitionList').innerHTML += html;
+				}
+			}
+			xhr.send();
+		}
+
+		function newest() {
+			count = 0;
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', '/exhibition-list?size=11&sort=eiStartDate,asc&page=' + count); //ExhibitionController
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					var res = JSON.parse(xhr.responseText);
+					var html = '';
+					// exhibition.eiStatus=1 진행중인 전시회
+					for (var exhibition of res.data) {
+						if (exhibition.eiStatus == 1) {
+							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+							html += '<article class="entry">';
+							html += '<div class="entry-img">';
+							html += '<img  style="width:400px; cursor:pointer; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+							html += '</div>';
+							html += '<h2 class="entry-title">';
+							html += '<a>' + exhibition.eiName + '</a>';
+							html += '</h2>';
+							html += '<div class="entry-meta">';
+							html += '<ul>';
+							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+							html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
+							html += '</ul>';
+							html += '</div>';
+							html += '<div class="entry-content">';
+							html += '<div style="HEIGHT: 10pt"></div>';
+							html += '<div style="display:none" class="read-more">';
+							html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" value3="'+ exhibition.eiNum + '">';
+							html += '</div>';
+							html += '</div>';
+							html += '</article>';
+							html += '</div>';
+						}
+					}
+					document.querySelector('#exhibitionList').innerHTML = html;
+				}
+			}
+			xhr.send();
+		}
+
+
+		function deadline() {
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', '/exhibition-list?size=11&sort=eiStartDate,Desc&page=' + count); //ExhibitionController
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					var res = JSON.parse(xhr.responseText);
+					var html = '';
+					// exhibition.eiStatus=1 진행중인 전시회
+					for (var exhibition of res.data) {
+						if (exhibition.eiStatus == 1) {
+							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+							html += '<article class="entry">';
+							html += '<div class="entry-img">';
+							html += '<img  style="width:400px; cursor:pointer; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+							html += '</div>';
+							html += '<h2 class="entry-title">';
+							html += '<a>' + exhibition.eiName + '</a>';
+							html += '</h2>';
+							html += '<div class="entry-meta">';
+							html += '<ul>';
+							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+							html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
+							html += '</ul>';
+							html += '</div>';
+							html += '<div class="entry-content">';
+							html += '<div style="HEIGHT: 10pt"></div>';
+							html += '<div style="display:none" class="read-more">';
+							html += '<input name="checkMap" type="checkbox" onclick="sideMap(this)" value1="'+exhibition.galleryInfo['giAddressX']+'" value2="'+exhibition.galleryInfo['giAddressY']+'" value3="'+ exhibition.eiNum + '">';
+							html += '</div>';
+							html += '</div>';
+							html += '</article>';
+							html += '</div>';
+						}
+					}
+					document.querySelector('#exhibitionList').innerHTML = html;
+				}
+			}
+			xhr.send();
+
+
+		}
+
+		function sideExhibition(obj) {
+			
+			var eiNum = obj.getAttribute('value3');
+			console.log(eiNum);
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', '/exhibition-search');
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					var rres = JSON.parse(xhr.responseText);
+					var html = '';
+					
+					for(var res of rres) {
+					if(res.eiNum==eiNum){
+						html += '<div id="' + res.eiNum + '">';
+						html +=  '<div class="map_view1" onclick="moveMap(this) value1=' + res.galleryInfo.giAddressY + 'value2='+   res.galleryInfo.giAddressX + '">';
+						html += '<img  style="width:50px; cursor:pointer; height:50px" src=\'/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '\'" onclick="location.href=\'/views/exhibition/views?eiNum=' + res.eiNum + '\'">';
+						html += '</div>';
+						html +=  '<div class="map_view2" onclick="moveMap(this)value1=' +  res.galleryInfo.giAddressY + 'value2=' + res.galleryInfo.giAddressX +   '">';
+						html += '<span></span><br>';
+						html +='<span>'+res.galleryInfo.giName+'</span>';
+						html += '</div>';
+						html += '</div>';
+						html += '</div>';
+						}			
+				}
+				
+				}document.querySelector('#sideMapList').innerHTML = html;
+			}
+			xhr.send();
+		}
+			function sideMap(idx) {
+				//sideExhibition(obj);
+				var mvCheck = document.querySelector('#mv' + idx);
+				console.log(mvCheck);
+				
+				if(mvCheck){
+					$('#mv' + idx).remove();
+					return;
+				}
+				var index = document.querySelector('div[id="ei'+ idx + '"] img[name="imgPath"]').src.lastIndexOf('/');;
+				var imgPath = document.querySelector('div[id="ei'+ idx + '"] img[name="imgPath"]').src.substring(index+1);
+				console.log(imgPath);
+				var x = document.querySelector('div[id="ei'+ idx + '"] input[name="checkMap"]').getAttribute('value1');
+				var y = document.querySelector('div[id="ei'+ idx + '"] input[name="checkMap"]').getAttribute('value2');
+				
+				var html = '<div id="mv' + idx + '">';
+				html +=  '<div class="map_view1" onclick="moveMap(this) value1=' + y + 'value2='+   x + '">';
+				html += '<img  style="width:50px; cursor:pointer; height:50px" src="/resources/assets/img/exhibition/' + imgPath + '">';
+				html += '</div>';
+				html +=  '<div class="map_view2" onclick="moveMap(this)value1=' +  y + 'value2=' + x +   '">';
+				html += '<span></span><br>';
+				html += '</div>';
+				html += '</div>';
+				html += '</div>';
+				
+				$('#sideMapList').append(html);
+				
 				var mapOptions = {
-					center : new naver.maps.LatLng(giAddressY, giAddressX),
+					center : new naver.maps.LatLng(y, x),
 					zoom : 16
 				};
 				
 				function moveMap(move){
-					var giAddressX = move.getAttribute('value1');
-					var giAddressY = move.getAttribute('value2');
+					var giAddressX = x
+					var giAddressY = y
 					 mapOptions = {
 							center : new naver.maps.LatLng(giAddressY, giAddressX),
 							zoom : 14

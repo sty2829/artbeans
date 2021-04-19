@@ -41,8 +41,4 @@ public class CodeGenerator {
 		return sb.toString();	
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(getRandomCode());
-		System.out.println(getPaymentCode());
-	}
 }
