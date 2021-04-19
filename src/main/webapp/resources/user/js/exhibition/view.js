@@ -18,12 +18,13 @@ window.onload = function (){
 			html += '</div></div>';
 			html += '<div class="col-lg-4 portfolio-info">';
 			html += '<ul>';
-			html += '<li><strong>전시회하는 갤러리</strong>:' + res.galleryInfo['giName'] +'</li>';
+			html += '<li style="cursor:pointer" onclick="location.href=\'/views/gallery/views?giNum=' + res.galleryInfo['giNum'] + '\'"><strong>전시회하는 갤러리</strong>:' + res.galleryInfo['giName'] +'</li>';
 			html += '<li><strong>갤러리 주소</strong>:' + res.galleryInfo['giAddress'] +'</li>';
 			html += '<li><strong>작가</strong>:' + res.eiArtist +'</li>';
 			html += '<li><strong>가격</strong>:' + res.eiCharge +'</li>';
 			html += '<li><strong>전시회 일정</strong>:' + res.eiStartDate + '~' + res.eiEndDate + '</li>';
-			html += '<li><strong>전시회 시간</strong>:' + res.eiStartTime + '~' + res.eiEndTime + '</li>';
+			html += '<li><strong>전시회 시간</strong>:' + res.eiStartTime + '~' + res.eiEndTime + '</li>';			
+			
 			//예약추가
 			if(res.reservationInfo != null){
 				html += '<li><button type="button" class="btn btn-primary" onclick="goReservation()">예약하기</button></li>';
