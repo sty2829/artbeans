@@ -102,5 +102,12 @@ public class UserInfoController {
 	public List<UserTicketDTO> getTickets(@PathVariable Integer uiNum) {
 		return userService.getTicketList(uiNum);
 	}
-	
+
+	//id찾기..
+	@GetMapping("/user-email")
+	public UserInfo findId(String uiPhoneNumber){
+		//UserInfo user = userService.FindId(userInfo);
+		log.info("userInfo=>{}",userService.FindId(uiPhoneNumber));
+		return userService.FindId(uiPhoneNumber);
+	}
 }

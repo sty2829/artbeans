@@ -54,7 +54,7 @@ p{
     </div>
     <div class="col-sm-4">
       <p>리뷰 수정페이지</p>
-       <div class="image"><img src="/resources/admin/img/admin-page-icon3.jpg"alt="Image"></div>
+       <div class="image" onclick="location.href='/views/admin/admin-rvi'" style="cursor:pointer"><img src="/resources/admin/img/admin-page-icon3.jpg"alt="Image"></div>
     </div>
   
   </div>

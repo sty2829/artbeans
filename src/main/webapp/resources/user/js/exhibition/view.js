@@ -24,6 +24,10 @@ window.onload = function (){
 			html += '<li><strong>가격</strong>:' + res.eiCharge +'</li>';
 			html += '<li><strong>전시회 일정</strong>:' + res.eiStartDate + '~' + res.eiEndDate + '</li>';
 			html += '<li><strong>전시회 시간</strong>:' + res.eiStartTime + '~' + res.eiEndTime + '</li>';
+			//예약추가
+			if(res.reservationInfo != null){
+				html += '<li><button type="button" class="btn btn-primary" onclick="goReservation()">예약하기</button></li>';
+			}
 			html += '</ul>';
 			html += '</div>';
 			html += '<hr style="border:solid 3px; width:70%; align:center">';
@@ -60,4 +64,5 @@ window.onload = function (){
 		}		
 	}
 	xhr.send();
+	
 }

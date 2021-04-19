@@ -105,7 +105,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	
 	@Override
 	public List<ExhibitionInfo> getExhibitionFindByUiNum(Integer uiNum) {
-		return exhiRepo.findAllByUserInfoUiNumAndExhibitionReservationInfoIsNull(uiNum);
+		return exhiRepo.findAllByUserInfoUiNumAndReservationInfoIsNull(uiNum);
 	}
 	
 }

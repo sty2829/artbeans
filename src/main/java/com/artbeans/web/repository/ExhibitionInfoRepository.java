@@ -19,6 +19,6 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	public Page<ExhibitionInfo> findAllByEiStatus(String eiStatus, Pageable pageable);
 	
 	//심태윤- 전시회예약정보 인서트시 보여줄 전시회리스트
-	public List<ExhibitionInfo> findAllByUserInfoUiNumAndExhibitionReservationInfoIsNull(Integer uiNum);
+	public List<ExhibitionInfo> findAllByUserInfoUiNumAndReservationInfoIsNull(Integer uiNum);
  
 }

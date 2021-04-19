@@ -20,119 +20,55 @@
 
 <!-- Custom styles for this template-->
 <style>
-#ageButton{
-boder : 1px solid #bcbc;
-margin : 15px 0px 0px 0px;
-width : 400px;
-}
+.card-body {
+	text-align: center;
 
-.text-align-center {
-	text-justify : inter-word; 
-}
-#nameTag{
-	margin : 10px 0px 0px 0px;
 }
 </style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<main id="main">
+	<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+	<main id="main">
 		======= Breadcrumbs =======
 		<section id="breadcrumbs" class="breadcrumbs">
 			<div class="container"></div>
 		</section>
 
-		<div class="container" >
+		<div class="container">
 
-			<div class="row " style="">
+			<div class="card o-hidden border-0"
+				style="padding: 8px; height: 300px;">
 
-				<div class="col-2"></div>
-				<div class="col-4 text-center">
-
-
-					<div class="card" style="padding: 8px">
-
-						<h4>아이디 찾기</h4>
-						<div class="input-group flex-nowrap" style="padding: 8px">
-							<div class="input-group-prepend">
-								<span class="input-group-text" id="addon-wrapping">이름</span>
-							</div>
-							<input type="text" name="user_name" id="user_name"
-								class="form-control" placeholder="" required
-								aria-label="Username" aria-describedby="addon-wrapping">
-						</div>
-
-						<div class="input-group flex-nowrap" style="padding: 8px">
-							<div class="btn-group btn-group-toggle" data-toggle="buttons"
-								id="uiGender">
-								<label class="btn btn-outline-dark active"><input
-									type="radio" name="uiGender" value="남성" autocomplete="off">남성</label>
-								<label class="btn btn-outline-dark"><input type="radio"
-									name="uiGender" value="여성" autocomplete="off">여성</label>
-							</div>
-
-						</div>
-						<div class="input-group flex-nowrap" style="padding: 8px">
-							<div class="btn-group btn-group-toggle" data-toggle="buttons"
-								id="ageButton">
-								<label class="btn btn-outline-dark active"><input
-									type="radio" name="uiAge" value="10대" autocomplete="off">10대</label>
-								<label class="btn btn-outline-dark"><input type="radio"
-									name="uiAge" value="20대" autocomplete="off">20대</label> <label
-									class="btn btn-outline-dark"><input type="radio"
-									name="uiAge" value="30대" autocomplete="off">30대</label> <label
-									class="btn btn-outline-dark"><input type="radio"
-									name="uiAge" value="40대" autocomplete="off">40대</label> <label
-									class="btn btn-outline-dark"><input type="radio"
-									name="uiAge" value="50대" autocomplete="off">50대</label> <label
-									class="btn btn-outline-dark"><input type="radio"
-									name="uiAge" value="60대이상" autocomplete="off">60대이상</label>
-							</div>
-						</div>
-
-
-						<div class="input-group flex-nowrap" style="padding: 8px">
-							<select class="col-sm-6" id="uiRegion">
-								<option value="">지역선택</option>
-								<option value="서울">서울</option>
-								<option value="경기">경기</option>
-								<option value="부산">부산</option>
-								<option value="대구">대구</option>
-								<option value="인천">인천</option>
-								<option value="광주">광주</option>
-								<option value="대전">대전</option>
-								<option value="울산">울산</option>
-								<option value="세종">세종</option>
-								<option value="경남">경남</option>
-								<option value="경북">경북</option>
-								<option value="전남">전남</option>
-								<option value="전북">전북</option>
-								<option value="제주">제주</option>
-								<option value="충남">충남</option>
-								<option value="충북">충북</option>
-							</select><br>
-						</div>
+				<div class="card-body">
+					<h3 class="card-title" style="text-align: center">아이디 찾기</h3>
+						
+					<div class="card-content" style="padding: 8px">
+						 <input type="text" id="uiName" class="input-control"
+							placeholder="이름">
 					</div>
-			
-			<div class="input-group flex-nowrap" style="padding: 8px">
-					<button type="submit" style="margin: 8px"
-						class="btn btn-outline-danger" name="button">아이디 찾기</button>
-			</div>
+
+
+					<div class="card-content" style="padding: 8px">
+						<input type="text" id="uiPhoneNumber" class="input-control"
+							placeholder="휴대폰 번호">
+					</div>
+
+					<div class="card-content" style="padding: 8px">
+						<button type="button" style="margin: 8px" class="btn btn-outline-danger" name="button" onclick="goCheck()">아이디찾기</button>
+					</div>
 				</div>
 
-
-
 			</div>
-		</div>
 
+		</div>
 		<section id="breadcrumbs" class="breadcrumbs">
 			<div class="container"></div>
 		</section>
 
 	</main>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-<script>
+	<script>
 function goCheck(){
+	
 				var uiName = document.querySelector('#uiName');
 				if (uiName.value.trim().length < 1) {
 					alert('이름을 입력해주세요.');
@@ -140,43 +76,31 @@ function goCheck(){
 					return;
 				}
 
-				var uiGender = document.querySelector('input[name="uiGender"]:checked');
-				if (!uiGender) {
-					alert('성별을 선택해주세요.');
+				var uiPhoneNumber = document.querySelector('#uiPhoneNumber');
+				if (uiPhoneNumber.value.trim().length < 1) {
+					alert('휴대폰번호를 입력해주세요.');
+					uiPhoneNumber.focus();
 					return;
 				}
 				
-				var uiAge = document.querySelector('input[name="uiAge"]:checked');
-				if (!uiAge) {
-					alert('연령대를 선택해주세요.');
-					return;
-				}
-				
-				var uiRegion = document.querySelector('select#uiRegion option:checked')
-				if (uiRegion.value.trim().length <1) {
-					alert('지역을 선택해주세요.');
-					return;
-				}
-				
+				var url = '/user-email?uiPhoneNumber=' + uiPhoneNumber.value;
 				var xhr = new XMLHttpRequest();
-				xhr.open('GET', '/users?uiName=${userInfo.uiName}');
+				xhr.open('GET', url);
 				xhr.onreadystatechange = function() {
 					if (xhr.status ==200 & xhr.readyState ==4) {
-							if(xhr.responseText){
-								var res = JSON.parse(xhr.responseText);
-								console.log(xhr.responseText);
-								alert('회원님의 아이디는' + ${userInfo.uiEmail} + '입니다.');
-								/* 
-							return '/views/login'; */
-							}else{
+							var res = JSON.parse(xhr.responseText);
+							if(res){
+								alert('회원님의 아이디는' + res.uiEmail +' 입니다.');
+								return '/user/login'; 
+							} else{
 								alert('존재하지 않는 사용자입니다.');
-								}
 							}
 						}
-						//xhr.send();
 					}
+			   xhr.send();
+			}
 </script>
 
-<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

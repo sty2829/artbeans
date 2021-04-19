@@ -37,7 +37,16 @@
 	</main>
 
 	<script>
-		var eiNum = ${param.eiNum}
+		var eiNum = ${param.eiNum};
+		//예약하기추가
+		function goReservation(){
+			var uiNum = ${userInfo.uiNum != null ? userInfo.uiNum : 0};
+			if(!uiNum){
+				alert('예약하시려면 로그인이 필요합니다');
+				return;
+			}
+			location.href='/views/reservation/reservation-view?eiNum=' + eiNum;
+		}
 	</script>
 
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

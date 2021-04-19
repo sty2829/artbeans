@@ -55,13 +55,26 @@
 
 	<script>
 function checkUpdate(){
-	var uiPwd = <%=session.getAttribute("#uiPwd")%>;
+	var uiPwd = document.querySelector('#uiPwd');
+	if(uiPwd.value.trim().length<1){
+		alert('새 비밀번호를 입력해주세요.');
+		uiPwd.focus();
+		return;
+	}
+	
+	 var uiPwd2 = document.querySelector('#uiPwd2');
+     if (uiPwd2.value.trim().length <1) {
+        alert('비밀번호 확인란을 입력해주세요.');
+        uiPwd.focus();
+        return;
+     }
+	
 	var uiPwd2 = document.querySelector('#uiPwd2');
-	if(uiPwd.value!==uiPwd2.value){
-		alert('비밀번호가 일치하지 않습니다.')
-		uiPwd2.value= "";
-		uiPwd2.focus();
-		return; 
+		if(uiPwd.value!==uiPwd2.value){
+			alert('비밀번호가 일치하지 않습니다.')
+			uiPwd2.value= "";
+			uiPwd.focus();
+			return; 
 	}
 	
 	
@@ -77,7 +90,7 @@ function checkUpdate(){
 		}	
 	}
 	var param = {
-			uiPwd = uiPwd.value,
+			uiPwd =document.queryselector('#uiPwd').value,
 			uiPwd2 = document.queryselector('#uiPwd2').value
 					}
 	xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
