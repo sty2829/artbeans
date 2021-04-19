@@ -63,4 +63,9 @@ public class UserServiceImpl implements UserService {
 		return rtiRepo.findAllUserTicket(uiNum);
 	}
 
+	@Override
+	public UserInfo FindId(String uiPhoneNumber) {
+		UserInfo opUi = uRepo.findByUiPhoneNumber(uiPhoneNumber);
+		return opUi;
+	}
 }
