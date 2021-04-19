@@ -83,6 +83,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 
 	@Override
     public DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
+		//1 은 관리자수락 상태
 	    Page<ExhibitionInfo> pb =  exhiRepo.findAllByEiStatus("1", pageable);
 	    dtExhibitionInfo.setData(pb.getContent());
 	    dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());

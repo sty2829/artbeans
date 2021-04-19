@@ -17,5 +17,8 @@ public interface GalleryService {
 	
 	DataTable<GalleryInfo> getGalleryLists(Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo);
 	
+	//테스트
+	DataTable<GalleryInfo> getGalleryListss(String giAddress, Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo);
+	
 
 }
