@@ -49,22 +49,14 @@
         <!-- Comments Form -->
         
         <div class="card my-4">
-          <h5 class="card-header">댓글 작성</h5>
           <div class="card-body">
              <div class="form-group">
-               <textarea class="form-control" rows="3" id="ciContent"></textarea>
+               <textarea class="form-control" rows="3" id="ciContent" placeholder="댓글 작성하려면 로그인이 필요합니다."></textarea>
              </div>
-             <button type="button" class="btn btn-primary" onclick="saveComment()">작성</button>
+             <button type="button" class="btn btn-primary" onclick="saveComment()" style="float: right">작성</button>
           </div>
         </div>
-		
 		<div id="commentList">
-	        <div class="media mb-4">
-	          <div class="media-body">
-	            <h5 class="mt-0">댓글작성자</h5>
-	            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-	          </div>
-	        </div>
         </div>
        <div class="col-lg-2"></div>
     </div>
@@ -102,6 +94,7 @@ function getComment(){
 				html += '<h5 class="mt-0">' + comment.uiEmail +'</h5>' + comment.ciContent;
 				html += '</div>';
 				html += '</div>';
+				html += '<hr>';
 			}
 			document.querySelector('#commentList').innerHTML = html;
 		}
@@ -117,6 +110,11 @@ function saveComment(){
 		return;
 	}
 	var ciContent = document.querySelector('#ciContent');
+	console.log(ciContent.value.trim())
+	if(ciContent.value.trim().length < 5){
+		alert("최소 5글자 이상 작성해주세요.");
+		return;
+	}
 	
 	var param = {
 			ciContent : ciContent.value,
