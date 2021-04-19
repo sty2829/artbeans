@@ -62,5 +62,7 @@ public class UserInfo {
 	@ColumnDefault("now()")
 	private Date moddat;
 	
-	
+	@Column(name="ui_phone_number")
+	private String uiPhoneNumber;
+
 }

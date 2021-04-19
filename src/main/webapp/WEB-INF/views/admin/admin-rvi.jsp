@@ -36,7 +36,7 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/admin/board/css/util.css">
 <link rel="stylesheet" type="text/css"
-	href="/resources/admin/board/css/admin-ei.css">
+	href="/resources/admin/board/css/main.css">
 
 <!--===============================================================================================-->
 </head>
