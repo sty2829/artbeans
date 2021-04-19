@@ -8,9 +8,12 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
 <style>
 .reviewSaveMain{
-	margin-top: 200px;
-	
+	margin-top: 150px;
 }
+.ck-editor__editable{
+	min-height: 600px;
+}
+
 </style>
 </head>
 <body>
@@ -47,7 +50,8 @@
 ClassicEditor
 .create( document.querySelector('#rviContent'),{
 	ckfinder : {
-		uploadUrl : '/exhibition-insert-editorimage'
+		uploadUrl : '/exhibition-insert-editorimage',
+		height: 250
 	}
  })
 .then(obj => {editor = obj;})

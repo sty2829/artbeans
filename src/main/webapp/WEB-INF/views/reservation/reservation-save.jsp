@@ -10,7 +10,7 @@
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hevj9bqhd5"></script>
 <style>
 .reservationSaveMain {
-	margin-top: 150px;
+	margin-top: 100px;
 	margin-left: 450px;
 	height: 700px;
 }
@@ -30,6 +30,7 @@ h5 {
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
    <div class="container reservationSaveMain">
    		<div class="row">
+   			<div class="col-lg-1"></div>
    			<div class="col-lg-11" style="text-align: center;">
 				<div class="section-title">
 		          <p>결제</p>
@@ -37,6 +38,7 @@ h5 {
    			</div>
    		</div>
 		<div class="row">
+			<div class="col-lg-1"></div>
 	         <div class="col-lg-6">
 				<div class="card mb-2">
 			  		<div class="row no-gutters">
@@ -45,26 +47,26 @@ h5 {
 		   				</div>
 			    		<div class="col-md-7">
 			      			<div class="col-lg-12 ml-2 mt-3" style="height: 40px">
-			  			  		<p style="font-size: 1.2em; margin-bottom: 0px">백남준전<p>
+			  			  		<p style="font-size: 1.2em; margin-bottom: 0px">백남준전</p>
 			           		 </div>
 		         			 <div class="col-lg-12 ml-2" style="height: 70px">
 		         			 	<div class="row">
 		         			 		<div class="col-lg-5">
-		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매일<p>
+		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매일</p>
 				                 		<span id="tiDate">${param.tiDate}</span>
 		         			 		</div>
 		         			 		<div class="col-lg-5">
-		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매시간<p>
-				                 		<span id="tiTime">${param.tiTime}</span>
+		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매시간</p>
+				                 		<span id="tiTime" style="text-align: center;">${param.tiTime}</span>
 		         			 		</div>
 		         			 	</div>
 		         			 	<div class="row">
 		         			 		<div class="col-lg-5">
-		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매수<p>
+		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매수</p>
 				                 		<span id="tiNumber" style="text-align: center">${param.tiNumber}</span>장
 		         			 		</div>
 		         			 		<div class="col-lg-5">
-		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매금액<p>
+		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매금액</p>
 				                 		<span id="piPrice" style="text-align: center">${param.piPrice}</span>원
 		         			 		</div>
 		         			 	</div>
@@ -83,6 +85,7 @@ h5 {
 		   </div>
 	   </div>
 		<div class="row">
+			<div class="col-lg-1"></div>
 			<div class="col-lg-6">
 				<div style="border: 0; width: 540px; height: 240px;" id="map"></div>
 			</div>

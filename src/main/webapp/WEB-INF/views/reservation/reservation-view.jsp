@@ -10,7 +10,7 @@
 <script src=/resources/node_modules/flatpickr/dist/l10n/ko.js></script>
 <style>
 .reservationViewMain {
-	margin-top: 300px;
+	margin-top: 100px;
 	margin-left: 450px;
 	height: 1000px;
 }
@@ -35,13 +35,16 @@ img[data-col] {
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
    <div class="container reservationViewMain">
       	<div class="row">
-   			<div class="col-lg-9" style="text-align: center;">
+      		<div class="col-lg-1"></div>
+   			<div class="col-lg-10" style="text-align: center;">
 				<div class="section-title">
 		          <p>전시회 예약</p>
 		        </div>
    			</div>
+   			<div class="col-lg-1"></div>
    		</div>
 		<div class="row">
+			<div class="col-lg-1"></div>
 			<div class="col-lg-5">
                 <img class="img-fluid" data-col="imgPath" id="imgPath"><br>
           	</div>
@@ -49,8 +52,10 @@ img[data-col] {
 				<div id="mycal">
 				</div>
 			</div>
+			<div class="col-lg-1"></div>
 		</div>
 		<div class="row mt-2">
+			<div class="col-lg-1"></div>
 			<div class="col-lg-5">
 				<div class="row">
 					<div class="col-lg-12">
@@ -114,12 +119,13 @@ img[data-col] {
 						</ul>
 					</div>
 				</div>
-				<div class="row mt-5">
+				<div class="row mt-1">
 					<div class="col-lg-12">
-						<button type="button" class="btn btn-primary" style="width: 385px;" onclick="goPayment()">결제하기</button>
+						<button type="button" class="btn btn-primary" style="width: 385px;" onclick="goPayment()">예매하기</button>
 					</div>
 				</div>
 			</div>
+			<div class="col-lg-1"></div>
 		</div>
 	</div>
 	<input type="hidden" data-col="maxTicket" id="riMaxTicket">
