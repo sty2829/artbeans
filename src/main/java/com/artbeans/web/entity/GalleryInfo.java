@@ -78,8 +78,5 @@ public class GalleryInfo {
 	@JoinColumn(name = "fi_num")
 	private FileInfo fileInfo;
 	
-	@OneToMany(mappedBy = "galleryInfo")
-	@JsonManagedReference
-	private List<ExhibitionInfo> exhibitionInfos;
 
 }

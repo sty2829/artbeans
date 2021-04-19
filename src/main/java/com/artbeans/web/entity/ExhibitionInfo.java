@@ -24,9 +24,11 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
+@ToString(exclude = "galleryInfo")
 @Table(name = "exhibition_info")
 @DynamicUpdate
 public class ExhibitionInfo {
@@ -81,7 +83,6 @@ public class ExhibitionInfo {
 	
 	@ManyToOne
 	@JoinColumn(name = "gi_num")
-	@JsonBackReference
 	private GalleryInfo galleryInfo;
 		
 	//파일인서트 추가

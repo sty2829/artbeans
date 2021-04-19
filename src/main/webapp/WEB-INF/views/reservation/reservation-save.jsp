@@ -127,9 +127,6 @@ h5 {
 		</div>
 	</div>
 <script>
-var giName =  ${param.giName};
-
-
 var mapOptions = {
     center: new naver.maps.LatLng(${param.y},${param.x}),
     zoom: 16
@@ -145,7 +142,7 @@ var marker = new naver.maps.Marker({
 
 var contentString = [
         '<div style="padding:4px 4px;">',
-        '	<div style="font-weight:bold;padding-bottom:3px;">haha </div>',
+        '	<div style="font-weight:bold;padding-bottom:3px;">${param.giName}</div>',
         '</div>'
     ].join('');	 
 var infowindow = new naver.maps.InfoWindow({

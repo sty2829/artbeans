@@ -176,7 +176,7 @@ function logout(){
 					<li class="drop-down"><a href="#">마이페이지</a>
 						<ul>
 							<li><a href="/views/user/mypage">나의 회원정보</a></li>
-							<li><a href="/views/user/myReservation">예약정보</a></li>
+							<li><a href="/views/user/mypage-reservation">예약정보</a></li>
 							<li><a href="/views/user/favorite-exhibition">찜한 전시회목록</a></li>
 						</ul></li> 
 					</c:if>
@@ -197,7 +197,7 @@ function logout(){
 									<li><a href="/views/admin/usinghomepage">이용방법</a></li>
 									<li><a href="/views/admin/questions">자주하는 질문</a></li>
 								</ul></li>
-							<li><a href="#">후기/추천</a></li>
+							<li><a href="/views/community/review-list">후기/추천</a></li>
 						</ul></li>
 
 					<li class="drop-down"><a href="#">전시회 등록 및 수정</a>

@@ -254,6 +254,8 @@ function goPayment(){
 	var y = document.querySelector("#y").value;
 	var giName = document.querySelector("#giName").value;
 	
+	
+	
 	var param = '?tiDate=' + tiDate + '&';
 	param += 'tiTime=' + tiTime + '&';
 	param += 'tiNumber=' + tiNumber + '&';
@@ -262,7 +264,7 @@ function goPayment(){
 	param += 'imgPath=' + imgPath + '&';
 	param += 'x=' + x + '&';
 	param += 'y=' + y + '&';
-	param += 'giName=' + giName;
+	param += 'giName=' + giName + '&';
 	
 	location.href = '/views/reservation/reservation-save/' + param
 }

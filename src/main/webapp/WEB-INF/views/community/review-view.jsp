@@ -51,7 +51,7 @@
         <div class="card my-4">
           <div class="card-body">
              <div class="form-group">
-               <textarea class="form-control" rows="3" id="ciContent" placeholder="댓글 작성하려면 로그인이 필요합니다."></textarea>
+               <textarea class="form-control" rows="3" id="ciContent">댓글 작성하려면 로그인이 필요합니다.</textarea>
              </div>
              <button type="button" class="btn btn-primary" onclick="saveComment()" style="float: right">작성</button>
           </div>
