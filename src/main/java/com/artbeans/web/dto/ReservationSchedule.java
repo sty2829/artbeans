@@ -34,10 +34,12 @@ public class ReservationSchedule {
 	private String x;
 	
 	private String y;
+	
+	private String giName;
 
 	public ReservationSchedule(String imgPath, String exhibitionName, String period, String audienceRating,
 			String runningTime, String minDate, String maxDate, Integer charge, Integer maxTicket, Integer riNum,
-			String disable, String x, String y) {
+			String disable, String x, String y, String giName) {
 		this.imgPath = imgPath;
 		this.exhibitionName = exhibitionName;
 		this.period = period;
@@ -51,6 +53,7 @@ public class ReservationSchedule {
 		this.disable = disable;
 		this.x = x;
 		this.y = y;
+		this.giName = giName;
 	}
 	
 }

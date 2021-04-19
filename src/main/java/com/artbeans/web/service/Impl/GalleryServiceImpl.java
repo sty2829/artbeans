@@ -17,8 +17,11 @@ import com.artbeans.web.service.GalleryService;
 import com.artbeans.web.util.FileConverter;
 import com.artbeans.web.util.NaverMapApi;
 
+import lombok.extern.slf4j.Slf4j;
+
 
 @Service
+@Slf4j
 public class GalleryServiceImpl implements GalleryService {
 	
 	private static final String TYPE = "gallery";
@@ -65,27 +68,14 @@ public class GalleryServiceImpl implements GalleryService {
 	    return dtGalleryInfo;
 	}
 	
+	@Override
+	public DataTable<GalleryInfo> getGalleryListss(String giAddress, Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo) {
+		log.info("giAddress=>{}","%"+giAddress+"%");
+		Page<GalleryInfo> pb = gRepo.findAllByGiAddressLike("%"+giAddress+"%", pageable);
+		dtGalleryInfo.setData(pb.getContent());
+		dtGalleryInfo.setRecordsTotal(pb.getTotalElements());
+		dtGalleryInfo.setRecordsFiltered(pb.getTotalElements());
+	    return dtGalleryInfo;
+	}
 	
-
-//	@Override
-//	public List<GalleryInfo> getGalleryInfoAreaListAsc(GalleryInfo galleryInfo) {
-//		
-//		return gRepo.findAllByOrderByGiAddressAsc();
-//	}
-//	
-//	@Override
-//	public List<GalleryInfo> getGalleryInfoAreaListDesc(GalleryInfo galleryInfo) {
-//		return gRepo.findAllByOrderByGiAddressDesc();
-//	}
-//	
-//	@Override
-//	public List<GalleryInfo> getGalleryInfoNameListAsc(GalleryInfo galleryInfo) {
-//		return gRepo.findAllByOrderByGiNameAsc();
-//	}	
-//
-//	@Override
-//	public List<GalleryInfo> getGalleryInfoNameListDesc(GalleryInfo galleryInfo) {
-//		return gRepo.findAllByOrderByGiNameDesc();
-//	}
-
 }

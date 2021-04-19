@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,6 +28,13 @@ public class GalleryController {
 	@GetMapping("/Gallery-list")
 	public @ResponseBody DataTable<GalleryInfo> getExhibitionInfoList(Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo){
 		return gService.getGalleryLists(pageable, dtGalleryInfo);
+	}
+	
+	//테스트
+	@GetMapping("/Gallery-listss/{giAddress}")
+	public @ResponseBody DataTable<GalleryInfo> getExhibitionInfoList(@PathVariable String giAddress , Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo){
+		log.info("giAddress=>{}",giAddress);
+		return gService.getGalleryListss(giAddress, pageable, dtGalleryInfo);
 	}
 	
 //	@GetMapping("/Gallery-lists")

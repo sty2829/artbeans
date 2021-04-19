@@ -13,6 +13,8 @@
 <script src="/resources/user/js/map/addrsearch.js"></script>
 <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
 <script src="/resources/user/js/ckeditor/ckeditorSave.js"></script>
+<link href="/resources/node_modules/flatpickr/dist/flatpickr.min.css" rel="stylesheet"/>
+<script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
 </head>
 <body oncontextmenu="return false">
 	<main id="main">
@@ -132,13 +134,13 @@
 								<input type="text" id="giName" placeholder="갤러리명">
 							</div>
 							<div class="form-group">
-								<input type="number" id="giRphoneNumber" placeholder="갤러리 전화번호">
+								<input type="text" id="giRphoneNumber" placeholder="갤러리 전화번호">
 							</div>
 							<div class="form-group">
-								<input type="text" id="giStartTime" placeholder="갤러리 오픈시간 00:00">
+								<input type="text" id="giStartTime" placeholder="시간을 선택해주세요." style="background: white">
 							</div>
 							<div class="form-group">
-								<input type="text" id="giEndTime" placeholder="갤러리 종료시간 00:00">
+								<input type="text" id="giEndTime" placeholder="시간을 선택해주세요." style="background: white">
 							</div>
 							<div class="form-group">
 								<input type="text" id="giHomepage" placeholder="갤러리 홈페이지">
@@ -194,8 +196,7 @@
 						</div>
 
 						<div class="form-group">
-							<input type="number" class="form-control" id="eiCharge"
-								placeholder="전시회 가격" />
+							<input type="number" class="form-control" id="eiCharge" placeholder="전시회 가격" />
 							<div style="HEIGHT: 8pt"></div>
 						</div>
 
@@ -210,14 +211,12 @@
 						</div>
 
 						<div class="form-group">
-							<input type="text" class="form-control" id="eiStartTime"
-								placeholder="00:00" />
+							<input type="text" class="form-control" id="eiStartTime" placeholder="클릭해서 시간을 선택해주세요." style="background: white" />
 							<div style="HEIGHT: 8pt"></div>
 						</div>
 
 						<div class="form-group">
-							<input type="text" class="form-control" id="eiEndTime"
-								placeholder="00:00" />
+							<input type="text" class="form-control" id="eiEndTime" placeholder="클릭해서 시간을 선택해주세요." style="background: white" />
 							<div style="HEIGHT: 8pt"></div>
 						</div>
 
@@ -251,8 +250,41 @@
 						<textarea id="eiContent" style="display: none"></textarea>
 						
 						<script>
-						var uiNum = ${userInfo.uiNum}
-						var uiName = ${userInfo.uiName}
+						//var uiNum = ${userInfo.uiNum}
+						//var uiName = ${userInfo.uiName}
+						
+						flatpickr('#eiStartTime', {
+							enableTime: true,
+							noCalendar: true,
+							time_24hr: true,
+							dateFormat: "H:i",
+							defaultHour: 08,
+							minuteIncrement: 10
+						});
+						flatpickr('#eiEndTime', {
+							enableTime: true,
+							noCalendar: true,
+							time_24hr: true,
+							dateFormat: "H:i",
+							defaultHour: 18,
+							minuteIncrement: 10
+						});
+						flatpickr('#giStartTime', {
+							enableTime: true,
+							noCalendar: true,
+							time_24hr: true,
+							dateFormat: "H:i",
+							defaultHour: 08,
+							minuteIncrement: 10
+						});
+						flatpickr('#giEndTime', {
+							enableTime: true,
+							noCalendar: true,
+							time_24hr: true,
+							dateFormat: "H:i",
+							defaultHour: 18,
+							minuteIncrement: 10
+						});
 						
 						</script>
 						

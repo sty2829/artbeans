@@ -126,6 +126,7 @@ img[data-col] {
 	<input type="hidden" id="riNum">
 	<input type="hidden" id="x">
 	<input type="hidden" id="y">
+	<input type="hidden" id="giName">
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
 window.onload = function(){
@@ -139,6 +140,7 @@ window.onload = function(){
 			document.querySelector('#riNum').value = res.riNum;
 			document.querySelector('#x').value = res.x;
 			document.querySelector('#y').value = res.y;
+			document.querySelector('#giName').value = res.giName;
 			document.querySelector('#tiDate').innerHTML = res.minDate;
 			document.querySelector('#riMaxTicket').value = res.maxTicket;
 			for(obj of objs){
@@ -250,6 +252,7 @@ function goPayment(){
 	var imgPath = document.querySelector("#imgPath").src.substring(idx+1);
 	var x = document.querySelector("#x").value;
 	var y = document.querySelector("#y").value;
+	var giName = document.querySelector("#giName").value;
 	
 	var param = '?tiDate=' + tiDate + '&';
 	param += 'tiTime=' + tiTime + '&';
@@ -259,6 +262,7 @@ function goPayment(){
 	param += 'imgPath=' + imgPath + '&';
 	param += 'x=' + x + '&';
 	param += 'y=' + y + '&';
+	param += 'giName=' + giName;
 	
 	location.href = '/views/reservation/reservation-save/' + param
 }
