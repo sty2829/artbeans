@@ -143,6 +143,7 @@ function logout(){
 	xhr.send();
 }
 </script>
+
 		<div class="container d-flex align-items-center">
 
 			<div onclick="location.href='/'">
@@ -220,6 +221,8 @@ function logout(){
 				</c:if>
 			<!-- .nav-menu -->
 		</div>
+		<!-- sideicon -->
+		<jsp:include page="/WEB-INF/views/include/sideicon.jsp"></jsp:include>
 	</header>
 	<!-- End Header -->
 	

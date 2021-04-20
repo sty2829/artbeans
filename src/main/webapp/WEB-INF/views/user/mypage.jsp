@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div class="container mypage">
-		<p>${userInfo.uiName}님의 회원정보</p>
+		<h3>${userInfo.uiName}님의 회원정보</h3>
 		<div>
 			<table class="table" id="myInformation">
 				<tbody>
@@ -43,7 +43,6 @@
 					html += '<th> 이름</th>';
 					html += '<th> 이메일</th>';
 					html += '<th> 성별</th>';
-					html += '<th> 비밀번호</th>';
 					html += '<th> 나이</th>';
 					html += '<th> 지역</th>';
 					html += '<th> 선호 장르</th>';
@@ -54,14 +53,13 @@
 					html += '<td>' + res.uiName + '</td>';
 					html += '<td>' + res.uiEmail + '</td>';
 					html += '<td>' + res.uiGender + '</td>';
-					html += '<td>' + res.uiPwd + '</td>';
 					html += '<td>' + res.uiAge + '</td>';
 					html += '<td>' + res.uiRegion + '</td>';
 					html += '<td>' + res.uiGenre + '</td>';
 					html += '</tr>';
 					html += '</tbody>'
-					html += '<button type="button"	class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=\'/views/user/mypage-update?uiNum=${userInfo.uiNum}\'">'
-							+ '회원정보 수정' + '</button>' + '<button type="button" class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=\'/views/user?uiNum=${userInfo.uiNum}\'">'
+					html += '<button type="button"	class="btn btn-outline-danger"	onclick="location.href=\'/views/user/mypage-update?uiNum=${userInfo.uiNum}\'">'
+							+ '정보 수정' + '</button>' + '<button type="button" class="btn btn-outline-danger"	onclick="location.href=\'/views/user?uiNum=${userInfo.uiNum}\'">'
 							+ '회원 탈퇴' + '</button>';
 							
 					document.querySelector('#myInformation').innerHTML = html;

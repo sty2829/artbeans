@@ -50,9 +50,9 @@
 							<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 								<button class="dropdown-item" type="button" onclick="areaAsc()">전체지역</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="서울">서울</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="경기도">경기도</button>
+								<button class="dropdown-item" type="button" onclick="area(this)" value="경기">경기도</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="인천">인천</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="강원도">강원도</button>
+								<button class="dropdown-item" type="button" onclick="area(this)" value="강원">강원도</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="충청남도">충청남도</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="충청북도">충청남도</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="전라남도">전라남도</button>

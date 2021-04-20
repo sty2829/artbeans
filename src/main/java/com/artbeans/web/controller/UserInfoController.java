@@ -1,6 +1,7 @@
 package com.artbeans.web.controller;
 
 import java.util.List;
+import java.util.Random;
 
 import javax.mail.Multipart;
 import javax.servlet.http.HttpServletRequest;
@@ -92,7 +93,7 @@ public class UserInfoController {
 
 	@PostMapping("/user-insert")
     public Integer userInsert(@RequestBody UserInfo ui) {
-      log.info("ui=>{}",ui);
+      log.info("ui=>{}",ui);	
       UserInfo userInfo = userService.saveUser(ui);
       return userInfo.getUiNum();
     }
@@ -106,8 +107,56 @@ public class UserInfoController {
 	//id찾기..
 	@GetMapping("/user-email")
 	public UserInfo findId(String uiPhoneNumber){
-		//UserInfo user = userService.FindId(userInfo);
 		log.info("userInfo=>{}",userService.findId(uiPhoneNumber));
 		return userService.findId(uiPhoneNumber);
+	}
+	
+	//비밀번호 이메일 인증하기
+	@GetMapping("/mailCheck")
+	public @ResponseBody String mailCheckGET(String uiEmail) throws Exception{
+		
+		//비밀번호 찾기페이지로부터 넘어온 데이터 확인
+		log.info("이메일 데이터 전송 확인");
+		log.info("인증 이메일 : " +  uiEmail);
+		
+		Random r = new Random();
+		int checkNum = r.nextInt(888888) + 111111;
+			log.info("인증번호 : " + checkNum );
+		
+		//이메일 보내기	
+		String setFrom = "psh951009@gmail.com";
+		String toMail = uiEmail;
+		String title = "비밀번호 인증 이메일입니다.";
+		String content = "아트빈을 방문해주셔서 감사합니다." +
+						"<br><br>" +
+						"인증 번호는 " + checkNum + "입니다." +
+						"<br>" +
+						"해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+		
+//		try {
+//			MimeMessage message = mailSender.createMimeMessage();
+//			MimeMessageHelper helper = new MimeMessageHelper(message,true,"UTF-8");
+//			helper.setFrom(setFrom);
+//			helper.setTo(toMail);
+//			helper.setSubject(title);
+//			helper.setText(content,true);
+//			mailSender.send(message);
+//			
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//		}
+		  String num = Integer.toString(checkNum); //인증번호 확인페이지로 전송
+		  return num;
+	}
+	
+	public static void main(String[] args) {
+		String str = "010234556789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		Random r = new Random();
+		for(int i=1;i<=6;i++) {
+			int rNum = r.nextInt(str.length());
+			char c = str.charAt(rNum);
+			System.out.println(c);
+			log.info("인증번호 : " + c);
+		}
 	}
 }

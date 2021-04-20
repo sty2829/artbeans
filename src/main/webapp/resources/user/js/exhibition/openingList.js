@@ -5,7 +5,7 @@ window.onload = get;
 
 function get() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list?size=11&sort=eiNum,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibition-list?size=15&sort=eiNum,asc&page=' + count); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
@@ -58,7 +58,7 @@ function get() {
 function newest() {
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list?size=11&sort=eiStartDate,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibition-list?size=15&sort=eiStartDate,asc&page=' + count); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
@@ -84,6 +84,7 @@ function newest() {
 					html += '<ul>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
+					html += '<li class="d-flex align-items-center"><i class="icofont-heart-alt"></i><a>' + favoriteExhibition.feLike + '</a></li>';
 					html += '</ul>';
 					html += '</div>';
 					html += '<div class="entry-content">';
@@ -107,7 +108,7 @@ function newest() {
 function deadline() {
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list?size=11&sort=eiStartDate,Desc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibition-list?size=15&sort=eiStartDate,Desc&page=' + count); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
@@ -156,7 +157,7 @@ function deadline() {
 function area(obj) {
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-listDemoss/' + obj.value + '?size=11&sort=eiNum,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibition-listDemoss/' + obj.value + '?size=15&sort=eiNum,asc&page=' + count); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			//console.log(xhr.responseText);
@@ -205,7 +206,7 @@ function area(obj) {
 function areaAsc() {
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list?size=11&sort=eiNum,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibition-list?size=15&sort=eiNum,asc&page=' + count); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			//console.log(xhr.responseText);
