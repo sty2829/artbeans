@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.artbeans.web.entity.ExhibitionInfo;
-import com.artbeans.web.entity.GalleryInfo;
 
 public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, Integer> {
 	
@@ -25,4 +28,10 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	//심태윤- 전시회예약정보 인서트시 보여줄 전시회리스트
 	public List<ExhibitionInfo> findAllByUserInfoUiNumAndReservationInfoIsNull(Integer uiNum);
  
+	
+	 @Transactional
+	 @Modifying
+	 @Query(value = "UPDATE exhibition_info set ei_banner =:eiBanner where ei_num = :eiNum",
+	            nativeQuery = true)
+	public void updateExhibitionInfoEiBanner(@Param("eiBanner") Integer eiBanner, @Param("eiNum") Integer eiNum);
 }

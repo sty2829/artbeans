@@ -12,37 +12,37 @@ function get() {
 			var html = '';
 			var idx = 1;
 			for (var exhibition of res.data) {
-			var startDate = new Date(exhibition.eiStartDate);
-			var today = new Date();
-			var endDate = new Date(exhibition.eiEndDate);
-			//console.log(exhibition.eiStatus==1) //진행중인 전시회
-			//console.log("진행중" +  (startDate <= today && today <= endDate));
+				var startDate = new Date(exhibition.eiStartDate);
+				var today = new Date();
+				var endDate = new Date(exhibition.eiEndDate);
+				//console.log(exhibition.eiStatus==1) //진행중인 전시회
+				//console.log("진행중" +  (startDate <= today && today <= endDate));
 				if (exhibition.eiStatus == 1) {
-				  if (startDate <= today && today <= endDate) {
-					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="ei' + idx + '">';
-					html += '<article class="entry">';
-					html += '<div class="entry-img">';
-					html += '<img name="imgPath" style="width:400px; cursor:pointer; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
-					html += '</div>';
-					html += '<h2 class="entry-title">';
-					html += '<a>' + exhibition.eiName + '</a>';
-					html += '</h2>';
-					html += '<div class="entry-meta">';
-					html += '<ul>';
-					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
-					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
-					html += '</ul>';
-					html += '</div>';
-					html += '<div class="entry-content">';
-					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div style="display:none" class="read-more">';
-					html += '<input name="checkMap" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
-					html += '</div>';
-					html += '</div>';
-					html += '</article>';
-					html += '</div>';
-					idx++;
-				  }
+					if (startDate <= today && today <= endDate) {
+						html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="ei' + idx + '">';
+						html += '<article class="entry">';
+						html += '<div class="entry-img">';
+						html += '<img name="imgPath" style="width:400px; cursor:pointer; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+						html += '</div>';
+						html += '<h2 class="entry-title">';
+						html += '<a>' + exhibition.eiName + '</a>';
+						html += '</h2>';
+						html += '<div class="entry-meta">';
+						html += '<ul>';
+						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+						html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
+						html += '</ul>';
+						html += '</div>';
+						html += '<div class="entry-content">';
+						html += '<div style="HEIGHT: 10pt"></div>';
+						html += '<div style="display:none" class="read-more">';
+						html += '<input name="checkMap" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
+						html += '</div>';
+						html += '</div>';
+						html += '</article>';
+						html += '</div>';
+						idx++;
+					}
 				}
 			}
 			document.querySelector('#exhibitionList').innerHTML += html;
@@ -65,36 +65,36 @@ function newest() {
 			var html = '';
 			var idx = 1;
 			for (var exhibition of res.data) {
-			  var startDate = new Date(exhibition.eiStartDate);
-			  var today = new Date();
-			  var endDate = new Date(exhibition.eiEndDate);
-			  //console.log(exhibition.eiStatus==1) //진행중인 전시회
-			  //console.log("진행중" +  (startDate <= today && today <= endDate));
+				var startDate = new Date(exhibition.eiStartDate);
+				var today = new Date();
+				var endDate = new Date(exhibition.eiEndDate);
+				//console.log(exhibition.eiStatus==1) //진행중인 전시회
+				//console.log("진행중" +  (startDate <= today && today <= endDate));
 				if (exhibition.eiStatus == 1) {
-				  if (startDate <= today && today <= endDate) {
-					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="ei' + idx + '">';
-					html += '<article class="entry">';
-					html += '<div class="entry-img">';
-					html += '<img name="imgPath" style="width:400px; cursor:pointer; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
-					html += '</div>';
-					html += '<h2 class="entry-title">';
-					html += '<a>' + exhibition.eiName + '</a>';
-					html += '</h2>';
-					html += '<div class="entry-meta">';
-					html += '<ul>';
-					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
-					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
-					html += '<li class="d-flex align-items-center"><i class="icofont-heart-alt"></i><a>' + favoriteExhibition.feLike + '</a></li>';
-					html += '</ul>';
-					html += '</div>';
-					html += '<div class="entry-content">';
-					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div style="display:none" class="read-more">';
-					html += '<input name="checkMap" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
-					html += '</div>';
-					html += '</div>';
-					html += '</article>';
-					html += '</div>';
+					if (startDate <= today && today <= endDate) {
+						html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="ei' + idx + '">';
+						html += '<article class="entry">';
+						html += '<div class="entry-img">';
+						html += '<img name="imgPath" style="width:400px; cursor:pointer; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+						html += '</div>';
+						html += '<h2 class="entry-title">';
+						html += '<a>' + exhibition.eiName + '</a>';
+						html += '</h2>';
+						html += '<div class="entry-meta">';
+						html += '<ul>';
+						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+						html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
+						html += '<li class="d-flex align-items-center"><i class="icofont-heart-alt"></i><a>' + favoriteExhibition.feLike + '</a></li>';
+						html += '</ul>';
+						html += '</div>';
+						html += '<div class="entry-content">';
+						html += '<div style="HEIGHT: 10pt"></div>';
+						html += '<div style="display:none" class="read-more">';
+						html += '<input name="checkMap" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
+						html += '</div>';
+						html += '</div>';
+						html += '</article>';
+						html += '</div>';
 					}
 				}
 			}
@@ -115,35 +115,35 @@ function deadline() {
 			var html = '';
 			var idx = 1;
 			for (var exhibition of res.data) {
-			  var startDate = new Date(exhibition.eiStartDate);
-			  var today = new Date();
-			  var endDate = new Date(exhibition.eiEndDate);
-			  //console.log(exhibition.eiStatus==1) //진행중인 전시회
-			  //console.log("진행중" +  (startDate <= today && today <= endDate));
+				var startDate = new Date(exhibition.eiStartDate);
+				var today = new Date();
+				var endDate = new Date(exhibition.eiEndDate);
+				//console.log(exhibition.eiStatus==1) //진행중인 전시회
+				//console.log("진행중" +  (startDate <= today && today <= endDate));
 				if (exhibition.eiStatus == 1) {
-				  if (startDate <= today && today <= endDate) {
-					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="ei' + idx + '">';
-					html += '<article class="entry">';
-					html += '<div class="entry-img">';
-					html += '<img name="imgPath" style="width:400px; cursor:pointer; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
-					html += '</div>';
-					html += '<h2 class="entry-title">';
-					html += '<a>' + exhibition.eiName + '</a>';
-					html += '</h2>';
-					html += '<div class="entry-meta">';
-					html += '<ul>';
-					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
-					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
-					html += '</ul>';
-					html += '</div>';
-					html += '<div class="entry-content">';
-					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div style="display:none" class="read-more">';
-					html += '<input name="checkMap" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
-					html += '</div>';
-					html += '</div>';
-					html += '</article>';
-					html += '</div>';
+					if (startDate <= today && today <= endDate) {
+						html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="ei' + idx + '">';
+						html += '<article class="entry">';
+						html += '<div class="entry-img">';
+						html += '<img name="imgPath" style="width:400px; cursor:pointer; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+						html += '</div>';
+						html += '<h2 class="entry-title">';
+						html += '<a>' + exhibition.eiName + '</a>';
+						html += '</h2>';
+						html += '<div class="entry-meta">';
+						html += '<ul>';
+						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+						html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
+						html += '</ul>';
+						html += '</div>';
+						html += '<div class="entry-content">';
+						html += '<div style="HEIGHT: 10pt"></div>';
+						html += '<div style="display:none" class="read-more">';
+						html += '<input name="checkMap" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
+						html += '</div>';
+						html += '</div>';
+						html += '</article>';
+						html += '</div>';
 					}
 				}
 			}
@@ -165,35 +165,35 @@ function area(obj) {
 			var html = '';
 			for (var exhibition of res.data) {
 				var startDate = new Date(exhibition.eiStartDate);
-			    var today = new Date();
-			    var endDate = new Date(exhibition.eiEndDate);
-			    //console.log(exhibition.eiStatus==1) //진행중인 전시회
-			    //console.log("진행중" +  (startDate <= today && today <= endDate));
+				var today = new Date();
+				var endDate = new Date(exhibition.eiEndDate);
+				//console.log(exhibition.eiStatus==1) //진행중인 전시회
+				//console.log("진행중" +  (startDate <= today && today <= endDate));
 				if (exhibition.eiStatus == 1) {
-				  if (startDate <= today && today <= endDate) {
-					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
-					html += '<article class="entry">';
-					html += '<div class="entry-img">';
-					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
-					html += '</div>';
-					html += '<h2 class="entry-title">';
-					html += '<a>' + exhibition.eiName + '</a>';
-					html += '</h2>';
-					html += '<div class="entry-meta">';
-					html += '<ul>';
-					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
-					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
-					html += '</ul>';
-					html += '</div>';
-					html += '<div class="entry-content">';
-					html += '<div style="HEIGHT: 10pt"></div>';
-					html += '<div style="display:none" class="read-more">';
-					html += '<input type="checkbox" onclick="sideMap()">';
-					html += '</div>';
-					html += '</div>';
-					html += '</article>';
-					html += '</div>';
-				  }
+					if (startDate <= today && today <= endDate) {
+						html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+						html += '<article class="entry">';
+						html += '<div class="entry-img">';
+						html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+						html += '</div>';
+						html += '<h2 class="entry-title">';
+						html += '<a>' + exhibition.eiName + '</a>';
+						html += '</h2>';
+						html += '<div class="entry-meta">';
+						html += '<ul>';
+						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+						html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
+						html += '</ul>';
+						html += '</div>';
+						html += '<div class="entry-content">';
+						html += '<div style="HEIGHT: 10pt"></div>';
+						html += '<div style="display:none" class="read-more">';
+						html += '<input type="checkbox" onclick="sideMap()">';
+						html += '</div>';
+						html += '</div>';
+						html += '</article>';
+						html += '</div>';
+					}
 				}
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;
@@ -214,35 +214,35 @@ function areaAsc() {
 			var html = '';
 			for (var exhibition of res.data) {
 				var startDate = new Date(exhibition.eiStartDate);
-			    var today = new Date();
-			    var endDate = new Date(exhibition.eiEndDate);
-			    //console.log(exhibition.eiStatus==1) //진행중인 전시회
-			    //console.log("진행중" +  (startDate <= today && today <= endDate));
-				  if (exhibition.eiStatus == 1) {
-				    if (startDate <= today && today <= endDate) {
-				      html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
-				      html += '<article class="entry">';
-				      html += '<div class="entry-img">';
-				      html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
-				      html += '</div>';
-				      html += '<h2 class="entry-title">';
-				      html += '<a>' + exhibition.eiName + '</a>';
-				      html += '</h2>';
-				      html += '<div class="entry-meta">';
-				      html += '<ul>';
-				      html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
-				      html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
-				      html += '</ul>';
-				      html += '</div>';
-				      html += '<div class="entry-content">';
-				      html += '<div style="HEIGHT: 10pt"></div>';
-				      html += '<div style="display:none" class="read-more">';
-				      html += '<input type="checkbox" onclick="sideMap()">';
-				      html += '</div>';
-				      html += '</div>';
-				      html += '</article>';
-				      html += '</div>';
-				    }
+				var today = new Date();
+				var endDate = new Date(exhibition.eiEndDate);
+				//console.log(exhibition.eiStatus==1) //진행중인 전시회
+				//console.log("진행중" +  (startDate <= today && today <= endDate));
+				if (exhibition.eiStatus == 1) {
+					if (startDate <= today && today <= endDate) {
+						html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
+						html += '<article class="entry">';
+						html += '<div class="entry-img">';
+						html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+						html += '</div>';
+						html += '<h2 class="entry-title">';
+						html += '<a>' + exhibition.eiName + '</a>';
+						html += '</h2>';
+						html += '<div class="entry-meta">';
+						html += '<ul>';
+						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+						html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
+						html += '</ul>';
+						html += '</div>';
+						html += '<div class="entry-content">';
+						html += '<div style="HEIGHT: 10pt"></div>';
+						html += '<div style="display:none" class="read-more">';
+						html += '<input type="checkbox" onclick="sideMap()">';
+						html += '</div>';
+						html += '</div>';
+						html += '</article>';
+						html += '</div>';
+					}
 				}
 
 			}
@@ -252,18 +252,19 @@ function areaAsc() {
 	xhr.send();
 }
 
-
-
 function sideMap(idx) {
 	//sideExhibition(obj);
 	var mvCheck = document.querySelector('#mv' + idx);
 	console.log(mvCheck);
-
+	
 	if (mvCheck) {
 		$('#mv' + idx).remove();
 		return;
 	}
-	var index = document.querySelector('div[id="ei' + idx + '"] img[name="imgPath"]').src.lastIndexOf('/');;
+
+
+
+	var index = document.querySelector('div[id="ei' + idx + '"] img[name="imgPath"]').src.lastIndexOf('/');
 	var imgPath = document.querySelector('div[id="ei' + idx + '"] img[name="imgPath"]').src.substring(index + 1);
 	console.log(index);
 	console.log(imgPath);
@@ -274,12 +275,10 @@ function sideMap(idx) {
 
 
 	var html = '<div id="mv' + idx + '">';
-	html += '<div class="map_view1" onclick="moveMap(this)" data-y="' + y + '" data-x="' + x + '">';
-	html += '<img style="width:50px; cursor:pointer; height:50px" src="/resources/assets/img/exhibition/' + imgPath + '">';
-	html += '</div>';
-	html += '<div style="color:black;" class="map_view2">';
-	html += '<span>' + giName + '</span><br>';
-	html += '</div>';
+	html += '<div class="map_view1">';
+	html += '<img style="width:50px; cursor:pointer; height:50px" src="/resources/assets/img/exhibition/' + imgPath + '" onclick="moveMap(this)" data-y="'+ y + '" data-x="'+ x + '">';
+	html += '<span style="color:black;" class="map_view2">' + giName + '</span>';
+	html += '<img style=" position:absolute; width:20px; cursor: pointer; height: 20px; margin-left:55%; margin-top:4%;" src = "/resources/user/img/sidebtn/x-btn.png" onclick="sideMap(idx)" > ';
 	html += '</div>';
 	html += '</div>';
 
