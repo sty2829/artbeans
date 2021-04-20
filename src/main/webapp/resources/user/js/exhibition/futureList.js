@@ -6,7 +6,7 @@ window.onload = get;
 function get(){
 	var xhr = new XMLHttpRequest();
 	//  uri 변경 함
-	xhr.open('GET','/exhibition-list?size=11&sort=eiNum,asc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=15&sort=eiNum,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
@@ -52,7 +52,7 @@ function get(){
 function newest(){
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,asc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=15&sort=eiStartDate,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
@@ -99,7 +99,7 @@ function newest(){
 function deadline(){
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list?size=11&sort=eiStartDate,Desc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=15&sort=eiStartDate,Desc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
@@ -146,7 +146,7 @@ function deadline(){
 	function area(obj) {
 		count = 0;
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/exhibition-listDemoss/' + obj.value + '?size=11&sort=eiNum,asc&page=' + count); //ExhibitionController
+		xhr.open('GET', '/exhibition-listDemoss/' + obj.value + '?size=15&sort=eiNum,asc&page=' + count); //ExhibitionController
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				//console.log(xhr.responseText);
@@ -194,7 +194,7 @@ function deadline(){
 	function areaAsc() {
 		count = 0;
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/exhibition-list?size=11&sort=eiNum,asc&page=' + count); //ExhibitionController
+		xhr.open('GET', '/exhibition-list?size=15&sort=eiNum,asc&page=' + count); //ExhibitionController
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				//console.log(xhr.responseText);
