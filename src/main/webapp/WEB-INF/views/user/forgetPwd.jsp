@@ -50,7 +50,7 @@
 
 					<div class="card-content" style="padding: 8px">
 						<button type="button" style="margin: 8px" 
-							class="btn btn-outline-danger"
+							class="btn btn-outline-danger" id="checkButton"
 							onclick="goUpdate()">확인</button>
 						<hr>
 					</div>
@@ -61,9 +61,17 @@
 			<div class="container"></div>
 		</section>
 	</main>
-	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script>
 		
+// 	$("#checkButton").click(function(){
+		
+// 		var email = $("#checkButton").val();
+		
+// 		$.ajax({
+			
+// 			type : "GET",
+// 		})
+// 	}
 		function goUpdate(){
 			
 			var uiName = document.querySelector('#uiName');
@@ -81,31 +89,26 @@
 			}         
 				                      
 			
-			var param = {
-					uiName : document.querySelector('#uiName').value,
-					uiEmail : document.querySelector('#uiEmail').value
-					
-			}
-				// console.log(uiEmail.value);
-				
+				 // console.log(uiEmail.value);
+				var url = '/mailCheck?uiEmail'+ uiEmail.value;
 				var xhr = new XMLHttpRequest();
-				xhr.open('POST', '/mail');
+				xhr.open('GET', url);
 				xhr.onreadystatechange = function() {
 					if (xhr.status ==200 & xhr.readyState ==4) {
 						var res = JSON.parse(xhr.responseText);
-						if(xhr.responseText){
 						console.log(xhr.responseText);
-						if(res){
+						if(xhr.responseText){
 							alert('해당 이메일로 인증번호가 전송되었습니다.');
-							}
+							location.href="/views/user/findPwd";
+							
 						}else{
 							alert('존재하지 않는 사용자입니다.');
 						}
 					}
 				}
-				xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
-				xhr.send(JSON.stringify(param));
+				xhr.send();
 			}
 		</script>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

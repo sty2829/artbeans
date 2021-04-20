@@ -84,6 +84,7 @@ function newest() {
 					html += '<ul>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
 					html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '</a></li>';
+					html += '<li class="d-flex align-items-center"><i class="icofont-heart-alt"></i><a>' + favoriteExhibition.feLike + '</a></li>';
 					html += '</ul>';
 					html += '</div>';
 					html += '<div class="entry-content">';

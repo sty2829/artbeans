@@ -731,8 +731,6 @@
 		if (checks.value.trim().length < 1) {
 			alert('개인정보 수집/이용약관에 동의해주세요.');
 		}
-			
-		console(uiAge.value);
 		
 		var param = {
 			uiName : document.querySelector('#uiName').value,
@@ -758,10 +756,10 @@
 			}
 		}
 
-		//xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
-		//xhr.send(JSON.stringify(param));
+		xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
+		xhr.send(JSON.stringify(param));
 	}
 		</script>
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include> 
 </body>
 </html>
