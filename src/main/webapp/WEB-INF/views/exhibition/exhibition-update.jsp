@@ -3,19 +3,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="/resources/user/js/window/moveblock.js"></script>
+<link href="/resources/node_modules/flatpickr/dist/flatpickr.min.css"
+	rel="stylesheet" />
+<script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+<script	src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
+
 <style>
 .preView {
-position: absolute;
-  height: 3em;
-  width: 200px;
-  margin-left: 82%;
-  margin-top : 1%;
+	position: absolute;
+	height: 3em;
+	width: 200px;
+	margin-left: 82%;
+	margin-right: 18%;
+	margin-top: 1%;
 }
 </style>
 <title>전시회 수정</title>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+
 	<input type="hidden" id="eiNum">
 	<input type="hidden" id="uiNum">
 	<main id="main">
@@ -30,7 +38,7 @@ position: absolute;
 
 		<!-- ======= Contact Section ======= -->
 		<section id="contact" class="contact">
-		<div id= "pView"  class="preView"></div>
+			<div id="pView" class="preView"></div>
 
 			<div class="container">
 				<div class="row mt-4">
@@ -38,12 +46,12 @@ position: absolute;
 					<div class="col-lg-3">
 
 						<div class="info">
-						
-					
+
+
 							<div class="phone" id="getExhibitionDivMenu">
 								<h4>나의 전시회 목록</h4>
 							</div>
-							
+
 
 							<div class="phone">
 								<h4>갤러리명</h4>
@@ -78,7 +86,7 @@ position: absolute;
 							</div>
 
 							<div class="phone">
-								<h4>전시회 포스터사진</h4>
+								<h4>대표 포스터사진</h4>
 
 							</div>
 							<div class="phone">
@@ -151,16 +159,17 @@ position: absolute;
 							<input type="hidden" id="fileInfo-fiNum"> <input
 								type="file" class="form-control" id="fiFile"
 								onchange="changeImg(this)" />
-							<div style="HEIGHT: 5pt"></div>
+							<div style="HEIGHT: 7pt"></div>
 						</div>
 
 
 
+						<!-- ckeditor -->
 						<div class="form-group">
-							<textarea class="form-control" id="eiContent" rows="5"
-								placeholder="전시회 설명"></textarea>
+							<div id="editor"><textarea>내용을 입력하고 저장을 눌러주세요.</textarea></div>
+							<button onclick="save()">저장</button>
 						</div>
-
+						<textarea id="eiContent" style="display: none"></textarea>
 						<button class="get-started-btn ml-auto" onclick="doUpdate()">전시회
 							수정</button>
 					</div>
@@ -171,25 +180,28 @@ position: absolute;
 
 		</section>
 	</main>
-
-	<!-- <div>
-
-나의 전시회 목록 <select onchange="getExhibition(this)" id="exhibition" name="exhibitionOption" data-col="test">
-           </select><br>
-갤러리명 <input type ="text" id = "giName" readOnly><br>
-전시회명 <input type="text" id="eiName"><br>
-작가명 <input type="text" id="eiArtist"><br>
-전시회 가격 <input type="number" id="eiCharge"><br>
-전시회 시작일 <input type="date" id="eiStartDate"><br>
-전시회 종료일 <input type="date" id="eiEndDate"><br>
-전시회 시작시간 <input type="text" id="eiStartTime"><br>
-전시회 종료시간 <input type="text" id="eiEndTime" ><br>
-전시회 사진 변경 <input type="file" id="fiFile" onchange ="changeImg(this)"><br>
-<div id="fiview"></div>
-전시회 정보 <textarea  id="eiContent" placeholder="나중에 선생님이 주시면 변경"></textarea><br>
-<button type="button" onclick="doUpdate()">전시회 수정 하기</button>
-</div> -->
 	<script>
+	
+	var editor;
+	ClassicEditor
+	.create( document.querySelector('#editor'),{
+		removePlugins: ['Table', 'MediaEmbed'],
+		ckfinder : {
+			uploadUrl : '/exhibition-insert-editorimage'
+		}
+	 })
+	.then(obj => {editor = obj;})
+	.catch(error => {console.error(error);});
+	
+	function save(obj){
+		console.log(obj);
+		console.log(editor);
+		console.log(editor.getData());
+		var eiContent = editor.getData();
+		document.querySelector('#eiContent').value = eiContent;
+		console.log(document.querySelector('#eiContent'));
+	}
+	
 function doUpdate(){
 	var eiName = document.querySelector('#eiName');
 	if(eiName.value.trim().length<1){
@@ -256,7 +268,7 @@ function doUpdate(){
 	formData.append('eiEndDate',eiEndDate.value);
 	formData.append('eiStartTime',eiStartTime.value);
 	formData.append('eiEndTime',eiEndTime.value);
-	formData.append('eiContent','test');
+	formData.append('eiContent',document.querySelector('#eiContent').value);
 	formData.append('fileInfo.fiNum',document.querySelector('#fileInfo-fiNum').value);
 	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
 	formData.append('userInfo.uiNum',uiNum);
@@ -283,8 +295,9 @@ function exhibitionOption(){
 }
 
 function getExhibition(obj){ //전시회 선택시 입력정보 AJAX
-	getGalleyList();
+
 var eiNum = obj.value;
+getGalleyList(eiNum);
 var xhr = new XMLHttpRequest();
 xhr.open('GET','/exhibition?eiNum='+eiNum);
 xhr.onreadystatechange = function(){
@@ -293,7 +306,6 @@ xhr.onreadystatechange = function(){
 		
 		var res = JSON.parse(xhr.responseText);
 		console.log(res);
-		console.log(res.galleryInfo['giNum']);
 		for(var key in res){
 			if(document.querySelector('#'+key)){
 				document.querySelector('#'+key).value=res[key];
@@ -303,7 +315,7 @@ xhr.onreadystatechange = function(){
 		document.querySelector('#fileInfo-fiNum').value = res['fileInfo']['fiNum'];
 		document.querySelector('#uiNum').value = res['userInfo']['uiNum'];
 		//document.querySelector('#giNum').value = res['galleryInfo']['giNum'];
-		
+		editor.setData(document.querySelector('#eiContent').value);
 		//document.querySelector('#giName').value = res.galleryInfo.giName;
 		document.querySelector('#pView').innerHTML = '<img id="preView" width="200" src="/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '">';
 		}
@@ -311,7 +323,8 @@ xhr.onreadystatechange = function(){
 xhr.send();
 }
 
-function getGalleyList(){
+function getGalleyList(obj){
+var giNum = obj;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/Gallery-lists');
 	xhr.onreadystatechange = function(){
@@ -321,6 +334,9 @@ function getGalleyList(){
 			
 			var html = '<option value=""></option>';
 			for(var galleryInfo of res){
+				if(giNum==galleryInfo.giNum){
+					html += '<option value ="' + galleryInfo.giNum+'" selected >'+galleryInfo.giName+'</option>';
+				}
 				html += '<option value ="' + galleryInfo.giNum+'">'+galleryInfo.giName+'</option>';
 			}
 			document.querySelector('#giName').innerHTML = html;
@@ -338,6 +354,42 @@ function changeImg(obj){ // change event
 	reader.readAsDataURL(obj.files[0]);
 	}
 }
+
+
+
+
+flatpickr('#eiStartTime', {
+	enableTime: true,
+	noCalendar: true,
+	time_24hr: true,
+	dateFormat: "H:i",
+	defaultHour: 08,
+	minuteIncrement: 10
+});
+flatpickr('#eiEndTime', {
+	enableTime: true,
+	noCalendar: true,
+	time_24hr: true,
+	dateFormat: "H:i",
+	defaultHour: 18,
+	minuteIncrement: 10
+});
+flatpickr('#giStartTime', {
+	enableTime: true,
+	noCalendar: true,
+	time_24hr: true,
+	dateFormat: "H:i",
+	defaultHour: 08,
+	minuteIncrement: 10
+});
+flatpickr('#giEndTime', {
+	enableTime: true,
+	noCalendar: true,
+	time_24hr: true,
+	dateFormat: "H:i",
+	defaultHour: 18,
+	minuteIncrement: 10
+});
 </script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
