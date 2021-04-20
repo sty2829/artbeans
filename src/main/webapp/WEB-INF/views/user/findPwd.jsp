@@ -10,8 +10,7 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-<body class="bg-gradient-danger">
-
+	<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 	<div class="container">
 
 		<!-- Outer Row -->
@@ -82,6 +81,7 @@ function checkUpdate(){
 	xhr.open('POST','/user-update')
 	xhr.onreadystatechange = function(){
 		if(xhr.status==200 && xhr.readyState==4){
+			console.log(xhr.responseText);
 			if(uiPwd == uiPwd2){
 				alert('비밀번호가 변경되었습니다.');
 			}else {
@@ -97,5 +97,6 @@ function checkUpdate(){
 	xhr.send(JSON.stringify(param));
 }
 </script>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
