@@ -14,13 +14,14 @@
 <link rel="stylesheet" href="/resources/user/css/right-menu.css">
 <style>
 #side1 {
-	position: relative;
+	position: relative;	
 	margin-top: 0%;
 	right: 0px;
 	height: 10%;
 	display: inline-block;
 	color: black;
 }
+
 </style>
 </head>
 <body>
