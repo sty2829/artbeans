@@ -67,17 +67,16 @@ window.onscroll = function(e) {
 
 function get(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list'); //galleryController
+	xhr.open('GET','/exhibition-listDemo'); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			
 			for(var exhibitionInfo of res.data){
-				console.log(exhibitionInfo);
+				console.log(exhibitionInfo); ///exhibition-list 로 했을때 21번부터 40번까지밖에 출력안됨
 				if(exhibitionInfo.eiStartDate==getValue){
-				
+					
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';

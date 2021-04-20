@@ -9,8 +9,8 @@ function getDate(date) {
 
 window.onload = function load() {
 	const Tday = new Date();
-	
-	const nowMonth = Tday.getMonth()+nav;
+
+	const nowMonth = Tday.getMonth() + nav;
 
 	const [y, m] = getDate(new Date(Tday.setMonth(nowMonth)));
 	const yearMonth = [y, m];
@@ -25,13 +25,13 @@ window.onload = function load() {
 
 	var exNum = new Array();
 	var exNumExName = new Array();
-	var yearMonthStrArray1 = yearMonth[1]+'';
-	var monthStr='';
-	if (yearMonthStrArray1.length==1) {
+	var yearMonthStrArray1 = yearMonth[1] + '';
+	var monthStr = '';
+	if (yearMonthStrArray1.length == 1) {
 		monthStr = '0' + yearMonthStrArray1;
 	}
-	
-	var yearMonthS= yearMonth[0] + '-' + monthStr + '-';
+
+	var yearMonthS = yearMonth[0] + '-' + monthStr + '-';
 
 
 	let html = '';
@@ -42,7 +42,7 @@ window.onload = function load() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
 			// exhibition.eiStatus=0 진행할 전시회
-
+			console.log(res);
 
 			for (var exhibition of res.data) {
 				if (exhibition.eiStatus == 0) {
@@ -57,7 +57,7 @@ window.onload = function load() {
 					if (exNum[0] === yearMonth[0] && exNum[1] === yearMonth[1]) {
 						//console.log(exhibition.eiName);
 						//dateSel ${cls}의 경우 제대로된 칸이 나오려면 dateSel background 가 되어야함
-						
+
 						exNumExName.push({
 							exNum: exNum[2],
 							exName: exhibition.eiName
@@ -71,27 +71,32 @@ window.onload = function load() {
 			for (let i = 1; i <= maxDay; i++) {
 				const d = i > day && lastDay >= i - day ? i - day : ''; //d 1~30나옴
 				const cls = !d ? 'background' : ''; //백그라운드가 나오면 padding 칸이다.
-				
-				let dStr = d+'';
+
+				let dStr = d + '';
 				if (dStr.length == 1) {
 					dStr = '0' + d;
 				}
-				
+				let cntDay = 0; // 날짜별 전시회가 4개 이상일 경우 자르는 로직
 				html += `<div id="insertEiNameSuper" class="dateSel ${cls}" >${d}`;
-				for(let j=0; j<exNumExName.length; j++){
-					if(exNumExName[j].exNum==d){
-						let exNameGet=exNumExName[j].exName;
-						if(exNumExName[j].exName.length>4){
-							exNameGet=exNumExName[j].exName.substring(0,4)+'...';
+				for (let j = 0; j < exNumExName.length; j++) {
+					if (cntDay < 3) {
+						if (exNumExName[j].exNum == d) {
+							cntDay++;
+							let exNameGet = exNumExName[j].exName;
+							if (exNumExName[j].exName.length > 4) {
+								exNameGet = exNumExName[j].exName.substring(0, 4) + '...';
+							}
+							html += '<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendar-list-oneday?eiStartDate=' + yearMonthS + dStr + '\'">' + exNameGet + '</div>';
 						}
-						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendar-list-oneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNameGet+'</div>';
+					} else {
+						html += '';
 					}
 				}
-				html +='</div>';
+				html += '</div>';
 			}
 
 			document.querySelector('.dateSel').innerHTML = html;
-			document.querySelector('.date_text').innerText = `${y}년 ${m}월`+' 개봉일';
+			document.querySelector('.date_text').innerText = `${y}년 ${m}월` + ' 개봉일';
 		}
 	}
 	xhr.send();
@@ -116,7 +121,7 @@ function backButton() {
 	nav--;
 	const Tday = new Date();
 
-	const nowMonth = Tday.getMonth()+nav;
+	const nowMonth = Tday.getMonth() + nav;
 
 	const [y, m] = getDate(new Date(Tday.setMonth(nowMonth)));
 	const yearMonth = [y, m];
@@ -131,13 +136,13 @@ function backButton() {
 
 	var exNum = new Array();
 	var exNumExName = new Array();
-	var yearMonthStrArray1 = yearMonth[1]+'';
-	var monthStr='';
-	if (yearMonthStrArray1.length==1) {
+	var yearMonthStrArray1 = yearMonth[1] + '';
+	var monthStr = '';
+	if (yearMonthStrArray1.length == 1) {
 		monthStr = '0' + yearMonthStrArray1;
 	}
-	
-	var yearMonthS= yearMonth[0] + '-' + monthStr + '-';
+
+	var yearMonthS = yearMonth[0] + '-' + monthStr + '-';
 
 
 	let html = '';
@@ -163,7 +168,7 @@ function backButton() {
 					if (exNum[0] === yearMonth[0] && exNum[1] === yearMonth[1]) {
 						//console.log(exhibition.eiName);
 						//dateSel ${cls}의 경우 제대로된 칸이 나오려면 dateSel background 가 되어야함
-						
+
 						exNumExName.push({
 							exNum: exNum[2],
 							exName: exhibition.eiName
@@ -177,27 +182,32 @@ function backButton() {
 			for (let i = 1; i <= maxDay; i++) {
 				const d = i > day && lastDay >= i - day ? i - day : ''; //d 1~30나옴
 				const cls = !d ? 'background' : ''; //백그라운드가 나오면 padding 칸이다.
-				
-				let dStr = d+'';
+
+				let dStr = d + '';
 				if (dStr.length == 1) {
 					dStr = '0' + d;
 				}
-				
+				let cntDay = 0; // 날짜별 전시회가 4개 이상일 경우 자르는 로직
 				html += `<div id="insertEiNameSuper" class="dateSel ${cls}" >${d}`;
-				for(let j=0; j<exNumExName.length; j++){
-					if(exNumExName[j].exNum==d){
-						let exNameGet=exNumExName[j].exName;
-						if(exNumExName[j].exName.length>4){
-							exNameGet=exNumExName[j].exName.substring(0,4)+'...';
+				for (let j = 0; j < exNumExName.length; j++) {
+					if (cntDay < 3) {
+						if (exNumExName[j].exNum == d) {
+							cntDay++;
+							let exNameGet = exNumExName[j].exName;
+							if (exNumExName[j].exName.length > 4) {
+								exNameGet = exNumExName[j].exName.substring(0, 4) + '...';
+							}
+							html += '<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendar-list-oneday?eiStartDate=' + yearMonthS + dStr + '\'">' + exNameGet + '</div>';
 						}
-						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendar-list-oneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNameGet+'</div>';
+					} else {
+						html += '';
 					}
 				}
-				html +='</div>';
+				html += '</div>';
 			}
 
 			document.querySelector('.dateSel').innerHTML = html;
-			document.querySelector('.date_text').innerText = `${y}년 ${m}월`+' 개봉일';
+			document.querySelector('.date_text').innerText = `${y}년 ${m}월` + ' 개봉일';
 		}
 	}
 	xhr.send();
@@ -210,8 +220,8 @@ function nextButton() {
 
 	nav++;
 	const Tday = new Date();
-	
-	const nowMonth = Tday.getMonth()+nav;
+
+	const nowMonth = Tday.getMonth() + nav;
 
 	const [y, m] = getDate(new Date(Tday.setMonth(nowMonth)));
 	const yearMonth = [y, m];
@@ -226,13 +236,13 @@ function nextButton() {
 
 	var exNum = new Array();
 	var exNumExName = new Array();
-	var yearMonthStrArray1 = yearMonth[1]+'';
-	var monthStr='';
-	if (yearMonthStrArray1.length==1) {
+	var yearMonthStrArray1 = yearMonth[1] + '';
+	var monthStr = '';
+	if (yearMonthStrArray1.length == 1) {
 		monthStr = '0' + yearMonthStrArray1;
 	}
-	
-	var yearMonthS= yearMonth[0] + '-' + monthStr + '-';
+
+	var yearMonthS = yearMonth[0] + '-' + monthStr + '-';
 
 
 	let html = '';
@@ -258,7 +268,7 @@ function nextButton() {
 					if (exNum[0] === yearMonth[0] && exNum[1] === yearMonth[1]) {
 						//console.log(exhibition.eiName);
 						//dateSel ${cls}의 경우 제대로된 칸이 나오려면 dateSel background 가 되어야함
-						
+
 						exNumExName.push({
 							exNum: exNum[2],
 							exName: exhibition.eiName
@@ -272,27 +282,32 @@ function nextButton() {
 			for (let i = 1; i <= maxDay; i++) {
 				const d = i > day && lastDay >= i - day ? i - day : ''; //d 1~30나옴
 				const cls = !d ? 'background' : ''; //백그라운드가 나오면 padding 칸이다.
-				
-				let dStr = d+'';
+
+				let dStr = d + '';
 				if (dStr.length == 1) {
 					dStr = '0' + d;
 				}
-				
+				let cntDay = 0; // 날짜별 전시회가 4개 이상일 경우 자르는 로직
 				html += `<div id="insertEiNameSuper" class="dateSel ${cls}" >${d}`;
-				for(let j=0; j<exNumExName.length; j++){
-					if(exNumExName[j].exNum==d){
-						let exNameGet=exNumExName[j].exName;
-						if(exNumExName[j].exName.length>4){
-							exNameGet=exNumExName[j].exName.substring(0,4)+'...';
+				for (let j = 0; j < exNumExName.length; j++) {
+					if (cntDay < 3) {
+						if (exNumExName[j].exNum == d) {
+							cntDay++;
+							let exNameGet = exNumExName[j].exName;
+							if (exNumExName[j].exName.length > 4) {
+								exNameGet = exNumExName[j].exName.substring(0, 4) + '...';
+							}
+							html += '<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendar-list-oneday?eiStartDate=' + yearMonthS + dStr + '\'">' + exNameGet + '</div>';
 						}
-						html +='<div id="insertEiName"  onclick="location.href =\'/views/exhibition/calendar-list-oneday?eiStartDate='+yearMonthS+dStr+'\'">'+exNameGet+'</div>';
+					} else {
+						html += '';
 					}
 				}
-				html +='</div>';
+				html += '</div>';
 			}
 
 			document.querySelector('.dateSel').innerHTML = html;
-			document.querySelector('.date_text').innerText = `${y}년 ${m}월`+' 개봉일';
+			document.querySelector('.date_text').innerText = `${y}년 ${m}월` + ' 개봉일';
 		}
 	}
 	xhr.send();
