@@ -26,8 +26,8 @@ public class ReviewServiceImpl implements ReviewService {
 	private CommentInfoRepository ciRepo;
 	
 	@Override
-	public List<ReviewInfo> getReviewInfos() {
-		return rviRepo.findAll();
+	public List<ReviewDTO> getReviewInfos() {
+		return rviRepo.findAllBy();
 	}
 	
 	@Override

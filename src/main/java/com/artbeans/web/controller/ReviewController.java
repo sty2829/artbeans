@@ -26,7 +26,7 @@ public class ReviewController {
 	
 	//커뮤니티 리뷰리스트 호출
 	@GetMapping("/reviews")
-	public List<ReviewInfo> getReviews() {
+	public List<ReviewDTO> getReviews() {
 		return reviewService.getReviewInfos();
 	}
 	

@@ -9,7 +9,7 @@ import com.artbeans.web.entity.ReviewInfo;
 
 public interface ReviewService {
 
-	List<ReviewInfo> getReviewInfos();
+	List<ReviewDTO> getReviewInfos();
 	
 	//전시회 리뷰 등록
 	int saveReview(ReviewInfo reviewInfo) throws Exception;

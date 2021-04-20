@@ -12,10 +12,10 @@
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <style>
 .reviewListMain{
-	margin-top: 200px;
+	margin-top: 150px;
 	height: 1000px;
 }
-.card-title{
+#reviewList > *{
 	color: black;
 }
 </style>
@@ -31,14 +31,6 @@
           	</div>
    		</div>
 		<div class="row row-cols-1 row-cols-md-3" id="reviewList">
-		  <div class="col mb-4">
-		    <div class="card">
-		      <img src="/resources/assets/img/exhibition/12775621709100.jpg" class="card-img-top" style="width: 348; height: 300px">
-		      <div class="card-body">
-		        <h5 class="card-title">공감본능 다녀온 후기</h5>
-		      </div>
-		    </div>
-		  </div>
 		</div>
 	</div>	
 <script>
@@ -56,9 +48,11 @@ window.onload = function(){
 				html += '<a href="/views/community/review-view?rviNum=' + review.rviNum + '"';
 				html += '<div class="col mb-4">';
 				html += '<div class="card">';
-				html += '<img src="/resources/assets/img/review/' + review.fileInfo.fiPath +'" class="card-img-top" style="width: 348; height: 300px">';
+				html += '<img src="/resources/assets/img/review/' + review.fiPath +'" class="card-img-top" style="width: 348; max-height: 410px">';
 				html += '<div class="card-body">';
 				html += '<h5 class="card-title">' + review.rviTitle +'</h5>';
+				html += '<p class="card-text"><small class="text-muted">소제목입니다</small></p>';
+				html += '<span style="color:#0787b1">' + review.date + '</span><span style="float:right;"> '+ review.uiEmail + '</span>';
 				html += '</div>';
 				html += '</div>';
 				html += '</a>';
