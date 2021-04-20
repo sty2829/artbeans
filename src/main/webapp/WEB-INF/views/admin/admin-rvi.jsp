@@ -55,11 +55,11 @@
 								<thead>  
 								    <tr class="row100 head">
 										<th class="cell100 column1">번호</th>
-										<th class="cell100 column2">전시회 이름</th>
+										<th class="cell100 column2">리뷰 제목</th>
 										<th class="cell100 column3">개시물 내용</th>
-										<th class="cell100 column4">회원 번호</th>
-										<th class="cell100 column5">작성자 이름</th>
-										<th class="cell100 column6">수정날짜</th>
+										<th class="cell100 column4">회원 이메일</th>
+										<!--  <th class="cell100 column5">작성자 이름</th>
+										<th class="cell100 column6">수정날짜</th>-->
 									</tr>
 								</thead>
 							</table>
@@ -110,12 +110,13 @@ window.onload= function(){
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
 			var html='';
-			
+			console.log(res);
 			for (var review of res) {
+				/*
 				let reviewDate = review.moddat;
 				let tNum=reviewDate.indexOf('T');
 				reviewDate=reviewDate.substring(0,tNum);
-				
+				*/
 				let ContentPtag = review.rviContent;
 				let cNumLast=ContentPtag.indexOf('</p>');
 				
@@ -126,9 +127,11 @@ window.onload= function(){
 				html+='<td class="cell100 column1">'+review.rviNum+'</td>';
 				html+='<td class="cell100 column2">'+review.rviTitle+'</td>';
 				html+='<td class="cell100 column3">'+ContentPtag+'</td>';
-				html+='<td class="cell100 column4">'+review.userInfo.uiNum+'</td>';
+				html+='<td class="cell100 column4">'+review.uiEmail+'</td>';
+				/*
 				html+='<td class="cell100 column5">'+review.userInfo.uiName+'</td>';
-				html+='<td class="cell100 column6">'+reviewDate+'</td>';
+				html+='<td class="cell100 column6">'+review.date+'</td>';
+				*/
 				html+="</tr>";
 				}
 			document.querySelector('#tBody').innerHTML = html;
