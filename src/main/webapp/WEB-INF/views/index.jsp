@@ -3,12 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="https://code.jquery.com/jquery-3.6.0.js"
-	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
- 
-
 </head>
 <body>
 	<!-- ======= Hero Section ======= -->
@@ -47,6 +43,8 @@
 					<h2>전시회 목록</h2>
 					<p>진행중인 전시회</p>
 				</div>
+				
+
 
 				<div class="row">
 					<div class="col-lg-12 d-flex justify-content-center">
@@ -56,18 +54,16 @@
 							<li data-filter=".filter-exhibition">진행중인 전시회</li>
 							<li data-filter=".filter-gallery">갤러리</li>
 						</ul>
-
-						
 					</div>
-
 				</div>
 
-				<div class="row portfolio-container" id="exhibitionList"></div>
-		
-			</div>
 
+				<div class="row portfolio-container" id="exhibitionList"></div>
+			</div>
 		</section>
 		<!-- End mainList Section -->
+		
+		
 	</main>
 
 
