@@ -34,7 +34,7 @@ public class MailController {
 		return 1;
 	}
 	
-	@GetMapping("/mailCheck")
+	//@GetMapping("/mailCheck")
 	public void mailCheckGET(String uiEmail) throws Exception{
 		
 		log.info("이메일 데이터 전송 확인");

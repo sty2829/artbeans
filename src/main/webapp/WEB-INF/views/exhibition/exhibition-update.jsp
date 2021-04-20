@@ -270,7 +270,9 @@ function doUpdate(){
 	formData.append('eiEndTime',eiEndTime.value);
 	formData.append('eiContent',document.querySelector('#eiContent').value);
 	formData.append('fileInfo.fiNum',document.querySelector('#fileInfo-fiNum').value);
-	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
+	if(document.querySelector('#fiFile').files[0]){
+		formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);	
+	}
 	formData.append('userInfo.uiNum',uiNum);
 	formData.append('galleryInfo.giNum',giNum);
 	xhr.send(formData);

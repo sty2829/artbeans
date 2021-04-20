@@ -66,9 +66,15 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	@Transactional
 	public ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception {//file 유무 확인해서 조건문 작성할것
 		log.info("exhibitionInfo>{}",exhibitionInfo);
-		FileConverter.fileInsert(exhibitionInfo.getFileInfo(), TYPE);
-		//log.info("fiNum=>{}",exhibitionInfo.getFileInfo().getFiNum());
 		FileInfo fi = exhibitionInfo.getFileInfo();
+		if(fi.getFiFile() == null) {
+			fi = fileRepo.findById(fi.getFiNum()).get();
+			exhibitionInfo.setFileInfo(fi);
+			log.info("fi =>  {}", fi);
+			return exhiRepo.saveAndFlush(exhibitionInfo);
+		}
+		//log.info("fiNum=>{}",exhibitionInfo.getFileInfo().getFiNum());
+		FileConverter.fileInsert(exhibitionInfo.getFileInfo(), TYPE);
 		if(fi.getFiNum()!=null && fileRepo.findById(fi.getFiNum()).get()!=null) {
 			fileRepo.saveAndFlush(fi);
 		}
