@@ -1,145 +1,185 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!--<c:if test="${admin eq null}">
-<script>
-	alert('운영 관련 접근 불허');
-	location.href='/views/login';
-</script>
-</c:if>-->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>베너 관리 페이지</title>
+<title>관리자 배너 관리</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-<link rel="icon" type="image/png"
-	href="/resources/admin/board/images/icons/favicon.ico" />
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="/resources/admin/board/css/bootstrap.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="/resources/admin/board/css/font-awesome.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="/resources/admin/board/css/animate.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="/resources/admin/board/css/select2.min.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="/resources/admin/board/css/perfect-scrollbar.css">
-<!--===============================================================================================-->
-<link rel="stylesheet" type="text/css"
-	href="/resources/admin/board/css/util.css">
-<link rel="stylesheet" type="text/css"
-	href="/resources/admin/board/css/admin-banner.css">
+<link rel="stylesheet" href="/resources/admin/board/css/bootstrap.css">
+<style>
+div.allWrap {
+	width: 80%;
+	height: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}
 
-<!--===============================================================================================-->
+div.left {
+	width: 45%;
+	height: 500px;
+	float: left;
+	box-sizing: border-box;
+	overflow: auto;
+}
+
+div.right {
+	width: 45%;
+	height: 500px;
+	float: right;
+	box-sizing: border-box;
+	overflow: auto;
+}
+
+img {
+	display: block;
+	margin: 0px auto;
+}
+
+.topImage {
+	height: 200px;
+}
+
+.headTr {
+	background: red;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: bolder;
+	color: white;
+}
+
+.bodyTd {
+	font-size: 15px;
+}
+
+.buttonLeft {
+	font-weight: bolder;
+	color: white;
+	background: red;
+}
+.buttonRight {
+	font-weight: bolder;
+	color: white;
+	background: gray;
+}
+</style>
 </head>
 <body>
+	<div style="height: 100px"></div>
 
-	<div class="limiter">
+	<div class="allWrap">
 
-		<div class="container-table100">
-			<div class="wrap-table100">
+		<div class="topImage">
+			<img src="/resources/admin/img/admin-banner.jpg" alt="Image">
+		</div>
+		<div style="height: 50px;"></div>
 
-				<div class="table-name">
-					관리자 페이지
-					<div class="table100 ver2 m-b-110">
-						<div class="table100-head">
-							<table>
-								<thead>
-									<!--  -->
+		<div class="left">
+			<table class="table table-hover table-bordered table-striped">
+				<thead>
+					<tr class="headTr">
+						<th>번호</th>
+						<th>전시회 이름</th>
+						<th>작가</th>
+						<th>배너 허가</th>
+					</tr>
+				</thead>
+				<tbody id="tBodyLeft">
 
-									<tr class="row100 head">
-										<th class="cell100 column1">번호</th>
-										<th class="cell100 column2">전시회 이름</th>
-										<th class="cell100 column3">아티스트</th>
-										<th class="cell100 column4">시작일</th>
-										<th class="cell100 column5"></th>
-										<th class="cell100 column6">전시회 상태값</th>
-										<th class="cell100 column7">수정날짜</th>
-										<th class="cell100 column8">수정날짜</th>
-										<th class="cell100 column9">수정날짜</th>
-									</tr>
-								</thead>
-							</table>
-						</div>
+				</tbody>
+			</table>
+		</div>
+		<div class="right">
+			<table class="table table-hover table-bordered table-striped">
+				<thead>
+					<tr class="headTr">
+						<th>번호</th>
+						<th>전시회 이름</th>
+						<th>작가</th>
+						<th>배너 허가</th>
+					</tr>
+				</thead>
+				<tbody id="tBodyRight">
 
-						<div class="table100-body js-pscroll">
-							<table>
-								<tbody id="tBody">
-									<!-- 게시물 들어갈 공간 -->
-								</tbody>
-							</table>
-						</div>
-					</div>
-
-				</div>
-			</div>
+				</tbody>
+			</table>
 		</div>
 	</div>
 
-
-	<!--===============================================================================================-->
-	<script src="/resources/admin/board/js/jquery-3.2.1.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="/resources/admin/board/js/popper.js"></script>
-	<script src="/resources/admin/board/js/bootstrap.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="/resources/admin/board/js/select2.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="/resources/admin/board/js/perfect-scrollbar.min.js"></script>
-	<script>
-		$('.js-pscroll').each(function(){
-			var ps = new PerfectScrollbar(this);
-
-			$(window).on('resize', function(){
-				ps.update();
-			})
-		});
-	</script>
-	<!--===============================================================================================-->
-	<script src="/resources/admin/board/js/main.js"></script>
+	<div style="height: 100px"></div>
 
 	<script>
-
 window.onload= function(){
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list'); //ExhibitionController
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET', '/exhibition-list'); //ExhibitionController /exhibition-list /exhibition-listDemo
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			var res = JSON.parse(xhr.responseText);
-			var html='';
+			let res = JSON.parse(xhr.responseText);
+			let htmlLeft='';
+			let htmlRight='';
 			
-			for (var exhibition of res.data) {
-				console.log(exhibition);
+			for (let exhibition of res.data) {
 				
-				html+='<tr class="row100 body">';
-				html+='<td class="cell100 column1">'+exhibition.eiNum+'</td>';
-				html+='<td class="cell100 column2">'+exhibition.eiName+'</td>';
-				html+='<td class="cell100 column3">'+exhibition.eiArtist+'</td>';
-				html+='<td class="cell100 column4"><div class="permission">허가</div></td>';
-				html+='<td class="cell100 column5"></td>';
-				html+='<td class="cell100 column6">'+exhibition.eiStatus+'</td>';
-				html+='<td class="cell100 column7">'+exhibition.moddat+'</td>';
-				html+='<td class="cell100 column8">'+exhibition.moddat+'</td>';
-				html+='<td class="cell100 column9"><div class="deny">불허</div></td>';
-				
-				html+="</tr>";
+				if(exhibition.eiBanner==0 || exhibition.eiBanner==null){
+						
+						htmlLeft+='<tr class="bodyTd">'; 
+						htmlLeft+='<td>'+exhibition.eiNum+'</td>';
+						htmlLeft+='<td>'+exhibition.eiName+'</td>';
+						htmlLeft+='<td>'+exhibition.eiArtist+'</td>';
+						htmlLeft+='<td><button class="buttonLeft" onclick="getPermissionEiBanner('+exhibition.eiNum+')">사용승인</button></td>';
+						htmlLeft+="</tr>";
+					}else{
+						htmlRight+='<tr class="bodyTd">'; 
+						htmlRight+='<td>'+exhibition.eiNum+'</td>';
+						htmlRight+='<td>'+exhibition.eiName+'</td>';
+						htmlRight+='<td>'+exhibition.eiArtist+'</td>';
+						htmlRight+='<td><button class="buttonRight" onclick="getDeniedEiBanner('+exhibition.eiNum+')">사용불허</button></td>';
+						htmlRight+="</tr>";	
+					}
 				}
-			document.querySelector('#tBody').innerHTML = html;
+			document.querySelector('#tBodyLeft').innerHTML = htmlLeft;
+			document.querySelector('#tBodyRight').innerHTML = htmlRight;
 			}
 		}
 	xhr.send();
 }
-	
+function getPermissionEiBanner(obj){//exhibition-banner-update
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', '/exhibition-banner-update'); //ExhibitionController /exhibition-list /exhibition-listDemo
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+				alert('배너 승인 완료');
+				location.href='/views/admin/admin-banner';
+			
+		}
+	}
+	console.log(obj);
+	var formData = new FormData();
+	formData.append('eiNum',obj);
+	formData.append('eiBanner',1);
+	xhr.send(formData);
+}
 
+function getDeniedEiBanner(obj){//exhibition-banner-update
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', '/exhibition-banner-update'); //ExhibitionController /exhibition-list /exhibition-listDemo
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+				alert('배너 불허 완료');
+				location.href='/views/admin/admin-banner';
+			
+		}
+	}
+	console.log(obj);
+	var formData = new FormData();
+	formData.append('eiNum',obj);
+	formData.append('eiBanner',0);
+	xhr.send(formData);
+}
 </script>
+	<script src="/resources/admin/board/js/jquery-3.1.1.js"></script>
+	<script src="/resources/admin/board/js/bootstrap.js"></script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

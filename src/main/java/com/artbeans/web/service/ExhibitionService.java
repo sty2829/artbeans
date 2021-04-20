@@ -27,4 +27,6 @@ public interface ExhibitionService {
 	//전시회정보찾기 위해 추가
 	List<ExhibitionInfo> getExhibitionFindByUiNum(Integer uiNum);
 
+	//배너허가를 위한 업데이트
+	void updateExhibitionInfoEiBanner(ExhibitionInfo exhibitionInfo) throws Exception;
 }

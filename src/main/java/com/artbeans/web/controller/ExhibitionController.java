@@ -91,4 +91,11 @@ public class ExhibitionController {
 		return eService.getExhibitionFindByUiNum(uiNum);
 	}
 	
+	//배너허가를 위한 업데이트 
+	@PostMapping("/exhibition-banner-update")
+	public @ResponseBody Integer updateExhibitionInfoEiBanner(@ModelAttribute ExhibitionInfo exhibitionInfo) throws Exception {
+		eService.updateExhibitionInfoEiBanner(exhibitionInfo);
+		return exhibitionInfo.getEiNum();
+	}
+	
 }
