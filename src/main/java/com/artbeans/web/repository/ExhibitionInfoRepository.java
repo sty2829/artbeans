@@ -21,19 +21,27 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	public List<ExhibitionInfo> findAllByEiNum(Integer eiNum);
 	
 	public Page<ExhibitionInfo> findAllByEiStatus(String eiStatus, Pageable pageable);
+	public Page<ExhibitionInfo> findAllByOrderByEiNum(Pageable pageable);
 	
 	public Page<ExhibitionInfo> findAllByGalleryInfoGiAddressLike(String giAddress, Pageable pageable);
 	
 	//심태윤- 전시회예약정보 인서트시 보여줄 전시회리스트
 	public List<ExhibitionInfo> findAllByUserInfoUiNumAndReservationInfoIsNull(Integer uiNum);
  
-	
-	 @Transactional
-	 @Modifying
-	 @Query(value = "UPDATE exhibition_info set ei_banner =:eiBanner where ei_num = :eiNum",
+	// admin banner update
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE exhibition_info set ei_banner =:eiBanner where ei_num = :eiNum",
 	            nativeQuery = true)
 	public void updateExhibitionInfoEiBanner(@Param("eiBanner") Integer eiBanner, @Param("eiNum") Integer eiNum);
-	 
+	
+	// calendar-list 
+	@Query(value = "SELECT * FROM exhibition_info WHERE YEAR(ei_start_date) =:year AND MONTH(ei_start_date) = :month order by ei_num",nativeQuery = true)
+	public Page<ExhibitionInfo> getOpeningCalendarList(@Param("year") String year, @Param("month") String month, Pageable pageable);
+	// calendar-list-oneday
+	@Query(value = "SELECT * FROM exhibition_info WHERE ei_start_date=:eiStartDate",nativeQuery = true)
+	public Page<ExhibitionInfo> getOpeningCalendarList(@Param("eiStartDate") String eiStartDate, Pageable pageable);
+	
 	//진행중
 	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiStartDate <= current_date AND ei.eiEndDate >= current_date")
 	public Page<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable);

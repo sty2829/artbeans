@@ -90,8 +90,8 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 			return 1;
 		return 0;
 	}
-	
-	//getExhibitionInfoLists 변경
+
+	// getExhibitionInfoLists 변경
 	@Override
 	public DataTable<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
@@ -101,8 +101,8 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
 		return dtExhibitionInfo;
 	}
-	
-	//getExhibitionInfoLists 변경
+
+	// getExhibitionInfoLists 변경
 	@Override
 	public DataTable<ExhibitionInfo> getCloseList(String eiStatus, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
@@ -112,8 +112,8 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
 		return dtExhibitionInfo;
 	}
-	
-	//getExhibitionInfoLists 변경
+
+	// getExhibitionInfoLists 변경
 	@Override
 	public DataTable<ExhibitionInfo> getFutureList(String eiStatus, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
@@ -123,12 +123,12 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
 		return dtExhibitionInfo;
 	}
-	
-	//변경. 지울것
+
+	// 변경. 지울것
 	@Override
 	public DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		// 1 은 관리자수락 상태		
+		// 1 은 관리자수락 상태
 		Page<ExhibitionInfo> pb = exhiRepo.findAllByEiStatus("1", pageable);
 		dtExhibitionInfo.setData(pb.getContent());
 		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
@@ -163,15 +163,39 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		return dtExhibitionInfo;
 	}
 
-	// 배너 허가를 위한 업데이트
+	// admin 배너 허가를 위한 업데이트
 	@Override
 	public void updateExhibitionInfoEiBanner(ExhibitionInfo exhibitionInfo) throws Exception {
 		log.info("exhibitionInfo123=>{}", exhibitionInfo);
 		exhiRepo.updateExhibitionInfoEiBanner(exhibitionInfo.getEiBanner(), exhibitionInfo.getEiNum());
 	}
 
+	// admin pagenation
+	@Override
+	public Page<ExhibitionInfo> getBeforeConfirmLists(Pageable pageable) {
+		return exhiRepo.findAllByOrderByEiNum(pageable);
+	}
 	
-
+	//calendar-list
+	@Override
+	public DataTable<ExhibitionInfo> getOpeningCalendarList(String year, String month, Pageable pageable,
+			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+		Page<ExhibitionInfo> pb = exhiRepo.getOpeningCalendarList(year,month, pageable);
+		dtExhibitionInfo.setData(pb.getContent());
+		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+		return dtExhibitionInfo;
+	}
 	
-
+	//calendar-list-oneday
+	@Override
+	public DataTable<ExhibitionInfo> getOpeningCalendarListOneday(String eiStartDate, Pageable pageable,
+			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+		Page<ExhibitionInfo> pb = exhiRepo.getOpeningCalendarList(eiStartDate, pageable);
+		dtExhibitionInfo.setData(pb.getContent());
+		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+		return dtExhibitionInfo;
+	}
+	
 }

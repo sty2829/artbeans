@@ -177,20 +177,17 @@
 
 	
 	<script>
-	galleryOption()
-	getOpen();
-
+var getValue = getParameterByName("eiNum");
 	
+getOpen(getValue);
+galleryOption();
+
 function getParameterByName(name) {
 	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
 		results = regex.exec(location.search);
 	return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
-var getValue = getParameterByName("eiNum");
-getValue=Number(getValue);
-
-
 
 
 function doUpdate(){
@@ -270,32 +267,29 @@ function doUpdate(){
 	xhr.send(formData);
 }
 
-function getOpen() {
+function getOpen(obj) {
+	
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list'); //ExhibitionController
+	xhr.open('GET', '/exhibition?eiNum='+obj); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			var res = JSON.parse(xhr.responseText);
-			for(exhibition of res.data){
-				if(exhibition.eiNum==getValue){
-					console.log(exhibition);
-					document.getElementById('eiNum').value=exhibition.eiNum;
-					document.getElementById('eiStatus').value=exhibition.eiStatus;
-					document.getElementById('gallery').value=exhibition.galleryInfo.giNum;
-					document.getElementById('eiName').value=exhibition.eiName;
-					document.getElementById('eiArtist').value=exhibition.eiArtist;
-					document.getElementById('eiCharge').value=exhibition.eiCharge;
-					document.getElementById('eiStartDate').value=exhibition.eiStartDate;
-					document.getElementById('eiEndDate').value=exhibition.eiEndDate;
-					document.getElementById('eiStartTime').value=exhibition.eiStartTime;
-					document.getElementById('eiEndTime').value=exhibition.eiEndTime;
-					document.getElementById('fiFile').files[0]=exhibition.fileInfo;
-					document.getElementById('eiContent').value=exhibition.eiContent;
-					
-					document.getElementById('uiNum').value=exhibition.userInfo.uiNum;
-					
-				}
-			}
+			var exhibition = JSON.parse(xhr.responseText);
+			
+			document.getElementById('eiNum').value=exhibition.eiNum;
+			document.getElementById('eiStatus').value=exhibition.eiStatus;
+			document.getElementById('gallery').value=exhibition.galleryInfo.giNum;
+			document.getElementById('eiName').value=exhibition.eiName;
+			document.getElementById('eiArtist').value=exhibition.eiArtist;
+			document.getElementById('eiCharge').value=exhibition.eiCharge;
+			document.getElementById('eiStartDate').value=exhibition.eiStartDate;
+			document.getElementById('eiEndDate').value=exhibition.eiEndDate;
+			document.getElementById('eiStartTime').value=exhibition.eiStartTime;
+			document.getElementById('eiEndTime').value=exhibition.eiEndTime;
+			document.getElementById('fiFile').files[0]=exhibition.fileInfo;
+			document.getElementById('eiContent').value=exhibition.eiContent;
+			
+			document.getElementById('uiNum').value=exhibition.userInfo.uiNum;
+						
 		}
 	}
 	xhr.send();

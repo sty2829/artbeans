@@ -37,12 +37,12 @@ window.onload = function load() {
 	let html = '';
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-listDemo'); //ExhibitionController
+	xhr.open('GET', '/exhibition-calendar?size=99&month='+yearMonth[1]+'&year='+yearMonth[0]); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
 			// exhibition.eiStatus=0 진행할 전시회
-
+			console.log(res);
 			for (var exhibition of res.data) {
 				if (exhibition.eiStatus == 1) {
 					//exhibition.eiName
@@ -149,7 +149,7 @@ function backButton() {
 	let html = '';
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-listDemo'); //ExhibitionController
+	xhr.open('GET', '/exhibition-calendar?size=99&month='+yearMonth[1]+'&year='+yearMonth[0]); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
@@ -249,7 +249,7 @@ function nextButton() {
 	let html = '';
 
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-listDemo'); //ExhibitionController
+	xhr.open('GET', '/exhibition-calendar?size=99&month='+yearMonth[1]+'&year='+yearMonth[0]); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);

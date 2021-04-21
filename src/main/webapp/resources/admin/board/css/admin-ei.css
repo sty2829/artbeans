@@ -224,6 +224,22 @@ th, td {
   cursor: pointer;
 }
 
+.row{
+	display:table;
+	width:700px;
+	
+}
+.col-lg-6{
+	display:table-cell;
+	text-align:center;
+	vertical-align:middle;
+	margin-left: 300px;
+}
+.col-lg-6-under{
+	display: inline-block;
+	
+}
+
 /*==================================================================
 [ Fix header ]*/
 .table100 {

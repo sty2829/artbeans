@@ -72,8 +72,17 @@
 								</tbody>
 							</table>
 						</div>
+						
+						<div class="row"><!-- 페이징 처리 -->
+							<div class="col-lg-6">
+								<nav aria-label="Page navigation example" class="col-lg-6-under">
+									<ul class="pagination justify-content-center" id="pastPageList">
+									</ul>
+								</nav>
+							</div>
+						</div><!-- 페이징처리 -->
+						
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -102,16 +111,19 @@
 	<script src="/resources/admin/board/js/main.js"></script>
 
 	<script>
+window.addEventListener('load', getReviews(1));
+
+var size = 5; 
 	
-window.onload= function(){
+function getReviews(page){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/reviews'); //ReviewController
+	xhr.open('GET', '/reviews?size=10&page='+(page-1)); //ReviewController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
 			var html='';
-			console.log(res);
-			for (var review of res) {
+			
+			for (var review of res.content) {
 				/*
 				let reviewDate = review.moddat;
 				let tNum=reviewDate.indexOf('T');
@@ -128,12 +140,33 @@ window.onload= function(){
 				html+='<td class="cell100 column2">'+review.rviTitle+'</td>';
 				html+='<td class="cell100 column3">'+ContentPtag+'</td>';
 				html+='<td class="cell100 column4">'+review.uiEmail+'</td>';
-				/*
-				html+='<td class="cell100 column5">'+review.userInfo.uiName+'</td>';
-				html+='<td class="cell100 column6">'+review.date+'</td>';
-				*/
 				html+="</tr>";
 				}
+			
+			var disable = res.first ? 'disabled' : '';
+			
+			var li = '<li class="page-item ' + disable + '" onclick="getReviews(' + res.number + ')">';
+			li += '<a class="page-link" href="#" tabindex="-1">이전</a>';
+			li += '</li>';
+			
+			var startPage = Math.floor((((Number(res.number) + 1) - 1) / size)) * size + 1;
+			var endPage = startPage + size - 1;
+			if(endPage > res.totalPages){
+				endPage = res.totalPages;
+			}
+			for(startPage; startPage<=endPage; startPage++){
+				if(startPage === page){
+					li += '<li class="page-item active" onclick="getReviews(' + startPage + ')"><a class="page-link" href="#">'+ startPage +'</a></li>';
+					continue;
+				}
+				li += '<li class="page-item" onclick="getReviews(' + startPage +')"><a class="page-link" href="#">'+ startPage +'</a></li>';
+			}
+			disable = res.last ? 'disabled' : '';
+			li += '<li class="page-item ' + disable +'" onclick="getReviews(' + (Number(res.number)+2) +')">';
+		    li += '<a class="page-link" href="#">다음</a>';
+		  	li += '</li>';
+
+		  	document.querySelector('#pastPageList').innerHTML = li;
 			document.querySelector('#tBody').innerHTML = html;
 			}
 		}

@@ -112,7 +112,7 @@ img {
 	<script>
 window.onload= function(){
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list'); //ExhibitionController /exhibition-list /exhibition-listDemo
+	xhr.open('GET', '/exhibition-openinglist'); //ExhibitionController /exhibition-list /exhibition-listDemo
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let res = JSON.parse(xhr.responseText);
@@ -121,19 +121,33 @@ window.onload= function(){
 			
 			for (let exhibition of res.data) {
 				
+				let eiName='';
+				let eiArtist='';
+				
+				if(exhibition.eiName.length>7){
+					eiName=exhibition.eiName.substring(0,6)+'...';
+				}else{
+					eiName=exhibition.eiName;
+				}
+				
+				if(exhibition.eiArtist.length>7){
+					eiArtist=exhibition.eiArtist.substring(0,6)+'...';
+				}else{
+					eiArtist=exhibition.eiArtist;
+				}
+				
 				if(exhibition.eiBanner==0 || exhibition.eiBanner==null){
-						
 						htmlLeft+='<tr class="bodyTd">'; 
 						htmlLeft+='<td>'+exhibition.eiNum+'</td>';
-						htmlLeft+='<td>'+exhibition.eiName+'</td>';
-						htmlLeft+='<td>'+exhibition.eiArtist+'</td>';
+						htmlLeft+='<td>'+eiName+'</td>';
+						htmlLeft+='<td>'+eiArtist+'</td>';
 						htmlLeft+='<td><button class="buttonLeft" onclick="getPermissionEiBanner('+exhibition.eiNum+')">사용승인</button></td>';
 						htmlLeft+="</tr>";
 					}else{
 						htmlRight+='<tr class="bodyTd">'; 
 						htmlRight+='<td>'+exhibition.eiNum+'</td>';
-						htmlRight+='<td>'+exhibition.eiName+'</td>';
-						htmlRight+='<td>'+exhibition.eiArtist+'</td>';
+						htmlRight+='<td>'+eiName+'</td>';
+						htmlRight+='<td>'+eiArtist+'</td>';
 						htmlRight+='<td><button class="buttonRight" onclick="getDeniedEiBanner('+exhibition.eiNum+')">사용불허</button></td>';
 						htmlRight+="</tr>";	
 					}
@@ -163,7 +177,7 @@ function getPermissionEiBanner(obj){//exhibition-banner-update
 
 function getDeniedEiBanner(obj){//exhibition-banner-update
 	let xhr = new XMLHttpRequest();
-	xhr.open('POST', '/exhibition-banner-update'); //ExhibitionController /exhibition-list /exhibition-listDemo
+	xhr.open('POST', '/exhibition-banner-update'); //ExhibitionController 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 				alert('배너 불허 완료');

@@ -75,6 +75,28 @@
 								</tbody>
 							</table>
 						</div>
+						<div class="row"><!-- 페이징 처리 -->
+							<div class="col-lg-6">
+								<nav aria-label="Page navigation example" class="col-lg-6-under">
+									<ul class="pagination justify-content-center" id="pastPageList">
+									</ul>
+								</nav>
+							</div>
+						</div><!-- 페이징처리 -->
+						<div class="navbar navbar-light bg-light" ><!-- 검색바 처리 -->
+							<div class="form-inline" style="margin-left: auto; margin-right:auto;">
+								<select id="eiSelectBox">
+									<option value="eiName">전시회 이름</option>
+									<option value="eiArtist">아티스트</option>
+									<option value="eiStatus">전시회 상태값</option>
+								</select>
+								<input class="form-control mr-sm-2" type="search"
+									placeholder="Search" aria-label="Search" id="eiNavBar">
+								<button class="btn btn-outline-success my-2 my-sm-0"
+									type="submit" style="background-color: white; color:red; border-color: red;"
+									onclick="eiSearchButton()">Search</button>
+							</div>
+						</div><!-- 검색바 처리 -->
 					</div>
 
 				</div>
@@ -105,16 +127,21 @@
 	<script src="/resources/admin/board/js/main.js"></script>
 
 	<script>
+window.addEventListener('load', getBeforeConfirm(1));
 
-window.onload= function(){
+var size = 5; 
+
+function getBeforeConfirm(page){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-list'); //ExhibitionController
+	//'/board?size=5&page=' + (page-1);
+	xhr.open('GET', '/exhibitions/paging?size=10&page='+(page-1)); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
+			
 			var html='';
 			
-			for (var exhibition of res.data) {
+			for (var exhibition of res.content) {
 				//console.log(exhibition);
 				
 				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-ei-update?eiNum='+exhibition.eiNum+'\'">';
@@ -127,7 +154,35 @@ window.onload= function(){
 				html+='<td class="cell100 column7">'+exhibition.moddat+'</td>';
 				html+="</tr>";
 				}
-			document.querySelector('#tBody').innerHTML = html;
+			
+			
+			var disable = res.first ? 'disabled' : '';
+			
+			var li = '<li class="page-item ' + disable + '" onclick="getBeforeConfirm(' + res.number + ')">';
+			li += '<a class="page-link" href="#" tabindex="-1">이전</a>';
+			li += '</li>';
+			
+			var startPage = Math.floor((((Number(res.number) + 1) - 1) / size)) * size + 1;
+			var endPage = startPage + size - 1;
+			if(endPage > res.totalPages){
+				endPage = res.totalPages;
+			}
+			for(startPage; startPage<=endPage; startPage++){
+				if(startPage === page){
+					li += '<li class="page-item active" onclick="getBeforeConfirm(' + startPage + ')"><a class="page-link" href="#">'+ startPage +'</a></li>';
+					continue;
+				}
+				li += '<li class="page-item" onclick="getBeforeConfirm(' + startPage +')"><a class="page-link" href="#">'+ startPage +'</a></li>';
+			}
+			disable = res.last ? 'disabled' : '';
+			li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
+		    li += '<a class="page-link" href="#">다음</a>';
+		  	li += '</li>';
+			
+			
+		  	document.querySelector('#tBody').innerHTML = html;
+			document.querySelector('#pastPageList').innerHTML = li;
+			
 			}
 		}
 	xhr.send();
