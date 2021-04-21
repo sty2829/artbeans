@@ -30,8 +30,10 @@ public class ExhibitionController {
 	@Autowired
 	private ExhibitionService eService;
 	
-	@Autowired
-	private ExhibitionInfoRepository eiRepo;
+	//@Autowired
+	//private ExhibitionInfoRepository eiRepo;
+	
+	
 //	@GetMapping("/exhibition-list")
 //	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
 //		log.info("exhibitionList=>{}",exhibitionInfo);
@@ -39,10 +41,10 @@ public class ExhibitionController {
 //	}Demo
 	
 	//tsets
-	@GetMapping("/exhibition/test/{str}")
-	public @ResponseBody Page<ExhibitionInfo> getTest(@PathVariable String str, Pageable pageable){
-		return eiRepo.getList(str, pageable);
-	}
+	//@GetMapping("/exhibition/test/{str}")
+	//public @ResponseBody Page<ExhibitionInfo> getTest(@PathVariable String str, Pageable pageable){
+	//	return eiRepo.getList(str, pageable);
+	//}
 	
 	//나중에 지울 것
 	@GetMapping("/exhibition-listDemo")
@@ -57,11 +59,28 @@ public class ExhibitionController {
 		return eService.getExhiListDemoss(giAddress, pageable, dtExhibitionInfo);
 	}
 	
-	//
+	//지울걸
+		@GetMapping("/exhibition-list")
+		public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
+			return eService.getExhibitionInfoLists(pageable, dtExhibitionInfo);
+		}
 	
-	@GetMapping("/exhibition-list")
-	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
-		return eService.getExhibitionInfoLists(pageable, dtExhibitionInfo);
+	//exhibition-list 변경
+	@GetMapping("/exhibition-openinglist")
+	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionOpeningList(String eiStatus, Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
+		return eService.getOpeningList(eiStatus, pageable, dtExhibitionInfo);
+	}	
+	
+	//exhibition-list 변경
+	@GetMapping("/exhibition-closelist")
+	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionCloseList(String eiStatus, Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
+		return eService.getCloseList(eiStatus, pageable, dtExhibitionInfo);
+	}
+	
+	//exhibition-list 변경
+	@GetMapping("/exhibition-futurelist")
+	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionFutureList(String eiStatus, Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo){
+		return eService.getFutureList(eiStatus, pageable, dtExhibitionInfo);
 	}
 	
 	@GetMapping("/exhibition")

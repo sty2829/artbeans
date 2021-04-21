@@ -22,9 +22,6 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	
 	public Page<ExhibitionInfo> findAllByEiStatus(String eiStatus, Pageable pageable);
 	
-	
-	
-	
 	public Page<ExhibitionInfo> findAllByGalleryInfoGiAddressLike(String giAddress, Pageable pageable);
 	
 	//심태윤- 전시회예약정보 인서트시 보여줄 전시회리스트
@@ -37,6 +34,16 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	            nativeQuery = true)
 	public void updateExhibitionInfoEiBanner(@Param("eiBanner") Integer eiBanner, @Param("eiNum") Integer eiNum);
 	 
+	//진행중
 	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiStartDate <= current_date AND ei.eiEndDate >= current_date")
-	public Page<ExhibitionInfo> getList(String eiStatus, Pageable pageable);
+	public Page<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable);
+	
+	//종료
+    @Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiEndDate < current_date")
+	public Page<ExhibitionInfo> getCloseList(String eiStatus, Pageable pageable);
+		
+	//진행할
+	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiStartDate > current_date")
+	public Page<ExhibitionInfo> getFutureList(String eiStatus, Pageable pageable);
+	
 }
