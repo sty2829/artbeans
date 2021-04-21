@@ -473,9 +473,9 @@
 								</div>
 							</div>
 						</div>
-						<div style="clear:both; height:10px;"></div>
+						<<div style="clear:both; height:10px;"></div>
 						<div class="map_bottom">
-				<span onclick="want()">가고싶음</span>
+				<span onclick="want()">찜목록 추가</span>
 				<span onclick="urlcopy();">URL 복사</span>
 				<span onclick="print();">인쇄</span>
 			</div>
