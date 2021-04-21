@@ -8,6 +8,7 @@
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hevj9bqhd5"></script>
 <script src="/resources/user/js/exhibition/view.js"></script>
+
 </head>
 <body>
 

@@ -30,7 +30,7 @@
 								id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false" style="margin: 5px">이름순</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-								<button class="dropdown-item" type="button" onclick="nameAsc()">오름차순</button>
+								<button id="nameAscBtn" class="dropdown-item" type="button" onclick="nameAsc()">오름차순</button>
 								<button class="dropdown-item" type="button" onclick="nameDesc()">내림차순</button>
 							</div>
 						</div>

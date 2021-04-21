@@ -41,4 +41,15 @@ public class CodeGenerator {
 		return sb.toString();	
 	}
 	
+	public static void main(String[] args) {
+		for( int  i=100  ;  i<=100   ; i--){
+			   if(i%5==0 ){
+			      System.out.println("만세");
+			   }
+			   if(  i%2==0  ){
+			      System.out.println( "짝수"  );
+			   }
+			}
+	}
+	
 }
