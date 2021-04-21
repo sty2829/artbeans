@@ -3,6 +3,8 @@ package com.artbeans.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.artbeans.web.dto.UserTicketDTO;
 import com.artbeans.web.entity.TicketInfo;
 import com.artbeans.web.service.TicketService;
 
@@ -50,5 +53,18 @@ public class TicketController {
 	@DeleteMapping("/ticket/cancel/{tiNum}")
 	public int cancel(@PathVariable Integer tiNum) {
 		return ticketService.cancleReservation(tiNum);
+	}
+	
+	
+	//유저예약정보 컨트롤러 작성..
+	@GetMapping("/ticket/progress/{uiNum}")
+	public List<UserTicketDTO> getProgressTickets(@PathVariable Integer uiNum) {
+		return ticketService.getProgressTicketList(uiNum);
+	}
+	
+	//유저예약정보 컨트롤러 작성..
+	@GetMapping("/ticket/past/{uiNum}")
+	public Page<UserTicketDTO> getPastTickets(@PathVariable Integer uiNum , Pageable pageable) {
+		return ticketService.getPastTicketList(uiNum, pageable);
 	}
 }

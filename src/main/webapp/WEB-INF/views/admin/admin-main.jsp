@@ -45,7 +45,7 @@ p{
   <h3>관리자 페이지</h3>
   <div class="row">
     <div class="col-sm-4">
-      <p>exhibition_info 수정페이지</p>
+      <p>전시회 수정페이지</p>
       <div class="image" onclick="location.href='/views/admin/admin-ei'" style="cursor:pointer"><img src="/resources/admin/img/admin-page-icon1.jpg"alt="Image"></div>
     </div>
     <div class="col-sm-4">

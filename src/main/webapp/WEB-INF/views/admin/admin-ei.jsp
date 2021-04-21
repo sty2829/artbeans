@@ -115,7 +115,7 @@ window.onload= function(){
 			var html='';
 			
 			for (var exhibition of res.data) {
-				console.log(exhibition);
+				//console.log(exhibition);
 				
 				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-ei-update?eiNum='+exhibition.eiNum+'\'">';
 				html+='<td class="cell100 column1">'+exhibition.eiNum+'</td>';

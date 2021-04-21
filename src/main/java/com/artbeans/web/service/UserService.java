@@ -14,8 +14,7 @@ public interface UserService {
 	UserInfo updateUser(UserInfo ui);
 	int deleteUser(Integer uiNum);
 	UserInfo login(UserInfo userInfo);
-	//예약티켓 리스트 조회
-	List<UserTicketDTO> getTicketList(Integer uiNum);
+	
 	//id찾기
 	UserInfo findId(String uiPhoneNumber);
 	

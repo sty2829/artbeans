@@ -61,10 +61,9 @@
 					}
 					var disable = res.first ? 'disabled' : '';
 					var li = '<li class="page-item ' + disable + '" onclick="page(' + res.number + ')">';
-					li += '<a class="page-link" href="#" tabindex="-1">Previous</a>';
+					li += '<a class="page-link" href="#" tabindex="-1">이전</a>';
 					li += '</li>';
 					var startPage = Math.floor((((Number(res.number) + 1) - 1) / countPage)) * countPage + 1;
-					console.log(startPage);
 					var endPage = startPage + countPage - 1;
 					if(endPage > res.totalPages){
 						endPage = res.totalPages;
@@ -78,7 +77,7 @@
 					}
 					disable = res.last ? 'disabled' : '';
 					li += '<li class="page-item ' + disable +'" onclick="page(' + (Number(res.number)+2) +')">';
-				    li += '<a class="page-link" href="#">Next</a>';
+				    li += '<a class="page-link" href="#">다음</a>';
 				  	li += '</li>';
 				    
 					

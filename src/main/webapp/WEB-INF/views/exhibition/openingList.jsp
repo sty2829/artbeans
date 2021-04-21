@@ -14,14 +14,13 @@
 <link rel="stylesheet" href="/resources/user/css/right-menu.css">
 <style>
 #side1 {
-	position: relative;	
+	position: relative;
 	margin-top: 0%;
 	right: 0px;
 	height: 10%;
 	display: inline-block;
 	color: black;
 }
-
 </style>
 </head>
 <body>
@@ -39,7 +38,7 @@
 					<div class="overlay"></div>
 					<div id="sidebar">
 						<div
-							style="border: 0px; border-radius: 20px; top: 0%; margin-left: 0%; width: 100%; height: 370px; position: relative; overflow: hidden; background: url(&quot;http://static.naver.net/maps/mantle/1x/pattern_1.png&quot;) 0px 0px repeat transparent;"
+							style="border: 0px; border-radius: 10px 0px 0px 10px; top: 0%; margin-left: 0%; width: 100%; height: 370px; position: relative; overflow: hidden; background: url(&quot;http://static.naver.net/maps/mantle/1x/pattern_1.png&quot;) 0px 0px repeat transparent;"
 							id="map" tabindex="0">
 							<div
 								style="position: absolute; display: block; margin: 0px; padding: 0px; border: 0px none; top: 0px; left: 0px; overflow: visible; width: 100%; height: 100%; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); z-index: 0; cursor: url(&quot;http://static.naver.net/maps/mantle/1x/openhand.cur&quot;), default;">
@@ -199,7 +198,7 @@
 									<div
 										style="position: relative; width: 53px; height: 14px; margin: 0px 12px 7px 2px; overflow: hidden; pointer-events: auto;">
 										<span
-											style="display: block; margin: 0; padding: 0 4px; text-align: center; font-size: 10px; line-height: 11px; font-family: Helvetica, AppleSDGothicNeo-Light, nanumgothic, NanumGothic,&amp; amp; amp; quot; 나눔고딕 &amp;amp; amp; quot; , Dotum ,&amp;amp; amp; quot; 돋움 &amp;amp; amp; quot; , sans-serif; font-weight: bold; color: #000; text-shadow: -1px 0 rgba(255, 255, 255, 0.3), 0 1px rgba(255, 255, 255, 0.3), 1px 0 rgba(255, 255, 255, 0.3), 0 -1px rgba(255, 255, 255, 0.3);">100m</span><img
+											style="display: block; margin: 0; padding: 0 4px; text-align: center; font-size: 10px; line-height: 11px; font-family: Helvetica, AppleSDGothicNeo-Light, nanumgothic, NanumGothic,&amp; amp; amp; amp; quot; 나눔고딕 &amp;amp; amp; amp; quot; , Dotum ,&amp;amp; amp; amp; quot; 돋움 &amp;amp; amp; amp; quot; , sans-serif; font-weight: bold; color: #000; text-shadow: -1px 0 rgba(255, 255, 255, 0.3), 0 1px rgba(255, 255, 255, 0.3), 1px 0 rgba(255, 255, 255, 0.3), 0 -1px rgba(255, 255, 255, 0.3);">100m</span><img
 											src="http://static.naver.net/maps/mantle/1x/scale-normal-b.png"
 											width="45" height="4" alt=""
 											style="position: absolute; left: 4px; bottom: 0px; z-index: 2; display: block; width: 45px; height: 4px; overflow: hidden; margin: 0px; padding: 0px; border: 0px none; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important;"><img
@@ -413,7 +412,7 @@
 									<div
 										style="position: relative; width: 52px; height: 14px; margin: 0px 12px 7px 2px; overflow: hidden; pointer-events: auto;">
 										<span
-											style="display: block; margin: 0; padding: 0 4px; text-align: center; font-size: 10px; line-height: 11px; font-family: Helvetica, AppleSDGothicNeo-Light, nanumgothic, NanumGothic,&amp; amp; amp; quot; 나눔고딕 &amp;amp; amp; quot; , Dotum ,&amp;amp; amp; quot; 돋움 &amp;amp; amp; quot; , sans-serif; font-weight: bold; color: #000; text-shadow: -1px 0 rgba(255, 255, 255, 0.3), 0 1px rgba(255, 255, 255, 0.3), 1px 0 rgba(255, 255, 255, 0.3), 0 -1px rgba(255, 255, 255, 0.3);">100m</span><img
+											style="display: block; margin: 0; padding: 0 4px; text-align: center; font-size: 10px; line-height: 11px; font-family: Helvetica, AppleSDGothicNeo-Light, nanumgothic, NanumGothic,&amp; amp; amp; amp; quot; 나눔고딕 &amp;amp; amp; amp; quot; , Dotum ,&amp;amp; amp; amp; quot; 돋움 &amp;amp; amp; amp; quot; , sans-serif; font-weight: bold; color: #000; text-shadow: -1px 0 rgba(255, 255, 255, 0.3), 0 1px rgba(255, 255, 255, 0.3), 1px 0 rgba(255, 255, 255, 0.3), 0 -1px rgba(255, 255, 255, 0.3);">100m</span><img
 											src="http://static.naver.net/maps/mantle/1x/scale-normal-b.png"
 											width="44" height="4" alt=""
 											style="position: absolute; left: 4px;; bottom: 0; z-index: 2; display: block; width: 44px; height: 4px; overflow: hidden; margin: 0; padding: 0; border: 0 none; max-width: none !important; max-height: none !important; min-width: 0 !important; min-height: 0 !important;"><img
@@ -474,38 +473,33 @@
 								</div>
 							</div>
 						</div>
-						<div id="sideMapList">
-							<ul id="side1" style="list-style: none; margin-left: 1px;">
-								<li>♥찜목록</li>
-							</ul>
-						</div>
+						<div style="clear:both; height:10px;"></div>
+						<div class="map_bottom">
+				<span onclick="want()">가고싶음</span>
+				<span onclick="urlcopy();">URL 복사</span>
+				<span onclick="print();">인쇄</span>
+			</div>
+			<div id="sideMapList">
+					
+					</div>
 					</div>
 					
 					
-					
-					<!-- 
-					<div class="col-lg-12 d-flex justify-content-center">
-						<ul id="portfolio-flters">
-							<li onclick="newest()">전시회 오픈순</li>
-							<li onclick="deadline()">전시회 마감순</li>
-						</ul>
-					</div>
-					 -->
-					 
-					 <div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle" type="button"
-								id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false" style="margin: 5px">날짜순</button>
-							<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-								<button class="dropdown-item" type="button" onclick="newest()">오픈순</button>
-								<button class="dropdown-item" type="button" onclick="deadline()">마감순</button>
-							</div>
+
+
+
+
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false" style="margin: 5px">날짜순</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+							<button class="dropdown-item" type="button" onclick="newest()">오픈순</button>
+							<button class="dropdown-item" type="button" onclick="deadline()">마감순</button>
 						</div>
-						
+					</div>
 						<div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle" type="button"
-								id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false" style="margin: 5px">지역순</button>
+							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 5px">지역순</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 								<button class="dropdown-item" type="button" onclick="get()">전체지역</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="서울">서울</button>
@@ -520,10 +514,13 @@
 								<button class="dropdown-item" type="button" onclick="area(this)" value="경상남도">경상남도</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="부산">부산</button>
 							</div>
-						</div>
-						
-					<button id="sidebarCollapse">지도</button>
-				</div>
+					    </div>
+					
+
+					</div>
+
+					<img id="sidebarCollapse" src = "/resources/user/img/sidebtn/mapIcon.png">
+					
 			</div>
 		</section>
 
@@ -532,6 +529,7 @@
 				<div class="row" id="exhibitionList"></div>
 			</div>
 		</section>
+
 	</main>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script src="/resources/user/js/map/right-menu.js"></script>

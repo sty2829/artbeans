@@ -38,7 +38,7 @@ function get() {
 						html += '<div class="entry-content">';
 						html += '<div style="HEIGHT: 10pt"></div>';
 						html += '<div style="display:none" class="read-more">';
-						html += '<input name="checkMap" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
+						html += '<input name="checkMap' + idx+'" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
 						html += '</div>';
 						html += '</div>';
 						html += '</article>';
@@ -88,7 +88,7 @@ function newest() {
 						html += '<div class="entry-content">';
 						html += '<div style="HEIGHT: 10pt"></div>';
 						html += '<div style="display:none" class="read-more">';
-						html += '<input name="checkMap" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
+						html += '<input name="checkMap' + idx + '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
 						html += '</div>';
 						html += '</div>';
 						html += '</article>';
@@ -137,7 +137,7 @@ function deadline() {
 						html += '<div class="entry-content">';
 						html += '<div style="HEIGHT: 10pt"></div>';
 						html += '<div style="display:none" class="read-more">';
-						html += '<input name="checkMap" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
+						html += '<input name="checkMap' + idx + '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
 						html += '</div>';
 						html += '</div>';
 						html += '</article>';
@@ -186,7 +186,7 @@ function area(obj) {
 						html += '<div class="entry-content">';
 						html += '<div style="HEIGHT: 10pt"></div>';
 						html += '<div style="display:none" class="read-more">';
-						html += '<input type="checkbox" onclick="sideMap()">';
+						html += '<input name="checkMap' + idx + '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
 						html += '</div>';
 						html += '</div>';
 						html += '</article>';
@@ -206,12 +206,12 @@ function sideMap(idx) {
 	//sideExhibition(obj);
 	var mvCheck = document.querySelector('#mv' + idx);
 	console.log(mvCheck);
-	
+
 	if (mvCheck) {
-		$('#mv' + idx).remove();
+		$('#mv' + idx).remove();//ch
+		$('input[name="checkMap' + idx + '"]').prop('checked', false);//체크되어 있다면 펑션 실행지 체크 해제 (false)
 		return;
 	}
-
 
 
 	var index = document.querySelector('div[id="ei' + idx + '"] img[name="imgPath"]').src.lastIndexOf('/');
@@ -219,16 +219,21 @@ function sideMap(idx) {
 	console.log(index);
 	console.log(imgPath);
 
-	var x = document.querySelector('div[id="ei' + idx + '"] input[name="checkMap"]').getAttribute('value1');
-	var y = document.querySelector('div[id="ei' + idx + '"] input[name="checkMap"]').getAttribute('value2');
-	var giName = document.querySelector('div[id="ei' + idx + '"] input[name="checkMap"]').getAttribute('value3');
+	var x = document.querySelector('div[id="ei' + idx + '"] input[name="checkMap'+idx+'"]').getAttribute('value1');
+	var y = document.querySelector('div[id="ei' + idx + '"] input[name="checkMap'+idx+'"]').getAttribute('value2');
+	var giName = document.querySelector('div[id="ei' + idx + '"] input[name="checkMap'+idx+'"]').getAttribute('value3');
 
 
 	var html = '<div id="mv' + idx + '">';
-	html += '<div class="map_view1">';
-	html += '<img style="width:50px; cursor:pointer; height:50px" src="/resources/assets/img/exhibition/' + imgPath + '" onclick="moveMap(this)" data-y="'+ y + '" data-x="'+ x + '">';
-	html += '<span style="color:black;" class="map_view2">' + giName + '</span>';
-	html += '<img style=" position:absolute; width:20px; cursor: pointer; height: 20px; margin-left:55%; margin-top:4%;" src = "/resources/user/img/sidebtn/x-btn.png" onclick="sideMap(idx)" > ';
+	html += '<div>';
+	html += '<div  class="map_view1">';
+	html += '<img style=" width:70px; height: 70px;" src="/resources/assets/img/exhibition/' + imgPath + '" onclick="moveMap(this)" data-y="' + y + '" data-x="' + x + '">';
+	html += '</div>';
+	html += '<div  class="map_view2">';
+	html += giName
+	html += '</div>';
+	html += '<div class="map_view3">';
+	html += '<img style=" width:20px; height: 20px;" src="/resources/user/img/sidebtn/x-btn.png" onclick="sideMap(' + idx + ')" > ';
 	html += '</div>';
 	html += '</div>';
 
@@ -242,7 +247,12 @@ function sideMap(idx) {
 
 	var map = new naver.maps.Map('map', mapOptions);
 
+
+
 }
+
+
+
 
 function moveMap(move) {
 	console.log(move);

@@ -4,12 +4,15 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.artbeans.web.api.iamport.Cancel;
 import com.artbeans.web.api.iamport.Iamport;
 import com.artbeans.web.api.iamport.IamportResult;
 import com.artbeans.web.api.iamport.Payment;
+import com.artbeans.web.dto.UserTicketDTO;
 import com.artbeans.web.entity.PaymentInfo;
 import com.artbeans.web.entity.ReservationInfo;
 import com.artbeans.web.entity.TicketInfo;
@@ -41,9 +44,13 @@ public class TicketSeviceImpl implements TicketService {
 	public TicketInfo saveTicket(TicketInfo ti, Integer riNum) {
 		//전시회정보 조회
 		ReservationInfo ri = riRepo.findById(riNum).get();
+		log.info("ri => {}"  , ri);
 		Integer eiCharge = ri.getExhibitionInfo().getEiCharge();
 		Integer rtiNumber = ti.getTiNumber();
 		Integer piPrice = ti.getPaymentInfo().getPiPrice();
+		log.info("eiCharge => {}"  , eiCharge);
+		log.info("rtiNumber=> {}"  , rtiNumber);
+		log.info("piPrice => {}"  , piPrice);
 		
 		//DB에 저장된 관람료와 예매수가 결제금액 일치하는지 확인
 		if(piPrice != (eiCharge * rtiNumber)) {
@@ -51,7 +58,7 @@ public class TicketSeviceImpl implements TicketService {
 		}
 		//merchantId 생성
 		ti.getPaymentInfo().setPiMerchantId(CodeGenerator.getPaymentCode());
-		log.info("rti => {}", ti);
+		log.info("ti => {}", ti);
 		return tiRepo.save(ti);
 	}
 
@@ -114,6 +121,18 @@ public class TicketSeviceImpl implements TicketService {
 		return 1;
 		
 	}
+
+	@Override
+	public List<UserTicketDTO> getProgressTicketList(Integer uiNum) {
+		return tiRepo.findAllProgressUserTicket(uiNum);
+	}
+
+
+	@Override
+	public Page<UserTicketDTO> getPastTicketList(Integer uiNum, Pageable pageable) {
+		return tiRepo.findAllPastUserTicket(uiNum, pageable);
+	}
+	
 
 	
 }

@@ -151,17 +151,22 @@ function getReviewInfo(){
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let review = JSON.parse(xhr.responseText);
+			let contentPtag = review.rviContent;
+			let cList=contentPtag.split('<figure class="image">');
+			contentPtag=cList[1].replace('</figure>','');
+			/*
+			let contentList=contentPtag.split('</p>');
+			let rviPicture = contentList[1];
+			*/
+			let imgTag=contentPtag.replace('">','" style="width: 150px; object-fit: cover;">')
 			let html='';
+			/*
 			
-			let ContentPtag = review.rviContent;
-			let cList=ContentPtag.split('<figure class="image">');
 			
-			console.log(cList);
-			ContentPtag=cList[1].replace('</figure>','');
-			
+			*/
 			html+='<tr class="row100 body" onclick="">';
 			html+='<td class="cell100 columnRe1">'+review.rviTitle+'</td>';
-			html+='<td class="cell100 columnRe2">'+ContentPtag+'</td>';
+			html+='<td class="cell100 columnRe2">'+imgTag+'</td>';
 			html+="</tr>";
 	
 			document.querySelector('#tBodyReview').innerHTML = html;
@@ -177,7 +182,6 @@ function getComment(){
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let res = JSON.parse(xhr.responseText);
 			let html='';
-			console.log(res);
 			for (var comment of res) {
 				html+='<tr class="row100 body" onclick="">';
 				html+='<td class="cell100 column1">'+comment.uiEmail+'</td>';
