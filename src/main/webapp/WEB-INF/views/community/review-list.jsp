@@ -36,7 +36,7 @@
 <script>
 var count = 0;
 window.onscroll = function(e) {
-    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if((window.innerHeight + window.scrollY) >= (document.body.offsetHeight+150)) {
         count++;
         getReviews();
     }
@@ -44,7 +44,7 @@ window.onscroll = function(e) {
 function getReviews(){
 	var xhr = new XMLHttpRequest();
 	var uiNum = ${userInfo.uiNum}
-	xhr.open('GET', '/reviews?size=3&page=' + count);
+	xhr.open('GET', '/reviews?size=6&page=' + count);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
