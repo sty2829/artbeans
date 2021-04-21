@@ -501,7 +501,7 @@
 						<div class="dropdown">
 							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 5px">지역순</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-								<button class="dropdown-item" type="button" onclick="get()">전체지역</button>
+								<button class="dropdown-item" type="button" onclick="areaAll()">전체지역</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="서울">서울</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="경기">경기도</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="인천">인천</button>

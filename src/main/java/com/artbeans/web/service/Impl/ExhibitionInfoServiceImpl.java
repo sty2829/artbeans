@@ -90,11 +90,45 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 			return 1;
 		return 0;
 	}
-
+	
+	//getExhibitionInfoLists 변경
+	@Override
+	public DataTable<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable,
+			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+		Page<ExhibitionInfo> pb = exhiRepo.getOpeningList("1", pageable);
+		dtExhibitionInfo.setData(pb.getContent());
+		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+		return dtExhibitionInfo;
+	}
+	
+	//getExhibitionInfoLists 변경
+	@Override
+	public DataTable<ExhibitionInfo> getCloseList(String eiStatus, Pageable pageable,
+			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+		Page<ExhibitionInfo> pb = exhiRepo.getCloseList("1", pageable);
+		dtExhibitionInfo.setData(pb.getContent());
+		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+		return dtExhibitionInfo;
+	}
+	
+	//getExhibitionInfoLists 변경
+	@Override
+	public DataTable<ExhibitionInfo> getFutureList(String eiStatus, Pageable pageable,
+			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+		Page<ExhibitionInfo> pb = exhiRepo.getFutureList("1", pageable);
+		dtExhibitionInfo.setData(pb.getContent());
+		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+		return dtExhibitionInfo;
+	}
+	
+	//변경. 지울것
 	@Override
 	public DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		// 1 은 관리자수락 상태
+		// 1 은 관리자수락 상태		
 		Page<ExhibitionInfo> pb = exhiRepo.findAllByEiStatus("1", pageable);
 		dtExhibitionInfo.setData(pb.getContent());
 		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
@@ -135,5 +169,9 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		log.info("exhibitionInfo123=>{}", exhibitionInfo);
 		exhiRepo.updateExhibitionInfoEiBanner(exhibitionInfo.getEiBanner(), exhibitionInfo.getEiNum());
 	}
+
+	
+
+	
 
 }
