@@ -68,7 +68,7 @@
 	<script>
 	function logout(){
 		var xhr = new XMLHttpRequest();
-		xhr.open('POST','/admin/logout')
+		xhr.open('POST','/admin/logout') //AdminController
 		xhr.onreadystatechange = function(){
 			if(xhr.status==200 && xhr.readyState==4){
 				if(xhr.responseText=='true'){

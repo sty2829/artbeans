@@ -80,7 +80,7 @@
 			}
 
 			var xhr = new XMLHttpRequest();
-			xhr.open('POST', '/admin/login');
+			xhr.open('POST', '/admin/login'); //AdminController
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState == 4 && xhr.status == 200) {
 				
