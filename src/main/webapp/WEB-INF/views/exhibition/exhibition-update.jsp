@@ -8,7 +8,8 @@
 	rel="stylesheet" />
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<script	src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
+<script
+	src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
 
 <style>
 .preView {
@@ -166,7 +167,9 @@
 
 						<!-- ckeditor -->
 						<div class="form-group">
-							<div id="editor"><textarea>내용을 입력하고 저장을 눌러주세요.</textarea></div>
+							<div id="editor">
+								<textarea>내용을 입력하고 저장을 눌러주세요.</textarea>
+							</div>
 							<button onclick="save()">저장</button>
 						</div>
 						<textarea id="eiContent" style="display: none"></textarea>
