@@ -6,8 +6,9 @@
 <meta charset="UTF-8">
 <title>종료된 전시회 목록</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<script src="/resources/user/js/exhibition/closeList.js"></script>
 <script src="/resources/user/js/window/infinityScroll.js"></script>
+<script src="/resources/user/js/exhibition/closeList.js"></script>
+
 </head>
 <body>
 
@@ -48,7 +49,7 @@
 								id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false" style="margin: 5px">지역순</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-								<button class="dropdown-item" type="button" onclick="areaAsc()">전체지역</button>
+								<button class="dropdown-item" type="button" onclick="get()">전체지역</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="서울">서울</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="경기">경기도</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="인천">인천</button>
