@@ -30,7 +30,7 @@
 
 		<section id="contact" class="contact">
 			<div class="container">
-				<div style="border: 0; margin-left: 130px; width: 75%; height: 270px;" id="map"></div>
+				<div style="border: 0; margin-left: 50px; width: 90%; height: 300px;" id="map"></div>
 			</div>
 		</section>
 	</main>

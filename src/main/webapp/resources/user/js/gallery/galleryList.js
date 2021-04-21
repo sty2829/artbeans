@@ -1,6 +1,7 @@
 /**
  * 
  */
+ 
 window.onload = get;
 function get(){
 	var xhr = new XMLHttpRequest();

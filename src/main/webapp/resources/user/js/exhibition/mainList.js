@@ -32,6 +32,7 @@ function getImageList() {
 					html += '<h4>' + exhibition.galleryInfo.giName + '</h4>';
 					html += '<p>' + exhibition.galleryInfo.giAddress + '</p>';
 					html += '</div></div></div>';
+					
 				  }
 				}
 			}
