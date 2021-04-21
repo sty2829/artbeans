@@ -22,7 +22,9 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	
 	public Page<ExhibitionInfo> findAllByEiStatus(String eiStatus, Pageable pageable);
 	
-	//test
+	
+	
+	
 	public Page<ExhibitionInfo> findAllByGalleryInfoGiAddressLike(String giAddress, Pageable pageable);
 	
 	//심태윤- 전시회예약정보 인서트시 보여줄 전시회리스트

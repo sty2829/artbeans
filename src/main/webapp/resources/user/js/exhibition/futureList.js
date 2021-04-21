@@ -7,7 +7,7 @@ window.addEventListener("load", get());
 function get(){
 	var xhr = new XMLHttpRequest();
 	//  uri 변경 함
-	xhr.open('GET','/exhibition-list?size=30&sort=eiNum,asc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=15&sort=eiNum,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
@@ -15,10 +15,12 @@ function get(){
 			for(var exhibition of res.data){				
 				var startDate = new Date(exhibition.eiStartDate);
 				var today = new Date();
+				console.log(exhibition.eiNum);
 				//console.log("미래" + (today < startDate));				
 				//console.log(exhibition.eiStatus == 1); 
 				if (exhibition.eiStatus == 1) {
 				  if (today < startDate) {
+				  //console.log(exhibition.eiNum);
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
@@ -43,7 +45,7 @@ function get(){
 					html += '</div>';
 				  }
 				}
-			}
+			}			
 			document.querySelector('#exhibitionList').innerHTML += html;
 		}		
 	}
@@ -53,7 +55,7 @@ function get(){
 function newest(){
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list?size=30&sort=eiStartDate,asc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=15&sort=eiStartDate,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
@@ -98,7 +100,7 @@ function newest(){
 function deadline(){
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-list?size=30&sort=eiEndDate,asc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibition-list?size=15&sort=eiEndDate,asc&page='+ count); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
@@ -143,7 +145,7 @@ function deadline(){
 	function area(obj) {
 		count = 0;
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/exhibition-listDemoss/' + obj.value + '?size=30&sort=eiNum,asc&page=' + count); //ExhibitionController
+		xhr.open('GET', '/exhibition-listDemoss/' + obj.value + '?size=15&sort=eiNum,asc&page=' + count); //ExhibitionController
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				//console.log(xhr.responseText);
