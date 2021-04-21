@@ -59,11 +59,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<UserTicketDTO> getTicketList(Integer uiNum) {
-		return rtiRepo.findAllUserTicket(uiNum);
-	}
-
-	@Override
 	public UserInfo findId(String uiPhoneNumber) {
 		UserInfo opUi = uRepo.findByUiPhoneNumber(uiPhoneNumber);
 		return opUi;

@@ -53,21 +53,21 @@ h5 {
 		         			 	<div class="row">
 		         			 		<div class="col-lg-5">
 		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매일</p>
-				                 		<span id="tiDate">${param.tiDate}</span>
+				                 		<span id="tiDate" class="check">${param.tiDate}</span>
 		         			 		</div>
 		         			 		<div class="col-lg-5">
 		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매시간</p>
-				                 		<span id="tiTime" style="text-align: center;">${param.tiTime}</span>
+				                 		<span id="tiTime" class="check" style="text-align: center;">${param.tiTime}</span>
 		         			 		</div>
 		         			 	</div>
 		         			 	<div class="row">
 		         			 		<div class="col-lg-5">
 		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매수</p>
-				                 		<span id="tiNumber" style="text-align: center">${param.tiNumber}</span>장
+				                 		<span id="tiNumber" class="check" style="text-align: center">${param.tiNumber}</span>장
 		         			 		</div>
 		         			 		<div class="col-lg-5">
 		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매금액</p>
-				                 		<span id="piPrice" style="text-align: center">${param.piPrice}</span>원
+				                 		<span id="piPrice" class="check" style="text-align: center">${param.piPrice}</span>원
 		         			 		</div>
 		         			 	</div>
 		           		   </div>
@@ -173,8 +173,9 @@ function saveReservation(){
 				uiNum: 8
 			}
 	};
-	var objs = document.querySelectorAll('p[class="check"],input[class="form-control"],input[type="radio"]:checked');
+	var objs = document.querySelectorAll('span[class="check"],input[class="form-control"],input[type="radio"]:checked');
 	var piMethod = document.querySelector('input[type="radio"]:checked');
+	console.log(objs);
 	for(obj of objs){
 		if(obj.tagName == 'INPUT'){
 			if(obj.id.includes('ti')){
