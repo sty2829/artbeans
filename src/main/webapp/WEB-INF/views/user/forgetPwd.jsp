@@ -11,7 +11,7 @@
 <meta name="author" content="">
 
 <title>ArtBeans - Login</title>
-
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
@@ -37,6 +37,11 @@
 
 					<div class="card-body">
 						<h4 class="card-title">비밀번호 찾기</h4>
+						    <div style="color: red">
+                        <p>입력된 정보로 임시 비밀번호가 전송됩니다.</p>
+                    </div>
+                    <hr>
+
 					</div>
 
 					<div class="card-content" style="padding: 8px">
@@ -50,8 +55,8 @@
 
 					<div class="card-content" style="padding: 8px">
 						<button type="button" style="margin: 8px" 
-							class="btn btn-outline-danger" id="checkButton"
-							onclick="goUpdate()">확인</button>
+						class="btn btn-outline-danger" onclick="goUpdate()"  >확인</button> <!-- >  -->
+							
 						<hr>
 					</div>
 				</div>
@@ -62,18 +67,8 @@
 		</section>
 	</main>
 	<script>
-		
-// 	$("#checkButton").click(function(){
-		
-// 		var email = $("#checkButton").val();
-		
-// 		$.ajax({
-			
-// 			type : "GET",
-// 		})
-// 	}
-		function goUpdate(){
-			
+		function goUpdate() {
+
 			var uiName = document.querySelector('#uiName');
 			if (!uiName.value) {
 				alert('이름을 입력해주세요.');
@@ -86,29 +81,31 @@
 				alert('이메일을 입력해주세요.');
 				uiEmail.focus();
 				return;
-			}         
-				                      
-			
-				 // console.log(uiEmail.value);
-				var url = '/mailCheck?uiEmail'+ uiEmail.value;
-				var xhr = new XMLHttpRequest();
-				xhr.open('GET', url);
-				xhr.onreadystatechange = function() {
-					if (xhr.status ==200 & xhr.readyState ==4) {
-						var res = JSON.parse(xhr.responseText);
-						console.log(xhr.responseText);
-						if(xhr.responseText){
-							alert('해당 이메일로 인증번호가 전송되었습니다.');
-							location.href="/views/user/findPwd";
-							
-						}else{
-							alert('존재하지 않는 사용자입니다.');
-						}
+			}
+
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', '/checkPwd');
+			xhr.onreadystatechange = function() {
+				if (xhr.status == 200 & xhr.readyState == 4) {
+					var res = xhr.responseText;
+					console.log(res);
+					if(res == 1) {
+						alert('해당 이메일로 인증번호를 전송했습니다.');
+						location.href="/views/user/findPwd";
+					}else{
+						alert('이름과 이메일을 다시 입력해주세요.');
 					}
 				}
-				xhr.send();
 			}
-		</script>
+			var param = {
+				uiName : document.querySelector('#uiName').value,
+				uiEmail : document.querySelector('#uiEmail').value
+			}
+			xhr.setRequestHeader('content-type',
+					'application/json;charset=UTF-8');
+			xhr.send(JSON.stringify(param));
+		}
+	</script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
