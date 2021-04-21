@@ -3,6 +3,8 @@ package com.artbeans.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,8 +28,8 @@ public class ReviewController {
 	
 	//커뮤니티 리뷰리스트 호출
 	@GetMapping("/reviews")
-	public List<ReviewDTO> getReviews() {
-		return reviewService.getReviewInfos();
+	public Page<ReviewDTO> getReviews(Pageable pageable) {
+		return reviewService.getReviewInfos(pageable);
 	}
 	
 	//리뷰 상세화면

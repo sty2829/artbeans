@@ -73,6 +73,11 @@ function saveReview(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			console.log(res);
+			if(res == 1){
+				alert('리뷰등록에 성공하였습니다.');
+			}else{
+				alert('리뷰등록에 실패하였습니다');
+			}
 		}
 	}
 	

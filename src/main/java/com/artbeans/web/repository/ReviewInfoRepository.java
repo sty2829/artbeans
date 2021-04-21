@@ -1,7 +1,7 @@
 package com.artbeans.web.repository;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.artbeans.web.dto.ReviewDTO;
@@ -11,5 +11,5 @@ public interface ReviewInfoRepository extends JpaRepository<ReviewInfo, Integer>
 	
 	ReviewDTO getByRviNum(Integer rviNum);
 	
-	List<ReviewDTO> findAllBy();
+	Page<ReviewDTO> findAllBy(Pageable pageable);
 }

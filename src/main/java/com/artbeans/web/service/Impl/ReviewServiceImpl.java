@@ -3,6 +3,8 @@ package com.artbeans.web.service.Impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.artbeans.web.dto.CommentDTO;
@@ -26,8 +28,8 @@ public class ReviewServiceImpl implements ReviewService {
 	private CommentInfoRepository ciRepo;
 	
 	@Override
-	public List<ReviewDTO> getReviewInfos() {
-		return rviRepo.findAllBy();
+	public Page<ReviewDTO> getReviewInfos(Pageable pageable) {
+		return rviRepo.findAllBy(pageable);
 	}
 	
 	@Override

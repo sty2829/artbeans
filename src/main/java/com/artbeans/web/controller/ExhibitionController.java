@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.artbeans.web.dto.DataTable;
 import com.artbeans.web.entity.ExhibitionInfo;
+import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
 import com.artbeans.web.util.FileConverter;
 
@@ -28,11 +30,19 @@ public class ExhibitionController {
 	@Autowired
 	private ExhibitionService eService;
 	
+	@Autowired
+	private ExhibitionInfoRepository eiRepo;
 //	@GetMapping("/exhibition-list")
 //	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
 //		log.info("exhibitionList=>{}",exhibitionInfo);
 //		return eService.getExhibitionInfos(exhibitionInfo);
 //	}Demo
+	
+	//tsets
+	@GetMapping("/exhibition/test/{str}")
+	public @ResponseBody Page<ExhibitionInfo> getTest(@PathVariable String str, Pageable pageable){
+		return eiRepo.getList(str, pageable);
+	}
 	
 	//나중에 지울 것
 	@GetMapping("/exhibition-listDemo")

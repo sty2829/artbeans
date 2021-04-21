@@ -34,4 +34,7 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	 @Query(value = "UPDATE exhibition_info set ei_banner =:eiBanner where ei_num = :eiNum",
 	            nativeQuery = true)
 	public void updateExhibitionInfoEiBanner(@Param("eiBanner") Integer eiBanner, @Param("eiNum") Integer eiNum);
+	 
+	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiStartDate <= current_date AND ei.eiEndDate >= current_date")
+	public Page<ExhibitionInfo> getList(String eiStatus, Pageable pageable);
 }
