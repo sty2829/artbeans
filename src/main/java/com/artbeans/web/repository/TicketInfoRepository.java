@@ -3,6 +3,8 @@ package com.artbeans.web.repository;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -25,15 +27,33 @@ public interface TicketInfoRepository extends JpaRepository<TicketInfo, Integer>
 	@Query("SELECT ti.tiNum AS tiNum, ei.eiName AS eiName,  gi.giName AS giName, "
 			+ " pi.piMerchantId AS piMerchantId, fi.fiPath AS imgPath, "
 			+ " function('date_format', ti.tiDate, '%Y-%m-%d') AS tiDate, "
-			+ " ti.tiTime AS tiTime, ti.tiNumber AS tiNumber,"
-			+ " cast(concat(function('date_format', ti.tiDate, '%Y-%m-%d'), ' ', ti.tiTime) AS LocalDateTime) AS dateTime"
+			+ " ti.tiTime AS tiTime, ti.tiNumber AS tiNumber"
 			+ " FROM TicketInfo ti left join "
 			+ " ti.paymentInfo pi left join"
 			+ " ti.reservationInfo ri left join"
 			+ " ri.exhibitionInfo ei left join"
 			+ " ei.fileInfo fi left join"
-			+ " ei.galleryInfo gi where ti.userInfo.uiNum = ?1 AND ti.tiState = 2")
-	List<UserTicketDTO> findAllUserTicket(Integer uiNum); 
+			+ " ei.galleryInfo gi where ti.userInfo.uiNum = ?1 AND ti.tiState = 2"
+			+ " AND current_timestamp < cast(concat(function('date_format', ti.tiDate, '%Y-%m-%d'), ' ', ti.tiTime) AS LocalDateTime)")
+	List<UserTicketDTO> findAllProgressUserTicket(Integer uiNum);
+	
+	
+	@Query("SELECT ti.tiNum AS tiNum, ei.eiName AS eiName,  gi.giName AS giName, "
+			+ " pi.piMerchantId AS piMerchantId, fi.fiPath AS imgPath, "
+			+ " function('date_format', ti.tiDate, '%Y-%m-%d') AS tiDate, "
+			+ " ti.tiTime AS tiTime, ti.tiNumber AS tiNumber"
+			+ " FROM TicketInfo ti left join "
+			+ " ti.paymentInfo pi left join"
+			+ " ti.reservationInfo ri left join"
+			+ " ri.exhibitionInfo ei left join"
+			+ " ei.fileInfo fi left join"
+			+ " ei.galleryInfo gi where ti.userInfo.uiNum = ?1 AND ti.tiState = 2"
+			+ " AND current_timestamp > cast(concat(function('date_format', ti.tiDate, '%Y-%m-%d'), ' ', ti.tiTime) AS LocalDateTime)")
+	Page<UserTicketDTO> findAllPastUserTicket(Integer uiNum, Pageable pageable);
+	
+
+	
+	
 
 }
 

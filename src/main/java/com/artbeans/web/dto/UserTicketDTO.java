@@ -20,5 +20,4 @@ public interface UserTicketDTO {
 	
 	Integer getTiNumber();
 	
-	LocalDateTime getDateTime();
 }

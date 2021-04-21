@@ -142,7 +142,7 @@
         <div class="col-md-8">
             <div class="shadow p-3 bg-white rounded">
                 <div class="d-flex flex-row">
-                    <div class="w-100 ml-2 comment-area"> <textarea class="form-control"></textarea>
+                    <div class="w-100 ml-2 comment-area"> <textarea class="form-control" id="ciContent"></textarea>
                      	<button class="btn btn-secondary btn-block mt-2 post-btn" onclick="saveComment()">댓글등록</button> 
                     </div>
                 </div>

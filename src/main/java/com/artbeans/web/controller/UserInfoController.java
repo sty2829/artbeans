@@ -90,12 +90,6 @@ public class UserInfoController {
       return userInfo.getUiNum();
     }
 
-	//유저예약정보 컨트롤러 작성..
-	@GetMapping("/user/ticket/{uiNum}")
-	public List<UserTicketDTO> getTickets(@PathVariable Integer uiNum) {
-		return userService.getTicketList(uiNum);
-	}
-
 	//id찾기..
 	@GetMapping("/user-email")
 	public UserInfo findId(String uiPhoneNumber){
