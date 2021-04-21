@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <html>
 <head>
 <jsp:include page="/WEB-INF/views/include/css.jsp"></jsp:include>
@@ -21,7 +22,14 @@
 							<h3>ArtBeans</h3>
 							<p>
 								<strong>Phone:</strong> 02-2222-2122<br>
-								<strong>Email:</strong>	artbeans@example.com<br>
+								<strong>Email:</strong>	artbeans@example.com<br><br>
+								<c:if test="${admin eq null}">
+								<strong style="cursor:pointer;" onclick="location.href='/views/admin/admin-login'">관리자 로그인</strong>
+								</c:if>
+								<c:if test="${admin ne null}">
+								<strong style="cursor:pointer;" onclick="logout()">관리자 로그아웃</strong> <br>
+								</c:if>
+								
 							</p>
 						</div>
 					</div>
@@ -56,7 +64,21 @@
 	<!-- End Footer -->
 
 	<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-
+	<!-- Logout -->
+	<script>
+	function logout(){
+		var xhr = new XMLHttpRequest();
+		xhr.open('POST','/admin/logout')
+		xhr.onreadystatechange = function(){
+			if(xhr.status==200 && xhr.readyState==4){
+				if(xhr.responseText=='true'){
+					location.href = '/views/admin/admin-login';
+				}
+			}
+		}
+		xhr.send();
+	}
+	</script>
 	<!-- Vendor JS Files -->
 	<script src="/resources/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="/resources/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
