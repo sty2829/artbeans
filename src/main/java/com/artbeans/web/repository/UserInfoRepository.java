@@ -8,4 +8,5 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Integer> {
 
 	public UserInfo findByUiEmailAndUiPwd(String uiEmail, String uiPwd);
 	public UserInfo findByUiPhoneNumber(String uiPhoneNumber);
+	public UserInfo findByUiEmail(String uiEmail);
 }

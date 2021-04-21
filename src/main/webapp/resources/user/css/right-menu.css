@@ -23,9 +23,11 @@
 
 #sidebarCollapse {
 	cursor: pointer;
-	height: 35px;
-	position: relative;
+	width: 45px;
+	height: 45px;
+	position : relative;
 	margin-left: 90%;
+	position: relative;
 }
 
 .overlay {
@@ -49,8 +51,8 @@
 	font-size: 13px;
 	color: black;
 	line-height: 19px;
-	letter-spacing: -0.52px;
-	cursor: pointer;
+	letter-spacing: -0.52px;	
+	font-family: Arial, sans-serif;
 }
 
 .map_view1 {
@@ -59,14 +61,16 @@
 	padding: 5px 5px;
 	text-align: center;
 	float: left;
-	cursor: pointer;
+	
 }
+
 .map_view1 img {
-    width: 56px;
-    height: 56px;
-    border-radius: 4px;
-    box-shadow: 0 3px 10px 0 rgb(0 0 0 / 20%);
-    margin-top: 5px;
+	width: 56px;
+	height: 56px;
+	border-radius: 4px;
+	box-shadow: 0 3px 10px 0 rgb(0 0 0/ 20%);
+	margin-top: 5px;
+	cursor: pointer;
 }
 
 .map_view2 {
@@ -74,15 +78,34 @@
 	height: 80px;
 	padding: 7px 7px;
 	float: left;
-	cursor: pointer;
+	
+}
+.map_view2 span:nth-child(1) {
+    display: inline-block;
+    width: 184px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.56px;
+    margin-top: 18px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+    height: 20px;
+    color: black;
 }
 
 .map_view3 {
-	margin-top: 20px;
-	align-content:centet;
+	text-align:center;
 	width: 60px;
 	height: 80px;
 	padding: 5px 5px;
 	float: left;
+	cursor: pointer;
+}
+.map_view3 img {
+	width:20px;
+	height: 20px;
+	margin-top:30px;	
 	cursor: pointer;
 }

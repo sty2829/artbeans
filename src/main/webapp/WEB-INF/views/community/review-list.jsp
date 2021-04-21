@@ -34,16 +34,23 @@
 		</div>
 	</div>	
 <script>
-window.onload = function(){
+var count = 0;
+window.onscroll = function(e) {
+    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        count++;
+        getReviews();
+    }
+};
+function getReviews(){
 	var xhr = new XMLHttpRequest();
 	var uiNum = ${userInfo.uiNum}
-	xhr.open('GET', '/reviews');
+	xhr.open('GET', '/reviews?size=3&page=' + count);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			console.log(res);
-			for(var review of res) {
+			for(var review of res.content) {
 				console.log(review.rviNum);
 				html += '<a href="/views/community/review-view?rviNum=' + review.rviNum + '"';
 				html += '<div class="col mb-4">';
@@ -57,11 +64,12 @@ window.onload = function(){
 				html += '</div>';
 				html += '</a>';
 			}
-			document.querySelector('#reviewList').innerHTML = html;
+			document.querySelector('#reviewList').innerHTML += html;
 		}
 	}
 	xhr.send();
 }
+window.addEventListener('load', getReviews());
 </script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>

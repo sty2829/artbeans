@@ -11,87 +11,75 @@
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-	<div class="container">
+	<main id="main">
+		======= Breadcrumbs =======
+		<section id="breadcrumbs" class="breadcrumbs">
+			<div class="container"></div>
+		</section>
 
-		<!-- Outer Row -->
-		<div class="row justify-content-center">
+		<div class="container">
 
-			<div class="col-xl-10 col-lg-12 col-md-9">
-
-				<div class="card o-hidden border-0 shadow-lg my-5">
-					<div class="card-body p-0">
-						<!-- Nested Row within Card Body -->
-						<div class="row">
-							<div class="col-lg-6 d-none d-lg-block bg-password-image">비밀번호
-								재설정</div>
-							<div class="col-lg-6">
-								<div class="p-5">
-									<div class="title" style="text-align: center">
-										<h3>비밀번호 찾기</h3>
-										<p>회원가입 시 기입한 항목을 입력해주세요</p>
-									</div>
-									<div class="form-group">
-										<input type="email" class="form-control form-control-user"
-											id="uiPwd" aria-describedby="emailHelp" placeholder="비밀번호">
-										<input type="password" class="form-control form-control-user"
-											id="uiPwd2" aria-describedby="passwordHelp"
-											placeholder="새비밀번호">
-									</div>
-									<a href="/views/login"
-										class="btn btn-secondary btn-user btn-block"
-										onclick="checkUpdate()">확인</a>
-								</div>
-							</div>
-						</div>
+			<div class="card o-hidden border-0 shadow-lg my-5">
+				<div class="card-body">
+				
+				<div class="card-body">
+					<div class="card-title">인증번호 확인</div>
+					<div class="card-title" style="text-align: center">
 					</div>
+					<div class="card-content" style="padding: 8px">
+						<input type="email" class="form-control form-control-user"
+							id="uiPwd" placeholder="인증번호">
+					</div>
+					<div class="card-content" style="padding: 8px">
+						<input type="password" class="form-control form-control-user"
+							id="uiPwd2" placeholder="인증번호 확인">
+					</div>
+					<div  class="check_font" id="pwd_check"></div>
 				</div>
+				<div class="card-content" style="padding: 8px">
+					<button type="button" style="margin: 8px"
+						class="btn btn-outline-danger" onclick="check()">확인</button>
 
-			</div>
-
+				</div>
 		</div>
-
 	</div>
+</div>
+
+	</main>
 
 	<script>
-function checkUpdate(){
-	var uiPwd = document.querySelector('#uiPwd');
-	if(uiPwd.value.trim().length<1){
-		alert('새 비밀번호를 입력해주세요.');
-		uiPwd.focus();
+function check(){
+	var code = document.querySelector('#uiPwd');
+	if(code.value.trim().length<1){
+		alert('인증번호를 입력해주세요.');
+		code.focus();
 		return;
 	}
 	
-	 var uiPwd2 = document.querySelector('#uiPwd2');
-     if (uiPwd2.value.trim().length <1) {
-        alert('비밀번호 확인란을 입력해주세요.');
-        uiPwd.focus();
+	 var code2 = document.querySelector('#uiPwd2');
+     if (code2.value.trim().length <1) {
+        alert('인증번호 확인란을 입력해주세요.');
+        code2.focus();
         return;
      }
 	
-	var uiPwd2 = document.querySelector('#uiPwd2');
-		if(uiPwd.value!==uiPwd2.value){
-			alert('비밀번호가 일치하지 않습니다.')
-			uiPwd2.value= "";
-			uiPwd.focus();
-			return; 
-	}
-	
-	
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST','/user-update')
+	xhr.open('POST','/checkPwd')
 	xhr.onreadystatechange = function(){
 		if(xhr.status==200 && xhr.readyState==4){
-			console.log(xhr.responseText);
+			var res = xhr.responseText;
+			console.log(res);
 			if(uiPwd == uiPwd2){
-				alert('비밀번호가 변경되었습니다.');
+				document.querySelector('#pwd_check').innerText = "인증번호가 일치합니다.";
+				document.querySelector('#pwd_check').style.color = "red";
 			}else {
-				alert('비밀번호가 올바르지 않습니다.');
+				document.querySelector('#pwd_check').innerText = "인증번호를 다시 확인해주세요.";
+				document.querySelector('#pwd_check').style.color = "red";
 			}
 		}	
 	}
 	var param = {
-			uiPwd =document.queryselector('#uiPwd').value,
-			uiPwd2 = document.queryselector('#uiPwd2').value
+			uiPwd =document.queryselector('#uiPwd').value
 					}
 	xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
 	xhr.send(JSON.stringify(param));
