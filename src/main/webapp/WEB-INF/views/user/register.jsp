@@ -19,6 +19,7 @@
 <style>
 .card-body {
 	text-align: center;
+	
 }
 </style>
 </head>
@@ -39,27 +40,29 @@
 				
 				<div class="card-content" style="padding: 8px">
 					<input type="text" class="input-control"
-						id="uiName" placeholder="이름">
+						id="uiName" placeholder="이름" size="40">
 				</div>
 				
 				<div class="card-content" style="padding: 8px">
 						<input type="text" id="uiPhoneNumber" class="input-control"
-							placeholder="휴대폰번호">
+							placeholder="휴대폰번호" size="40">
 					</div>
 					
 				<div class="card-content" style="padding: 8px">
 					<input type="email" class="input-control"
-						id="uiEmail" placeholder="이메일">
+						id="uiEmail" placeholder="이메일" onkeydown="uiEmail" size="30">
+					<input type="button" value="중복확인" onclick="emailCheck()">
+					<input type="hidden" name="emailDuplication" value="emailUncheck">
 				</div>
 				
 				<div class="card-content" style="padding: 8px">
 					<input type="password" class="input-control"
-						id="uiPwd" placeholder="비밀번호">
+						id="uiPwd" placeholder="비밀번호" size="40">
 				</div>
 				
 				<div class="card-content" style="padding: 8px">
 					<input type="password" class="input-control"
-						id="uiPwd2" placeholder="비밀번호 확인">
+						id="uiPwd2" placeholder="비밀번호 확인" size="40">
 				</div>
 				
 				<div class="card-content" style="padding: 8px">
@@ -86,7 +89,7 @@
 				
 				<div class="card-content" style="padding: 8px">
 					<div class="btn-group btn-group-toggle" data-toggle="buttons" id="uiGender">
-									<label class="btn btn-outline-dark active"> <input type="radio" name="uiGender" value="남성" autocomplete="off" >남성</label>
+									<label class="btn btn-outline-dark active"> <input type="radio" name="uiGender" value="남성" autocomplete="off">남성</label>
 									 <label class="btn btn-outline-dark"> <input type="radio" name="uiGender" value="여성" autocomplete="off">여성</label>
 							</div>
 				</div>
@@ -635,6 +638,17 @@
 		</section>
 	</main>
 	<script>
+	
+	//이메일(Id) 중복체크 화면 open
+	function emailCheck(){
+		window.open("/views/user/emailCheck","width=400","heigth=300");
+	}
+	
+	function uiEmail(){
+		document.userInfo.emailDuplication.value="emailUncheck";
+	} 
+
+	
 	function validation(id, min, max, msg) {
 	      var obj = document.querySelector(id);
 	      if ((min && obj.value.trim().length < min)
@@ -655,9 +669,9 @@
 			return;
 		}
 	
-// 		 if (!validation('#uiPhoneNumber', 1, 13, '-를 포함한 휴대폰번호를 다시 입력해주세요.')) { //디자인 수정
-// 	         return false;
-// 	      }
+ 		 if (!validation('#uiPhoneNumber', 1, 13, '-를 포함한 휴대폰번호를 다시 입력해주세요.')) { //디자인 수정
+ 	         return false;
+ 	      }
 		
 
 		var uiEmail = document.querySelector('#uiEmail');
@@ -666,6 +680,7 @@
 			uiEmail.focus();
 			return;
 		}
+		
 
 		var uiPwd = document.querySelector('#uiPwd');
 		if (uiPwd.value.trim().length < 1) {

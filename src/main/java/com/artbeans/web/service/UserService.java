@@ -3,7 +3,6 @@ package com.artbeans.web.service;
 import java.util.List;
 
 import com.artbeans.web.dto.UserTicketDTO;
-import com.artbeans.web.entity.ReviewInfo;
 import com.artbeans.web.entity.UserInfo;
 
 
@@ -17,6 +16,9 @@ public interface UserService {
 	
 	//id찾기
 	UserInfo findId(String uiPhoneNumber);
-	
+	// 비밀번호 이메일 인증..
+	int mailCheck(UserInfo userInfo);
+	// 이메일 중복조회
+	int emailCheck(String uiEmail);
 	
 }

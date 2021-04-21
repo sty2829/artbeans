@@ -4,6 +4,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
 
+import lombok.extern.slf4j.Slf4j;
+
+
 public class CodeGenerator {
 	private static final String BASIC_CODE = "0123456789abcdefghijklmnopqrstuvwuxyABCDEFGHIJKLMNOPQRSTUVWUXY";
 	private static final int CODE_LENGTH = 6;
@@ -22,7 +25,7 @@ public class CodeGenerator {
 			int rNum = r.nextInt(BASIC_CODE.length());
 			sb.append(BASIC_CODE.charAt(rNum));
 		}
-		return sb.toString();			
+		return sb.toString();	
 	}
 	
 	public static String getPaymentCode() {
