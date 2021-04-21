@@ -241,16 +241,12 @@ function getPastTickets(page){
 	}
 	xhr.send();
 }
-
-
-
 function cancel(obj){
 	var rtiNum = obj.getAttribute('data-tiNum')
 	
 	var xhr = new XMLHttpRequest();
 	
 	xhr.open('DELETE', '/ticket/cancel/' + tiNum );
-
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
