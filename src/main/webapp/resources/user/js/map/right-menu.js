@@ -11,8 +11,12 @@ $('#sidebarCollapse').on('click', function() {
 		if ($('#sidebar').attr('class')=='active'||(window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 			$('.read-more').show();
 		}
+		if ($('#sidebar').attr('class')==''||(window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+			$('.read-more').hide();
+		}
 
 	});
+	
 });
 
 $('.overlay').on('click', function() {
