@@ -134,6 +134,17 @@ public class ExhibitionController {
 		eService.updateExhibitionInfoEiBanner(exhibitionInfo);
 		return exhibitionInfo.getEiNum();
 	}
+	
+	// admin-ei-update
+	@PostMapping("/exhibition-admin-update")
+	public @ResponseBody Integer updateExhibitionInfoWithoutFile(Integer eiStatus, Integer giNum, String eiName, String eiArtist,
+			Integer eiCharge, String eiStartDate, String eiEndDate, String eiStartTime, String eiEndTime,
+			String eiContent, Integer uiNum, Integer eiNum) throws Exception {
+		log.info("eiNum=>{}",eiNum);
+		eService.updateExhibitionInfoWithoutFile(eiStatus, giNum, eiName, eiArtist, eiCharge, eiStartDate, eiEndDate, eiStartTime, eiEndTime, eiContent, uiNum, eiNum);
+		return eiNum;
+	}
+
 
 	// admin pagenation
 	@GetMapping("/exhibitions/paging")

@@ -70,11 +70,12 @@
 								<h4>전시회 종료시간</h4>
 							</div>
 							
-							<div class="phone">
+							<div class="phone" style="height:80px;">
 								<h4>전시회 포스터사진</h4>
 
 							</div>
-							<div class="phone">
+							
+							<div class="phone" >
 								<h4>전시회 설명</h4>
 
 							</div>
@@ -156,8 +157,14 @@
 						<div class="form-group">
 							<input type="hidden" id="fileInfo-fiNum"> <input
 								type="file" class="form-control" id="fiFile"
-								 />
+								 /> 
 							<div style="HEIGHT: 5pt"></div>
+						</div>
+						
+						<div class="form-group">
+							<input type="text" class="form-control"
+								id="fileMemory" readonly/> <!-- 기존 파일 이름 보여주기 -->
+							<div style="HEIGHT: 8pt"></div>
 						</div>
 
 						<div class="form-group">
@@ -178,7 +185,7 @@
 	
 	<script>
 var getValue = getParameterByName("eiNum");
-	
+
 getOpen(getValue);
 galleryOption();
 
@@ -235,7 +242,15 @@ function doUpdate(){
 		return;
 	}	
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST','/exhibition-update')
+	
+		
+	var fileMemory=document.querySelector('#fiFile').files[0];	
+	
+	if(fileMemory==null){
+		xhr.open('POST','/exhibition-admin-update') //ExhibitionController
+	}else{
+		xhr.open('POST','/exhibition-update') //ExhibitionController
+	}
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status ==200){
 			if(xhr.responseText&& xhr.responseText!= null){
@@ -248,6 +263,15 @@ function doUpdate(){
 
 	formData.append('eiNum', document.querySelector('#eiNum').value);
 	formData.append('eiStatus', document.querySelector('#eiStatus').value);
+	
+	if(fileMemory==null){
+		formData.append('giNum', document.querySelector('select#gallery option:checked').value);
+		formData.append('uiNum', document.querySelector('#uiNum').value);
+	}else{
+		formData.append('galleryInfo.giNum', document.querySelector('select#gallery option:checked').value);
+		formData.append('userInfo.uiNum', document.querySelector('#uiNum').value);
+	}
+	
 	formData.append('galleryInfo.giNum', document.querySelector('select#gallery option:checked').value);
 	formData.append('eiName', document.querySelector('#eiName').value);
 	formData.append('eiArtist', document.querySelector('#eiArtist').value);
@@ -257,15 +281,17 @@ function doUpdate(){
 	formData.append('eiStartTime', document.querySelector('#eiStartTime').value);
 	formData.append('eiEndTime', document.querySelector('#eiEndTime').value);
 	
-	formData.append('fileInfo.fiNum',document.querySelector('#fileInfo-fiNum').value);
 	formData.append('fileInfo.fiFile',document.querySelector('#fiFile').files[0]);
+	formData.append('fileInfo.fiNum',document.querySelector('#fileInfo-fiNum').value);
 	
 	formData.append('eiContent', document.querySelector('#eiContent').value);
 	
-	formData.append('userInfo.uiNum', document.querySelector('#uiNum').value);
+	
 	
 	xhr.send(formData);
 }
+
+
 
 function getOpen(obj) {
 	
@@ -285,7 +311,8 @@ function getOpen(obj) {
 			document.getElementById('eiEndDate').value=exhibition.eiEndDate;
 			document.getElementById('eiStartTime').value=exhibition.eiStartTime;
 			document.getElementById('eiEndTime').value=exhibition.eiEndTime;
-			document.getElementById('fiFile').files[0]=exhibition.fileInfo;
+		
+			document.getElementById('fileMemory').value=exhibition.fileInfo.fiOriginalname;
 			document.getElementById('eiContent').value=exhibition.eiContent;
 			
 			document.getElementById('uiNum').value=exhibition.userInfo.uiNum;
