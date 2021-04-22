@@ -14,6 +14,9 @@ public interface ReviewDTO {
 	@JsonIgnore
 	String getFileInfoFiPath();
 	
+	@JsonIgnore
+	String getFileInfoFiNum();
+	
 	String getRviContent();
 	
 	@JsonIgnore
@@ -33,6 +36,10 @@ public interface ReviewDTO {
 	
 	default String getFiPath() {
 		return getFileInfoFiPath();
+	}
+	
+	default String getFiNum() {
+		return getFileInfoFiNum();
 	}
 	
 }

@@ -14,8 +14,14 @@ public interface ReviewService {
 
 	Page<ReviewDTO> getReviewInfos(Pageable pageable);
 	
+	Page<ReviewDTO> getUserReviews(Integer uiNum, Pageable pageable);
+	
 	//전시회 리뷰 등록
 	int saveReview(ReviewInfo reviewInfo) throws Exception;
+	
+	int updateReview(ReviewInfo reviewInfo) throws Exception;
+	
+	int removeReview(Integer rviNum);
 	
 	ReviewDTO getReviewInfo(Integer rviNum);
 	

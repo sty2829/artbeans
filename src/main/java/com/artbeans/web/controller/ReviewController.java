@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,6 +33,12 @@ public class ReviewController {
 		return reviewService.getReviewInfos(pageable);
 	}
 	
+	//해당유저의 리뷰 모두가져오기
+	@GetMapping("/reviews/{uiNum}")
+	public Page<ReviewDTO> getUserReviews(@PathVariable Integer uiNum, Pageable pageable) {
+		return reviewService.getUserReviews(uiNum, pageable);
+	}
+	
 	//리뷰 상세화면
 	@GetMapping("/review/{rviNum}")
 	public ReviewDTO getReview(@PathVariable Integer rviNum) {
@@ -44,6 +51,21 @@ public class ReviewController {
 		log.info("reviewInfo => {}", reviewInfo);
 		return reviewService.saveReview(reviewInfo);
 	}
+	
+	//유저리뷰 수정
+	@PostMapping("/review-update")
+	public int updateReview(ReviewInfo reviewInfo) throws Exception {
+		log.info("reviewInfo => {}", reviewInfo);
+		return reviewService.updateReview(reviewInfo);
+	}
+	
+	//리뷰 삭제
+	@DeleteMapping("/review/{rviNum}")
+	public int deleteReview(@PathVariable Integer rviNum) {
+		log.info("rviNum => {}", rviNum);
+		return reviewService.removeReview(rviNum);
+	}
+	
 	
 	//리뷰댓글 저장
 	@PostMapping("/review/comment")
