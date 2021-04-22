@@ -8,7 +8,6 @@ function get(){
 	xhr.open('GET','/Gallery-list?size=9&sort=giNum,asc&page='+ count); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			for(var galleryInfo of res.data){				
@@ -16,10 +15,12 @@ function get(){
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
 				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">';
-				html += '</div>';
+				html += '</div>';				
+				html += '<div class="row"><div class="col-sm-10">'
 				html += '<h2 class="entry-title">';
 				html += '<a onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">' + galleryInfo.giName + '</a>';
-				html += '</h2>';
+				html += '</h2></div>';					
+				html += '<div class="col-sm-2"><a href=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';
 				html += '<div class="entry-meta">';
 				html += '<ul>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
@@ -56,9 +57,11 @@ function areaAsc(){
 				html += '<div class="entry-img">';
 				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">';
 				html += '</div>';
+				html += '<div class="row"><div class="col-sm-10">'
 				html += '<h2 class="entry-title">';
 				html += '<a onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">' + galleryInfo.giName + '</a>';
-				html += '</h2>';
+				html += '</h2></div>';					
+				html += '<div class="col-sm-2"><a href=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';
 				html += '<div class="entry-meta">';
 				html += '<ul>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
@@ -99,9 +102,11 @@ function area(obj){
 				html += '<div class="entry-img">';
 				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">';
 				html += '</div>';
+				html += '<div class="row"><div class="col-sm-10">'
 				html += '<h2 class="entry-title">';
 				html += '<a onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">' + galleryInfo.giName + '</a>';
-				html += '</h2>';
+				html += '</h2></div>';					
+				html += '<div class="col-sm-2"><a href=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';
 				html += '<div class="entry-meta">';
 				html += '<ul>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
@@ -145,9 +150,11 @@ function nameAsc(){
 				html += '<div class="entry-img">';
 				html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">';
 				html += '</div>';
+				html += '<div class="row"><div class="col-sm-10">'
 				html += '<h2 class="entry-title">';
 				html += '<a onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">' + galleryInfo.giName + '</a>';
-				html += '</h2>';
+				html += '</h2></div>';					
+				html += '<div class="col-sm-2"><a href=\'/resources/assets/img/gallery/' +galleryInfo.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';
 				html += '<div class="entry-meta">';
 				html += '<ul>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';

@@ -12,6 +12,7 @@
 <script src="/resources/user/js/window/infinityScroll.js"></script>
 <script src="/resources/user/js/exhibition/openingList.js"></script>
 <link rel="stylesheet" href="/resources/user/css/right-menu.css">
+<link href='https://css.gg/attachment.css' rel='stylesheet'>
 <style>
 #side1 {
 	position: relative;
@@ -520,7 +521,6 @@
 					</div>
 
 					<img id="sidebarCollapse" src = "/resources/user/img/sidebtn/mapIcon.png">
-					
 			</div>
 		</section>
 
@@ -532,6 +532,6 @@
 
 	</main>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-	<script src="/resources/user/js/map/right-menu.js"></script>
+	<!-- <script src="/resources/user/js/map/right-menu.js"></script> -->
 </body>
 </html>

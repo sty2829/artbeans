@@ -8,6 +8,7 @@
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <script src="/resources/user/js/window/infinityScroll.js"></script>
 <script src="/resources/user/js/gallery/galleryList.js"></script>
+<link href='https://css.gg/attachment.css' rel='stylesheet'>
 </head>
 <body>
 

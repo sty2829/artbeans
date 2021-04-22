@@ -3,7 +3,7 @@
  */
 //window.onload = get;
 
-window.addEventListener("load", get());					
+window.addEventListener("load", get);					
 						
 function get() {
 	var xhr = new XMLHttpRequest();
@@ -14,22 +14,16 @@ function get() {
 			var html = '';
 			var idx = 1;
 			for (var exhibition of res.data) {
-			console.log(exhibition)
-				//var startDate = new Date(exhibition.eiStartDate);
-				//var today = new Date();
-				//var endDate = new Date(exhibition.eiEndDate);
-				//console.log(exhibition.eiStatus==1) //진행중인 전시회
-				//console.log("진행중" +  (startDate <= today && today <= endDate));
-				//if (exhibition.eiStatus == 1) {
-					//if (startDate <= today && today <= endDate) {
 						html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="ei' + idx + '">';
 						html += '<article class="entry">';
 						html += '<div class="entry-img">';
 						html += '<img name="imgPath" style="width:400px; cursor:pointer; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 						html += '</div>';
-						html += '<h2 class="entry-title">';
-						html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
-						html += '</h2>';
+						html += '<div class="row"><div class="col-sm-10">'
+					    html += '<h2 class="entry-title">';
+					    html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
+					    html += '</h2></div>';					
+					    html += '<div class="col-sm-2"><a href=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
 						html += '<div class="entry-meta">';
 						html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
@@ -45,8 +39,6 @@ function get() {
 						html += '</article>';
 						html += '</div>';
 						idx++;
-					//}
-				//}
 			}
 			document.querySelector('#exhibitionList').innerHTML += html;
 		}
@@ -63,22 +55,17 @@ function newest() {
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			var idx = 1;
-			for (var exhibition of res.data) {
-				//var startDate = new Date(exhibition.eiStartDate);
-				//var today = new Date();
-				//var endDate = new Date(exhibition.eiEndDate);
-				//console.log(exhibition.eiStatus==1) //진행중인 전시회
-				//console.log("진행중" +  (startDate <= today && today <= endDate));
-				//if (exhibition.eiStatus == 1) {
-					//if (startDate <= today && today <= endDate) {
+			for (var exhibition of res.data) {				
 						html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="ei' + idx + '">';
 						html += '<article class="entry">';
 						html += '<div class="entry-img">';
 						html += '<img name="imgPath" style="width:400px; cursor:pointer; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 						html += '</div>';
+						html += '<div class="row"><div class="col-sm-10">';
 						html += '<h2 class="entry-title">';
-						html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
-						html += '</h2>';
+					    html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
+					    html += '</h2></div>';					
+					    html += '<div class="col-sm-2"><a href=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
 						html += '<div class="entry-meta">';
 						html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
@@ -95,8 +82,6 @@ function newest() {
 						html += '</article>';
 						html += '</div>';
 						idx++;
-					//}
-				//}
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;
 		}
@@ -115,21 +100,16 @@ function deadline() {
 			var html = '';
 			var idx = 1;
 			for (var exhibition of res.data) {
-				//var startDate = new Date(exhibition.eiStartDate);
-				//var today = new Date();
-				//var endDate = new Date(exhibition.eiEndDate);
-				//console.log(exhibition.eiStatus==1) //진행중인 전시회
-				//console.log("진행중" +  (startDate <= today && today <= endDate));
-				//if (exhibition.eiStatus == 1) {
-					//if (startDate <= today && today <= endDate) {
 						html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="ei' + idx + '">';
 						html += '<article class="entry">';
 						html += '<div class="entry-img">';
 						html += '<img name="imgPath" style="width:400px; cursor:pointer; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 						html += '</div>';
+						html += '<div class="row"><div class="col-sm-10">';
 						html += '<h2 class="entry-title">';
-						html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
-						html += '</h2>';
+					    html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
+					    html += '</h2></div>';					
+					    html += '<div class="col-sm-2"><a href=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
 						html += '<div class="entry-meta">';
 						html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
@@ -145,8 +125,6 @@ function deadline() {
 						html += '</article>';
 						html += '</div>';
 						idx++;
-					//}
-				//}
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;
 		}
@@ -160,23 +138,18 @@ function areaAll() {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200){
 				var res = JSON.parse(xhr.responseText);
-				var html = '';
-				//console.log(res.data);			
+				var html = '';							
 				for (var exhibition of res.data) {
-					//var today = new Date();
-					//var endDate = new Date(exhibition.eiEndDate);
-					//console.log("마감" + (today > endDate));
-					//console.log(exhibition.eiStatus == 1);
-					//if (exhibition.eiStatus == 1) {
-						//if (today > endDate) {
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
 							html += '<div class="entry-img">';
 							html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 							html += '</div>';
+							html += '<div class="row"><div class="col-sm-10">';
 							html += '<h2 class="entry-title">';
-							html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
-							html += '</h2>';
+					        html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
+					        html += '</h2></div>';					
+					        html += '<div class="col-sm-2"><a href=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
 							html += '<div class="entry-meta">';
 							html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
@@ -191,8 +164,6 @@ function areaAll() {
 							html += '</div>';
 							html += '</article>';
 							html += '</div>';
-						//}
-					//}
 				}
 			
 			document.querySelector('#exhibitionList').innerHTML = html;
@@ -207,8 +178,7 @@ function area(obj) {
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', '/exhibition-listDemoss/' + obj.value + '?size=30&sort=eiNum,asc&page=' + count); //ExhibitionController
 	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			//console.log(xhr.responseText);
+		if (xhr.readyState == 4 && xhr.status == 200) {			
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			for (var exhibition of res.data) {
@@ -225,8 +195,9 @@ function area(obj) {
 						html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 						html += '</div>';
 						html += '<h2 class="entry-title">';
-						html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
-						html += '</h2>';
+					    html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
+					    html += '</h2></div>';					
+					    html += '<div class="col-sm-2"><a href=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
 						html += '<div class="entry-meta">';
 						html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';

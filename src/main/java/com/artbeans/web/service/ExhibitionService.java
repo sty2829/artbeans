@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
 
 import com.artbeans.web.dto.DataTable;
 import com.artbeans.web.entity.ExhibitionInfo;
@@ -52,6 +53,9 @@ public interface ExhibitionService {
 
 	// admin page
 	Page<ExhibitionInfo> getBeforeConfirmLists(Pageable pageable);
+	
+	// admin-ei-update
+	void updateExhibitionInfoWithoutFile(Integer eiStatus, Integer giNum, String eiName, String eiArtist, Integer eiCharge, String eiStartDate, String eiEndDate, String eiStartTime,String eiEndTime,String eiContent,Integer uiNum,Integer eiNum)  throws Exception ;
 
 	DataTable<ExhibitionInfo> getOpeningCalendarList(String year, String month, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo);

@@ -35,6 +35,26 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	            nativeQuery = true)
 	public void updateExhibitionInfoEiBanner(@Param("eiBanner") Integer eiBanner, @Param("eiNum") Integer eiNum);
 	
+	// admin-ei-update
+	@Transactional
+	@Modifying
+	@Query(value = "UPDATE exhibition_info\n"
+			+ " SET ei_status =:eiStatus,\n"
+			+ " gi_num =:giNum,\n"
+			+ " ei_name =:eiName,\n"
+			+ " ei_artist =:eiArtist,\n"
+			+ " ei_charge =:eiCharge,\n"
+			+ " ei_start_date =:eiStartDate,\n"
+			+ " ei_end_date =:eiEndDate,\n"
+			+ " ei_start_time =:eiStartTime,\n"
+			+ " ei_end_time =:eiEndTime,\n"
+			+ " ei_content =:eiContent,\n"
+			+ " ui_num =:uiNum\n"
+			+ " WHERE ei_num =:eiNum",
+	            nativeQuery = true)
+	public void updateExhibitionInfoWithoutFile(@Param("eiStatus") Integer eiStatus, @Param("giNum") Integer giNum, @Param("eiName") String eiName, @Param("eiArtist") String eiArtist, @Param("eiCharge") Integer eiCharge, @Param("eiStartDate") String eiStartDate, @Param("eiEndDate") String eiEndDate, @Param("eiStartTime") String eiStartTime, @Param("eiEndTime") String eiEndTime, @Param("eiContent") String eiContent, @Param("uiNum") Integer uiNum, @Param("eiNum") Integer eiNum);
+	
+	
 	// calendar-list 
 	@Query(value = "SELECT * FROM exhibition_info WHERE YEAR(ei_start_date) =:year AND MONTH(ei_start_date) = :month order by ei_num",nativeQuery = true)
 	public Page<ExhibitionInfo> getOpeningCalendarList(@Param("year") String year, @Param("month") String month, Pageable pageable);

@@ -53,7 +53,7 @@ public class ExhibitionController {
 		return eService.getExhiListDemo(pageable, dtExhibitionInfo);
 	}
 
-	// test
+	// 사용중(상혁)
 	@GetMapping("/exhibition-listDemoss/{giAddress}")
 	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoListDemo(@PathVariable String giAddress,
 			Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo) {
@@ -68,27 +68,28 @@ public class ExhibitionController {
 		return eService.getExhibitionInfoLists(pageable, dtExhibitionInfo);
 	}
 
-	// exhibition-list 변경
+	// 사용중(상혁) exhibition-list 변경
 	@GetMapping("/exhibition-openinglist")
 	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionOpeningList(String eiStatus, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getOpeningList(eiStatus, pageable, dtExhibitionInfo);
 	}
 
-	// exhibition-list 변경
+	// 사용중(상혁) exhibition-list 변경
 	@GetMapping("/exhibition-closelist")
 	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionCloseList(String eiStatus, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getCloseList(eiStatus, pageable, dtExhibitionInfo);
 	}
 
-	// exhibition-list 변경
+	// 사용중(상혁) exhibition-list 변경
 	@GetMapping("/exhibition-futurelist")
 	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionFutureList(String eiStatus, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getFutureList(eiStatus, pageable, dtExhibitionInfo);
-	}
-
+	}	
+	
+	//사용중(상혁)
 	@GetMapping("/exhibition")
 	public @ResponseBody ExhibitionInfo getExhibitionInfo(@RequestParam Integer eiNum) {
 		log.info("eiNum=>{}", eService.getExhibitionInfo(eiNum));
@@ -133,6 +134,17 @@ public class ExhibitionController {
 		eService.updateExhibitionInfoEiBanner(exhibitionInfo);
 		return exhibitionInfo.getEiNum();
 	}
+	
+	// admin-ei-update
+	@PostMapping("/exhibition-admin-update")
+	public @ResponseBody Integer updateExhibitionInfoWithoutFile(Integer eiStatus, Integer giNum, String eiName, String eiArtist,
+			Integer eiCharge, String eiStartDate, String eiEndDate, String eiStartTime, String eiEndTime,
+			String eiContent, Integer uiNum, Integer eiNum) throws Exception {
+		log.info("eiNum=>{}",eiNum);
+		eService.updateExhibitionInfoWithoutFile(eiStatus, giNum, eiName, eiArtist, eiCharge, eiStartDate, eiEndDate, eiStartTime, eiEndTime, eiContent, uiNum, eiNum);
+		return eiNum;
+	}
+
 
 	// admin pagenation
 	@GetMapping("/exhibitions/paging")

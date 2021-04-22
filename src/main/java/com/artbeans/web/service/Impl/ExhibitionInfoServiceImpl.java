@@ -197,5 +197,12 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
 		return dtExhibitionInfo;
 	}
+
+	@Override
+	public void updateExhibitionInfoWithoutFile(Integer eiStatus, Integer giNum, String eiName, String eiArtist,
+			Integer eiCharge, String eiStartDate, String eiEndDate, String eiStartTime, String eiEndTime,
+			String eiContent, Integer uiNum, Integer eiNum) {
+		exhiRepo.updateExhibitionInfoWithoutFile(eiStatus, giNum, eiName, eiArtist, eiCharge, eiStartDate, eiEndDate, eiStartTime, eiEndTime, eiContent, uiNum, eiNum);
+	}
 	
 }
