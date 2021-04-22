@@ -272,16 +272,8 @@ function sideMap(idx) {
 		zoom: 16
 	};
 
-
 	var map = new naver.maps.Map('map', mapOptions);
-
-
-
 }
-
-
-
-
 function moveMap(move) {
 	console.log(move);
 	var giAddressX = move.getAttribute('data-x');

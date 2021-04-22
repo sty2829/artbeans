@@ -532,6 +532,6 @@
 
 	</main>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-	<!-- <script src="/resources/user/js/map/right-menu.js"></script> -->
+	<script src="/resources/user/js/map/right-menu.js"></script>
 </body>
 </html>

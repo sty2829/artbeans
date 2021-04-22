@@ -26,7 +26,7 @@ public class SearchController {
 	@Autowired
 	private GalleryService gService;
 	
-	@GetMapping("/search")
+	@GetMapping("/search") //헤더 검색창 단순 화면전환 및 keyword 키밸류 이동
 	public String search(@RequestParam (value = "keyword") String keyword, Model model) {
 		log.info("search=>{}", keyword);
 		model.addAttribute("keyword",keyword);
@@ -34,22 +34,23 @@ public class SearchController {
 		return "/views/search/searchResults";
 	}
 	
-	@GetMapping("/exhibition-search")
+	@GetMapping("/exhibition-search")//통합검색 전시회 name like로 가져옴
 	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
 		log.info("exhibitionList=>{}",exhibitionInfo);
 		return eService.getExhibitionInfos(exhibitionInfo);
 	}
+	@GetMapping("/Gallery-lists")// 통합검색 갤러리 위와 동일하게 name like로 가져옴
+	public @ResponseBody List<GalleryInfo> getGalleryInfoList(@ModelAttribute GalleryInfo galleryInfo){
+		return gService.getGalleryInfos(galleryInfo);
+	}
 	
-	@GetMapping("/exhibition-banner")
+	@GetMapping("/exhibition-banner")//슬라이드 배너 스테이터스 구분하여 리스트 가져옴
 	public @ResponseBody List<ExhibitionInfo> getEiBannerList(ExhibitionInfo exhibitionInfo){
 		log.info("exhibition-banner=>{}",exhibitionInfo);
 		return eService.getEiBannerLists(exhibitionInfo);
 	}
 	
-	@GetMapping("/Gallery-lists")
-	public @ResponseBody List<GalleryInfo> getGalleryInfoList(@ModelAttribute GalleryInfo galleryInfo){
-		return gService.getGalleryInfos(galleryInfo);
-	}
+	
 	
 	
 	
