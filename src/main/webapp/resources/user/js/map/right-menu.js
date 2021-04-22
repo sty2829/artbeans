@@ -14,3 +14,10 @@ $('.overlay').on('click', function() {
 	$('#sidebarCollapse').show();
 	$('.read-more').hide();
 });
+
+window.addEventListener("scroll",  function(e) {
+ if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+   $('.read-more').show();
+   }
+  
+});
