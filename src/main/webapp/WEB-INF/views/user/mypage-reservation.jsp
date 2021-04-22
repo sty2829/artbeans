@@ -210,10 +210,15 @@ function getPastTickets(page){
 					modal += '</div>'; 
 					modal += '</div>'; 
 			}
-			var disable = res.first ? 'disabled' : '';
+			var disable = '';
+			var clickEvent = 'onclick="getPastTickets(' + res.number + ')"';
+			if(res.first){
+				disable = 'disabled';
+				clickEvent = '';
+			}
 			
-			var li = '<li class="page-item ' + disable + '" onclick="page(' + res.number + ')">';
-			li += '<a class="page-link" href="#" tabindex="-1">이전</a>';
+			var li = '<li class="page-item ' + disable + '" ' + clickEvent +'>';
+			li += '<a class="page-link" tabindex="-1">이전</a>';
 			li += '</li>';
 			
 			var startPage = Math.floor((((Number(res.number) + 1) - 1) / size)) * size + 1;
@@ -223,14 +228,22 @@ function getPastTickets(page){
 			}
 			for(startPage; startPage<=endPage; startPage++){
 				if(startPage === page){
-					li += '<li class="page-item active" onclick="page(' + startPage + ')"><a class="page-link" href="#">'+ startPage +'</a></li>';
+					li += '<li class="page-item active" onclick="getPastTickets(' + startPage + ')"><a class="page-link">'+ startPage +'</a></li>';
 					continue;
 				}
-				li += '<li class="page-item" onclick="page(' + startPage +')"><a class="page-link" href="#">'+ startPage +'</a></li>';
+				li += '<li class="page-item" onclick="getPastTickets(' + startPage +')"><a class="page-link">'+ startPage +'</a></li>';
 			}
-			disable = res.last ? 'disabled' : '';
-			li += '<li class="page-item ' + disable +'" onclick="page(' + (Number(res.number)+2) +')">';
-		    li += '<a class="page-link" href="#">다음</a>';
+			
+			disable = '';
+			clickEvent = 'onclick="getPastTickets(' + (Number(res.number)+2) + ')"';
+			
+			if(res.last){
+				disable = 'disabled';
+				clickEvent = '';
+			}
+			
+			li += '<li class="page-item ' + disable +'" ' + clickEvent + '>';
+		    li += '<a class="page-link">다음</a>';
 		  	li += '</li>';
 			
 			

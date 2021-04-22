@@ -26,17 +26,17 @@
       	<div class="row">
       		<div class="col-lg-12" style="text-align: center;">
       		 	<div class="section-title">
-		          <p>후기 / 추천</p>
+		          <p>리뷰</p>
 		        </div>
           	</div>
    		</div>
-		<div class="row d-flex justify-content-center" id="reviewList">
+		<div class="row row-cols-1 row-cols-md-3" id="reviewList">
 		</div>
 	</div>	
 <script>
 var count = 0;
 window.onscroll = function(e) {
-    if((window.innerHeight + window.scrollY) >= (document.body.offsetHeight+120)) {
+    if((window.innerHeight + window.scrollY) >= (document.body.offsetHeight+150)) {
         count++;
         getReviews();
     }
@@ -53,24 +53,16 @@ function getReviews(){
 			for(var review of res.content) {
 				console.log(review.rviNum);
 				html += '<a href="/views/community/review-view?rviNum=' + review.rviNum + '"';
-				html += '<div class="col-lg-8">';
-				html += '<div class="row">';
-				html += '<div class="col-lg-4">';
-				html += '<img src="/resources/assets/img/review/' + review.fiPath + '" style="width: 200px; height: 199px">';
+				html += '<div class="col mb-4">';
+				html += '<div class="card">';
+				html += '<img src="/resources/assets/img/review/' + review.fiPath +'" class="card-img-top" style="width: 348; max-height: 410px">';
+				html += '<div class="card-body">';
+				html += '<h5 class="card-title">' + review.rviTitle +'</h5>';
+				html += '<p class="card-text"><small class="text-muted">소제목입니다</small></p>';
+				html += '<span style="color:#0787b1">' + review.date + '</span><span style="float:right;"> '+ review.uiEmail + '</span>';
 				html += '</div>';
-				html += '<div class="col-lg-8">';
-				html += '<h3 style="margin-top: 10px">' + review.rviTitle +'</h3>';
-				html += '<p style="margin-top: 20px">소제목</p>';
-				html += '<div style="margin-top: 90px">';
-				html += '<span style="font-weight: 600;">' + review.date +'</span>';
-				html += '<span class="float-right" style="font-weight: 600;">by ' + review.uiEmail + '</span>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '<hr>';
 				html += '</div>';
 				html += '</a>';
-				
 			}
 			document.querySelector('#reviewList').innerHTML += html;
 		}

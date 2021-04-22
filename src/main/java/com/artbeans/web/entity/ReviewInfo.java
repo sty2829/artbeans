@@ -23,7 +23,6 @@ import lombok.Data;
 @Entity
 @Table(name="review_info")
 @Data
-@DynamicUpdate
 public class ReviewInfo {
 
 	@Id
