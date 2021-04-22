@@ -121,9 +121,9 @@ public class ExhibitionController {
 
 	// 유저ID로 예약전시회 찾는 컨트롤러 전시회예약정보 없는 전시회만
 	// 전시회 정보 찾기위해.. 추가함
-	@GetMapping("/exhibition/{uiNum}")
-	public @ResponseBody List<ExhibitionInfo> getUserExhibition(@PathVariable Integer uiNum) {
-		return eService.getExhibitionFindByUiNum(uiNum);
+	@GetMapping("/exhibition/{eiNum}")
+	public @ResponseBody List<ExhibitionInfo> getUserExhibition(@PathVariable Integer eiNum) {
+		return eService.getExhibitionFindByUiNum(eiNum);
 	}
 
 	// admin 배너허가를 위한 업데이트
