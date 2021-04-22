@@ -26,43 +26,51 @@
 		<table cellspacing="0;">
 		<tbody><tr>
 			<td>
-				<input type="email" placeholder="이메일" name="email" id="join_email" value="">
+				<input type="email" placeholder="이메일" name="email" id="uiEmail">
+				<input type="button" id="chk_button" value="중복확인" onclick="emailCheck()">
 			</td>
 		</tr>
 		<tr>
 			<td>
-				<input type="text" placeholder="성함" name="name" id="iname" value="">
+				<input type="text" placeholder="성함" name="uiName" id="uiName">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="text" id="uiPhoneNumber" name="uiPhoneNumber"
+							placeholder="휴대폰번호 (-를 포함해주세요.)">
+			</td>
+		</tr>	
+				<tr>
+			<td>
+				<input type="password" placeholder="비밀번호" name="uiPwd" id="uiPwd">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="password" placeholder="비밀번호 확인" name="uiPwd2" id="uiPwd2">
 			</td>
 		</tr>
 				<tr>
-			<td>
-				<input type="password" placeholder="비밀번호" name="password" id="password2">
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<input type="password" placeholder="비밀번호 확인" name="password2" id="password3">
-			</td>
-		</tr>
-				<tr>
 			<td style="border:0px;">
-				<button id="gender_m" style="float:left; width:50%; cursor:pointer; color:#612581;font-weight:bold; height:40px; background-color:#fff; border:2px solid #000" type="button" onclick="gender_chg('m')">남</button>
-				<button id="gender_f" style="background-color:#fff;float:left; width:50%; cursor:pointer; height:40px; color:#757575; font-weight:300; border:1px solid #E7E7E7;" onclick="gender_chg('f')" type="button">여</button>
+				<input type="button" value="남성" name="uiGender" id="uiGender" style="float:left; width:50%; cursor:pointer; color:#612581;font-weight:bold; height:40px; background-color:#fff; border:2px solid #000">
+				<button id="uiGender" style="float:left; width:50%; cursor:pointer; color:#612581;font-weight:bold; height:40px; background-color:#fff; border:2px solid #000" type="button" onclick="gender_chg('m')">남</button>
+				<button id="uiGender" style="background-color:#fff;float:left; width:50%; cursor:pointer; height:40px; color:#757575; font-weight:300; border:1px solid #E7E7E7;" onclick="gender_chg('f')" type="button">여</button>
 			</td>
 		</tr>
 		<tr>
 			<td style="border:0px;">
-				<button type="button" id="age_10" class="age_btn on" onclick="javascript:age_chg('10')">10대</button>
-				<button type="button" id="age_20" class="age_btn" onclick="javascript:age_chg('20')">20대</button>
-				<button type="button" id="age_30" class="age_btn" onclick="javascript:age_chg('30')">30대</button>
-				<button type="button" id="age_40" class="age_btn" onclick="javascript:age_chg('40')">40대</button>
-				<button type="button" id="age_50" class="age_btn" onclick="javascript:age_chg('50')">50대</button>
-				<button type="button" id="age_60" class="age_btn" onclick="javascript:age_chg('60')">60대 이상</button>
+				<button type="button" id="uiAge" class="age_btn on" onclick="javascript:age_chg('10')">10대</button>
+				<button type="button" id="uiAge" class="age_btn" onclick="javascript:age_chg('20')">20대</button>
+				<button type="button" id="uiAge" class="age_btn" onclick="javascript:age_chg('30')">30대</button>
+				<button type="button" id="uiAge" class="age_btn" onclick="javascript:age_chg('40')">40대</button>
+				<button type="button" id="uiAge" class="age_btn" onclick="javascript:age_chg('50')">50대</button>
+				<button type="button" id="uiAge" class="age_btn" onclick="javascript:age_chg('60')">60대 이상</button>
 			</td>
 		</tr>
 		<tr>
 			<td style="border:0px;">
-				<select style="width:500px; float:left; text-align-last:center;  letter-spacing:-1px;" onchange="sido_chg(this)" name="sido" id="sido">
+				<select style="width:500px; float:left; text-align-last:center;  letter-spacing:-1px;" onchange="sido_chg(this)" name="sido" id="uiRegion">
 					<option value="" style="text-align:left;">지역선택</option>
 									<option value="서울">서울</option>
 									<option value="부산">부산</option>
@@ -109,7 +117,7 @@
 "회사"는 개인정보 취급방침의 변경(내용 추가, 삭제 및 수정)이 있을 경우 7일전 웹사이트 또는 어플리케이션 내 공지사항을 통해 고지하고 있습니다. 또한 변경된 내용을 고객이 쉽게 확인할 수 있도록 변경 전∙후를 비교하여 공개하고 있습니다. 
 6. 고지의 의무
  현 개인정보 취급방침의 내용 추가, 삭제 및 수정 등의 변경이 있을 시에는 시행일의 7일 전부터 홈페이지의 공지사항을 통하여 고지할 것입니다.최초 공고 일자 : 2016년 12월 15일  최종 변경 및 시행 일자 : 2016년 12월 21일</textarea>
-			<input type="checkbox" id="chbox_privacy" class="blind">
+			<input type="checkbox" id="ServiceTerms" class="blind">
 			<label for="chbox_privacy" class="png_icon2"></label>
 			<span style="font-size:18px; vertical-align:middle;">위의 이용약관에 동의합니다.</span>
 		</div>
@@ -127,20 +135,153 @@
 제5조(분쟁 해결)
 1. "회사"는 "회원"이 제기하는 정당한 의견이나 불만을 반영하고 그 피해를 보상처리하기 위해서 고객센터 또는 그에 준하는 조직을 설치, 운영합니다. 2. "회사"는 "회원"이 제기하는 불만사항 및 의견을 우선적으로 처리합니다. 다만 신속한 처리가 곤란한 경우에는 "회원"에게 그 사유와 처리일정을 즉시 통보합니다. 
 본 약관 적용일자: 2016년 12월15일</textarea>
-			<input type="checkbox" id="chbox_use" class="blind">
+			<input type="checkbox" id="termsPrivacy" class="blind">
 			<label for="chbox_use" class="png_icon2"></label>
 			<span style="font-size:18px; vertical-align:middle;">위의 이용약관에 동의합니다.</span>
 		</div>
-		<div class="all_check term_info">
-			<input type="checkbox" id="chbox_all" class="blind">
-			<label for="chbox_all" class="png_icon2"></label>
-			<span style="font-size:20px; vertical-align:middle; width:100%; padding-bottom:20px;">모두동의</span>
-		</div>
 		<div style="width:100%; text-align:center; margin-top:30px;">
-			<button class="btn_submit">회원가입</button>
+			<button class="btn_submit" onclick="goInsert()">회원가입</button>
 		</div>
 		
 	</div>
 		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+		<script>
+		//이메일(Id) 중복체크 화면 open
+		function emailCheck() {
+			window.open("/views/user/emailCheck", "width=400", "heigth=300");
+			if(!emailCheck){
+				alert('이메일 중복확인을 체크해주세요.');
+			}
+		}
+
+		
+		function goInsert() {
+
+			var uiName = document.querySelector('#uiName');
+			if (uiName.value.trim().length < 2) {
+				alert('이름을 정확히 입력해주세요.');
+				uiName.focus();
+				return;
+			}
+			
+			var uiPhoneNumber = document.querySelector('#uiPhoneNumber');
+			if(!uiPhoneNumber.contains("-")){
+				alert('-를 포함한 13자리 휴대폰 번호를 입력해주세요.');
+			}else{
+					if (uiPhoneNumber.value.trim().length < 1|| uiPhoneNumber.value.trim().length > 13) {
+						alert('휴대폰 번호를 정확하게 입력해주세요.');
+						uiPhoneNumber.focus();
+						return;
+					}
+				}
+
+				var uiEmail = document.querySelector('#uiEmail');
+				if (!uiEmail.contains("@")) {
+					alert('이메일 주소를 정확히 입력해주세요.');
+				} else {
+					if (uiEmail.value.trim().length < 1) {
+						alert('이메일 주소를 정확히 입력해주세요.');
+						uiEmail.focus();
+						return;
+					}
+				}
+
+				var uiPwd = document.querySelector('#uiPwd');
+				if (uiPwd.value.trim().length < 1) {
+					alert('비밀번호를 정확히 입력해주세요.');
+					uiPwd.focus();
+					return;
+				}
+
+				var uiPwd = document.querySelector('#uiPwd');
+				if (uiPwd.value.trim().length < 4) {
+					alert('비밀번호는 4글자 이상입니다.');
+					uiPwd.focus();
+					return;
+				}
+
+				var uiPwd2 = document.querySelector('#uiPwd2');
+				if (uiPwd2.value.trim().length < 1) {
+					alert('비밀번호 확인란을 입력해주세요.');
+					uiPwd.focus();
+					return;
+				}
+
+				var uiPwd2 = document.querySelector('#uiPwd2');
+				if (uiPwd.value != uiPwd2.value) {
+					alert('비밀번호가 일치하지 않습니다.');
+					uiPwd2.value = "";
+					uiPwd2.focus();
+					return false;
+				}
+
+				var uiRegion = document
+						.querySelector('select#uiRegion option:checked');
+				if (uiRegion.value.trim().length < 1) {
+					alert('지역을 선택해주세요.');
+					return;
+				}
+
+				var uiGender = document
+						.querySelector('input[id="uiGender"]:checked');
+				if (!uiGender) {
+					alert('성별을 선택해주세요.');
+					uigender.focus();
+					return;
+				}
+
+				var uiAge = document
+						.querySelector('button[id="uiAge"]:checked');
+				if (!uiAge) {
+					alert('연령대를 선택해주세요.');
+					return;
+				}
+
+				var uiGenre = document.querySelector('#uiGenre');
+				if (uiGenre.value.length < 1) {
+					alert('장르를 선택해주세요.');
+					return;
+				}
+
+				var check1 = document.querySelector('#termsService:checked');
+				if (check1.value.length < 1) {
+					alert('이용약관에 동의해주세요.');
+				}
+
+				var checks = document.querySelector('#termsPrivacy:checked');
+				if (checks.value.trim().length < 1) {
+					alert('개인정보 수집/이용약관에 동의해주세요.');
+				}
+
+				var param = {
+					uiName : document.querySelector('#uiName').value,
+					uiEmail : document.querySelector('#uiEmail').value,
+					uiPwd : document.querySelector('#uiPwd').value,
+					uiPwd2 : document.querySelector('#uiPwd2').value,
+					uiRegion : document.querySelector('#uiRegion').value,
+					uiGender : uiGender.value,
+					uiAge : uiAge.value,
+					uiGenre : document.querySelector('#uiGenre').value,
+					check1 : document.querySelector('#termsService').value,
+					checks : document.querySelector('#termsPrivacy').value
+				}
+
+				var xhr = new XMLHttpRequest();
+				xhr.open('POST', '/user-insert');
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						console.log(xhr.responseText);
+						if (xhr.responseText) {
+							alert('반갑습니다!');
+						}
+					}
+				}
+
+				xhr.setRequestHeader('content-type',
+						'application/json;charset=UTF-8');
+				xhr.send(JSON.stringify(param));
+			}
+		</script>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>
