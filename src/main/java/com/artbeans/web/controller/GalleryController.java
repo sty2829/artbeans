@@ -21,12 +21,13 @@ public class GalleryController {
 	@Autowired
 	private GalleryService gService;
 	
+	//사용중(상혁)
 	@GetMapping("/Gallery-list")
 	public @ResponseBody DataTable<GalleryInfo> getExhibitionInfoList(Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo){
 		return gService.getGalleryLists(pageable, dtGalleryInfo);
 	}
 	
-	//테스트
+	//사용중(상혁)
 	@GetMapping("/Gallery-listss/{giAddress}")
 	public @ResponseBody DataTable<GalleryInfo> getExhibitionInfoList(@PathVariable String giAddress , Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo){
 		log.info("giAddress=>{}",giAddress);
@@ -38,6 +39,7 @@ public class GalleryController {
 //		return gService.getGalleryInfos(galleryInfo);
 //	}
 	
+	//사용중(상혁)
 	@GetMapping("/Gallery")
 	public @ResponseBody GalleryInfo getGalleryInfo(@RequestParam Integer giNum){
 		return gService.getGalleryInfo(giNum);

@@ -3,7 +3,7 @@
  */
 
 //window.onload = get;
-window.addEventListener("load", get());	
+window.addEventListener("load", get);	
 
 function get() {
 	var xhr = new XMLHttpRequest();
