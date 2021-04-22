@@ -9,7 +9,6 @@ window.onscroll = function(e) {
     //할것
         count++;
         get();
-        $('.read-more').show();
     }
 };
 
