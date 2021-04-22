@@ -185,10 +185,6 @@
 	
 	<script>
 var getValue = getParameterByName("eiNum");
-
-getOpen(getValue);
-galleryOption();
-
 function getParameterByName(name) {
 	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
 	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -291,64 +287,67 @@ function doUpdate(){
 	xhr.send(formData);
 }
 
-
-
-function getOpen(obj) {
-	
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition?eiNum='+obj); //ExhibitionController
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var exhibition = JSON.parse(xhr.responseText);
-			
-			document.getElementById('eiNum').value=exhibition.eiNum;
-			document.getElementById('eiStatus').value=exhibition.eiStatus;
-			document.getElementById('gallery').value=exhibition.galleryInfo.giNum;
-			document.getElementById('eiName').value=exhibition.eiName;
-			document.getElementById('eiArtist').value=exhibition.eiArtist;
-			document.getElementById('eiCharge').value=exhibition.eiCharge;
-			document.getElementById('eiStartDate').value=exhibition.eiStartDate;
-			document.getElementById('eiEndDate').value=exhibition.eiEndDate;
-			document.getElementById('eiStartTime').value=exhibition.eiStartTime;
-			document.getElementById('eiEndTime').value=exhibition.eiEndTime;
-		
-			document.getElementById('fileMemory').value=exhibition.fileInfo.fiOriginalname;
-			document.getElementById('eiContent').value=exhibition.eiContent;
-			
-			document.getElementById('uiNum').value=exhibition.userInfo.uiNum;
-						
-		}
-	}
-	xhr.send();
-}
-function galleryOption() {
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/Gallery-lists'); //GalleryController
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			var res = JSON.parse(xhr.responseText);
-			var html = '<option value="">갤러리 선택</option>';
-			for (var galleryInfo of res) {
-				html += '<option value="' + galleryInfo.giNum + '">' + galleryInfo.giName + '</option>';
+function getOpenLoopCall(obj){
+	return new Promise(function(resolve, reject){
+		let xhr = new XMLHttpRequest();
+		xhr.open('GET', '/exhibition?eiNum='+obj); //ExhibitionController
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				
+				let exhibition = JSON.parse(xhr.responseText);
+				resolve(exhibition);
+							
 			}
-			document.querySelector('#gallery').innerHTML = html;
 		}
-	}
-	xhr.send();
+		xhr.send();
+	})
 }
 
 
-/*
+function galleryOptionLoopCall() {
+	return new Promise(function(resolve, reject){
+		let xhr = new XMLHttpRequest();
+		xhr.open('GET', '/Gallery-lists'); //GalleryController
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				let res = JSON.parse(xhr.responseText);
+				resolve(res);
+				
+			}
+		}
+		xhr.send();
+	})
+}
+	
 
+window.addEventListener('load',async function(){
 
-		document.querySelector('#giName').value = res.galleryInfo['giNum'];
-		document.querySelector('#fileInfo-fiNum').value = res['fileInfo']['fiNum'];
-		document.querySelector('#uiNum').value = res['userInfo']['uiNum'];
-		document.querySelector('#giNum').value = res['galleryInfo']['giNum'];
-		
-		document.querySelector('#giName').value = res.galleryInfo.giName;
-		document.querySelector('#pView').innerHTML = '<img id="preView" width="200" src="/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '">';
-*/
+	let res=await galleryOptionLoopCall();
+	let html = '<option value="">갤러리 선택</option>';
+	for (let galleryInfo of res) {
+		html += '<option value="' + galleryInfo.giNum + '">' + galleryInfo.giName + '</option>';
+	}
+	document.querySelector('#gallery').innerHTML = html;
+	
+	
+	let exhibition=await getOpenLoopCall(getValue);
+	document.getElementById('eiNum').value=exhibition.eiNum;
+	document.getElementById('eiStatus').value=exhibition.eiStatus;
+	document.getElementById('gallery').value=exhibition.galleryInfo.giNum;
+	document.getElementById('eiName').value=exhibition.eiName;
+	document.getElementById('eiArtist').value=exhibition.eiArtist;
+	document.getElementById('eiCharge').value=exhibition.eiCharge;
+	document.getElementById('eiStartDate').value=exhibition.eiStartDate;
+	document.getElementById('eiEndDate').value=exhibition.eiEndDate;
+	document.getElementById('eiStartTime').value=exhibition.eiStartTime;
+	document.getElementById('eiEndTime').value=exhibition.eiEndTime;
+
+	document.getElementById('fileMemory').value=exhibition.fileInfo.fiOriginalname;
+	document.getElementById('eiContent').value=exhibition.eiContent;
+	
+	document.getElementById('uiNum').value=exhibition.userInfo.uiNum;
+})
+
 
 </script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
