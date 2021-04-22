@@ -26,7 +26,6 @@
 <body>
 
 	<input type="hidden" id="eiNum">
-	<input type="hidden" id="uiNum">
 	<main id="main">
 		<!-- ======= Breadcrumbs ======= -->
 		<section id="breadcrumbs" class="breadcrumbs">
@@ -280,15 +279,16 @@ function doUpdate(){
 	formData.append('galleryInfo.giNum',giNum);
 	xhr.send(formData);
 }
-
+var uiNum = ${userInfo.uiNum};
+console.log(uiNum);
 window.onload = exhibitionOption();//유저가 등록한 전시회 목록
 function exhibitionOption(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-search');
+	xhr.open('GET','/exhibition?uiNum='+uiNum);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res =JSON.parse(xhr.responseText);
-			
+			console.log(res);
 			var html = '<option value="">전시회를 선택하세요</option>';
 			for(var exhibitionInfo of res){
 				html += '<option value ="' + exhibitionInfo.eiNum+'">'+exhibitionInfo.eiName+'</option>';
