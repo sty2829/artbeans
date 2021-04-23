@@ -9,12 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artbeans.web.dto.DataTable;
+import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.FileInfo;
-import com.artbeans.web.entity.GalleryInfo;
 import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.repository.FileInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
@@ -146,9 +145,18 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 //		return dtExhibitionInfo;
 //	}//
 
+	
+	//해당유저의 전시회리스트를 불러온다.
 	@Override
-	public List<ExhibitionInfo> getExhibitionFindByUiNum(Integer uiNum) {
-		return exhiRepo.findAllByUserInfoUiNumAndReservationInfoIsNull(uiNum);
+	public List<ExhibitionInfo> getExhibitionFindByUiNum(UserSession userSession) {
+		if(userSession != null && userSession.getUiNum() != null) {
+			List<ExhibitionInfo> eiList =
+					exhiRepo.findAllByUserInfoUiNumAndReservationInfoIsNull(userSession.getUiNum());
+			if(!eiList.isEmpty()) {
+				return eiList;
+			}
+		}
+		return null;
 	}
 
 	// test

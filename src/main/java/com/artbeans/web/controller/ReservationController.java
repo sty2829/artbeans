@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.artbeans.web.dto.ReservationSchedule;
+import com.artbeans.web.dto.ResponseResult;
 import com.artbeans.web.entity.ReservationInfo;
 import com.artbeans.web.service.ReservationService;
 
@@ -33,8 +34,7 @@ public class ReservationController {
 	@PostMapping("/reservation")
 	public int saveReservation(@RequestBody ReservationInfo reservationInfo) {
 		log.info("reservationInfo => {}", reservationInfo);
-		reservationService.saveReservation(reservationInfo);
-		return 1;
+		return reservationService.saveReservation(reservationInfo);
 	}
 	
 	//해당전시회 선택한 예약날짜의 예매시간리스트 가져옴

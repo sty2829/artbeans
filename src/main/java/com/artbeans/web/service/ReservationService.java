@@ -9,7 +9,7 @@ public interface ReservationService {
 
 	ReservationSchedule getReservationSchedule(Integer eiNum);
 	
-	ReservationInfo saveReservation(ReservationInfo reservationInfo);
+	int saveReservation(ReservationInfo reservationInfo);
 
 	Map<String, Integer> getReservationTimes(Integer riNum, String dateStr);
 

@@ -153,10 +153,14 @@ flatpickr('#riEndTime', {
 
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
-	//추후에 유저번호 받아야함
-	xhr.open('GET', '/exhibition/' + 8);
+	xhr.open('GET', '/exhibitions-user');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
+			if(!xhr.responseText){
+				alert('등록하신 전시회가 없습니다. 전시회 등록 부터 해주세요.');
+				location.href = '/views/exhibition/insert';
+				return;
+			}
 			var res = JSON.parse(xhr.responseText);
 			var html = '<option selected disabled>예약 전시회를 선택해 주세요</option>';
 			for(var exhibition of res){
@@ -221,7 +225,6 @@ function insert(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			if(xhr.responseText >= 1){
 				alert('전시회 예약등록에 성공하였습니다.');
-				location.href = '/';
 				return;
 			}
 			alert('전시회 예약등록에 실패하였습니다.');
@@ -230,8 +233,6 @@ function insert(){
 	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
 	xhr.send(JSON.stringify(param));
 }
-
-
 
 </script>
 </body>

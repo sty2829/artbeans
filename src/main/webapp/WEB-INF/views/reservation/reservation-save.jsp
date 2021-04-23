@@ -77,11 +77,11 @@ h5 {
           	</div>
 			<div class="col-lg-4" id="saveDiv">
 	      		<label for="tiName">예매자 성함</label>
-			    <input type="text" class="form-control"  id="tiName" style="width: 330px" required>
+			    <input type="text" class="form-control"  id="tiName" style="width: 330px" value="${userInfo.uiName}" data-check="성함" >
       			<label for="tiEmail" class="mt-2">예매자 이메일</label>
-			    <input type="email" class="form-control" id="tiEmail" style="width: 330px" required>
+			    <input type="email" class="form-control" id="tiEmail" style="width: 330px" value="${userInfo.uiEmail}" data-check="이메일">
     			<label for="tiPhoneNumber" class="mt-2">예매자 연락처</label>
-			    <input type="text" class="form-control" id="tiPhoneNumber" style="width: 330px" required>
+			    <input type="text" class="form-control" id="tiPhoneNumber" style="width: 330px" value="${userInfo.uiPhoneNumber}" data-check="연락처">
 		   </div>
 	   </div>
 		<div class="row">
@@ -163,20 +163,44 @@ infowindow.open(map, marker);
 IMP.init('imp08010397');
 
 function saveReservation(){
-	//임시로 uiNum 추가해야댐
+	var valid = {
+			tiName : {
+				min : 2,
+				max : 10
+			},
+			tiEmail : {
+				min: 5,
+				max : 40
+			},
+			tiPhoneNumber : {
+				min : 13,
+				max : 13
+			}
+	}
+	
+	console.log(valid['tiName']['min'])
+	var checkObjs = document.querySelectorAll('[data-check]');
+	for(var checkObj of checkObjs){
+		var title = checkObj.getAttribute('data-check')
+		var id = checkObj.id;
+		var txt = document.querySelector('#'+id).value.trim();
+		if(txt >= valid[id]['min'] || txt <= valid[id]['max'] ){
+			alert(title + '은 ' + valid[id][min] + ' 보다 이상이거나 ' + valid[id][max] + ' 이하여야 합니다.');
+			checkObj.focus();
+			return;
+		}
+	}
+	
+	
 	var param = {
 			paymentInfo : {},
 			reservationInfo : {
 				riNum: ${param.riNum}
-			},
-			userInfo : {
-				uiNum: 8
 			}
 	};
 	var objs = document.querySelectorAll('span[class="check"],input[class="form-control"],input[type="radio"]:checked');
 	var piMethod = document.querySelector('input[type="radio"]:checked');
-	console.log(objs);
-	for(obj of objs){
+	for(var obj of objs){
 		if(obj.tagName == 'INPUT'){
 			if(obj.id.includes('ti')){
 				param[obj.id] = obj.value;
@@ -237,10 +261,8 @@ function saveReservation(){
 	}
 	
 	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
-	xhr.send(JSON.stringify(param));
+	//xhr.send(JSON.stringify(param));
 }
-
-
 </script>	
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.artbeans.web.dto.DataTable;
+import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
@@ -123,9 +124,11 @@ public class ExhibitionController {
 
 	// 유저ID로 예약전시회 찾는 컨트롤러 전시회예약정보 없는 전시회만
 	// 전시회 정보 찾기위해.. 추가함
-	@GetMapping("/exhibition/{uiNum}")
-	public @ResponseBody List<ExhibitionInfo> getUserExhibition(@PathVariable Integer uiNum) {
-		return eService.getExhibitionFindByUiNum(uiNum);
+	@GetMapping("/exhibitions-user")
+	public @ResponseBody List<ExhibitionInfo> getUserExhibition(UserSession userSession) {
+		log.info("userSession => {}", userSession);
+		log.info("뭐가나오나 => {}",eService.getExhibitionFindByUiNum(userSession));
+		return eService.getExhibitionFindByUiNum(userSession);
 	}
 
 	// admin 배너허가를 위한 업데이트
