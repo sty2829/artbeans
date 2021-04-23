@@ -285,7 +285,7 @@ function sideMap(idx) {
 
 	var mapOptions = {
 		center: new naver.maps.LatLng(y, x),
-		zoom: 16
+		zoom: 18
 	};
 
 	var map = new naver.maps.Map('map', mapOptions);
@@ -299,7 +299,7 @@ function moveMap(move) {
 	console.log(giAddressY);
 	var mapOptions = {
 		center: new naver.maps.LatLng(giAddressY, giAddressX),
-		zoom: 14
+		zoom: 18
 	};
 	var map = new naver.maps.Map('map', mapOptions);
 }

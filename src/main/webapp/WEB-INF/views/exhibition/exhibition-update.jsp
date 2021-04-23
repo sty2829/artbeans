@@ -221,7 +221,7 @@ function doUpdate(){
 		return;
 	}	
 	var eiCharge = document.querySelector('#eiCharge');
-	if(eiCharge.value.trim().length<2){
+	if(eiCharge.value.trim().length>11){
 		alert('전시회 가격을 작성해주세요.');
 		eiCharge.focus();
 		return;
