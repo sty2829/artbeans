@@ -173,21 +173,23 @@ function saveReservation(){
 				max : 40
 			},
 			tiPhoneNumber : {
-				min : 13,
 				max : 13
 			}
 	}
-	
-	console.log(valid['tiName']['min'])
 	var checkObjs = document.querySelectorAll('[data-check]');
 	for(var checkObj of checkObjs){
 		var title = checkObj.getAttribute('data-check')
 		var id = checkObj.id;
-		var txt = document.querySelector('#'+id).value.trim();
-		if(txt >= valid[id]['min'] || txt <= valid[id]['max'] ){
-			alert(title + '은 ' + valid[id][min] + ' 보다 이상이거나 ' + valid[id][max] + ' 이하여야 합니다.');
-			checkObj.focus();
-			return;
+		var txt = checkObj.value.trim().length;
+		if(id == 'tiPhoneNumber'){
+			if(txt != valid[id]['max'] ){
+				alert('휴대폰 형식이 맞지 않습니다.');
+				checkObj.focus();
+				return;
+			}
+		}
+		if(txt < valid[id]['min'] || txt > valid[id]['max'] ){
+			alert(title + '은 ' + valid[id]['min'] + '글자 보다 이상이거나 ' + valid[id]['max'] + '글자 이하여야 합니다.');
 		}
 	}
 	
@@ -218,50 +220,61 @@ function saveReservation(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST', "/ticket/" + ${param.riNum});
 	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var res = JSON.parse(xhr.responseText);
-			IMP.request_pay({
-			    pg : 'inicis',
-			    pay_method : res.paymentInfo.piMethod,
-			    merchant_uid : res.paymentInfo.piMerchantId,
-			    name : '예약명 : 전시회 예약',
-			    amount : res.paymentInfo.piPrice,
-			    buyer_name : res.tiName,
-			    buyer_email : res.tiEmail,
-			    buyer_tel : res.tiPhone,
-			    
-			}, function(rsp) {
-			    if ( rsp.success ) {
-			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
-			    	jQuery.ajax({
-			    		url: "/ticket/confirm", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
-			    		method: 'POST',
-			    		data: {
-			    		    impId: rsp.imp_uid,
-			                merchantId: rsp.merchant_uid,
-			    		},
-			    		
-			    	}).done(function(data) {
-			    		if (data == 1) {
-			    			alert('결제가 완료되었습니다.');
-			    			//추후에 마이페이지 이동? 결제완료페이지 ㅎ
-			    			location.href = '/';
-			    		} else {
-			    			alert('결제 금액이 일치 하지 않습니다');
-			    		}
-			    	});
-			    } else {
-			        var msg = '결제에 실패하였습니다.';
-			        msg += '에러내용 : ' + rsp.error_msg;
+		if(xhr.readyState == 4) {
+			if(xhr.status == 200) {
+				if(!xhr.responseText){
+					alert('다시 로그인 해주세요');
+					location.href = '/views/user/login';
+					return;
+				}
+				var res = JSON.parse(xhr.responseText);
+				IMP.request_pay({
+				    pg : 'inicis',
+				    pay_method : res.paymentInfo.piMethod,
+				    merchant_uid : res.paymentInfo.piMerchantId,
+				    name : '예약명 : 전시회 예약',
+				    amount : res.paymentInfo.piPrice,
+				    buyer_name : res.tiName,
+				    buyer_email : res.tiEmail,
+				    buyer_tel : res.tiPhone,
+				    
+				}, function(rsp) {
+				    if ( rsp.success ) {
+				    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+				    	jQuery.ajax({
+				    		url: "/ticket/confirm", //cross-domain error가 발생하지 않도록 동일한 도메인으로 전송
+				    		method: 'POST',
+				    		data: {
+				    		    impId: rsp.imp_uid,
+				                merchantId: rsp.merchant_uid,
+				    		},
+				    		
+				    	}).done(function(data) {
+				    		if (data == 1) {
+				    			alert('결제가 완료되었습니다.');
+				    			//추후에 마이페이지 이동? 결제완료페이지 ㅎ
+				    			location.href = '/views/user/mypage-reservation';
+				    		} else {
+				    			alert('결제 금액이 일치 하지 않습니다');
+				    		}
+				    	});
+				    } else {
+				        var msg = '결제에 실패하였습니다.';
+				        msg += '에러내용 : ' + rsp.error_msg;
 
-			        alert(msg);
-			    }
-			});
+				        alert(msg);
+				    }
+				});
+			}else{
+				console.log(res);
+				alert('결제금액이 이상합니다..');
+			}
+			
 		}
 	}
 	
 	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
-	//xhr.send(JSON.stringify(param));
+	xhr.send(JSON.stringify(param));
 }
 </script>	
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

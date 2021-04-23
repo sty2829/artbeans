@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.artbeans.web.dto.ReservationSchedule;
-import com.artbeans.web.dto.ResponseResult;
 import com.artbeans.web.entity.ReservationInfo;
 import com.artbeans.web.service.ReservationService;
 

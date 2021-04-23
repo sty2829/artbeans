@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.dto.UserTicketDTO;
 import com.artbeans.web.entity.TicketInfo;
 import com.artbeans.web.service.TicketService;
@@ -35,9 +36,8 @@ public class TicketController {
 	
 	//예약 티켓 세이브
 	@PostMapping("/ticket/{riNum}")
-	public TicketInfo save(@RequestBody TicketInfo ti, @PathVariable Integer riNum) {
-		log.info("ti => {}", ti);
-		return ticketService.saveTicket(ti, riNum);
+	public TicketInfo save(UserSession userSession,@RequestBody TicketInfo ti, @PathVariable Integer riNum) {
+		return ticketService.saveTicket(userSession, ti, riNum);
 	}
 	
 	//서버에서 결제정보 컨펌
