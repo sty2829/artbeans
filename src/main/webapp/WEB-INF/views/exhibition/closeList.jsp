@@ -55,12 +55,12 @@
 								<button class="dropdown-item" type="button" onclick="area(this)" value="경기">경기도</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="인천">인천</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="강원">강원도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="충청남도">충청남도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="충청북도">충청남도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="전라남도">전라남도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="전라북도">전라북도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="경상북도">경상북도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="경상남도">경상남도</button>
+								<button class="dropdown-item" type="button" onclick="area(this)" value="충남">충청남도</button>
+								<button class="dropdown-item" type="button" onclick="area(this)" value="충북">충청북도</button>
+								<button class="dropdown-item" type="button" onclick="area(this)" value="전남">전라남도</button>
+								<button class="dropdown-item" type="button" onclick="area(this)" value="전북">전라북도</button>
+								<button class="dropdown-item" type="button" onclick="area(this)" value="경북">경상북도</button>
+								<button class="dropdown-item" type="button" onclick="area(this)" value="경남">경상남도</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="부산">부산</button>
 							</div>
 						</div>
