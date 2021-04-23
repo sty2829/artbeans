@@ -90,7 +90,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		return 0;
 	}
 
-	// getExhibitionInfoLists 변경
+	// getExhibitionInfoLists 변경 진행중
 	@Override
 	public DataTable<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
@@ -100,8 +100,19 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
 		return dtExhibitionInfo;
 	}
+	
+	//진행중 무료
+	@Override
+	public DataTable<ExhibitionInfo> getOpeningListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
+			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+		Page<ExhibitionInfo> pb = exhiRepo.getOpeningListGetFree("1",0, pageable);
+		dtExhibitionInfo.setData(pb.getContent());
+		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+		return dtExhibitionInfo;
+	}
 
-	// getExhibitionInfoLists 변경
+	// getExhibitionInfoLists 변경 종료
 	@Override
 	public DataTable<ExhibitionInfo> getCloseList(String eiStatus, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
@@ -112,7 +123,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		return dtExhibitionInfo;
 	}
 
-	// getExhibitionInfoLists 변경
+	// getExhibitionInfoLists 변경 진행할
 	@Override
 	public DataTable<ExhibitionInfo> getFutureList(String eiStatus, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
@@ -121,8 +132,19 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
 		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
 		return dtExhibitionInfo;
+	}	
+	
+	//진행할 무료
+	@Override
+	public DataTable<ExhibitionInfo> getFutureListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
+			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+		Page<ExhibitionInfo> pb = exhiRepo.getFutureListGetFree("1",0, pageable);
+		dtExhibitionInfo.setData(pb.getContent());
+		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+		return dtExhibitionInfo;
 	}
-
+	
 //	// 변경. 지울것
 //	@Override
 //	public DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable,
@@ -238,5 +260,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	
 		return exhiRepo.findAllByUserInfoUiNum(uiNum);
 	}
+
+	
 	
 }

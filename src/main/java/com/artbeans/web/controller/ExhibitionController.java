@@ -75,6 +75,13 @@ public class ExhibitionController {
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getOpeningList(eiStatus, pageable, dtExhibitionInfo);
 	}
+	
+	// 사용중(상혁) 무료
+	@GetMapping("/exhibition-openinglistgetfree")
+	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionOpeningListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
+			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+		return eService.getOpeningListGetFree(eiStatus, eiCharge, pageable, dtExhibitionInfo);
+	}
 
 	// 사용중(상혁) exhibition-list 변경
 	@GetMapping("/exhibition-closelist")
@@ -88,7 +95,14 @@ public class ExhibitionController {
 	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionFutureList(String eiStatus, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getFutureList(eiStatus, pageable, dtExhibitionInfo);
-	}	
+	}
+	
+	// 사용중(상혁) 무료
+	@GetMapping("/exhibition-futurelistgetfree")
+	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionFutureListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
+			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+		return eService.getFutureListGetFree(eiStatus, eiCharge, pageable, dtExhibitionInfo);
+	}
 	
 	//사용중(상혁)
 	@GetMapping("/exhibition")

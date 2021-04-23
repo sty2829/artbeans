@@ -36,6 +36,12 @@ public interface ExhibitionService {
 	DataTable<ExhibitionInfo> getFutureList(String eiStatus, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo);
 
+	DataTable<ExhibitionInfo> getOpeningListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
+			DataTable<ExhibitionInfo> dtExhibitionInfo);
+	
+	DataTable<ExhibitionInfo> getFutureListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
+			DataTable<ExhibitionInfo> dtExhibitionInfo);
+	
 	// 변경 지울 것
 //	DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo);
 

@@ -73,6 +73,10 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	// 진행중
 	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiStartDate <= current_date AND ei.eiEndDate >= current_date")
 	public Page<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable);
+	
+	// 진행중 무료
+	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiCharge = ?2 AND ei.eiStartDate <= current_date AND ei.eiEndDate >= current_date")
+	public Page<ExhibitionInfo> getOpeningListGetFree(String eiStatus, Integer eiCharge, Pageable pageable);
 
 	// 종료
 	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiEndDate < current_date")
@@ -81,5 +85,9 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	// 진행할
 	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiStartDate > current_date")
 	public Page<ExhibitionInfo> getFutureList(String eiStatus, Pageable pageable);
+	
+	// 진행할 무료
+	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiCharge =?2 AND ei.eiStartDate > current_date")
+	public Page<ExhibitionInfo> getFutureListGetFree(String eiStatus, Integer eiCharge, Pageable pageable);
 
 }
