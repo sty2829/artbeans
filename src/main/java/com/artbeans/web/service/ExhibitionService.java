@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import com.artbeans.web.dto.DataTable;
+import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.GalleryInfo;
 
@@ -46,7 +47,7 @@ public interface ExhibitionService {
 			DataTable<ExhibitionInfo> dtExhibitionInfo);
 
 	// 전시회정보찾기 위해 추가
-	List<ExhibitionInfo> getExhibitionFindByUiNum(Integer uiNum);
+	List<ExhibitionInfo> getExhibitionFindByUiNum(UserSession userSession);
 
 	// 배너허가를 위한 업데이트
 	void updateExhibitionInfoEiBanner(ExhibitionInfo exhibitionInfo) throws Exception;

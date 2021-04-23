@@ -3,13 +3,16 @@ package com.artbeans.web.service.Impl;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.dto.SumTicketTime;
+import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.ReservationInfo;
+import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.repository.ReservationInfoRepository;
 import com.artbeans.web.repository.TicketInfoRepository;
 import com.artbeans.web.service.ReservationService;
@@ -20,6 +23,9 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class ReservationSeviceImpl implements ReservationService {
+	
+	@Autowired
+	private ExhibitionInfoRepository eiRepo;
 	
 	@Autowired
 	private ReservationInfoRepository riRepo;
@@ -38,8 +44,17 @@ public class ReservationSeviceImpl implements ReservationService {
 	}
 	
 	@Override
-	public ReservationInfo saveReservation(ReservationInfo reservationInfo) {
-		return riRepo.save(reservationInfo);
+	public int saveReservation(ReservationInfo reservationInfo) {
+		int count = 0;
+		Integer eiNum = reservationInfo.getExhibitionInfo().getEiNum();
+		Optional<ExhibitionInfo> opEi = eiRepo.findById(eiNum);
+		if(!opEi.isEmpty()) {
+			reservationInfo.setExhibitionInfo(opEi.get());
+			count = riRepo.save(reservationInfo).getRiNum();
+			return count;
+		}
+		
+		return count;
 	}
 	
 	@Override
