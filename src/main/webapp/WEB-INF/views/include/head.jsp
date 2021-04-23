@@ -212,6 +212,7 @@ function logout(){
 				</ul>
 
 			</nav>
+			<c:if test="${admin eq null}">
 				<c:if test="${userInfo eq null }">
 			<a href="/views/user/login" style="float: right"
 				class="get-started-btn ml-auto">로그인/회원가입</a>
@@ -220,6 +221,7 @@ function logout(){
 				<a href="/views/user/login" style="float: right"
 				class="get-started-btn ml-auto" onclick="logout()">로그아웃</a>
 				</c:if>
+			</c:if>
 			<!-- .nav-menu -->
 		</div>
 		<!-- sideicon -->
