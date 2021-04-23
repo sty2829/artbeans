@@ -130,12 +130,12 @@ function area(obj){
 			}
 			document.querySelector('#galleryList').innerHTML = html;
 			
-			window.addEventListener("scroll",  function(e) {
+			/*window.addEventListener("scroll",  function(e) {
             if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                 count++;
                 area(obj);
                }
-            });
+            });*/
 		}		
 	}
 	xhr.send();

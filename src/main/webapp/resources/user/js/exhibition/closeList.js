@@ -220,12 +220,12 @@ function get() {
 					}
 				}
 				document.querySelector('#exhibitionList').innerHTML = html;
-				window.addEventListener("scroll",  function(e) {
+				/*window.addEventListener("scroll",  function(e) {
                 if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                     count++;
                     area(obj);
                    }
-                });
+                });*/
 			}
 		}
 		xhr.send();
