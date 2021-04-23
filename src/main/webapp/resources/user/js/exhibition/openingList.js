@@ -203,45 +203,46 @@ function area(obj) {
 				if (exhibition.eiStatus == 1) {
 					if (startDate <= today && today <= endDate) {
 						html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
-						html += '<article class="entry">';
-						html += '<div class="entry-img">';
-						html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
-						html += '</div>';
-						html += '<h2 class="entry-title">';
-					    html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
-					    html += '</h2></div>';					
-					    html += '<div class="col-sm-2"><a href=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
-						html += '<div class="entry-meta">';
-						html += '<ul>';
-						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
-						html += '</ul>';
-					    html += '<ul>';
-						html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
-						html += '</ul>';
-						html += '</div>';
-						html += '<div class="entry-content">';
-						html += '<div style="HEIGHT: 10pt"></div>';
-						html += '<div style="display:none" class="read-more">';
-						html += '<input name="checkMap' + idx +  '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
-						html += '</div>';
-						html += '</div>';
-						html += '</article>';
-						html += '</div>';
-						idx++;
+							html += '<article class="entry">';
+							html += '<div class="entry-img">';
+							html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+							html += '</div>';
+							html += '<div class="row"><div class="col-sm-10">';
+							html += '<h2 class="entry-title">';
+					        html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
+					        html += '</h2></div>';					
+					        html += '<div class="col-sm-2"><a href=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
+							html += '<div class="entry-meta">';
+							html += '<ul>';
+							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+							html += '</ul>';
+					        html += '<ul>';
+							html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
+							html += '</ul>';
+							html += '</div>';
+							html += '<div class="entry-content">';
+							html += '<div style="HEIGHT: 10pt"></div>';
+							html += '<div style="display:none" class="read-more">';
+							html += '<input name="checkMap' + idx +  '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
+							html += '</div>';
+							html += '</div>';
+							html += '</article>';
+							html += '</div>';
+							idx++;
 					}
 				}
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;
-			
-			window.addEventListener("scroll",  function(e) {
+		}
+	}
+	xhr.send();
+	/*
+	window.addEventListener("scroll",  function(e) {
             if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                 count++;
                 area(obj);
                }
-            });
-		}
-	}
-	xhr.send();
+            });*/
 }
 
 
