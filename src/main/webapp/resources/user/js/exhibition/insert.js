@@ -50,7 +50,7 @@ console.log(document.querySelector('#fiFile1').value);
 	}
 	
 	var giRphoneNumber = document.querySelector('#giRphoneNumber');
-	if( giRphoneNumber.value.trim().length<7 || giRphoneNumber.value.trim().length>12){
+	if( giRphoneNumber.value.trim().length<8 || giRphoneNumber.value.trim().length>14){
 		alert('갤러리 전화번호를 정확하게 작성해주세요.');
 		giRphoneNumber.focus();
 		return;

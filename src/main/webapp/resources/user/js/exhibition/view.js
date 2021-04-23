@@ -57,6 +57,19 @@ window.onload = function (){
             html +='<div class="col-lg-7">';
             html +='<h5 style="padding-top:1px">' + res.eiStartTime + '~' + res.eiEndTime +'</h5></div></div>';
             html +='<hr>';
+            html +='<div class="row faq-item d-flex align-items-stretch">';
+            html +='<div class="col-lg-4">';
+            html +='<h4>가격</h4></div>';
+            html +='<div class="col-lg-1">';
+            html +='<h4>|</h4></div>';
+            html +='<div class="col-lg-7">';
+            if(res.eiCharge==0){
+                html +='<h5 style="padding-top:1px">무료</h5></div></div>';
+            }else{
+                html +='<h5 style="padding-top:1px">' + res.eiCharge +'</h5></div></div>';
+            }
+            
+            html +='<hr>';
             
 			//예약추가
 			if(res.reservationInfo != null){

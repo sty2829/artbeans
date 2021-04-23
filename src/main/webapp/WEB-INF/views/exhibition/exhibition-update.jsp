@@ -24,8 +24,9 @@
 <title>전시회 수정</title>
 </head>
 <body>
-
+	<input type="hidden" id="uiNum">
 	<input type="hidden" id="eiNum">
+	<input type="hidden" id="giNum">
 	<main id="main">
 		<!-- ======= Breadcrumbs ======= -->
 		<section id="breadcrumbs" class="breadcrumbs">
@@ -183,6 +184,8 @@
 		</section>
 	</main>
 	<script>
+	var uiNum = ${userInfo.uiNum};
+	console.log(uiNum);
 	
 	var editor;
 	ClassicEditor
@@ -218,7 +221,7 @@ function doUpdate(){
 		return;
 	}	
 	var eiCharge = document.querySelector('#eiCharge');
-	if(eiCharge.value.trim().length<2){
+	if(eiCharge.value.trim().length>11){
 		alert('전시회 가격을 작성해주세요.');
 		eiCharge.focus();
 		return;
@@ -279,19 +282,17 @@ function doUpdate(){
 	formData.append('galleryInfo.giNum',giNum);
 	xhr.send(formData);
 }
-var uiNum = ${userInfo.uiNum};
-console.log(uiNum);
+
 window.onload = exhibitionOption();//유저가 등록한 전시회 목록
 function exhibitionOption(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition?uiNum='+uiNum);
+	xhr.open('GET','/getExhibition?uiNum='+uiNum);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res =JSON.parse(xhr.responseText);
-			console.log(res);
 			var html = '<option value="">전시회를 선택하세요</option>';
 			for(var exhibitionInfo of res){
-				html += '<option value ="' + exhibitionInfo.eiNum+'">'+exhibitionInfo.eiName+'</option>';
+				html += '<option value ="' + exhibitionInfo.eiNum+'" data-giNum="' + exhibitionInfo.galleryInfo.giNum+'">'+exhibitionInfo.eiName+'</option>';
 			}
 			document.querySelector('#exhibition').innerHTML = html;
 		}
@@ -302,7 +303,6 @@ function exhibitionOption(){
 function getExhibition(obj){ //전시회 선택시 입력정보 AJAX
 
 var eiNum = obj.value;
-getGalleyList(eiNum);
 var xhr = new XMLHttpRequest();
 xhr.open('GET','/exhibition?eiNum='+eiNum);
 xhr.onreadystatechange = function(){
@@ -310,7 +310,6 @@ xhr.onreadystatechange = function(){
 		var html = '';
 		
 		var res = JSON.parse(xhr.responseText);
-		console.log(res);
 		for(var key in res){
 			if(document.querySelector('#'+key)){
 				document.querySelector('#'+key).value=res[key];
@@ -318,31 +317,32 @@ xhr.onreadystatechange = function(){
 			}
 		document.querySelector('#giName').value = res.galleryInfo['giNum'];
 		document.querySelector('#fileInfo-fiNum').value = res['fileInfo']['fiNum'];
-		document.querySelector('#uiNum').value = res['userInfo']['uiNum'];
-		//document.querySelector('#giNum').value = res['galleryInfo']['giNum'];
+		document.querySelector('#uiNum').value = uiNum;
+		document.querySelector('#giNum').value = res['galleryInfo']['giNum'];
 		editor.setData(document.querySelector('#eiContent').value);
 		//document.querySelector('#giName').value = res.galleryInfo.giName;
 		document.querySelector('#pView').innerHTML = '<img id="preView" width="200" src="/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '">';
 		}
+	getGalleyList();
 	}
 xhr.send();
 }
 
-function getGalleyList(obj){
-var giNum = obj;
+function getGalleyList(){
+//var giNum = document.querySelector('input[id="giNum"]').getAttribute('value');
+var giNum = document.querySelector('#giNum').value;
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/Gallery-lists');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var html ='';
 			var res = JSON.parse(xhr.responseText);
-			
 			var html = '<option value=""></option>';
-			for(var galleryInfo of res){
-				if(giNum==galleryInfo.giNum){
-					html += '<option value ="' + galleryInfo.giNum+'" selected >'+galleryInfo.giName+'</option>';
+			for(var galleryInfo of res){			
+				if(galleryInfo.giNum==giNum){
+					html += '<option value ="' + galleryInfo.giNum+'" selected >'+galleryInfo.giName+'</option>';					
 				}
-				html += '<option value ="' + galleryInfo.giNum+'">'+galleryInfo.giName+'</option>';
+				html += '<option value ="' + galleryInfo.giNum+'">'+galleryInfo.giName+'</option>';				
 			}
 			document.querySelector('#giName').innerHTML = html;
 		}

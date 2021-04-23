@@ -163,8 +163,8 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	@Override
 	public DataTable<ExhibitionInfo> getExhiListDemoss(String giAddress, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		log.info("giAddress=>{}", "%" + giAddress + "%");
-		Page<ExhibitionInfo> pb = exhiRepo.findAllByGalleryInfoGiAddressLike("%" + giAddress + "%", pageable);
+		log.info("giAddress=>{}", giAddress + "%");
+		Page<ExhibitionInfo> pb = exhiRepo.findAllByGalleryInfoGiAddressLike(giAddress + "%", pageable);
 		dtExhibitionInfo.setData(pb.getContent());
 		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
 		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
@@ -205,12 +205,38 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
 		return dtExhibitionInfo;
 	}
+	
+	//admin-ei 검색바
+	@Override
+	public Page<ExhibitionInfo> findAllByEiNameLike(String eiName,Pageable pageable) {
+		return exhiRepo.findAllByEiNameLike("%"+eiName+"%",pageable);
+	}
+	
+	//admin-ei 검색바
+	@Override
+	public Page<ExhibitionInfo> findAllByEiArtistLike(String EiArtist, Pageable pageable) {
+		return exhiRepo.findAllByEiArtistLike("%"+EiArtist+"%",pageable);
+	}
+
+	//admin-ei 검색바
+	@Override
+	public Page<ExhibitionInfo> findAllByEiStatusLike(String EiStatus, Pageable pageable) {
+		Page<ExhibitionInfo> pageCheck= exhiRepo.findAllByEiStatusLike("%"+EiStatus+"%",pageable);
+		return pageCheck;
+	}
+
 
 	@Override
 	public void updateExhibitionInfoWithoutFile(Integer eiStatus, Integer giNum, String eiName, String eiArtist,
 			Integer eiCharge, String eiStartDate, String eiEndDate, String eiStartTime, String eiEndTime,
 			String eiContent, Integer uiNum, Integer eiNum) {
 		exhiRepo.updateExhibitionInfoWithoutFile(eiStatus, giNum, eiName, eiArtist, eiCharge, eiStartDate, eiEndDate, eiStartTime, eiEndTime, eiContent, uiNum, eiNum);
+	}
+
+	@Override
+	public List<ExhibitionInfo> eiUpdateGetExhibitionInfo(Integer uiNum) {
+	
+		return exhiRepo.findAllByUserInfoUiNum(uiNum);
 	}
 	
 }

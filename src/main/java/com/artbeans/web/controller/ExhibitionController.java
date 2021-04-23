@@ -169,5 +169,26 @@ public class ExhibitionController {
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getOpeningCalendarListOneday(eiStartDate, pageable, dtExhibitionInfo);
 	}
+	
+	// admin-ei 검색바
+	@GetMapping("/exhibition-search-bar/name")
+	public @ResponseBody Page<ExhibitionInfo> findAllByEiNameLike(String eiName,Pageable pageble){
+		log.info("eiName=>{}",eiName);
+		return eService.findAllByEiNameLike(eiName, pageble);
+	}
+	
+	// admin-ei 검색바
+	@GetMapping("/exhibition-search-bar/artist")
+	public @ResponseBody Page<ExhibitionInfo> findAllByEiArtistLike(String eiArtist,Pageable pageble){
+		log.info("eiArtist=>{}",eiArtist);
+		return eService.findAllByEiArtistLike(eiArtist, pageble);
+	}
+	
+	// admin-ei 검색바
+	@GetMapping("/exhibition-search-bar/status")
+	public @ResponseBody Page<ExhibitionInfo> findAllByEiStatusLike(String eiStatus,Pageable pageble){
+		log.info("eiStatus=>{}",eiStatus);
+		return eService.findAllByEiStatusLike(eiStatus, pageble);
+	}
 
 }

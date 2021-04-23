@@ -26,6 +26,8 @@ function get() {
 							html += '<div class="entry-meta">';
 							html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+							html += '</ul>';
+					        html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
 							html += '</ul>';
 							html += '</div>';
@@ -67,6 +69,8 @@ function get() {
 							html += '<div class="entry-meta">';
 							html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+							html += '</ul>';
+					        html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
 							html += '</ul>';
 							html += '</div>';
@@ -107,6 +111,8 @@ function get() {
 							html += '<div class="entry-meta">';
 							html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+							html += '</ul>';
+					        html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
 							html += '</ul>';
 							html += '</div>';
@@ -146,6 +152,8 @@ function get() {
 							html += '<div class="entry-meta">';
 							html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+							html += '</ul>';
+					        html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
 							html += '</ul>';
 							html += '</div>';
@@ -195,6 +203,8 @@ function get() {
 							html += '<div class="entry-meta">';
 							html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+							html += '</ul>';
+					        html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
 							html += '</ul>';
 							html += '</div>';
@@ -210,12 +220,12 @@ function get() {
 					}
 				}
 				document.querySelector('#exhibitionList').innerHTML = html;
-				window.addEventListener("scroll",  function(e) {
+				/*window.addEventListener("scroll",  function(e) {
                 if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
                     count++;
                     area(obj);
                    }
-                });
+                });*/
 			}
 		}
 		xhr.send();

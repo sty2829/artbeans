@@ -90,11 +90,10 @@
 									<option value="eiArtist">아티스트</option>
 									<option value="eiStatus">전시회 상태값</option>
 								</select>
-								<input class="form-control mr-sm-2" type="search"
-									placeholder="Search" aria-label="Search" id="eiNavBar">
+								<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="eiNavBar">
 								<button class="btn btn-outline-success my-2 my-sm-0"
-									type="submit" style="background-color: white; color:red; border-color: red;"
-									onclick="eiSearchButton()">Search</button>
+									style="background-color: white; color:red; border-color: red;"
+									onclick="eiSearchButton(1)">Search</button>
 							</div>
 						</div><!-- 검색바 처리 -->
 					</div>
@@ -132,16 +131,16 @@ window.addEventListener('load', getBeforeConfirm(1));
 var size = 5; 
 
 function getBeforeConfirm(page){
-	var xhr = new XMLHttpRequest();
+	let xhr = new XMLHttpRequest();
 	//'/board?size=5&page=' + (page-1);
 	xhr.open('GET', '/exhibitions/paging?size=10&page='+(page-1)); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			var res = JSON.parse(xhr.responseText);
+			let res = JSON.parse(xhr.responseText);
 			
-			var html='';
+			let html='';
 			
-			for (var exhibition of res.content) {
+			for (let exhibition of res.content) {
 				//console.log(exhibition);
 				
 				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-ei-update?eiNum='+exhibition.eiNum+'\'">';
@@ -156,14 +155,14 @@ function getBeforeConfirm(page){
 				}
 			
 			
-			var disable = res.first ? 'disabled' : '';
+			let disable = res.first ? 'disabled' : '';
 			
-			var li = '<li class="page-item ' + disable + '" onclick="getBeforeConfirm(' + res.number + ')">';
+			let li = '<li class="page-item ' + disable + '" onclick="getBeforeConfirm(' + res.number + ')">';
 			li += '<a class="page-link" href="#" tabindex="-1">이전</a>';
 			li += '</li>';
 			
-			var startPage = Math.floor((((Number(res.number) + 1) - 1) / size)) * size + 1;
-			var endPage = startPage + size - 1;
+			let startPage = Math.floor((((Number(res.number) + 1) - 1) / size)) * size + 1;
+			let endPage = startPage + size - 1;
 			if(endPage > res.totalPages){
 				endPage = res.totalPages;
 			}
@@ -185,6 +184,82 @@ function getBeforeConfirm(page){
 			
 			}
 		}
+	xhr.send();
+}
+
+
+//검색창
+function eiSearchButton(page){
+	let selectValue=document.querySelector('#eiSelectBox').value;
+	let searchValue=document.querySelector('#eiNavBar').value;
+
+	let xhr = new XMLHttpRequest();
+	//'/board?size=5&page=' + (page-1);
+	if(selectValue=='eiName'){
+		xhr.open('GET', '/exhibition-search-bar/name?size=10&page='+(page-1)+'&eiName='+searchValue); //ExhibitionController
+	}else if(selectValue=='eiArtist'){
+		xhr.open('GET', '/exhibition-search-bar/artist?size=10&page='+(page-1)+'&eiArtist='+searchValue); //ExhibitionController
+	}else if(selectValue=='eiStatus'){
+		xhr.open('GET', '/exhibition-search-bar/status?size=10&page='+(page-1)+'&eiStatus='+searchValue); //ExhibitionController
+	}
+	
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			let res = JSON.parse(xhr.responseText);
+
+			let html='';
+			
+			if(res.content.length==1){
+				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-ei-update?eiNum='+res.content.eiNum+'\'">';
+				html+='<td class="cell100 column1">'+res.content[0].eiNum+'</td>';
+				html+='<td class="cell100 column2">'+res.content[0].eiName+'</td>';
+				html+='<td class="cell100 column3">'+res.content[0].eiArtist+'</td>';
+				html+='<td class="cell100 column4">'+res.content[0].eiStartDate+'</td>';
+				html+='<td class="cell100 column5">'+res.content[0].eiEndDate+'</td>';
+				html+='<td class="cell100 column6">'+res.content[0].eiStatus+'</td>';
+				html+='<td class="cell100 column7">'+res.content[0].moddat+'</td>';
+				html+="</tr>";
+			}else if(res.content.length>1){
+				for(let exhibition of res.content){
+					html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-ei-update?eiNum='+exhibition.eiNum+'\'">';
+					html+='<td class="cell100 column1">'+exhibition.eiNum+'</td>';
+					html+='<td class="cell100 column2">'+exhibition.eiName+'</td>';
+					html+='<td class="cell100 column3">'+exhibition.eiArtist+'</td>';
+					html+='<td class="cell100 column4">'+exhibition.eiStartDate+'</td>';
+					html+='<td class="cell100 column5">'+exhibition.eiEndDate+'</td>';
+					html+='<td class="cell100 column6">'+exhibition.eiStatus+'</td>';
+					html+='<td class="cell100 column7">'+exhibition.moddat+'</td>';
+					html+="</tr>";
+				}
+			}
+			
+			let disable = res.first ? 'disabled' : '';
+			
+			let li = '<li class="page-item ' + disable + '" onclick="getBeforeConfirm(' + res.number + ')">';
+			li += '<a class="page-link" href="#" tabindex="-1">이전</a>';
+			li += '</li>';
+			
+			let startPage = Math.floor((((Number(res.number) + 1) - 1) / size)) * size + 1;
+			let endPage = startPage + size - 1;
+			if(endPage > res.totalPages){
+				endPage = res.totalPages;
+			}
+			for(startPage; startPage<=endPage; startPage++){
+				if(startPage === page){
+					li += '<li class="page-item active" onclick="getBeforeConfirm(' + startPage + ')"><a class="page-link" href="#">'+ startPage +'</a></li>';
+					continue;
+				}
+				li += '<li class="page-item" onclick="getBeforeConfirm(' + startPage +')"><a class="page-link" href="#">'+ startPage +'</a></li>';
+			}
+			disable = res.last ? 'disabled' : '';
+			li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
+		    li += '<a class="page-link" href="#">다음</a>';
+		  	li += '</li>';
+			
+			document.querySelector('#tBody').innerHTML = html;
+			document.querySelector('#pastPageList').innerHTML = li;
+		}
+	}
 	xhr.send();
 }
 	
