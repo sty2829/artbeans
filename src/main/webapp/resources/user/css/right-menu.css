@@ -83,10 +83,24 @@
 .map_view2 span:nth-child(1) {
     display: inline-block;
     width: 184px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     letter-spacing: -0.56px;
-    margin-top: 18px;
+    margin-top: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+    height: 20px;
+    color: black;
+}
+.map_view2 span:nth-child(2) {
+    display: inline-block;
+    width: 184px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.56px;
+    margin-top: 6px;
     text-overflow: ellipsis;
     white-space: nowrap;
     word-wrap: normal;

@@ -11,6 +11,7 @@ function get() {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
+				console.log(res);
 			var html = '';
 			var idx = 1;
 			for (var exhibition of res.data) {
@@ -35,7 +36,7 @@ function get() {
 						html += '<div class="entry-content">';
 						html += '<div style="HEIGHT: 10pt"></div>';
 						html += '<div style="display:none" class="read-more">';
-						html += '<input name="checkMap' + idx +  '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
+						html += '<input name="checkMap' + idx +  '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '" value4="' + exhibition.galleryInfo['giAddress'] + '">';
 						html += '</div>';
 						html += '</div>';
 						html += '</article>';
@@ -105,6 +106,7 @@ function deadline() {
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			var idx = 1;
+		
 			for (var exhibition of res.data) {
 						html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="ei' + idx + '">';
 						html += '<article class="entry">';
@@ -267,6 +269,8 @@ function sideMap(idx) {
 	var x = document.querySelector('div[id="ei' + idx + '"] input[name="checkMap' + idx + '"]').getAttribute('value1');
 	var y = document.querySelector('div[id="ei' + idx + '"] input[name="checkMap' + idx + '"]').getAttribute('value2');
 	var giName = document.querySelector('div[id="ei' + idx + '"] input[name="checkMap' + idx + '"]').getAttribute('value3');
+	var giAddress = document.querySelector('div[id="ei' + idx + '"] input[name="checkMap' + idx + '"]').getAttribute('value4');
+	console.log(giAddress);
 
 
 	var html = '<div id="mv' + idx + '">';
@@ -276,6 +280,7 @@ function sideMap(idx) {
 	html += '</div >';
 	html += '<div  class="map_view2" >';
 	html += '<span>'+giName+'</span>';
+	html += '<span>'+giAddress+'</span>';
 	html += '</div>';
 	html += '<div class="map_view3">';
 	html += '<img src="/resources/user/img/sidebtn/x-btn.png" onclick="sideMap(' + idx + ')" > ';
