@@ -9,7 +9,6 @@ function getImageList() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			
 			for (var exhibition of res.data) {
 					html += '<div class="col-lg-4 col-md-6 portfolio-item filter-exhibition">';
 					html += '<div alt="" class="portfolio-wrap" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
@@ -72,4 +71,5 @@ function getImageList() {
 	}
 	xhr.send();
 }
+
 window.addEventListener('load', getImageList);

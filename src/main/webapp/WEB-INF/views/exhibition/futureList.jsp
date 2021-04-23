@@ -23,7 +23,7 @@
 		<section id="portfolio" class="portfolio">
 			<div class="container">
 				<div class="row">
-				 <div class="dropdown">
+				        <div class="dropdown">
 							<button class="btn btn-secondary dropdown-toggle" type="button"
 								id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
 								aria-expanded="false" style="margin: 5px">날짜순</button>
@@ -54,6 +54,16 @@
 							</div>
 						</div>
 						
+						<div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle" type="button"
+								id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false" style="margin: 5px">가격순</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+								<button class="dropdown-item" type="button" onclick="priceCheap()">오름차순</button>
+								<button class="dropdown-item" type="button" onclick="priceExpensive()">내림차순</button>
+								<button class="dropdown-item" type="button" onclick="pricefree()">무료</button>
+							</div>
+						</div>
 					
 				</div>
 			</div>

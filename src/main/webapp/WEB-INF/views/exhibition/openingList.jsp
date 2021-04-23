@@ -517,6 +517,17 @@
 								<button class="dropdown-item" type="button" onclick="area(this)" value="제주">제주</button>
 							</div>
 					    </div>
+					    
+					    <div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle" type="button"
+								id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false" style="margin: 5px">가격순</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+								<button class="dropdown-item" type="button" onclick="priceCheap()">오름차순</button>
+								<button class="dropdown-item" type="button" onclick="priceExpensive()">내림차순</button>
+								<button class="dropdown-item" type="button" onclick="pricefree()">무료</button>
+							</div>
+						</div>
 					
 
 					</div>

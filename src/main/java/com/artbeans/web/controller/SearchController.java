@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.GalleryInfo;
 import com.artbeans.web.service.ExhibitionService;
@@ -52,10 +53,9 @@ public class SearchController {
 	}
 	
 	@GetMapping("/getExhibition") //로그인후 update 들어갈시 uiNum으로 전시회 가져옴
-	public @ResponseBody List<ExhibitionInfo> getUserExhibition(Integer uiNum) {
-		log.info("uiNum=>{}",uiNum);
-		log.info("업데이트=>{}",eService.getExhibitionFindByUiNum(uiNum));
-		return eService.getExhibitionFindByUiNum(uiNum);
+	public @ResponseBody List<ExhibitionInfo> getUserExhibition(UserSession userSession) {
+		log.info("업데이트=>{}",eService.getExhibitionFindByUiNum(userSession));
+		return eService.getExhibitionFindByUiNum(userSession);
 	}
 	
 	

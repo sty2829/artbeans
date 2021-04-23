@@ -5,7 +5,7 @@
 window.onload = get;
 function get(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/Gallery-list?size=9&sort=giNum,asc&page='+ count); //galleryController
+	xhr.open('GET','/Gallery-lists?size=9&sort=giNum,asc&page='+ count); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);

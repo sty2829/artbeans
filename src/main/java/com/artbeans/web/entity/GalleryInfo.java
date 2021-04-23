@@ -1,8 +1,6 @@
 package com.artbeans.web.entity;
 
 import java.sql.Date;
-import java.sql.Time;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,14 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicUpdate;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -74,7 +69,7 @@ public class GalleryInfo {
 	@ColumnDefault("now()")
 	private Date moddat;
 	
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fi_num")
 	private FileInfo fileInfo;
 	
