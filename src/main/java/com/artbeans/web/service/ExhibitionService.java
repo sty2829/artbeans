@@ -65,4 +65,9 @@ public interface ExhibitionService {
 	DataTable<ExhibitionInfo> getOpeningCalendarListOneday(String eiStartDate, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo);
 
+	// admin-ei 검색바
+	Page<ExhibitionInfo> findAllByEiNameLike(String eiName, Pageable pageable);
+	Page<ExhibitionInfo> findAllByEiArtistLike(String eiArtist, Pageable pageable);
+	Page<ExhibitionInfo> findAllByEiStatusLike(String eiStatus, Pageable pageable);
+
 }

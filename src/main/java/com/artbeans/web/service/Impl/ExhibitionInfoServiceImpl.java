@@ -197,6 +197,26 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
 		return dtExhibitionInfo;
 	}
+	
+	//admin-ei 검색바
+	@Override
+	public Page<ExhibitionInfo> findAllByEiNameLike(String eiName,Pageable pageable) {
+		return exhiRepo.findAllByEiNameLike("%"+eiName+"%",pageable);
+	}
+	
+	//admin-ei 검색바
+	@Override
+	public Page<ExhibitionInfo> findAllByEiArtistLike(String EiArtist, Pageable pageable) {
+		return exhiRepo.findAllByEiArtistLike("%"+EiArtist+"%",pageable);
+	}
+
+	//admin-ei 검색바
+	@Override
+	public Page<ExhibitionInfo> findAllByEiStatusLike(String EiStatus, Pageable pageable) {
+		Page<ExhibitionInfo> pageCheck= exhiRepo.findAllByEiStatusLike("%"+EiStatus+"%",pageable);
+		return pageCheck;
+	}
+
 
 	@Override
 	public void updateExhibitionInfoWithoutFile(Integer eiStatus, Integer giNum, String eiName, String eiArtist,

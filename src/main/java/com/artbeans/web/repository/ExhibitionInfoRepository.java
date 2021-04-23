@@ -55,6 +55,12 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 			@Param("eiStartTime") String eiStartTime, @Param("eiEndTime") String eiEndTime,
 			@Param("eiContent") String eiContent, @Param("uiNum") Integer uiNum, @Param("eiNum") Integer eiNum);
 
+	// admin-ei 검색바
+	public Page<ExhibitionInfo> findAllByEiNameLike(String eiName, Pageable pageable);
+	public Page<ExhibitionInfo> findAllByEiArtistLike(String eiArtist, Pageable pageable);
+	public Page<ExhibitionInfo> findAllByEiStatusLike(String eiStatus, Pageable pageable);
+
+	
 	// calendar-list
 	@Query(value = "SELECT * FROM exhibition_info WHERE YEAR(ei_start_date) =:year AND MONTH(ei_start_date) = :month order by ei_num", nativeQuery = true)
 	public Page<ExhibitionInfo> getOpeningCalendarList(@Param("year") String year, @Param("month") String month,
