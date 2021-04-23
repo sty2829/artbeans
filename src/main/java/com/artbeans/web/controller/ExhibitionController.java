@@ -75,11 +75,11 @@ public class ExhibitionController {
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getOpeningList(eiStatus, pageable, dtExhibitionInfo);
 	}
-	
+
 	// 사용중(상혁) 무료
 	@GetMapping("/exhibition-openinglistgetfree")
-	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionOpeningListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionOpeningListGetFree(String eiStatus, Integer eiCharge,
+			Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getOpeningListGetFree(eiStatus, eiCharge, pageable, dtExhibitionInfo);
 	}
 
@@ -96,22 +96,22 @@ public class ExhibitionController {
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getFutureList(eiStatus, pageable, dtExhibitionInfo);
 	}
-	
+
 	// 사용중(상혁) 무료
 	@GetMapping("/exhibition-futurelistgetfree")
-	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionFutureListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionFutureListGetFree(String eiStatus, Integer eiCharge,
+			Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getFutureListGetFree(eiStatus, eiCharge, pageable, dtExhibitionInfo);
 	}
-	
-	//사용중(상혁)
+
+	// 사용중(상혁)
 	@GetMapping("/exhibition")
 	public @ResponseBody ExhibitionInfo getExhibitionInfo(@RequestParam Integer eiNum) {
 		log.info("eiNum=>{}", eService.getExhibitionInfo(eiNum));
 		return eService.getExhibitionInfo(eiNum);
 	}
-	
-    //사용중(상혁)
+
+	// 사용중(상혁)
 	@PostMapping("/exhibition-insert")
 	public @ResponseBody Integer saveExhibition(ExhibitionInfo exhibitionInfo) throws Exception {
 		exhibitionInfo = eService.saveExhibitionInfo(exhibitionInfo);
@@ -130,9 +130,7 @@ public class ExhibitionController {
 
 	@PostMapping("/exhibition-update")
 	public @ResponseBody Integer updateExhibitionInfo(@ModelAttribute ExhibitionInfo exhibitionInfo) throws Exception {
-		log.info("exhibitionInfo=>{}", exhibitionInfo);
 		exhibitionInfo = eService.updateExhibitionInfo(exhibitionInfo);
-		log.info("exhibition-update=>{}", exhibitionInfo);
 		return exhibitionInfo.getEiNum();
 	}
 
@@ -140,8 +138,7 @@ public class ExhibitionController {
 	// 전시회 정보 찾기위해.. 추가함
 	@GetMapping("/exhibitions-user")
 	public @ResponseBody List<ExhibitionInfo> getUserExhibition(UserSession userSession) {
-		log.info("userSession => {}", userSession);
-		log.info("뭐가나오나 => {}",eService.getExhibitionFindByUiNum(userSession));
+
 		return eService.getExhibitionFindByUiNum(userSession);
 	}
 
@@ -152,56 +149,56 @@ public class ExhibitionController {
 		eService.updateExhibitionInfoEiBanner(exhibitionInfo);
 		return exhibitionInfo.getEiNum();
 	}
-	
+
 	// admin-ei-update
 	@PostMapping("/exhibition-admin-update")
-	public @ResponseBody Integer updateExhibitionInfoWithoutFile(Integer eiStatus, Integer giNum, String eiName, String eiArtist,
-			Integer eiCharge, String eiStartDate, String eiEndDate, String eiStartTime, String eiEndTime,
-			String eiContent, Integer uiNum, Integer eiNum) throws Exception {
-		log.info("eiNum=>{}",eiNum);
-		eService.updateExhibitionInfoWithoutFile(eiStatus, giNum, eiName, eiArtist, eiCharge, eiStartDate, eiEndDate, eiStartTime, eiEndTime, eiContent, uiNum, eiNum);
+	public @ResponseBody Integer updateExhibitionInfoWithoutFile(Integer eiStatus, Integer giNum, String eiName,
+			String eiArtist, Integer eiCharge, String eiStartDate, String eiEndDate, String eiStartTime,
+			String eiEndTime, String eiContent, Integer uiNum, Integer eiNum) throws Exception {
+		log.info("eiNum=>{}", eiNum);
+		eService.updateExhibitionInfoWithoutFile(eiStatus, giNum, eiName, eiArtist, eiCharge, eiStartDate, eiEndDate,
+				eiStartTime, eiEndTime, eiContent, uiNum, eiNum);
 		return eiNum;
 	}
-
 
 	// admin pagenation
 	@GetMapping("/exhibitions/paging")
 	public @ResponseBody Page<ExhibitionInfo> getExhibitionInfoListDemo(Pageable pageable) {
 		return eService.getBeforeConfirmLists(pageable);
 	}
-	
+
 	// exhibition calendar
 	@GetMapping("/exhibition-calendar")
 	public @ResponseBody DataTable<ExhibitionInfo> getOpeningCalendarList(String year, String month, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getOpeningCalendarList(year, month, pageable, dtExhibitionInfo);
 	}
-	
+
 	// exhibition calendar oneday
 	@GetMapping("/exhibition-calendar-oneday")
 	public @ResponseBody DataTable<ExhibitionInfo> getOpeningCalendarListOneday(String eiStartDate, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getOpeningCalendarListOneday(eiStartDate, pageable, dtExhibitionInfo);
 	}
-	
+
 	// admin-ei 검색바
 	@GetMapping("/exhibition-search-bar/name")
-	public @ResponseBody Page<ExhibitionInfo> findAllByEiNameLike(String eiName,Pageable pageble){
-		log.info("eiName=>{}",eiName);
+	public @ResponseBody Page<ExhibitionInfo> findAllByEiNameLike(String eiName, Pageable pageble) {
+		log.info("eiName=>{}", eiName);
 		return eService.findAllByEiNameLike(eiName, pageble);
 	}
-	
+
 	// admin-ei 검색바
 	@GetMapping("/exhibition-search-bar/artist")
-	public @ResponseBody Page<ExhibitionInfo> findAllByEiArtistLike(String eiArtist,Pageable pageble){
-		log.info("eiArtist=>{}",eiArtist);
+	public @ResponseBody Page<ExhibitionInfo> findAllByEiArtistLike(String eiArtist, Pageable pageble) {
+		log.info("eiArtist=>{}", eiArtist);
 		return eService.findAllByEiArtistLike(eiArtist, pageble);
 	}
-	
+
 	// admin-ei 검색바
 	@GetMapping("/exhibition-search-bar/status")
-	public @ResponseBody Page<ExhibitionInfo> findAllByEiStatusLike(String eiStatus,Pageable pageble){
-		log.info("eiStatus=>{}",eiStatus);
+	public @ResponseBody Page<ExhibitionInfo> findAllByEiStatusLike(String eiStatus, Pageable pageble) {
+		log.info("eiStatus=>{}", eiStatus);
 		return eService.findAllByEiStatusLike(eiStatus, pageble);
 	}
 
