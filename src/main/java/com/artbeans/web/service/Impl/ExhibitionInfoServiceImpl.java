@@ -155,8 +155,8 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	@Override
 	public DataTable<ExhibitionInfo> getExhiListDemoss(String giAddress, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		log.info("giAddress=>{}", "%" + giAddress + "%");
-		Page<ExhibitionInfo> pb = exhiRepo.findAllByGalleryInfoGiAddressLike("%" + giAddress + "%", pageable);
+		log.info("giAddress=>{}", giAddress + "%");
+		Page<ExhibitionInfo> pb = exhiRepo.findAllByGalleryInfoGiAddressLike(giAddress + "%", pageable);
 		dtExhibitionInfo.setData(pb.getContent());
 		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
 		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());

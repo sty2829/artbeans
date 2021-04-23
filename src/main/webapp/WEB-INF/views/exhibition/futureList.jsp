@@ -50,6 +50,7 @@
 								<button class="dropdown-item" type="button" onclick="area(this)" value="경북">경상북도</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="경남">경상남도</button>
 								<button class="dropdown-item" type="button" onclick="area(this)" value="부산">부산</button>
+								<button class="dropdown-item" type="button" onclick="area(this)" value="제주">제주</button>
 							</div>
 						</div>
 						
