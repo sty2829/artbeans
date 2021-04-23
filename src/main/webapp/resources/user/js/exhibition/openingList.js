@@ -146,7 +146,8 @@ function areaAll() {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200){
 				var res = JSON.parse(xhr.responseText);
-				var html = '';							
+				var html = '';
+				var idx = 1;							
 				for (var exhibition of res.data) {
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
@@ -169,11 +170,12 @@ function areaAll() {
 							html += '<div class="entry-content">';
 							html += '<div style="HEIGHT: 10pt"></div>';
 							html += '<div style="display:none" class="read-more">';
-							html += '<input type="checkbox" onclick="sideMap()">';
+							html += '<input name="checkMap' + idx +  '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
 							html += '</div>';
 							html += '</div>';
 							html += '</article>';
 							html += '</div>';
+							idx++;
 				}
 			
 			document.querySelector('#exhibitionList').innerHTML = html;
@@ -191,6 +193,7 @@ function area(obj) {
 		if (xhr.readyState == 4 && xhr.status == 200) {			
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
+			var idx = 1;
 			for (var exhibition of res.data) {
 				var startDate = new Date(exhibition.eiStartDate);
 				var today = new Date();
@@ -219,11 +222,12 @@ function area(obj) {
 						html += '<div class="entry-content">';
 						html += '<div style="HEIGHT: 10pt"></div>';
 						html += '<div style="display:none" class="read-more">';
-						html += '<input name="checkMap' + idx + '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
+						html += '<input name="checkMap' + idx +  '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
 						html += '</div>';
 						html += '</div>';
 						html += '</article>';
 						html += '</div>';
+						idx++;
 					}
 				}
 			}
