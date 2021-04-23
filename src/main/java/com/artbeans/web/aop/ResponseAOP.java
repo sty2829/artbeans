@@ -11,7 +11,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Aspect
-@Slf4j
 public class ResponseAOP {
 
 	@Around("execution(com.artbeans.web.dto.ResponseResult com.artbeans.web.controller.*Controller.*(..))")

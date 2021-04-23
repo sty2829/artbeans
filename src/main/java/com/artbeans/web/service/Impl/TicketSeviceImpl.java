@@ -2,6 +2,7 @@ package com.artbeans.web.service.Impl;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,13 +13,16 @@ import com.artbeans.web.api.iamport.Cancel;
 import com.artbeans.web.api.iamport.Iamport;
 import com.artbeans.web.api.iamport.IamportResult;
 import com.artbeans.web.api.iamport.Payment;
+import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.dto.UserTicketDTO;
 import com.artbeans.web.entity.PaymentInfo;
 import com.artbeans.web.entity.ReservationInfo;
 import com.artbeans.web.entity.TicketInfo;
+import com.artbeans.web.entity.UserInfo;
 import com.artbeans.web.repository.PaymentInfoRepository;
 import com.artbeans.web.repository.ReservationInfoRepository;
 import com.artbeans.web.repository.TicketInfoRepository;
+import com.artbeans.web.repository.UserInfoRepository;
 import com.artbeans.web.service.TicketService;
 import com.artbeans.web.util.CodeGenerator;
 
@@ -27,6 +31,10 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class TicketSeviceImpl implements TicketService {
+	
+	
+	@Autowired
+	private UserInfoRepository uiRepo;
 	
 	@Autowired
 	private ReservationInfoRepository riRepo;
@@ -41,25 +49,33 @@ public class TicketSeviceImpl implements TicketService {
 	private Iamport iamport;
 	
 	@Override
-	public TicketInfo saveTicket(TicketInfo ti, Integer riNum) {
-		//전시회정보 조회
-		ReservationInfo ri = riRepo.findById(riNum).get();
-		log.info("ri => {}"  , ri);
-		Integer eiCharge = ri.getExhibitionInfo().getEiCharge();
-		Integer rtiNumber = ti.getTiNumber();
-		Integer piPrice = ti.getPaymentInfo().getPiPrice();
-		log.info("eiCharge => {}"  , eiCharge);
-		log.info("rtiNumber=> {}"  , rtiNumber);
-		log.info("piPrice => {}"  , piPrice);
-		
-		//DB에 저장된 관람료와 예매수가 결제금액 일치하는지 확인
-		if(piPrice != (eiCharge * rtiNumber)) {
-			throw new RuntimeException("가격이 불일치 합니다.");
+	public TicketInfo saveTicket(UserSession userSession, TicketInfo ti, Integer riNum) {
+		if(userSession != null && userSession.getUiNum() != null) {
+			Optional<UserInfo> opUI = uiRepo.findById(userSession.getUiNum());
+			if(!opUI.isEmpty() && ti != null) {
+				ti.setUserInfo(opUI.get());
+			}
+			//전시회정보 조회
+			Optional<ReservationInfo> opRI = riRepo.findById(riNum);
+			
+			if(!opRI.isEmpty() && ti.getUserInfo() != null) {
+				ReservationInfo ri = opRI.get();
+				Integer eiCharge = ri.getExhibitionInfo().getEiCharge();
+				Integer rtiNumber = ti.getTiNumber();
+				Integer piPrice = ti.getPaymentInfo().getPiPrice();
+				
+				//DB에 저장된 관람료와 예매수가 결제금액 일치하는지 확인
+				if(piPrice != (eiCharge * rtiNumber)) {
+					throw new RuntimeException("가격이 불일치 합니다.");
+				}
+				
+				//merchantId 생성
+				ti.getPaymentInfo().setPiMerchantId(CodeGenerator.getPaymentCode());
+				return tiRepo.save(ti);
+				
+			}
 		}
-		//merchantId 생성
-		ti.getPaymentInfo().setPiMerchantId(CodeGenerator.getPaymentCode());
-		log.info("ti => {}", ti);
-		return tiRepo.save(ti);
+		return null;		
 	}
 
 
