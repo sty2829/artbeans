@@ -95,7 +95,8 @@ public class ExhibitionController {
 		log.info("eiNum=>{}", eService.getExhibitionInfo(eiNum));
 		return eService.getExhibitionInfo(eiNum);
 	}
-
+	
+    //사용중(상혁)
 	@PostMapping("/exhibition-insert")
 	public @ResponseBody Integer saveExhibition(ExhibitionInfo exhibitionInfo) throws Exception {
 		exhibitionInfo = eService.saveExhibitionInfo(exhibitionInfo);
