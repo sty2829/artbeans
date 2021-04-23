@@ -27,6 +27,8 @@ function get() {
 						html += '<div class="entry-meta">';
 						html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+						html += '</ul>';
+					    html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
 						html += '</ul>';
 						html += '</div>';
@@ -69,7 +71,11 @@ function newest() {
 						html += '<div class="entry-meta">';
 						html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+						html += '</ul>';
+					    html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
+						html += '</ul>';
+					    html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-heart-alt"></i><a>' + favoriteExhibition.feLike + '</a></li>';
 						html += '</ul>';
 						html += '</div>';
@@ -113,6 +119,8 @@ function deadline() {
 						html += '<div class="entry-meta">';
 						html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+						html += '</ul>';
+					    html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
 						html += '</ul>';
 						html += '</div>';
@@ -153,6 +161,8 @@ function areaAll() {
 							html += '<div class="entry-meta">';
 							html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+							html += '</ul>';
+					        html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
 							html += '</ul>';
 							html += '</div>';
@@ -201,6 +211,8 @@ function area(obj) {
 						html += '<div class="entry-meta">';
 						html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
+						html += '</ul>';
+					    html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
 						html += '</ul>';
 						html += '</div>';

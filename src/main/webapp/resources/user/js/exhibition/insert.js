@@ -89,11 +89,12 @@ console.log(document.querySelector('#fiFile1').value);
 		giHoliday.value = '없음';
 	}
 	
-	var fiFile = document.querySelector('#fiFile1')
+	var fiFile = document.querySelector('#fiFile1');
     if(fiFile.value.trim().length<1){
         alert('갤러리 이미지를 선택해주세요.');
         return;
     }
+    
 
 	var xhr = new XMLHttpRequest();
 	xhr.open('POST','/gallery'); //GalleryController
@@ -139,7 +140,7 @@ function doInsert(){
 		return;
 	}
 	var eiCharge = document.querySelector('#eiCharge');
-	if(eiCharge.value.trim().length<2 || eiCharge.value.trim().length>11){
+	if(eiCharge.value.trim().length>11){
 		alert('전시회 가격을 작성해주세요.');
 		eiCharge.focus();
 		return;

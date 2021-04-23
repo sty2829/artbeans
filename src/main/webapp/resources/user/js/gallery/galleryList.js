@@ -24,7 +24,9 @@ function get(){
 				html += '<div class="entry-meta">';
 				html += '<ul>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
-				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
+				html += '</ul>';
+			    html += '<ul>';
+				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime + '~' + galleryInfo.giEndTime + '</a></li>';
 				html += '</ul>';
 				html += '</div>';
 				html += '<div class="entry-content">';
@@ -65,7 +67,9 @@ function areaAsc(){
 				html += '<div class="entry-meta">';
 				html += '<ul>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
-				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
+				html += '</ul>';
+			    html += '<ul>';
+				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime + '~' + galleryInfo.giEndTime + '</a></li>';
 				html += '</ul>';
 				html += '</div>';
 				html += '<div class="entry-content">';
@@ -110,7 +114,9 @@ function area(obj){
 				html += '<div class="entry-meta">';
 				html += '<ul>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
-				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
+				html += '</ul>';
+			    html += '<ul>';
+				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime + '~' + galleryInfo.giEndTime + '</a></li>';
 				html += '</ul>';
 				html += '</div>';
 				html += '<div class="entry-content">';
@@ -158,7 +164,9 @@ function nameAsc(){
 				html += '<div class="entry-meta">';
 				html += '<ul>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
-				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
+				html += '</ul>';
+			    html += '<ul>';
+				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime + '~' + galleryInfo.giEndTime + '</a></li>';
 				html += '</ul>';
 				html += '</div>';
 				html += '<div class="entry-content">';
@@ -197,7 +205,9 @@ function nameDesc(){
 				html += '<div class="entry-meta">';
 				html += '<ul>';
 				html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + galleryInfo.giHomepage + '</a></li>';
-				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime +'</a></li>';
+				html += '</ul>';
+			    html += '<ul>';
+				html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>'+ galleryInfo.giStartTime + '~' + galleryInfo.giEndTime + '</a></li>';
 				html += '</ul>';
 				html += '</div>';
 				html += '<div class="entry-content">';
