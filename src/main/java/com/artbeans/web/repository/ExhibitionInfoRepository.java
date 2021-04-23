@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -16,18 +17,26 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 
 	public List<ExhibitionInfo> findAllByOrderByEiStatus(Pageable pageable);
 
+	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
+	@Query("select exhInfo from ExhibitionInfo exhInfo")
 	public List<ExhibitionInfo> findAllByOrderByEiStartDateDesc();
 
 	public List<ExhibitionInfo> findAllByEiNameLikeOrderByEiNum(String eiName);
 
+	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
+	@Query("select exhInfo from ExhibitionInfo exhInfo")
 	public List<ExhibitionInfo> findAllByEiBanner(Integer eiBanner);
 
 	public List<ExhibitionInfo> findAllByEiNum(Integer eiNum);
 
 	public List<ExhibitionInfo> findAllByUserInfoUiNum(Integer uiNum);
 
+	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
+	@Query("select exhInfo from ExhibitionInfo exhInfo")
 	public Page<ExhibitionInfo> findAllByEiStatus(String eiStatus, Pageable pageable);
 
+	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
+	@Query("select exhInfo from ExhibitionInfo exhInfo")
 	public Page<ExhibitionInfo> findAllByOrderByEiNum(Pageable pageable);
 
 	public Page<ExhibitionInfo> findAllByGalleryInfoGiAddressLike(String giAddress, Pageable pageable);
@@ -71,6 +80,8 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	public Page<ExhibitionInfo> getOpeningCalendarList(@Param("eiStartDate") String eiStartDate, Pageable pageable);
 
 	// 진행중
+
+	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
 	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiStartDate <= current_date AND ei.eiEndDate >= current_date")
 	public Page<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable);
 	
