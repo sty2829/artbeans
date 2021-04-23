@@ -65,22 +65,5 @@ public class FileConverter {
 			e.printStackTrace();
 		}
 		return null;
-	}
-//	String deleteFile = "다운로드.jfif";
-//	File file = new File(editorPath + deleteFile);
-//	System.out.println(file);
-//	file.delete();
-//	//if( file.exists() ){//파일존재여부확인
-//		File[] files = file.listFiles(); 
-//		System.out.println(files[0].getName());
-//		for( int i=0; i<files.length; i++){ 
-//			if( files[i].delete() ){ 
-//				System.out.println(files[i].getName()+" 삭제성공"); 
-//			}else{ 
-//				System.out.println(files[i].getName()+" 삭제실패"); 
-//			} 
-//		//} 
-//	} 
-	
-	
+	}	
 }

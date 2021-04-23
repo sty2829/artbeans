@@ -6,10 +6,7 @@ window.onload = galleryOption;
 
 
 function galleryOption(){ 
-    //console.log(uiNum);
-    //console.log(uiName);
-    document.querySelector('#uiName').value = uiName;
-    
+    document.querySelector('#uiName').value = uiName;    
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/Gallery-lists'); //GalleryController
 	xhr.onreadystatechange = function(){

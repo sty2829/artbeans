@@ -46,12 +46,12 @@ public class ExhibitionController {
 	// return eiRepo.getList(str, pageable);
 	// }
 
-	// 나중에 지울 것
-	@GetMapping("/exhibition-listDemo")
-	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoListDemo(Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		return eService.getExhiListDemo(pageable, dtExhibitionInfo);
-	}
+//	// 나중에 지울 것
+//	@GetMapping("/exhibition-listDemo")
+//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoListDemo(Pageable pageable,
+//			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+//		return eService.getExhiListDemo(pageable, dtExhibitionInfo);
+//	}
 
 	// 사용중(상혁)
 	@GetMapping("/exhibition-listDemoss/{giAddress}")
@@ -61,12 +61,12 @@ public class ExhibitionController {
 		return eService.getExhiListDemoss(giAddress, pageable, dtExhibitionInfo);
 	}
 
-	// 지울걸
-	@GetMapping("/exhibition-list")
-	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		return eService.getExhibitionInfoLists(pageable, dtExhibitionInfo);
-	}
+//	// 지울걸
+//	@GetMapping("/exhibition-list")
+//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable,
+//			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+//		return eService.getExhibitionInfoLists(pageable, dtExhibitionInfo);
+//	}
 
 	// 사용중(상혁) exhibition-list 변경
 	@GetMapping("/exhibition-openinglist")
@@ -108,10 +108,10 @@ public class ExhibitionController {
 		return FileConverter.ckeditorUploadImg(upload);
 	}
 
-	@DeleteMapping("/exhibition")
-	public @ResponseBody Integer deleteExhibition(@RequestParam Integer eiNum) {
-		return eService.deleteExhibitionInfo(eiNum);
-	}
+//	@DeleteMapping("/exhibition")
+//	public @ResponseBody Integer deleteExhibition(@RequestParam Integer eiNum) {
+//		return eService.deleteExhibitionInfo(eiNum);
+//	}
 
 	@PostMapping("/exhibition-update")
 	public @ResponseBody Integer updateExhibitionInfo(@ModelAttribute ExhibitionInfo exhibitionInfo) throws Exception {

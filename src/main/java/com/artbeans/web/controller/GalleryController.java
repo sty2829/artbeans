@@ -45,7 +45,7 @@ public class GalleryController {
 		return gService.getGalleryInfo(giNum);
 	}
 	
-
+    //사용중(상혁)
 	@PostMapping("/gallery")
 	public @ResponseBody int saveGalleryInfo(GalleryInfo galleryInfo) throws Exception {
 		log.info("galleryInfo => {}", galleryInfo);
