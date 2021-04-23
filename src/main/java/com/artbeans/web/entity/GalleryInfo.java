@@ -69,7 +69,7 @@ public class GalleryInfo {
 	@ColumnDefault("now()")
 	private Date moddat;
 	
-	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.LAZY)
+	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fi_num")
 	private FileInfo fileInfo;
 	
