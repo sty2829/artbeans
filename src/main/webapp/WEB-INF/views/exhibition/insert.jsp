@@ -196,7 +196,7 @@
 						</div>
 
 						<div class="form-group">
-							<input type="number" class="form-control" id="eiCharge" placeholder="무료면 안 적으셔도 됩니다." />
+							<input type="number" class="form-control" id="eiCharge" placeholder="가격을 작성해주세요. (무료면 0)" />
 							<div style="HEIGHT: 8pt"></div>
 						</div>
 
