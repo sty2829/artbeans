@@ -194,6 +194,7 @@ function priceCheap(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
+			var idx = 1;
 			for(var exhibition of res.data){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
@@ -216,11 +217,12 @@ function priceCheap(){
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div style="display:none" class="read-more">';
-					html += '<input type="checkbox" onclick="sideMap()">';
+					html += '<input name="checkMap' + idx +  '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
 					html += '</div>';
+					idx++;
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;
 		}		
@@ -236,6 +238,7 @@ function priceExpensive(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
+			var idx = 1;
 			for(var exhibition of res.data){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
@@ -258,11 +261,12 @@ function priceExpensive(){
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div style="display:none" class="read-more">';
-					html += '<input type="checkbox" onclick="sideMap()">';
+					html += '<input name="checkMap' + idx +  '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
 					html += '</div>';
+					idx++;
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;
 		}		
@@ -278,6 +282,7 @@ function pricefree(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
+			var idx = 1;
 			for(var exhibition of res.data){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
@@ -300,11 +305,12 @@ function pricefree(){
 					html += '<div class="entry-content">';
 					html += '<div style="HEIGHT: 10pt"></div>';
 					html += '<div style="display:none" class="read-more">';
-					html += '<input type="checkbox" onclick="sideMap()">';
+					html += '<input name="checkMap' + idx +  '" type="checkbox" onclick="sideMap(' + idx + ')" value1="' + exhibition.galleryInfo['giAddressX'] + '" value2="' + exhibition.galleryInfo['giAddressY'] + '" value3="' + exhibition.galleryInfo['giName'] + '">';
 					html += '</div>';
 					html += '</div>';
 					html += '</article>';
 					html += '</div>';
+					idx++;
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;
 		}		
