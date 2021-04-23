@@ -8,10 +8,10 @@ $('#sidebarCollapse').on('click', function() {
 	$('#sidebarCollapse').hide();
 	$('.read-more').show();
 	window.addEventListener("scroll", function(e) {
-		if ($('#sidebar').attr('class')=='active'||(window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+		if ($('#sidebar').attr('class')=='active'&&(window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 			$('.read-more').show();
 		}
-		if ($('#sidebar').attr('class')==''||(window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+		if ($('#sidebar').attr('class')==''&&(window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
 			$('.read-more').hide();
 		}
 
