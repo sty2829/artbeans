@@ -14,7 +14,9 @@ public interface ExhibitionService {
 	List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo);
 
 	ExhibitionInfo getExhibitionInfo(Integer eiNum);
-
+	
+	List<ExhibitionInfo> eiUpdateGetExhibitionInfo(Integer uiNum);
+	
 	ExhibitionInfo saveExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception;
 
 	ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -48,6 +49,13 @@ public class SearchController {
 	public @ResponseBody List<ExhibitionInfo> getEiBannerList(ExhibitionInfo exhibitionInfo){
 		log.info("exhibition-banner=>{}",exhibitionInfo);
 		return eService.getEiBannerLists(exhibitionInfo);
+	}
+	
+	@GetMapping("/getExhibition") //로그인후 update 들어갈시 uiNum으로 전시회 가져옴
+	public @ResponseBody List<ExhibitionInfo> getUserExhibition(Integer uiNum) {
+		log.info("uiNum=>{}",uiNum);
+		log.info("업데이트=>{}",eService.getExhibitionFindByUiNum(uiNum));
+		return eService.getExhibitionFindByUiNum(uiNum);
 	}
 	
 	

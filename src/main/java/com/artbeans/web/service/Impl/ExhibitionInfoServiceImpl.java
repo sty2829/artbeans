@@ -204,5 +204,11 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 			String eiContent, Integer uiNum, Integer eiNum) {
 		exhiRepo.updateExhibitionInfoWithoutFile(eiStatus, giNum, eiName, eiArtist, eiCharge, eiStartDate, eiEndDate, eiStartTime, eiEndTime, eiContent, uiNum, eiNum);
 	}
+
+	@Override
+	public List<ExhibitionInfo> eiUpdateGetExhibitionInfo(Integer uiNum) {
+	
+		return exhiRepo.findAllByUserInfoUiNum(uiNum);
+	}
 	
 }
