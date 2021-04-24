@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.artbeans.web.dto.Search;
 import com.artbeans.web.entity.ExhibitionInfo;
 
 public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, Integer> {
@@ -38,9 +39,6 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
 	@Query("select exhInfo from ExhibitionInfo exhInfo")
 	public Page<ExhibitionInfo> findAllByOrderByEiNum(Pageable pageable);
-
-	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
-	public Page<ExhibitionInfo> findAllByGalleryInfoGiAddressLike(String giAddress, Pageable pageable);
 
 	// 심태윤- 전시회예약정보 인서트시 보여줄 전시회리스트
 	public List<ExhibitionInfo> findAllByUserInfoUiNumAndReservationInfoIsNull(Integer uiNum);
@@ -89,6 +87,11 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
 	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiCharge = ?2 AND ei.eiStartDate <= current_date AND ei.eiEndDate >= current_date")
 	public Page<ExhibitionInfo> getOpeningListGetFree(String eiStatus, Integer eiCharge, Pageable pageable);
+	
+	// 진행중 무료 아닌 것
+	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
+	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiCharge > ?2 AND ei.eiStartDate <= current_date AND ei.eiEndDate >= current_date")
+	public Page<ExhibitionInfo> getOpeningPriceList(String eiStatus, Integer eiCharge, Pageable pageable);
 
 	// 종료
 	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
@@ -104,5 +107,29 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
 	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiCharge =?2 AND ei.eiStartDate > current_date")
 	public Page<ExhibitionInfo> getFutureListGetFree(String eiStatus, Integer eiCharge, Pageable pageable);
+	
+	//진행할 무료 아닌 것
+	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
+	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiCharge > ?2 AND ei.eiStartDate > current_date")
+	public Page<ExhibitionInfo> getFuturePriceList(String eiStatus, Integer eiCharge, Pageable pageable);
+	
+	//주소
+//	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
+//	public Page<ExhibitionInfo> findAllByGalleryInfoGiAddressLike(String giAddress, Pageable pageable);
+	
+	//진행 주소
+	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
+	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiStartDate <= current_date AND ei.eiEndDate >= current_date AND ei.galleryInfo.giAddress Like ?2")
+	public Page<ExhibitionInfo> getExhibitionOpenAddr(String eiStatus, String giAddress,  Pageable pageable);
+	
+	//종료주소
+	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
+	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiEndDate < current_date AND ei.galleryInfo.giAddress Like ?2")
+	public Page<ExhibitionInfo> getExhibitionCloseAddr(String eiStatus, String giAddress,  Pageable pageable);
+	
+	//진행할 주소
+	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
+	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiStartDate > current_date AND ei.galleryInfo.giAddress Like ?2")
+	public Page<ExhibitionInfo> getExhibitionFutureAddr(String eiStatus, String giAddress,  Pageable pageable);
 
 }

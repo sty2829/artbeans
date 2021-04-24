@@ -15,9 +15,12 @@ import com.artbeans.web.entity.GalleryInfo;
 public interface ExhibitionService {
 	List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo);
 	
-	//페이지 동적
+	//페이지 동적, 사용중 (상혁)
 	Page<ExhibitionInfo> getExhibitionInfos(Search Search, Pageable pageable);
-
+	
+	// 사용중 (상혁)
+	Page<ExhibitionInfo> getExhiAddrList(String giAddress, Search Search, Pageable pageable);
+	
 	ExhibitionInfo getExhibitionInfo(Integer eiNum);
 	
 	List<ExhibitionInfo> eiUpdateGetExhibitionInfo(Integer uiNum);
@@ -30,21 +33,21 @@ public interface ExhibitionService {
 
 	List<ExhibitionInfo> getEiBannerLists(ExhibitionInfo exhibitionInfo);
 
-	// getExhibitionInfoLists 대체
-	DataTable<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo);
-
-	DataTable<ExhibitionInfo> getCloseList(String eiStatus, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo);
-
-	DataTable<ExhibitionInfo> getFutureList(String eiStatus, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo);
-
-	DataTable<ExhibitionInfo> getOpeningListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo);
-	
-	DataTable<ExhibitionInfo> getFutureListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo);
+//	// getExhibitionInfoLists 대체
+//	DataTable<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable,
+//			DataTable<ExhibitionInfo> dtExhibitionInfo);
+//
+//	DataTable<ExhibitionInfo> getCloseList(String eiStatus, Pageable pageable,
+//			DataTable<ExhibitionInfo> dtExhibitionInfo);
+//
+//	DataTable<ExhibitionInfo> getFutureList(String eiStatus, Pageable pageable,
+//			DataTable<ExhibitionInfo> dtExhibitionInfo);
+//
+//	DataTable<ExhibitionInfo> getOpeningListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
+//			DataTable<ExhibitionInfo> dtExhibitionInfo);
+//	
+//	DataTable<ExhibitionInfo> getFutureListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
+//			DataTable<ExhibitionInfo> dtExhibitionInfo);
 	
 	// 변경 지울 것
 //	DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo);
@@ -54,9 +57,8 @@ public interface ExhibitionService {
 
 	// DataTable<ExhibitionInfo> getExhibitionInfos(Pageable pageable,
 	// DataTable<ExhibitionInfo> exhibitionInfo);
-	// test
-	DataTable<ExhibitionInfo> getExhiListDemoss(String giAddress, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo);
+
+	
 
 	// 전시회정보찾기 위해 추가
 	List<ExhibitionInfo> getExhibitionFindByUiNum(UserSession userSession);

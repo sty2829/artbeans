@@ -4,12 +4,12 @@
 
 function getImageList() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-openinglist?size=9&sort=eiStartDate,asc'); //ExhibitionController
+	xhr.open('GET', '/exhibitions?status=CONFIRM&date=OPENIG&size=9&sort=eiStartDate,asc'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			for (var exhibition of res.data) {
+			for (var exhibition of res.content) {
 					html += '<div class="col-lg-4 col-md-6 portfolio-item filter-exhibition">';
 					html += '<div alt="" class="portfolio-wrap" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 					html += '<img src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" >';
