@@ -11,6 +11,4 @@ public class DataTable<T> {
 	private Integer draw;
 	private Long recordsTotal;
 	private Long recordsFiltered;
-	
-
 }
