@@ -85,4 +85,17 @@ public class ReviewController {
 	public int deleteComment(@PathVariable Integer ciNum) {
 		return reviewService.deleteComment(ciNum);
 	}
+	
+	//admin-review 검색바
+	@GetMapping("/review-search-bar/title")
+	public Page<ReviewInfo> findAllByRviTitleLike(String rviTitle,Pageable pageable){
+		return reviewService.findAllByRviTitleLike(rviTitle, pageable);
+	}
+	
+	//admin-review 검색바
+	@GetMapping("/review-search-bar/content")
+	public Page<ReviewInfo> findAllByRviContentLike(String rviTitle,Pageable pageable){
+		return reviewService.findAllByRviContentLike(rviTitle, pageable);
+	}
+	
 }

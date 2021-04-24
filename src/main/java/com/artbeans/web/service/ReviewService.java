@@ -31,4 +31,8 @@ public interface ReviewService {
 
 	int deleteComment(Integer ciNum);
 
+	//admin-review 검색바
+	Page<ReviewInfo> findAllByRviTitleLike(String rviTitle,Pageable pageable);
+	//admin-review 검색바
+	Page<ReviewInfo> findAllByRviContentLike(String rviContent,Pageable pageable);
 }

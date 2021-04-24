@@ -14,4 +14,10 @@ public interface ReviewInfoRepository extends JpaRepository<ReviewInfo, Integer>
 	Page<ReviewDTO> findAllBy(Pageable pageable);
 	
 	Page<ReviewDTO> findAllByUserInfoUiNum(Integer uiNum, Pageable pageable);
+	
+	//admin-review 검색바
+	Page<ReviewInfo> findAllByRviTitleLike(String rviTitle, Pageable pageable);
+	//admin-review 검색바
+	Page<ReviewInfo> findAllByRviContentLike(String rviContent, Pageable pageable);
+	
 }

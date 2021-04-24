@@ -102,6 +102,17 @@ public class ReviewServiceImpl implements ReviewService {
 		if(getCommentInfos(ciNum)==null) return 1;
 		return 0;
 	}
+	
+	//admin-review 검색바
+	@Override
+	public Page<ReviewInfo> findAllByRviTitleLike(String rviTitle, Pageable pageable) {
+		return rviRepo.findAllByRviTitleLike("%"+rviTitle+"%", pageable);
+	}
+	//admin-review 검색바
+	@Override
+	public Page<ReviewInfo> findAllByRviContentLike(String rviContent, Pageable pageable) {
+		return rviRepo.findAllByRviContentLike("%"+rviContent+"%", pageable);
+	}
 
 
 	

@@ -81,7 +81,18 @@
 								</nav>
 							</div>
 						</div><!-- 페이징처리 -->
-						
+						<div class="navbar navbar-light bg-light" ><!-- 검색바 처리 -->
+							<div class="form-inline" style="margin-left: auto; margin-right:auto;">
+								<select id="rviSelectBox">
+									<option value="rviTitle">리뷰 제목</option>
+									<option value="rviContent">리뷰 내용</option>
+								</select>
+								<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="rviNavBar">
+								<button class="btn btn-outline-success my-2 my-sm-0"
+									style="background-color: white; color:red; border-color: red;"
+									onclick="rviSearchButton(1)">Search</button>
+							</div>
+						</div><!-- 검색바 처리 -->
 					</div>
 				</div>
 			</div>
@@ -172,7 +183,81 @@ function getReviews(page){
 		}
 	xhr.send();
 }
-	
+
+//검색창
+function rviSearchButton(page){
+	let selectValue=document.querySelector('#rviSelectBox').value;
+	let searchValue=document.querySelector('#rviNavBar').value;
+
+	let xhr = new XMLHttpRequest();
+	//'/board?size=5&page=' + (page-1);
+	if(selectValue=='rviTitle'){
+		xhr.open('GET', '/review-search-bar/title?size=10&page='+(page-1)+'&rviTitle='+searchValue); //ReviewController
+	}else if(selectValue=='rviContent'){
+		xhr.open('GET', '/review-search-bar/content?size=10&page='+(page-1)+'&rviContent='+searchValue); //ReviewController
+	}
+
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			let res = JSON.parse(xhr.responseText);
+
+			let html='';
+			
+			let ContentPtag = review.rviContent;
+			let cNumLast=ContentPtag.indexOf('</p>');
+			
+			ContentPtag=ContentPtag.replace('<p>','');
+			ContentPtag=ContentPtag.substring(0,cNumLast-3);
+			
+			
+			
+			if(res.content.length==1){
+				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-rvi-ci-update?rviNum='+review.rviNum+'\'">';
+				html+='<td class="cell100 column1">'+res.content[0].rviNum+'</td>';
+				html+='<td class="cell100 column2">'+res.content[0].rviTitle+'</td>';
+				html+='<td class="cell100 column3">'+ContentPtag+'</td>';
+				html+='<td class="cell100 column4">'+res.content[0].uiEmail+'</td>';
+				html+="</tr>";
+			}else if(res.content.length>1){
+				for(let review of res.content){
+					html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-rvi-ci-update?rviNum='+review.rviNum+'\'">';
+					html+='<td class="cell100 column1">'+review.rviNum+'</td>';
+					html+='<td class="cell100 column2">'+review.rviTitle+'</td>';
+					html+='<td class="cell100 column3">'+ContentPtag+'</td>';
+					html+='<td class="cell100 column4">'+review.uiEmail+'</td>';
+					html+="</tr>";
+				}
+			}
+			
+			let disable = res.first ? 'disabled' : '';
+			
+			let li = '<li class="page-item ' + disable + '" onclick="getBeforeConfirm(' + res.number + ')">';
+			li += '<a class="page-link" href="#" tabindex="-1">이전</a>';
+			li += '</li>';
+			
+			let startPage = Math.floor((((Number(res.number) + 1) - 1) / size)) * size + 1;
+			let endPage = startPage + size - 1;
+			if(endPage > res.totalPages){
+				endPage = res.totalPages;
+			}
+			for(startPage; startPage<=endPage; startPage++){
+				if(startPage === page){
+					li += '<li class="page-item active" onclick="getBeforeConfirm(' + startPage + ')"><a class="page-link" href="#">'+ startPage +'</a></li>';
+					continue;
+				}
+				li += '<li class="page-item" onclick="getBeforeConfirm(' + startPage +')"><a class="page-link" href="#">'+ startPage +'</a></li>';
+			}
+			disable = res.last ? 'disabled' : '';
+			li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
+		    li += '<a class="page-link" href="#">다음</a>';
+		  	li += '</li>';
+			
+			document.querySelector('#tBody').innerHTML = html;
+			document.querySelector('#pastPageList').innerHTML = li;
+		}
+	}
+	xhr.send();
+}
 
 </script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

@@ -122,8 +122,18 @@ h2{
 	background-color:#fff;
 	border:1px solid #E7E7E7;
 }
-.age_btn.on{
+.age_btn:hover{
 	color:#612581;
 	font-weight:bold;
 	border:2px solid #000
+}
+.age_btn_on{
+	float:left;
+	width:16.6%;
+	cursor:pointer;
+	font-weight:300;
+	color:#ff0080;
+	height:40px;
+	background-color:#ffffff;
+	border:1px solid #E7E7E7;
 }
