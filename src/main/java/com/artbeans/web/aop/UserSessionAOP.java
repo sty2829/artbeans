@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 @Slf4j
 public class UserSessionAOP {
-
+					   												
 	@Around("execution(* com.artbeans.web.controller.*Controller.*(com.artbeans.web.dto.UserSession,..))")
 	public Object getCurrentUser(ProceedingJoinPoint pjp) throws Throwable {
 		HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession();

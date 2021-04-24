@@ -18,7 +18,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 			throws Exception {
 
 		HttpSession hs = request.getSession();
-		
+		log.info("LoginInterceptor - {}",hs);
 		if(hs.getAttribute("userInfo")==null){
 			response.sendRedirect("/views/user/login");
 			return false;
