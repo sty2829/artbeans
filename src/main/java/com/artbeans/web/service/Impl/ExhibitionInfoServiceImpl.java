@@ -31,7 +31,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	private FileInfoRepository fileRepo;
 	@Autowired
 	private ExhibitionInfoRepository exhiRepo;
-
+ 
 	@Override
 	public List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo) {
 		if (exhibitionInfo.getEiName() != null) {
