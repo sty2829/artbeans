@@ -74,12 +74,12 @@
 								<h4>전시회 포스터사진</h4>
 
 							</div>
-							
+							<!--  
 							<div class="phone" >
 								<h4>전시회 설명</h4>
 
 							</div>
-					
+							-->
 						</div>
 					</div>
 
@@ -168,8 +168,8 @@
 						</div>
 
 						<div class="form-group">
-							<textarea class="form-control" id="eiContent" rows="5"
-								placeholder="전시회 설명"></textarea>
+							<input type="hidden" class="form-control" id="eiContent" rows="5"
+								placeholder="전시회 설명"></hidden>
 						</div>
 
 						<input type="hidden" class="form-control" id="uiNum"
@@ -206,12 +206,14 @@ function doUpdate(){
 		eiArtist.focus();
 		return;
 	}	
+	/*
 	var eiCharge = document.querySelector('#eiCharge');
 	if(eiCharge.value.trim().length<2){
 		alert('전시회 가격을 작성해주세요.');
 		eiCharge.focus();
 		return;
-	}	
+	} 무료도 가능하기에 바꿈
+	*/
 	var eiStartDate = document.querySelector('#eiStartDate');
 	if(eiStartDate.value.trim().length<1){
 		alert('전시회 시작일을 선택해주세요.');
