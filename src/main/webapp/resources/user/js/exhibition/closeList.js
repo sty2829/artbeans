@@ -2,18 +2,16 @@
  * 
  */
 
-//window.onload = get;
 window.addEventListener("load", get);	
 
 function get() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibitions?eiStatus=CONFIRM&state=CLOSE&size=9&sort=eiNum,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibitions?status=CONFIRM&date=CLOSE&size=9&sort=eiNum,asc&page=' + count); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200){
 				var res = JSON.parse(xhr.responseText);
 				var html = '';			
 				for (var exhibition of res.content) {
-							console.log(exhibition);
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
 							html += '<div class="entry-img">';
@@ -51,12 +49,12 @@ function get() {
 	function newest() {
 		count = 0;
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/exhibition-closelist?size=9&sort=eiStartDate,asc&page=' + count); //ExhibitionController
+		xhr.open('GET', '/exhibitions?status=CONFIRM&date=CLOSE&size=9&sort=eiStartDate,asc&page=' + count); //ExhibitionController
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var res = JSON.parse(xhr.responseText);
 				var html = '';
-				for (var exhibition of res.data) {
+				for (var exhibition of res.content) {
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
 							html += '<div class="entry-img">';
@@ -93,12 +91,12 @@ function get() {
 	function deadline() {
 		count = 0;
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/exhibition-closelist?size=9&sort=eiEndDate,asc&page=' + count); //ExhibitionController
+		xhr.open('GET', '/exhibitions?status=CONFIRM&date=CLOSE&size=9&sort=eiEndDate,asc&page=' + count); //ExhibitionController
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var res = JSON.parse(xhr.responseText);
 				var html = '';
-				for (var exhibition of res.data) {
+				for (var exhibition of res.content) {
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
 							html += '<div class="entry-img">';
@@ -134,12 +132,12 @@ function get() {
 	
 	function areaAll() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-closelist?size=9&sort=eiName,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibitions?status=CONFIRM&date=CLOSE&size=9&sort=eiName,asc&page=' + count); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200){
 				var res = JSON.parse(xhr.responseText);
 				var html = '';			
-				for (var exhibition of res.data) {					
+				for (var exhibition of res.content) {					
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
 							html += '<div class="entry-img">';
@@ -173,24 +171,16 @@ function get() {
 		}
 		xhr.send();
 	}
-
-	//test
+	
 	function area(obj) {
 		count = 0;
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/exhibition-listDemoss/' + obj.value + '?size=30&sort=eiNum,asc&page=' + count); //ExhibitionController
+		xhr.open('GET', '/exhibition-getaddressList/' + obj.value + '?status=CONFIRM&date=CLOSE&size=9&sort=eiNum,asc&page=' + count); //ExhibitionController
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
-				//console.log(xhr.responseText);
 				var res = JSON.parse(xhr.responseText);
 				var html = '';
-				for (var exhibition of res.data) {
-					var today = new Date();
-					var endDate = new Date(exhibition.eiEndDate);
-					//console.log("마감" + (today > endDate));				
-					//console.log(exhibition.eiStatus == 1); 
-					if (exhibition.eiStatus == 1) {
-						if (today > endDate) {
+				for (var exhibition of res.content) {
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
 							html += '<div class="entry-img">';
@@ -217,16 +207,8 @@ function get() {
 							html += '</div>';
 							html += '</article>';
 							html += '</div>';
-						}
-					}
 				}
 				document.querySelector('#exhibitionList').innerHTML = html;
-				/*window.addEventListener("scroll",  function(e) {
-                if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                    count++;
-                    area(obj);
-                   }
-                });*/
 			}
 		}
 		xhr.send();

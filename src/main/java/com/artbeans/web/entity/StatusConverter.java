@@ -26,6 +26,4 @@ public class StatusConverter implements AttributeConverter<String, Integer> {
 		return "PENDING";
 	}
 
-	
-
 }

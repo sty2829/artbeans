@@ -43,15 +43,165 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		return exhiRepo.findAll();
 	}
 	
+	//사용중 (상혁)
 	@Override
 	public Page<ExhibitionInfo> getExhibitionInfos(Search search, Pageable pageable) {
-		if(search != null && search.getEiStatus().equals("CONFIRM") && search.getState().equals("CLOSE")) {
-			return exhiRepo.getCloseList(search.getEiStatus(), pageable);
-		}
+		if(search != null) {
+			if(search.getStatus().equals("CONFIRM")) {
+				if(search.getDate().equals("OPENIG")) {
+                    if(search.getPrice() != null) {
+                    	if(search.getPrice() == 0) {
+                    		return exhiRepo.getOpeningListGetFree(search.getStatus(),search.getPrice(), pageable);                    		
+                    	} else if(search.getPrice() == 1){
+                    		return exhiRepo.getOpeningPriceList(search.getStatus(),search.getPrice(), pageable);
+                    	}
+					}else {
+						return exhiRepo.getOpeningList(search.getStatus(), pageable);
+					}
+				}else if(search.getDate().equals("FUTURE")) {
+					if(search.getPrice() != null) {
+						if(search.getPrice() == 0) {
+							return exhiRepo.getFutureListGetFree(search.getStatus(),search.getPrice(), pageable);
+						}else if(search.getPrice() == 1) {
+							return exhiRepo.getFuturePriceList(search.getStatus(),search.getPrice(), pageable);							
+						}                    	
+					}else {
+						return exhiRepo.getFutureList(search.getStatus(), pageable);
+					}					
+				}else if(search.getDate().equals("CLOSE")) {
+				    return exhiRepo.getCloseList(search.getStatus(), pageable);					
+			    }
+					
+			}
+		}		
 		return null;
 	}
 	
+	// 사용중 (상혁)
+	@Override
+	public Page<ExhibitionInfo> getExhiAddrList(String giAddress, Search search, Pageable pageable) {
+		if(search != null) {
+			if(search.getStatus().equals("CONFIRM")) {
+				if(search.getDate().equals("OPENIG")) {
+					return exhiRepo.getExhibitionOpenAddr(search.getStatus(), giAddress + "%", pageable);
+				}else if(search.getDate().equals("FUTURE")) {
+					return exhiRepo.getExhibitionFutureAddr(search.getStatus(), giAddress + "%", pageable);
+				}else if(search.getDate().equals("CLOSE")) {					
+					return exhiRepo.getExhibitionCloseAddr(search.getStatus(), giAddress + "%", pageable);
+				}				
+			}				
+		}				
+		return null;
+	}
+		
+		
+	//     /exhibitions?status=CONFIRM&state=CLOSE&
+	//     for (var exhibition of res.content)
+	
+	
+//	// getExhibitionInfoLists 변경 진행중
+//		@Override
+//		public DataTable<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable,
+//				DataTable<ExhibitionInfo> dtExhibitionInfo) {
+//			Page<ExhibitionInfo> pb = exhiRepo.getOpeningList("1", pageable);
+//			dtExhibitionInfo.setData(pb.getContent());
+//			dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+//			dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+//			return dtExhibitionInfo;
+//		}
+//		
+//		//진행중 무료
+//		@Override
+//		public DataTable<ExhibitionInfo> getOpeningListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
+//				DataTable<ExhibitionInfo> dtExhibitionInfo) {
+//			Page<ExhibitionInfo> pb = exhiRepo.getOpeningListGetFree("1",0, pageable);
+//			dtExhibitionInfo.setData(pb.getContent());
+//			dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+//			dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+//			return dtExhibitionInfo;
+//		}
+//
+//		// getExhibitionInfoLists 변경 종료
+//		@Override
+//		public DataTable<ExhibitionInfo> getCloseList(String eiStatus, Pageable pageable,
+//				DataTable<ExhibitionInfo> dtExhibitionInfo) {
+//			Page<ExhibitionInfo> pb = exhiRepo.getCloseList("1", pageable);
+//			dtExhibitionInfo.setData(pb.getContent());
+//			dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+//			dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+//			return dtExhibitionInfo;
+//		}
+//
+//		// getExhibitionInfoLists 변경 진행할
+//		@Override
+//		public DataTable<ExhibitionInfo> getFutureList(String eiStatus, Pageable pageable,
+//				DataTable<ExhibitionInfo> dtExhibitionInfo) {
+//			Page<ExhibitionInfo> pb = exhiRepo.getFutureList("1", pageable);
+//			dtExhibitionInfo.setData(pb.getContent());
+//			dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+//			dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+//			return dtExhibitionInfo;
+//		}	
+//		
+//		//진행할 무료
+//		@Override
+//		public DataTable<ExhibitionInfo> getFutureListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
+//				DataTable<ExhibitionInfo> dtExhibitionInfo) {
+//			Page<ExhibitionInfo> pb = exhiRepo.getFutureListGetFree("1",0, pageable);
+//			dtExhibitionInfo.setData(pb.getContent());
+//			dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+//			dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+//			return dtExhibitionInfo;
+//		}
+		
+		
+//	//진행
+//	if(search.getEiStatus().equals("CONFIRM") && search.getState().equals("OPENIG")) {
+//		return exhiRepo.getOpeningList(search.getState(), pageable);
+//	}else if(search.getEiStatus().equals("CONFIRM") && search.getState().equals("OPENIG") && search.getEiCharge() != null) {
+//		return exhiRepo.getOpeningListGetFree(search.getEiStatus(),search.getEiCharge(), pageable);
+//	}
+//	
+//	//종료
+//	if(search.getEiStatus().equals("CONFIRM") && search.getState().equals("CLOSE")) {
+//		return exhiRepo.getCloseList(search.getEiStatus(), pageable);
+//	}else if(search.getEiStatus().equals("CONFIRM") && search.getState().equals("CLOSE") && search.getEiCharge() != null) {
+//		return exhiRepo.getOpeningListGetFree(search.getEiStatus(),search.getEiCharge(), pageable);
+//	}
+//	
+//	//진행 할
+//	if(search.getEiStatus().equals("CONFIRM") && search.getState().equals("FUTURE")) {
+//		return exhiRepo.getCloseList(search.getEiStatus(), pageable);
+//	}else if(search.getEiStatus().equals("CONFIRM") && search.getState().equals("FUTURE") && search.getEiCharge() != null) {
+//		return exhiRepo.getOpeningListGetFree(search.getEiStatus(),search.getEiCharge(), pageable);
+//	}
 
+
+	
+	
+//	// 변경. 지울것
+//	@Override
+//	public DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable,
+//			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+//		// 1 은 관리자수락 상태
+//		Page<ExhibitionInfo> pb = exhiRepo.findAllByEiStatus("1", pageable);
+//		dtExhibitionInfo.setData(pb.getContent());
+//		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+//		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+//		return dtExhibitionInfo;
+//	}
+
+	// 나중에 지울 것
+//	@Override
+//	public DataTable<ExhibitionInfo> getExhiListDemo(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo) {
+//		Page<ExhibitionInfo> pb = exhiRepo.findAll(pageable);
+//		dtExhibitionInfo.setData(pb.getContent());
+//		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
+//		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
+//		return dtExhibitionInfo;
+//	}//
+	
+	
 	@Override
 	public List<ExhibitionInfo> getEiBannerLists(ExhibitionInfo exhibitionInfo) {
 
@@ -99,91 +249,12 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 			return 1;
 		return 0;
 	}
-
-	// getExhibitionInfoLists 변경 진행중
-	@Override
-	public DataTable<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		Page<ExhibitionInfo> pb = exhiRepo.getOpeningList("1", pageable);
-		dtExhibitionInfo.setData(pb.getContent());
-		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
-		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
-		return dtExhibitionInfo;
-	}
-	
-	//진행중 무료
-	@Override
-	public DataTable<ExhibitionInfo> getOpeningListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		Page<ExhibitionInfo> pb = exhiRepo.getOpeningListGetFree("1",0, pageable);
-		dtExhibitionInfo.setData(pb.getContent());
-		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
-		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
-		return dtExhibitionInfo;
-	}
-
-	// getExhibitionInfoLists 변경 종료
-	@Override
-	public DataTable<ExhibitionInfo> getCloseList(String eiStatus, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		Page<ExhibitionInfo> pb = exhiRepo.getCloseList("1", pageable);
-		dtExhibitionInfo.setData(pb.getContent());
-		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
-		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
-		return dtExhibitionInfo;
-	}
-
-	// getExhibitionInfoLists 변경 진행할
-	@Override
-	public DataTable<ExhibitionInfo> getFutureList(String eiStatus, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		Page<ExhibitionInfo> pb = exhiRepo.getFutureList("1", pageable);
-		dtExhibitionInfo.setData(pb.getContent());
-		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
-		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
-		return dtExhibitionInfo;
-	}	
-	
-	//진행할 무료
-	@Override
-	public DataTable<ExhibitionInfo> getFutureListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		Page<ExhibitionInfo> pb = exhiRepo.getFutureListGetFree("1",0, pageable);
-		dtExhibitionInfo.setData(pb.getContent());
-		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
-		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
-		return dtExhibitionInfo;
-	}
-	
-//	// 변경. 지울것
-//	@Override
-//	public DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable,
-//			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-//		// 1 은 관리자수락 상태
-//		Page<ExhibitionInfo> pb = exhiRepo.findAllByEiStatus("1", pageable);
-//		dtExhibitionInfo.setData(pb.getContent());
-//		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
-//		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
-//		return dtExhibitionInfo;
-//	}
-
-	// 나중에 지울 것
-//	@Override
-//	public DataTable<ExhibitionInfo> getExhiListDemo(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo) {
-//		Page<ExhibitionInfo> pb = exhiRepo.findAll(pageable);
-//		dtExhibitionInfo.setData(pb.getContent());
-//		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
-//		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
-//		return dtExhibitionInfo;
-//	}//
-
 	
 	//해당유저의 전시회리스트를 불러온다.
 	@Override
 	public List<ExhibitionInfo> getExhibitionFindByUiNum(UserSession userSession) {
 		if(userSession != null && userSession.getUiNum() != null) {
-			List<ExhibitionInfo> eiList =
-					exhiRepo.findAllByUserInfoUiNumAndReservationInfoIsNull(userSession.getUiNum());
+			List<ExhibitionInfo> eiList = exhiRepo.findAllByUserInfoUiNumAndReservationInfoIsNull(userSession.getUiNum());
 			if(!eiList.isEmpty()) {
 				return eiList;
 			}
@@ -191,17 +262,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		return null;
 	}
 
-	// test
-	@Override
-	public DataTable<ExhibitionInfo> getExhiListDemoss(String giAddress, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		log.info("giAddress=>{}", giAddress + "%");
-		Page<ExhibitionInfo> pb = exhiRepo.findAllByGalleryInfoGiAddressLike(giAddress + "%", pageable);
-		dtExhibitionInfo.setData(pb.getContent());
-		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
-		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
-		return dtExhibitionInfo;
-	}
+	
 
 	// admin 배너 허가를 위한 업데이트
 	@Override
@@ -257,7 +318,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		return pageCheck;
 	}
 
-
+	//admin-ei-update
 	@Override
 	public void updateExhibitionInfoWithoutFile(Integer eiStatus, Integer giNum, String eiName, String eiArtist,
 			Integer eiCharge, String eiStartDate, String eiEndDate, String eiStartTime, String eiEndTime,
@@ -269,6 +330,12 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	public List<ExhibitionInfo> eiUpdateGetExhibitionInfo(Integer uiNum) {
 	
 		return exhiRepo.findAllByUserInfoUiNum(uiNum);
+	}
+	
+	//admin-banner
+	@Override
+	public Page<ExhibitionInfo> findAllByEiBanner(Integer eiBanner, Pageable pageable) {
+		return exhiRepo.findAllByEiBanner(eiBanner, pageable);
 	}
 
 	
