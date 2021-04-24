@@ -22,22 +22,22 @@ import lombok.extern.slf4j.Slf4j;
 @Aspect
 @Slf4j
 public class UserSessionAOP {
-					   												
+																						//컨트롤러의 매개변수 첫번째가 userSession이고 그 이후에는 (..)무엇이던 몇개이던 상관없다.
 	@Around("execution(* com.artbeans.web.controller.*Controller.*(com.artbeans.web.dto.UserSession,..))")
 	public Object getCurrentUser(ProceedingJoinPoint pjp) throws Throwable {
-		HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession();
-		UserInfo userInfo = (UserInfo)session.getAttribute("userInfo");
+		HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession(); //세션을 만들어준다
+		UserInfo userInfo = (UserInfo)session.getAttribute("userInfo"); //세션에서 userInfo를 가져와서 캐스팅후 여기서 만든 userInfo에 넣어준다.
 		log.info("userInfo => {}", userInfo);
 		if(userInfo == null) {
 			throw new RuntimeException("다시 로그인 해주세요");
 		}
-		Integer uiNum = userInfo.getUiNum();
+		Integer uiNum = userInfo.getUiNum(); //userInfo에서 uiNum을 뽑아서 넣어준다.
 		UserSession userSession = new UserSession();
 		userSession.setUiNum(uiNum);
 		String parameterName = "";
 		
-		Object[] args = pjp.getArgs();
-	    MethodSignature signature = (MethodSignature) pjp.getSignature();
+		Object[] args = pjp.getArgs(); //userSession이후의 매개변수들을 배열에 넣어준다
+	    MethodSignature signature = (MethodSignature) pjp.getSignature();//매개변수들의 이름을 가져온다
         Method method = signature.getMethod();
         
         for (int i = 0; i < method.getParameters().length; i++) {
