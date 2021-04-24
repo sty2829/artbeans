@@ -20,7 +20,7 @@ public interface TicketService {
 	int cancleReservation(Integer tiNum);
 	
 	//예약티켓 진행중리스트 조회
-	List<UserTicketDTO> getProgressTicketList(Integer uiNum);
+	List<UserTicketDTO> getProgressTicketList(UserSession userSession);
 	
 	//예약티켓 지난리스트 조회
 	Page<UserTicketDTO> getPastTicketList(Integer uiNum, Pageable pageable);

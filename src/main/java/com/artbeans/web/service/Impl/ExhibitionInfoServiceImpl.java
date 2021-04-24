@@ -318,7 +318,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		return pageCheck;
 	}
 
-
+	//admin-ei-update
 	@Override
 	public void updateExhibitionInfoWithoutFile(Integer eiStatus, Integer giNum, String eiName, String eiArtist,
 			Integer eiCharge, String eiStartDate, String eiEndDate, String eiStartTime, String eiEndTime,
@@ -330,6 +330,12 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	public List<ExhibitionInfo> eiUpdateGetExhibitionInfo(Integer uiNum) {
 	
 		return exhiRepo.findAllByUserInfoUiNum(uiNum);
+	}
+	
+	//admin-banner
+	@Override
+	public Page<ExhibitionInfo> findAllByEiBanner(Integer eiBanner, Pageable pageable) {
+		return exhiRepo.findAllByEiBanner(eiBanner, pageable);
 	}
 
 	

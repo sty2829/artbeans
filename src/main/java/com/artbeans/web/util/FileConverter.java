@@ -23,11 +23,14 @@ public class FileConverter {
 	 * 에디터 경로수정 
 	 */
 	private final static String PROJECT_PATH = System.getProperty("user.dir");
-	private final static String ROOT = "\\src\\main\\webapp\\resources\\assets\\img\\";
 	
-	private final static String editorPath = "\\src\\main\\webapp\\resources\\assets\\img\\editor\\";
+	
+	private final static String ROOT = File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "img" + File.separator;
+	
+	private final static String editorPath = File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "img" + File.separator + "editor" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "img" + File.separator;
 	
 	public static void fileInsert(FileInfo fileInfo, String fiType) throws Exception {
+		String paths = File.separator;
 		String fiName = fileInfo.getFiFile().getOriginalFilename();
 		String fiSize = (fileInfo.getFiFile().getSize()) + "Byte";
  		if(fiName==null) {

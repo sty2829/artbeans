@@ -27,7 +27,8 @@
 								<strong style="cursor:pointer;" onclick="location.href='/views/admin/admin-login'">관리자 로그인</strong>
 								</c:if>
 								<c:if test="${admin ne null}">
-								<strong style="cursor:pointer;" onclick="logout()">관리자 로그아웃</strong> <br>
+								<strong style="cursor:pointer;" onclick="logoutAdmin()">관리자 로그아웃</strong>  
+								<img src="/resources/admin/img/admin-main-back.png" alt="Image" onclick="location.href='/views/admin/admin-main'" style="cursor:pointer;"> <br>
 								</c:if>
 								
 							</p>
@@ -66,7 +67,7 @@
 	<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 	<!-- Logout -->
 	<script>
-	function logout(){
+	function logoutAdmin(){
 		var xhr = new XMLHttpRequest();
 		xhr.open('POST','/admin/logout') //AdminController
 		xhr.onreadystatechange = function(){

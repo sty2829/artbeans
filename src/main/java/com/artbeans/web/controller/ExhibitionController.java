@@ -206,11 +206,18 @@ public class ExhibitionController {
 		return eService.findAllByEiArtistLike(eiArtist, pageble);
 	}
 
-	// admin-ei 검색바
+	// admin-ei 검색바 
 	@GetMapping("/exhibition-search-bar/status")
 	public @ResponseBody Page<ExhibitionInfo> findAllByEiStatusLike(String eiStatus, Pageable pageble) {
 		log.info("eiStatus=>{}", eiStatus);
 		return eService.findAllByEiStatusLike(eiStatus, pageble);
+	}
+	
+	// admin-banner  
+	@GetMapping("/exhibition-banner/banner")
+	public @ResponseBody Page<ExhibitionInfo> findAllByEiBanner(Integer eiBanner, Pageable pageble) {
+		log.info("eiBanner=>{}", eiBanner);
+		return eService.findAllByEiBanner(eiBanner, pageble);
 	}
 
 }

@@ -320,7 +320,6 @@ xhr.onreadystatechange = function(){
 		document.querySelector('#uiNum').value = uiNum;
 		document.querySelector('#giNum').value = res['galleryInfo']['giNum'];
 		editor.setData(document.querySelector('#eiContent').value);
-		//document.querySelector('#giName').value = res.galleryInfo.giName;
 		document.querySelector('#pView').innerHTML = '<img id="preView" width="200" src="/resources/assets/img/exhibition/' + res.fileInfo.fiPath + '">';
 		}
 	getGalleyList();

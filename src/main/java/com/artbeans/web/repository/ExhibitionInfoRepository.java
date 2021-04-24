@@ -68,6 +68,8 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	public Page<ExhibitionInfo> findAllByEiArtistLike(String eiArtist, Pageable pageable);
 	public Page<ExhibitionInfo> findAllByEiStatusLike(String eiStatus, Pageable pageable);
 
+	// admin-banner
+	public Page<ExhibitionInfo> findAllByEiBanner(Integer eiBanner, Pageable pageable);
 	
 	// calendar-list
 	@Query(value = "SELECT * FROM exhibition_info WHERE YEAR(ei_start_date) =:year AND MONTH(ei_start_date) = :month order by ei_num", nativeQuery = true)
