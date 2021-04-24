@@ -99,8 +99,9 @@
 									<select class="col-md-6 form-group"
 									style="WIDTH: 250pt; HEIGHT: 30pt" id="eiStatus"
 									>
-										<option value="0">0</option>
-										<option value="1">1</option>
+										<option value="CANCEL">CANCEL</option>
+										<option value="PENDING">PENDING</option>
+										<option value="CONFIRM">CONFIRM</option>
 									</select>
 							</div>
 						</div>
@@ -260,7 +261,17 @@ function doUpdate(){
 	var formData = new FormData();
 
 	formData.append('eiNum', document.querySelector('#eiNum').value);
-	formData.append('eiStatus', document.querySelector('#eiStatus').value);
+	
+	let eiStatusChanged= document.querySelector('#eiStatus').value
+	if(eiStatusChanged=='CANCEL'){
+		eiStatusChanged=0;
+	}else if(eiStatusChanged=='PENDING'){
+		eiStatusChanged=1;
+	}else if(eiStatusChanged=='CONFIRM'){
+		eiStatusChanged=2;
+	}
+	
+	formData.append('eiStatus', eiStatusChanged);
 	
 	if(fileMemory==null){
 		formData.append('giNum', document.querySelector('select#gallery option:checked').value);
@@ -297,6 +308,7 @@ function getOpenLoopCall(obj){
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				
 				let exhibition = JSON.parse(xhr.responseText);
+				console.log(exhibition);
 				resolve(exhibition);
 							
 			}

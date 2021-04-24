@@ -81,4 +81,6 @@ public interface ExhibitionService {
 	Page<ExhibitionInfo> findAllByEiArtistLike(String eiArtist, Pageable pageable);
 	Page<ExhibitionInfo> findAllByEiStatusLike(String eiStatus, Pageable pageable);
 
+	// admin-banner
+	Page<ExhibitionInfo> findAllByEiBanner(Integer eiBanner, Pageable pageable);
 }
