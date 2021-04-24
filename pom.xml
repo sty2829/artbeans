@@ -108,7 +108,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<argLine>-Xmx1024m</argLine>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
