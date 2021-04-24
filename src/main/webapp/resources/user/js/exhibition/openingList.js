@@ -11,7 +11,7 @@ function get() {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
-				console.log(res);
+			//console.log(res);
 			var html = '';
 			var idx = 1;
 			for (var exhibition of res.content) {
@@ -106,7 +106,6 @@ function deadline() {
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			var idx = 1;
-		
 			for (var exhibition of res.content) {
 						html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" id="ei' + idx + '">';
 						html += '<article class="entry">';
@@ -318,11 +317,10 @@ function pricefree(){
 	xhr.send();
 }
 
-//test
 function area(obj) {
 	count = 0;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-getaddressList/' + obj.value + '?status=CONFIRM&date=OPENIG&size=30&sort=eiNum,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibition-getaddressList/' + obj.value + '?status=CONFIRM&date=OPENIG&size=9&sort=eiNum,asc&page=' + count); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {			
 			var res = JSON.parse(xhr.responseText);
