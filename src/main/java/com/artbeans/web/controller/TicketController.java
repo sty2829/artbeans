@@ -57,13 +57,13 @@ public class TicketController {
 	
 	
 	//유저예약정보 컨트롤러 작성..
-	@GetMapping("/ticket/progress/{uiNum}")
-	public List<UserTicketDTO> getProgressTickets(@PathVariable Integer uiNum) {
-		return ticketService.getProgressTicketList(uiNum);
+	@GetMapping("/ticket/progress")
+	public List<UserTicketDTO> getProgressTickets(UserSession userSession) {
+		return ticketService.getProgressTicketList(userSession);
 	}
 	
 	//유저예약정보 컨트롤러 작성..
-	@GetMapping("/ticket/past/{uiNum}")
+	@GetMapping("/ticket/past")
 	public Page<UserTicketDTO> getPastTickets(@PathVariable Integer uiNum , Pageable pageable) {
 		return ticketService.getPastTicketList(uiNum, pageable);
 	}

@@ -50,14 +50,11 @@ public class TicketSeviceImpl implements TicketService {
 	
 	@Override
 	public TicketInfo saveTicket(UserSession userSession, TicketInfo ti, Integer riNum) {
-		if(userSession != null && userSession.getUiNum() != null) {
-			Optional<UserInfo> opUI = uiRepo.findById(userSession.getUiNum());
-			if(!opUI.isEmpty() && ti != null) {
-				ti.setUserInfo(opUI.get());
-			}
+		Optional<UserInfo> opUI = uiRepo.findById(userSession.getUiNum());
+		if(!opUI.isEmpty() && ti != null) {
+			ti.setUserInfo(opUI.get());
 			//전시회정보 조회
 			Optional<ReservationInfo> opRI = riRepo.findById(riNum);
-			
 			if(!opRI.isEmpty() && ti.getUserInfo() != null) {
 				ReservationInfo ri = opRI.get();
 				Integer eiCharge = ri.getExhibitionInfo().getEiCharge();
@@ -75,6 +72,7 @@ public class TicketSeviceImpl implements TicketService {
 				
 			}
 		}
+		
 		return null;		
 	}
 
@@ -88,33 +86,41 @@ public class TicketSeviceImpl implements TicketService {
 	
 	@Override
 	public int confirmReservation(String impId, String merchantId) {
+		int count = 0;
 		//아임포트 impUid 로 서버조회
-		IamportResult<Payment> iamportPayment = iamport.getPaymentByImpId(impId);
-		
-		//아임포트에 결제된 결제금액
-		BigDecimal iamportAmount = iamportPayment.getResponse().getAmount();
-		
-		//merchantId 결제정보 조회
-		PaymentInfo paymentInfo = piRepo.findByPiMerchantId(merchantId);
-		
-		//데이터베이스에 저장된 결제금액 
-		Integer piPrice = paymentInfo.getPiPrice();
-		
-		if(!iamportAmount.equals(new BigDecimal(piPrice))) {
-			//결제정보 불일치시  아임포트에 취소요청
-			IamportResult<Cancel> cancle = iamport.canclePaymentByImpId(impId);
-			if(!"cancelled".equals(cancle.getResponse().getStatus())){
-				log.info("결제상태가 취소되지 않았습니다.");
+		if(impId != null && merchantId != null) {
+			IamportResult<Payment> iamportPayment = iamport.getPaymentByImpId(impId);
+			
+			//아임포트에 결제된 결제금액
+			BigDecimal iamportAmount = iamportPayment.getResponse().getAmount();
+			
+			//merchantId 결제정보 조회
+			PaymentInfo paymentInfo = piRepo.findByPiMerchantId(merchantId);
+			
+			//데이터베이스에 저장된 결제금액 
+			Integer piPrice = paymentInfo.getPiPrice();
+			
+			if(!iamportAmount.equals(new BigDecimal(piPrice))) {
+				//결제정보 불일치시  아임포트에 취소요청
+				IamportResult<Cancel> cancle = iamport.canclePaymentByImpId(impId);
+				if(!"cancelled".equals(cancle.getResponse().getStatus())){
+					log.info("결제상태가 취소되지 않았습니다.");
+				}
+				throw new RuntimeException("결제정보가 일치하지 않습니다");
 			}
-			throw new RuntimeException("결제정보가 일치하지 않습니다");
+			
+			//결제상태 예약상태 컨펌으로 변경
+			paymentInfo.setPiState("CONFIRM");
+			
+			paymentInfo.getTicketInfo().setTiState("CONFIRM");
+			
+			count = piRepo.save(paymentInfo).getPiNum();
+			
+			return count;
+		
 		}
 		
-		//결제상태 예약상태 컨펌으로 변경
-		paymentInfo.setPiState("CONFIRM");
-		paymentInfo.getTicketInfo().setTiState("CONFIRM");
-		piRepo.save(paymentInfo);
-		
-		return 1;
+		return count;
 	}
 	
 	@Override
@@ -139,8 +145,8 @@ public class TicketSeviceImpl implements TicketService {
 	}
 
 	@Override
-	public List<UserTicketDTO> getProgressTicketList(Integer uiNum) {
-		return tiRepo.findAllProgressUserTicket(uiNum);
+	public List<UserTicketDTO> getProgressTicketList(UserSession userSession) {
+		return tiRepo.findAllProgressUserTicket(userSession.getUiNum());
 	}
 
 
