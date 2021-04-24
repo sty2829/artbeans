@@ -6,6 +6,7 @@ import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -71,6 +72,8 @@ public class ExhibitionInfo {
 	private String eiEndTime;
 	
 	@Column(name = "ei_status", insertable = false)
+	@Convert(converter = StatusConverter.class)
+	@ColumnDefault(value = "PENDING")
 	private String eiStatus;
 	
 	@Column(name="credat", insertable = false, updatable = false)

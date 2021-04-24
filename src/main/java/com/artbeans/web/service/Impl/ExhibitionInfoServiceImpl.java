@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.artbeans.web.dto.DataTable;
+import com.artbeans.web.dto.Search;
 import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.FileInfo;
@@ -41,6 +42,15 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		}
 		return exhiRepo.findAll();
 	}
+	
+	@Override
+	public Page<ExhibitionInfo> getExhibitionInfos(Search search, Pageable pageable) {
+		if(search != null && search.getEiStatus().equals("CONFIRM") && search.getState().equals("CLOSE")) {
+			return exhiRepo.getCloseList(search.getEiStatus(), pageable);
+		}
+		return null;
+	}
+	
 
 	@Override
 	public List<ExhibitionInfo> getEiBannerLists(ExhibitionInfo exhibitionInfo) {
@@ -260,6 +270,8 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	
 		return exhiRepo.findAllByUserInfoUiNum(uiNum);
 	}
+
+	
 
 	
 	

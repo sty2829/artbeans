@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,9 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.artbeans.web.dto.DataTable;
+import com.artbeans.web.dto.Search;
 import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.ExhibitionInfo;
-import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
 import com.artbeans.web.util.FileConverter;
 
@@ -75,6 +73,12 @@ public class ExhibitionController {
 	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionOpeningList(String eiStatus, Pageable pageable,
 			DataTable<ExhibitionInfo> dtExhibitionInfo) {
 		return eService.getOpeningList(eiStatus, pageable, dtExhibitionInfo);
+	}
+	
+	@GetMapping("/exhibitions")
+	public @ResponseBody Page<ExhibitionInfo> getExhibitionList(Search serach, Pageable pageable) {
+		log.info("serach => {}", serach);
+		return eService.getExhibitionInfos(serach, pageable);
 	}
 
 	// 사용중(상혁) 무료

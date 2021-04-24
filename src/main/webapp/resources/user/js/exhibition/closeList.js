@@ -7,12 +7,13 @@ window.addEventListener("load", get);
 
 function get() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-closelist?size=9&sort=eiNum,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibitions?eiStatus=CONFIRM&state=CLOSE&size=9&sort=eiNum,asc&page=' + count); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200){
 				var res = JSON.parse(xhr.responseText);
 				var html = '';			
-				for (var exhibition of res.data) {
+				for (var exhibition of res.content) {
+							console.log(exhibition);
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
 							html += '<div class="entry-img">';

@@ -4,7 +4,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 @Converter
-public class StateConverter implements AttributeConverter<String, Integer> {
+public class StatusConverter implements AttributeConverter<String, Integer> {
 
 	@Override
 	public Integer convertToDatabaseColumn(String state) {

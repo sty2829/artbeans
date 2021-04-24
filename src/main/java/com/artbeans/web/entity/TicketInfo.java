@@ -52,7 +52,7 @@ public class TicketInfo {
 	private Integer tiNumber;
 	
 	@Column(name="ti_state", insertable = false)
-	@Convert(converter = StateConverter.class)
+	@Convert(converter = StatusConverter.class)
 	@ColumnDefault(value = "PENDING")
 	private String tiState;
 	

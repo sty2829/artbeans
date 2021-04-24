@@ -7,12 +7,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import com.artbeans.web.dto.DataTable;
+import com.artbeans.web.dto.Search;
 import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.GalleryInfo;
 
 public interface ExhibitionService {
 	List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo);
+	
+	//페이지 동적
+	Page<ExhibitionInfo> getExhibitionInfos(Search Search, Pageable pageable);
 
 	ExhibitionInfo getExhibitionInfo(Integer eiNum);
 	
