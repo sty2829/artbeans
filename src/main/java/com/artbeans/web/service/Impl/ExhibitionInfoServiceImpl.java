@@ -34,14 +34,19 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 
 	@Override
 	public List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo) {
-		if (exhibitionInfo.getEiName() != null) {
-			return exhiRepo.findAllByEiNameLikeOrderByEiNum("%" + exhibitionInfo.getEiName() + "%");
-		}
-		if (exhibitionInfo.getEiNum() != null) {
-			return exhiRepo.findAllByEiNum(exhibitionInfo.getEiNum());
+		if(exhibitionInfo != null) {
+			if(exhibitionInfo.getEiBanner() != null) {
+				return exhiRepo.findAllByEiBanner(exhibitionInfo.getEiBanner());
+			}else if(exhibitionInfo.getEiName() != null) {
+				return exhiRepo.findAllByEiNameLikeOrderByEiNum("%" + exhibitionInfo.getEiName() + "%");
+			}else if(exhibitionInfo.getEiNum() != null) {
+				return exhiRepo.findAllByEiNum(exhibitionInfo.getEiNum());
+			}
+			
 		}
 		return exhiRepo.findAll();
 	}
+	
 	
 	//사용중 (상혁)
 	@Override
@@ -202,12 +207,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 //	}//
 	
 	
-	@Override
-	public List<ExhibitionInfo> getEiBannerLists(ExhibitionInfo exhibitionInfo) {
-
-		return exhiRepo.findAllByEiBanner(1);
-
-	}
+	
 
 	@Override
 	public ExhibitionInfo getExhibitionInfo(Integer eiNum) {
@@ -338,8 +338,5 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 		return exhiRepo.findAllByEiBanner(eiBanner, pageable);
 	}
 
-	
-
-	
 	
 }

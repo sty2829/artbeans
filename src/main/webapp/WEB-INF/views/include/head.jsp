@@ -75,13 +75,14 @@ function headSuggest(target){
 	console.log(target.value.trim());
 	var eKeyword ='?eiName='+ target.value;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibition-search'+eKeyword);
+	xhr.open('GET','/exhibition-list'+eKeyword);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4&& xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
 			html = '';
 			for(var exhibition of res){
 				html +=	'<div class="item">'; 
+				//html +='<a style="cursor: pointer" onclick="location.href=\'/views/search/searchResults?keyword='+ exhibition.eiName +'\'">'+exhibition.eiName+'</a>';
 				html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ exhibition.eiName +'\'">'+exhibition.eiName+'</a>';
 				html +=	'<span class="text"></span>';
 				html += '</div>';

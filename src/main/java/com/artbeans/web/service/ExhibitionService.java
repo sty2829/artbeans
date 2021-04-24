@@ -31,8 +31,6 @@ public interface ExhibitionService {
 
 	int deleteExhibitionInfo(Integer eiNum);
 
-	List<ExhibitionInfo> getEiBannerLists(ExhibitionInfo exhibitionInfo);
-
 //	// getExhibitionInfoLists 대체
 //	DataTable<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable,
 //			DataTable<ExhibitionInfo> dtExhibitionInfo);

@@ -119,7 +119,7 @@ function startSuggest(target){
 var tKeyword ='?eiName='+ target.value;
 var encodeWord = encodeURI(tKeyword);
 var xhr = new XMLHttpRequest();
-xhr.open('GET','/exhibition-search'+tKeyword);
+xhr.open('GET','/exhibition-list'+tKeyword);
 xhr.onreadystatechange = function(){
 	if(xhr.readyState==4&& xhr.status==200){
 		var res = JSON.parse(xhr.responseText);
@@ -190,7 +190,7 @@ function topSearch(){
 	}
 	getGallery();
 	console.log('param1=>{}',param);
-	xhr.open('GET','/exhibition-search'+param);
+	xhr.open('GET','/exhibition-list'+param);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);

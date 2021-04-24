@@ -35,20 +35,9 @@ public class SearchController {
 		return "/views/search/searchResults";
 	}
 	
-	@GetMapping("/exhibition-search")//통합검색 전시회 name like로 가져옴
-	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
-		log.info("exhibitionList=>{}",exhibitionInfo);
-		return eService.getExhibitionInfos(exhibitionInfo);
-	}
 	@GetMapping("/Gallery-lists")// 통합검색 갤러리 위와 동일하게 name like로 가져옴
 	public @ResponseBody List<GalleryInfo> getGalleryInfoList(@ModelAttribute GalleryInfo galleryInfo){
 		return gService.getGalleryInfos(galleryInfo);
-	}
-	
-	@GetMapping("/exhibition-banner")//슬라이드 배너 스테이터스 구분하여 리스트 가져옴
-	public @ResponseBody List<ExhibitionInfo> getEiBannerList(ExhibitionInfo exhibitionInfo){
-		log.info("exhibition-banner=>{}",exhibitionInfo);
-		return eService.getEiBannerLists(exhibitionInfo);
 	}
 	
 	@GetMapping("/getExhibition") //로그인후 update 들어갈시 uiNum으로 전시회 가져옴

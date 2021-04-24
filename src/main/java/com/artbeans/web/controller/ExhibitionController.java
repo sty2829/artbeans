@@ -33,6 +33,14 @@ public class ExhibitionController {
 	// @Autowired
 	// private ExhibitionInfoRepository eiRepo;
 
+	// 사용중(진석)
+	@GetMapping("/exhibition-list")
+	public @ResponseBody List<ExhibitionInfo> getExhibitionList(ExhibitionInfo exhibitionInfo) {
+		//log.info("serach => {}", serach);
+		return eService.getExhibitionInfos(exhibitionInfo);
+	}
+	
+	
 	
 	// 사용중(상혁)
 	@GetMapping("/exhibition-getaddressList/{giAddress}")

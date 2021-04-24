@@ -3,7 +3,7 @@
  */
 function bannerExhibition() {
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-banner');
+	xhr.open('GET', '/exhibition-list?eiBanner=1');
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
