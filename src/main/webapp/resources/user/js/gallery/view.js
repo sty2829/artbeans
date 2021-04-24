@@ -3,7 +3,7 @@
  */
 window.onload = function (){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/Gallery?giNum='+giNum); //ExhibitionController
+	xhr.open('GET','/gallery?giNum='+giNum); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);	

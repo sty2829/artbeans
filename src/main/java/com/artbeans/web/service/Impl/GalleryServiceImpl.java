@@ -60,23 +60,15 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 
 	@Override
-	public DataTable<GalleryInfo> getGalleryLists(Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo) {
-		Page<GalleryInfo> pb = gRepo.findAll(pageable);
-		dtGalleryInfo.setData(pb.getContent());
-		dtGalleryInfo.setRecordsTotal(pb.getTotalElements());
-		dtGalleryInfo.setRecordsFiltered(pb.getTotalElements());
-	    return dtGalleryInfo;
+	public Page<GalleryInfo> getGalleryLists(Pageable pageable) {
+	    return gRepo.findAll(pageable);
 	}
 	
-	//test
+	
 	@Override
-	public DataTable<GalleryInfo> getGalleryListss(String giAddress, Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo) {
-		log.info("giAddress=>{}",giAddress+"%");
-		Page<GalleryInfo> pb = gRepo.findAllByGiAddressLike(giAddress+"%", pageable);
-		dtGalleryInfo.setData(pb.getContent());
-		dtGalleryInfo.setRecordsTotal(pb.getTotalElements());
-		dtGalleryInfo.setRecordsFiltered(pb.getTotalElements());
-	    return dtGalleryInfo;
+	public Page<GalleryInfo> getGalleryAddrList(String giAddress, Pageable pageable) {
+		//log.info("giAddress=>{}",giAddress+"%");		
+	    return gRepo.findAllByGiAddressLike(giAddress+"%", pageable);
 	}
 	
 }

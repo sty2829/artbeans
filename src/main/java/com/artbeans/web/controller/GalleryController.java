@@ -1,6 +1,7 @@
 package com.artbeans.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,26 +23,20 @@ public class GalleryController {
 	private GalleryService gService;
 	
 	//사용중(상혁)
-	@GetMapping("/Gallery-list")
-	public @ResponseBody DataTable<GalleryInfo> getExhibitionInfoList(Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo){
-		return gService.getGalleryLists(pageable, dtGalleryInfo);
+	@GetMapping("/gallerylist")
+	public @ResponseBody Page<GalleryInfo> getExhibitionInfoList(Pageable pageable){
+		return gService.getGalleryLists(pageable);
 	}
 	
 	//사용중(상혁)
-	@GetMapping("/Gallery-listss/{giAddress}")
-	public @ResponseBody DataTable<GalleryInfo> getExhibitionInfoList(@PathVariable String giAddress , Pageable pageable, DataTable<GalleryInfo> dtGalleryInfo){
+	@GetMapping("/gallery-addr-list/{giAddress}")
+	public @ResponseBody Page<GalleryInfo> getExhibitionInfoList(@PathVariable String giAddress , Pageable pageable){
 		log.info("giAddress=>{}",giAddress);
-		return gService.getGalleryListss(giAddress, pageable, dtGalleryInfo);
+		return gService.getGalleryAddrList(giAddress, pageable);
 	}
 	
-//	//사용중(상혁)
-//	@GetMapping("/Gallery-lists")
-//    public @ResponseBody List<GalleryInfo> getGalleryInfoLists(GalleryInfo galleryInfo){
-//		return gService.getGalleryInfos(galleryInfo);
-//	}
-	
 	//사용중(상혁)
-	@GetMapping("/Gallery")
+	@GetMapping("/gallery")
 	public @ResponseBody GalleryInfo getGalleryInfo(@RequestParam Integer giNum){
 		return gService.getGalleryInfo(giNum);
 	}
