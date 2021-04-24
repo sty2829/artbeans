@@ -2,6 +2,7 @@ package com.artbeans.web.aop;
 
 import java.lang.reflect.Method;
 
+import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -28,7 +29,7 @@ public class UserSessionAOP {
 		UserInfo userInfo = (UserInfo)session.getAttribute("userInfo");
 		log.info("userInfo => {}", userInfo);
 		if(userInfo == null) {
-			return pjp.proceed();
+			throw new RuntimeException("다시 로그인 해주세요");
 		}
 		Integer uiNum = userInfo.getUiNum();
 		UserSession userSession = new UserSession();

@@ -37,7 +37,7 @@
           	</div>
    		</div>
 		<div class="row">
-			<div class="col-lg-6" >
+			<div class="col-lg-6" id="leftDiv">
 				<table class="table" style="text-align: center">
 					<thead>
 						<tr>
@@ -58,7 +58,7 @@
 					</tbody>
 				</table>
           	</div>
-			<div class="col-lg-6">
+			<div class="col-lg-6" id="rightDiv">
 				<table class="table" style="text-align: center">
 					<thead>
 						<tr>
@@ -166,7 +166,6 @@ function getProgressTickets(){
 function getPastTickets(page){
 	var xhr = new XMLHttpRequest();
 	var uiNum = ${userInfo.uiNum};
-	'/board?size=5&page=' + (page-1);
 	var url = '/ticket/past/' + uiNum + '?size=' + size + '&page='+ (page-1);
 	xhr.open('GET', url);
 	xhr.onreadystatechange = function(){
