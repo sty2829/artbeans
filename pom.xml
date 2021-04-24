@@ -102,9 +102,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-					<fork>true</fork>
-			        <meminitial>1024m</meminitial>
-				    <maxmem>2024m</maxmem>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
