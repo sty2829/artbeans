@@ -36,7 +36,7 @@ public class ExhibitionController {
 	// 사용중(진석)
 	@GetMapping("/exhibition-list")
 	public @ResponseBody List<ExhibitionInfo> getExhibitionList(ExhibitionInfo exhibitionInfo) {
-		//log.info("serach => {}", serach);
+	log.info("serach => {}", exhibitionInfo);
 		return eService.getExhibitionInfos(exhibitionInfo);
 	}
 	

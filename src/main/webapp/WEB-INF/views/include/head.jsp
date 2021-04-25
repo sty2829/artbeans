@@ -82,8 +82,8 @@ function headSuggest(target){
 			html = '';
 			for(var exhibition of res){
 				html +=	'<div class="item">'; 
-				//html +='<a style="cursor: pointer" onclick="location.href=\'/views/search/searchResults?keyword='+ exhibition.eiName +'\'">'+exhibition.eiName+'</a>';
-				html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ exhibition.eiName +'\'">'+exhibition.eiName+'</a>';
+				html +='<a style="cursor: pointer" onclick="location.href=\'/views/search/searchResults?keyword='+ exhibition.eiName +'\'">'+exhibition.eiName+'</a>';
+				
 				html +=	'<span class="text"></span>';
 				html += '</div>';
 			}
@@ -110,8 +110,8 @@ function headSuggestGallery(obj){
 			var html ='';
 			for(var gallery of get){
 			
-					html +=	'<div class="item">'; 
-					html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ gallery.giName +'\'">'+gallery.giName+'</a>';
+					html +=	'<div class="item">';
+					html +='<a style="cursor: pointer" onclick="location.href=\'/views/search/searchResults?keyword='+ gallery.giName +'\'">'+gallery.giName+'</a>';
 					html +=	'<span class="text"></span>';
 					html += '</div>';		
 		}
@@ -152,7 +152,7 @@ function logout(){
 					<img src="/resources/assets/img/logo.png" class="img-fluid">
 				</h1>
 			</div>
-			<form action="/search" method="get" name="frm"
+			<form action="/views/search/searchResults?keyword=" method="get" name="frm"
 				onsubmit="return check('headsearchInput')">
 				<div>
 					<div>
