@@ -73,7 +73,9 @@ window.onload = function (){
             
 			//예약추가
 			if(res.reservationInfo != null){
-				html += '<li><button type="button" class="btn btn-primary" onclick="goReservation()">예약하기</button></li>';
+				html += '<button type="button" class="btn btn-primary float-right" onclick="goReservation()">예약하기</button>';
+			}else{
+				html += '<div style="text-align: center;"><span>예약정보가 없습니다.</sapn></div>'
 			}
 			
 			html += '</div>';

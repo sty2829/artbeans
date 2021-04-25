@@ -223,8 +223,10 @@ function insert(){
 	xhr.open('POST', "/reservation");
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			if(xhr.responseText >= 1){
+			var res = JSON.parse(xhr.responseText);
+			if(res >= 1){
 				alert('전시회 예약등록에 성공하였습니다.');
+				location.href = '/';
 				return;
 			}
 			alert('전시회 예약등록에 실패하였습니다.');

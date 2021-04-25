@@ -55,24 +55,27 @@ public class TicketSeviceImpl implements TicketService {
 			ti.setUserInfo(opUI.get());
 			//전시회정보 조회
 			Optional<ReservationInfo> opRI = riRepo.findById(riNum);
-			if(!opRI.isEmpty() && ti.getUserInfo() != null) {
+			if(!opRI.isEmpty()) {
 				ReservationInfo ri = opRI.get();
 				Integer eiCharge = ri.getExhibitionInfo().getEiCharge();
 				Integer rtiNumber = ti.getTiNumber();
 				Integer piPrice = ti.getPaymentInfo().getPiPrice();
 				
 				//DB에 저장된 관람료와 예매수가 결제금액 일치하는지 확인
-				if(piPrice != (eiCharge * rtiNumber)) {
+				if(!piPrice.equals(eiCharge * rtiNumber)) {
 					throw new RuntimeException("가격이 불일치 합니다.");
 				}
 				
 				//merchantId 생성
 				ti.getPaymentInfo().setPiMerchantId(CodeGenerator.getPaymentCode());
-				return tiRepo.save(ti);
 				
+				if(piPrice == 0) {
+					ti.setTiState("CONFIRM");
+					ti.getPaymentInfo().setPiState("CONFIRM");
+				}
+				return tiRepo.save(ti);
 			}
 		}
-		
 		return null;		
 	}
 
@@ -115,8 +118,6 @@ public class TicketSeviceImpl implements TicketService {
 			paymentInfo.getTicketInfo().setTiState("CONFIRM");
 			
 			count = piRepo.save(paymentInfo).getPiNum();
-			
-			return count;
 		
 		}
 		
@@ -125,22 +126,34 @@ public class TicketSeviceImpl implements TicketService {
 	
 	@Override
 	public int cancleReservation(Integer tiNum) {
+		int count = 0;
 		//예약티켓 pk로 결제 MerchantId 조회
-		TicketInfo ti = tiRepo.findById(tiNum).get();
-		//결제정보 MerchantId 로 캔슬요청
-		IamportResult<Cancel> cancel = iamport.canclePaymentByMerchantId(ti.getPaymentInfo().getPiMerchantId());
-		String cancleStatus = cancel.getResponse().getStatus();
-		//iamport 응답 결제상태 비교
-		if(!"cancelled".equals(cancleStatus)) {
-			throw new RuntimeException("결제상태가 취소되지 않았습니다.");
+		Optional<TicketInfo> opTI = tiRepo.findById(tiNum);
+		if(!opTI.isEmpty()) {
+			TicketInfo ti = tiRepo.findById(tiNum).get();
+			//결제금액이 0원이면 바로 취소
+			if(ti.getPaymentInfo().getPiPrice() != 0) {
+				
+				//결제정보 MerchantId 로 캔슬요청
+				IamportResult<Cancel> cancel = iamport.canclePaymentByMerchantId(ti.getPaymentInfo().getPiMerchantId());
+				String cancleStatus = cancel.getResponse().getStatus();
+				//iamport 응답 결제상태 비교
+				if(!"cancelled".equals(cancleStatus)) {
+					throw new RuntimeException("결제상태가 취소되지 않았습니다.");
+				}
+				//예매와 결제상태 캔슬로변경
+				ti.setTiState("CANCEL");
+				ti.getPaymentInfo().setPiState("CANCEL");
+				
+				count = tiRepo.save(ti).getTiNum();
+			}else {
+				ti.setTiState("CANCEL");
+				ti.getPaymentInfo().setPiState("CANCEL");
+				count = tiRepo.save(ti).getTiNum();
+			}
 		}
-		//예매와 결제상태 캔슬로변경
-		ti.setTiState("CANCEL");
-		ti.getPaymentInfo().setPiState("CANCEL");
 		
-		tiRepo.save(ti);
-		
-		return 1;
+		return count;
 		
 	}
 

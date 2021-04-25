@@ -15,7 +15,7 @@
 	height: 1000px;
 }
 h5 {
-	font-weight: bold;
+	font-weight: 900;
 }
 .radio-hidden{
 	display: none;
@@ -29,6 +29,10 @@ img[data-col] {
 }
 .btn-outline-success{color:#198754;border-color:#198754}.btn-outline-success:hover{color:#fff;background-color:#198754;border-color:#198754}.btn-check:focus+.btn-outline-success,.btn-outline-success:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-check:active+.btn-outline-success,.btn-check:checked+.btn-outline-success,.btn-outline-success.active,.btn-outline-success.dropdown-toggle.show,.btn-outline-success:active{color:#fff;background-color:#198754;border-color:#198754}.btn-check:active+.btn-outline-success:focus,.btn-check:checked+.btn-outline-success:focus,.btn-outline-success.active:focus,.btn-outline-success.dropdown-toggle.show:focus,.btn-outline-success:active:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-outline-success.disabled,.btn-outline-success:disabled{color:#198754;background-color:transparent}
 
+h5{
+	color: #000;
+	font-weight: 900;
+}
 </style>
 </head>
 <body>
@@ -59,29 +63,29 @@ img[data-col] {
 			<div class="col-lg-5">
 				<div class="row">
 					<div class="col-lg-12">
-					<h5 class="text-center" data-col="exhibitionName"></h5>
+					<h5 class="text-center" data-col="exhibitionName" id="eiName"></h5>
 					</div>
 				</div>
 				<div class="row mt-3">
-					<div class="col-lg-6">
+					<div class="col-lg-6 mb-3">
 						<h5>기간</h5>
-						<p data-col="period"></p>
+						<span data-col="period"></span>
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-3 mb-3">
 						<h5>예매일자</h5>
-						<p id="tiDate"></p>
+						<span id="tiDate"></span>
 					</div>
-					<div class="col-lg-3">
+					<div class="col-lg-3 mb-3">
 						<h5>예매시간</h5>
-						<p id="tiTime"></p>
+						<span id="tiTime"></span>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-lg-6">
+					<div class="col-lg-6 mb-3">
 						<h5>관람연령</h5>
-						<p data-col="audienceRating" id="tiAudienceRating">전체관람가</p>
+						<span data-col="audienceRating" id="tiAudienceRating"></span>
 					</div>
-					<div class="col-lg-6">
+					<div class="col-lg-6 mb-3">
 						<ul class="list-inline">
 						  	<li class="list-inline-item">
 								<h5>예매수</h5>
@@ -95,15 +99,15 @@ img[data-col] {
 				<div class="row">
 					<div class="col-lg-6">
 						<h5>러닝타임</h5>
-						<p data-col="runningTime"></p>
+						<span data-col="runningTime"></span>
 					</div>
 					<div class="col-lg-3">
 						<h5>관람료</h5>
-						<p data-col="charge"></p>
+						<span data-col="charge"></span>
 					</div>
 					<div class="col-lg-3">
 						<h5>합계금액</h5>
-						<p id="piPrice">0</p>
+						<span id="piPrice"></span>
 					</div>
 				</div>
 			</div>
@@ -120,8 +124,8 @@ img[data-col] {
 					</div>
 				</div>
 				<div class="row mt-1">
-					<div class="col-lg-12">
-						<button type="button" class="btn btn-primary" style="width: 385px;" onclick="goPayment()">예매하기</button>
+					<div class="col-lg-12" id="buttonDiv">
+						<button type="button" class="btn btn-primary" style="width: 385px;" onclick="goPayment()">다음단계</button>
 					</div>
 				</div>
 			</div>
@@ -142,6 +146,7 @@ window.onload = function(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
+			console.log(res);
 			var objs = document.querySelectorAll('[data-col]');
 			document.querySelector('#riNum').value = res.riNum;
 			document.querySelector('#x').value = res.x;
@@ -259,6 +264,7 @@ function goPayment(){
 	var x = document.querySelector("#x").value;
 	var y = document.querySelector("#y").value;
 	var giName = document.querySelector("#giName").value;
+	var eiName = document.querySelector('#eiName').innerText;
 	
 	
 	
@@ -271,6 +277,7 @@ function goPayment(){
 	param += 'x=' + x + '&';
 	param += 'y=' + y + '&';
 	param += 'giName=' + giName + '&';
+	param += 'eiName=' + eiName + '&';
 	
 	location.href = '/views/reservation/reservation-save/' + param
 }

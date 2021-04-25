@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,21 +25,31 @@ h5 {
     margin-top: -15px;
 }
 .btn-outline-success{color:#198754;border-color:#198754}.btn-outline-success:hover{color:#fff;background-color:#198754;border-color:#198754}.btn-check:focus+.btn-outline-success,.btn-outline-success:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-check:active+.btn-outline-success,.btn-check:checked+.btn-outline-success,.btn-outline-success.active,.btn-outline-success.dropdown-toggle.show,.btn-outline-success:active{color:#fff;background-color:#198754;border-color:#198754}.btn-check:active+.btn-outline-success:focus,.btn-check:checked+.btn-outline-success:focus,.btn-outline-success.active:focus,.btn-outline-success.dropdown-toggle.show:focus,.btn-outline-success:active:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-outline-success.disabled,.btn-outline-success:disabled{color:#198754;background-color:transparent}
+
+.eiName{
+	display:block;
+    overflow: hidden; 
+	text-overflow: ellipsis;
+    white-space: nowrap; 
+	width: 300px;
+
+}
+span{
+	font-size: small;
+}
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
    <div class="container reservationSaveMain">
-   		<div class="row">
-   			<div class="col-lg-1"></div>
-   			<div class="col-lg-11" style="text-align: center;">
+   		<div class="row d-flex justify-content-center">
+   			<div class="col-lg-10" style="text-align: center;">
 				<div class="section-title">
-		          <p>결제</p>
+		          <p>예매</p>
 		        </div>
    			</div>
    		</div>
-		<div class="row">
-			<div class="col-lg-1"></div>
+		<div class="row d-flex justify-content-center">
 	         <div class="col-lg-6">
 				<div class="card mb-2">
 			  		<div class="row no-gutters">
@@ -47,26 +58,26 @@ h5 {
 		   				</div>
 			    		<div class="col-md-7">
 			      			<div class="col-lg-12 ml-2 mt-3" style="height: 40px">
-			  			  		<p style="font-size: 1.2em; margin-bottom: 0px">백남준전</p>
+			  			  		<p style="font-size: 1.2em; margin-bottom: 0px" class="eiName">${param.eiName}</p>
 			           		 </div>
 		         			 <div class="col-lg-12 ml-2" style="height: 70px">
 		         			 	<div class="row">
-		         			 		<div class="col-lg-5">
-		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매일</p>
+		         			 		<div class="col-lg-5 mb-2">
+		         			 			<p style="font-size: 1.1em; margin-bottom: 0px;">예매일</p>
 				                 		<span id="tiDate" class="check">${param.tiDate}</span>
 		         			 		</div>
-		         			 		<div class="col-lg-5">
-		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매시간</p>
+		         			 		<div class="col-lg-5 mb-2">
+		         			 			<p style="font-size: 1.1em; margin-bottom: 0px">예매시간</p>
 				                 		<span id="tiTime" class="check" style="text-align: center;">${param.tiTime}</span>
 		         			 		</div>
 		         			 	</div>
 		         			 	<div class="row">
 		         			 		<div class="col-lg-5">
-		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매수</p>
+		         			 			<p style="font-size: 1.1em; margin-bottom: 0px">예매수</p>
 				                 		<span id="tiNumber" class="check" style="text-align: center">${param.tiNumber}</span>장
 		         			 		</div>
 		         			 		<div class="col-lg-5">
-		         			 			<p style="font-size: 1.2em; margin-bottom: 0px">예매금액</p>
+		         			 			<p style="font-size: 1.1em; margin-bottom: 0px">예매금액</p>
 				                 		<span id="piPrice" class="check" style="text-align: center">${param.piPrice}</span>원
 		         			 		</div>
 		         			 	</div>
@@ -84,48 +95,52 @@ h5 {
 			    <input type="text" class="form-control" id="tiPhoneNumber" style="width: 330px" value="${userInfo.uiPhoneNumber}" data-check="연락처">
 		   </div>
 	   </div>
-		<div class="row">
-			<div class="col-lg-1"></div>
+		<div class="row d-flex justify-content-center">
 			<div class="col-lg-6">
 				<div style="border: 0; width: 540px; height: 240px;" id="map"></div>
 			</div>
 			<div class="col-lg-4">
-				<ul class="list-inline">
-					<li class="list-inline-item mt-3">
-						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="card" value="card" autocomplete="off">
-						<label class="btn btn-outline-success" for="card" >신용카드</label>
-					</li>
-					<li class="list-inline-item mt-3">
-						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="trans" value="trans" autocomplete="off">
-						<label class="btn btn-outline-success" for="trans" >계좌이체</label>
-					</li>
-					<li class="list-inline-item mt-3">
-						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="samsung" value="samsung" autocomplete="off">
-						<label class="btn btn-outline-success" for="samsung" >삼성페이</label>
-					</li>
-					<li class="list-inline-item mt-3">
-						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="happymoney" value="happymoney" autocomplete="off">
-						<label class="btn btn-outline-success" for="happymoney" >해피머니</label>
-						
-					</li>
-					<li class="list-inline-item mt-3">
-						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="cultureland" value="cultureland" autocomplete="off">
-						<label class="btn btn-outline-success" for="cultureland" >컬쳐랜드</label>
-					</li>
-					<li class="list-inline-item mt-3">
-						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="smartculture" value="smartculture" autocomplete="off">
-						<label class="btn btn-outline-success" for="smartculture" >스마트문상</label>
-					</li>
-					<li class="list-inline-item mt-3">
-						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="phone" value="phone" autocomplete="off">
-						<label class="btn btn-outline-success" for="phone" >휴대폰소액결제</label>
-					</li>
-					<li class="list-inline-item mt-3">
-						<input type="radio" class="btn-check radio-hidden" name="piMethod" id="booknlife" value="booknlife" autocomplete="off">
-						<label class="btn btn-outline-success" for="booknlife" >도서문화상품권</label>
-					</li>
-				</ul>
-				<button type="button" class="btn btn-primary" style="width: 330px" onclick="saveReservation()">결제</button>
+				<c:if test="${param.piPrice eq 0}">
+					<button type="button" class="btn btn-primary mt-4" style="width: 330px" onclick="saveReservation()">예매하기</button>
+				</c:if>
+				<c:if test="${param.piPrice ne 0}">
+					<ul class="list-inline">
+						<li class="list-inline-item mt-3">
+							<input type="radio" class="btn-check radio-hidden" name="piMethod" id="card" value="card" autocomplete="off">
+							<label class="btn btn-outline-success" for="card" >신용카드</label>
+						</li>
+						<li class="list-inline-item mt-3">
+							<input type="radio" class="btn-check radio-hidden" name="piMethod" id="trans" value="trans" autocomplete="off">
+							<label class="btn btn-outline-success" for="trans" >계좌이체</label>
+						</li>
+						<li class="list-inline-item mt-3">
+							<input type="radio" class="btn-check radio-hidden" name="piMethod" id="samsung" value="samsung" autocomplete="off">
+							<label class="btn btn-outline-success" for="samsung" >삼성페이</label>
+						</li>
+						<li class="list-inline-item mt-3">
+							<input type="radio" class="btn-check radio-hidden" name="piMethod" id="happymoney" value="happymoney" autocomplete="off">
+							<label class="btn btn-outline-success" for="happymoney" >해피머니</label>
+							
+						</li>
+						<li class="list-inline-item mt-3">
+							<input type="radio" class="btn-check radio-hidden" name="piMethod" id="cultureland" value="cultureland" autocomplete="off">
+							<label class="btn btn-outline-success" for="cultureland" >컬쳐랜드</label>
+						</li>
+						<li class="list-inline-item mt-3">
+							<input type="radio" class="btn-check radio-hidden" name="piMethod" id="smartculture" value="smartculture" autocomplete="off">
+							<label class="btn btn-outline-success" for="smartculture" >스마트문상</label>
+						</li>
+						<li class="list-inline-item mt-3">
+							<input type="radio" class="btn-check radio-hidden" name="piMethod" id="phone" value="phone" autocomplete="off">
+							<label class="btn btn-outline-success" for="phone" >휴대폰소액결제</label>
+						</li>
+						<li class="list-inline-item mt-3">
+							<input type="radio" class="btn-check radio-hidden" name="piMethod" id="booknlife" value="booknlife" autocomplete="off">
+							<label class="btn btn-outline-success" for="booknlife" >도서문화상품권</label>
+						</li>
+					</ul>
+					<button type="button" class="btn btn-primary" style="width: 330px" onclick="saveReservation()">결제하기</button>
+				</c:if>
 			</div>
 		</div>
 	</div>
@@ -228,6 +243,11 @@ function saveReservation(){
 					return;
 				}
 				var res = JSON.parse(xhr.responseText);
+				if(res.paymentInfo.piPrice === 0) {
+					alert('예매가 완료되었습니다.');
+					location.href = '/views/user/mypage-reservation';
+					return;
+				}
 				IMP.request_pay({
 				    pg : 'inicis',
 				    pay_method : res.paymentInfo.piMethod,
@@ -250,9 +270,8 @@ function saveReservation(){
 				    		},
 				    		
 				    	}).done(function(data) {
-				    		if (data == 1) {
+				    		if (data >= 1) {
 				    			alert('결제가 완료되었습니다.');
-				    			//추후에 마이페이지 이동? 결제완료페이지 ㅎ
 				    			location.href = '/views/user/mypage-reservation';
 				    		} else {
 				    			alert('결제 금액이 일치 하지 않습니다');
@@ -266,7 +285,6 @@ function saveReservation(){
 				    }
 				});
 			}else{
-				console.log(res);
 				alert('결제금액이 이상합니다..');
 			}
 			

@@ -43,7 +43,7 @@ public class PaymentInfo {
 	@ColumnDefault("now()")
 	private Date piDate;
 	
-	@Column(name="pi_state", insertable = false)
+	@Column(name="pi_state")
 	@Convert(converter = StatusConverter.class)
 	@ColumnDefault("PENDING")
 	private String piState;

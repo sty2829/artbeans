@@ -19,6 +19,14 @@
 	font-size: small;
 	margin-bottom: 5px;
 }
+.eiName{
+	display:block;
+    overflow: hidden; 
+	text-overflow: ellipsis;
+    white-space: nowrap; 
+	width: 239.5px;
+
+}
 </style>
 </head>
 
@@ -48,13 +56,6 @@
 						</tr>
 					</thead>
 					<tbody id="leftReservation">
-						<tr>
-							<td>왜</td>
-							<td>안</td>
-							<td>나</td>
-							<td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#leftReserv">상세보기</button></td>
-						</tr>
-						
 					</tbody>
 				</table>
           	</div>
@@ -113,7 +114,7 @@ function getProgressTickets(){
 				//진행중 테이블 
 				table += '<tr>';
 				table += '<td>' + ticket.tiNum + '</td>';
-				table += '<td>' + ticket.eiName + '</td>';
+				table += '<td class="eiName">' + ticket.eiName + '</td>';
 				table += '<td>' + ticket.tiDate + '</td>';
 				table += '<td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#leftReserv' + ticket.tiNum +'">상세보기</button></td>';
 				table += '</tr>';
@@ -172,7 +173,7 @@ function getPastTickets(page){
 					//지난 테이블 
 					table += '<tr>';
 					table += '<td>' + ticket.tiNum + '</td>';
-					table += '<td>' + ticket.eiName + '</td>';
+					table += '<td class="eiName">' + ticket.eiName + '</td>';
 					table += '<td>' + ticket.tiDate + '</td>';
 					table += '<td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#leftReserv' + ticket.tiNum +'">상세보기</button></td>';
 					table += '</tr>';
@@ -249,25 +250,28 @@ function getPastTickets(page){
 	xhr.send();
 }
 function cancel(obj){
-	var tiNum = obj.getAttribute('data-tiNum')
-	
-	var xhr = new XMLHttpRequest();
-	
-	xhr.open('DELETE', '/ticket/cancel/' + tiNum );
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var res = JSON.parse(xhr.responseText);
-			if(res){
-				alert('예매취소');
-				window.location.reload();
-			}else{
-				alert('예매취소에 실패하였습니다.');
+	if(confirm("정말 취소 하시겠습니까 ?")){
+		var tiNum = obj.getAttribute('data-tiNum')
+		
+		var xhr = new XMLHttpRequest();
+		
+		xhr.open('DELETE', '/ticket/cancel/' + tiNum );
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var res = JSON.parse(xhr.responseText);
+				if(res){
+					alert('예매가 취소 되었습니다.');
+					window.location.reload();
+				}else{
+					alert('예매취소에 실패하였습니다.');
+				}
 			}
 		}
+		xhr.send();
 	}
-	
-	xhr.send();
-	
+	else{
+		return;
+	}
 }
 function goReview(obj){
 	var tiNum = obj.getAttribute('data-tiNum')
