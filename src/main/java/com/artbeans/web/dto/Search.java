@@ -12,3 +12,6 @@ public class Search {
 	private Integer price;
 
 }
+
+
+

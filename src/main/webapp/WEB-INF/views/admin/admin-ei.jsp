@@ -91,6 +91,11 @@
 									<option value="eiStatus">전시회 상태값</option>
 								</select>
 								<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="eiNavBar">
+								<!--<select id="selectEiStatusConfirm">
+									<option value="CANCEL">CANCEL</option>
+									<option value="PENDING">PENDING</option>
+									<option value="CONFIRM">CONFIRM</option>
+								</select>  -->
 								<button class="btn btn-outline-success my-2 my-sm-0"
 									style="background-color: white; color:red; border-color: red;"
 									onclick="eiSearchButton(1)">Search</button>
@@ -133,7 +138,9 @@ var size = 5;
 function getBeforeConfirm(page){
 	let xhr = new XMLHttpRequest();
 	//'/board?size=5&page=' + (page-1);
-	xhr.open('GET', '/exhibitions/paging?size=10&page='+(page-1)); //ExhibitionController
+	//xhr.open('GET', '/exhibitions/paging?size=10&page='+(page-1)); //ExhibitionController
+	
+	xhr.open('GET', '/exhibitions?status=ALL&size=9&sort=eiNum,asc&page='+(page-1));
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let res = JSON.parse(xhr.responseText);
@@ -187,6 +194,29 @@ function getBeforeConfirm(page){
 	xhr.send();
 }
 
+//eiStatus 검색시
+
+
+function showEiStatusSelectBox(){
+	console.log(1);
+	/*
+	var dis = document.querySelector('#gallertySelectDiv').style.display;
+	var dis = document.querySelector('#gallertySelectDivMenu').style.display;
+	if(dis){
+		document.querySelector('#gallertySelectDiv').style.display = '';
+		document.querySelector('#galleryInsertDiv').style.display = 'none';
+		document.querySelector('#gallertySelectDivMenu').style.display = '';
+		document.querySelector('#galleryInsertDivMenu').style.display = 'none';
+	}else{
+		document.querySelector('#gallertySelectDiv').style.display = 'none';
+		document.querySelector('#galleryInsertDiv').style.display = '';
+		document.querySelector('#gallertySelectDivMenu').style.display = 'none';
+		document.querySelector('#galleryInsertDivMenu').style.display = '';
+	}
+	*/
+
+}
+
 
 //검색창
 function eiSearchButton(page){
@@ -206,8 +236,9 @@ function eiSearchButton(page){
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let res = JSON.parse(xhr.responseText);
-
 			let html='';
+			
+			console.log(res);
 			
 			if(res.content.length==1){
 				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-ei-update?eiNum='+res.content.eiNum+'\'">';

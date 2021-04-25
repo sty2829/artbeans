@@ -77,10 +77,13 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 				    return exhiRepo.getCloseList(search.getStatus(), pageable);					
 			    }
 					
+			}else if(search.getStatus().equals("ALL")) {
+				return exhiRepo.findAll(pageable);
 			}
 		}		
 		return null;
 	}
+
 	
 	// 사용중 (상혁)
 	@Override
@@ -314,7 +317,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	//admin-ei 검색바
 	@Override
 	public Page<ExhibitionInfo> findAllByEiStatusLike(String EiStatus, Pageable pageable) {
-		Page<ExhibitionInfo> pageCheck= exhiRepo.findAllByEiStatusLike("%"+EiStatus+"%",pageable);
+		Page<ExhibitionInfo> pageCheck= exhiRepo.findAllByEiStatusLike(EiStatus,pageable);
 		return pageCheck;
 	}
 

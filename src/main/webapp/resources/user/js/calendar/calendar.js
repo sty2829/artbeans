@@ -42,9 +42,9 @@ window.onload = function load() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
 			// exhibition.eiStatus=0 진행할 전시회
-			console.log(res);
+			//console.log(res);
 			for (var exhibition of res.data) {
-				if (exhibition.eiStatus == 1) {
+				if (exhibition.eiStatus == 'CONFIRM') {
 					//exhibition.eiName
 					//exhibition.eiStartDate ->2021-10-06
 					
@@ -157,7 +157,7 @@ function backButton() {
 
 
 			for (var exhibition of res.data) {
-				if (exhibition.eiStatus == 1) {
+				if (exhibition.eiStatus == 'CONFIRM') {
 					//exhibition.eiName
 					//exhibition.eiStartDate ->2021-10-06
 					exNum = exhibition.eiStartDate.split('-');
@@ -257,7 +257,7 @@ function nextButton() {
 
 
 			for (var exhibition of res.data) {
-				if (exhibition.eiStatus == 1) {
+				if (exhibition.eiStatus == 'CONFIRM') {
 					//exhibition.eiName
 					//exhibition.eiStartDate ->2021-10-06
 					exNum = exhibition.eiStartDate.split('-');

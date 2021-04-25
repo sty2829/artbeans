@@ -48,7 +48,7 @@ public class ExhibitionController {
 			Search serach, Pageable pageable) {
 		return eService.getExhiAddrList(giAddress, serach, pageable);
 	}
-	//사용중(상혁)
+	//사용중(상혁) //admin-ei (가온)
 	@GetMapping("/exhibitions")
 	public @ResponseBody Page<ExhibitionInfo> getExhibitionList(Search serach, Pageable pageable) {
 		//log.info("serach => {}", serach);
