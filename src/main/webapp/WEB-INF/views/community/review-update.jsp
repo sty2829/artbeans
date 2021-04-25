@@ -7,7 +7,7 @@
 <title>전시회 등록 페이지</title>
 <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
 <style>
-.reviewSaveMain{
+.reviewUpdateMain{
 	margin-top: 150px;
 }
 .ck-editor__editable{
@@ -18,7 +18,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-      <div class="container reviewSaveMain" style="height: 100%">
+      <div class="container reviewUpdateMain" style="height: 100%">
       	<div class="row d-flex justify-content-center">
       		<div class="col-lg-6">
       			<div class="section-title" style="text-align: center;">
@@ -32,7 +32,6 @@
 				    <label for="fiFile">썸네일 이미지를 올려주세요</label>
 				    <input type="file" class="form-control-file" id="fiFile" onchange="changeImg(this)">
 				  </div>
-	              
 	         </div>
 	         <div class="col-lg-4">
 	         	<img id="fiPath" src="" style="height: 200px; width: 200px; margin-left: 100px">
@@ -113,7 +112,7 @@ function updateReview(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			console.log(res);
-			if(res == 1){
+			if(res >= 1){
 				alert('리뷰수정에 성공하였습니다.');
 				location.href = '/views/user/mypage-review';
 			}else{

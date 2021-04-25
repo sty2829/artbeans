@@ -2,6 +2,7 @@ package com.artbeans.web.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,11 +14,15 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Data;
+import lombok.ToString;
 
 
 @Entity
 @Table(name="comment_info")
+@ToString(exclude = "reviewInfo")
 @Data
 public class CommentInfo {
 	
@@ -43,5 +48,7 @@ public class CommentInfo {
 	
 	@ManyToOne
 	@JoinColumn(name = "rvi_num")
+	@JsonBackReference
 	private ReviewInfo reviewInfo;
+	
 }

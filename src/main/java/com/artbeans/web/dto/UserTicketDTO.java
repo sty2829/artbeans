@@ -1,7 +1,5 @@
 package com.artbeans.web.dto;
 
-import java.time.LocalDateTime;
-
 public interface UserTicketDTO {
 	
 	Integer getTiNum();

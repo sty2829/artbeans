@@ -84,25 +84,6 @@
 		</div>
 		<div class="row">
 			<div class="col-lg-1" id="leftModal">
-				<div class="modal fade" id="leftReserv" tabindex="-1" aria-labelledby="whyModal" aria-hidden="true">
-				  <div class="modal-dialog">
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <h5 class="modal-title" id="whyModal">Modal title</h5>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-				      <div class="modal-body">
-				        ...
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				        <button type="button" class="btn btn-primary">Save changes</button>
-				      </div>
-				    </div>
-				  </div>
-				</div>
       		</div>
       		<div class="col-lg-1" id="rightModal">
           	</div>
@@ -114,17 +95,24 @@ window.addEventListener('load', getProgressTickets());
 window.addEventListener('load', getPastTickets(1));
 function getProgressTickets(){
 	var xhr = new XMLHttpRequest();
-	var uiNum = ${userInfo.uiNum}
-	xhr.open('GET', '/ticket/progress/' + uiNum);
+	xhr.open('GET', '/ticket/progress');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			var table = '';
+			if(res.length === 0){
+				table += '<tr>';
+				table += '<td colspan="4" align="center">진행중인 예약이 없습니다.</td>';
+				table += '</tr>';
+				document.querySelector('#leftReservation').innerHTML = table;
+				return;
+			}
+			
 			var modal= '';
 			for(var ticket of res){
 				//진행중 테이블 
 				table += '<tr>';
-				table += '<td>' + ticket.piMerchantId + '</td>';
+				table += '<td>' + ticket.tiNum + '</td>';
 				table += '<td>' + ticket.eiName + '</td>';
 				table += '<td>' + ticket.tiDate + '</td>';
 				table += '<td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#leftReserv' + ticket.tiNum +'">상세보기</button></td>';
@@ -144,12 +132,12 @@ function getProgressTickets(){
 				modal += '<div class="card-body">';
 				modal += '<h5 class="card-title">' + ticket.eiName + '</h5>';
 				modal += '<hr>';
-				modal += '<p class="card-text">예매번호 : <span>' + ticket.piMerchantId + '</span></p>';
+				modal += '<p class="card-text">주문번호 : <span>' + ticket.piMerchantId + '</span></p>';
 				modal += '<p class="card-text">장소 : <span>' + ticket.giName + '</span></p>';
 				modal += '<p class="card-text">관람일시 : <span>' + ticket.tiDate + '</span> <span>' + ticket.tiTime +'</span></p>';
 				modal += '<p class="card-text">예매수 : <span>'+ ticket.tiNumber + '</span>장</p>';
 				modal += '<hr>';
-				modal += '<button type="button" class="btn btn-outline-danger" style="width: 300px; height: 38px" data-rtiNum="' + ticket.tiNum + '" onclick="cancel(this)">예매취소</button>';
+				modal += '<button type="button" class="btn btn-outline-danger" style="width: 300px; height: 38px" data-tiNum="' + ticket.tiNum + '" onclick="cancel(this)">예매취소</button>';
 				modal += '</div>';
 				modal += '</div>';
 				modal += '</div>'; 
@@ -165,18 +153,25 @@ function getProgressTickets(){
 }
 function getPastTickets(page){
 	var xhr = new XMLHttpRequest();
-	var uiNum = ${userInfo.uiNum};
-	var url = '/ticket/past/' + uiNum + '?size=' + size + '&page='+ (page-1);
+	var url = '/ticket/past/?size=' + size + '&page='+ (page-1);
 	xhr.open('GET', url);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			var table = '';
+			console.log(res.content.length === 0)
+			if(res.content.length === 0){
+				table += '<tr>';
+				table += '<td colspan="4" align="center">지난 예약이 없습니다.</td>';
+				table += '</tr>';
+				document.querySelector('#rightReservation').innerHTML = table;
+				return;
+			}
 			var modal= '';
 			for(var ticket of res.content){
 					//지난 테이블 
 					table += '<tr>';
-					table += '<td>' + ticket.piMerchantId + '</td>';
+					table += '<td>' + ticket.tiNum + '</td>';
 					table += '<td>' + ticket.eiName + '</td>';
 					table += '<td>' + ticket.tiDate + '</td>';
 					table += '<td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#leftReserv' + ticket.tiNum +'">상세보기</button></td>';
@@ -196,12 +191,12 @@ function getPastTickets(page){
 					modal += '<div class="card-body">';
 					modal += '<h5 class="card-title">' + ticket.eiName + '</h5>';
 					modal += '<hr>';
-					modal += '<p class="card-text">예매번호 : <span>' + ticket.piMerchantId + '</span></p>';
+					modal += '<p class="card-text">주문번호 : <span>' + ticket.piMerchantId + '</span></p>';
 					modal += '<p class="card-text">장소 : <span>' + ticket.giName + '</span></p>';
 					modal += '<p class="card-text">관람일시 : <span>' + ticket.tiDate + '</span> <span>' + ticket.tiTime +'</span></p>';
 					modal += '<p class="card-text">예매수 : <span>'+ ticket.tiNumber + '</span>장</p>';
 					modal += '<hr>';
-					modal += '<button type="button" class="btn btn-outline-primary" onclick="goReview(this)" data-rtiNum="' + ticket.tiNum + '" style="width: 300px; height: 38px">리뷰작성</button>';
+					modal += '<button type="button" class="btn btn-outline-primary" onclick="goReview(this)" data-tiNum="' + ticket.tiNum + '" style="width: 300px; height: 38px">리뷰작성</button>';
 					modal += '</div>';
 					modal += '</div>';
 					modal += '</div>'; 
@@ -254,7 +249,7 @@ function getPastTickets(page){
 	xhr.send();
 }
 function cancel(obj){
-	var rtiNum = obj.getAttribute('data-tiNum')
+	var tiNum = obj.getAttribute('data-tiNum')
 	
 	var xhr = new XMLHttpRequest();
 	
@@ -276,7 +271,7 @@ function cancel(obj){
 }
 function goReview(obj){
 	var tiNum = obj.getAttribute('data-tiNum')
-	location.href = '/views/user/review/?tiNum=' + tiNum;
+	location.href = '/views/community/review-save/?tiNum=' + tiNum;
 }
 </script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

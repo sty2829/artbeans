@@ -64,7 +64,7 @@ public class TicketController {
 	
 	//유저예약정보 컨트롤러 작성..
 	@GetMapping("/ticket/past")
-	public Page<UserTicketDTO> getPastTickets(@PathVariable Integer uiNum , Pageable pageable) {
-		return ticketService.getPastTicketList(uiNum, pageable);
+	public Page<UserTicketDTO> getPastTickets(UserSession userSession, Pageable pageable) {
+		return ticketService.getPastTicketList(userSession, pageable);
 	}
 }

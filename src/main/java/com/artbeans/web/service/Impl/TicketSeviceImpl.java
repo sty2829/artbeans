@@ -151,8 +151,8 @@ public class TicketSeviceImpl implements TicketService {
 
 
 	@Override
-	public Page<UserTicketDTO> getPastTicketList(Integer uiNum, Pageable pageable) {
-		return tiRepo.findAllPastUserTicket(uiNum, pageable);
+	public Page<UserTicketDTO> getPastTicketList(UserSession userSession, Pageable pageable) {
+		return tiRepo.findAllPastUserTicket(userSession.getUiNum(), pageable);
 	}
 	
 

@@ -1,6 +1,7 @@
 package com.artbeans.web.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,11 +12,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicUpdate;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 
@@ -54,5 +58,10 @@ public class ReviewInfo {
 	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fi_num")
 	private FileInfo fileInfo;
+	
+	@OneToMany(mappedBy = "reviewInfo", cascade = CascadeType.ALL)
+	@JsonManagedReference
+	private List<CommentInfo> CommentInfos;
+	
 
 }

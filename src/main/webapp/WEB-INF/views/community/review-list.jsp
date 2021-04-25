@@ -23,6 +23,17 @@ hr{
     height: 1px;
     background: #ccc;
 }
+
+.subText{
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	display: -webkit-box; 
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical; 
+	word-wrap:break-word; 
+	line-height: 1.4em; 
+	height: 2.8em;
+}
 </style>
 </head>
 
@@ -54,9 +65,7 @@ function getReviews(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			console.log(res);
 			for(var review of res.content) {
-				console.log(review.rviNum);
 				html += '<a href="/views/community/review-view?rviNum=' + review.rviNum + '"';
 				html += '<div class="col-lg-8">';
 				html += '<div class="row">';
@@ -65,9 +74,9 @@ function getReviews(){
 				html += '</div>';
 				html += '<div class="col-lg-8">';
 				html += '<h3 style="margin-top: 10px">' + review.rviTitle +'</h3>';
-				html += '<p style="margin-top: 20px">소제목</p>';
-				html += '<div style="margin-top: 90px">';
-				html += '<span style="font-weight: 600;">' + review.date +'</span>';
+				html += '<p class="subText" style="margin-top: 20px">' + review.rviContent.replace(/[<][^>]*[>]/gi, "") + '</p>';
+				html += '<div style="margin-top: 70px">';
+				html += '<span style="font-weight: 600;">' + review.moddat +'</span>';
 				html += '<span class="float-right" style="font-weight: 600;">by ' + review.uiEmail + '</span>';
 				html += '</div>';
 				html += '</div>';

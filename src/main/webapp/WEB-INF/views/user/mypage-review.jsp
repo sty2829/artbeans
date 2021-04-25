@@ -23,6 +23,19 @@ hr{
     height: 1px;
     background: #ccc;
 }
+.subText{
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	display: -webkit-box; 
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical; 
+	word-wrap:break-word; 
+	line-height: 1.4em; 
+	height: 2.8em;
+}
+#userReviewList > * {
+	color: black;
+}
 </style>
 </head>
 
@@ -36,57 +49,6 @@ hr{
           	</div>
    		</div>
 		<div class="row d-flex justify-content-center" id="userReviewList">
-			<div class="col-lg-8" >
-				<div class="row">
-					<div class="col-lg-4">
-						<img src="/resources/assets/img/exhibition/12823860910600.png" style="width: 200px; height: 199px">
-					</div>
-					<div class="col-lg-8">
-						<h3 style="margin-top: 10px">공감전시회 너무재밌어요</h3>
-						<p style="margin-top: 20px">소제목</p>
-						<div style="margin-top: 90px">
-						<span style="font-weight: 600;">2021-04-28</span>
-						<span class="float-right" style="font-weight: 600; cursor: pointer" onclick="test(this)">삭제</span>
-						<span class="float-right mr-3" style="font-weight: 600; cursor: pointer" onclick="test(this)">수정</span>
-						</div>
-					</div>
-				</div>
-				<hr>
-          	</div>
-          	<div class="col-lg-8" >
-				<div class="row">
-					<div class="col-lg-4">
-						<img src="/resources/assets/img/exhibition/12823860910600.png" style="width: 200px; height: 199px">
-					</div>
-					<div class="col-lg-8">
-						<h3 style="margin-top: 20px">공감전시회 너무재밌어요</h3>
-						<p style="margin-top: 20px">소제목</p>
-						<div style="margin-top: 80px">
-						<span style="font-weight: 600;">2021-04-28</span>
-						<span class="float-right" style="font-weight: 600;">수정&nbsp;&nbsp;<span>삭제</span></span>
-						</div>
-					</div>
-				</div>
-				<hr>
-          	</div>
-          	<div class="col-lg-8" >
-				<div class="row">
-					<div class="col-lg-4">
-						<img src="/resources/assets/img/exhibition/12823860910600.png" style="width: 200px; height: 199px">
-					</div>
-					<div class="col-lg-8">
-						<h3 style="margin-top: 20px">공감전시회 너무재밌어요</h3>
-						<p style="margin-top: 20px">소제목</p>
-						<div style="margin-top: 80px">
-						<span style="font-weight: 600;">2021-04-28</span>
-						<span class="float-right" style="font-weight: 600;">수정</span>
-						<span class="float-right" style="font-weight: 600;">수정</span>
-						</div>
-					</div>
-				</div>
-				<hr>
-          	</div>
-          	
 		</div>
 		<div class="row d-flex justify-content-center">
 			<div class="col-lg-8" >
@@ -101,78 +63,92 @@ hr{
 const size = 3;
 function getUserReviews(page){
 	var xhr = new XMLHttpRequest();
-	var uiNum = ${userInfo != null ? userInfo.uiNum : false };
-	if(!uiNum){
-		alert('로그인이 만료되었습니다. 다시 로그인해주세요.');
-		location.href = '/views/user/login';
-	}
-	
-	var url = '/reviews/' + uiNum + '?size=' + size + '&page='+ (page-1);
+	var url = '/reviews/user/?size=' + size + '&page='+ (page-1);
 	xhr.open('GET', url);
 	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var res = JSON.parse(xhr.responseText);
-			console.log(res);
-			var html = '';
-			for(var review of res.content){
-				html += '<div class="col-lg-8">';
-				html += '<div class="row">';
-				html += '<div class="col-lg-4">';
-				html += '<img src="/resources/assets/img/review/' + review.fiPath + '" style="width: 200px; height: 199px">';
-				html += '</div>';
-				html += '<div class="col-lg-8">';
-				html += '<h3 style="margin-top: 10px">' + review.rviTitle + '</h3>';
-				html += '<p style="margin-top: 20px">소제목</p>';
-				html += '<div style="margin-top: 90px">';
-				html += '<span style="font-weight: 600;">' + review.date +'</span>';
-				html += '<span class="float-right" style="font-weight: 600; cursor: pointer" onclick="reviewRemove(' + review.rviNum + ')">삭제</span>';
-				html += '<span class="float-right mr-3" style="font-weight: 600; cursor: pointer" onclick="goReviewUpdate(' + review.rviNum + ')">수정</span>';
-				html += '</div>';
-				html += '</div>';
-				html += '</div>';
-				html += '<hr>';
-				html += '</div>';
-			}
-			
-			var disable = '';
-			var clickEvent = 'onclick="getUserReviews(' + res.number + ')"';
-			if(res.first){
-				disable = 'disabled';
-				clickEvent = '';
-			}
-			
-			var li = '<li class="page-item ' + disable + '" ' + clickEvent +'>';
-			li += '<a class="page-link" tabindex="-1">이전</a>';
-			li += '</li>';
-			
-			var startPage = Math.floor((((Number(res.number) + 1) - 1) / size)) * size + 1;
-			var endPage = startPage + size - 1;
-			if(endPage > res.totalPages){
-				endPage = res.totalPages;
-			}
-			for(startPage; startPage<=endPage; startPage++){
-				if(startPage === page){
-					li += '<li class="page-item active" onclick="getUserReviews(' + startPage + ')"><a class="page-link">'+ startPage +'</a></li>';
-					continue;
+		if(xhr.readyState == 4){
+			if(xhr.status == 200){
+				var res = JSON.parse(xhr.responseText);
+				var html = '';
+				if(res.content.length === 0){
+					html += '<div class="col-lg-8" >';
+					html += '<p style="text-align:center;">등록된 리뷰가 없습니다.</p>';
+					html += '</div>';
+					html += '';
+					html += '';
+					document.querySelector('#userReviewList').innerHTML = html;
+					return;
 				}
-				li += '<li class="page-item" onclick="getUserReviews(' + startPage +')"><a class="page-link">'+ startPage +'</a></li>';
+				
+				for(var review of res.content){
+					html += '<div class="col-lg-8">';
+					html += '<div class="row">';
+					html += '<div class="col-lg-4">';
+					html += '<img src="/resources/assets/img/review/' + review.fiPath + '" style="width: 200px; height: 199px">';
+					html += '</div>';
+					html += '<div class="col-lg-8">';
+					html += '<h3 style="margin-top: 10px">' + review.rviTitle + '</h3>';
+					html += '<p class="subText" style="margin-top: 20px">' + review.rviContent.replace(/[<][^>]*[>]/gi, "") + '</p>';
+					html += '<div style="margin-top: 70px">';
+					html += '<span style="font-weight: 600;">' + review.moddat +'</span>';
+					html += '<span class="float-right" style="font-weight: 600; color:red; cursor: pointer" onclick="reviewRemove(' + review.rviNum + ')">삭제</span>';
+					html += '<span class="float-right mr-3" style="font-weight: 600; color:blue; cursor: pointer" onclick="goReviewUpdate(' + review.rviNum + ')">수정</span>';
+					html += '</div>';
+					html += '</div>';
+					html += '</div>';
+					html += '<hr>';
+					html += '</div>';
+				}
+				
+				var disable = '';
+				var clickEvent = 'onclick="getUserReviews(' + res.number + ')"';
+				if(res.first){
+					disable = 'disabled';
+					clickEvent = '';
+				}
+				
+				var li = '<li class="page-item ' + disable + '" ' + clickEvent +'>';
+				li += '<a class="page-link" tabindex="-1">이전</a>';
+				li += '</li>';
+				
+				var startPage = Math.floor((((Number(res.number) + 1) - 1) / size)) * size + 1;
+				var endPage = startPage + size - 1;
+				if(endPage > res.totalPages){
+					endPage = res.totalPages;
+				}
+				for(startPage; startPage<=endPage; startPage++){
+					if(startPage === page){
+						li += '<li class="page-item active" onclick="getUserReviews(' + startPage + ')"><a class="page-link">'+ startPage +'</a></li>';
+						continue;
+					}
+					li += '<li class="page-item" onclick="getUserReviews(' + startPage +')"><a class="page-link">'+ startPage +'</a></li>';
+				}
+				
+				disable = '';
+				clickEvent = 'onclick="getUserReviews(' + (Number(res.number)+2) + ')"';
+				
+				if(res.last){
+					disable = 'disabled';
+					clickEvent = '';
+				}
+				
+				li += '<li class="page-item ' + disable +'" ' + clickEvent + '>';
+			    li += '<a class="page-link">다음</a>';
+			  	li += '</li>';
+				
+				
+				document.querySelector('#userReviewList').innerHTML = html;
+				document.querySelector('#reviewPageList').innerHTML = li;
+			}else{
+				var res = JSON.parse(xhr.responseText);
+				if(res['trace'].includes('RuntimeException')){
+					if(res['message'].includes('로그인')){
+						alert(res['message']);
+						location.href = '/views/user/login';
+						return;
+					}
+				}
 			}
-			
-			disable = '';
-			clickEvent = 'onclick="getUserReviews(' + (Number(res.number)+2) + ')"';
-			
-			if(res.last){
-				disable = 'disabled';
-				clickEvent = '';
-			}
-			
-			li += '<li class="page-item ' + disable +'" ' + clickEvent + '>';
-		    li += '<a class="page-link">다음</a>';
-		  	li += '</li>';;
-			
-			
-			document.querySelector('#userReviewList').innerHTML = html;
-			document.querySelector('#reviewPageList').innerHTML = li;
 		}
 	}
 	xhr.send();
@@ -181,24 +157,25 @@ function goReviewUpdate(rviNum){
 	location.href = '/views/community/review-update/?rviNum=' + rviNum;
 }
 function reviewRemove(rviNum){
-	var xhr = new XMLHttpRequest();
-	
-	xhr.open('DELETE', '/review/' + rviNum );
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4){
-			if(xhr.status == 200){
-				var res = xhr.responseText;
-				console.log(res);
-				alert('리뷰가 정상 삭제되었습니다.');
-				window.location.reload();
-			}else{
-				console.log(xhr.responseText);
+	if(confirm("정말 삭제 하시겠습니까 ?")){
+		var xhr = new XMLHttpRequest();
+		
+		xhr.open('DELETE', '/review/' + rviNum );
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var res = JSON.parse(xhr.responseText);
+				if(res == 1){
+					alert('리뷰가 정상 삭제되었습니다.');
+					window.location.reload();
+					return;
+				}
+				alert('리뷰가 삭제에 실패하였습니다.');		
 			}
 		}
+		xhr.send();
+	}else{
+		return;
 	}
-	
-	xhr.send();
-	
 }
 window.addEventListener('load', getUserReviews(1));
 </script>

@@ -1,7 +1,5 @@
 package com.artbeans.web.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.artbeans.web.dto.CommentDTO;
 import com.artbeans.web.dto.ReviewDTO;
+import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.CommentInfo;
 import com.artbeans.web.entity.ReviewInfo;
 import com.artbeans.web.service.ReviewService;
@@ -34,9 +33,9 @@ public class ReviewController {
 	}
 	
 	//해당유저의 리뷰 모두가져오기
-	@GetMapping("/reviews/{uiNum}")
-	public Page<ReviewDTO> getUserReviews(@PathVariable Integer uiNum, Pageable pageable) {
-		return reviewService.getUserReviews(uiNum, pageable);
+	@GetMapping("/reviews/user")
+	public Page<ReviewDTO> getUserReviews(UserSession userSession, Pageable pageable) {
+		return reviewService.getUserReviews(userSession, pageable);
 	}
 	
 	//리뷰 상세화면
@@ -47,9 +46,9 @@ public class ReviewController {
 	
 	//유저리뷰 저장
 	@PostMapping("/review")
-	public int saveReview(ReviewInfo reviewInfo) throws Exception {
+	public int saveReview(UserSession userSession, ReviewInfo reviewInfo) throws Exception {
 		log.info("reviewInfo => {}", reviewInfo);
-		return reviewService.saveReview(reviewInfo);
+		return reviewService.saveReview(userSession, reviewInfo);
 	}
 	
 	//유저리뷰 수정
@@ -69,15 +68,15 @@ public class ReviewController {
 	
 	//리뷰댓글 저장
 	@PostMapping("/review/comment")
-	public int saveComment(@RequestBody CommentInfo commentInfo) {
+	public int saveComment(UserSession userSession, @RequestBody CommentInfo commentInfo) {
 		log.info("commentInfo => {}", commentInfo);
-		return reviewService.saveComment(commentInfo);
+		return reviewService.saveComment(userSession, commentInfo);
 	}
 	
 	//해당 리뷰의 댓글 호출
 	@GetMapping("/review/comment/{rviNum}")
-	public List<CommentDTO> getComments(@PathVariable Integer rviNum) {
-		return reviewService.getCommentInfos(rviNum);
+	public Page<CommentDTO> getComments(@PathVariable Integer rviNum, Pageable pageable) {
+		return reviewService.getCommentInfos(rviNum, pageable);
 	}
 	
 	//리뷰관련 comments 삭제

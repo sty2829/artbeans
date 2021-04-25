@@ -27,7 +27,7 @@ public class FileConverter {
 	
 	private final static String ROOT = File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "img" + File.separator;
 	
-	private final static String editorPath = File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "img" + File.separator + "editor" + File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "img" + File.separator;
+	private final static String editorPath = File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "img" + File.separator + "editor" + File.separator;
 	
 	public static void fileInsert(FileInfo fileInfo, String fiType) throws Exception {
 		String paths = File.separator;

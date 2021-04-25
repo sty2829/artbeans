@@ -3,6 +3,7 @@ package com.artbeans.web.dto;
 import java.util.Date;
 
 import com.artbeans.web.util.DateUtil;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public interface ReviewDTO {
@@ -19,15 +20,11 @@ public interface ReviewDTO {
 	
 	String getRviContent();
 	
-	@JsonIgnore
-	Date getCredat();
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+	Date getModdat();
 	
 	@JsonIgnore
 	String getUserInfoUiEmail();
-	
-	default String getDate() {
-		return DateUtil.dateToString(getCredat());
-	}
 	
 	default String getUiEmail() {
 		int idx = getUserInfoUiEmail().indexOf("@");

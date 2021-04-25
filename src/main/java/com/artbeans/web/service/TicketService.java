@@ -23,5 +23,5 @@ public interface TicketService {
 	List<UserTicketDTO> getProgressTicketList(UserSession userSession);
 	
 	//예약티켓 지난리스트 조회
-	Page<UserTicketDTO> getPastTicketList(Integer uiNum, Pageable pageable);
+	Page<UserTicketDTO> getPastTicketList(UserSession userSession, Pageable pageable);
 }
