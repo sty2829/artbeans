@@ -1,10 +1,13 @@
 package com.artbeans.web.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -48,7 +51,10 @@ public class GalleryController {
 		gService.saveGalleryInfo(galleryInfo);
 		return 1;
 	}
-	
-	
+	//사용중(진석)
+	@GetMapping("/Gallery-lists") // 통합검색 갤러리 위와 동일하게 name like로 가져옴
+	public @ResponseBody List<GalleryInfo> getGalleryInfoList(@ModelAttribute GalleryInfo galleryInfo) {
+		return gService.getGalleryInfos(galleryInfo);
+	}
 	
 }

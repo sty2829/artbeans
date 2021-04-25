@@ -286,7 +286,7 @@ function doUpdate(){
 window.onload = exhibitionOption();//유저가 등록한 전시회 목록
 function exhibitionOption(){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/getExhibition?uiNum='+uiNum);
+	xhr.open('GET','/exhibitions-user?uiNum='+uiNum);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res =JSON.parse(xhr.responseText);

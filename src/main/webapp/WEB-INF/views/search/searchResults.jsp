@@ -72,7 +72,7 @@
 			</div>
 			<br>
 
-			<form action="/search" method="get" name="frm" onsubmit="return check('searchInput')">
+			<form  method="get" name="frm" onsubmit="return check('searchInput')">
 				<div>
 					<div>
 						<div class="col-lg-12 d-flex justify-content-center">
@@ -109,6 +109,8 @@
 		</section>
 	</main>
 	<script>
+var keyword ='${param.keyword}';// header부분 검색 keyword
+console.log(keyword);
 function startSuggest(target){
 	
 	if(target.value.trim()==''){
@@ -148,8 +150,6 @@ function totalSuggestGallery(obj){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4&&xhr.status==200){
 			var get = JSON.parse(xhr.responseText);
-			
-			console.log(get);
 			var html ='';
 			for(var gallery of get){
 			
@@ -180,8 +180,9 @@ function show(){
 	<script>
 			
 
-var keyword ='${keyword}';// header부분 검색 keyword
+
 function topSearch(){
+	
 	var xhr = new XMLHttpRequest();
 	var param = '?';
 
@@ -195,8 +196,6 @@ function topSearch(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
 			var html = '<div><h5>검색결과 : '+res.length+'개</h5></div><br>';
-			
-			console.log(res.length);
 			for(var exhibition of res){
 				if(res.length!= 0){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
