@@ -15,15 +15,15 @@ public class WebConfig implements WebMvcConfigurer {
 	@Autowired
 	private AuthInterceptor authInterceptor;
 	
-	private String uploadPath = "/resources/**";
+	private String uploadPath = "/resource/**";
 	
-	private String galleryPath = "file:///var/lib/jenkins/workspace/resources/assets/img/gallery/";
+	private String galleryPath = "file:/var/lib/jenkins/workspace/resources/assets/img/gallery/";
 	
-	private String exhibitionPath = "file:///var/lib/jenkins/workspace/resources/assets/img/exhibition/";
+	private String exhibitionPath = "file:/var/lib/jenkins/workspace/resources/assets/img/exhibition/";
 	
-	private String editor = "file:///var/lib/jenkins/workspace/resources/assets/img/editor/";
+	private String editor = "file:/var/lib/jenkins/workspace/resources/assets/img/editor/";
 	
-	private String reviewPath = "file:///var/lib/jenkins/workspace/resources/assets/img/review/";
+	private String reviewPath = "file:/var/lib/jenkins/workspace/resources/assets/img/review/";
 	
 	public  void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authInterceptor)
