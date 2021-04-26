@@ -9,7 +9,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.artbeans.web.interceptor.AuthInterceptor;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Configuration
+@Slf4j
 public class WebConfig implements WebMvcConfigurer {
 
 	@Autowired
