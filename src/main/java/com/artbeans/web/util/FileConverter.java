@@ -24,7 +24,7 @@ public class FileConverter {
 	 */
 	private final static String ROOT = "/var/lib/jenkins/workspace/resources/assets/img/";
 	
-	private final static String editorPath = "/var/lib/jenkins/workspace/resources/assets/img/editor";
+	private final static String editorPath = "/var/lib/jenkins/workspace/resources/assets/img/editor/";
 	
 	public static void fileInsert(FileInfo fileInfo, String fiType) throws Exception {
 		String fiName = fileInfo.getFiFile().getOriginalFilename();
