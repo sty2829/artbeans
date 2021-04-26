@@ -84,15 +84,35 @@ window.onload = function (){
 			html += '<h2>'+res.eiName+'</h2><p>전시회 설명</p></div>';
 			html += '<div style="text-align:center">' + res.eiContent + '</div>';
 			html += '</div></section>';
-			//res.galleryInfo['giAddressY'],res.galleryInfo['giAddressX']
-			console.log(res.galleryInfo['giAddressY']);
-			var giY = res.galleryInfo['giAddressY'];
-			var giX = res.galleryInfo['giAddressX'];
-			html += '<input type="hidden" id="giAddressY" value="giY">';
-			html += '<input type="hidden" id="giAddressX" value="giX">';
+			
 			document.querySelector('#exhibition').innerHTML = html;
 			
-			
+			var mapOptions = {
+				    center: new naver.maps.LatLng(res.galleryInfo['giAddressY'],res.galleryInfo['giAddressX']),
+				    zoom: 16
+				};
+				var map = new naver.maps.Map('map', mapOptions);				 
+				var marker = new naver.maps.Marker({
+				    position: new naver.maps.LatLng(res.galleryInfo['giAddressY'], res.galleryInfo['giAddressX']),
+				    title: res.galleryInfo['giName'],
+				    map: map
+				});				 
+				var contentString = [
+				        '<div style="padding:4px 4px;">',
+				        '   <div style="font-weight:bold;padding-bottom:3px;">'+ res.galleryInfo['giName'] + '</div>',
+				        '</div>'
+				    ].join('');				 
+				var infowindow = new naver.maps.InfoWindow({
+				    content: contentString
+				});				 
+				naver.maps.Event.addListener(marker, "click", function(e) {
+				    if (infowindow.getMap()) {
+				        infowindow.close();
+				    } else {
+				        infowindow.open(map, marker);
+				    }
+				});				 
+				infowindow.open(map, marker);
 		}		
 	}
 	xhr.send();
