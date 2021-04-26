@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+	crossorigin="anonymous"></script>
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,6 +32,7 @@ width:80px;
 height:80px;
 
 }
+
 .favoriteList{
 
 }
@@ -39,7 +43,11 @@ height:80px;
 <body>
 	<div class="container myreservation">
 		<p class ="uiName">${userInfo.uiName}님의 찜목록</p>
-		<div>
+		<label for="allCheck">모두 선택</label>
+		<input class="allCheck" type="checkbox" name="allCheck" id = "allCheck"/>
+		
+		<button class="delBtn" type="button" class="selectDelete_btn">선택 삭제</button>
+				<div>
 			<table class="table" id="myreservation">
 				<thead>
 				<tr>
@@ -59,6 +67,10 @@ height:80px;
 	</div>
 
 <script>
+
+
+
+
 var url = '/favorite-exhibitions?uiNum=${userInfo.uiNum}';
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
@@ -67,15 +79,16 @@ window.onload = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
 			console.log(res);
+			var table = '';
 			for(var favoriteExhibition of res){
-				var table = '';
+				
 				table += '<tr class="listTitle"">';
 				table += '<td><img class="poster" src="/resources/assets/img/exhibition/' + favoriteExhibition.exhibitionInfo.fileInfo.fiPath + '">';
 				table += '<td>' + favoriteExhibition.exhibitionInfo.eiName +'</td>'; 
 				table += '<td>' + favoriteExhibition.exhibitionInfo.galleryInfo.giName +'</td>';
 				table += '<td>' + favoriteExhibition.exhibitionInfo.eiStartDate +'</td>';
 				table += '<td>' + favoriteExhibition.exhibitionInfo.eiEndDate +'</td>';
-				table += '<td><input type="checkbox"><td>';
+				table += '<td><input type="checkbox" name="chBox" class="chBox"><td>';
 				table += '</tr>';				
 				
 				}
@@ -84,6 +97,19 @@ window.onload = function(){
 		}
 	xhr.send();
 }
+
+$('#allCheck').on('click', function() {
+	 var chk = $("#allCheck").prop("checked");
+	 if(chk) {
+	  $(".chBox").prop("checked", true);
+	 } else {
+	  $(".chBox").prop("checked", false);
+	 }
+	 $(".chBox").on('click',function(){
+		  $("#allCheck").prop("checked", false);
+		 });
+	});
+	
 
 </script>
 

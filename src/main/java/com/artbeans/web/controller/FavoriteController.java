@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.artbeans.web.dto.UserSession;
@@ -26,5 +28,11 @@ public class FavoriteController {
 		return fService.getFavoriteExhibition(userssesion);
 		
 	}
+//	
+//	@DeleteMapping("/favorite/{fviNum}")
+//	public int deleteFavorite(@PathVariable Integer fviNum) {
+//		log.info("rviNum => {}", fviNum);
+//		return fService.removeReview(fviNum);
+//	}
 	
 }

@@ -26,4 +26,10 @@ public class FavoriteImpl implements FavoriteService {
 		return fRepo.findAllByUserInfoUiNum(userSession.getUiNum());
 	}
 
+	@Override
+	public Integer deleteFavorite(Integer fviNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
