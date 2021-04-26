@@ -35,13 +35,13 @@ public class FileConverter {
  		log.info("fiName => {}", fiName);
 		int idx = fiName.lastIndexOf(".");
 		String extName = fiName.substring(idx);
-		String path = System.nanoTime() + extName;
+		String path = "/" + System.nanoTime() + extName;
 		fileInfo.setFiOriginalname(fiName);
 		fileInfo.setFiSize(fiSize);
 		fileInfo.setFiPath(path);
 		fileInfo.setFiType(fiType);
 		log.info("fileInfo=>{}", fileInfo);
-		File file = new File(ROOT + fiType + "/" + path);
+		File file = new File(ROOT + fiType + path);
 		fileInfo.getFiFile().transferTo(file);
 		
 	}
