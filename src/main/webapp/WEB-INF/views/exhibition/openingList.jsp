@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>진행중인 전시회 목록</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<script src="/resources/user/js/window/infinityScroll.js"></script>
+<script src="/resources/user/js/window/infinityScroll.js"></script> 
 <script src="/resources/user/js/exhibition/openingList.js"></script>
 <link rel="stylesheet" href="/resources/user/css/right-menu.css">
 <link href='https://css.gg/attachment.css' rel='stylesheet'>
