@@ -15,15 +15,19 @@ public class WebConfig implements WebMvcConfigurer {
 	@Autowired
 	private AuthInterceptor authInterceptor;
 	
-	private String uploadPath = "/resource/**";
+	private final String UPLOAD_PATH = "/resource/**";
 	
-	private String galleryPath = "file:/var/lib/jenkins/workspace/resources/assets/img/gallery/";
+	@Value("${webconfig.path.gallery}")
+	private String GALLERY_PATH;
 	
-	private String exhibitionPath = "file:/var/lib/jenkins/workspace/resources/assets/img/exhibition/";
+	@Value("${webconfig.path.exhibition}")
+	private String EXHIBITION_PATH;
 	
-	private String editor = "file:/var/lib/jenkins/workspace/resources/assets/img/editor/";
+	@Value("${webconfig.path.editor}")
+	private String EDITOR_PATH;
 	
-	private String reviewPath = "file:/var/lib/jenkins/workspace/resources/assets/img/review/";
+	@Value("${webconfig.path.review}")
+	private String REVIEW_PATH;
 	
 	public  void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authInterceptor)
@@ -35,7 +39,7 @@ public class WebConfig implements WebMvcConfigurer {
 		.excludePathPatterns("/views/user/findPwd")
 		.excludePathPatterns("/views/admin/**")
 		.excludePathPatterns("/views/community/**")
-		.excludePathPatterns("/views/exhibition/**")
+		.excludePathPatterns("/views/exhibition/*")
 		.excludePathPatterns("/views/gallery/**")
 		.excludePathPatterns("/views/include/**")
 		.excludePathPatterns("/views/search/**")
@@ -44,11 +48,17 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler(uploadPath)
-		.addResourceLocations(galleryPath)
-		.addResourceLocations(exhibitionPath)
-		.addResourceLocations(editor)
-		.addResourceLocations(reviewPath);
+		registry.addResourceHandler(UPLOAD_PATH)
+		.addResourceLocations(GALLERY_PATH)
+		.addResourceLocations(EXHIBITION_PATH)
+		.addResourceLocations(EDITOR_PATH)
+		.addResourceLocations(REVIEW_PATH);
 	}
+
+	
+
+	
+
+	
 	
 }
