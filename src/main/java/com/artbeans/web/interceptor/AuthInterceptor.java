@@ -7,9 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Component
 public class AuthInterceptor implements HandlerInterceptor {
 	
@@ -18,9 +15,9 @@ public class AuthInterceptor implements HandlerInterceptor {
 			throws Exception {
 
 		HttpSession hs = request.getSession();
-		log.info("LoginInterceptor - {}",hs);
 		if(hs.getAttribute("userInfo")==null){
-			response.sendRedirect("/views/user/login");
+			request.setAttribute("msg", "로그인이 필요한 페이지 입니다.");
+			request.getRequestDispatcher("/views/user/msg").forward(request,response);
 			return false;
 		}
 		

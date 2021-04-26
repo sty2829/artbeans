@@ -45,10 +45,10 @@ public class ReviewController {
 	}
 	
 	//유저리뷰 저장
-	@PostMapping("/review")
-	public int saveReview(UserSession userSession, ReviewInfo reviewInfo) throws Exception {
+	@PostMapping("/review/{tiNum}")
+	public int saveReview(UserSession userSession, ReviewInfo reviewInfo, @PathVariable Integer tiNum) throws Exception {
 		log.info("reviewInfo => {}", reviewInfo);
-		return reviewService.saveReview(userSession, reviewInfo);
+		return reviewService.saveReview(userSession, reviewInfo, tiNum);
 	}
 	
 	//유저리뷰 수정

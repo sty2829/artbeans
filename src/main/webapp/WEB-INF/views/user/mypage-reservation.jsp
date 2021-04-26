@@ -197,7 +197,7 @@ function getPastTickets(page){
 					modal += '<p class="card-text">관람일시 : <span>' + ticket.tiDate + '</span> <span>' + ticket.tiTime +'</span></p>';
 					modal += '<p class="card-text">예매수 : <span>'+ ticket.tiNumber + '</span>장</p>';
 					modal += '<hr>';
-					modal += '<button type="button" class="btn btn-outline-primary" onclick="goReview(this)" data-tiNum="' + ticket.tiNum + '" style="width: 300px; height: 38px">리뷰작성</button>';
+					modal += '<button type="button" class="btn btn-outline-primary" onclick="goReview(' + ticket.tiNum + ')" style="width: 300px; height: 38px">리뷰작성</button>';
 					modal += '</div>';
 					modal += '</div>';
 					modal += '</div>'; 
@@ -273,8 +273,7 @@ function cancel(obj){
 		return;
 	}
 }
-function goReview(obj){
-	var tiNum = obj.getAttribute('data-tiNum')
+function goReview(tiNum){
 	location.href = '/views/community/review-save/?tiNum=' + tiNum;
 }
 </script>

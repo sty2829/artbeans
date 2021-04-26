@@ -15,7 +15,7 @@ public interface ReviewService {
 	
 	Page<ReviewDTO> getUserReviews(UserSession userSession, Pageable pageable);
 	
-	int saveReview(UserSession userSession, ReviewInfo reviewInfo) throws Exception;
+	int saveReview(UserSession userSession, ReviewInfo reviewInfo, Integer tiNum) throws Exception;
 	
 	int updateReview(ReviewInfo reviewInfo) throws Exception;
 	
