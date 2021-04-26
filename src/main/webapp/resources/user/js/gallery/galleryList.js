@@ -14,7 +14,7 @@ function get(){
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
-				html += '<img style="width:400px; height:400px" src=\'/upload/' +galleryInfo.fileInfo.fiPath+ '\'" class="img-fluid" onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">';
+				html += '<img style="width:400px; height:400px" src=\'/upload/' +galleryInfo.fileInfo.fiPath+ '\' class="img-fluid" onclick="location.href=\'/views/gallery/views?giNum=' + galleryInfo.giNum + '\'">';
 				html += '</div>';				
 				html += '<div class="row"><div class="col-sm-10">'
 				html += '<h2 class="entry-title">';

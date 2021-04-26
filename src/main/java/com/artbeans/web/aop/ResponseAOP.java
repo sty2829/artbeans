@@ -7,8 +7,6 @@ import org.springframework.stereotype.Component;
 
 import com.artbeans.web.dto.ResponseResult;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Component
 @Aspect
 public class ResponseAOP {
