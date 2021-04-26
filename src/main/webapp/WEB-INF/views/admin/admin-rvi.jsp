@@ -73,7 +73,7 @@
 							</table>
 						</div>
 						
-						<div class="row"><!-- 페이징 처리 -->
+						<div class="row2"><!-- 페이징 처리 -->
 							<div class="col-lg-6">
 								<nav aria-label="Page navigation example" class="col-lg-6-under">
 									<ul class="pagination justify-content-center" id="pastPageList">
@@ -133,18 +133,19 @@ function getReviews(page){
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
 			var html='';
-			
+			console.log(res);
 			for (var review of res.content) {
 				/*
 				let reviewDate = review.moddat;
 				let tNum=reviewDate.indexOf('T');
 				reviewDate=reviewDate.substring(0,tNum);
 				*/
-				let ContentPtag = review.rviContent;
-				let cNumLast=ContentPtag.indexOf('</p>');
 				
-				ContentPtag=ContentPtag.replace('<p>','');
-				ContentPtag=ContentPtag.substring(0,cNumLast-3);
+				
+				let ContentPtag = review.rviContent;
+				let cNumLast2=ContentPtag.indexOf('</p>');
+				let cNumLast1=ContentPtag.indexOf('<p>');
+				ContentPtag=ContentPtag.substring(cNumLast1+3,cNumLast2);
 				
 				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-rvi-ci-update?rviNum='+review.rviNum+'\'">';
 				html+='<td class="cell100 column1">'+review.rviNum+'</td>';
@@ -194,6 +195,7 @@ function rviSearchButton(page){
 	if(selectValue=='rviTitle'){
 		xhr.open('GET', '/review-search-bar/title?size=10&page='+(page-1)+'&rviTitle='+searchValue); //ReviewController
 	}else if(selectValue=='rviContent'){
+		console.log(1);
 		xhr.open('GET', '/review-search-bar/content?size=10&page='+(page-1)+'&rviContent='+searchValue); //ReviewController
 	}
 
@@ -203,31 +205,20 @@ function rviSearchButton(page){
 
 			let html='';
 			
-			let ContentPtag = review.rviContent;
-			let cNumLast=ContentPtag.indexOf('</p>');
-			
-			ContentPtag=ContentPtag.replace('<p>','');
-			ContentPtag=ContentPtag.substring(0,cNumLast-3);
-			
-			
-			
-			if(res.content.length==1){
+			for(let review of res.content){
+				let ContentPtag = review.rviContent;
+				let cNumLast2=ContentPtag.indexOf('</p>');
+				let cNumLast1=ContentPtag.indexOf('<p>');
+				ContentPtag=ContentPtag.substring(cNumLast1+3,cNumLast2);
+				
 				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-rvi-ci-update?rviNum='+review.rviNum+'\'">';
-				html+='<td class="cell100 column1">'+res.content[0].rviNum+'</td>';
-				html+='<td class="cell100 column2">'+res.content[0].rviTitle+'</td>';
+				html+='<td class="cell100 column1">'+review.rviNum+'</td>';
+				html+='<td class="cell100 column2">'+review.rviTitle+'</td>';
 				html+='<td class="cell100 column3">'+ContentPtag+'</td>';
-				html+='<td class="cell100 column4">'+res.content[0].uiEmail+'</td>';
+				html+='<td class="cell100 column4">'+review.userInfo.uiEmail+'</td>';
 				html+="</tr>";
-			}else if(res.content.length>1){
-				for(let review of res.content){
-					html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-rvi-ci-update?rviNum='+review.rviNum+'\'">';
-					html+='<td class="cell100 column1">'+review.rviNum+'</td>';
-					html+='<td class="cell100 column2">'+review.rviTitle+'</td>';
-					html+='<td class="cell100 column3">'+ContentPtag+'</td>';
-					html+='<td class="cell100 column4">'+review.uiEmail+'</td>';
-					html+="</tr>";
-				}
 			}
+			
 			
 			let disable = res.first ? 'disabled' : '';
 			

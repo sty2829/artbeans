@@ -25,7 +25,7 @@ public class GalleryController {
 	@Autowired
 	private GalleryService gService;
 	
-	//사용중(상혁)
+	//사용중(상혁) //사용중(가온)
 	@GetMapping("/gallerylist")
 	public @ResponseBody Page<GalleryInfo> getExhibitionInfoList(Pageable pageable){
 		return gService.getGalleryLists(pageable);

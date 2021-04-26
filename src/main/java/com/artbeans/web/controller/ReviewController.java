@@ -93,8 +93,8 @@ public class ReviewController {
 	
 	//admin-review 검색바
 	@GetMapping("/review-search-bar/content")
-	public Page<ReviewInfo> findAllByRviContentLike(String rviTitle,Pageable pageable){
-		return reviewService.findAllByRviContentLike(rviTitle, pageable);
+	public Page<ReviewInfo> findAllByRviContentLike(String rviContent,Pageable pageable){
+		return reviewService.findAllByRviContentLike(rviContent, pageable);
 	}
-	
+
 }

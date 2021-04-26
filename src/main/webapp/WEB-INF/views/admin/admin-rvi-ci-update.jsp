@@ -153,17 +153,15 @@ function getReviewInfo(){
 			let review = JSON.parse(xhr.responseText);
 			let contentPtag = review.rviContent;
 			let cList=contentPtag.split('<figure class="image">');
-			contentPtag=cList[1].replace('</figure>','');
-			/*
-			let contentList=contentPtag.split('</p>');
-			let rviPicture = contentList[1];
-			*/
+			let contentPtagImgFirst=contentPtag.indexOf('<figure class="image">');
+			let contentPtagImgSecond=contentPtag.indexOf('</figure>');
+			
+			contentPtag=contentPtag.substring(contentPtagImgFirst,contentPtagImgSecond);
+			contentPtag=contentPtag.replace('<figure class="image">','');
+			
 			let imgTag=contentPtag.replace('">','" style="width: 150px; object-fit: cover;">')
 			let html='';
-			/*
 			
-			
-			*/
 			html+='<tr class="row100 body" onclick="">';
 			html+='<td class="cell100 columnRe1">'+review.rviTitle+'</td>';
 			html+='<td class="cell100 columnRe2">'+imgTag+'</td>';
@@ -181,15 +179,24 @@ function getComment(){
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let res = JSON.parse(xhr.responseText);
+			console.log(res.content.length);
 			let html='';
-			for (var comment of res) {
-				html+='<tr class="row100 body" onclick="">';
-				html+='<td class="cell100 column1">'+comment.uiEmail+'</td>';
-				html+='<td class="cell100 column2">'+comment.ciContent+'</td>';
-				html+='<td class="cell100 column3"><div class="deleteComment" onclick="deleteComment('+comment.ciNum+')">삭제</div></td>';
-				html+="</tr>";
-
+			if(res.content.length>1){
+				for (var comment of res.content) {
+					html+='<tr class="row100 body" onclick="">';
+					html+='<td class="cell100 column1">'+comment.uiEmail+'</td>';
+					html+='<td class="cell100 column2">'+comment.ciContent+'</td>';
+					html+='<td class="cell100 column3"><div class="deleteComment" onclick="deleteComment('+comment.ciNum+')">삭제</div></td>';
+					html+="</tr>";
 				}
+			}else if(res.content.length==1){
+				html+='<tr class="row100 body" onclick="">';
+				html+='<td class="cell100 column1">'+res.content.uiEmail+'</td>';
+				html+='<td class="cell100 column2">'+res.content.ciContent+'</td>';
+				html+='<td class="cell100 column3"><div class="deleteComment" onclick="deleteComment('+res.content.ciNum+')">삭제</div></td>';
+				html+="</tr>";
+			}
+			
 			document.querySelector('#tBody').innerHTML = html;
 			}
 		}
