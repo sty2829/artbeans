@@ -33,8 +33,9 @@
 		<section id="contact" class="contact">
 			<div class="container">
 				<div style="border: 0; margin-left: 130px; width: 75%; height: 270px;" id="map"></div>
-			</div>
+			</div>			
 		</section>
+		
 	</main>
 
 	<script>
