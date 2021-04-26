@@ -88,8 +88,6 @@ function saveReview(){
 }
 
 function changeImg(obj){
-	console.log(obj.files);
-	console.log(obj.files[0]);
 	if(obj.files && obj.files[0]){
 		var reader = new FileReader();
 		reader.onload = function(e){

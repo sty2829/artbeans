@@ -14,7 +14,7 @@ import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.GalleryInfo;
 import com.artbeans.web.repository.GalleryRepository;
 import com.artbeans.web.service.GalleryService;
-import com.artbeans.web.util.FileConverter;
+import com.artbeans.web.util.FileUtil;
 import com.artbeans.web.util.NaverMapApi;
 
 import lombok.extern.slf4j.Slf4j;
@@ -49,7 +49,7 @@ public class GalleryServiceImpl implements GalleryService {
 
 	@Override
 	public int saveGalleryInfo(GalleryInfo galleryInfo) throws Exception {
-		FileConverter.fileInsert(galleryInfo.getFileInfo(), TYPE);
+		FileUtil.fileInsert(galleryInfo.getFileInfo(), TYPE);
 		Result result = naverMapApi.getResult(galleryInfo.getGiAddress());
 		String x = result.getAddresses().get(0).getX();
 		String y = result.getAddresses().get(0).getY();

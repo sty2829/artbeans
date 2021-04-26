@@ -18,7 +18,7 @@ import com.artbeans.web.entity.FileInfo;
 import com.artbeans.web.repository.ExhibitionInfoRepository;
 import com.artbeans.web.repository.FileInfoRepository;
 import com.artbeans.web.service.ExhibitionService;
-import com.artbeans.web.util.FileConverter;
+import com.artbeans.web.util.FileUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -223,7 +223,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 
 	@Override
 	public ExhibitionInfo saveExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception {
-		FileConverter.fileInsert(exhibitionInfo.getFileInfo(), TYPE);
+		FileUtil.fileInsert(exhibitionInfo.getFileInfo(), TYPE);
 		return exhiRepo.save(exhibitionInfo);
 	}
 
@@ -239,7 +239,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 			return exhiRepo.saveAndFlush(exhibitionInfo);
 		}
 		// log.info("fiNum=>{}",exhibitionInfo.getFileInfo().getFiNum());
-		FileConverter.fileInsert(exhibitionInfo.getFileInfo(), TYPE);
+		FileUtil.fileInsert(exhibitionInfo.getFileInfo(), TYPE);
 		if (fi.getFiNum() != null && fileRepo.findById(fi.getFiNum()).get() != null) {
 			fileRepo.saveAndFlush(fi);
 		}

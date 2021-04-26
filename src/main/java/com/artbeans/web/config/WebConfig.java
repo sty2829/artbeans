@@ -18,19 +18,19 @@ public class WebConfig implements WebMvcConfigurer {
 	@Autowired
 	private AuthInterceptor authInterceptor;
 	
-	private final String UPLOAD_PATH = "/resource/**";
+	private final String UPLOAD_PATH = "/upload/**";
 	
 	@Value("${webconfig.path.gallery}")
-	private String GALLERY_PATH;
+	private String gallery;
 	
 	@Value("${webconfig.path.exhibition}")
-	private String EXHIBITION_PATH;
+	private String exhibition;
 	
 	@Value("${webconfig.path.editor}")
-	private String EDITOR_PATH;
+	private String editor;
 	
 	@Value("${webconfig.path.review}")
-	private String REVIEW_PATH;
+	private String review;
 	
 	public  void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authInterceptor)
@@ -52,10 +52,10 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler(UPLOAD_PATH)
-		.addResourceLocations(GALLERY_PATH)
-		.addResourceLocations(EXHIBITION_PATH)
-		.addResourceLocations(EDITOR_PATH)
-		.addResourceLocations(REVIEW_PATH);
+		.addResourceLocations(gallery)
+		.addResourceLocations(exhibition)
+		.addResourceLocations(editor)
+		.addResourceLocations(review);
 	}
 
 	

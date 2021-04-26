@@ -21,7 +21,7 @@ import com.artbeans.web.repository.ReviewInfoRepository;
 import com.artbeans.web.repository.TicketInfoRepository;
 import com.artbeans.web.repository.UserInfoRepository;
 import com.artbeans.web.service.ReviewService;
-import com.artbeans.web.util.FileConverter;
+import com.artbeans.web.util.FileUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -63,7 +63,7 @@ public class ReviewServiceImpl implements ReviewService {
 		Optional<TicketInfo> opTI = tiRepo.findById(tiNum);
 		if(!opUI.isEmpty() && !opTI.isEmpty()) {
 			reviewInfo.setUserInfo(opUI.get());
-			FileConverter.fileInsert(reviewInfo.getFileInfo(), TYPE);
+			FileUtil.fileInsert(reviewInfo.getFileInfo(), TYPE);
 			count = rviRepo.save(reviewInfo).getRviNum();
 		}
 		return count;
@@ -76,7 +76,7 @@ public class ReviewServiceImpl implements ReviewService {
 		if(fileInfo.getFiNum() != null) {
 			Optional<FileInfo> opFI = fiRepo.findById(fileInfo.getFiNum());
 			if(!opFI.isEmpty() && fileInfo.getFiFile() != null) {
-				FileConverter.fileInsert(fileInfo, TYPE);
+				FileUtil.fileInsert(fileInfo, TYPE);
 				count = rviRepo.save(reviewInfo).getRviNum();
 			}else {
 				reviewInfo.setFileInfo(opFI.get());

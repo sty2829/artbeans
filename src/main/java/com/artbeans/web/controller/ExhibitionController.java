@@ -20,7 +20,7 @@ import com.artbeans.web.dto.Search;
 import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.service.ExhibitionService;
-import com.artbeans.web.util.FileConverter;
+import com.artbeans.web.util.FileUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -139,7 +139,7 @@ public class ExhibitionController {
 
 	@PostMapping("/exhibition-insert-editorimage")
 	public @ResponseBody Map<String, String> uploadImg(@RequestParam MultipartFile upload) {
-		return FileConverter.ckeditorUploadImg(upload);
+		return FileUtil.ckeditorUploadImg(upload);
 	}
 
 //	@DeleteMapping("/exhibition")
