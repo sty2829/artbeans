@@ -45,9 +45,9 @@ function get(){
 }
 
 function areaAsc(){
-	count = 0;
+	count = 100;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/gallerylist?size=9&sort=giAddress,asc&page='+ count); //galleryController
+	xhr.open('GET','/gallerylist?size=100&sort=giAddress,asc&page=0'); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
@@ -88,12 +88,10 @@ function areaAsc(){
 }
 
 
-//테스트중
 function area(obj){
-	count = 0;
-	//console.log(obj.value);
+	count = 100;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/gallery-addr-list/'+ obj.value + '?size=9&sort=giAddress,asc&page='+ count); //galleryController
+	xhr.open('GET','/gallery-addr-list/'+ obj.value + '?size=100&sort=giAddress,asc&page=0'); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
@@ -142,9 +140,9 @@ function area(obj){
 }
 
 function nameAsc(){
-	count = 0;
+	count = 100;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/gallerylist?size=9&sort=giName,asc&page='+ count); //galleryController
+	xhr.open('GET','/gallerylist?size=100&sort=giName,asc&page=0'); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			//console.log(xhr.responseText);
@@ -185,12 +183,11 @@ function nameAsc(){
 }
 
 function nameDesc(){
-	count = 0;
+	count = 100;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/gallerylist?size=9&sort=giName,desc&page='+ count); //galleryController
+	xhr.open('GET','/gallerylist?size=100&sort=giName,desc&page=0'); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			for(var galleryInfo of res.content){				

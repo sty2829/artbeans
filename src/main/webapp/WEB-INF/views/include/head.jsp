@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
 <style>
@@ -41,6 +42,7 @@
 .text {
 	font-weight: bold;
 }
+
 </style>
 <jsp:include page="/WEB-INF/views/include/css.jsp"></jsp:include>
 </head>
@@ -157,6 +159,8 @@ function logout(){
 				<div>
 					<div>
 						<div class="container d-flex align-items-center"">
+						
+						
 							<input autocomplete="off" type=text name="keyword"
 								placeholder="전시관,전시회 검색" class="headsearchInput"
 								id="headsearchInput" onkeyup="headSuggest(this);">
@@ -205,8 +209,8 @@ function logout(){
 
 					<li class="drop-down"><a href="#">전시회 등록 및 수정</a>
 						<ul>
-							<li><a href="/views/exhibition/insert">전시회 등록</a></li>
-							<li><a href="/views/exhibition/exhibition-update">전시회 수정</a></li>
+							<li><a href="/views/exhibition/aop/insert">전시회 등록</a></li>
+							<li><a href="/views/exhibition/aop/exhibition-update">전시회 수정</a></li>
 							<li><a href="/views/reservation/reservation-insert">전시회
 									예약 등록</a></li>
 						</ul></li>
