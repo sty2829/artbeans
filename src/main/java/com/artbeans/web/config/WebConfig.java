@@ -20,16 +20,16 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	private final String UPLOAD_PATH = "/resource/**";
 	
-	@Value("${webconfig.path.gallery}")
+	@Value("${webconfig.path.gallery :}")
 	private String GALLERY_PATH;
 	
-	@Value("${webconfig.path.exhibition}")
+	@Value("${webconfig.path.exhibition :")
 	private String EXHIBITION_PATH;
 	
-	@Value("${webconfig.path.editor}")
+	@Value("${webconfig.path.editor :}")
 	private String EDITOR_PATH;
 	
-	@Value("${webconfig.path.review}")
+	@Value("${webconfig.path.review :}")
 	private String REVIEW_PATH;
 	
 	public  void addInterceptors(InterceptorRegistry registry) {
