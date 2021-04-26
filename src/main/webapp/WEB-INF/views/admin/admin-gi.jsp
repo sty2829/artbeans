@@ -57,12 +57,11 @@
 
 									<tr class="row100 head">
 										<th class="cell100 column1">번호</th>
-										<th class="cell100 column2">전시회 이름</th>
-										<th class="cell100 column3">아티스트</th>
-										<th class="cell100 column4">시작일</th>
-										<th class="cell100 column5">종료일</th>
-										<th class="cell100 column6">전시회 상태값</th>
-										<th class="cell100 column7">수정날짜</th>
+										<th class="cell100 column2">갤러리 이름</th>
+										<th class="cell100 column3">전화번호</th>
+										<th class="cell100 column4">갤러리 휴무</th>
+										<th class="cell100 column5">홈페이지</th>
+										<th class="cell100 column6">상태값</th>
 									</tr>
 								</thead>
 							</table>
