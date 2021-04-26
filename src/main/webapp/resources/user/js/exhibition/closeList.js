@@ -47,9 +47,9 @@ function get() {
 	}
 
 	function newest() {
-		count = 0;
+        count = 100;
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/exhibitions?status=CONFIRM&date=CLOSE&size=9&sort=eiStartDate,asc&page=' + count); //ExhibitionController
+		xhr.open('GET', '/exhibitions?status=CONFIRM&date=CLOSE&size=100&sort=eiStartDate,asc&page=0'); //ExhibitionController
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var res = JSON.parse(xhr.responseText);
@@ -89,9 +89,9 @@ function get() {
 	}
 
 	function deadline() {
-		count = 0;
+        count = 100;
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/exhibitions?status=CONFIRM&date=CLOSE&size=9&sort=eiEndDate,asc&page=' + count); //ExhibitionController
+		xhr.open('GET', '/exhibitions?status=CONFIRM&date=CLOSE&size=100&sort=eiEndDate,asc&page=0'); //ExhibitionController
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var res = JSON.parse(xhr.responseText);
@@ -131,8 +131,9 @@ function get() {
 	}
 	
 	function areaAll() {
+	count = 100;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibitions?status=CONFIRM&date=CLOSE&size=9&sort=eiName,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibitions?status=CONFIRM&date=CLOSE&size=100&sort=eiName,asc&page=0'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200){
 				var res = JSON.parse(xhr.responseText);
@@ -173,9 +174,9 @@ function get() {
 	}
 	
 	function area(obj) {
-		count = 0;
+		count = 100;
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/exhibition-getaddressList/' + obj.value + '?status=CONFIRM&date=CLOSE&size=9&sort=eiNum,asc&page=' + count); //ExhibitionController
+		xhr.open('GET', '/exhibition-getaddressList/' + obj.value + '?status=CONFIRM&date=CLOSE&size=100&sort=eiNum,asc&page=0'); //ExhibitionController
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				var res = JSON.parse(xhr.responseText);

@@ -1,10 +1,8 @@
 /**
  * 
  */
-//window.onload = get;
+window.addEventListener("load", get);		
 
-window.addEventListener("load", get);					
-						
 function get() {
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', '/exhibitions?status=CONFIRM&date=OPENIG&size=9&sort=eiNum,asc&page=' + count); //ExhibitionController
@@ -50,9 +48,9 @@ function get() {
 }
 
 function newest() {
-	count = 0;
+	count = 100;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibitions?status=CONFIRM&date=OPENIG&size=9&sort=eiStartDate,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibitions?status=CONFIRM&date=OPENIG&size=100&sort=eiStartDate,asc&page=0'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
@@ -76,9 +74,6 @@ function newest() {
 					    html += '<ul>';
 						html += '<li class="d-flex align-items-center"><i class="icofont-wall-clock"></i><a>' + exhibition.eiStartDate + '~'+ exhibition.eiEndDate +'</a></li>';
 						html += '</ul>';
-					    html += '<ul>';
-						html += '<li class="d-flex align-items-center"><i class="icofont-heart-alt"></i><a>' + favoriteExhibition.feLike + '</a></li>';
-						html += '</ul>';
 						html += '</div>';
 						html += '<div class="entry-content">';
 						html += '<div style="HEIGHT: 10pt"></div>';
@@ -98,9 +93,9 @@ function newest() {
 
 
 function deadline() {
-	count = 0;
+	count = 100;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibitions?status=CONFIRM&date=OPENIG&size=9&sort=eiEndDate,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibitions?status=CONFIRM&date=OPENIG&size=100&sort=eiEndDate,asc&page=0'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
@@ -141,9 +136,10 @@ function deadline() {
 	xhr.send();
 }
 
-function areaAll() {
+function areaAll() {    
+    count = 100;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibitions?status=CONFIRM&date=OPENIG&size=9&sort=eiName,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibitions?status=CONFIRM&date=OPENIG&size=100&sort=eiName,asc&page=0'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200){
 				var res = JSON.parse(xhr.responseText);
@@ -177,18 +173,19 @@ function areaAll() {
 							html += '</article>';
 							html += '</div>';
 							idx++;
-				}
-			
+				}			
 			document.querySelector('#exhibitionList').innerHTML = html;
-			}
+			
 		}
-		xhr.send();
 	}
+    xhr.send();
+   
+}
 	
 function priceCheap(){
-	count = 0;
+	count = 100;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibitions?status=CONFIRM&date=OPENIG&price=1&size=9&sort=eiCharge,asc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibitions?status=CONFIRM&date=OPENIG&price=1&size=100&sort=eiCharge,asc&page=0'); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
@@ -230,9 +227,9 @@ function priceCheap(){
 }
 
 function priceExpensive(){
-	count = 0;
+	count = 100;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibitions?status=CONFIRM&date=OPENIG&price=1&size=9&sort=eiCharge,Desc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibitions?status=CONFIRM&date=OPENIG&price=1&size=100&sort=eiCharge,Desc&page=0'); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
@@ -274,9 +271,9 @@ function priceExpensive(){
 }
 
 function pricefree(){
-	count = 0;
+	count = 100;
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET','/exhibitions?status=CONFIRM&date=OPENIG&price=0&size=9&sort=eiNum,asc&page='+ count); //ExhibitionController
+	xhr.open('GET','/exhibitions?status=CONFIRM&date=OPENIG&price=0&size=100&sort=eiNum,asc&page=0'); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
@@ -318,9 +315,9 @@ function pricefree(){
 }
 
 function area(obj) {
-	count = 0;
+count =100;	
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/exhibition-getaddressList/' + obj.value + '?status=CONFIRM&date=OPENIG&size=9&sort=eiNum,asc&page=' + count); //ExhibitionController
+	xhr.open('GET', '/exhibition-getaddressList/' + obj.value + '?status=CONFIRM&date=OPENIG&size=100&sort=eiNum,asc&page=0'); //ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {			
 			var res = JSON.parse(xhr.responseText);

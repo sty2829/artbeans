@@ -1,6 +1,5 @@
 package com.artbeans.web.service.Impl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +13,12 @@ import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.CommentInfo;
 import com.artbeans.web.entity.FileInfo;
 import com.artbeans.web.entity.ReviewInfo;
+import com.artbeans.web.entity.TicketInfo;
 import com.artbeans.web.entity.UserInfo;
 import com.artbeans.web.repository.CommentInfoRepository;
 import com.artbeans.web.repository.FileInfoRepository;
 import com.artbeans.web.repository.ReviewInfoRepository;
+import com.artbeans.web.repository.TicketInfoRepository;
 import com.artbeans.web.repository.UserInfoRepository;
 import com.artbeans.web.service.ReviewService;
 import com.artbeans.web.util.FileConverter;
@@ -42,6 +43,9 @@ public class ReviewServiceImpl implements ReviewService {
 	@Autowired
 	private UserInfoRepository uiRepo;
 	
+	@Autowired
+	private TicketInfoRepository tiRepo;
+	
 	@Override
 	public Page<ReviewDTO> getReviewInfos(Pageable pageable) {
 		return rviRepo.findAllBy(pageable);
@@ -53,11 +57,12 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public int saveReview(UserSession userSession, ReviewInfo reviewInfo) throws Exception {
+	public int saveReview(UserSession userSession, ReviewInfo reviewInfo, Integer tiNum) throws Exception {
 		int count = 0;
-		Optional<UserInfo> userInfo = uiRepo.findById(userSession.getUiNum());
-		if(!userInfo.isEmpty()) {
-			reviewInfo.setUserInfo(userInfo.get());
+		Optional<UserInfo> opUI = uiRepo.findById(userSession.getUiNum());
+		Optional<TicketInfo> opTI = tiRepo.findById(tiNum);
+		if(!opUI.isEmpty() && !opTI.isEmpty()) {
+			reviewInfo.setUserInfo(opUI.get());
 			FileConverter.fileInsert(reviewInfo.getFileInfo(), TYPE);
 			count = rviRepo.save(reviewInfo).getRviNum();
 		}

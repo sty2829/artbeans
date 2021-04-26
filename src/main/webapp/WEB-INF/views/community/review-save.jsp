@@ -34,7 +34,7 @@
 				  </div>
 	         </div>
 	         <div class="col-lg-4">
-	         	<img id="fiPath" src="" style="height: 200px; width: 200px; margin-left: 100px">
+	         	<img id="fiPath" src="/resources/user/img/default-image.jpg" style="height: 200px; width: 200px; margin-left: 100px">
 	         </div>
         </div>
         <div class="row d-flex justify-content-center">
@@ -71,7 +71,7 @@ function saveReview(){
 	formData.append('rviContent', editor.getData());
 	
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', "/review");
+	xhr.open('POST', "/review/" + ${param.tiNum});
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);

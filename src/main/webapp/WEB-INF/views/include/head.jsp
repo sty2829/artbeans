@@ -209,8 +209,8 @@ function logout(){
 
 					<li class="drop-down"><a href="#">전시회 등록 및 수정</a>
 						<ul>
-							<li><a href="/views/exhibition/insert">전시회 등록</a></li>
-							<li><a href="/views/exhibition/exhibition-update">전시회 수정</a></li>
+							<li><a href="/views/exhibition/aop/insert">전시회 등록</a></li>
+							<li><a href="/views/exhibition/aop/exhibition-update">전시회 수정</a></li>
 							<li><a href="/views/reservation/reservation-insert">전시회
 									예약 등록</a></li>
 						</ul></li>

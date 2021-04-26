@@ -15,12 +15,19 @@ public class WebConfig implements WebMvcConfigurer {
 	
 	public  void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(authInterceptor)
-		.excludePathPatterns("/resources/**")
 		.excludePathPatterns("/views/user/login")
-		.excludePathPatterns("/")
-		.excludePathPatterns("/views/community")
-		.excludePathPatterns("/views/user/login") 
-		.addPathPatterns("/views/aasa/**");
+		.excludePathPatterns("/views/user/msg")
+		.excludePathPatterns("/views/user/register")
+		.excludePathPatterns("/views/user/forgetId")
+		.excludePathPatterns("/views/user/forgetPwd")
+		.excludePathPatterns("/views/user/findPwd")
+		.excludePathPatterns("/views/admin/**")
+		.excludePathPatterns("/views/community/**")
+		.excludePathPatterns("/views/exhibition/**")
+		.excludePathPatterns("/views/gallery/**")
+		.excludePathPatterns("/views/include/**")
+		.excludePathPatterns("/views/search/**")
+		.addPathPatterns("/views/**");
 	}
 	
 }
