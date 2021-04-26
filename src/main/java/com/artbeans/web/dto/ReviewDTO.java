@@ -2,7 +2,6 @@ package com.artbeans.web.dto;
 
 import java.util.Date;
 
-import com.artbeans.web.util.DateUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
