@@ -42,6 +42,8 @@ public class FavoriteExhibition {
 	@Column(name="fe_link")
 	private String feLink;
 	
+	
+	
 	@OneToOne
 	@JoinColumn(name = "ui_num")
 	private UserInfo userInfo;
