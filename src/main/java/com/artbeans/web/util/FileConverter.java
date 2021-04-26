@@ -22,15 +22,11 @@ public class FileConverter {
 	 * 파일위치 안건드리셔도 됩니다.
 	 * 에디터 경로수정 
 	 */
-	private final static String PROJECT_PATH = System.getProperty("user.dir");
+	private final static String ROOT = "/var/lib/jenkins/workspace/resources/assets/img/";
 	
-	
-	private final static String ROOT = File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "img" + File.separator;
-	
-	private final static String editorPath = File.separator + "src" + File.separator + "main" + File.separator + "webapp" + File.separator + "resources" + File.separator + "assets" + File.separator + "img" + File.separator + "editor" + File.separator;
+	private final static String editorPath = "/var/lib/jenkins/workspace/resources/assets/img/editor";
 	
 	public static void fileInsert(FileInfo fileInfo, String fiType) throws Exception {
-		String paths = File.separator;
 		String fiName = fileInfo.getFiFile().getOriginalFilename();
 		String fiSize = (fileInfo.getFiFile().getSize()) + "Byte";
  		if(fiName==null) {
@@ -45,21 +41,20 @@ public class FileConverter {
 		fileInfo.setFiPath(path);
 		fileInfo.setFiType(fiType);
 		log.info("fileInfo=>{}", fileInfo);
-		log.info("path => {}", PROJECT_PATH + ROOT + fiType + "\\\\" + path );
-		File file = new File(PROJECT_PATH + ROOT + fiType + "\\\\" + path);
+		File file = new File(ROOT + fiType + "/" + path);
 		fileInfo.getFiFile().transferTo(file);
 		
 	}
 	
 	public static Map<String,String> ckeditorUploadImg(MultipartFile upload){
 		String fileName = upload.getOriginalFilename();
-		File target = new File(PROJECT_PATH + editorPath + fileName);
+		File target = new File(editorPath + fileName);
 		log.info("fileName=>{}",fileName);
 		try {
 			upload.transferTo(target);
 			Map<String,String> rMap = new HashMap<>();
 			rMap.put("uploaded","true");
-			rMap.put("url","/resources/assets/img/editor/" + fileName);
+			rMap.put("url", editorPath + fileName);
 			log.info("rMap=>{}",rMap);
 			return rMap;
 		} catch (IllegalStateException e) {

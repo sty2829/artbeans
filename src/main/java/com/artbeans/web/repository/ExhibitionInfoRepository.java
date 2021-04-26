@@ -25,7 +25,6 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	public List<ExhibitionInfo> findAllByEiNameLikeOrderByEiNum(String eiName);
 
 	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
-	@Query("select exhInfo from ExhibitionInfo exhInfo")
 	public List<ExhibitionInfo> findAllByEiBanner(Integer eiBanner);
 
 	public List<ExhibitionInfo> findAllByEiNum(Integer eiNum);
