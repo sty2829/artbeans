@@ -15,25 +15,43 @@
 	margin-top: 200px;
 	height: 1000px
 }
+.listTitle{
+
+font-weight: bold;
+
+}
+.uiName{
+font-size: 30px;
+font-weight: bold;
+}
+.poster{
+width:80px;
+height:80px;
+
+}
+.favoriteList{
+
+}
 </style>
 
 </head>
 
 <body>
 	<div class="container myreservation">
-		<p>${userInfo.uiName}님이 찜한 전시회 목록</p>
+		<p class ="uiName">${userInfo.uiName}님의 찜목록</p>
 		<div>
 			<table class="table" id="myreservation">
 				<thead>
 				<tr>
+				<th>포스터</th>
 				<th>전시회명</th>
 				<th>전시관명</th>
 				<th>개장날짜</th>
 				<th>폐장날짜</th>
-				<th>링크</th>
+				<th>선택</th>
 				</tr>
 				</thead>
-				<tbody id="myreservation">
+				<tbody id="favoriteList">
 				<tbody>
 				</tbody>
 			</table>
@@ -41,30 +59,27 @@
 	</div>
 
 <script>
-var url = '/favorite-exhibition?uiNum=${userInfo.uiNum}';
+var url = '/favorite-exhibitions?uiNum=${userInfo.uiNum}';
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET',url);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
-			console.log(xhr.responseText);
-			for(var i=0 ;i<res.length;i++){
-			var userInfo = res[i];
-				var html = '';
-				html += '<tr>';
-				html += '<td>' + favoriteExhibition.feExhibitionName +'</td>'; 
-				html += '<td>' + favoriteExhibition.feGallery +'</td>'; 
-				html += '<td>' + favoriteExhibition.feStartDate +'</td>'; 
-				html += '<td>' + favoriteExhibition.feEndDate +'</td>'; 
-				html += '<td>' + favoriteExhibition.feLink +'</td>'; 
-				html += '</tr>';				
-				html += '<button type="button"	class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=">'
-					+ '예약 수정' + '</button>';
-				html += '<button type="button"	class="btn btn-outline-danger btn-md btn-block"	onclick="location.href=">'
-						+ '예약 취소' + '</button>';
+			console.log(res);
+			for(var favoriteExhibition of res){
+				var table = '';
+				table += '<tr class="listTitle"">';
+				table += '<td><img class="poster" src="/resources/assets/img/exhibition/' + favoriteExhibition.exhibitionInfo.fileInfo.fiPath + '">';
+				table += '<td>' + favoriteExhibition.exhibitionInfo.eiName +'</td>'; 
+				table += '<td>' + favoriteExhibition.exhibitionInfo.galleryInfo.giName +'</td>';
+				table += '<td>' + favoriteExhibition.exhibitionInfo.eiStartDate +'</td>';
+				table += '<td>' + favoriteExhibition.exhibitionInfo.eiEndDate +'</td>';
+				table += '<td><input type="checkbox"><td>';
+				table += '</tr>';				
+				
 				}
-					document.querySelector('#myreservation').innerHTML = html;
+					document.querySelector('#favoriteList').innerHTML = table;
 			}
 		}
 	xhr.send();

@@ -2,10 +2,11 @@ package com.artbeans.web.service;
 
 import java.util.List;
 
-import com.artbeans.web.entity.FavoriteExhibition;
+import com.artbeans.web.dto.UserSession;
+import com.artbeans.web.entity.FavoriteInfo;
 
 public interface FavoriteService {
 
-	List<FavoriteExhibition> getFavoriteExhibition(FavoriteExhibition favorite);
-	FavoriteExhibition getFavorite(Integer uiNum);
+	
+	public List<FavoriteInfo> getFavoriteExhibition(UserSession userSession);
 }
