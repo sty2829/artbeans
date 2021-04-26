@@ -18,7 +18,7 @@
 <div class="sidenav">
   <a style="padding-left : 17px" href="/"><i class="gg-home-alt"></i></i></a>
   <a style="padding-left : 15px" href="/views/exhibition/openingList"><i class="gg-list"></i></a>
-  <a style="padding-left : 18px" href="/views/exhibition/insert"><i class="gg-file-add"></i></a>
+  <a style="padding-left : 18px" href="/views/exhibition/aop/insert"><i class="gg-file-add"></i></a>
   <a style="padding-left : 21px" href="/views/search/searchResults"><i class="gg-search"></i></a>
   <a style="padding-left : 15px" href="/views/community/review-list"><i class="gg-instagram"></i></a>  
 </div>

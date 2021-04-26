@@ -40,7 +40,7 @@
 						<ul>
 							<li><i class="bx bx-chevron-right"></i> <a href="/views/exhibition/openingList">진행중인 전시회</a></li>
 							<li><i class="bx bx-chevron-right"></i> <a href="/views/exhibition/calendar-list">월별 개봉 전시회</a></li>
-							<li><i class="bx bx-chevron-right"></i> <a href="/views/exhibition/insert">전시회 등록하기</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="/views/exhibition/aop/insert">전시회 등록하기</a></li>
 							<li><i class="bx bx-chevron-right"></i> <a href="/views/admin/questions">자주하는 질문</a></li>
 						</ul>
 					</div>
