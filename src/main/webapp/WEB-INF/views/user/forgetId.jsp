@@ -24,6 +24,11 @@
 	text-align: center;
 
 }
+
+.input-control {
+	width : 30%;
+	height : 30px;
+}
 </style>
 </head>
 <body>
@@ -37,10 +42,10 @@
 		<div class="container">
 
 			<div class="card o-hidden border-0"
-				style="padding: 8px; height: 300px;">
-
+				style="padding: 8px; height: 350px;">
 				<div class="card-body">
-					<h4 class="card-title" >아이디 찾기</h4>
+					<h3 class="card-title" >아이디 찾기</h3>
+			
 						
 					<div class="card-content" style="padding: 8px">
 						 <input type="text" id="uiName" class="input-control"
@@ -50,23 +55,29 @@
 
 					<div class="card-content" style="padding: 8px">
 						<input type="text" id="uiPhoneNumber" class="input-control"
-							placeholder="휴대폰 번호">
+							placeholder="휴대폰 번호(-를 반드시 입력해주세요.)">
 					</div>
-
+					<br>
+					
 					<div class="card-content" style="padding: 8px">
-						<button type="button" style="margin: 8px" class="btn btn-outline-danger" name="button" onclick="goCheck()">아이디찾기</button>
+						<button type="button" style="margin: 8px" class="btn btn-danger" name="button" onclick="goCheck()">아이디찾기</button>
 					</div>
 				</div>
 
 			</div>
 
 		</div>
+
+	</main>
+	
+	<main id="main">
+		<!-- ======= Breadcrumbs ======= -->
 		<section id="breadcrumbs" class="breadcrumbs">
 			<div class="container"></div>
 		</section>
-
-	</main>
+		</main>
 	<script>
+	
 function goCheck(){
 	
 				var uiName = document.querySelector('#uiName');
@@ -77,8 +88,10 @@ function goCheck(){
 				}
 
 				var uiPhoneNumber = document.querySelector('#uiPhoneNumber');
-				if (uiPhoneNumber.value.trim().length < 1) {
-					alert('휴대폰번호를 입력해주세요.');
+				if (uiPhoneNumber.value.indexOf('-') == -1
+						|| uiPhoneNumber.value.trim().length < 1
+						|| uiPhoneNumber.value.trim().length > 13) {
+					alert('-를 포함한 13자리 휴대폰 번호를 입력해주세요.');
 					uiPhoneNumber.focus();
 					return;
 				}
@@ -99,8 +112,9 @@ function goCheck(){
 					}
 			   xhr.send();
 			}
-</script>
 
+</script>
+			
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

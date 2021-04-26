@@ -161,7 +161,7 @@ iframe {
   width: 1170px;
 }
 .table-name{
-	height: 200px;
+	height: 500px;
 	line-height: 100px;
    display: block;
    text-align: center;
@@ -226,11 +226,15 @@ th, td {
   cursor: pointer;
 }
 
-.row{
+.row2{
 	display:table;
-	width:700px;
+	width:1000px;
 	
 }
+.col-lg-2{
+	width:100px;
+}
+
 .col-lg-6{
 	display:table-cell;
 	text-align:center;
@@ -241,7 +245,6 @@ th, td {
 	display: inline-block;
 	
 }
-
 /*==================================================================
 [ Fix header ]*/
 .table100 {

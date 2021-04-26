@@ -18,7 +18,7 @@
 
 .left1 {
 	width: 45%;
-	height: 500px;
+	height: 600px;
 	float: left;
 	box-sizing: border-box;
 	overflow: auto;
@@ -26,7 +26,7 @@
 
 .right1 {
 	width: 45%;
-	height: 500px;
+	height: 600px;
 	float: right;
 	box-sizing: border-box;
 	overflow: auto;

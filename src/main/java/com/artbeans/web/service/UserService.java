@@ -20,5 +20,6 @@ public interface UserService {
 	int mailCheck(UserInfo userInfo);
 	// 이메일 중복조회
 	int emailCheck(String uiEmail);
-	
+	UserInfo pwdCheck(String uiEmail);
+	UserInfo saveCode(UserInfo userInfo);
 }

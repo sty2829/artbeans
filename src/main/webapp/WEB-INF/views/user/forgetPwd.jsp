@@ -43,11 +43,6 @@
                     <hr>
 
 					</div>
-
-					<div class="card-content" style="padding: 8px">
-						<input type="text" class="input-control" id="uiName"
-							placeholder="이름">
-					</div>
 					<div class="card-content" style="padding: 8px">
 						<input type="email" class="input-control" id="uiEmail"
 							placeholder="이메일">
@@ -55,7 +50,7 @@
 
 					<div class="card-content" style="padding: 8px">
 						<button type="button" style="margin: 8px" 
-						class="btn btn-outline-danger" onclick="goUpdate()"  >확인</button> <!-- >  -->
+						class="btn btn-danger" onclick="goUpdate()" >확인</button> 
 							
 						<hr>
 					</div>
@@ -69,41 +64,35 @@
 	<script>
 		function goUpdate() {
 
-			var uiName = document.querySelector('#uiName');
-			if (!uiName.value) {
-				alert('이름을 입력해주세요.');
-				uiName.focus();
-				return;
-			}
-
 			var uiEmail = document.querySelector('#uiEmail');
-			if (!uiEmail.value) {
-				alert('이메일을 입력해주세요.');
+			console.log(uiEmail.value.indexOf('@'));
+			if (uiEmail.value.indexOf('@')==-1 || uiEmail.value.indexOf('@')==0 || uiEmail.value.trim().length < 1 ) {
+				alert('이메일 주소를 정확히 입력해주세요.');
 				uiEmail.focus();
 				return;
 			}
-
+			console.log(uiEmail.value);
+			var url = "/checkPwd?uiEmail=" +uiEmail.value ;
 			var xhr = new XMLHttpRequest();
-			xhr.open('POST', '/checkPwd');
+			xhr.open('GET', url);
 			xhr.onreadystatechange = function() {
-				if (xhr.status == 200 & xhr.readyState == 4) {
+				if (xhr.status ==200 && xhr.readyState ==4) {
 					var res = xhr.responseText;
 					console.log(res);
-					if(res == 1) {
-						alert('해당 이메일로 인증번호를 전송했습니다.');
+					if(res== uiEmail.value){
+ 						alert('해당 이메일로 인증번호를 전송했습니다.');
 						location.href="/views/user/findPwd";
 					}else{
 						alert('이름과 이메일을 다시 입력해주세요.');
 					}
 				}
 			}
-			var param = {
-				uiName : document.querySelector('#uiName').value,
-				uiEmail : document.querySelector('#uiEmail').value
-			}
-			xhr.setRequestHeader('content-type',
-					'application/json;charset=UTF-8');
-			xhr.send(JSON.stringify(param));
+// 			var param = {
+// 				uiEmail : document.querySelector('#uiEmail').value
+// 			}
+// 			xhr.setRequestHeader('content-type',
+// 					'application/json;charset=UTF-8');
+			xhr.send();
 		}
 	</script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

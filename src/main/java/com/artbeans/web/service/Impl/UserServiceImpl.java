@@ -3,6 +3,9 @@ package com.artbeans.web.service.Impl;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -29,9 +32,8 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserInfoRepository uRepo;
-	
-	@Autowired
-	private TicketInfoRepository rtiRepo;
+
+	private UserInfo userInfo;
 	
 	@Override
 	public List<UserInfo> getList(UserInfo userInfo) {
@@ -69,44 +71,44 @@ public class UserServiceImpl implements UserService {
 		UserInfo opUi = uRepo.findByUiPhoneNumber(uiPhoneNumber);
 		return opUi;
 	}
-	//비밀번호 이메일 인증..
-	@Override
-	public int mailCheck(UserInfo userInfo) {
-		UserInfo opUi = uRepo.findByUiEmail(userInfo.getUiEmail());
-		if(opUi != null) {
-			creatMail(opUi);
-			return 1;
-		}
-		return 0;
-	}
+
 	
-//	@Override
-//	public String pwdCheck(UserInfo userInfo) {
-//		UserInfo opUi = uRepo.findByUiEmail(userInfo.getUiEmail());
-//		if(opUi !=null) {
-//			SimpleMailMessage smm;
-//			smm.setText(CodeGenerator.getRandomCode());
-//			return smm;
-//		}
-//		return null;
-//	}
-	//이메일 중복 조회..
+	// 비밀번호 인증할 이메일 확인과정
+	public UserInfo pwdCheck(String uiEmail) {
+		UserInfo opUi = uRepo.findByUiEmail(uiEmail);
+		if(opUi!=null) {
+		log.info("opUi=>{}",opUi);
+		}
+		return opUi;
+	}
+
+	//이메일 중복 조회..(회원가입)
 	@Override
 	public int emailCheck(String uiEmail) {
 		UserInfo opUi = uRepo.findByUiEmail(uiEmail);
-		if(opUi == null) {
+		if(opUi==null) {
 			return 0;
 		}
 		return 1;
 	}
-	
 
-	
-	public void creatMail(UserInfo userInfo) {
-		SimpleMailMessage smm = new SimpleMailMessage();
-		smm.setTo(userInfo.getUiEmail());
-		smm.setFrom(FROM_ADDRESS);
-		smm.setText(CodeGenerator.getRandomCode());
+//	@Override
+//	public int pwdCheck(UserInfo userInfo) {
+//		UserInfo opUi = uRepo.findByUiEmail(userInfo.getUiEmail());
+//		if(opUi!=null) {
+//			return 1;
+//		}
+//		return 0;
+//	}
+//
+	public UserInfo saveCode(UserInfo userInfo) {
+		return uRepo.save(userInfo);
+	}
+
+	@Override
+	public int mailCheck(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

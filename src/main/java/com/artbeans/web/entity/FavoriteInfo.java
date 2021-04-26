@@ -18,8 +18,8 @@ public class FavoriteInfo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="fe_num")
-	private Integer feNum;
+	@Column(name="fvi_num")
+	private Integer fviNum;
 	
 	@ManyToOne
 	@JoinColumn(name = "ei_num")
