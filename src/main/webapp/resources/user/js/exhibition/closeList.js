@@ -15,13 +15,13 @@ function get() {
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
 							html += '<div class="entry-img">';
-							html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+							html += '<img style="width:400px; height:400px" src=\'/upload/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 							html += '</div>';
 							html += '<div class="row"><div class="col-sm-10">'
 					        html += '<h2 class="entry-title">';
 					        html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
 					        html += '</h2></div>';					
-					        html += '<div class="col-sm-2"><a href=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';
+					        html += '<div class="col-sm-2"><a href=\'/upload/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';
 							html += '<div class="entry-meta">';
 							html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
@@ -58,13 +58,13 @@ function get() {
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
 							html += '<div class="entry-img">';
-							html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+							html += '<img style="width:400px; height:400px" src=\'/upload/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 							html += '</div>';
 							html += '<div class="row"><div class="col-sm-10">'
 					        html += '<h2 class="entry-title">';
 					        html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
 					        html += '</h2></div>';					
-					        html += '<div class="col-sm-2"><a href=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';							
+					        html += '<div class="col-sm-2"><a href=\'/upload/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';							
 							html += '<div class="entry-meta">';
 							html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
@@ -100,13 +100,13 @@ function get() {
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
 							html += '<div class="entry-img">';
-							html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+							html += '<img style="width:400px; height:400px" src=\'/upload/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 							html += '</div>';
 							html += '<div class="row"><div class="col-sm-10">'
 					        html += '<h2 class="entry-title">';
 					        html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
 					        html += '</h2></div>';					
-					        html += '<div class="col-sm-2"><a href=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
+					        html += '<div class="col-sm-2"><a href=\'/upload/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
 							html += '<div class="entry-meta">';
 							html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
@@ -142,13 +142,13 @@ function get() {
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
 							html += '<div class="entry-img">';
-							html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+							html += '<img style="width:400px; height:400px" src=\'/upload/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 							html += '</div>';
 							html += '<div class="row"><div class="col-sm-10">'
 					        html += '<h2 class="entry-title">';
 					        html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
 					        html += '</h2></div>';					
-					        html += '<div class="col-sm-2"><a href=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
+					        html += '<div class="col-sm-2"><a href=\'/upload/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
 							html += '<div class="entry-meta">';
 							html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';
@@ -185,13 +185,13 @@ function get() {
 							html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 							html += '<article class="entry">';
 							html += '<div class="entry-img">';
-							html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
+							html += '<img style="width:400px; height:400px" src=\'/upload/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
 							html += '</div>';
 							html += '<div class="row"><div class="col-sm-10">'
 					        html += '<h2 class="entry-title">';
 					        html += '<a onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">' + exhibition.eiName + '</a>';
 					        html += '</h2></div>';					
-					        html += '<div class="col-sm-2"><a href=\'/resources/assets/img/exhibition/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
+					        html += '<div class="col-sm-2"><a href=\'/upload/' +exhibition.fileInfo.fiPath+ '\' download><i class="gg-attachment"></i></a></div></div>';	
 							html += '<div class="entry-meta">';
 							html += '<ul>';
 							html += '<li class="d-flex align-items-center"><i class="icofont-user"></i> <a>' + exhibition.eiArtist + '</a></li>';

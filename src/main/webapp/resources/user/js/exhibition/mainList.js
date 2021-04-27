@@ -12,14 +12,14 @@ function getImageList() {
 			for (var exhibition of res.content) {
 					html += '<div class="col-lg-4 col-md-6 portfolio-item filter-exhibition">';
 					html += '<div alt="" class="portfolio-wrap" onclick="location.href=\'/views/exhibition/views?eiNum=' + exhibition.eiNum + '\'">';
-					html += '<img src=\'/resources/assets/img/exhibition/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" >';
+					html += '<img src=\'/upload/' + exhibition.fileInfo.fiPath + '\'" class="img-fluid" >';
 					html += '<div class="portfolio-info">';
 					html += '<h4>' + exhibition.eiName + '</h4>';
 					html += '<p>' + exhibition.eiArtist + '</p>';
 					html += '</div></div></div>';
 					html += '<div class="col-lg-4 col-md-6 portfolio-item filter-gallery">';
 					html += '<div class="portfolio-wrap" onclick="location.href=\'/views/gallery/views?giNum=' + exhibition.galleryInfo.giNum + '\'">';
-					html += '<img src=\'/resources/assets/img/gallery/' + exhibition.galleryInfo.fileInfo.fiPath + '\'" class="img-fluid" >';
+					html += '<img src=\'/upload/' + exhibition.galleryInfo.fileInfo.fiPath + '\'" class="img-fluid" >';
 					html += '<div class="portfolio-info">';
 					html += '<h4>' + exhibition.galleryInfo.giName + '</h4>';
 					html += '<p>' + exhibition.galleryInfo.giAddress + '</p>';
