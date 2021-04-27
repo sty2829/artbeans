@@ -5,12 +5,17 @@
 <html>
 <head>
 <style>
+
+.logo{
+margin: auto;
+position: relative;
+}
 .headsearchInput {
+	display: inline-block;
 	height: 2em;
 	width: 200px;
-	padding: 0 10px;
-	border-color: black;
-	border-radius: 6px;
+	padding: 1px;
+	text-align: left;
 }
 
 .headsearchInput::placeholder {
@@ -18,25 +23,21 @@
 }
 
 #suggestListDiv {
-	width: 200px;
-	top: 73%;
+	width:200px;
+	top: 72%;
 	position: absolute;
 	background: white;
-	padding: 0 2px;
-	border-radius: 6px;
 }
 
 .item {
 	height: 2em;
 	width: 200px;
 	outline: none;
-	border-radius: 6px;
+
 }
 
 .item:hover {
-	color: #red;
 	background: #dcdcdc;
-	border-radius: 6px;
 }
 
 .text {
