@@ -135,13 +135,17 @@ public class UserInfoController {
 
 			mailSender.send(smm);
 			log.info("smm=>{}", smm);
-			log.info("code=>{}", code);
+			
+			userInfo.setCode(code);
+			log.info("userInfo=>{}",userInfo);
+			 UserInfo user = userService.updateUser(userInfo);
+			 return user.getCode();
+			 
 			}catch(Exception e) {
 				e.printStackTrace();
 			}finally {
 			}
-
-			return code;
+			return null;
 			}
 	
 }
