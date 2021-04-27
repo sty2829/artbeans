@@ -4,39 +4,38 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-
 <title>ArtBeans - Login</title>
-<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
 <style>
 .card-body {
 	text-align: center;
+}
+.card-content {
+	text-align: center;
+	padding: 3px;
+	width: 100%;
+	height: 70px;
+}
+
+.input-control {
+	width: 60%;
+	height: 40px;
+}
+
+.small:hover {
+	font-weight: bold;
 }
 </style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-	<main id="main">
-		======= Breadcrumbs =======
-		<section id="breadcrumbs" class="breadcrumbs">
-			<div class="container"></div>
-		</section>
 
-		<div class="container">
+		<div class="container" style="margin-top:150px; width:700px; letter-spacing:-2px;">
 
-			<div class="card o-hidden border-0"
-				style="padding: 8px; height: 300px;">
+			<div class="card o-hidden border-0">
 				<div class="card-body">
 
 					<div class="card-body">
-						<h4 class="card-title">비밀번호 찾기</h4>
+						<h4 class="card-title" style="text-align:center; font-weight:bold;">비밀번호 찾기</h4>
 						    <div style="color: red">
                         <p>입력된 정보로 임시 비밀번호가 전송됩니다.</p>
                     </div>
@@ -57,10 +56,7 @@
 				</div>
 			</div>
 		</div>
-		<section id="breadcrumbs" class="breadcrumbs">
-			<div class="container"></div>
-		</section>
-	</main>
+<br>
 	<script>
 		function goUpdate() {
 
@@ -72,13 +68,12 @@
 				return;
 			}
 			console.log(uiEmail.value);
-			var url = "/checkPwd?uiEmail=" +uiEmail.value ;
+			//var url = "/checkPwd?uiEmail=" +uiEmail.value ;
 			var xhr = new XMLHttpRequest();
-			xhr.open('GET', url);
+			xhr.open('POST', "/checkPwd");
 			xhr.onreadystatechange = function() {
 				if (xhr.status ==200 && xhr.readyState ==4) {
-					var res = xhr.responseText;
-			
+					var res = JSON.parse(xhr.responseText);
 					if(res== uiEmail.value){
  						alert('해당 이메일로 인증번호를 전송했습니다.');
 						location.href="/views/user/findPwd";
@@ -87,12 +82,12 @@
 					}
 				}
 			}
-// 			var param = {
-// 				uiEmail : document.querySelector('#uiEmail').value
-// 			}
-// 			xhr.setRequestHeader('content-type',
-// 					'application/json;charset=UTF-8');
-			xhr.send();
+			var param = {
+				uiEmail : document.querySelector('#uiEmail').value
+			}
+			xhr.setRequestHeader('content-type',
+					'application/json;charset=UTF-8');
+			xhr.send(JSON.stringify(param));
 		}
 	</script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

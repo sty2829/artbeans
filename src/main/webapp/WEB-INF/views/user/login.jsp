@@ -6,57 +6,65 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-.card-body { 
+.card-body {
+	width: 80%;
+}
+
+.card-content {
 	text-align: center;
+	padding: 3px;
+	width: 100%;
+	height: 70px;
+}
+
+.input-control {
+	width: 60%;
+	height: 40px;
+}
+
+.small:hover {
+	font-weight: bold;
 }
 </style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-	<main id="main">
-		<!-- ======= Breadcrumbs ======= -->
-		<section id="breadcrumbs" class="breadcrumbs">
-			<div class="container"></div>
-		</section>
-		
-		<div class="container">
-		
-		<div class="card o-hidden border-0" style="padding: 8px; height: 350px;">
-			<div class="card-body">
-				<h3 class="card-title" style="text-align:center">로그인</h3>
 
-				<div class="card-content" style="padding: 8px">
+		<div class="container" style="margin-top:150px; width:700px; letter-spacing:-2px;">
+		
+		<div class="card o-hidden border-0" >
+			<div class="card-body">
+				<h3 class="card-title" style="text-align:center; font-weight:bold;">로그인</h3>
+				<hr>
+				<br>
+				<div class="card-content" >
 					<input type="text" class="input-control"
 						id="uiEmail" placeholder="이메일">
 				</div>
 
-				<div class="card-content" style="padding: 8px">
+				<div class="card-content" >
 					<input type="password" class="input-control"
 						id="uiPwd" placeholder="비밀번호">
 				</div>
 				
-				<div class="card-content" style="padding: 8px">
-					<button type="button" class="btn btn-danger" onclick="goLogin()">로그인</button>
+				<div class="card-content" >
+					<button type="button" class="btn btn-danger" onclick="goLogin()">LOGIN</button>
 				</div>
 
 				<div class="card-content">
-					<a class="small" href="/views/user/forgetId">아이디 찾기</a> / <a
-						class="small" href="/views/user/forgetPwd">비밀번호 찾기</a>
+					<a class="small" href="/views/user/register">회원가입</a> / 
+					<a class="small" href="/views/user/forgetId">아이디 찾기</a> / 
+					<a class="small" href="/views/user/forgetPwd">비밀번호 찾기</a>
 				</div>
 				<div class="card-content">
-					<a class="small" href="/views/user/register">회원가입</a>
 				</div>
 			</div>
 		</div>
 		</div>
-	</main>
+		<br>
+	
+	
 
-	<main id="main">
-		<!-- ======= Breadcrumbs ======= -->
-		<section id="breadcrumbs" class="breadcrumbs">
-			<div class="container"></div>
-		</section>
-	</main>
 	<script>
 		function goLogin() {
 

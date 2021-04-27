@@ -377,10 +377,12 @@
 						console.log(xhr.responseText);
 						if (xhr.responseText) {
 							alert('반갑습니다!');
+							location.href="/views/user/login";
+						}else{
+							alert('회원가입에 실패했습니다. 다시 시도해주세요.');
 						}
 					}
 				}
-
 				xhr.setRequestHeader('content-type',
 						'application/json;charset=UTF-8');
 				xhr.send(JSON.stringify(param));

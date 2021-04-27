@@ -139,6 +139,7 @@ function logout(){
 	xhr.onreadystatechange = function(){
 		if(xhr.status==200 && xhr.readyState==4){
 			if(xhr.responseText=='true'){
+				alert('로그아웃되었습니다.');
 				location.href = '/';
 			}
 		}

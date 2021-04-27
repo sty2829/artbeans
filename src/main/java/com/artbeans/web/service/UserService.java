@@ -21,5 +21,4 @@ public interface UserService {
 	// 이메일 중복조회
 	int emailCheck(String uiEmail);
 	UserInfo pwdCheck(String uiEmail);
-	UserInfo saveCode(String code);
 }
