@@ -9,7 +9,7 @@ window.onload = function (){
 			var res = JSON.parse(xhr.responseText);	
 			var html = '<div class="col-sm-7">';
 			html += '<div style="text-align:center" class="entry-img ">';
-			html += '<img style="width:550px; height:500px"  src=\'/resources/assets/img/gallery/' + res.fileInfo['fiPath'] + '\'" class="img-fluid">';
+			html += '<img style="width:550px; height:500px"  src=\'/upload/' + res.fileInfo['fiPath'] + '\'" class="img-fluid">';
 			html += '</div></div>';
 			html += '<div class="col-sm-5 portfolio-info">';
 			html +='<div class="row faq-item d-flex align-items-stretch">';

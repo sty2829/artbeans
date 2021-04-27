@@ -12,7 +12,7 @@ window.onload = function (){
 			var res = JSON.parse(xhr.responseText);
 			var html = '<div class="col-lg-7">';
 			html += '<div style="text-align:center" class="entry-img ">';
-			html += '<img style="width:550px; height:500px" src=\'/resources/assets/img/exhibition/' + res.fileInfo['fiPath'] + '\'" class="img-fluid">';
+			html += '<img style="width:550px; height:500px" src=\'/upload/' + res.fileInfo['fiPath'] + '\'" class="img-fluid">';
 			html += '</div></div>';
 			html += '<div class="col-lg-5 portfolio-info">';
 			html += '<h2 class="portfolio-title">' + res.eiName + '</h2>';
