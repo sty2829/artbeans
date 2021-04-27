@@ -70,7 +70,7 @@
 		}
 		console.log(checkBox.value);
 		
-		var url = "checkPwd?uiEmail=" + uiEmail.value;
+		var url = "checkPwd?code=" + code.value;
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET',url)
 		xhr.onreadystatechange = function(){

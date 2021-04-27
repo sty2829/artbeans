@@ -121,14 +121,13 @@ public class UserInfoController {
 	@GetMapping("/checkPwd")
 	public String authEmail(String uiEmail,String code) throws Exception {
 
-		if (userService.pwdCheck(uiEmail) == null) {
 			code = CodeGenerator.getRandomCode();
-			log.info("uiEmail=>{}", userService.pwdCheck(uiEmail));
-			userInfo = userService.saveUser(userInfo);
+			log.info("code=>{}",code);
+			
 			String title = "아트빈 비밀번호 인증메일입니다.";
 			String content = "인증번호는 " + code + "입니다." + "<br><br>" + "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
 			SimpleMailMessage smm = new SimpleMailMessage();
-
+			try {
 			smm.setTo(uiEmail);
 			smm.setFrom(FROM_ADDRESS);
 			smm.setSubject(title);
@@ -137,8 +136,12 @@ public class UserInfoController {
 			mailSender.send(smm);
 			log.info("smm=>{}", smm);
 			log.info("code=>{}", code);
-		}
-		return code;
-	}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+			}
 
+			return code;
+			}
+	
 }

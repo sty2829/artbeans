@@ -76,8 +76,10 @@ public class UserServiceImpl implements UserService {
 	// 비밀번호 인증할 이메일 확인과정
 	public UserInfo pwdCheck(String uiEmail) {
 		UserInfo opUi = uRepo.findByUiEmail(uiEmail);
-		if(opUi!=null) {
 		log.info("opUi=>{}",opUi);
+		if(opUi.getCode()==null) {
+			String code = CodeGenerator.getRandomCode();
+			
 		}
 		return opUi;
 	}
@@ -101,7 +103,7 @@ public class UserServiceImpl implements UserService {
 //		return 0;
 //	}
 //
-	public UserInfo saveCode(UserInfo userInfo) {
+	public UserInfo saveCode(String code) {
 		return uRepo.save(userInfo);
 	}
 

@@ -65,4 +65,6 @@ public class UserInfo {
 	@Column(name="ui_phone_number")
 	private String uiPhoneNumber;
 
+	@Column(name="code")
+	private String code;
 }
