@@ -27,9 +27,15 @@ public class FavoriteImpl implements FavoriteService {
 	}
 
 	@Override
-	public Integer deleteFavorite(Integer fviNum) {
-		// TODO Auto-generated method stub
+	public Integer deleteFavorite(List<Integer> fviNumList) {
+		if(fviNumList!= null) {
+			fRepo.deleteAllByIdInQuery(fviNumList);
+			return 1;
+		}
+		
 		return null;
 	}
+
+
 
 }
