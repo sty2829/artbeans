@@ -128,17 +128,16 @@ function getBeforeConfirm(page){
 			console.log(res);
 			let html='';
 			
-			for (let exhibition of res.content) {
+			for (let gallery of res.content) {
 				
 				
-				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-ei-update?eiNum='+exhibition.eiNum+'\'">';
-				html+='<td class="cell100 column1">'+exhibition.eiNum+'</td>';
-				html+='<td class="cell100 column2">'+exhibition.eiName+'</td>';
-				html+='<td class="cell100 column3">'+exhibition.eiArtist+'</td>';
-				html+='<td class="cell100 column4">'+exhibition.eiStartDate+'</td>';
-				html+='<td class="cell100 column5">'+exhibition.eiEndDate+'</td>';
-				html+='<td class="cell100 column6">'+exhibition.eiStatus+'</td>';
-				html+='<td class="cell100 column7">'+exhibition.moddat+'</td>';
+				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-ei-update?eiNum='+gallery.giNum+'\'">';
+				html+='<td class="cell100 column1">'+gallery.giNum+'</td>';
+				html+='<td class="cell100 column2">'+gallery.giName+'</td>';
+				html+='<td class="cell100 column3">'+gallery.giRphoneNumber+'</td>';
+				html+='<td class="cell100 column4">'+gallery.giHoliday+'</td>';
+				html+='<td class="cell100 column5">'+gallery.giHomepage+'</td>';
+				html+='<td class="cell100 column6">'+gallery.giStatus+'</td>';
 				html+="</tr>";
 				}
 			
