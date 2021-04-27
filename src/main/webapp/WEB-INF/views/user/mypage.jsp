@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div class="container mypage">
-		<h3>${userInfo.uiName}님의 회원정보</h3>
+		<h3>${userInfo.uiName} 님의 회원정보</h3>
 		<div>
 			<table class="table" id="myInformation">
 				<tbody>
@@ -58,14 +58,19 @@
 					html += '<td>' + res.uiGenre + '</td>';
 					html += '</tr>';
 					html += '</tbody>'
+					html += '<br>'
 					html += '<button type="button"	class="btn btn-outline-danger"	onclick="location.href=\'/views/user/mypage-update?uiNum=${userInfo.uiNum}\'">'
-							+ '정보 수정' + '</button>' + '<br>' + '<button type="button" class="btn btn-outline-danger"	onclick="location.href=\'/views/user?uiNum=${userInfo.uiNum}\'">'
+							+ '정보 수정' + '</button>' + '<br>' + '<button type="button" class="btn btn-outline-danger"	onclick="notYet()">'
 							+ '회원 탈퇴' + '</button>';
 							
 					document.querySelector('#myInformation').innerHTML = html;
 				}
 			}
 			xhr.send();
+		}
+		
+		function notYet(){
+			alert('회원가입 후 1년간 재가입 방지를 위해 탈퇴가 제한됩니다.');
 		}
 	</script>
 

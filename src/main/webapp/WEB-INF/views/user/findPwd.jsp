@@ -7,26 +7,33 @@
 <title>Insert title here</title>
 <style>
 .card-body {
-	text-align: center;
+	width: 80%;
 }
+
+.card-content {
+	text-align: center;
+	padding: 3px;
+	width: 100%;
+	height: 70px;
+}
+
+.input-control {
+	width: 60%;
+	height: 40px;
+}
+
 </style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-	<main id="main">
-		======= Breadcrumbs =======
-		<section id="breadcrumbs" class="breadcrumbs">
-			<div class="container"></div>
-		</section>
 
-			<div class="container">
+			<div class="container" style="margin-top:150px; width:700px; letter-spacing:-2px;">
 
-			<div class="card o-hidden border-0"
-				style="padding: 8px; height: 300px;">
+			<div class="card o-hidden border-0">
 				<div class="card-body">
 				
 				<div class="card-body">
-					<h4 class="card-title" >인증번호 확인</h4>
+					<h4 class="card-title" style="text-align:center; font-weight:bold;">인증번호 확인</h4>
 					
 					<div class="card-content" style="padding: 8px">
 						<input type="hidden" id="code">
@@ -70,9 +77,9 @@
 		}
 		console.log(checkBox.value);
 		
-		var url = "checkPwd?code=" + code.value;
+		var url = "checkPwd";
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET',url)
+		xhr.open('POST',url)
 		xhr.onreadystatechange = function(){
 			if(xhr.status==200 && xhr.readystate==4){
 				if(code==checkBox.value) {

@@ -67,4 +67,5 @@ public class UserInfo {
 
 	@Column(name="code")
 	private String code;
+
 }

@@ -25,15 +25,8 @@ import lombok.extern.slf4j.Slf4j;
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
-	private JavaMailSender mailSender;
-	
-	@Autowired
-	private static final String FROM_ADDRESS = "psh951009@gmail.com";
-	
-	@Autowired
 	private UserInfoRepository uRepo;
-
-	private UserInfo userInfo;
+	
 	
 	@Override
 	public List<UserInfo> getList(UserInfo userInfo) {
@@ -77,10 +70,6 @@ public class UserServiceImpl implements UserService {
 	public UserInfo pwdCheck(String uiEmail) {
 		UserInfo opUi = uRepo.findByUiEmail(uiEmail);
 		log.info("opUi=>{}",opUi);
-		if(opUi.getCode()==null) {
-			String code = CodeGenerator.getRandomCode();
-			
-		}
 		return opUi;
 	}
 
@@ -94,6 +83,12 @@ public class UserServiceImpl implements UserService {
 		return 1;
 	}
 
+	@Override
+	public int mailCheck(UserInfo userInfo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 //	@Override
 //	public int pwdCheck(UserInfo userInfo) {
 //		UserInfo opUi = uRepo.findByUiEmail(userInfo.getUiEmail());
@@ -103,14 +98,5 @@ public class UserServiceImpl implements UserService {
 //		return 0;
 //	}
 //
-	public UserInfo saveCode(String code) {
-		return uRepo.save(userInfo);
-	}
-
-	@Override
-	public int mailCheck(UserInfo userInfo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }

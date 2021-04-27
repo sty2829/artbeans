@@ -118,17 +118,52 @@ public class UserInfoController {
 		return userService.emailCheck(uiEmail);
 		}
 	
-	@GetMapping("/checkPwd")
-	public String authEmail(String uiEmail,String code) throws Exception {
+//	@PostMapping("/checkPwd")
+//	public String authEmail(@RequestBody UserInfo ui){
+//
+//			String code = CodeGenerator.getRandomCode();
+//			log.info("code=>{}",code);
+//			
+//			String title = "아트빈 비밀번호 인증메일입니다.";
+//			String content = "인증번호는 " + code + "입니다." + "<br><br>" + "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+//			SimpleMailMessage smm = new SimpleMailMessage();
+//			try {
+//			smm.setTo(ui.getUiEmail());
+//			smm.setFrom(FROM_ADDRESS);
+//			smm.setSubject(title);
+//			smm.setText(content);
+//
+//			mailSender.send(smm);
+//			log.info("smm=>{}", smm);
+//			
+//			ui.setCode(code);
+//			String email = ui.getUiEmail();
+//			int a = userService.emailCheck(email);
+//			log.info("a=>{}",a);
+//			
+//			userInfo = userService.updateUser(ui);
+//			log.info("userInfo=>{}",userInfo);
+//			return ui.getCode();
+//			 
+//			}catch(Exception e) {
+//				e.printStackTrace();
+//			}finally {
+//			}
+//			
+//			return null;
+//			}
+	
+	@PostMapping("/checkPwd")
+	public String authEmail(UserInfo ui){
 
-			code = CodeGenerator.getRandomCode();
+			String code = CodeGenerator.getRandomCode();
 			log.info("code=>{}",code);
 			
 			String title = "아트빈 비밀번호 인증메일입니다.";
 			String content = "인증번호는 " + code + "입니다." + "<br><br>" + "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
 			SimpleMailMessage smm = new SimpleMailMessage();
 			try {
-			smm.setTo(uiEmail);
+			smm.setTo(ui.getUiEmail());
 			smm.setFrom(FROM_ADDRESS);
 			smm.setSubject(title);
 			smm.setText(content);
@@ -136,16 +171,19 @@ public class UserInfoController {
 			mailSender.send(smm);
 			log.info("smm=>{}", smm);
 			
-			userInfo.setCode(code);
+			ui.setCode(code);
+			log.info("ui=>{}",ui);
+			userInfo = userService.updateUser(ui);
 			log.info("userInfo=>{}",userInfo);
-			 UserInfo user = userService.updateUser(userInfo);
-			 return user.getCode();
-			 
+			UserInfo newOne = userService.pwdCheck(ui.getUiEmail());
+			log.info("newOne=>{}",newOne);
+			
+			return newOne.getCode();
+			
 			}catch(Exception e) {
 				e.printStackTrace();
 			}finally {
 			}
 			return null;
 			}
-	
 }

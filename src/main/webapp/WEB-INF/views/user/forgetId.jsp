@@ -3,64 +3,48 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-
-<title>SB Admin 2 - 가입된 비밀번호 찾기</title>
-
-<!-- Custom fonts for this template-->
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-
-<!-- Custom styles for this template-->
+<title>Insert title here</title>
 <style>
 .card-body {
-	text-align: center;
+	width: 80%;
+}
 
+.card-content {
+	text-align: center;
+	padding: 3px;
+	width: 100%;
+	height: 70px;
 }
 
 .input-control {
-	width : 30%;
-	height : 30px;
+	width: 60%;
+	height: 40px;
 }
 </style>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-	<main id="main">
-		======= Breadcrumbs =======
-		<section id="breadcrumbs" class="breadcrumbs">
-			<div class="container"></div>
-		</section>
 
-		<div class="container">
-
-			<div class="card o-hidden border-0"
-				style="padding: 8px; height: 350px;">
-				<div class="card-body">
-					<h3 class="card-title" >아이디 찾기</h3>
-			
-						
-					<div class="card-content" style="padding: 8px">
+		<div class="container" style="margin-top:150px; width:700px; letter-spacing:-2px;">
+		
+		<div class="card o-hidden border-0" >
+			<div class="card-body">
+					<h3 class="card-title" style="text-align:center; font-weight:bold;" >아이디 찾기</h3>
+					<hr>
+					<br>	
+					<div class="card-content" >
 						 <input type="text" id="uiName" class="input-control"
 							placeholder="이름">
 					</div>
 
-
-					<div class="card-content" style="padding: 8px">
+					<div class="card-content" >
 						<input type="text" id="uiPhoneNumber" class="input-control"
 							placeholder="휴대폰 번호(-를 반드시 입력해주세요.)">
 					</div>
-					<br>
-					
-					<div class="card-content" style="padding: 8px">
-						<button type="button" style="margin: 8px" class="btn btn-danger" name="button" onclick="goCheck()">아이디찾기</button>
+
+					<div class="card-content">
+						<button type="button"  class="btn btn-danger" name="button" onclick="goCheck()">확인</button>
 					</div>
 				</div>
 
@@ -68,16 +52,8 @@
 
 		</div>
 
-	</main>
-	
-	<main id="main">
-		<!-- ======= Breadcrumbs ======= -->
-		<section id="breadcrumbs" class="breadcrumbs">
-			<div class="container"></div>
-		</section>
-		</main>
-	<script>
-	
+	<br>
+<script>
 function goCheck(){
 	
 				var uiName = document.querySelector('#uiName');
