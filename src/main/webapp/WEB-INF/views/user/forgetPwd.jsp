@@ -37,29 +37,27 @@
 					<div class="card-body">
 						<h4 class="card-title" style="text-align:center; font-weight:bold;">비밀번호 찾기</h4>
 						    <div style="color: red">
-                        <p>입력된 정보로 임시 비밀번호가 전송됩니다.</p>
+                        <p>입력된 이메일로 인증번호가 전송됩니다.</p>
                     </div>
                     <hr>
 
 					</div>
 					<div class="card-content" style="padding: 8px">
 						<input type="email" class="input-control" id="uiEmail"
-							placeholder="이메일">
+							placeholder="이메일"><button type="button" style="margin: 8px" 
+						class="btn btn-danger" onclick="goVerify()" >확인</button> 
 					</div>
-
-					<div class="card-content" style="padding: 8px">
-						<button type="button" style="margin: 8px" 
-						class="btn btn-danger" onclick="goUpdate()" >확인</button> 
-							
 						<hr>
 					</div>
 				</div>
 			</div>
-		</div>
+		
 <br>
 	<script>
-		function goUpdate() {
 
+		function goVerify() {
+			
+			
 			var uiEmail = document.querySelector('#uiEmail');
 			console.log(uiEmail.value.indexOf('@'));
 			if (uiEmail.value.indexOf('@')==-1 || uiEmail.value.indexOf('@')==0 || uiEmail.value.trim().length < 1 ) {
@@ -67,13 +65,12 @@
 				uiEmail.focus();
 				return;
 			}
-			console.log(uiEmail.value);
-			//var url = "/checkPwd?uiEmail=" +uiEmail.value ;
+			var url = "/checkPwd?uiEmail=" +uiEmail.value ;
 			var xhr = new XMLHttpRequest();
-			xhr.open('POST', "/checkPwd");
+			xhr.open('POST', url);
 			xhr.onreadystatechange = function() {
 				if (xhr.status ==200 && xhr.readyState ==4) {
-					var res = JSON.parse(xhr.responseText);
+					var res = xhr.responseText;
 					if(res== uiEmail.value){
  						alert('해당 이메일로 인증번호를 전송했습니다.');
 						location.href="/views/user/findPwd";

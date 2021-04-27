@@ -82,21 +82,23 @@ public class UserServiceImpl implements UserService {
 		}
 		return 1;
 	}
-
+	//인증번호 코드 삽입을 위한 해당 이메일 찾기
 	@Override
-	public int mailCheck(UserInfo userInfo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public UserInfo right(String uiEmail) {
+		UserInfo opUi = uRepo.findByUiEmail(uiEmail);
+		return opUi;
 	}
 
-//	@Override
-//	public int pwdCheck(UserInfo userInfo) {
-//		UserInfo opUi = uRepo.findByUiEmail(userInfo.getUiEmail());
-//		if(opUi!=null) {
-//			return 1;
-//		}
-//		return 0;
-//	}
-//
+	
+	//인증번호 일치여부 확인
+	@Override
+	public UserInfo findCode(String code) {
+		UserInfo opUi = uRepo.findByCode(code);
+		log.info("opUi=>{}",opUi);
+		return opUi;
+	}
+	
+
+
 
 }

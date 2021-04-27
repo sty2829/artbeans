@@ -22,12 +22,6 @@ import com.artbeans.web.util.CodeGenerator;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
- * 테스트용 변경하셔도 됩니다.
- * 
- * 
- */
-
 @RestController
 @Slf4j
 public class UserInfoController {
@@ -40,10 +34,8 @@ public class UserInfoController {
 	
 	@Autowired
 	private static final String FROM_ADDRESS = "psh951009@gmail.com";
-	
-	private UserInfo userInfo;
-	
-	
+
+
 	@PostMapping("/user")
 	public int insert(@RequestBody UserInfo userInfo) {
 		log.info("UserInfo => {}", userInfo);
@@ -102,15 +94,6 @@ public class UserInfoController {
 		return userService.findId(uiPhoneNumber);
 	}
 
-	
-//	@GetMapping("/sendEmail")
-//	public String findEmail(@RequestBody String uiEmail) {
-//		log.info("userInfo=>{}", uiEmail);
-//		String code = CodeGenerator.getRandomCode();
-//		return code;
-//	}
-	
-
 	//이메일 중복확인..
 	@GetMapping("/emailCheck")
 	public int emailCheck(String uiEmail) {
@@ -118,72 +101,42 @@ public class UserInfoController {
 		return userService.emailCheck(uiEmail);
 		}
 	
-//	@PostMapping("/checkPwd")
-//	public String authEmail(@RequestBody UserInfo ui){
-//
-//			String code = CodeGenerator.getRandomCode();
-//			log.info("code=>{}",code);
-//			
-//			String title = "아트빈 비밀번호 인증메일입니다.";
-//			String content = "인증번호는 " + code + "입니다." + "<br><br>" + "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
-//			SimpleMailMessage smm = new SimpleMailMessage();
-//			try {
-//			smm.setTo(ui.getUiEmail());
-//			smm.setFrom(FROM_ADDRESS);
-//			smm.setSubject(title);
-//			smm.setText(content);
-//
-//			mailSender.send(smm);
-//			log.info("smm=>{}", smm);
-//			
-//			ui.setCode(code);
-//			String email = ui.getUiEmail();
-//			int a = userService.emailCheck(email);
-//			log.info("a=>{}",a);
-//			
-//			userInfo = userService.updateUser(ui);
-//			log.info("userInfo=>{}",userInfo);
-//			return ui.getCode();
-//			 
-//			}catch(Exception e) {
-//				e.printStackTrace();
-//			}finally {
-//			}
-//			
-//			return null;
-//			}
-	
-	@PostMapping("/checkPwd")
-	public String authEmail(UserInfo ui){
+		@PostMapping("/checkPwd")
+		public String authEmail(@RequestBody UserInfo ui) {
 
 			String code = CodeGenerator.getRandomCode();
-			log.info("code=>{}",code);
-			
+			log.info("code=>{}", code);
+
 			String title = "아트빈 비밀번호 인증메일입니다.";
-			String content = "인증번호는 " + code + "입니다." + "<br><br>" + "해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+			String content = "인증번호는 " + code + "입니다." + "\r\n 해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
 			SimpleMailMessage smm = new SimpleMailMessage();
 			try {
-			smm.setTo(ui.getUiEmail());
-			smm.setFrom(FROM_ADDRESS);
-			smm.setSubject(title);
-			smm.setText(content);
+				smm.setTo(ui.getUiEmail());
+				smm.setFrom(FROM_ADDRESS);
+				smm.setSubject(title);
+				smm.setText(content);
 
-			mailSender.send(smm);
-			log.info("smm=>{}", smm);
-			
-			ui.setCode(code);
-			log.info("ui=>{}",ui);
-			userInfo = userService.updateUser(ui);
-			log.info("userInfo=>{}",userInfo);
-			UserInfo newOne = userService.pwdCheck(ui.getUiEmail());
-			log.info("newOne=>{}",newOne);
-			
-			return newOne.getCode();
-			
-			}catch(Exception e) {
+				mailSender.send(smm);
+				log.info("smm=>{}", smm);
+
+				UserInfo user1 = userService.right(ui.getUiEmail()); // 이메일 조회
+				user1.setCode(code); // 인증코드 넣기
+				UserInfo user = userService.updateUser(user1); // 업데이트
+				log.info("user=>{}", user);
+
+				return user.getUiEmail();
+
+			} catch (Exception e) {
 				e.printStackTrace();
-			}finally {
+			} finally {
 			}
 			return null;
-			}
-}
+		}
+		
+		//인증번호 일치여부 확인..
+		@GetMapping("/verificationCode")
+		public UserInfo verify(String code) {
+			log.info("code=>{}", userService.findCode(code));
+			return userService.findCode(code);
+		}
+	}

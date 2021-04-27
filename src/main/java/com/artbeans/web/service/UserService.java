@@ -16,9 +16,12 @@ public interface UserService {
 	
 	//id찾기
 	UserInfo findId(String uiPhoneNumber);
-	// 비밀번호 이메일 인증..
-	int mailCheck(UserInfo userInfo);
+
 	// 이메일 중복조회
 	int emailCheck(String uiEmail);
 	UserInfo pwdCheck(String uiEmail);
+	// 인증번호 가져올 해당 이메일 찾기..
+	UserInfo right(String uiEmail);
+	//인증번호 일치..
+	UserInfo findCode(String code);
 }
