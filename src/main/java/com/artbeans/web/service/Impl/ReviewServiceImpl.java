@@ -14,20 +14,15 @@ import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.CommentInfo;
 import com.artbeans.web.entity.FileInfo;
 import com.artbeans.web.entity.ReviewInfo;
-import com.artbeans.web.entity.TicketInfo;
 import com.artbeans.web.entity.UserInfo;
 import com.artbeans.web.repository.CommentInfoRepository;
 import com.artbeans.web.repository.FileInfoRepository;
 import com.artbeans.web.repository.ReviewInfoRepository;
-import com.artbeans.web.repository.TicketInfoRepository;
 import com.artbeans.web.repository.UserInfoRepository;
 import com.artbeans.web.service.ReviewService;
 import com.artbeans.web.util.FileUtil;
 
-import lombok.extern.slf4j.Slf4j;
-
 @Service
-@Slf4j
 public class ReviewServiceImpl implements ReviewService {
 
 	private final String TYPE = "review";
@@ -43,9 +38,6 @@ public class ReviewServiceImpl implements ReviewService {
 	
 	@Autowired
 	private UserInfoRepository uiRepo;
-	
-	@Autowired
-	private TicketInfoRepository tiRepo;
 	
 	@Override
 	public Page<ReviewDTO> getReviewInfos(Pageable pageable) {
@@ -73,10 +65,10 @@ public class ReviewServiceImpl implements ReviewService {
 	public int updateReview(ReviewInfo reviewInfo) throws Exception {
 		int count = 0;
 		FileInfo fileInfo = reviewInfo.getFileInfo();
-		if(fileInfo.getFiNum() != null) {
+		if(fileInfo != null && fileInfo.getFiNum() != null) {
 			Optional<FileInfo> opFI = fiRepo.findById(fileInfo.getFiNum());
 			if(!opFI.isEmpty() && fileInfo.getFiFile() != null) {
-				FileUtil.fileInsert(fileInfo, TYPE);
+				FileUtil.fileUpdate(fileInfo, TYPE, opFI.get().getFiPath());
 				count = rviRepo.save(reviewInfo).getRviNum();
 			}else {
 				reviewInfo.setFileInfo(opFI.get());
@@ -104,6 +96,11 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public Page<CommentDTO> getCommentInfos(Integer rviNum, Pageable pageable) {
+		return ciRepo.findAllByReviewInfoRviNum(rviNum, pageable);
+	}
+	
+	@Override
 	public int saveComment(UserSession userSession, CommentInfo commentInfo) {
 		int count = 0;
 		Optional<UserInfo> userInfo = uiRepo.findById(userSession.getUiNum());
@@ -126,11 +123,6 @@ public class ReviewServiceImpl implements ReviewService {
 			count = ciRepo.save(ci).getCiNum();
 		}
 		return count;
-	}
-
-	@Override
-	public Page<CommentDTO> getCommentInfos(Integer rviNum, Pageable pageable) {
-		return ciRepo.findAllByReviewInfoRviNum(rviNum, pageable);
 	}
 
 	@Override

@@ -64,6 +64,10 @@ public class TicketInfo {
 	@JoinColumn(name = "ri_num")
 	private ReservationInfo reservationInfo;
 	
+	@OneToOne(mappedBy = "ticketInfo")
+	@JsonManagedReference
+	private ReviewInfo reviewinfo;
+	
 	@OneToOne(mappedBy = "ticketInfo", cascade = CascadeType.ALL, optional = false)
 	@JsonManagedReference
 	private PaymentInfo paymentInfo;

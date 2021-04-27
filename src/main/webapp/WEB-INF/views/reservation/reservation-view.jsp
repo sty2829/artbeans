@@ -279,7 +279,7 @@ function goPayment(){
 	param += 'giName=' + giName + '&';
 	param += 'eiName=' + eiName + '&';
 	
-	location.href = '/views/reservation/reservation-save/' + param
+	location.href = '/views/reservation/ticket-save/' + param
 }
 </script>
 </body>

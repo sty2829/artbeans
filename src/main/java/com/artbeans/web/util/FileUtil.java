@@ -6,15 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.artbeans.web.entity.FileInfo;
 
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /*
@@ -48,15 +44,40 @@ public class FileUtil {
  		log.info("fiName => {}", fiName);
 		int idx = fiName.lastIndexOf(".");
 		String extName = fiName.substring(idx);
-		String path = "/" + System.nanoTime() + extName;
+		String path = System.nanoTime() + extName;
 		fileInfo.setFiOriginalname(fiName);
 		fileInfo.setFiSize(fiSize);
 		fileInfo.setFiPath(path);
 		fileInfo.setFiType(fiType);
 		log.info("fileInfo=>{}", fileInfo);
-		File file = new File(root + fiType + path);
+		File file = new File(root + fiType + File.separator + path);
 		fileInfo.getFiFile().transferTo(file);
 		
+	}
+	
+	public static void fileUpdate(FileInfo fileInfo, String fiType, String deletePath) throws Exception {
+		String fiName = fileInfo.getFiFile().getOriginalFilename();
+ 		if(fiName==null) {
+			throw new Exception("파일은 필수 항목입니다!");
+		}
+ 		String fiSize = (fileInfo.getFiFile().getSize()) + "Byte";
+ 		
+		int idx = fiName.lastIndexOf(".");
+		String extName = fiName.substring(idx);
+		String path = System.nanoTime() + extName;
+		fileInfo.setFiOriginalname(fiName);
+		fileInfo.setFiSize(fiSize);
+		fileInfo.setFiPath(path);
+		fileInfo.setFiType(fiType);
+		
+		File file = new File(root + fiType + File.separator + path);
+		fileInfo.getFiFile().transferTo(file);
+		
+		file = new File(root + fiType + deletePath);
+		
+		if(!file.delete()) {
+			log.info(fiType + "의 " + deletePath + " 파일삭제에 실패하였습니다.");
+		}
 	}
 	
 	public static Map<String,String> ckeditorUploadImg(MultipartFile upload){

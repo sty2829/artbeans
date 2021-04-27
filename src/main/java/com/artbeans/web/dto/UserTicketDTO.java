@@ -18,4 +18,6 @@ public interface UserTicketDTO {
 	
 	Integer getTiNumber();
 	
+	Integer getRviNum();
+	
 }

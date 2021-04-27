@@ -184,8 +184,8 @@ function logout(){
 					<li class="drop-down"><a href="#">마이페이지</a>
 						<ul>
 							<li><a href="/views/user/mypage">나의 회원정보</a></li>
-							<li><a href="/views/user/mypage-reservation">나의 예약정보</a></li>
-							<li><a href="/views/user/mypage-review">나의 리뷰정보</a></li>
+							<li><a href="/views/user/reservation/reservation-info">나의 예약정보</a></li>
+							<li><a href="/views/user/review/review-info">나의 리뷰정보</a></li>
 							<li><a href="/views/user/favorite-exhibition">찜한 전시회목록</a></li>
 						</ul></li> 
 					</c:if>
@@ -203,17 +203,17 @@ function logout(){
 						<ul>
 							<li class="drop-down"><a href="#">공지사항</a>
 								<ul>
-									<li><a href="/views/admin/usinghomepage">이용방법</a></li>
-									<li><a href="/views/admin/questions">자주하는 질문</a></li>
+									<li><a href="/views/community/usinghomepage">이용방법</a></li>
+									<li><a href="/views/community/questions">자주하는 질문</a></li>
 								</ul></li>
 							<li><a href="/views/community/review-list">후기/추천</a></li>
 						</ul></li>
 
 					<li class="drop-down"><a href="#">전시회 등록 및 수정</a>
 						<ul>
-							<li><a href="/views/exhibition/aop/insert">전시회 등록</a></li>
-							<li><a href="/views/exhibition/aop/exhibition-update">전시회 수정</a></li>
-							<li><a href="/views/reservation/reservation-insert">전시회
+							<li><a href="/views/exhibition/manager/insert">전시회 등록</a></li>
+							<li><a href="/views/exhibition/manager/exhibition-update">전시회 수정</a></li>
+							<li><a href="/views/exhibition/manager/reservation-save">전시회
 									예약 등록</a></li>
 						</ul></li>
 				</ul>

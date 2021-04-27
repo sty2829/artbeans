@@ -21,9 +21,11 @@ import org.hibernate.annotations.ColumnDefault;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
+import lombok.ToString;
 
 
 @Entity
+@ToString(exclude = "ticketInfo")
 @Table(name="review_info")
 @Data
 public class ReviewInfo {
@@ -38,9 +40,6 @@ public class ReviewInfo {
 	
 	@Column(name="rvi_content")
 	private String rviContent;
-	
-	@Column(name="rvi_hit")
-	private Integer rviHit;
 	
 	@Column(name="credat", insertable = false, updatable = false)
 	@ColumnDefault("now()")
@@ -57,6 +56,10 @@ public class ReviewInfo {
 	@OneToOne(cascade = CascadeType.ALL, optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "fi_num")
 	private FileInfo fileInfo;
+	
+	@OneToOne
+	@JoinColumn(name = "ti_num")
+	private TicketInfo ticketInfo;
 	
 	@OneToMany(mappedBy = "reviewInfo", cascade = CascadeType.ALL)
 	@JsonManagedReference

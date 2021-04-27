@@ -245,7 +245,7 @@ function saveReservation(){
 				var res = JSON.parse(xhr.responseText);
 				if(res.paymentInfo.piPrice === 0) {
 					alert('예매가 완료되었습니다.');
-					location.href = '/views/user/mypage-reservation';
+					location.href = '/views/user/reservation/reservation-info';
 					return;
 				}
 				IMP.request_pay({
@@ -272,7 +272,7 @@ function saveReservation(){
 				    	}).done(function(data) {
 				    		if (data >= 1) {
 				    			alert('결제가 완료되었습니다.');
-				    			location.href = '/views/user/mypage-reservation';
+				    			location.href = '/views/user/reservation/reservation-info';
 				    		} else {
 				    			alert('결제 금액이 일치 하지 않습니다');
 				    		}

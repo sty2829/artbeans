@@ -81,7 +81,7 @@ function getUserReviews(page){
 				}
 				
 				for(var review of res.content){
-					html += '<div class="col-lg-8">';
+					html += '<div class="col-lg-8" style="cursor:pointer;" onclick="location.href=\'/views/community/review-view?rviNum=' + review.rviNum + '\'">';
 					html += '<div class="row">';
 					html += '<div class="col-lg-4">';
 					html += '<img src="/upload/' + review.fiPath + '" style="width: 200px; height: 199px">';
@@ -91,8 +91,8 @@ function getUserReviews(page){
 					html += '<p class="subText" style="margin-top: 20px">' + review.rviContent.replace(/[<][^>]*[>]/gi, "") + '</p>';
 					html += '<div style="margin-top: 70px">';
 					html += '<span style="font-weight: 600;">' + review.moddat +'</span>';
-					html += '<span class="float-right" style="font-weight: 600; color:red; cursor: pointer" onclick="reviewRemove(' + review.rviNum + ')">삭제</span>';
-					html += '<span class="float-right mr-3" style="font-weight: 600; color:blue; cursor: pointer" onclick="goReviewUpdate(' + review.rviNum + ')">수정</span>';
+					html += '<span class="float-right" style="font-weight: 600; color:red; cursor: pointer" onclick="reviewRemove(' + review.rviNum + ', event)">삭제</span>';
+					html += '<span class="float-right mr-3" style="font-weight: 600; color:blue; cursor: pointer" onclick="goReviewUpdate(' + review.rviNum + ', event)">수정</span>';
 					html += '</div>';
 					html += '</div>';
 					html += '</div>';
@@ -153,11 +153,14 @@ function getUserReviews(page){
 	}
 	xhr.send();
 }
-function goReviewUpdate(rviNum){
-	location.href = '/views/community/review-update/?rviNum=' + rviNum;
+function goReviewUpdate(rviNum, event){
+	event.stopPropagation();
+	location.href = '/views/user/review/review-update/?rviNum=' + rviNum;
 }
-function reviewRemove(rviNum){
-	if(confirm("정말 삭제 하시겠습니까 ?")){
+
+function reviewRemove(rviNum, event){
+	event.stopPropagation();
+	if(confirm("정말 리뷰를 삭제 하시겠습니까 ?")){
 		var xhr = new XMLHttpRequest();
 		
 		xhr.open('DELETE', '/review/' + rviNum );

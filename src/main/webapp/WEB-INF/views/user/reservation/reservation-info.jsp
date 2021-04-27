@@ -160,7 +160,7 @@ function getPastTickets(page){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			var table = '';
-			console.log(res.content.length === 0)
+			console.log(res);
 			if(res.content.length === 0){
 				table += '<tr>';
 				table += '<td colspan="4" align="center">지난 예약이 없습니다.</td>';
@@ -197,7 +197,11 @@ function getPastTickets(page){
 					modal += '<p class="card-text">관람일시 : <span>' + ticket.tiDate + '</span> <span>' + ticket.tiTime +'</span></p>';
 					modal += '<p class="card-text">예매수 : <span>'+ ticket.tiNumber + '</span>장</p>';
 					modal += '<hr>';
-					modal += '<button type="button" class="btn btn-outline-primary" onclick="goReview(' + ticket.tiNum + ')" style="width: 300px; height: 38px">리뷰작성</button>';
+					if(ticket.rviNum != null){
+						modal += '<button type="button" class="btn btn-success" onclick="alert(\'이미 작성하신 리뷰가 있습니다. \')" style="width: 300px; height: 38px">리뷰작성 완료</button>';
+					}else{
+						modal += '<button type="button" class="btn btn-outline-primary" onclick="goReview(' + ticket.tiNum + ')" style="width: 300px; height: 38px">리뷰작성</button>';
+					}
 					modal += '</div>';
 					modal += '</div>';
 					modal += '</div>'; 
@@ -274,7 +278,7 @@ function cancel(obj){
 	}
 }
 function goReview(tiNum){
-	location.href = '/views/community/review-save/?tiNum=' + tiNum;
+	location.href = '/views/user/review/review-save/?tiNum=' + tiNum;
 }
 </script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

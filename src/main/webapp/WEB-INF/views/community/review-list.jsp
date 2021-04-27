@@ -15,9 +15,6 @@
 	margin-top: 150px;
 	height: 1000px;
 }
-#reviewList > *{
-	color: black;
-}
 hr{
 	border: 0;
     height: 1px;
@@ -65,8 +62,7 @@ function getReviews(){
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			for(var review of res.content) {
-				html += '<a href="/views/community/review-view?rviNum=' + review.rviNum + '"';
-				html += '<div class="col-lg-8">';
+				html += '<div class="col-lg-8" style="cursor:pointer;" onclick="location.href=\'/views/community/review-view?rviNum=' + review.rviNum + '\'">';
 				html += '<div class="row">';
 				html += '<div class="col-lg-4">';
 				html += '<img src="/upload/' + review.fiPath + '" style="width: 200px; height: 199px">';
@@ -82,7 +78,6 @@ function getReviews(){
 				html += '</div>';
 				html += '<hr>';
 				html += '</div>';
-				html += '</a>';
 				
 			}
 			document.querySelector('#reviewList').innerHTML += html;

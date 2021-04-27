@@ -82,7 +82,7 @@ public class ReviewController {
 	
 	//리뷰댓글 수정
 	@PatchMapping("/review/comment")
-	public int saveComment(@RequestBody CommentInfo commentInfo) {
+	public int updateComment(@RequestBody CommentInfo commentInfo) {
 		log.info("commentInfo => {}", commentInfo);
 		return reviewService.updateComment(commentInfo);
 	}
