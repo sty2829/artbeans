@@ -158,7 +158,7 @@ window.onload = function(){
 				var key = obj.getAttribute('data-col');
 				var data = res[key];
 				if(key === "imgPath") {
-					obj.src = '/resources/assets/img/exhibition/' + data;
+					obj.src = '/upload/' + data;
 					data = '';
 				}
 				obj.innerHTML = data;

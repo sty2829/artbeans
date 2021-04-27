@@ -84,7 +84,7 @@ function getUserReviews(page){
 					html += '<div class="col-lg-8">';
 					html += '<div class="row">';
 					html += '<div class="col-lg-4">';
-					html += '<img src="/resources/assets/img/review/' + review.fiPath + '" style="width: 200px; height: 199px">';
+					html += '<img src="/upload/' + review.fiPath + '" style="width: 200px; height: 199px">';
 					html += '</div>';
 					html += '<div class="col-lg-8">';
 					html += '<h3 style="margin-top: 10px">' + review.rviTitle + '</h3>';
@@ -177,7 +177,9 @@ function reviewRemove(rviNum){
 		return;
 	}
 }
-window.addEventListener('load', getUserReviews(1));
+window.addEventListener('load', () => {
+	getUserReviews(1);
+});
 </script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>

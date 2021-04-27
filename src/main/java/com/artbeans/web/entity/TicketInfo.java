@@ -56,12 +56,6 @@ public class TicketInfo {
 	@ColumnDefault(value = "PENDING")
 	private String tiState;
 	
-	
-	@Column(name="ti_reivew_status", insertable = false)
-	@Convert(converter = StatusConverter.class)
-	@ColumnDefault(value = "WAIT")
-	private String tiReivewStatus;
-	
 	@ManyToOne
 	@JoinColumn(name = "ui_num")
 	private UserInfo userInfo;

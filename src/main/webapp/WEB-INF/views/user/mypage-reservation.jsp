@@ -129,7 +129,7 @@ function getProgressTickets(){
 				modal += '</div>'; 
 				modal += '<div class="modal-body">'; 
 				modal += '<div class="card mb-3">';
-				modal += '<img src="/resources/assets/img/exhibition/'+ ticket.imgPath + '" class="card-img-top" style="width: 344px; height: 200px">';
+				modal += '<img src="/upload/'+ ticket.imgPath + '" class="card-img-top" style="width: 344px; height: 200px">';
 				modal += '<div class="card-body">';
 				modal += '<h5 class="card-title">' + ticket.eiName + '</h5>';
 				modal += '<hr>';
@@ -188,7 +188,7 @@ function getPastTickets(page){
 					modal += '</div>'; 
 					modal += '<div class="modal-body">'; 
 					modal += '<div class="card mb-3">';
-					modal += '<img src="/resources/assets/img/exhibition/'+ ticket.imgPath + '" class="card-img-top" style="width: 344px; height: 200px">';
+					modal += '<img src="/upload/'+ ticket.imgPath + '" class="card-img-top" style="width: 344px; height: 200px">';
 					modal += '<div class="card-body">';
 					modal += '<h5 class="card-title">' + ticket.eiName + '</h5>';
 					modal += '<hr>';

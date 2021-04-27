@@ -59,7 +59,6 @@ window.onscroll = function(e) {
 };
 function getReviews(){
 	var xhr = new XMLHttpRequest();
-	var uiNum = ${userInfo.uiNum}
 	xhr.open('GET', '/reviews?size=6&page=' + count);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
@@ -70,7 +69,7 @@ function getReviews(){
 				html += '<div class="col-lg-8">';
 				html += '<div class="row">';
 				html += '<div class="col-lg-4">';
-				html += '<img src="/resources/assets/img/review/' + review.fiPath + '" style="width: 200px; height: 199px">';
+				html += '<img src="/upload/' + review.fiPath + '" style="width: 200px; height: 199px">';
 				html += '</div>';
 				html += '<div class="col-lg-8">';
 				html += '<h3 style="margin-top: 10px">' + review.rviTitle +'</h3>';
@@ -91,7 +90,7 @@ function getReviews(){
 	}
 	xhr.send();
 }
-window.addEventListener('load', getReviews());
+window.addEventListener('load', getReviews);
 </script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>

@@ -64,7 +64,6 @@ ClassicEditor
 function getReview(){
 	
 	var xhr = new XMLHttpRequest();
-	//rvi 번호줘야함 
 	xhr.open('GET', "/review/" + ${param.rviNum});
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
@@ -75,7 +74,7 @@ function getReview(){
 					continue;
 				}
 				if(obj.id == 'fiPath'){
-					obj.src = '/resources/assets/img/review/' + res[key];
+					obj.src = '/upload/' + res[key];
 					continue;
 				}
 				if(obj.id == 'rviContent'){
@@ -125,8 +124,6 @@ function updateReview(){
 }
 
 function changeImg(obj){
-	console.log(obj.files);
-	console.log(obj.files[0]);
 	if(obj.files && obj.files[0]){
 		var reader = new FileReader();
 		reader.onload = function(e){
@@ -135,7 +132,7 @@ function changeImg(obj){
 		reader.readAsDataURL(obj.files[0]);
 	}
 }
-window.addEventListener('load', getReview());
+window.addEventListener('load', getReview);
 </script>
 </body>
 

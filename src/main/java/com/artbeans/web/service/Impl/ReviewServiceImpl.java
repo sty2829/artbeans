@@ -1,5 +1,6 @@
 package com.artbeans.web.service.Impl;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +61,7 @@ public class ReviewServiceImpl implements ReviewService {
 	public int saveReview(UserSession userSession, ReviewInfo reviewInfo, Integer tiNum) throws Exception {
 		int count = 0;
 		Optional<UserInfo> opUI = uiRepo.findById(userSession.getUiNum());
-		Optional<TicketInfo> opTI = tiRepo.findById(tiNum);
-		if(!opUI.isEmpty() && !opTI.isEmpty()) {
+		if(!opUI.isEmpty()) {
 			reviewInfo.setUserInfo(opUI.get());
 			FileUtil.fileInsert(reviewInfo.getFileInfo(), TYPE);
 			count = rviRepo.save(reviewInfo).getRviNum();
@@ -113,6 +113,20 @@ public class ReviewServiceImpl implements ReviewService {
 		}
 		return count;
 	}
+	
+
+	@Override
+	public int updateComment(CommentInfo commentInfo) {
+		int count = 0;
+		Optional<CommentInfo> opCI = ciRepo.findById(commentInfo.getCiNum());
+		if(!opCI.isEmpty()) {
+			CommentInfo ci = opCI.get();
+			ci.setCiContent(commentInfo.getCiContent());
+			ci.setModdat(new Date());
+			count = ciRepo.save(ci).getCiNum();
+		}
+		return count;
+	}
 
 	@Override
 	public Page<CommentDTO> getCommentInfos(Integer rviNum, Pageable pageable) {
@@ -141,6 +155,5 @@ public class ReviewServiceImpl implements ReviewService {
 	public Page<ReviewInfo> findAllByRviContentLike(String rviContent, Pageable pageable) {
 		return rviRepo.findAllByRviContentLike("%"+rviContent+"%", pageable);
 	}
-
 	
 }

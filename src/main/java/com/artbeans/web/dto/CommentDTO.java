@@ -9,6 +9,9 @@ public interface CommentDTO {
 
 	Integer getCiNum();
 	
+	@JsonIgnore
+	Integer getUserInfoUiNum();
+	
 	String getCiContent();
 	
 	@JsonIgnore
@@ -20,6 +23,10 @@ public interface CommentDTO {
 	default String getUiEmail() {
 		int idx = getUserInfoUiEmail().indexOf("@");
 		return getUserInfoUiEmail().substring(0, idx);
+	}
+	
+	default Integer getUiNum() {
+		return getUserInfoUiNum();
 	}
 	
 }

@@ -115,6 +115,12 @@
 .card-body { 
 	text-align: center;
 }
+.spanDelete:hover {
+	color: red;
+}
+.spanUpdate:hover {
+	color: blue;
+}
 </style>
 <body>
 <!-- Page Header -->
@@ -124,9 +130,9 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1 data-col="rviTitle">Man must explore, and this is exploration at its greatest</h1>
-            <span class="meta" style="display: inline;">Posted by  <span data-col="uiEmail">sim2829</span></span>
-            <span class="meta" data-col="moddat">2021-04-12</span>
+            <h1 data-col="rviTitle"></h1>
+            <span class="meta" style="display: inline;"><span data-col="uiEmail"></span></span>
+            <span class="meta" data-col="moddat"></span>
           </div>
         </div>
       </div>
@@ -143,7 +149,7 @@
   </article>
   <div class="container mt-5 mb-5">
   	<div class="row d-flex justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-7">
             <div class="shadow p-3 bg-white rounded">
                 <div id=commentList>
                 </div>
@@ -216,6 +222,7 @@
   </div>
 </div>
 <script>
+var uiNum = ${userInfo != null ? userInfo.uiNum : 0 }
 function getReview(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', '/review/' + ${param.rviNum} );
@@ -228,7 +235,7 @@ function getReview(){
 				var key = col.getAttribute('data-col');
 				if(key === 'fiPath'){
 					console.log(res[key]);
-					col.style = 'background-image: url(\'/resources/assets/img/review/' + res[key] + '\');'
+					col.style = 'background-image: url(\'/upload/' + res[key] + '\');'
 				}else{
 					col.innerHTML = res[key];	
 				}
@@ -245,19 +252,56 @@ function getComments(page){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
-			console.log(res);
 			var html = '';
+			console.log(res);
+			if(res.content.length === 0){
+				html += '<div>';
+				html += '<p style="text-align:center;">등록된 댓글이 없습니다.</p>';
+				html += '</div>';
+				document.querySelector('#commentList').innerHTML = html;
+				return;
+			}
+			
 			for(var comment of res.content){
-				html += '<div class="d-flex flex-row mt-2">';
-				html += '<div class="ml-2 w-100">';
-				html += '<div class="d-flex justify-content-between align-items-center">';
-				html += '<div class="d-flex flex-row align-items-center"> <span class="font-weight-bold name">' + comment.uiEmail + '</span></div>';
-				html += '</div>';
-				html += '<p class="user-comment-text text-justify">' + comment.ciContent +'</p>'
-				html += '<span style="font-size: small;">' + comment.moddat + '</span>';
-				html += '<hr>';
-				html += '</div>';
-				html += '</div>';
+				if(uiNum === comment.uiNum){
+					html += '<div class="d-flex flex-row mt-2">';
+					html += '<div class="ml-2 w-100">';
+					html += '<div class="d-flex justify-content-between align-items-center">';
+					html += '<div class="d-flex flex-row align-items-center"> <span class="font-weight-bold name">' + comment.uiEmail + '</span></div>';
+					html += '</div>';
+					html += '<div id="commentDiv'+ comment.ciNum + '">';
+					html += '<div id="oDiv'+ comment.ciNum + '">';
+					html += '<p class="user-comment-text text-justify">' + comment.ciContent +'</p>'
+					html += '<span style="font-size: small;">' + comment.moddat + '</span>';
+					html += '<span style="font-size: small; cursor:pointer;" class="float-right ml-3 mr-2 spanDelete" onclick="removeComment(' + comment.ciNum +')">삭제</span>';
+					html += '<span style="font-size: small; cursor:pointer;" class="float-right spanUpdate" onclick="reWrite(' + comment.ciNum +')">수정</span>';
+					html += '</div>';
+					html += '</div>';
+					html += '<div id="uDiv'+ comment.ciNum + '" style="display: none;">';
+					html += '<div class="w-100 mt-2 comment-area">';
+					html += '<textarea class="form-control" id="updateCiContent">' + comment.ciContent + '</textarea>';
+					html += '<div class="d-flex justify-content-center">'
+					html += '<button type="button" class="btn btn-primary btn-sm mt-2 mr-4" onclick="updateComment( ' + comment.ciNum + ')">댓글수정</button>';
+					html += '<button type="button" class="btn btn-danger btn-sm mt-2" onclick="reWrite(' + comment.ciNum + ')">수정 취소</button>';
+					html += '</div>';
+					html += '</div>';
+					html += '</div>';
+					html += '<hr>';
+					html += '</div>';
+					html += '</div>';
+				}else{
+					html += '<div class="d-flex flex-row mt-2">';
+					html += '<div class="ml-2 w-100">';
+					html += '<div class="d-flex justify-content-between align-items-center">';
+					html += '<div class="d-flex flex-row align-items-center"> <span class="font-weight-bold name">' + comment.uiEmail + '</span></div>';
+					html += '</div>';
+					html += '<p class="user-comment-text text-justify">' + comment.ciContent +'</p>'
+					html += '<span style="font-size: small;">' + comment.moddat + '</span>';
+					html += '<hr>';
+					html += '</div>';
+					html += '</div>';
+				}
+				
 			}
 			
 			var disable = '';
@@ -306,8 +350,8 @@ function getComments(page){
 
 function saveComment(){
 	var ciContent = document.querySelector('#ciContent');
-	if(ciContent.value.trim().length < 5){
-		alert("최소 5글자 이상 작성해주세요.");
+	if(ciContent.value.trim().length < 5 && ciContent.value.trim().length > 300){
+		alert("최소 5글자 이상 300자 이하로 작성해주세요.");
 		ciContent.focus();
 		return;
 	}
@@ -338,9 +382,76 @@ function saveComment(){
 	
 }
 
+function updateComment(ciNum){
+	var updateCiContent = document.querySelector('#updateCiContent');
+	if(updateCiContent.value.trim().length < 5 && updateCiContent.value.trim().length > 300){
+		alert("최소 5글자 이상 300자 이하로 작성해주세요.");
+		ciContent.focus();
+		return;
+	}
+	
+	var param = {
+			ciContent : updateCiContent.value,
+			ciNum : ciNum
+	}
+	
+	var xhr = new XMLHttpRequest();
+	xhr.open('PATCH', '/review/comment');
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4 && xhr.status == 200){
+			var res = JSON.parse(xhr.responseText);
+			if(res >= 1){
+				alert('댓글수정이 완료되었습니다.');
+				getComments();
+			}else{
+				alert('댓글수정에 실패하였습니다');
+			}
+		}
+	}
+	
+	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
+	xhr.send(JSON.stringify(param));
+}
+
+
+function reWrite(ciNum){
+	var oDiv = document.querySelector('#oDiv' + ciNum);
+	var uDiv = document.querySelector('#uDiv' + ciNum);
+	if(oDiv.style.display == 'none'){
+		oDiv.style.display = '';
+		uDiv.style.display = 'none';
+	}else{
+		oDiv.style.display = 'none';
+		uDiv.style.display = '';
+	}
+}
+
+
+function removeComment(ciNum){
+	if(confirm("정말 댓글을 삭제 하시겠습니까 ?")){
+		var xhr = new XMLHttpRequest();
+		xhr.open('DELETE', '/review/comment/' + ciNum);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var res = JSON.parse(xhr.responseText);
+				if(res >= 1){
+					alert('댓글이 삭제 되었습니다.');
+					getComments();
+				}else{
+					alert('댓글이 삭제에 실패하였습니다');
+				}
+			}
+		}
+		xhr.send();
+	}else{
+		return;
+	}
+}
 
 window.addEventListener('load', getReview);
-window.addEventListener('load', getComments(1));
+window.addEventListener('load', () => {
+	getComments(1);
+});
 </script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>

@@ -54,7 +54,7 @@ span{
 				<div class="card mb-2">
 			  		<div class="row no-gutters">
 			    		<div class="col-md-4">
-			      			<img src="/resources/assets/img/exhibition/${param.imgPath}" style="width: 180px; height: 190px">
+			      			<img src="/upload/${param.imgPath}" style="width: 180px; height: 190px">
 		   				</div>
 			    		<div class="col-md-7">
 			      			<div class="col-lg-12 ml-2 mt-3" style="height: 40px">

@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -79,8 +80,15 @@ public class ReviewController {
 		return reviewService.getCommentInfos(rviNum, pageable);
 	}
 	
+	//리뷰댓글 수정
+	@PatchMapping("/review/comment")
+	public int saveComment(@RequestBody CommentInfo commentInfo) {
+		log.info("commentInfo => {}", commentInfo);
+		return reviewService.updateComment(commentInfo);
+	}
+	
 	//리뷰관련 comments 삭제
-	@GetMapping("/review/delete/{ciNum}")
+	@DeleteMapping("/review/comment/{ciNum}")
 	public int deleteComment(@PathVariable Integer ciNum) {
 		return reviewService.deleteComment(ciNum);
 	}

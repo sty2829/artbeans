@@ -25,6 +25,8 @@ public interface ReviewService {
 	
 	int saveComment(UserSession userSession, CommentInfo commentInfo);
 	
+	int updateComment(CommentInfo commentInfo);
+	
 	Page<CommentDTO> getCommentInfos(Integer rviNum, Pageable pageable);
 
 	int deleteComment(Integer ciNum);
