@@ -122,7 +122,11 @@
 	<script src="/resources/admin/board/js/main.js"></script>
 
 	<script>
-window.addEventListener('load', getReviews(1));
+
+window.addEventListener('load', () => {
+	getReviews(1)
+});
+
 
 var size = 5; 
 	

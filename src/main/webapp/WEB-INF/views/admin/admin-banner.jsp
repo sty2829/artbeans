@@ -140,8 +140,12 @@
 	<script>
 //window.onload= function(){
 var size = 5; 
-window.addEventListener('load', getOpenLeftSide(1));
-window.addEventListener('load', getOpenRightSide(1));
+window.addEventListener('load', () => {
+	getOpenLeftSide(1)
+});
+window.addEventListener('load', () => {
+	getOpenRightSide(1)
+});
 
 function getOpenLeftSide(page){
 	let xhr = new XMLHttpRequest();

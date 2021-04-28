@@ -374,7 +374,6 @@
 				xhr.open('POST', '/user-insert');
 				xhr.onreadystatechange = function() {
 					if (xhr.readyState == 4 && xhr.status == 200) {
-						console.log(xhr.responseText);
 						if (xhr.responseText) {
 							alert('반갑습니다!');
 							location.href="/views/user/login";

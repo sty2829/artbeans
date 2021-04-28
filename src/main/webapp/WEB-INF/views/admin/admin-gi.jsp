@@ -36,7 +36,7 @@
 <link rel="stylesheet" type="text/css"
 	href="/resources/admin/board/css/util.css">
 <link rel="stylesheet" type="text/css"
-	href="/resources/admin/board/css/admin-ei.css"><!--css 같이 쓰는중 -->
+	href="/resources/admin/board/css/admin-gi.css">
 
 <!--===============================================================================================-->
 </head>
@@ -48,7 +48,7 @@
 			<div class="wrap-table100">
 
 				<div class="table-name">
-					갤러리 관리자 페이지
+					갤러리 관리자 페이지 
 					<div class="table100 ver2 m-b-110">
 						<div class="table100-head">
 							<table>
@@ -61,7 +61,9 @@
 										<th class="cell100 column3">전화번호</th>
 										<th class="cell100 column4">갤러리 휴무</th>
 										<th class="cell100 column5">홈페이지</th>
-										<th class="cell100 column6">상태값</th>
+										<th class="cell100 column6"><img alt="image" 
+											src="/resources/admin/img/admin-gi-permission-button.png"
+											style="cursor:pointer;" onclick="permissionOn()"></th>
 									</tr>
 								</thead>
 							</table>
@@ -74,14 +76,24 @@
 								</tbody>
 							</table>
 						</div>
+						
 						<div class="row2"><!-- 페이징 처리 -->
 							<div class="col-lg-6">
 								<nav aria-label="Page navigation example" class="col-lg-6-under">
 									<ul class="pagination justify-content-center" id="pastPageList">
 									</ul>
 								</nav>
+								<nav class="selectAllStatus">
+							총괄 선택 : &nbsp<select onchange="selectAllStatus(this.value)" id="selectBoxAllStatus">
+										<option>선택해주세요.</option>
+										<option value="CANCEL">CANCEL 선택</option>
+										<option value="PENDING">PENDING 선택</option>
+										<option value="CONFIRM">CONFIRM 선택</option>
+									</select>
+								</nav>
 							</div>
 						</div><!-- 페이징처리 -->
+						
 					</div>
 
 				</div>
@@ -112,7 +124,18 @@
 	<script src="/resources/admin/board/js/main.js"></script>
 
 	<script>
-window.addEventListener('load', getBeforeConfirm(1));
+window.addEventListener('load', () => {
+	getBeforeConfirm(1);
+});
+
+
+function selectAllStatus(value){
+	let tdSelectBoxList=document.querySelectorAll('.tdSelectBox');
+	console.log(tdSelectBoxList);
+	for(let i=0; i<tdSelectBoxList.length; i++){
+		tdSelectBoxList[i].value=value;
+	}
+}
 
 var size = 5; 
 
@@ -129,15 +152,38 @@ function getBeforeConfirm(page){
 			let html='';
 			
 			for (let gallery of res.content) {
+				let giNameChanged=gallery.giName;
+				let giHomepageChanged =gallery.giHomepage;
+				if(giNameChanged.length>8){
+					giNameChanged=giNameChanged.substring(0,8)+'....';
+				}
+				if(giHomepageChanged.length>15){
+					giHomepageChanged=giHomepageChanged.substring(0,15)+'....';
+				}
 				
-				
-				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-ei-update?eiNum='+gallery.giNum+'\'">';
+				html+='<tr class="row100 body">';
 				html+='<td class="cell100 column1">'+gallery.giNum+'</td>';
-				html+='<td class="cell100 column2">'+gallery.giName+'</td>';
+				html+='<td class="cell100 column2">'+giNameChanged+'</td>';
 				html+='<td class="cell100 column3">'+gallery.giRphoneNumber+'</td>';
 				html+='<td class="cell100 column4">'+gallery.giHoliday+'</td>';
-				html+='<td class="cell100 column5">'+gallery.giHomepage+'</td>';
-				html+='<td class="cell100 column6">'+gallery.giStatus+'</td>';
+				html+='<td class="cell100 column5">'+giHomepageChanged+'</td>';
+				html+='<td class="cell100 column6"><select class="tdSelectBox">';
+				let selected =' selected';
+				let optionValue1='';
+				let optionValue2='';
+				let optionValue3='';
+				if(gallery.giStatus==0){
+					optionValue1=selected
+				}else if(gallery.giStatus==1){
+					optionValue2=selected
+				}else if(gallery.giStatus==2){
+					optionValue3=selected
+				}
+				html+='<option value="CANCEL" '+optionValue1+'>CANCEL</option>';
+				html+='<option value="PENDING" '+optionValue2+'>PENDING</option>';
+				html+='<option value="CONFIRM" '+optionValue3+'>CONFIRM</option>';
+				html+='</select></td>';
+				//html+='<td class="cell100 column6">'+gallery.giStatus+'</td>';
 				html+="</tr>";
 				}
 			
@@ -175,6 +221,16 @@ function getBeforeConfirm(page){
 }
 
 
+function permissionOn(){
+	let xhr = new XMLHttpRequest();
+	xhr.open('DELETE', '/gallerylist?size=9&sort=giNum,asc&page='+(page-1));
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			let res = JSON.parse(xhr.responseText);
+			console.log(res);
+		}		
+	}		
+}
 
 
 </script>

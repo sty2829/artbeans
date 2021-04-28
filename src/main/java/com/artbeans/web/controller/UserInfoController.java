@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,8 @@ public class UserInfoController {
 	@Autowired
 	private static final String FROM_ADDRESS = "psh951009@gmail.com";
 
-
+	private static  UserInfo userInfo;
+	
 	@PostMapping("/user")
 	public int insert(@RequestBody UserInfo userInfo) {
 		log.info("UserInfo => {}", userInfo);
@@ -139,4 +141,13 @@ public class UserInfoController {
 			log.info("code=>{}", userService.findCode(code));
 			return userService.findCode(code);
 		}
+		
+		@PostMapping("/changePwd")
+		public UserInfo change(@RequestBody UserInfo ui) {
+			log.info("ui=>{}",ui);
+			UserInfo user1 = userService.getUser(ui.getUiNum());
+			log.info("user1=>{}",user1);
+			return userService.updateUser(user1);
+		}
+	
 	}
