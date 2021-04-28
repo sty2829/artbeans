@@ -142,8 +142,14 @@ function getParameterByName(name) {
 var getValue = getParameterByName("rviNum");
 getValue=Number(getValue);
 
-getReviewInfo();
-getComment();
+window.addEventListener('load', () => {
+	getReviewInfo(1);
+});
+
+window.addEventListener('load', () => {
+	getComment(1);
+});
+
 
 function getReviewInfo(){
 	let xhr = new XMLHttpRequest();
@@ -179,9 +185,7 @@ function getComment(){
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let res = JSON.parse(xhr.responseText);
-			console.log(res.content.length);
 			let html='';
-			if(res.content.length>1){
 				for (var comment of res.content) {
 					html+='<tr class="row100 body" onclick="">';
 					html+='<td class="cell100 column1">'+comment.uiEmail+'</td>';
@@ -189,14 +193,6 @@ function getComment(){
 					html+='<td class="cell100 column3"><div class="deleteComment" onclick="deleteComment('+comment.ciNum+')">삭제</div></td>';
 					html+="</tr>";
 				}
-			}else if(res.content.length==1){
-				html+='<tr class="row100 body" onclick="">';
-				html+='<td class="cell100 column1">'+res.content.uiEmail+'</td>';
-				html+='<td class="cell100 column2">'+res.content.ciContent+'</td>';
-				html+='<td class="cell100 column3"><div class="deleteComment" onclick="deleteComment('+res.content.ciNum+')">삭제</div></td>';
-				html+="</tr>";
-			}
-			
 			document.querySelector('#tBody').innerHTML = html;
 			}
 		}
@@ -205,7 +201,7 @@ function getComment(){
 
 function deleteComment(obj){
 	let xhr = new XMLHttpRequest();
-	xhr.open('GET', '/review/delete/'+obj); //ReviewController /review/delete/{ciNum}
+	xhr.open('DELETE', '/review/comment/'+obj); //ReviewController /review/delete/{ciNum}
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let res = JSON.parse(xhr.responseText);

@@ -131,7 +131,10 @@
 	<script src="/resources/admin/board/js/main.js"></script>
 
 	<script>
-window.addEventListener('load', getBeforeConfirm(1));
+
+window.addEventListener('load', () => {
+	getBeforeConfirm(1);
+});
 
 // 검색창 변환시
 var eiSelectBox=document.querySelector('#eiSelectBox');
