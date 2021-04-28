@@ -40,6 +40,7 @@ public class WebConfig implements WebMvcConfigurer {
 		.excludePathPatterns("/views/user/forgetId")
 		.excludePathPatterns("/views/user/forgetPwd")
 		.excludePathPatterns("/views/user/findPwd")
+		.excludePathPatterns("/views/user/changePwd")
 		.excludePathPatterns("/views/admin/**")
 		.excludePathPatterns("/views/community/**")
 		.excludePathPatterns("/views/exhibition/*")

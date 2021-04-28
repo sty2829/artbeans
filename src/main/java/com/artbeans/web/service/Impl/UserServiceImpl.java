@@ -97,8 +97,12 @@ public class UserServiceImpl implements UserService {
 		log.info("opUi=>{}",opUi);
 		return opUi;
 	}
-	
 
 
+	@Override
+	public UserInfo cPwd(String uiPwd) {
+		UserInfo opUi = uRepo.findByUiPwd(uiPwd);
+		return opUi;
+	}
 
 }

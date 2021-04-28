@@ -102,6 +102,7 @@ function updateReview(){
 	formData.append('rviTitle', rviTitle.value);
 	formData.append('rviContent', editor.getData());
 	formData.append('userInfo.uiNum', ${userInfo.uiNum});
+	formData.append('ticketInfo.tiNum', ${param.tiNum});
 	formData.append('fileInfo.fiNum', fiNum);
 	
 	

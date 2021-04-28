@@ -131,8 +131,8 @@
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
             <h1 data-col="rviTitle"></h1>
-            <span class="meta" style="display: inline;"><span data-col="uiEmail"></span></span>
-            <span class="meta" data-col="moddat"></span>
+            <span class="meta" style="display: inline;">posted by &nbsp;<span data-col="uiEmail"></span></span>
+            <span class="meta" data-col="credat"></span>
           </div>
         </div>
       </div>
@@ -248,7 +248,7 @@ function getReview(){
 const size = 5;
 function getComments(page){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/review/comment/' + ${param.rviNum} + '/?size=' + size + '&page='+ (page-1));
+	xhr.open('GET', '/review/comment/' + ${param.rviNum} + '/?sort=ciNum,desc&size=' + size + '&page='+ (page-1));
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);

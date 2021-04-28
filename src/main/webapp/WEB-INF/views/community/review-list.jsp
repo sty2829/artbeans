@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 <style>
 .reviewListMain{
 	margin-top: 150px;
@@ -43,24 +44,35 @@ hr{
 		        </div>
           	</div>
    		</div>
+   		<div class="row d-flex justify-content-center mb-3">
+   			<div class="col-lg-8">
+   				<select data-style="btn-primary" data-width="110px" onchange="changeReview(this)">
+			      <option value="desc">최신순</option>
+			      <option value="asc">오래된순</option>
+				 </select>
+   			</div>
+   		</div>
 		<div class="row d-flex justify-content-center" id="reviewList">
 		</div>
 	</div>	
 <script>
+
 var count = 0;
+var sort = 'desc';
 window.onscroll = function(e) {
     if((window.innerHeight + window.scrollY) >= (document.body.offsetHeight+120)) {
         count++;
-        getReviews();
+        getReviews(sort);
     }
 };
-function getReviews(){
+function getReviews(sort){
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/reviews?size=6&page=' + count);
+	xhr.open('GET', '/reviews?sort=credat,' + sort + '&size=6&page=' + count);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
+			console.log(res);
 			for(var review of res.content) {
 				html += '<div class="col-lg-8" style="cursor:pointer;" onclick="location.href=\'/views/community/review-view?rviNum=' + review.rviNum + '\'">';
 				html += '<div class="row">';
@@ -71,7 +83,7 @@ function getReviews(){
 				html += '<h3 style="margin-top: 10px">' + review.rviTitle +'</h3>';
 				html += '<p class="subText" style="margin-top: 20px">' + review.rviContent.replace(/[<][^>]*[>]/gi, "") + '</p>';
 				html += '<div style="margin-top: 70px">';
-				html += '<span style="font-weight: 600;">' + review.moddat +'</span>';
+				html += '<span style="font-weight: 600;">' + review.credat +'</span>';
 				html += '<span class="float-right" style="font-weight: 600;">by ' + review.uiEmail + '</span>';
 				html += '</div>';
 				html += '</div>';
@@ -85,8 +97,22 @@ function getReviews(){
 	}
 	xhr.send();
 }
-window.addEventListener('load', getReviews);
+
+function changeReview(obj){
+	count = 0;
+	document.querySelector('#reviewList').innerHTML = '';
+	sort = obj.value;
+	getReviews(sort);
+};
+
+window.addEventListener('load', () => {
+	getReviews(sort);
+});
+window.addEventListener('load', () => {
+	$('select').selectpicker();
+});
 </script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 </body>
 </html>

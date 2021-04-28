@@ -34,7 +34,7 @@
 		
 		<div class="card o-hidden border-0" >
 			<div class="card-body">
-				<h3 class="card-title" style="text-align:center; font-weight:bold;">로그인</h3>
+				<h4 class="card-title" style="text-align:center; font-weight:bold;">로그인</h4>
 				<hr>
 				<br>
 				<div class="card-content" >
