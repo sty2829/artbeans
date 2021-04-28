@@ -62,7 +62,7 @@ p {
 
 	<div>
 		<div class="topImage">
-			<img src="/resources/admin/img/admin-main.jpg" alt="Image"
+			<img src="/resources/admin/img/admin-main.png" alt="Image"
 				style="display: block; margin: 0px auto;">
 		</div>
 		<div style="height: 50px;"></div>
@@ -70,22 +70,22 @@ p {
 		<div class="ng">
 			<div class="img_c" onclick="location.href='/views/admin/admin-ei'" >
 				<img
-					src="/resources/admin/img/admin-page-icon1.jpg"
+					src="/resources/admin/img/admin-page-icon1.png"
 					style="width: 100%;">
 			</div>
 			<div class="img_c" onclick="location.href='/views/admin/admin-banner'" >
 				<img
-					src="/resources/admin/img/admin-page-icon2.jpg"
+					src="/resources/admin/img/admin-page-icon2.png"
 					style="width: 100%;">
 			</div>
 			<div class="img_c" onclick="location.href='/views/admin/admin-rvi'">
 				<img
-					src="/resources/admin/img/admin-page-icon3.jpg"
+					src="/resources/admin/img/admin-page-icon3.png"
 					style="width: 100%;">
 			</div>
 			<div class="img_c" onclick="location.href='/views/admin/admin-gi'">
 				<img
-					src="/resources/admin/img/admin-page-icon4.jpg"
+					src="/resources/admin/img/admin-page-icon4.png"
 					style="width: 100%;">
 			</div>
 		</div>
