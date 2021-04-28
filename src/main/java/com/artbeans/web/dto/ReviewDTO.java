@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public interface ReviewDTO {
 	
 	Integer getRviNum();
+	
+	@JsonIgnore
+	Integer getTicketInfoTiNum();
 
 	String getRviTitle();
 	
@@ -15,9 +18,12 @@ public interface ReviewDTO {
 	String getFileInfoFiPath();
 	
 	@JsonIgnore
-	String getFileInfoFiNum();
+	Integer getFileInfoFiNum();
 	
 	String getRviContent();
+	
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
+	Date getCredat();
 	
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
 	Date getModdat();
@@ -34,8 +40,12 @@ public interface ReviewDTO {
 		return getFileInfoFiPath();
 	}
 	
-	default String getFiNum() {
+	default Integer getFiNum() {
 		return getFileInfoFiNum();
+	}
+	
+	default Integer getTiNum() {
+		return getTicketInfoTiNum();
 	}
 	
 }

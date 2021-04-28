@@ -63,7 +63,7 @@ hr{
 const size = 3;
 function getUserReviews(page){
 	var xhr = new XMLHttpRequest();
-	var url = '/reviews/user/?size=' + size + '&page='+ (page-1);
+	var url = '/reviews/user/?sort=rviNum,desc&size=' + size + '&page='+ (page-1);
 	xhr.open('GET', url);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4){
@@ -90,9 +90,9 @@ function getUserReviews(page){
 					html += '<h3 style="margin-top: 10px">' + review.rviTitle + '</h3>';
 					html += '<p class="subText" style="margin-top: 20px">' + review.rviContent.replace(/[<][^>]*[>]/gi, "") + '</p>';
 					html += '<div style="margin-top: 70px">';
-					html += '<span style="font-weight: 600;">' + review.moddat +'</span>';
-					html += '<span class="float-right" style="font-weight: 600; color:red; cursor: pointer" onclick="reviewRemove(' + review.rviNum + ', event)">삭제</span>';
-					html += '<span class="float-right mr-3" style="font-weight: 600; color:blue; cursor: pointer" onclick="goReviewUpdate(' + review.rviNum + ', event)">수정</span>';
+					html += '<span style="font-weight: 600;">수정시간 &nbsp;</span><span>' + review.moddat +'</span>';
+					html += '<span class="float-right" style="font-weight: 600; color:red; cursor: pointer" onclick="reviewRemove(' + review.rviNum + ',event)">삭제</span>';
+					html += '<span class="float-right mr-3" style="font-weight: 600; color:blue; cursor: pointer" onclick="goReviewUpdate(' + review.rviNum + ',' + review.tiNum + ', event)">수정</span>';
 					html += '</div>';
 					html += '</div>';
 					html += '</div>';
@@ -153,9 +153,9 @@ function getUserReviews(page){
 	}
 	xhr.send();
 }
-function goReviewUpdate(rviNum, event){
+function goReviewUpdate(rviNum, tiNum, event){
 	event.stopPropagation();
-	location.href = '/views/user/review/review-update/?rviNum=' + rviNum;
+	location.href = '/views/user/review/review-update/?rviNum=' + rviNum + '&tiNum=' + tiNum;
 }
 
 function reviewRemove(rviNum, event){
@@ -169,7 +169,7 @@ function reviewRemove(rviNum, event){
 				var res = JSON.parse(xhr.responseText);
 				if(res == 1){
 					alert('리뷰가 정상 삭제되었습니다.');
-					window.location.reload();
+					getUserReviews(1);
 					return;
 				}
 				alert('리뷰가 삭제에 실패하였습니다.');		

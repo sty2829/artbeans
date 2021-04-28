@@ -8,9 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <style>
+
 .myReservation{
 	margin-top: 200px;
 	height: 700px;
@@ -19,13 +20,13 @@
 	font-size: small;
 	margin-bottom: 5px;
 }
+.table{
+	table-layout: fixed;	
+}
 .eiName{
-	display:block;
     overflow: hidden; 
 	text-overflow: ellipsis;
     white-space: nowrap; 
-	width: 239.5px;
-
 }
 </style>
 </head>
@@ -33,19 +34,19 @@
 <body>
 	<div class="container myReservation">
       	<div class="row">
-      		<div class="col-lg-6" style="text-align: center;">
+      		<div class="col-lg-5" style="text-align: center;">
       		 	<div class="section-title">
 		          <p>진행중 예약</p>
 		        </div>
           	</div>
-          	<div class="col-lg-6" style="text-align: center;">
+          	<div class="col-lg-7" style="text-align: center;">
           		 <div class="section-title">
 		          <p>지난 예약</p>
 		        </div>
           	</div>
    		</div>
 		<div class="row">
-			<div class="col-lg-6" id="leftDiv">
+			<div class="col-lg-5" id="leftDiv">
 				<table class="table" style="text-align: center">
 					<thead>
 						<tr>
@@ -59,13 +60,14 @@
 					</tbody>
 				</table>
           	</div>
-			<div class="col-lg-6" id="rightDiv">
+			<div class="col-lg-7" id="rightDiv">
 				<table class="table" style="text-align: center">
 					<thead>
 						<tr>
 							<th>예약번호</th>
 							<th>전시회명</th>
 							<th>예약일</th>
+							<th>리뷰작성</th>
 							<th>상세보기</th>
 						</tr>
 					</thead>
@@ -92,8 +94,10 @@
 	</div>
 <script>
 const size = 5;
-window.addEventListener('load', getProgressTickets());
-window.addEventListener('load', getPastTickets(1));
+window.addEventListener('load', getProgressTickets);
+window.addEventListener('load', () => {
+	getPastTickets(1);
+});
 function getProgressTickets(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET', '/ticket/progress');
@@ -154,7 +158,7 @@ function getProgressTickets(){
 }
 function getPastTickets(page){
 	var xhr = new XMLHttpRequest();
-	var url = '/ticket/past/?size=' + size + '&page='+ (page-1);
+	var url = '/ticket/past/?sort=tiNum,desc&size=' + size + '&page='+ (page-1);
 	xhr.open('GET', url);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
@@ -170,11 +174,12 @@ function getPastTickets(page){
 			}
 			var modal= '';
 			for(var ticket of res.content){
-					//지난 테이블 
+					var rviNum = ticket.rviNum != null ? '<i class="bi bi-check fa-lg" style="font-size: 1.3rem;"></i>' : '<i class="bi bi-x fa-lg" style="font-size: 1.3rem; font-weight: bold;"></i>'
 					table += '<tr>';
 					table += '<td>' + ticket.tiNum + '</td>';
 					table += '<td class="eiName">' + ticket.eiName + '</td>';
 					table += '<td>' + ticket.tiDate + '</td>';
+					table += '<td>' + rviNum + '</td>';
 					table += '<td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#leftReserv' + ticket.tiNum +'">상세보기</button></td>';
 					table += '</tr>';
 					//지난 상세보기 모달

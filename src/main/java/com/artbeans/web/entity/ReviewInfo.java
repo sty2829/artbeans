@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -59,6 +60,7 @@ public class ReviewInfo {
 	
 	@OneToOne
 	@JoinColumn(name = "ti_num")
+	@JsonBackReference
 	private TicketInfo ticketInfo;
 	
 	@OneToMany(mappedBy = "reviewInfo", cascade = CascadeType.ALL)
