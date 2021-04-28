@@ -19,5 +19,7 @@ public interface FavoriteInfoRepository extends JpaRepository<FavoriteInfo, Inte
 	@Query(value = "DELETE FROM favorite_info WHERE favorite_info.fvi_num IN :fviNumList", nativeQuery = true)
 	List<Integer> deleteAllByIdInQuery(List<Integer> fviNumList);
 	
+	public Integer findAllByExhibitionInfoEiNum(Integer eiNum);
+	
 	
 }

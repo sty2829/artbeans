@@ -10,4 +10,6 @@ public interface FavoriteService {
 	public List<FavoriteInfo> getFavoriteExhibition(UserSession userSession);
 
 	public Integer deleteFavorite(List<Integer> fviNumList);
+	
+	public Integer getFviEiNum(Integer eiNum);
 }

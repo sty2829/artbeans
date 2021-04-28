@@ -37,17 +37,19 @@
 .favoriteList {
 	
 }
-.selectDelete_btn{
-float: right;
+
+.selectDelete_btn {
+	float: right;
 }
-.selectDelete_btn{
-display: inline-block;
-    margin-bottom: 15px;
-    padding: 5px 6px;
-    border: 1px solid #ccc;
-    text-align: center;
-    font-size: 12px;
-    color: #111;
+
+.selectDelete_btn {
+	display: inline-block;
+	margin-bottom: 15px;
+	padding: 5px 6px;
+	border: 1px solid #ccc;
+	text-align: center;
+	font-size: 12px;
+	color: #111;
 }
 </style>
 
@@ -56,9 +58,8 @@ display: inline-block;
 <body>
 	<div class="container myreservation">
 		<p class="uiName">${userInfo.uiName}님의찜목록</p>
-		<input class="allCheck"
-			type="checkbox" name="allCheck" id="allCheck" />
-			<label for="allCheck">모두 선택</label> 
+		<input class="allCheck" type="checkbox" name="allCheck" id="allCheck" />
+		<label for="allCheck">모두 선택</label>
 
 		<button id="delBtn" type="button" class="selectDelete_btn">선택
 			삭제</button>

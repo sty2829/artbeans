@@ -36,6 +36,15 @@ public class FavoriteImpl implements FavoriteService {
 		return null;
 	}
 
+	@Override
+	public Integer getFviEiNum(Integer eiNum) {
+		
+		if(fRepo.findAllByExhibitionInfoEiNum(eiNum)!=null) {
+			return 1;
+		}
+		return 0;
+	}
+
 
 
 }

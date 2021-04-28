@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.artbeans.web.dto.UserSession;
+import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.FavoriteInfo;
 import com.artbeans.web.service.FavoriteService;
 
@@ -29,6 +30,13 @@ public class FavoriteController {
 
 		return fService.getFavoriteExhibition(userssesion);
 
+	}
+	@GetMapping("/favorite-check")
+	public int getFviEinum(ExhibitionInfo eiNum) {
+		log.info("eiNumF=>{}",eiNum);
+		
+		return 0;
+		
 	}
 
 	@DeleteMapping("/favorite-delete/{fviNumList}")
