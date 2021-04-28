@@ -68,7 +68,7 @@
 		
 		
 		var url = '/favorite-exhibitions?uiNum=${userInfo.uiNum}';
-		var 
+		
 		console.log(url);
 		 addEventListener('load',function favoriteList(){
 			var xhr = new XMLHttpRequest();
@@ -76,11 +76,17 @@
 			xhr.onreadystatechange = function(){
 				if(xhr.readyState==4 && xhr.status==200){
 					var res = JSON.parse(xhr.responseText);
-					
-					for(favoriteExhibition of res){
-						html+='';
-						
-							}
+					var getEiNums =[];
+					var html ='';
+					for(favoriteExhibition of res){						
+						getEiNums.push(favoriteExhibition.exhibitionInfo.eiNum);						
+							}if(getEiNums.includes(eiNum)){
+								html += '<img src="/resources/user/img/sidebtn/icons8-heart-40.png"/>';
+								
+							}else{
+								html += '<img src="/resources/user/img/sidebtn/heart.png"/>';
+								
+							}document.querySelector('#heart').innerHTML = html;
 							
 						
 						}
@@ -93,8 +99,8 @@
 			xhr.send();
 		});
 			//console.log(fviNums);
-			//document.querySelector('#heart').innerHTML = html;
-			//html += '<img src="/resources/user/img/sidebtn/icons8-heart-40.png"/>';
+			//
+			//
 	</script>
 
 

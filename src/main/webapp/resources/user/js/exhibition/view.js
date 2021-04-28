@@ -70,7 +70,9 @@ window.onload = function (){
             }
             
             html +='<hr>';
-            html +='<div id="heart"></div>';
+            html +='<div id="heart">';
+            html +='<img src="/resources/user/img/sidebtn/heart.png"/>';            
+            html +='</div>';
 			//예약추가
 			if(res.reservationInfo != null){
 				html += '<button type="button" class="btn btn-primary float-right" onclick="goReservation()">예약하기</button>';
