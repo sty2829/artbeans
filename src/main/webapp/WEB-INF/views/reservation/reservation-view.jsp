@@ -98,8 +98,8 @@ h5{
 				</div>
 				<div class="row">
 					<div class="col-lg-6">
-						<h5>러닝타임</h5>
-						<span data-col="runningTime"></span>
+						<h5>휴무일</h5>
+						<span data-col="holiday"></span>
 					</div>
 					<div class="col-lg-3">
 						<h5>관람료</h5>
@@ -141,7 +141,6 @@ h5{
 <script>
 window.onload = function(){
 	var xhr = new XMLHttpRequest();
-	//추후에 전시회번호 바꿔야함
 	xhr.open('GET', '/reservation/' + ${param.eiNum});
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){

@@ -257,13 +257,7 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	//해당유저의 전시회리스트를 불러온다.
 	@Override
 	public List<ExhibitionInfo> getExhibitionFindByUiNum(UserSession userSession) {
-		if(userSession != null && userSession.getUiNum() != null) {
-			List<ExhibitionInfo> eiList = exhiRepo.findAllByUserInfoUiNumAndReservationInfoIsNull(userSession.getUiNum());
-			if(!eiList.isEmpty()) {
-				return eiList;
-			}
-		}
-		return null;
+		return exhiRepo.findAllByUserInfoUiNumAndReservationInfoIsNull(userSession.getUiNum());
 	}
 
 	

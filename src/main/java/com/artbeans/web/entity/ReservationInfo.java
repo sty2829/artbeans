@@ -31,23 +31,22 @@ import lombok.ToString;
 				+ "fi.fi_path imgPath, ei.ei_name exhibitionName, \r\n"
 				+ "CONCAT(DATE_FORMAT(ri.ri_start_date, '%Y-%m-%d'), ' ~ ' , DATE_FORMAT(ri.ri_end_date, '%Y-%m-%d')) period,\r\n"
 				+ "ri.ri_audience_rating audienceRating,\r\n"
-				+ "ri.ri_running_time runningTime,\r\n"
 				+ "DATE_FORMAT(ri.ri_start_date, '%Y-%m-%d') minDate,\r\n"
 				+ "DATE_FORMAT(ri.ri_end_date, '%Y-%m-%d') maxDate,\r\n"
-				+ "ei.ei_charge charge,\r\n"
-				+ "ri.ri_max_ticket maxTicket,\r\n"
-				+ "ri.ri_num riNum,\r\n"
-				+ "gi.gi_address_x x,\r\n"
-				+ "gi.gi_address_y y,\r\n"
-				+ "gi.gi_name giName,"
+				+ "ei.ei_charge charge, ri.ri_max_ticket maxTicket,\r\n"
+				+ "ri.ri_num riNum, gi.gi_name giName, gi.gi_address_x X, gi.gi_address_y Y, \r\n"
+				+ "case ri.ri_holiday\r\n"
+				+ "when 1 then '일요일' when 2 then '월요일' when 3 then '화요일'\r\n"
+				+ "when 4 then '수요일' when 5 then '목요일' when 6 then '금요일' \r\n"
+				+ "when 7 then '토요일' END AS holiday,\r\n"
 				+ "concat(IFNULL(holiday(ri.ri_start_date, ri.ri_end_date, ri.ri_holiday), ''),\r\n"
 				+ "IFNULL((SELECT IFNULL(CONCAT(',', GROUP_CONCAT(distinct ti.ti_date)), null) FROM exhibition_info ei \r\n"
 				+ "LEFT JOIN reservation_info ri ON ei.ei_num = ri.ei_num \r\n"
-				+ "LEFT JOIN ticket_info ti ON ri.ri_num = ti.ri_num WHERE ei.ei_num = :eiNum AND ti.ti_date \r\n"
+				+ "LEFT JOIN ticket_info ti ON ri.ri_num = ti.ri_num WHERE ei.ei_num = 33 AND ti.ti_date \r\n"
 				+ "IN(SELECT ti_date FROM (\r\n"
 				+ "SELECT ti.ti_date, ri.ri_max_stock * (ri.ri_end_time - ri.ri_start_time) max FROM exhibition_info ei \r\n"
 				+ "LEFT JOIN reservation_info ri ON ei.ei_num = ri.ei_num \r\n"
-				+ "LEFT JOIN ticket_info ti ON ri.ri_num = ti.ri_num WHERE ei.ei_num = :eiNum GROUP BY ti_date HAVING SUM(ti_number) >= max) a)), '')) disable\r\n"
+				+ "LEFT JOIN ticket_info ti ON ri.ri_num = ti.ri_num WHERE ei.ei_num = 33 GROUP BY ti_date HAVING SUM(ti_number) >= max) a)), '')) disable\r\n"
 				+ "FROM exhibition_info ei \r\n"
 				+ "LEFT JOIN gallery_info gi ON ei.gi_num = gi.gi_num\r\n"
 				+ "LEFT JOIN file_info fi ON ei.fi_num = fi.fi_num\r\n"
@@ -64,7 +63,7 @@ import lombok.ToString;
 						@ColumnResult(name = "exhibitionName", type = String.class),
 						@ColumnResult(name = "period", type = String.class),
 						@ColumnResult(name = "audienceRating", type = String.class),
-						@ColumnResult(name = "runningTime", type = String.class),
+						@ColumnResult(name = "holiday", type = String.class),
 						@ColumnResult(name = "minDate", type = String.class),
 						@ColumnResult(name = "maxDate", type = String.class),
 						@ColumnResult(name = "charge", type = Integer.class),
@@ -109,9 +108,6 @@ public class ReservationInfo {
 	
 	@Column(name="ri_audience_rating")
 	private String riAudienceRating;
-	
-	@Column(name="ri_running_time")
-	private String riRunningTime;
 	
 	@Column(name="ri_holiday")
 	private int riHoliday;

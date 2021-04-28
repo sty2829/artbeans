@@ -7,26 +7,21 @@
 <title>전시회 등록 페이지</title>
 <link href="/resources/node_modules/flatpickr/dist/flatpickr.min.css" rel="stylesheet"/>
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
-<style>
-.reservationInsertMain{
-	margin-top: 100px;
-}
-</style>
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
     <section id="contact" class="contact">
-      <div class="container reservationInsertMain">
-    	<div class="row">
+      <div class="container reservationSaveMain" style="margin-top: 100px">
+    	<div class="row d-flex justify-content-center">
    			<div class="col-lg-10" style="text-align: center;">
 				<div class="section-title">
 		          <p>전시회 예약등록</p>
 		        </div>
    			</div>
    		</div>
-        <div class="row" style="margin-left: 100px">
+        <div class="row d-flex justify-content-center">
           <div class="col-lg-4">
-            <div class="info mt-3">
+            <div class="info">
               <div class="address">
                 <h4>예약 전시회</h4>               
               </div>
@@ -35,9 +30,6 @@
               </div>
               <div class="phone">
                 <h4>관람등급</h4>
-              </div>
-              <div class="phone">
-                <h4>러닝타임</h4>
               </div>
               <div class="phone">
                 <h4>1인당 최대 예매표</h4>               
@@ -61,29 +53,30 @@
           </div>
           <!-- 입력란 -->
           <div class="col-lg-4 mt-5 mt-lg-0" id="inputDiv">
-              <div class="form-row mt-3">
-                <div class="col-md-6 form-group">
-                  <select class="custom-select is-invalid" id="eiNum" name=selectBox style="width: 311.66px" onchange="check(this)">
-                  </select>
-                </div>
-              </div>
-              <div class="form-row mt-3 mb-2">
-                <div class="col-md-6 form-group">
-                  <select class="custom-select is-invalid" id="riHoliday" name="selectBox" style="width: 311.66px" onchange="check(this)" >
-                  	<option selected disabled>휴무일을 선택해주세요</option>
-                  	<option value="1">일요일</option>
-                  	<option value="2">월요일</option>
-                  	<option value="3">화요일</option>
-                  	<option value="4">수요일</option>
-                  	<option value="5">목요일</option>
-                  	<option value="6">금요일</option>
-                  	<option value="7">토요일</option>
-                  </select>
-                </div>
-              </div>
-              <input type="text" class="form-control is-invalid" id="riAudienceRating" onchange="check(this)">
+              <select class="custom-select is-invalid" id="eiNum" name=selectBox onchange="check(this)">
+              </select>
               <label class="mt-2"></label>
-              <input type="text" class="form-control is-invalid" id="riRunningTime" onchange="check(this)">
+              <select class="custom-select is-invalid" id="riHoliday" name="selectBox" onchange="check(this)" >
+              	<option selected disabled>휴무일을 선택해주세요</option>
+              	<option value="1">일요일</option>
+              	<option value="2">월요일</option>
+              	<option value="3">화요일</option>
+              	<option value="4">수요일</option>
+              	<option value="5">목요일</option>
+              	<option value="6">금요일</option>
+              	<option value="7">토요일</option>
+              </select>
+              <label class="mt-2"></label>
+              <select class="custom-select is-invalid" id="riAudienceRating" name="selectBox" onchange="check(this)" >
+              	<option selected disabled>관람등급을 선택해주세요</option>
+              	<option>전체관람가</option>
+              	<option>3세 이상 관람가</option>
+              	<option>5세 이상 관람가</option>
+              	<option>7세 이상 관람가</option>
+              	<option>12세 이상 관람가</option>
+              	<option>15세 이상 관람가</option>
+              	<option>청소년 관람 불가</option>
+              </select>
               <label class="mt-2"></label>
               <input type="number" class="form-control is-invalid" id="riMaxTicket" onchange="check(this)" min="1" required>
               <label class="mt-3"></label>
@@ -156,12 +149,13 @@ window.onload = function(){
 	xhr.open('GET', '/exhibitions-user');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
-			if(!xhr.responseText){
+			var res = JSON.parse(xhr.responseText);
+			if(res.length === 0){
 				alert('등록하신 전시회가 없습니다. 전시회 등록 부터 해주세요.');
 				location.href = '/views/exhibition/manager/insert';
 				return;
 			}
-			var res = JSON.parse(xhr.responseText);
+			
 			var html = '<option selected disabled>예약 전시회를 선택해 주세요</option>';
 			for(var exhibition of res){
 				html += '<option value="' + exhibition.eiNum + '">' + exhibition.eiName + '</option>';
@@ -172,28 +166,6 @@ window.onload = function(){
 	xhr.send();
 }
 function check(obj){
-	var validation = {
-			riAudienceRating : {
-				min : 2,
-				max : 10,
-				msg : '관람연령은 최소 2글자이상 최대 10글자 이하로 입력해주세요'
-			},
-			riRunningTime : {
-				min : 2,
-				max : 5,
-				msg : '러닝타임은 최소 2글자이상 최대 5글자 이하로 입력해주세요'
-			}
-	}
-	if(obj.type == 'text' && validation[obj.id]){
-		var value = obj.value.trim().length;
-		if(value < validation[obj.id].min || value > validation[obj.id].max){
-			obj.className = 'form-control is-invalid';
-			obj.focus();
-			alert(validation[obj.id].msg);
-			return;
-		}
-	}
-	
 	obj.className = 'form-control is-valid';
 }
 

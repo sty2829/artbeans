@@ -15,7 +15,7 @@ public class ReservationSchedule {
 	
 	private String audienceRating;
 	
-	private String runningTime;
+	private String holiday;
 	
 	private String minDate;
 	
@@ -38,13 +38,13 @@ public class ReservationSchedule {
 	private String giName;
 
 	public ReservationSchedule(String imgPath, String exhibitionName, String period, String audienceRating,
-			String runningTime, String minDate, String maxDate, Integer charge, Integer maxTicket, Integer riNum,
+			String holiday, String minDate, String maxDate, Integer charge, Integer maxTicket, Integer riNum,
 			String disable, String x, String y, String giName) {
 		this.imgPath = imgPath;
 		this.exhibitionName = exhibitionName;
 		this.period = period;
 		this.audienceRating = audienceRating;
-		this.runningTime = runningTime;
+		this.holiday = holiday;
 		this.minDate = minDate;
 		this.maxDate = maxDate;
 		this.charge = charge;
@@ -55,5 +55,6 @@ public class ReservationSchedule {
 		this.y = y;
 		this.giName = giName;
 	}
+
 	
 }
