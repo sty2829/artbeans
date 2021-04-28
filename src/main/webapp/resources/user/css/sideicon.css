@@ -23,3 +23,14 @@
 .sidenav a:hover {
   background-color: #000;
 }
+
+.sidenav1 {
+  width: 50px;
+  position: fixed;
+  z-index: 2;
+  top: 400px;
+  left: 10px;
+  overflow-x: hidden;
+  margin-top:200px;
+  padding: 8px 0;  
+}
