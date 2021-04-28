@@ -22,9 +22,5 @@
   <a style="padding-left : 15px" href="/views/community/review-list"><i class="gg-instagram"></i></a>
 </div>
 
-<div class="sidenav1">
-<button type="button" class="btn btn-primary" onclick="location.href='/views/chat/chat'">채팅</button>
-</div>
-
 </body>
 </html>

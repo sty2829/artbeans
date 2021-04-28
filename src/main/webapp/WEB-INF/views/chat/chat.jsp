@@ -100,7 +100,6 @@ input:focus{
 }  
 #chat {
     width:100%;
-    
     list-style-type: none;
     padding:18px;
     position:absolute;
@@ -134,13 +133,6 @@ input:focus{
 				</div>
 			</div>
 		</div>
-
-		<!-- 
-		<div id="startDiv">
-			<input type="text" id="userName" readonly>
-			<button onclick="startChat()">채팅시작</button>
-			<br>
-		</div> -->
 		
 		<div id="chatDiv" style="display: none" class="container">
 	    	<div class="card o-hidden border-0" style="padding: 8px; height: 850px;">
@@ -163,35 +155,6 @@ input:focus{
 					</div>			        
 		    </div>
 		</div>
-
-		<!-- 
-		<div id="chatDiv" style="display: none" class="col-sm-3 col-sm-offset-4 frame">
-			<ul id="chat"></ul>
-			<div>
-				<div class="msj-rta macro" style="margin: auto">
-					<div class="text1 text1-r" style="background: whitesmoke !important">
-
-						<div class="row">
-							<div class="col-sm-8">
-								<input id="chatmsg" class="chatmsg" size="100px"
-									placeholder="여기에 내용을 작성해주세요." />
-								<button onclick="sendMsg()">전송</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>  -->
-
-		<!--  
-<div id="chatDiv" style="display:none">
-<textarea id="chat" rows="15" cols="68"></textarea><br>
-<label id="lName"></label><input type="text" id="chatmsg" size="50px" placeholder="내용을 작성해주세요."><button onclick="sendMsg()">전송</button>
-<button onclick="endChat()">나가기</button>
-</div>
--->
-
-
 	</main>
 
 	<script>

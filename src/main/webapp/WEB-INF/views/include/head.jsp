@@ -207,6 +207,7 @@ function logout(){
 									<li><a href="/views/community/questions">자주하는 질문</a></li>
 								</ul></li>
 							<li><a href="/views/community/review-list">후기/추천</a></li>
+							<li><a href="/views/chat/chat">채팅</a></li>
 						</ul></li>
 
 					<li class="drop-down"><a href="#">전시회 등록 및 수정</a>
