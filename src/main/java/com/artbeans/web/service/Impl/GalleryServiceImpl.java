@@ -3,14 +3,15 @@ package com.artbeans.web.service.Impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.artbeans.web.api.Result;
-import com.artbeans.web.dto.DataTable;
-import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.GalleryInfo;
 import com.artbeans.web.repository.GalleryRepository;
 import com.artbeans.web.service.GalleryService;
@@ -71,4 +72,15 @@ public class GalleryServiceImpl implements GalleryService {
 	    return gRepo.findAllByGiAddressLike(giAddress+"%", pageable);
 	}
 	
+	//사용중(가온)
+	@Override
+	public void updateGalleryInfoStatus(String data) throws Exception {
+		JSONParser parser = new JSONParser();
+		Object obj = parser.parse( data );
+		JSONArray jsonArray = (JSONArray) obj;
+		for (int i = 0; i < jsonArray.size(); i++) {
+            JSONObject singleObject = (JSONObject) jsonArray.get(i);
+            gRepo.updateGalleryInfoStatus(singleObject.get("giStatus").toString(),singleObject.get("giNum").toString());
+        }
+	}
 }

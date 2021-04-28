@@ -308,7 +308,6 @@ function getOpenLoopCall(obj){
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				
 				let exhibition = JSON.parse(xhr.responseText);
-				console.log(exhibition);
 				resolve(exhibition);
 							
 			}

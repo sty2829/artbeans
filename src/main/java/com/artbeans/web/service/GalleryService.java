@@ -17,6 +17,9 @@ public interface GalleryService {
 	
 	Page<GalleryInfo> getGalleryLists(Pageable pageable);
 	Page<GalleryInfo> getGalleryAddrList(String giAddress, Pageable pageable);
+
+	//사용중 (가온)
+	void updateGalleryInfoStatus(String data) throws Exception;
 	
 
 }

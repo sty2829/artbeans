@@ -154,7 +154,6 @@ function getOpenLeftSide(page){
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let res = JSON.parse(xhr.responseText);
 			let htmlLeft='';
-			console.log(res);
 			for (let exhibition of res.content) {
 				
 				let eiName='';
@@ -219,7 +218,6 @@ function getOpenRightSide(page){
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let res = JSON.parse(xhr.responseText);
 			let htmlRight='';
-			console.log(res);
 			for (let exhibition of res.content) {
 				
 				let eiName='';

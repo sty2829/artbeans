@@ -63,7 +63,7 @@
 										<th class="cell100 column5">홈페이지</th>
 										<th class="cell100 column6"><img alt="image" 
 											src="/resources/admin/img/admin-gi-permission-button.png"
-											style="cursor:pointer;" onclick="permissionOn()"></th>
+											style="cursor:pointer;" onclick="permissionOnOff()"></th>
 									</tr>
 								</thead>
 							</table>
@@ -85,7 +85,7 @@
 								</nav>
 								<nav class="selectAllStatus">
 							총괄 선택 : &nbsp<select onchange="selectAllStatus(this.value)" id="selectBoxAllStatus">
-										<option>선택해주세요.</option>
+										<option value="BACK">선택해주세요.</option>
 										<option value="CANCEL">CANCEL 선택</option>
 										<option value="PENDING">PENDING 선택</option>
 										<option value="CONFIRM">CONFIRM 선택</option>
@@ -124,14 +124,23 @@
 	<script src="/resources/admin/board/js/main.js"></script>
 
 	<script>
+
 window.addEventListener('load', () => {
 	getBeforeConfirm(1);
+
 });
 
+/* 
+window.setTimeout(function() {
+	selectValueOriginal=document.querySelectorAll('.tdSelectBox');
+	for(let i=0; i<selectValueOriginal.length; i++){
+		console.log(selectValueOriginal[i].value);
+	}
+}, 1500); // 2초 후에 함수를 실행시킴
 
+ */
 function selectAllStatus(value){
 	let tdSelectBoxList=document.querySelectorAll('.tdSelectBox');
-	console.log(tdSelectBoxList);
 	for(let i=0; i<tdSelectBoxList.length; i++){
 		tdSelectBoxList[i].value=value;
 	}
@@ -141,14 +150,10 @@ var size = 5;
 
 function getBeforeConfirm(page){
 	let xhr = new XMLHttpRequest();
-	//'/board?size=5&page=' + (page-1);
-	//xhr.open('GET', '/exhibitions/paging?size=10&page='+(page-1)); //ExhibitionController
-	
-	xhr.open('GET', '/gallerylist?size=9&sort=giNum,asc&page='+(page-1));
+	xhr.open('GET', '/gallerylist?size=9&sort=giNum,asc&page='+(page-1)); //GalleryController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let res = JSON.parse(xhr.responseText);
-			console.log(res);
 			let html='';
 			
 			for (let gallery of res.content) {
@@ -162,6 +167,7 @@ function getBeforeConfirm(page){
 				}
 				
 				html+='<tr class="row100 body">';
+				html+='<input type="hidden" id="giNum'+gallery.giNum+'" name="giNumHidden" value="'+gallery.giNum+'">';
 				html+='<td class="cell100 column1">'+gallery.giNum+'</td>';
 				html+='<td class="cell100 column2">'+giNameChanged+'</td>';
 				html+='<td class="cell100 column3">'+gallery.giRphoneNumber+'</td>';
@@ -179,6 +185,7 @@ function getBeforeConfirm(page){
 				}else if(gallery.giStatus==2){
 					optionValue3=selected
 				}
+				
 				html+='<option value="CANCEL" '+optionValue1+'>CANCEL</option>';
 				html+='<option value="PENDING" '+optionValue2+'>PENDING</option>';
 				html+='<option value="CONFIRM" '+optionValue3+'>CONFIRM</option>';
@@ -211,7 +218,7 @@ function getBeforeConfirm(page){
 		    li += '<a class="page-link" href="#">다음</a>';
 		  	li += '</li>';
 			
-			
+		  	
 		  	document.querySelector('#tBody').innerHTML = html;
 			document.querySelector('#pastPageList').innerHTML = li;
 			
@@ -221,15 +228,41 @@ function getBeforeConfirm(page){
 }
 
 
-function permissionOn(){
-	let xhr = new XMLHttpRequest();
-	xhr.open('DELETE', '/gallerylist?size=9&sort=giNum,asc&page='+(page-1));
-	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			let res = JSON.parse(xhr.responseText);
-			console.log(res);
-		}		
-	}		
+function permissionOnOff(){
+	var paramUpdate=new Array();
+	var giNumHiddenList=document.querySelectorAll('input[name="giNumHidden"]');
+	var giStatusList=document.querySelectorAll('.tdSelectBox');
+	
+	for(let i=0; i<giNumHiddenList.length; i++){
+		let giStatusForChanging=giStatusList[i].value;
+		if(giStatusForChanging=='CANCEL'){
+			giStatusForChanging=0;
+		}else if(giStatusForChanging=='PENDING'){
+			giStatusForChanging=1;
+		}else if(giStatusForChanging=='CONFIRM'){
+			giStatusForChanging=2;
+		}
+		paramUpdate.push({
+			giNum : giNumHiddenList[i].value,
+			giStatus : giStatusForChanging
+		});
+	}
+	
+	$.ajax({
+	     method: 'POST',
+	     url: '/gallery-multiple-update',
+	     traditional: true,
+	     data: {
+	       data: JSON.stringify(paramUpdate)
+	     },
+	     dataType: 'json',
+	     success: function (res) {
+	        if (res) {
+	          alert('완료 되었습니다');
+	          location.href='/views/admin/admin-gi';
+	        }
+	     }
+	   });
 }
 
 

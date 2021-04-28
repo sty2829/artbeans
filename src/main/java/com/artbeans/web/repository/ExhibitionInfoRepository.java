@@ -68,6 +68,7 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	public Page<ExhibitionInfo> findAllByEiStatusLike(String eiStatus, Pageable pageable);
 
 	// admin-banner
+	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
 	public Page<ExhibitionInfo> findAllByEiBanner(Integer eiBanner, Pageable pageable);
 	
 	// calendar-list

@@ -137,7 +137,6 @@ function getReviews(page){
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
 			var html='';
-			console.log(res);
 			for (var review of res.content) {
 				/*
 				let reviewDate = review.moddat;
@@ -199,7 +198,6 @@ function rviSearchButton(page){
 	if(selectValue=='rviTitle'){
 		xhr.open('GET', '/review-search-bar/title?size=10&page='+(page-1)+'&rviTitle='+searchValue); //ReviewController
 	}else if(selectValue=='rviContent'){
-		console.log(1);
 		xhr.open('GET', '/review-search-bar/content?size=10&page='+(page-1)+'&rviContent='+searchValue); //ReviewController
 	}
 

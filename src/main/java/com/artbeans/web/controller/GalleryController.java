@@ -1,6 +1,7 @@
 package com.artbeans.web.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,10 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.artbeans.web.dto.DataTable;
 import com.artbeans.web.entity.GalleryInfo;
 import com.artbeans.web.service.GalleryService;
 
@@ -57,4 +58,11 @@ public class GalleryController {
 		return gService.getGalleryInfos(galleryInfo);
 	}
 	
+	//사용중(가온)
+	@PostMapping("/gallery-multiple-update")
+	public @ResponseBody int updateGalleryInfoStatus(@RequestParam String data) throws Exception{
+		gService.updateGalleryInfoStatus(data);
+		return 1;
+	}
+		
 }
