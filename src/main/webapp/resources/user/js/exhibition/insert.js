@@ -4,14 +4,12 @@
 //갤러리 옵션
 window.onload = galleryOption;
 
-
 function galleryOption(){ 
     document.querySelector('#uiName').value = uiName;    
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/Gallery-lists'); //GalleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '<option value="">갤러리 선택</option>';
 			for(var galleryInfo of res){
@@ -40,8 +38,6 @@ function showGalleryDiv(){
 }
 
 function insertGallery(){
-console.log(document.querySelector('#fiFile1').value);
-
 	var giName = document.querySelector('#giName');
 	if(giName.value.trim().length<1 || giName.value.trim().length>15){
 		alert('갤러리 이름을 15글자이하로 작성해주세요.');
@@ -78,13 +74,11 @@ console.log(document.querySelector('#fiFile1').value);
 	}
 	
 	var giHomepage = document.querySelector('#giHomepage');
-	//console.log(giHomepage);
 	if(giHomepage.value.trim().length<1){
 		giHomepage.value = '없음';
 	}
 	
 	var giHoliday = document.querySelector('#giHoliday');
-	//console.log(giHoliday);
 	if(giHoliday.value.trim().length<1){
 		giHoliday.value = '없음';
 	}
@@ -100,7 +94,6 @@ console.log(document.querySelector('#fiFile1').value);
 	xhr.open('POST','/gallery'); //GalleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
 			if(xhr.responseText>0){
 				alert('갤러리 등록 성공');
 				galleryOption();
@@ -185,7 +178,6 @@ function doInsert(){
 	xhr.open('POST','/exhibition-insert'); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText);
 			if(xhr.responseText>0){
 				alert('전시회 등록 성공');
 				window.onbeforeunload = false;

@@ -10,13 +10,3 @@ window.onscroll = function(e) {
         get();
     }
 };
-
-
-
-/*
-window.addEventListener("scroll",  function(e) {
-    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        count++;
-        get();
-    }
-});*/

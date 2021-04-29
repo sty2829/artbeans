@@ -24,5 +24,6 @@ public interface UserService {
 	UserInfo right(String uiEmail);
 	//인증번호 일치..
 	UserInfo findCode(String code);
-	UserInfo cPwd(String uiPwd);
+	//새비밀번호 변경..
+	int cPwd(UserInfo userInfo);
 }

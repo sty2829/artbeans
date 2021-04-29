@@ -100,9 +100,17 @@ public class UserServiceImpl implements UserService {
 
 
 	@Override
-	public UserInfo cPwd(String uiPwd) {
-		UserInfo opUi = uRepo.findByUiPwd(uiPwd);
-		return opUi;
+	public int cPwd(UserInfo userInfo) {
+		int cnt =0;
+		Optional<UserInfo> opUi = uRepo.findById(userInfo.getUiNum());
+		log.info("opUi=>{}",opUi);
+		if(!opUi.isEmpty()) {
+			String newPwd = userInfo.getUiPwd(); //패스워드 꺼내오기
+			userInfo = opUi.get();
+			userInfo.setUiPwd(newPwd);
+			cnt = uRepo.save(userInfo).getUiNum(); //cnt가 pk를 가져옴
+		}
+		return cnt;
 	}
 
 }

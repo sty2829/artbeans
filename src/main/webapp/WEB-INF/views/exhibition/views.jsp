@@ -28,15 +28,8 @@
 
 		<!-- ======= Portfolio Details Section ======= -->
 		<section id="portfolio-details" class="portfolio-details">
-
 			<div class="container">
-
 				<div class="row" id="exhibition"></div>
-
-
-
-
-
 			</div>
 		</section>
 
@@ -46,12 +39,9 @@
 		<section id="contact" class="contact">
 			<div class="container">
 				<div
-					style="border: 0; margin-left: 130px; width: 75%; height: 270px;"
-					id="map"></div>
+					style="border: 0; margin-left: 130px; width: 75%; height: 270px;" id="map"></div>
 			</div>
-
 		</section>
-
 	</main>
 
 	<script>
@@ -69,7 +59,6 @@
 		
 		var url = '/favorite-exhibitions?uiNum=${userInfo.uiNum}';
 		
-		console.log(url);
 		 addEventListener('load',function favoriteList(){
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET',url);
@@ -87,20 +76,11 @@
 								html += '<img src="/resources/user/img/sidebtn/heart.png"/>';
 								
 							}document.querySelector('#heart').innerHTML = html;
-							
-						
 						}
-						
-						
-					
-				
 					}
 				
 			xhr.send();
 		});
-			//console.log(fviNums);
-			//
-			//
 	</script>
 
 

@@ -25,7 +25,6 @@ function getImageList() {
 					html += '<p>' + exhibition.galleryInfo.giAddress + '</p>';
 					html += '</div></div></div>';
 			}
-
 			document.querySelector('#exhibitionList').innerHTML = html;
 			document.querySelector('#exhibitionList').style.height = '100%';
 			var portfolioIsotope = $('.portfolio-container').isotope({

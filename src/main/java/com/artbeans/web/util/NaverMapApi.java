@@ -52,7 +52,6 @@ public class NaverMapApi {
 		HttpURLConnection conn = null;
 		try {
 			String value = URLEncoder.encode(addrParam,"utf-8");
-			System.out.println(API_URI+value);
 			URL url = new URL(API_URI+value);
 			conn = (HttpURLConnection) url.openConnection();
 			return conn;
@@ -82,7 +81,6 @@ public class NaverMapApi {
 				
 				String line = null;
 				while ((line = br.readLine()) != null) {
-					System.out.println(line);
 					sb.append(line);
 				}				
 				return sb.toString();

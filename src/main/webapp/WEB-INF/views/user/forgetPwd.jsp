@@ -42,12 +42,15 @@
                     <hr>
 
 					</div>
-					<div class="card-content" style="padding: 8px">
+					<div class="card-content">
 						<input type="email" class="input-control" id="uiEmail"
-							placeholder="이메일"><button type="button" style="margin: 8px" 
+							placeholder="이메일"><button type="button" 
 						class="btn btn-danger" onclick="goVerify()" >확인</button> 
 					</div>
-						<hr>
+						<div class="card-content">
+					<a class="small" href="/views/user/register">회원가입</a> / 
+					<a class="small" href="/views/user/forgetId">아이디 찾기</a> 
+				</div>
 					</div>
 				</div>
 			</div>

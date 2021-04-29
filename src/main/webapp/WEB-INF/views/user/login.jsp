@@ -56,8 +56,6 @@
 					<a class="small" href="/views/user/forgetId">아이디 찾기</a> / 
 					<a class="small" href="/views/user/forgetPwd">비밀번호 찾기</a>
 				</div>
-				<div class="card-content">
-				</div>
 			</div>
 		</div>
 		</div>
