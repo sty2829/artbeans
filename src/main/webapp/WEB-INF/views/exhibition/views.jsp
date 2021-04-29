@@ -48,10 +48,6 @@ input[type="checkbox"] {
 
 				<div class="row" id="exhibition"></div>
 				<input type="hidden" id="fviNum">
-
-
-
-
 			</div>
 		</section>
 
@@ -135,9 +131,6 @@ input[type="checkbox"] {
 				xhr.send(JSON.stringify(param));
 			console.log(param);
 		 }
-			//console.log(fviNums);
-			//
-			//
 	</script>
 
 

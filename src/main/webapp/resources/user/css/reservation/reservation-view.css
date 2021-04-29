@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/* 예약정보 디테일 CSS*/
+.reservationViewMain {
+	margin-top: 100px;
+	margin-left: 450px;
+	height: 1000px;
+}
+h5 {
+	font-weight: 900;
+}
+.radio-hidden{
+	display: none;
+}
+.list-inline-item {
+    margin-top: 5px;
+}
+img[data-col] {
+	width: 512px;
+	height: 378px;
+}
+.btn-outline-success{color:#198754;border-color:#198754}.btn-outline-success:hover{color:#fff;background-color:#198754;border-color:#198754}.btn-check:focus+.btn-outline-success,.btn-outline-success:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-check:active+.btn-outline-success,.btn-check:checked+.btn-outline-success,.btn-outline-success.active,.btn-outline-success.dropdown-toggle.show,.btn-outline-success:active{color:#fff;background-color:#198754;border-color:#198754}.btn-check:active+.btn-outline-success:focus,.btn-check:checked+.btn-outline-success:focus,.btn-outline-success.active:focus,.btn-outline-success.dropdown-toggle.show:focus,.btn-outline-success:active:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-outline-success.disabled,.btn-outline-success:disabled{color:#198754;background-color:transparent}
+
+h5{
+	color: #000;
+	font-weight: 900;
+}

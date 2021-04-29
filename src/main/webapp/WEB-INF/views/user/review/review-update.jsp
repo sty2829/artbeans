@@ -3,21 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>전시회 등록 페이지</title>
+<title>나의 리뷰 수정</title>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+<link rel="stylesheet" href="/resources/user/css/review/review-update.css">
 <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
-<style>
-.reviewUpdateMain{
-	margin-top: 150px;
-}
-.ck-editor__editable{
-	min-height: 600px;
-}
-
-</style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
       <div class="container reviewUpdateMain" style="height: 100%">
       	<div class="row d-flex justify-content-center">
       		<div class="col-lg-6">
@@ -48,93 +39,10 @@
         	</div>
         </div>
         <input type="hidden" id="fiNum">
+        <input type="hidden" id="rviNum" value="${param.rviNum}">
+        <input type="hidden" id="tiNum" value="${param.tiNum}">
      </div>
+<script src=/resources/user/js/review/review-update.js></script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-<script>
-var editor;
-ClassicEditor
-.create( document.querySelector('#rviContent'),{
-	ckfinder : {
-		uploadUrl : '/exhibition-insert-editorimage',
-	}
- })
-.then(obj => {editor = obj;})
-.catch(error => {console.error(error);});
-
-function getReview(){
-	
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', "/review/" + ${param.rviNum});
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var res = JSON.parse(xhr.responseText);
-			for(var key in res){
-				var obj = document.querySelector('#' + key);
-				if(!obj){
-					continue;
-				}
-				if(obj.id == 'fiPath'){
-					obj.src = '/upload/' + res[key];
-					continue;
-				}
-				if(obj.id == 'rviContent'){
-					editor.data.set(res[key]);
-				}
-				obj.value = res[key];
-			}
-		}
-	}
-	
-	xhr.send();
-}
-
-function updateReview(){
-	var fiFile = document.querySelector('#fiFile');
-	var rviTitle = document.querySelector('#rviTitle');
-	var fiNum = document.querySelector('#fiNum').value;
-	
-	var formData = new FormData();
-	if(fiFile.files[0]){
-		console.log('안나가지않나?');
-		formData.append('fileInfo.fiFile', fiFile.files[0]);	
-	}
-	formData.append('rviNum', ${param.rviNum});
-	formData.append('rviTitle', rviTitle.value);
-	formData.append('rviContent', editor.getData());
-	formData.append('userInfo.uiNum', ${userInfo.uiNum});
-	formData.append('ticketInfo.tiNum', ${param.tiNum});
-	formData.append('fileInfo.fiNum', fiNum);
-	
-	
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', "/review-update");
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var res = JSON.parse(xhr.responseText);
-			console.log(res);
-			if(res >= 1){
-				alert('리뷰수정에 성공하였습니다.');
-				location.href = '/views/user/review/review-info';
-			}else{
-				alert('리뷰수정에 실패하였습니다');
-			}
-		}
-	}
-	
-	xhr.send(formData);
-}
-
-function changeImg(obj){
-	if(obj.files && obj.files[0]){
-		var reader = new FileReader();
-		reader.onload = function(e){
-			document.querySelector('#fiPath').src = e.target.result;
-		}
-		reader.readAsDataURL(obj.files[0]);
-	}
-}
-window.addEventListener('load', getReview);
-</script>
 </body>
-
 </html>

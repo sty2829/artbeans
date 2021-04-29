@@ -8,6 +8,7 @@
 <style>
 .card-body {
 	width: 100%;
+	text-align:center;
 }
 
 .card-content {
@@ -28,9 +29,13 @@
 	border-top: 0px;
 	boder-left: 0px;
 	boder-bottom: 0px;
-	color: #ff0080;
+	color: red;
 	width: 10% ;
 	height: 40px;
+}
+
+.small:hover {
+	font-weight: bold;
 }
 </style>
 </head>
@@ -44,9 +49,10 @@
 			<div class="card-body">
 
 				<div class="card-body">
-					<h4 class="card-title"
-						style="text-align: center; font-weight: bold;">인증번호 확인</h4>
-						<p style="text-align:center">해당 이메일로 전송된 인증번호를 입력해주세요.</p>
+					<h4 class="card-title" style="text-align:center; font-weight: bold;">인증번호 확인</h4>
+						<div style="color: red">
+						<p>해당 이메일로 전송된 인증번호를 입력해주세요.</p>
+						</div>
 						<hr>
 					<div class="card-content">
 						<input type="text" class="input-control" id="code"
@@ -78,16 +84,15 @@
         var clock = $('#clock').val(min + ':' + sec);
         
         if(num == 0){
-            clearInterval(myVar) // num 이 0초가 되었을대 clearInterval로 타이머 종료
-           	alert('인증시간이 만료되었습니다. 이메일을 다시 입력해주세요.');
-            location.href="/views/user/forgetPwd";
+            clearInterval(myVar) // num 이 0초가 되었을 떄 clearInterval로 타이머 종료
+           	alert('인증시간이 만료되었습니다. 다시 인증해주시기 바랍니다.');
+            location.href="/views/user/findPwd";
         }
         num--;
     }
 
 		function goVerify() {
 			var code = document.querySelector('#code');
-			console.log(code.value);
 			if (code.value.trim().length < 1) {
 				alert('인증번호를 입력해주세요.');
 				code.focus();
@@ -100,6 +105,7 @@
 			xhr.onreadystatechange = function() {
 				if (xhr.status ==200 && xhr.readyState ==4) {
 					var res =JSON.parse(xhr.responseText);
+					console.log(res.code);
 					if (res.code == code.value) {
 						alert('인증에 성공하였습니다. 비밀번호 변경창으로 이동합니다!');
 						location.href = "/views/user/changePwd?uiNum=" + res.uiNum;

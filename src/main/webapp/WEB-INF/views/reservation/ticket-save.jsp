@@ -4,43 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>결제</title>
+<title>티켓 결제</title>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+<link href="/resources/user/css/reservation/ticket-save.css" rel="stylesheet">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hevj9bqhd5"></script>
-<style>
-.reservationSaveMain {
-	margin-top: 100px;
-	margin-left: 450px;
-	height: 700px;
-}
-h5 {
-	font-weight: bold;
-}
-.radio-hidden{
-	display: none;
-}
-.list-inline-item {
-    margin-top: -15px;
-}
-.btn-outline-success{color:#198754;border-color:#198754}.btn-outline-success:hover{color:#fff;background-color:#198754;border-color:#198754}.btn-check:focus+.btn-outline-success,.btn-outline-success:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-check:active+.btn-outline-success,.btn-check:checked+.btn-outline-success,.btn-outline-success.active,.btn-outline-success.dropdown-toggle.show,.btn-outline-success:active{color:#fff;background-color:#198754;border-color:#198754}.btn-check:active+.btn-outline-success:focus,.btn-check:checked+.btn-outline-success:focus,.btn-outline-success.active:focus,.btn-outline-success.dropdown-toggle.show:focus,.btn-outline-success:active:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-outline-success.disabled,.btn-outline-success:disabled{color:#198754;background-color:transparent}
-
-.eiName{
-	display:block;
-    overflow: hidden; 
-	text-overflow: ellipsis;
-    white-space: nowrap; 
-	width: 300px;
-
-}
-span{
-	font-size: small;
-}
-</style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
    <div class="container reservationSaveMain">
    		<div class="row d-flex justify-content-center">
    			<div class="col-lg-10" style="text-align: center;">
@@ -54,11 +25,11 @@ span{
 				<div class="card mb-2">
 			  		<div class="row no-gutters">
 			    		<div class="col-md-4">
-			      			<img src="/upload/${param.imgPath}" style="width: 180px; height: 190px">
+			      			<img src="" style="width: 180px; height: 190px" id="fiPath">
 		   				</div>
 			    		<div class="col-md-7">
 			      			<div class="col-lg-12 ml-2 mt-3" style="height: 40px">
-			  			  		<p style="font-size: 1.2em; margin-bottom: 0px" class="eiName">${param.eiName}</p>
+			  			  		<p style="font-size: 1.2em; margin-bottom: 0px" class="eiName" id="eiName"></p>
 			           		 </div>
 		         			 <div class="col-lg-12 ml-2" style="height: 70px">
 		         			 	<div class="row">
@@ -144,36 +115,62 @@ span{
 			</div>
 		</div>
 	</div>
+	<input type="hidden" id="riNum" value="${param.riNum }">
 <script>
-var mapOptions = {
-    center: new naver.maps.LatLng(${param.y},${param.x}),
-    zoom: 16
-};
+window.addEventListener('load', naverMap);
 
-var map = new naver.maps.Map('map', mapOptions);	
+function getExhibition(){
+	return new Promise(function(resolve, rejcet){
+		var xhr = new XMLHttpRequest();
+		xhr.open('GET', '/exhibition/?eiNum=' + ${param.eiNum});
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var res = JSON.parse(xhr.responseText);
+				document.querySelector('#fiPath').src = '/upload/' + res.fileInfo.fiPath;
+				document.querySelector('#eiName').innerText = res.eiName;
+				resolve(res.galleryInfo);
+			}
+		}
+		xhr.send();
+	})
+	
+	
+}
 
-var marker = new naver.maps.Marker({
-    position: new naver.maps.LatLng(${param.y},${param.x}),
-    map: map
-});
-
-
-var contentString = [
-        '<div style="padding:4px 4px;">',
-        '	<div style="font-weight:bold;padding-bottom:3px;">${param.giName}</div>',
-        '</div>'
-    ].join('');	 
-var infowindow = new naver.maps.InfoWindow({
-    content: contentString
-});				 
-naver.maps.Event.addListener(marker, "click", function(e) {
-    if (infowindow.getMap()) {
-        infowindow.close();
-    } else {
-        infowindow.open(map, marker);
-    }
-});				 
-infowindow.open(map, marker);
+async function naverMap() {
+	var gallery = await getExhibition();
+	
+	var mapOptions = {
+	    center: new naver.maps.LatLng(gallery.giAddressY, gallery.giAddressX),
+	    zoom: 16
+	};
+	
+	var map = new naver.maps.Map('map', mapOptions);
+		
+	
+	var marker = new naver.maps.Marker({
+	    position: new naver.maps.LatLng(gallery.giAddressY, gallery.giAddressX),
+	    map: map
+	});
+	
+	
+	var contentString = [
+	        '<div style="padding:4px 4px;">',
+	        '	<div style="font-weight:bold;padding-bottom:3px;">' + gallery.giName + '</div>',
+	        '</div>'
+	    ].join('');	 
+	var infowindow = new naver.maps.InfoWindow({
+	    content: contentString
+	});				 
+	naver.maps.Event.addListener(marker, "click", function(e) {
+	    if (infowindow.getMap()) {
+	        infowindow.close();
+	    } else {
+	        infowindow.open(map, marker);
+	    }
+	});				 
+	infowindow.open(map, marker);
+}
 
 IMP.init('imp08010397');
 
@@ -198,7 +195,7 @@ function saveReservation(){
 		var txt = checkObj.value.trim().length;
 		if(id == 'tiPhoneNumber'){
 			if(txt != valid[id]['max'] ){
-				alert('휴대폰 형식이 맞지 않습니다.');
+				alert('휴대폰은 13글자 이하 입니다.');
 				checkObj.focus();
 				return;
 			}
@@ -208,11 +205,12 @@ function saveReservation(){
 		}
 	}
 	
+	var riNum = document.querySelector('#riNum');
 	
 	var param = {
 			paymentInfo : {},
 			reservationInfo : {
-				riNum: ${param.riNum}
+				riNum: riNum.value
 			}
 	};
 	var objs = document.querySelectorAll('span[class="check"],input[class="form-control"],input[type="radio"]:checked');
@@ -233,7 +231,7 @@ function saveReservation(){
 		}
 	}
 	var xhr = new XMLHttpRequest();
-	xhr.open('POST', "/ticket/" + ${param.riNum});
+	xhr.open('POST', "/ticket/" + riNum.value);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4) {
 			if(xhr.status == 200) {

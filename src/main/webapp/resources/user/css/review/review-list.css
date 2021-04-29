@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/* 커뮤니티 리뷰 리스트 CSS*/
+.reviewListMain{
+	margin-top: 150px;
+	height: 1000px;
+}
+hr{
+	border: 0;
+    height: 1px;
+    background: #ccc;
+}
+
+.subText{
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	display: -webkit-box; 
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical; 
+	word-wrap:break-word; 
+	line-height: 1.4em; 
+	height: 2.8em;
+}

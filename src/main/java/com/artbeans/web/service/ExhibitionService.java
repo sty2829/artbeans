@@ -30,34 +30,7 @@ public interface ExhibitionService {
 	ExhibitionInfo updateExhibitionInfo(ExhibitionInfo exhibitionInfo) throws Exception;
 
 	int deleteExhibitionInfo(Integer eiNum);
-
-//	// getExhibitionInfoLists 대체
-//	DataTable<ExhibitionInfo> getOpeningList(String eiStatus, Pageable pageable,
-//			DataTable<ExhibitionInfo> dtExhibitionInfo);
-//
-//	DataTable<ExhibitionInfo> getCloseList(String eiStatus, Pageable pageable,
-//			DataTable<ExhibitionInfo> dtExhibitionInfo);
-//
-//	DataTable<ExhibitionInfo> getFutureList(String eiStatus, Pageable pageable,
-//			DataTable<ExhibitionInfo> dtExhibitionInfo);
-//
-//	DataTable<ExhibitionInfo> getOpeningListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
-//			DataTable<ExhibitionInfo> dtExhibitionInfo);
-//	
-//	DataTable<ExhibitionInfo> getFutureListGetFree(String eiStatus, Integer eiCharge, Pageable pageable,
-//			DataTable<ExhibitionInfo> dtExhibitionInfo);
 	
-	// 변경 지울 것
-//	DataTable<ExhibitionInfo> getExhibitionInfoLists(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo);
-
-	// 나중에 지울 것
-//	DataTable<ExhibitionInfo> getExhiListDemo(Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo);//
-
-	// DataTable<ExhibitionInfo> getExhibitionInfos(Pageable pageable,
-	// DataTable<ExhibitionInfo> exhibitionInfo);
-
-	
-
 	// 전시회정보찾기 위해 추가
 	List<ExhibitionInfo> getExhibitionFindByUiNum(UserSession userSession);
 

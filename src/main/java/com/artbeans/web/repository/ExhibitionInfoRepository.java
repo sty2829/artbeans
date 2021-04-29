@@ -115,10 +115,6 @@ public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, 
 	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiCharge > ?2 AND ei.eiStartDate > current_date")
 	public Page<ExhibitionInfo> getFuturePriceList(String eiStatus, Integer eiCharge, Pageable pageable);
 	
-	//주소
-//	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
-//	public Page<ExhibitionInfo> findAllByGalleryInfoGiAddressLike(String giAddress, Pageable pageable);
-	
 	//진행 주소
 	@EntityGraph(attributePaths = {"fileInfo","reservationInfo","galleryInfo","galleryInfo.fileInfo","userInfo"})
 	@Query("SELECT ei FROM ExhibitionInfo ei where ei.eiStatus = ?1 AND ei.eiStartDate <= current_date AND ei.eiEndDate >= current_date AND ei.galleryInfo.giAddress Like ?2")

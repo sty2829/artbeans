@@ -72,16 +72,13 @@ public class DateUtil {
 		
 		//mindate랑 제외리스트를 비교하면서 mindate 선정   
 		for(Date d : dateList) {
-			log.info("minDate =>{}", minDate);
 			if(d.compareTo(minDate) > 0) {
 				//제외날짜가 mindate보다 크면 for문 나감
-				log.info("minDate break =>{}", minDate);
 				break;
 			}else if(d.compareTo(minDate) == 0){
 				//mindate가 제외날짜와 같다면 하루 추가
 				cal.add(Calendar.DATE, 1);
 				minDate = cal.getTime();
-				log.info("minDate add =>{}", minDate);
 			}
 		}
 		
@@ -118,8 +115,6 @@ public class DateUtil {
 			}
 			startTimeInt++;
 		}
-		
-		log.info("timeMap => {}",timeMap);
 		
 		return timeMap;
 	}

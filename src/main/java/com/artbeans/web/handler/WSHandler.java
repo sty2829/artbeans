@@ -26,32 +26,22 @@ public class WSHandler extends TextWebSocketHandler{
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception{
-		//소켓 연결
-		log.info("open session=>{}",session);
 		sessionSet.add(session);
 	}	
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		//소켓 종료
-		log.info("close session=>{}",session);		
 		sessionSet.remove(session);
 		
 	}
 	
 	@Override
 	public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		//메시지 발송
-		//log.info("send session=>{}",session);
 		ChatMsg cm = om.readValue(message.getPayload(), ChatMsg.class);
-		//String msg = message.getPayload();
 		log.info("msg=>{}",cm);
 		Iterator<WebSocketSession> it = sessionSet.iterator();
 		while(it.hasNext()) {
 			WebSocketSession wss = it.next();
-//			if(session!=wss) {
-//				wss.sendMessage(message);
-//			}
 			wss.sendMessage(message);
 		}
 		

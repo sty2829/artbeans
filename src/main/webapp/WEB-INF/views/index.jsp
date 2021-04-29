@@ -17,7 +17,6 @@
         <div id="mainSlide" class="carousel-item active" style="background-image: url(/resources/assets/img/slide/slide-1.jpg)">-->
 
 			</div>
-
 			<div id="slide" class="carousel-inner" role="listbox"></div>
 			<a class="carousel-control-prev" href="#heroCarousel" role="button"
 				data-slide="prev"> <span
@@ -38,14 +37,10 @@
 		<!-- ======= mainList Section ======= -->
 		<section id="portfolio" class="portfolio">
 			<div class="container">
-
 				<div class="section-title">
 					<h2>전시회 목록</h2>
 					<p>진행중인 전시회</p>
 				</div>
-				
-
-
 				<div class="row">
 					<div class="col-lg-12 d-flex justify-content-center">
 
@@ -56,21 +51,13 @@
 						</ul>
 					</div>
 				</div>
-
-
 				<div class="row portfolio-container" id="exhibitionList"></div>
 			</div>
 		</section>
 		<!-- End mainList Section -->
-		
-		
 	</main>
-
-
-
 	<!-- End #main -->
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-
 	<script src="/resources/user/js/exhibition/mainList.js"></script>
 	<script src="/resources/user/js/exhibition/slide.js"></script>
 	

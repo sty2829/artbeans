@@ -285,7 +285,7 @@ function getPermissionEiBanner(obj){//exhibition-banner-update
 			
 		}
 	}
-	console.log(obj);
+	
 	var formData = new FormData();
 	formData.append('eiNum',obj);
 	formData.append('eiBanner',1);
@@ -302,7 +302,6 @@ function getDeniedEiBanner(obj){//exhibition-banner-update
 			
 		}
 	}
-	console.log(obj);
 	var formData = new FormData();
 	formData.append('eiNum',obj);
 	formData.append('eiBanner',0);

@@ -8,7 +8,6 @@ window.onload = function (){
 	xhr.open('GET','/exhibition?eiNum='+eiNum); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '<div class="col-lg-7">';
 			html += '<div style="text-align:center" class="entry-img ">';

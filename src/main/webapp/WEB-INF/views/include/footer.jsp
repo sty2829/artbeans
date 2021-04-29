@@ -41,7 +41,7 @@
 							<li><i class="bx bx-chevron-right"></i> <a href="/views/exhibition/openingList">진행중인 전시회</a></li>
 							<li><i class="bx bx-chevron-right"></i> <a href="/views/exhibition/calendar-list">월별 개봉 전시회</a></li>
 							<li><i class="bx bx-chevron-right"></i> <a href="/views/exhibition/manager/insert">전시회 등록하기</a></li>
-							<li><i class="bx bx-chevron-right"></i> <a href="/views/admin/questions">자주하는 질문</a></li>
+							<li><i class="bx bx-chevron-right"></i> <a href="/views/community/questions">자주하는 질문</a></li>
 							<li><i class="bx bx-chevron-right"></i> <a href="/views/chat/chat">채팅</a></li>
 						</ul>
 					</div>

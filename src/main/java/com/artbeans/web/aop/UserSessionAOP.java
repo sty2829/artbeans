@@ -2,7 +2,6 @@ package com.artbeans.web.aop;
 
 import java.lang.reflect.Method;
 
-import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpSession;
 
 import org.aspectj.lang.ProceedingJoinPoint;
