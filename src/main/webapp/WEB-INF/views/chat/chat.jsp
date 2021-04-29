@@ -5,7 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<!--  
+<script src="/resources/user/js/window/moveblock.js"></script>-->
 
 <!-- <link rel="stylesheet" href="/resources/user/css/chat.css"> -->
 <style>
@@ -108,10 +109,29 @@ input:focus{
     flex-direction: column;
     background:whitesmoke;
 } 
+
+.chatsetting{
+    max-height: 750px;
+    overflow: auto;
+}
+.chatsetting::-webkit-scrollbar {
+    width: 10px;
+  }
+  .chatsetting::-webkit-scrollbar-thumb {
+    background-color: #2f3542;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  .chatsetting::-webkit-scrollbar-track {
+    background-color: grey;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
 </style>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 </head>
-<body>
+<body oncontextmenu="return false">
 
 	<main id="main">
 		<!-- ======= Breadcrumbs ======= -->
@@ -141,7 +161,7 @@ input:focus{
 		          <h3 class="card-title" style="text-align: center">채팅</h3>
 		          
 		            <div class="card-content" style="padding: 8px">
-						<ul id="chat"></ul>
+						<ul id="chat" class="chatsetting" style=""></ul>
 							<div class="msj-rta macro" style="margin: auto">
 				         	  <div class="text1 text1-r" >
 				         	  </div>
@@ -182,19 +202,15 @@ input:focus{
 
 		function startChat() {
 			var date = formatAMPM(new Date());
-
-			ws = new WebSocket('wss://localhost/chat'); //연결
-
+			ws = new WebSocket('wss://artbeans.site/chat'); //연결
 			ws.onopen = function(data) { //on붙으면 이벤트
 				var param = {
 					type : "enter",
-					name : document.querySelector('#userName').value,
+					name : chatName.value,
 				}
-				//document.querySelector('#lName').innerText = document.querySelector('#name').value + ':'; 
 				ws.send(JSON.stringify(param));
 				document.querySelector('#startDiv').style.display = 'none';
 				document.querySelector('#chatDiv').style.display = '';
-
 			}
 
 			var html = '';
@@ -255,13 +271,18 @@ input:focus{
 		}
 
 		function endChat() {
-			ws.close();
+			alert('정말 나가시겠습니까?');
+			var param = {
+				type : "end",
+				name : chatName.value,
+			}
+			ws.send(JSON.stringify(param));
+			ws.close();		
 			alert('채팅이 종료되었습니다.');
 			document.querySelector('#chatDiv').style.display = 'none';
-			document.querySelector('#startDiv').style.display = '';
-
-		}
-
+			document.querySelector('#startDiv').style.display = '';			
+		}		
+		
 		function formatAMPM(date) {
 			var hours = date.getHours();
 			var minutes = date.getMinutes();
@@ -272,6 +293,19 @@ input:focus{
 			var strTime = hours + ':' + minutes + ' ' + ampm;
 			return strTime;
 		}
+		
+		//윈도우 새로고침 막기
+		function noEvent() {
+		    if (event.keyCode == 116) {
+		        event.keyCode= 2;
+		        return false;
+		    }
+		    else if(event.ctrlKey && (event.keyCode==78 || event.keyCode == 82)){
+		        return false;
+		    }
+		}
+		document.onkeydown = noEvent;
+		window.addEventListener("beforeunload", endChat);
 	</script>
 
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
