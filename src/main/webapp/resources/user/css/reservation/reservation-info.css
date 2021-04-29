@@ -1,0 +1,18 @@
+@charset "UTF-8";
+/* 유저 예약티켓정보 CSS*/
+.myReservation{
+	margin-top: 200px;
+	height: 700px;
+}
+.card-text{
+	font-size: small;
+	margin-bottom: 5px;
+}
+.table{
+	table-layout: fixed;	
+}
+.eiName{
+    overflow: hidden; 
+	text-overflow: ellipsis;
+    white-space: nowrap; 
+}

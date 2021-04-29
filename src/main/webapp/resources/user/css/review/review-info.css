@@ -1,0 +1,28 @@
+@charset "UTF-8";
+/* 유저 리뷰정보 CSS*/
+.myReview{
+	margin-top: 150px;
+	height: 1000px;
+}
+.card-text{
+	font-size: small;
+	margin-bottom: 5px;
+}
+hr{
+	border: 0;
+    height: 1px;
+    background: #ccc;
+}
+.subText{
+	overflow: hidden; 
+	text-overflow: ellipsis; 
+	display: -webkit-box; 
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical; 
+	word-wrap:break-word; 
+	line-height: 1.4em; 
+	height: 2.8em;
+}
+#userReviewList > * {
+	color: black;
+}

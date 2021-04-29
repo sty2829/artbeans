@@ -3,40 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>전시회 예약 등록</title>
+<title>전시회 예약 정보</title>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+<link href="/resources/user/css/reservation/reservation-view.css" rel="stylesheet">
 <link href="/resources/node_modules/flatpickr/dist/flatpickr.css" rel="stylesheet"/>
 <script src=/resources/node_modules/flatpickr/dist/flatpickr.js></script>
 <script src=/resources/node_modules/flatpickr/dist/l10n/ko.js></script>
-<style>
-.reservationViewMain {
-	margin-top: 100px;
-	margin-left: 450px;
-	height: 1000px;
-}
-h5 {
-	font-weight: 900;
-}
-.radio-hidden{
-	display: none;
-}
-.list-inline-item {
-    margin-top: 5px;
-}
-img[data-col] {
-	width: 512px;
-	height: 378px;
-}
-.btn-outline-success{color:#198754;border-color:#198754}.btn-outline-success:hover{color:#fff;background-color:#198754;border-color:#198754}.btn-check:focus+.btn-outline-success,.btn-outline-success:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-check:active+.btn-outline-success,.btn-check:checked+.btn-outline-success,.btn-outline-success.active,.btn-outline-success.dropdown-toggle.show,.btn-outline-success:active{color:#fff;background-color:#198754;border-color:#198754}.btn-check:active+.btn-outline-success:focus,.btn-check:checked+.btn-outline-success:focus,.btn-outline-success.active:focus,.btn-outline-success.dropdown-toggle.show:focus,.btn-outline-success:active:focus{box-shadow:0 0 0 .25rem rgba(25,135,84,.5)}.btn-outline-success.disabled,.btn-outline-success:disabled{color:#198754;background-color:transparent}
-
-h5{
-	color: #000;
-	font-weight: 900;
-}
-</style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
    <div class="container reservationViewMain">
       	<div class="row">
       		<div class="col-lg-1"></div>
@@ -132,25 +106,22 @@ h5{
 			<div class="col-lg-1"></div>
 		</div>
 	</div>
+	<input type="hidden" id="eiNum" value="${param.eiNum}">
 	<input type="hidden" data-col="maxTicket" id="riMaxTicket">
 	<input type="hidden" id="riNum">
-	<input type="hidden" id="x">
-	<input type="hidden" id="y">
-	<input type="hidden" id="giName">
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
-window.onload = function(){
+window.addEventListener('load', getSchedule);
+
+function getSchedule(){
+	var eiNum = document.querySelector('#eiNum');
 	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/reservation/' + ${param.eiNum});
+	xhr.open('GET', '/reservation/' + eiNum.value);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
-			console.log(res);
 			var objs = document.querySelectorAll('[data-col]');
 			document.querySelector('#riNum').value = res.riNum;
-			document.querySelector('#x').value = res.x;
-			document.querySelector('#y').value = res.y;
-			document.querySelector('#giName').value = res.giName;
 			document.querySelector('#tiDate').innerHTML = res.minDate;
 			document.querySelector('#riMaxTicket').value = res.maxTicket;
 			for(obj of objs){
@@ -225,8 +196,6 @@ function getTimeList(dateStr) {
 function selectTime(obj){
 	var maxTicket = Number(document.querySelector('#riMaxTicket').value);
 	var remainTicket = Number(obj.getAttribute('data-ticket'));
-	console.log(maxTicket);
-	console.log(remainTicket);
 	
 	var rtiTime = document.querySelector('#tiTime');
 	rtiTime.innerHTML = obj.value;	
@@ -258,25 +227,13 @@ function goPayment(){
 	var tiNumber = document.querySelector('#tiNumber').value;
 	var piPrice = document.querySelector('#piPrice').innerText;
 	var riNum = document.querySelector("#riNum").value;
-	var idx = document.querySelector("#imgPath").src.lastIndexOf('/');
-	var imgPath = document.querySelector("#imgPath").src.substring(idx+1);
-	var x = document.querySelector("#x").value;
-	var y = document.querySelector("#y").value;
-	var giName = document.querySelector("#giName").value;
-	var eiName = document.querySelector('#eiName').innerText;
-	
-	
 	
 	var param = '?tiDate=' + tiDate + '&';
 	param += 'tiTime=' + tiTime + '&';
 	param += 'tiNumber=' + tiNumber + '&';
 	param += 'piPrice=' + piPrice + '&';
 	param += 'riNum=' + riNum + '&';
-	param += 'imgPath=' + imgPath + '&';
-	param += 'x=' + x + '&';
-	param += 'y=' + y + '&';
-	param += 'giName=' + giName + '&';
-	param += 'eiName=' + eiName + '&';
+	param += 'eiNum=' + ${param.eiNum} + '&';
 	
 	location.href = '/views/reservation/ticket-save/' + param
 }

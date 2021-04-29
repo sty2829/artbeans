@@ -46,17 +46,16 @@ public class ReviewController {
 	}
 	
 	//유저리뷰 저장
-	@PostMapping("/review/{tiNum}")
-	public int saveReview(UserSession userSession, ReviewInfo reviewInfo, @PathVariable Integer tiNum) throws Exception {
+	@PostMapping("/review")
+	public int saveReview(UserSession userSession, ReviewInfo reviewInfo) throws Exception {
 		log.info("reviewInfo => {}", reviewInfo);
-		return reviewService.saveReview(userSession, reviewInfo, tiNum);
+		return reviewService.saveReview(userSession, reviewInfo);
 	}
 	
 	//유저리뷰 수정
-	@PostMapping("/review-update")
-	public int updateReview(ReviewInfo reviewInfo) throws Exception {
-		log.info("reviewInfo => {}", reviewInfo);
-		return reviewService.updateReview(reviewInfo);
+	@PatchMapping("/review")
+	public int updateReview(UserSession userSession, ReviewInfo reviewInfo) throws Exception {
+		return reviewService.updateReview(userSession, reviewInfo);
 	}
 	
 	//리뷰 삭제

@@ -1,0 +1,8 @@
+@charset "UTF-8";
+/* 유저 리뷰 세이브 CSS*/
+.reviewSaveMain{
+	margin-top: 150px;
+}
+.ck-editor__editable{
+	min-height: 600px;
+}

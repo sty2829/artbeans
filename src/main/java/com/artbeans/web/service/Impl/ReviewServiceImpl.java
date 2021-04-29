@@ -50,7 +50,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 	
 	@Override
-	public int saveReview(UserSession userSession, ReviewInfo reviewInfo, Integer tiNum) throws Exception {
+	public int saveReview(UserSession userSession, ReviewInfo reviewInfo) throws Exception {
 		int count = 0;
 		Optional<UserInfo> opUI = uiRepo.findById(userSession.getUiNum());
 		if(!opUI.isEmpty()) {
@@ -62,17 +62,21 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public int updateReview(ReviewInfo reviewInfo) throws Exception {
+	public int updateReview(UserSession userSession, ReviewInfo reviewInfo) throws Exception {
 		int count = 0;
-		FileInfo fileInfo = reviewInfo.getFileInfo();
-		if(fileInfo != null && fileInfo.getFiNum() != null) {
-			Optional<FileInfo> opFI = fiRepo.findById(fileInfo.getFiNum());
-			if(!opFI.isEmpty() && fileInfo.getFiFile() != null) {
-				FileUtil.fileUpdate(fileInfo, TYPE, opFI.get().getFiPath());
-				count = rviRepo.save(reviewInfo).getRviNum();
-			}else {
-				reviewInfo.setFileInfo(opFI.get());
-				count = rviRepo.save(reviewInfo).getRviNum();
+		Optional<UserInfo> opUI = uiRepo.findById(userSession.getUiNum());
+		if(!opUI.isEmpty()) {
+			reviewInfo.setUserInfo(opUI.get());
+			FileInfo fileInfo = reviewInfo.getFileInfo();
+			if(fileInfo != null && fileInfo.getFiNum() != null) {
+				Optional<FileInfo> opFI = fiRepo.findById(fileInfo.getFiNum());
+				if(!opFI.isEmpty() && fileInfo.getFiFile() != null) {
+					FileUtil.fileUpdate(fileInfo, TYPE, opFI.get().getFiPath());
+					count = rviRepo.save(reviewInfo).getRviNum();
+				}else {
+					reviewInfo.setFileInfo(opFI.get());
+					count = rviRepo.save(reviewInfo).getRviNum();
+				}
 			}
 		}
 		return count;

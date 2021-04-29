@@ -3,22 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>전시회 등록 페이지</title>
+<title>나의 리뷰 저장</title>
+<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
+<link rel="stylesheet" href="/resources/user/css/review/review-save.css">
 <script src="https://cdn.ckeditor.com/ckeditor5/27.0.0/classic/ckeditor.js"></script>
-<style>
-.reviewSaveMain{
-	margin-top: 150px;
-}
-.ck-editor__editable{
-	min-height: 600px;
-}
-
-</style>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-      <div class="container reviewSaveMain" style="height: 100%">
+      <div class="container reviewSaveMain" style="height: 100%;">
       	<div class="row d-flex justify-content-center">
       		<div class="col-lg-6">
       			<div class="section-title" style="text-align: center;">
@@ -47,57 +38,9 @@
 	              <button class="get-started-btn ml-auto mb-5" onclick="saveReview()" style="width: inherit;">리뷰 등록</button>
         	</div>
         </div>
-        <input type="hidden" id="fiNum">
+        <input type="hidden" id="tiNum" value="${param.tiNum}">
      </div>
+<script src=/resources/user/js/review/review-save.js></script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-<script>
-ClassicEditor
-.create( document.querySelector('#rviContent'),{
-	ckfinder : {
-		uploadUrl : '/exhibition-insert-editorimage',
-		height: 250
-	}
- })
-.then(obj => {editor = obj;})
-.catch(error => {console.error(error);});
-
-function saveReview(){
-	var fiFile = document.querySelector('#fiFile');
-	var rviTitle = document.querySelector('#rviTitle');
-	
-	var formData = new FormData();
-	formData.append('fileInfo.fiFile', fiFile.files[0]);
-	formData.append('rviTitle', rviTitle.value);
-	formData.append('rviContent', editor.getData());
-	formData.append('ticketInfo.tiNum', ${param.tiNum});
-	
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', "/review/" + ${param.tiNum});
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var res = JSON.parse(xhr.responseText);
-			if(res >= 1){
-				alert('리뷰등록에 성공하였습니다.');
-				location.href = '/views/user/review/review-info';
-			}else{
-				alert('리뷰등록에 실패하였습니다');
-			}
-		}
-	}
-	
-	xhr.send(formData);
-}
-
-function changeImg(obj){
-	if(obj.files && obj.files[0]){
-		var reader = new FileReader();
-		reader.onload = function(e){
-			document.querySelector('#fiPath').src = e.target.result;
-		}
-		reader.readAsDataURL(obj.files[0]);
-	}
-}
-</script>
 </body>
-
 </html>
