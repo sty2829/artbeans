@@ -32,7 +32,7 @@
 		<tr>
 			<td>
 				<input type="text" id="uiPhoneNumber" name="uiPhoneNumber"
-							placeholder="휴대폰번호 (-를 포함해주세요.)">
+							placeholder="휴대폰번호 (-는 필수입니다)">
 			</td>
 		</tr>	
 				<tr>
@@ -150,243 +150,271 @@
 		
 	</div>
 		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		<script>
-	
-		var GenderNum;
-		function setGender(obj){
-			GenderNum= obj;
-			if(GenderNum=='1'){
-				GenderNum = "남";
-			} else {
-				GenderNum = "여"
-			} 
-			console.log(GenderNum);
-		}	      
-		var gender_btn = document.getElementsByClassName("gender_btn");
+		   <script>
+      var emailDoubleCheck;
+      var GenderNum;
+      
+      function setGender(obj){
+         GenderNum= obj;
+         if(GenderNum=='1'){
+            GenderNum = "남";
+         } else {
+            GenderNum = "여"
+         } 
+         console.log(GenderNum);
+      }         
+      var gender_btn = document.getElementsByClassName("gender_btn");
 
-	      function handleClick2(event) {
-	        console.log(event.target);
-	     
-	        console.log(event.target.classList);
+         function handleClick2(event) {
+           console.log(event.target);
+        
+           console.log(event.target.classList);
 
-	        if (event.target.classList[1] === "gender_btn_on") {
-	          event.target.classList.remove("gender_btn_on");
-	        } else {
-	          for (var i = 0; i < gender_btn.length; i++) {
-	        	  gender_btn[i].classList.remove("gender_btn_on");
-	          }
+           if (event.target.classList[1] === "gender_btn_on") {
+             event.target.classList.remove("gender_btn_on");
+           } else {
+             for (var i = 0; i < gender_btn.length; i++) {
+                gender_btn[i].classList.remove("gender_btn_on");
+             }
 
-	          event.target.classList.add("gender_btn_on");
-	        }
-	      }
+             event.target.classList.add("gender_btn_on");
+           }
+         }
 
-	      function init2() {
-	        for (var i = 0; i < gender_btn.length; i++) {
-	        	gender_btn[i].addEventListener("click", handleClick2);
-	          console.log(gender_btn.length);
-	        }
-	      }
+         function init2() {
+           for (var i = 0; i < gender_btn.length; i++) {
+              gender_btn[i].addEventListener("click", handleClick2);
+             console.log(gender_btn.length);
+           }
+         }
 
-	      init2(); //여기까지 성별
-	      
-	      
-		var AgeNum;	
-		function setAge(obj){
-			AgeNum= obj + "대";
-			console.log(AgeNum);
+         init2(); //여기까지 성별
+         
+         
+      var AgeNum;   
+      function setAge(obj){
+         AgeNum= obj + "대";
+         console.log(AgeNum);
+      }
+      
+      var age_btn = document.getElementsByClassName("age_btn");
+
+         function handleClick(event) {
+           console.log(event.target);
+        
+           console.log(event.target.classList);
+
+           if (event.target.classList[1] === "age_btn_on") {
+             event.target.classList.remove("age_btn_on");
+           } else {
+             for (var i = 0; i < age_btn.length; i++) {
+               age_btn[i].classList.remove("age_btn_on");
+             }
+
+             event.target.classList.add("age_btn_on");
+           }
+         }
+
+         function init() {
+           for (var i = 0; i < age_btn.length; i++) {
+             age_btn[i].addEventListener("click", handleClick);
+             console.log(age_btn.length);
+           }
+         }
+
+         init(); // 여기까지 연령별
+      
+      function emailCheck() { 
+      var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+      var uiEmail = document.querySelector('#uiEmail');
+		if(!regExp.test(uiEmail.value)){
+			alert('올바른 이메일 형식이 아닙니다.');
 		}
-		
-		var age_btn = document.getElementsByClassName("age_btn");
-
-	      function handleClick(event) {
-	        console.log(event.target);
-	     
-	        console.log(event.target.classList);
-
-	        if (event.target.classList[1] === "age_btn_on") {
-	          event.target.classList.remove("age_btn_on");
-	        } else {
-	          for (var i = 0; i < age_btn.length; i++) {
-	            age_btn[i].classList.remove("age_btn_on");
-	          }
-
-	          event.target.classList.add("age_btn_on");
-	        }
-	      }
-
-	      function init() {
-	        for (var i = 0; i < age_btn.length; i++) {
-	          age_btn[i].addEventListener("click", handleClick);
-	          console.log(age_btn.length);
-	        }
-	      }
-
-	      init(); // 여기까지 연령별
-		
-		//이메일(Id) 중복체크 화면 open
-		
-		function emailCheck() {
-	    	  var uiEmail = document.querySelector('#uiEmail'); 
-	    	  console.log(uiEmail.value);
-	    	  if (uiEmail.value.indexOf('@')==-1 || uiEmail.value.indexOf('@')==0 || uiEmail.value.trim().length < 1 ) {
-					alert('이메일 주소를 정확히 입력해주세요.');
-					uiEmail.focus();
-					return;				
-				}
-	    	  var url = "/emailCheck?uiEmail="+uiEmail.value;
-	    		var xhr = new XMLHttpRequest();
-	    		xhr.open('GET',url);
-	    		xhr.onreadystatechange = function(){
-	    		if(xhr.status==200 && xhr.readyState==4){
-	    			var res = xhr.responseText;
-	    			if(res==1){
-	    				document.querySelector('#email_check').innerText = ('이미 사용 중인 이메일입니다.');
-	    				document.querySelector('#email_check').style.color = "red";
-	    				document.querySelector('#email_check').style.fontSize = "14px";
-	    				console.log(uiEmail.value);
-	    			}else{
-	    				document.querySelector('#email_check').innerText = ('사용가능한 이메일입니다.');
-	    				document.querySelector('#email_check').style.color = "red";
-	    				document.querySelector('#email_check').style.fontSize = "14px";
-	    				}
-	    			}
-	    		}
-	    		xhr.send();
-	    	}
-	    	  
-		function goInsert() {
-			
-			var uiEmail = document.querySelector('#uiEmail');
-			console.log(uiEmail.value.indexOf('@'));
-			if (uiEmail.value.indexOf('@')==-1 || uiEmail.value.indexOf('@')==0 || uiEmail.value.trim().length < 1 ) {
-				alert('이메일 주소를 정확히 입력해주세요.');
-				uiEmail.focus();
-				return;				
+		var uiEmail2 = document.querySelector('#uiEmail');
+            if (uiEmail2.value.trim().length < 1 ) {
+               alert('이메일 주소를 정확히 입력해주세요.');
+               uiEmail.focus();
+               return;            
+            }
+            var url = "/emailCheck?uiEmail="+uiEmail.value;
+             var xhr = new XMLHttpRequest();
+             xhr.open('GET',url);
+             xhr.onreadystatechange = function(){
+             if(xhr.status==200 && xhr.readyState==4){
+                var res = xhr.responseText;
+                if(res==1){
+                   document.querySelector('#email_check').innerText = ('이미 사용 중인 이메일입니다.');
+                   document.querySelector('#email_check').style.color = "red";
+                   document.querySelector('#email_check').style.fontSize = "14px";
+                   uiEmail.value="";
+                   emailDoubleCheck=res;//1
+                }else{
+                   document.querySelector('#email_check').innerText = ('사용가능한 이메일입니다.');
+                   document.querySelector('#email_check').style.color = "red";
+                   document.querySelector('#email_check').style.fontSize = "14px";
+                   emailDoubleCheck=res;//0
+                   }
+                }
+             }
+             xhr.send();
+          }
+            
+      function goInsert() {
+    	  
+    	  var uiEmail2 = document.querySelector('#uiEmail');
+          if (uiEmail2.value.trim().length < 1 ) {
+             alert('이메일 주소를 정확히 입력해주세요.');
+             uiEmail.focus();
+             return false;            
+          }
+          
+    	 var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규표현식
+         var uiEmail = document.querySelector('#uiEmail');
+			if(!regExp.test(uiEmail.value)){
+				console.log(uiEmail.value);
+				alert('올바른 이메일 형식이 아닙니다.');
+				return false;
 			}
-			
-			
-			var uiName = document.querySelector('#uiName');
-			if (uiName.value.trim().length < 2) {
-				alert('이름을 정확히 입력해주세요.');
-				uiName.focus();
-				return;
+				
+         
+         if(emailDoubleCheck==1 || emailDoubleCheck==null){
+            alert('이메일 주소 입력 후 중복확인 바랍니다.');
+            uiEmail.focus();
+            return false;      
+         }
+         
+         var uiName = document.querySelector('#uiName'); 
+         if (uiName.value.trim().length<1) {
+            alert('이름을 입력해주세요.');
+            uiName.focus();
+            return false;
+         }         
+         
+         var uiPhoneNumber2 = document.querySelector('#uiPhoneNumber');
+         if (uiPhoneNumber2.value.trim().length < 1 ) {
+             alert('휴대폰 번호를 정확히 입력해주세요.');
+             uiPhoneNumber2.focus();
+             return false;            
+          }	
+         
+         var regExp3 = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/;
+         var uiPhoneNumber = document.querySelector('#uiPhoneNumber');
+         if (!regExp3.test(uiPhoneNumber.value)) {
+				alert('휴대폰 번호를 확인해주세요.');
+				return false;
 			}
+        
+
+            var uiPwd = document.querySelector('#uiPwd');
+            if (uiPwd.value.trim().length < 4) {
+               alert('비밀번호를 4글자 입력해주세요.');
+               uiPwd.focus();
+               return false;
+            }
 			
-			
-			var uiPhoneNumber = document.querySelector('#uiPhoneNumber');
-				console.log(uiPhoneNumber.value.indexOf('-'));
-				if (uiPhoneNumber.value.indexOf('-') == -1
-						|| uiPhoneNumber.value.trim().length < 1
-						|| uiPhoneNumber.value.trim().length > 13) {
-					alert('-를 포함한 13자리 휴대폰 번호를 입력해주세요.');
-					uiPhoneNumber.focus();
-					return;
-				}
+            
+            var regExp4 = /^[a-zA-Z0-9]{4,12}$/;
+            var uiPwd = document.querySelector('#uiPwd');
+            if (!regExp4.test(uiPwd.value)) {
+            	alert('비밀번호는 영문 대소문자와 숫자로만 입력해주세요.')
+            	return false;
+            }
+            
+            var uiPwd2 = document.querySelector('#uiPwd2');
+            if (!regExp4.test(uiPwd2.value)) {
+            	alert('비밀번호는 영문 대소문자와 숫자로만 입력해주세요.')
+            	return false;
+            }
+            
+            var uiPwd2 = document.querySelector('#uiPwd2');
+            if (uiPwd2.value.trim().length < 4) {
+               alert('비밀번호 확인란을 입력해주세요.');
+               uiPwd2.focus();
+               return false;
+            }
 
-				var uiPwd = document.querySelector('#uiPwd');
-				if (uiPwd.value.trim().length < 1) {
-					alert('비밀번호를 정확히 입력해주세요.');
-					uiPwd.focus();
-					return;
-				}
+            var uiPwd2 = document.querySelector('#uiPwd2');
+            if (uiPwd.value != uiPwd2.value) {
+               alert('비밀번호가 일치하지 않습니다.');
+               uiPwd2.focus();
+               return false;
+            }
 
-				var uiPwd = document.querySelector('#uiPwd');
-				if (uiPwd.value.trim().length < 4) {
-					alert('비밀번호는 4글자 이상입니다.');
-					uiPwd.focus();
-					return;
-				}
+            var GenderNum;
+            function setGender(obj) {
+               GenderNum = obj;
+               if (GenderNum == "1") {
+                  GenderNum = "남";
+               } else {
+                  GenderNum = "여"
+               }
+               console.log(GenderNum);
+            }
 
-				var uiPwd2 = document.querySelector('#uiPwd2');
-				if (uiPwd2.value.trim().length < 1) {
-					alert('비밀번호 확인란을 입력해주세요.');
-					uiPwd.focus();
-					return;
-				}
+            var AgeNum;
+            function setAge(obj) {
+               AgeNum = obj;
+               console.log(AgeNum);
+               if (!AgeNum) {
+                  alert('연령대를 선택해주세요.')
+               }
+            }
 
-				var uiPwd2 = document.querySelector('#uiPwd2');
-				if (uiPwd.value != uiPwd2.value) {
-					alert('비밀번호가 일치하지 않습니다.');
-					uiPwd2.value = "";
-					uiPwd2.focus();
-					return false;
-				}
+            var uiRegion = document
+                  .querySelector('select#uiRegion option:checked');
+            if (uiRegion.value.trim().length < 1) {
+               alert('지역을 선택해주세요.');
+               return;
+            }
 
-				var GenderNum;
-				function setGender(obj) {
-					GenderNum = obj;
-					if (GenderNum == "1") {
-						GenderNum = "남";
-					} else {
-						GenderNum = "여"
-					}
-					console.log(GenderNum);
-				}
+            var uiGenre = document.querySelector('#uiGenre');
+            if (uiGenre.value.length < 1) {
+               alert('장르를 선택해주세요.');
+               return;
+            }
 
-				var AgeNum;
-				function setAge(obj) {
-					AgeNum = obj;
-					console.log(AgeNum);
-					if (!AgeNum) {
-						alert('연령대를 선택해주세요.')
-					}
-				}
+            var check1 = document.querySelector('#ServiceTerms:checked');
+            if (ServiceTerms.value.length < 1) {
+               alert('이용약관에 동의해주세요.');
+            }
 
-				var uiRegion = document
-						.querySelector('select#uiRegion option:checked');
-				if (uiRegion.value.trim().length < 1) {
-					alert('지역을 선택해주세요.');
-					return;
-				}
+            var checks = document.querySelector('#termsPrivacy:checked');
+            if (checks.value.trim().length < 1) {
+               alert('개인정보 수집/이용약관에 동의해주세요.');
+            }
 
-				var uiGenre = document.querySelector('#uiGenre');
-				if (uiGenre.value.length < 1) {
-					alert('장르를 선택해주세요.');
-					return;
-				}
+            var param = {
+               uiName : document.querySelector('#uiName').value,
+               uiEmail : document.querySelector('#uiEmail').value,
+               uiPhoneNumber : document.querySelector('#uiPhoneNumber').value,
+               uiPwd : document.querySelector('#uiPwd').value,
+               uiPwd2 : document.querySelector('#uiPwd2').value,
+               uiRegion : document.querySelector('#uiRegion').value,
+               uiGender :document.querySelector('.gender_btn_on').innerText,
+               uiAge : document.querySelector('.age_btn_on').innerText,
+               uiGenre : document.querySelector('#uiGenre').value,
+               check1 : document.querySelector('#ServiceTerms').value,
+               checks : document.querySelector('#termsPrivacy').value
+            }
 
-				var check1 = document.querySelector('#ServiceTerms:checked');
-				if (ServiceTerms.value.length < 1) {
-					alert('이용약관에 동의해주세요.');
-				}
-
-				var checks = document.querySelector('#termsPrivacy:checked');
-				if (checks.value.trim().length < 1) {
-					alert('개인정보 수집/이용약관에 동의해주세요.');
-				}
-
-				var param = {
-					uiName : document.querySelector('#uiName').value,
-					uiEmail : document.querySelector('#uiEmail').value,
-					uiPhoneNumber : document.querySelector('#uiPhoneNumber').value,
-					uiPwd : document.querySelector('#uiPwd').value,
-					uiPwd2 : document.querySelector('#uiPwd2').value,
-					uiRegion : document.querySelector('#uiRegion').value,
-					uiGender :document.querySelector('.gender_btn_on').innerText,
-					uiAge : document.querySelector('.age_btn_on').innerText,
-					uiGenre : document.querySelector('#uiGenre').value,
-					check1 : document.querySelector('#ServiceTerms').value,
-					checks : document.querySelector('#termsPrivacy').value
-				}
-
-				console.log(param);
-				var xhr = new XMLHttpRequest();
-				xhr.open('POST', '/user-insert');
-				xhr.onreadystatechange = function() {
-					if (xhr.readyState == 4 && xhr.status == 200) {
-						if (xhr.responseText) {
-							alert('반갑습니다!');
-							location.href="/views/user/login";
-						}else{
-							alert('회원가입에 실패했습니다. 다시 시도해주세요.');
-						}
-					}
-				}
-				xhr.setRequestHeader('content-type',
-						'application/json;charset=UTF-8');
-				xhr.send(JSON.stringify(param));
-			}
-		</script>
+            console.log(param);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '/user-insert');
+            xhr.onreadystatechange = function() {
+               if (xhr.readyState == 4 && xhr.status == 200) {
+                  if (xhr.responseText) {
+                     alert('반갑습니다!');
+                     location.href="/views/user/login";
+                  }else{
+                     alert('회원가입에 실패했습니다. 다시 시도해주세요.');
+                  }
+               }
+            }
+            xhr.setRequestHeader('content-type',
+                  'application/json;charset=UTF-8');
+            xhr.send(JSON.stringify(param));
+         }
+      </script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

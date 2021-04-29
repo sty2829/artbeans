@@ -21,6 +21,10 @@
 	width: 60%;
 	height: 40px;
 }
+
+.small:hover {
+	font-weight: bold;
+}
 </style>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 </head>
@@ -30,7 +34,7 @@
 		
 		<div class="card o-hidden border-0" >
 			<div class="card-body">
-					<h3 class="card-title" style="text-align:center; font-weight:bold;" >아이디 찾기</h3>
+					<h4 class="card-title" style="text-align:center; font-weight:bold;" >아이디 찾기</h4>
 					<hr>
 					<br>	
 					<div class="card-content" >
@@ -46,6 +50,11 @@
 					<div class="card-content">
 						<button type="button"  class="btn btn-danger" name="button" onclick="goCheck()">확인</button>
 					</div>
+					
+					<div class="card-content">
+					<a class="small" href="/views/user/register">회원가입</a> /  
+					<a class="small" href="/views/user/forgetPwd">비밀번호 찾기</a>
+				</div>
 				</div>
 
 			</div>
