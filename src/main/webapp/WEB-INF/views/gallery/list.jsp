@@ -25,7 +25,6 @@
 			<div class="container">
 				<div class="row">
 					<div class="btn-group">
-
 						<div class="dropdown">
 							<button class="btn btn-secondary dropdown-toggle" type="button"
 								id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
@@ -35,8 +34,6 @@
 								<button class="dropdown-item" type="button" onclick="nameDesc()">내림차순</button>
 							</div>
 						</div>
-
-
 						<div class="dropdown">
 							<button class="btn btn-secondary dropdown-toggle" type="button"
 								id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
@@ -61,8 +58,6 @@
 				</div>
 			</div>
 		</section>
-
-
 		<section id="blog" class="blog">
 			<div class="container">
 				<div class="row" id="galleryList"></div>

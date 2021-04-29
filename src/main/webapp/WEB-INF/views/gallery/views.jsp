@@ -27,7 +27,6 @@
 				<div class="row" id="exhibition"></div>
 			</div>
 		</section>
-
 		<section id="contact" class="contact">
 			<div class="container">
 				<div style="border: 0; margin-left: 50px; width: 90%; height: 300px;" id="map"></div>
@@ -36,9 +35,7 @@
 	</main>
 
 	<script>
-		var giNum = ${param.giNum}
-		
-		
+		var giNum = ${param.giNum}		
 	</script>
 
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>

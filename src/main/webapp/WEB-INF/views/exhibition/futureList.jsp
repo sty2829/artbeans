@@ -68,7 +68,7 @@
 				</div>
 			</div>
 		</section>
-		<!-- 나중에 js에 status 1로 바꾸기 -->
+		
 		<section id="blog" class="blog">
 			<div class="container">
 				<div class="row" id="exhibitionList"></div>

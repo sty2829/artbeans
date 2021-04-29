@@ -1,8 +1,7 @@
 /**
  * 
  */
- 
-window.onload = get;
+window.addEventListener("load", get);	
 function get(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/gallerylist?size=9&sort=giNum,asc&page='+ count); //galleryController
@@ -50,7 +49,6 @@ function areaAsc(){
 	xhr.open('GET','/gallerylist?size=100&sort=giAddress,asc&page=0'); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			for(var galleryInfo of res.content){				
@@ -94,11 +92,9 @@ function area(obj){
 	xhr.open('GET','/gallery-addr-list/'+ obj.value + '?size=100&sort=giAddress,asc&page=0'); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			for(var galleryInfo of res.content){	
-			console.log(galleryInfo);				
+			for(var galleryInfo of res.content){		
 				html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 				html += '<article class="entry">';
 				html += '<div class="entry-img">';
@@ -127,13 +123,6 @@ function area(obj){
 				html += '</div>';
 			}
 			document.querySelector('#galleryList').innerHTML = html;
-			
-			/*window.addEventListener("scroll",  function(e) {
-            if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                count++;
-                area(obj);
-               }
-            });*/
 		}		
 	}
 	xhr.send();
@@ -145,7 +134,6 @@ function nameAsc(){
 	xhr.open('GET','/gallerylist?size=100&sort=giName,asc&page=0'); //galleryController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			for(var galleryInfo of res.content){

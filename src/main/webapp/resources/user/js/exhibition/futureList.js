@@ -51,7 +51,6 @@ function newest(){
 	xhr.open('GET','/exhibitions?status=CONFIRM&date=FUTURE&size=100&sort=eiStartDate,asc&page=0'); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			//console.log(xhr.responseText);
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			for(var exhibition of res.content){
@@ -125,10 +124,6 @@ function deadline(){
 					html += '</div>';
 			}
 			document.querySelector('#exhibitionList').innerHTML = html;
-			window.onscroll = function(e) {
-			    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                }
-			};
 		}		
 	}
 	xhr.send();

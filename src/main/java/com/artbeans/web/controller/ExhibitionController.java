@@ -30,17 +30,12 @@ public class ExhibitionController {
 	@Autowired
 	private ExhibitionService eService;
 
-	// @Autowired
-	// private ExhibitionInfoRepository eiRepo;
-
 	// 사용중(진석)
 	@GetMapping("/exhibition-list")
 	public @ResponseBody List<ExhibitionInfo> getExhibitionList(ExhibitionInfo exhibitionInfo) {
 	log.info("serach => {}", exhibitionInfo);
 		return eService.getExhibitionInfos(exhibitionInfo);
-	}
-	
-	
+	}	
 	
 	// 사용중(상혁)
 	@GetMapping("/exhibition-getaddressList/{giAddress}")
@@ -68,84 +63,11 @@ public class ExhibitionController {
 		exhibitionInfo = eService.saveExhibitionInfo(exhibitionInfo);
 		return exhibitionInfo.getEiNum();
 	}
-		
-//	@GetMapping("/exhibition-list")
-//	public @ResponseBody List<ExhibitionInfo> getExhibitionInfoList(ExhibitionInfo exhibitionInfo){
-//		log.info("exhibitionList=>{}",exhibitionInfo);
-//		return eService.getExhibitionInfos(exhibitionInfo);
-//	}Demo
-
-	// tsets
-	// @GetMapping("/exhibition/test/{str}")
-	// public @ResponseBody Page<ExhibitionInfo> getTest(@PathVariable String str,
-	// Pageable pageable){
-	// return eiRepo.getList(str, pageable);
-	// }
-
-//	// 나중에 지울 것
-//	@GetMapping("/exhibition-listDemo")
-//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoListDemo(Pageable pageable,
-//			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-//		return eService.getExhiListDemo(pageable, dtExhibitionInfo);
-//	}
-
-	
-
-//	// 지울걸
-//	@GetMapping("/exhibition-list")
-//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionInfoList(Pageable pageable,
-//			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-//		return eService.getExhibitionInfoLists(pageable, dtExhibitionInfo);
-//	}
-
-//	// 사용중(상혁) exhibition-list 변경
-//	@GetMapping("/exhibition-openinglist")
-//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionOpeningList(String eiStatus, Pageable pageable,
-//			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-//		return eService.getOpeningList(eiStatus, pageable, dtExhibitionInfo);
-//	}
-	
-	
-
-//	// 사용중(상혁) 무료
-//	@GetMapping("/exhibition-openinglistgetfree")
-//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionOpeningListGetFree(String eiStatus, Integer eiCharge,
-//			Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo) {
-//		return eService.getOpeningListGetFree(eiStatus, eiCharge, pageable, dtExhibitionInfo);
-//	}
-//
-//	// 사용중(상혁) exhibition-list 변경
-//	@GetMapping("/exhibition-closelist")
-//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionCloseList(String eiStatus, Pageable pageable,
-//			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-//		return eService.getCloseList(eiStatus, pageable, dtExhibitionInfo);
-//	}
-//
-//	// 사용중(상혁) exhibition-list 변경
-//	@GetMapping("/exhibition-futurelist")
-//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionFutureList(String eiStatus, Pageable pageable,
-//			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-//		return eService.getFutureList(eiStatus, pageable, dtExhibitionInfo);
-//	}
-//
-//	// 사용중(상혁) 무료
-//	@GetMapping("/exhibition-futurelistgetfree")
-//	public @ResponseBody DataTable<ExhibitionInfo> getExhibitionFutureListGetFree(String eiStatus, Integer eiCharge,
-//			Pageable pageable, DataTable<ExhibitionInfo> dtExhibitionInfo) {
-//		return eService.getFutureListGetFree(eiStatus, eiCharge, pageable, dtExhibitionInfo);
-//	}
-
-	
 
 	@PostMapping("/exhibition-insert-editorimage")
 	public @ResponseBody Map<String, String> uploadImg(@RequestParam MultipartFile upload) {
 		return FileUtil.ckeditorUploadImg(upload);
 	}
-
-//	@DeleteMapping("/exhibition")
-//	public @ResponseBody Integer deleteExhibition(@RequestParam Integer eiNum) {
-//		return eService.deleteExhibitionInfo(eiNum);
-//	}
 
 	@PostMapping("/exhibition-update")
 	public @ResponseBody Integer updateExhibitionInfo(@ModelAttribute ExhibitionInfo exhibitionInfo) throws Exception {

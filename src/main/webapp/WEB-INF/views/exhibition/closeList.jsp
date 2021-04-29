@@ -23,18 +23,7 @@
 		<!-- ======= Portfolio Section ======= -->
 		<section id="portfolio" class="portfolio">
 			<div class="container">
-				<div class="row">
-				
-				
-				<!-- 
-					<div class="col-lg-12 d-flex justify-content-center">
-						<ul id="portfolio-flters">
-							<li onclick="newest()">전시회 오픈순</li>
-							<li onclick="deadline()">전시회 마감순</li>
-						</ul>
-					</div>
-					 -->
-				
+				<div class="row">				
 				<div class="dropdown">
 							<button class="btn btn-secondary dropdown-toggle" type="button"
 								id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
@@ -71,7 +60,6 @@
 			</div>
 		</section>
 
-		<!-- 최신순, 마감순 <div id="exhibitionList"></div> -->
 		<section id="blog" class="blog">
 			<div class="container">
 				<div class="row" id="exhibitionList"></div>
