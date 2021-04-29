@@ -39,12 +39,12 @@
 				<br>
 				<div class="card-content" >
 					<input type="text" class="input-control"
-						id="uiEmail" placeholder="이메일">
+						id="uiEmail" placeholder="이메일" value="test1@test.com">
 				</div>
 
 				<div class="card-content" >
 					<input type="password" class="input-control"
-						id="uiPwd" placeholder="비밀번호">
+						id="uiPwd" placeholder="비밀번호" value="1234">
 				</div>
 				
 				<div class="card-content" >
@@ -66,6 +66,7 @@
 	
 
 	<script>
+	window.addEventListener('load',goLogin);
 		function goLogin() {
 
 		var uiEmail = document.querySelector('#uiEmail');

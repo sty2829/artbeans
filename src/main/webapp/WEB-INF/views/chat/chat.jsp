@@ -192,7 +192,7 @@ input:focus{
 
 		function startChat() {
 			var date = formatAMPM(new Date());
-			ws = new WebSocket('wss://artbeans.site:443/chat'); //연결
+			ws = new WebSocket('wss://${pageContext.request.serverName}/chat'); //연결
 			ws.onopen = function(data) {
 				var param = {
 					type : "enter",
