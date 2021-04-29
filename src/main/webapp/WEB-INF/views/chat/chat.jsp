@@ -5,10 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!--  
-<script src="/resources/user/js/window/moveblock.js"></script>-->
 
-<!-- <link rel="stylesheet" href="/resources/user/css/chat.css"> -->
 <style>
 .card-body {
 	text-align: center;
@@ -183,14 +180,7 @@ input:focus{
 		var chatName = document.querySelector('#userName');
 		chatName.value = uiName + '(' + uiEmail + ')';
 
-		document.addEventListener("keypress", function(e) {
-			if (e.keyCode == 13) { //enter press    			
-				sendMsg();
-			}
-		});
-
 		var ws;
-
 		function sendMsg() {
 			var param = {
 				type : "msg",
@@ -202,8 +192,8 @@ input:focus{
 
 		function startChat() {
 			var date = formatAMPM(new Date());
-			ws = new WebSocket('wss://artbeans.site/chat'); //연결
-			ws.onopen = function(data) { //on붙으면 이벤트
+			ws = new WebSocket('wss://artbeans.site:443/chat'); //연결
+			ws.onopen = function(data) {
 				var param = {
 					type : "enter",
 					name : chatName.value,
@@ -216,7 +206,6 @@ input:focus{
 			var html = '';
 			ws.onmessage = function(data) {
 				var msg = JSON.parse(data.data);
-				//console.log(msg);
 				if (msg.type && msg.type == 'enter') {
 					html = '<li style="width:100%">'
 							+ '<div class="msj macro">'
@@ -227,7 +216,6 @@ input:focus{
 							+ '</div>'
 							+ '</li>';
 					document.querySelector('#chat').innerHTML += html;
-					// document.querySelector('#chat').value +='[입장 :' + msg.name + '님이 입장하였습니다.]\r\n';
 				} else if (msg.type && msg.type == 'msg') {
 					if (chatName.value != msg.name) {
 						html = '<li style="width:100%">'
@@ -252,9 +240,6 @@ input:focus{
 						document.querySelector('#chat').innerHTML += html;
 						document.querySelector('#chatmsg').value = '';
 					}
-
-					//				document.querySelector('#chat').value += msg.name + ' : ' + msg.msg + ' (' + date + ')\r\n' ;
-					//				document.querySelector('#chatmsg').value = '';
 				} else {
 					html = '<li style="width:100%">'
 							+ '<div class="msj macro">'
@@ -265,7 +250,6 @@ input:focus{
 							+ '</div>'
 							+ '</li>';
 					document.querySelector('#chat').innerHTML += html;
-					//document.querySelector('#chat').value += '[퇴장 :' + msg.name + '님이 퇴장하였습니다.]\r\n';
 				}
 			}
 		}
@@ -288,11 +272,18 @@ input:focus{
 			var minutes = date.getMinutes();
 			var ampm = hours >= 12 ? 'PM' : 'AM';
 			hours = hours % 12;
-			hours = hours ? hours : 12; // the hour '0' should be '12'
+			hours = hours ? hours : 12; 
 			minutes = minutes < 10 ? '0' + minutes : minutes;
 			var strTime = hours + ':' + minutes + ' ' + ampm;
 			return strTime;
 		}
+
+		//enter press   
+		document.addEventListener("keypress", function(e) {
+			if (e.keyCode == 13) {  			
+				sendMsg();
+			}
+		});
 		
 		//윈도우 새로고침 막기
 		function noEvent() {
