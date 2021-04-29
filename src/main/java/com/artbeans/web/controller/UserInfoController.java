@@ -142,12 +142,10 @@ public class UserInfoController {
 			return userService.findCode(code);
 		}
 		
+		//새 비밀번호 변경
 		@PostMapping("/changePwd")
-		public UserInfo change(@RequestBody UserInfo ui) {
-			log.info("ui=>{}",ui);
-			UserInfo user1 = userService.getUser(ui.getUiNum());
-			log.info("user1=>{}",user1);
-			return userService.updateUser(user1);
+		public int change(@RequestBody UserInfo userInfo) {
+			log.info("pwd=>{}",userInfo.getUiPwd());
+			return userService.cPwd(userInfo);
 		}
-	
 	}

@@ -36,9 +36,6 @@
 				<hr>
 				<br>
 				<div class="card-content">
-					<input type="hidden" class="input-control" id="uiNum">
-				</div>
-				<div class="card-content">
 					<input type="password" class="input-control" id="uiPwd"
 						placeholder="새 비밀번호">
 				</div>
@@ -77,14 +74,13 @@
 			uiPwd.focus();
 			return;
 		}
-		var url = '/changePwd?uiNum=' + ${userInfo.getUiNum};
+
 		var xhr = new XMLHttpRequest();
-		xhr.open('POST',url);
+		xhr.open('POST','/changePwd');
 		xhr.onreadystatechange = function(){
 		if(xhr.status==200 && xhr.readyState==4){
 			var res = xhr.responseText;
-			console.log(res);
-			if(res.uiPwd == uiPwd.value){
+			if(res>=1){ //cnt가 pk를 가져옴
 				alert('비밀번호가 변경되었습니다. 로그인 페이지로 이동합니다!')
 				location.href="/views/user/login";
 			}else {
@@ -94,7 +90,7 @@
 			}	
 		}
 		var param = {
-					uiNum : '${userInfo.getUiNum}',
+					uiNum : ${param.uiNum},
 					uiPwd : document.querySelector('#uiPwd').value
 					}
 		xhr.setRequestHeader('content-type','application/json;charset=UTF-8');

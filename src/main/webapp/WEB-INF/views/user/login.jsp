@@ -39,7 +39,7 @@
 				<br>
 				<div class="card-content" >
 					<input type="text" class="input-control"
-						id="uiEmail" placeholder="이메일" >
+						id="uiEmail" placeholder="이메일">
 				</div>
 
 				<div class="card-content" >
@@ -55,8 +55,6 @@
 					<a class="small" href="/views/user/register">회원가입</a> / 
 					<a class="small" href="/views/user/forgetId">아이디 찾기</a> / 
 					<a class="small" href="/views/user/forgetPwd">비밀번호 찾기</a>
-				</div>
-				<div class="card-content">
 				</div>
 			</div>
 		</div>
