@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +19,7 @@ import com.artbeans.web.entity.FavoriteInfo;
 import com.artbeans.web.service.FavoriteService;
 
 import lombok.extern.slf4j.Slf4j;
+import retrofit2.http.POST;
 
 @RestController
 @Slf4j
@@ -25,17 +29,17 @@ public class FavoriteController {
 	private FavoriteService fService;
 
 	@GetMapping("/favorite-exhibitions")
-	public  List<FavoriteInfo> getFavoriteExhibition(UserSession userssesion) {
-		log.info("userssesion=>{}", userssesion);
+	public  List<FavoriteInfo> getFavoriteExhibition(@RequestParam Integer uiNum) {
+		log.info("userssesion=>{}", uiNum);
 
-		return fService.getFavoriteExhibition(userssesion);
+		return fService.getFavoriteExhibition(uiNum);
 
 	}
-	@GetMapping("/favorite-check")
-	public int getFviEinum(ExhibitionInfo eiNum) {
-		log.info("eiNumF=>{}",eiNum);
+	@PostMapping("/favorite-insert")
+	public int getFviEinum(@RequestBody FavoriteInfo fvi) {
 		
-		return 0;
+		
+		return fService.saveFavoriteExhibition(fvi);
 		
 	}
 

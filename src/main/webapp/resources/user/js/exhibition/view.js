@@ -71,7 +71,8 @@ window.onload = function (){
             
             html +='<hr>';
             html +='<div id="heart">';
-            html +='<img src="/resources/user/img/sidebtn/heart.png"/>';            
+            html +='<label for="heart">좋아요</label>';
+            html += '<input id="fviCheck" onchange="checkFavorite()" type="checkbox">';            
             html +='</div>';
 			//예약추가
 			if(res.reservationInfo != null){

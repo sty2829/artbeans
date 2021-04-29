@@ -19,11 +19,11 @@ public class FavoriteImpl implements FavoriteService {
 	private FavoriteInfoRepository fRepo;
 
 	@Override
-	public List<FavoriteInfo> getFavoriteExhibition(UserSession userSession) {
-	log.info("UserSession=>{}",userSession);
-	log.info("fRepo.findAllByUserInfoUiNum(userSession.getUiNum());=>{}",fRepo.findAllByUserInfoUiNum(userSession.getUiNum()));
+	public List<FavoriteInfo> getFavoriteExhibition(Integer uiNum) {
+	log.info("UserSession=>{}",uiNum);
+	log.info("fRepo.findAllByUserInfoUiNum(userSession.getUiNum());=>{}",fRepo.findAllByUserInfoUiNum(uiNum));
 	
-		return fRepo.findAllByUserInfoUiNum(userSession.getUiNum());
+		return fRepo.findAllByUserInfoUiNum(uiNum);
 	}
 
 	@Override
@@ -43,6 +43,23 @@ public class FavoriteImpl implements FavoriteService {
 			return 1;
 		}
 		return 0;
+	}
+
+	@Override
+	public Integer saveFavoriteExhibition(FavoriteInfo fvi) {
+		log.info("impl fvi=>{}",fvi);
+		if(fvi.getUserInfo().getUiNum()!=0 && fvi.getFviNum()== null) {
+			fRepo.save(fvi);
+			return 1;
+		}
+		if(fvi.getUserInfo().getUiNum()==0) {
+			return 2;
+		}
+		if(fvi.getFviNum()!=null) {
+			fRepo.deleteById(fvi.getFviNum());
+			return 0;
+		}
+		return null;
 	}
 
 
