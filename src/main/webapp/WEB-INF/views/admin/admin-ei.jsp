@@ -236,8 +236,6 @@ function eiSearchButton(page){
 			let res = JSON.parse(xhr.responseText);
 			let html='';
 			
-			console.log(res);
-			
 			if(res.content.length==1){
 				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-ei-update?eiNum='+res.content.eiNum+'\'">';
 				html+='<td class="cell100 column1">'+res.content[0].eiNum+'</td>';
