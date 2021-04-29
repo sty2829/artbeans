@@ -70,7 +70,7 @@ function get(){
 	xhr.open('GET','/exhibition-calendar-oneday?size=99&eiStartDate='+getValue); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
-			console.log(xhr.responseText); 
+			
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			
@@ -80,7 +80,8 @@ function get(){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
-					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/gallery/' +exhibitionInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
+					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibitionInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
+					console.log(exhibitionInfo.fileInfo.fiPath); 
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibitionInfo.eiName + '</a>';
