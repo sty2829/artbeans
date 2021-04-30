@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>진행중인 전시회 목록</title>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<script src="/resources/user/js/window/infinityScroll.js"></script> 
+<script src="/resources/user/js/window/infinityScroll.js"></script>
 <script src="/resources/user/js/exhibition/openingList.js"></script>
 <link rel="stylesheet" href="/resources/user/css/right-menu.css">
 <link href='https://css.gg/attachment.css' rel='stylesheet'>
@@ -199,7 +199,7 @@
 									<div
 										style="position: relative; width: 53px; height: 14px; margin: 0px 12px 7px 2px; overflow: hidden; pointer-events: auto;">
 										<span
-											style="display: block; margin: 0; padding: 0 4px; text-align: center; font-size: 10px; line-height: 11px; font-family: Helvetica, AppleSDGothicNeo-Light, nanumgothic, NanumGothic,&amp; amp; amp; amp; quot; 나눔고딕 &amp;amp; amp; amp; quot; , Dotum ,&amp;amp; amp; amp; quot; 돋움 &amp;amp; amp; amp; quot; , sans-serif; font-weight: bold; color: #000; text-shadow: -1px 0 rgba(255, 255, 255, 0.3), 0 1px rgba(255, 255, 255, 0.3), 1px 0 rgba(255, 255, 255, 0.3), 0 -1px rgba(255, 255, 255, 0.3);">100m</span><img
+											style="display: block; margin: 0; padding: 0 4px; text-align: center; font-size: 10px; line-height: 11px; font-family: Helvetica, AppleSDGothicNeo-Light, nanumgothic, NanumGothic,&amp; amp; amp; amp; amp; quot; 나눔고딕 &amp;amp; amp; amp; amp; quot; , Dotum ,&amp;amp; amp; amp; amp; quot; 돋움 &amp;amp; amp; amp; amp; quot; , sans-serif; font-weight: bold; color: #000; text-shadow: -1px 0 rgba(255, 255, 255, 0.3), 0 1px rgba(255, 255, 255, 0.3), 1px 0 rgba(255, 255, 255, 0.3), 0 -1px rgba(255, 255, 255, 0.3);">100m</span><img
 											src="http://static.naver.net/maps/mantle/1x/scale-normal-b.png"
 											width="45" height="4" alt=""
 											style="position: absolute; left: 4px; bottom: 0px; z-index: 2; display: block; width: 45px; height: 4px; overflow: hidden; margin: 0px; padding: 0px; border: 0px none; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important;"><img
@@ -413,7 +413,7 @@
 									<div
 										style="position: relative; width: 52px; height: 14px; margin: 0px 12px 7px 2px; overflow: hidden; pointer-events: auto;">
 										<span
-											style="display: block; margin: 0; padding: 0 4px; text-align: center; font-size: 10px; line-height: 11px; font-family: Helvetica, AppleSDGothicNeo-Light, nanumgothic, NanumGothic,&amp; amp; amp; amp; quot; 나눔고딕 &amp;amp; amp; amp; quot; , Dotum ,&amp;amp; amp; amp; quot; 돋움 &amp;amp; amp; amp; quot; , sans-serif; font-weight: bold; color: #000; text-shadow: -1px 0 rgba(255, 255, 255, 0.3), 0 1px rgba(255, 255, 255, 0.3), 1px 0 rgba(255, 255, 255, 0.3), 0 -1px rgba(255, 255, 255, 0.3);">100m</span><img
+											style="display: block; margin: 0; padding: 0 4px; text-align: center; font-size: 10px; line-height: 11px; font-family: Helvetica, AppleSDGothicNeo-Light, nanumgothic, NanumGothic,&amp; amp; amp; amp; amp; quot; 나눔고딕 &amp;amp; amp; amp; amp; quot; , Dotum ,&amp;amp; amp; amp; amp; quot; 돋움 &amp;amp; amp; amp; amp; quot; , sans-serif; font-weight: bold; color: #000; text-shadow: -1px 0 rgba(255, 255, 255, 0.3), 0 1px rgba(255, 255, 255, 0.3), 1px 0 rgba(255, 255, 255, 0.3), 0 -1px rgba(255, 255, 255, 0.3);">100m</span><img
 											src="http://static.naver.net/maps/mantle/1x/scale-normal-b.png"
 											width="44" height="4" alt=""
 											style="position: absolute; left: 4px;; bottom: 0; z-index: 2; display: block; width: 44px; height: 4px; overflow: hidden; margin: 0; padding: 0; border: 0 none; max-width: none !important; max-height: none !important; min-width: 0 !important; min-height: 0 !important;"><img
@@ -474,18 +474,17 @@
 								</div>
 							</div>
 						</div>
-						<<div style="clear:both; height:10px;"></div>
+						<
+						<div style="clear: both; height: 10px;"></div>
 						<div class="map_bottom">
-				<span onclick="want()">찜목록 추가</span>
-				<span onclick="urlcopy();">URL 복사</span>
-				<span onclick="print();">인쇄</span>
-			</div>
-			<div id="sideMapList">
-					
+							<span onclick="location.href='/views/user/favorite-exhibition'"
+								style="cursor: pointer">찜목록 보기</span> <span onclick="urlcopy();">URL
+								복사</span> <span onclick="print();">인쇄</span>
+						</div>
+						<div id="sideMapList"></div>
 					</div>
-					</div>
-					
-					
+
+
 
 
 
@@ -499,40 +498,57 @@
 							<button class="dropdown-item" type="button" onclick="deadline()">마감순</button>
 						</div>
 					</div>
-						<div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin: 5px">지역순</button>
-							<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-								<button class="dropdown-item" type="button" onclick="areaAll()">전체지역</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="서울">서울</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="경기">경기도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="인천">인천</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="강원">강원도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="충남">충청남도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="충북">충청북도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="전남">전라남도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="전북">전라북도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="경북">경상북도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="경남">경상남도</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="부산">부산</button>
-								<button class="dropdown-item" type="button" onclick="area(this)" value="제주">제주</button>
-							</div>
-					    </div>
-					    
-					    <div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle" type="button"
-								id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false" style="margin: 5px">가격순</button>
-							<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-								<button class="dropdown-item" type="button" onclick="priceCheap()">오름차순</button>
-								<button class="dropdown-item" type="button" onclick="priceExpensive()">내림차순</button>
-								<button class="dropdown-item" type="button" onclick="pricefree()">무료</button>
-							</div>
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false" style="margin: 5px">지역순</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+							<button class="dropdown-item" type="button" onclick="areaAll()">전체지역</button>
+							<button class="dropdown-item" type="button" onclick="area(this)"
+								value="서울">서울</button>
+							<button class="dropdown-item" type="button" onclick="area(this)"
+								value="경기">경기도</button>
+							<button class="dropdown-item" type="button" onclick="area(this)"
+								value="인천">인천</button>
+							<button class="dropdown-item" type="button" onclick="area(this)"
+								value="강원">강원도</button>
+							<button class="dropdown-item" type="button" onclick="area(this)"
+								value="충남">충청남도</button>
+							<button class="dropdown-item" type="button" onclick="area(this)"
+								value="충북">충청북도</button>
+							<button class="dropdown-item" type="button" onclick="area(this)"
+								value="전남">전라남도</button>
+							<button class="dropdown-item" type="button" onclick="area(this)"
+								value="전북">전라북도</button>
+							<button class="dropdown-item" type="button" onclick="area(this)"
+								value="경북">경상북도</button>
+							<button class="dropdown-item" type="button" onclick="area(this)"
+								value="경남">경상남도</button>
+							<button class="dropdown-item" type="button" onclick="area(this)"
+								value="부산">부산</button>
+							<button class="dropdown-item" type="button" onclick="area(this)"
+								value="제주">제주</button>
 						</div>
-					
-
 					</div>
 
-					<img id="sidebarCollapse" src = "/resources/user/img/sidebtn/mapIcon.png">
+					<div class="dropdown">
+						<button class="btn btn-secondary dropdown-toggle" type="button"
+							id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false" style="margin: 5px">가격순</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+							<button class="dropdown-item" type="button"
+								onclick="priceCheap()">오름차순</button>
+							<button class="dropdown-item" type="button"
+								onclick="priceExpensive()">내림차순</button>
+							<button class="dropdown-item" type="button" onclick="pricefree()">무료</button>
+						</div>
+					</div>
+
+
+				</div>
+
+				<img id="sidebarCollapse"
+					src="/resources/user/img/sidebtn/mapIcon.png">
 			</div>
 		</section>
 

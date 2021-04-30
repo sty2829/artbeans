@@ -94,9 +94,9 @@ window.onload = function(){
 			var table = '';
 			for(var favoriteExhibition of res){
 				
-				table += '<tr class="listTitle"">';
-				table += '<td><img class="poster" src="/resources/assets/img/exhibition/' + favoriteExhibition.exhibitionInfo.fileInfo.fiPath + '">';
-				table += '<td>' + favoriteExhibition.exhibitionInfo.eiName +'</td>'; 
+				table += '<tr class="listTitle" >';
+				table += '<td onclick="location.href=\'/views/exhibition/views?eiNum='+favoriteExhibition.exhibitionInfo.eiNum+'\'" style="cursor:pointer"><img class="poster" src="/resources/assets/img/exhibition/' + favoriteExhibition.exhibitionInfo.fileInfo.fiPath + '">';
+				table += '<td onclick="location.href=\'/views/exhibition/views?eiNum='+favoriteExhibition.exhibitionInfo.eiNum+'\'" style="cursor:pointer">' + favoriteExhibition.exhibitionInfo.eiName +'</td>'; 
 				table += '<td>' + favoriteExhibition.exhibitionInfo.galleryInfo.giName +'</td>';
 				table += '<td>' + favoriteExhibition.exhibitionInfo.eiStartDate +'</td>';
 				table += '<td>' + favoriteExhibition.exhibitionInfo.eiEndDate +'</td>';
