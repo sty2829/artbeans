@@ -16,6 +16,7 @@ import java.util.Map;
 
 import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.dto.SumTicketTime;
+import com.artbeans.web.dto.ReservationTimeDTO;
 import com.artbeans.web.entity.ReservationInfo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -91,44 +92,24 @@ public class DateUtil {
 	    return rs;
 	}
 	
-	public static Map<String,Integer> getTimeList(ReservationInfo ri, List<SumTicketTime> sttList, String dateStr) {
-		//시간대별 최대 티켓수 
-		Integer maxStock = ri.getRiMaxStock();
-		String startTime = ri.getRiStartTime();
-		String endTime = ri.getRiEndTime();
-		int startTimeInt = Integer.parseInt(startTime.substring(0,2));
-		int endTimeInt = Integer.parseInt(endTime.substring(0,2));
-		int length = endTimeInt - startTimeInt;
-		
-		
+	public static List<ReservationTimeDTO> setDisableTime(List<ReservationTimeDTO> rtList, String dateStr) {
 		LocalDate today = LocalDate.now();
 		LocalDate targetDate = LocalDate.parse(dateStr, DateTimeFormatter.ISO_DATE);
-		if(today.isEqual(targetDate)) {
-			LocalTime.now().getHour();
-		}
-		
-		
-		Map<String,Integer> timeMap = new HashMap<>();
-		
-		for(SumTicketTime stt : sttList) {
-			int sum = stt.getSum().intValue();
-			timeMap.put(stt.getTime(), maxStock-sum);
-		}
-		
-		for(int i=0; i<length; i++) {
-			String time = startTimeInt + ":00";
-			if(time.length() != 5) {
-				time = "0"+time;
+		int hour = LocalTime.now().getHour();
+		for(ReservationTimeDTO rt : rtList) {
+			if(today.equals(targetDate)) {
+				int targetHour = Integer.parseInt(rt.getTime().substring(0,2));
+				if(hour >= targetHour) {
+					rt.setDisableTime(true);
+					continue;
+				}
 			}
-			
-			if(!timeMap.containsKey(time)) {
-				timeMap.put(time, maxStock);
-			}
-			startTimeInt++;
+			rt.setDisableTime(false);
 		}
 		
-		return timeMap;
+		return rtList;
 	}
+	
 	
 	public static String dateToString(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat(YYYY_MM_DD);

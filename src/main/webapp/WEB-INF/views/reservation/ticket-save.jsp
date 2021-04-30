@@ -115,14 +115,16 @@
 			</div>
 		</div>
 	</div>
-	<input type="hidden" id="riNum" value="${param.riNum }">
+	<input type="hidden" id="riNum" value="${param.riNum}">
+	<input type="hidden" id="eiNum" value="${param.eiNum}">
 <script>
 window.addEventListener('load', naverMap);
 
 function getExhibition(){
 	return new Promise(function(resolve, rejcet){
+		var eiNum = document.querySelector('#eiNum');
 		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/exhibition/?eiNum=' + ${param.eiNum});
+		xhr.open('GET', '/exhibition/?eiNum=' + eiNum.value);
 		xhr.onreadystatechange = function(){
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var res = JSON.parse(xhr.responseText);
@@ -208,7 +210,7 @@ function saveReservation(){
 	var param = {
 			paymentInfo : {},
 			reservationInfo : {
-				riNum: document.querySelector('#riNum').value;
+				riNum: document.querySelector('#riNum').value
 			}
 	};
 	
@@ -291,7 +293,7 @@ function saveReservation(){
 	xhr.setRequestHeader('content-type', 'application/json;charset=UTF-8');
 	xhr.send(JSON.stringify(param));
 }
-</script>	
+</script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

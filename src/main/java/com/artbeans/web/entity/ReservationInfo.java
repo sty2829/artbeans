@@ -72,6 +72,64 @@ import lombok.ToString;
 				})
 )
 
+@NamedNativeQuery(
+		name = "find_reservation_time_dto",
+		query = "WITH recursive cte AS (\r\n"
+				+ "SELECT 0 AS rnum\r\n"
+				+ "UNION ALL\r\n"
+				+ "SELECT \r\n"
+				+ "rnum + 1 \r\n"
+				+ "FROM cte\r\n"
+				+ "WHERE rnum < \r\n"
+				+ "(\r\n"
+				+ "SELECT ((CAST(substring(ri_end_time, 1, 2) AS UNSIGNED) - CAST(substring(ri_start_time, 1, 2) AS UNSIGNED))) -1 \r\n"
+				+ "FROM reservation_info WHERE ri_num = :riNum\r\n"
+				+ ")\r\n"
+				+ ")\r\n"
+				+ "SELECT\r\n"
+				+ "if(LENGTH(\r\n"
+				+ "CONCAT(\r\n"
+				+ "(\r\n"
+				+ "SELECT cast(substring(ri_start_time, 1, 2) AS UNSIGNED)\r\n"
+				+ "FROM reservation_info WHERE ri_num = :riNum\r\n"
+				+ ") + rnum, ':00')) < 5, CONCAT('0',\r\n"
+				+ "(\r\n"
+				+ "SELECT cast(substring(ri_start_time, 1, 2) AS UNSIGNED)\r\n"
+				+ "FROM reservation_info WHERE ri_num = :riNum\r\n"
+				+ ") + rnum, ':00'), CONCAT(\r\n"
+				+ "(\r\n"
+				+ "SELECT cast(substring(ri_start_time, 1, 2) AS UNSIGNED)\r\n"
+				+ "FROM reservation_info WHERE ri_num = :riNum\r\n"
+				+ ") + rnum, ':00')) AS riTime,\r\n"
+				+ "IFNULL( \r\n"
+				+ "(\r\n"
+				+ "SELECT ri_max_stock FROM reservation_info WHERE ri_num = :riNum\r\n"
+				+ ")\r\n"
+				+ "-\r\n"
+				+ "(\r\n"
+				+ "SELECT SUM(ti.ti_number) as sum\r\n"
+				+ "FROM ticket_info ti LEFT JOIN reservation_info ri \r\n"
+				+ "on ti.ri_num = ri.ri_num where ti.ri_num = :riNum\r\n"
+				+ "AND ti.ti_date = :targetDate GROUP BY ti.ti_time HAVING ti.ti_time = riTime\r\n"
+				+ "), \r\n"
+				+ "(\r\n"
+				+ "SELECT ri_max_stock FROM reservation_info WHERE ri_num = :riNum\r\n"
+				+ ")\r\n"
+				+ ") riTicket\r\n"
+				+ "FROM cte",
+				resultSetMapping = "reservation_time_dto"
+		)
+@SqlResultSetMapping(
+		name = "reservation_time_dto",
+		classes = @ConstructorResult(
+				targetClass = com.artbeans.web.dto.ReservationTimeDTO.class,
+				columns = {
+						@ColumnResult(name = "riTime", type = String.class),
+						@ColumnResult(name = "riTicket", type = Integer.class)
+						
+				}
+		)
+)
 @Table(name="reservation_info")
 public class ReservationInfo {
 	

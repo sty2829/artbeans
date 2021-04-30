@@ -60,7 +60,7 @@
 								<h5>예매수</h5>
 							</li>
 							<li class="list-inline-item">
-								<input type="number" class="form-control" id="tiNumber"  data-param="tiNumber" data-col="maxTicket" onclick="changeNumber(this)" min="0"  value="0" style="width:130px; height: 30px; text-align: center">
+								<input type="number" class="form-control" id="tiNumber"  data-param="tiNumber" data-col="maxTicket" onclick="changeNumber(this)" min="0"  value="0"  style="width:130px; height: 30px; text-align: center">
 							</li>
 						</ul>
 					</div>
@@ -102,146 +102,7 @@
 	</div>
 	<input type="hidden" data-param="eiNum" id="eiNum" value="${param.eiNum}">
 	<input type="hidden" data-param="riNum" id="riNum" data-col="riNum">
+<script src="/resources/user/js/reservation/reservation-view.js"></script>	
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-<script>
-window.addEventListener('load', getSchedule);
-
-function getSchedule(){
-	var eiNum = document.querySelector('#eiNum');
-	var xhr = new XMLHttpRequest();
-	xhr.open('GET', '/reservation/' + eiNum.value);
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var res = JSON.parse(xhr.responseText);
-			var objs = document.querySelectorAll('[data-col]');
-			for(obj of objs){
-				var key = obj.getAttribute('data-col');
-				var data = res[key];
-				if(key === 'imgPath') {
-					obj.src = '/upload/' + data;
-					data = '';
-				}else if(key === 'maxTicket'){
-					obj.max = data;
-					data = '';
-				}else if(key === 'riNum'){
-					obj.value = data;
-				}
-				obj.innerHTML = data;
-			}
-			getTimeList(res.minDate);
-			flatpickr('#mycal', {
-				inline: true,
-				time_24hr: true,
-				minDate: res.minDate,
-				maxDate: res.maxDate,
-			    disable: res.disableList,
-			    defaultDate: res.minDate,
-			    onChange: function(selectedDates, dateStr, instance) {
-			    	document.querySelector('#tiDate').innerHTML = dateStr;
-			    	getTimeList(dateStr);
-			    	
-			    }
-			});
-		}
-	}
-	xhr.send();
-}
-
-function getTimeList(dateStr, selectedDates) {
-	var xhr = new XMLHttpRequest();
-	var riNum = document.querySelector("#riNum").value;
-	xhr.open('GET', '/reservation/' + riNum + '/' + dateStr);
-	xhr.onreadystatechange = function(){
-		if(xhr.readyState == 4 && xhr.status == 200){
-			var res = JSON.parse(xhr.responseText);
-			var keys = [];
-			for(var key in res){
-				keys.push(Number(key.substring(0,2)));
-			}
-			keys.sort(function(a, b) {
-				return a - b;
-			});
-			var html = '';
-			for(var i=0; i<keys.length; i++) {
-				var key = keys[i] + ':00';
-				
-				if(key.length != 5){
-					key = '0' + key;
-				}
-				html += '<li class="list-inline-item">';
-				html += '<input type="radio" disabled class="btn-check radio-hidden" name="rtiTime" id="time' + (i+1) + '" autocomplete="off" value="' + key +'" onclick="selectTime(this)" data-ticket="' + res[key] +'">';
-				html += '<label class="btn btn-outline-success" for="time' + (i+1) + '" >' + key + '<br>' + res[key] +'매 </label>';
-			  	html += '</li>';
-			}
-			//타임리스트
-			document.querySelector('#timeList').innerHTML = html;
-			//맥스티켓 설정
-			var first = document.querySelector("#time1");
-			var tiNumber = document.querySelector('#tiNumber');
-			var maxTicket = Number(tiNumber.max);
-			var remainTicket = Number(first.getAttribute('data-ticket'));
-			tiNumber.max = remainTicket > maxTicket ? maxTicket : remainTicket;
-			
-			document.querySelector('#tiTime').innerHTML = first.value;
-			first.checked = true;
-		}
-	}
-	xhr.send();
-}
-
-function selectTime(obj){
-	var tiNumber = document.querySelector('#tiNumber');
-	var maxTicket = Number(tiNumber.max);
-	var remainTicket = Number(obj.getAttribute('data-ticket'));
-	
-	tiNumber.max = remainTicket > maxTicket ? maxTicket : remainTicket;
-	
-	if(Number(tiNumber.value) > Number(tiNumber.max)){
-		tiNumber.value = tiNumber.max;
-	}
-	
-	var rtiTime = document.querySelector('#tiTime');
-	rtiTime.innerHTML = obj.value;	
-	
-}
-var isNumber = true;
-function changeNumber(obj){
-	var selectTicket = Number(obj.value);
-	var maxTicket = Number(document.querySelector('#tiNumber').max);
-	
-	if(isNumber){
-		if(selectTicket <= 0){
-			alert('예매수는 1개 이상 선택해주세요.');
-		}else if(selectTicket >= maxTicket)
-			alert('1인당 구매가능한 수량은 ' + maxTicket + '입니다.' );
-	}
-
-	isNumber = selectTicket <= 0 ? true : (selectTicket >= maxTicket) ? true : false; 
-	console.log(isNumber);
-	var charge = Number(document.querySelector('#charge').innerText);
-	document.querySelector('#piPrice').innerHTML = selectTicket * charge;
-}
-
-function goPayment(){
-	var tiNumber = document.querySelector('#tiNumber');
-	if(tiNumber.value < 1 || tiNumber.value == ''){
-		alert('예매수를 1장이상 골라주세요');
-		return;
-	}
-	
-	var objs = document.querySelectorAll('[data-param]');
-	var param = '?'
-	for(var obj of objs){
-		var key = obj.getAttribute('data-param');
-		if(obj.tagName == 'INPUT'){
-			param += key + '=' + obj.value + '&';
-		}else{
-			param += key + '=' + obj.innerText + '&';
-		}
-	}
-	
-	location.href = '/views/reservation/ticket-save/' + param
-}
-</script>
 </body>
 </html>

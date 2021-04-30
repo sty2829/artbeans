@@ -1,6 +1,6 @@
 package com.artbeans.web.controller;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.artbeans.web.dto.ReservationSchedule;
+import com.artbeans.web.dto.ReservationTimeDTO;
 import com.artbeans.web.entity.ReservationInfo;
 import com.artbeans.web.service.ReservationService;
 
@@ -37,8 +38,8 @@ public class ReservationController {
 	}
 	
 	//해당전시회 선택한 예약날짜의 예매시간리스트 가져옴
-	@GetMapping("/reservation/{riNum}/{dateStr}")
-	public Map<String,Integer> getTimes(@PathVariable Integer riNum, @PathVariable String dateStr) {
+	@GetMapping("/reservation")
+	public List<ReservationTimeDTO> getTimeTest(Integer riNum, String dateStr) {
 		return reservationService.getReservationTimes(riNum, dateStr);
 	}
 	
