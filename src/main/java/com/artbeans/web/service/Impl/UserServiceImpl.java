@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserInfo login(UserInfo ui) {
+		log.info("뭐가 넘어오지?=>{}",ui);
 		return uRepo.findByUiEmailAndUiPwd(ui.getUiEmail(), ui.getUiPwd());
 	}
 
