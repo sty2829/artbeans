@@ -47,6 +47,7 @@ public class UserServiceImpl implements UserService {
 	public UserInfo updateUser(UserInfo ui) {	
 	Optional<UserInfo> opUi = uRepo.findById(ui.getUiNum());  
 	if(!opUi.isEmpty()) {
+		log.info("test=>{}",uRepo.saveAndFlush(ui));
 		return uRepo.saveAndFlush(ui);
 	}
 	    return null;

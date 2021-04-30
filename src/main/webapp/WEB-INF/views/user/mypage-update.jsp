@@ -105,19 +105,7 @@
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<script>
 
-	var param = {
-		uiNum : document.querySelector('#uiNum').value,
-		uiName : document.querySelector('#uiName').value,
-		uiEmail : document.querySelector('#uiEmail').value,
-		uiPhoneNumber : document.querySelector('#uiPhoneNumber').value,
-		uiPwd : document.querySelector('#uiPwd').value,
-		uiGenre : document.querySelector('#uiGenre').value,
-		uiAge : '${userInfo.uiAge}',
-		uiGender : '${userInfo.uiGender}',
-		uiRegion : '${userInfo.uiRegion}',
-		uiStatus :  '${userInfo.uiStatus}',
-		uiRole : '${userInfo.uiRole}'
-	}
+	
 
 		function goUpdate() {
 
@@ -183,8 +171,22 @@
 					}
 				}
 			}
+			var param = {
+					uiNum : document.querySelector('#uiNum').value,
+					uiName : document.querySelector('#uiName').value,
+					uiEmail : document.querySelector('#uiEmail').value,
+					uiPhoneNumber : document.querySelector('#uiPhoneNumber').value,
+					uiPwd : document.querySelector('#uiPwd').value,
+					uiGenre : document.querySelector('#uiGenre').value,
+					uiAge : '${userInfo.uiAge}',
+					uiGender : '${userInfo.uiGender}',
+					uiRegion : '${userInfo.uiRegion}',
+					uiStatus :  '${userInfo.uiStatus}',
+					uiRole : '${userInfo.uiRole}'
+				}
 			xhr.setRequestHeader('content-type',
 					'application/json;charset=UTF-8');
+			console.log(JSON.stringify(param));
 			xhr.send(JSON.stringify(param));
 		}
 
