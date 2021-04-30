@@ -172,6 +172,4 @@ public class ReservationInfo {
 	@JsonBackReference
 	private ExhibitionInfo exhibitionInfo;
 	
-	
-	
 }

@@ -149,6 +149,7 @@ function saveComment(){
 			var res = JSON.parse(xhr.responseText);
 			if(res >= 1){
 				alert('댓글작성 완료');
+				ciContent.value = '';
 				getComments();
 			}else{
 				alert('댓글작성에 실패하였습니다');

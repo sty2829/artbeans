@@ -15,7 +15,10 @@ import com.artbeans.web.repository.ReservationInfoRepository;
 import com.artbeans.web.service.ReservationService;
 import com.artbeans.web.util.DateUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class ReservationSeviceImpl implements ReservationService {
 	
 	@Autowired
@@ -53,7 +56,9 @@ public class ReservationSeviceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<ReservationInfo> getReservationList(ReservationInfo reservationInfo) {		
+	public List<ReservationInfo> getReservationList(ReservationInfo reservationInfo) {
+		 List<ReservationInfo> list = riRepo.findAll();
+		 log.info("list => {}", list);
 		return riRepo.findAll();
 	}
 	
