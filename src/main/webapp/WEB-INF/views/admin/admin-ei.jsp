@@ -185,7 +185,6 @@ function getBeforeConfirm(page){
 			
 			
 			let disable = res.first ? 'disabled' : '';
-			
 			let li = '<li class="page-item ' + disable + '" onclick="getBeforeConfirm(' + res.number + ')">';
 			li += '<a class="page-link" href="#" tabindex="-1">이전</a>';
 			li += '</li>';
