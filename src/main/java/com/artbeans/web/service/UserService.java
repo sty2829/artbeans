@@ -11,7 +11,6 @@ public interface UserService {
 	UserInfo getUser(Integer uiNum);
 	UserInfo saveUser(UserInfo ui);
 	UserInfo updateUser(UserInfo ui);
-	int deleteUser(Integer uiNum);
 	UserInfo login(UserInfo userInfo);
 	
 	//id찾기
@@ -26,4 +25,7 @@ public interface UserService {
 	UserInfo findCode(String code);
 	//새비밀번호 변경..
 	int cPwd(UserInfo userInfo);
+	
+	int deleteUser(UserInfo userInfo);
+	
 }

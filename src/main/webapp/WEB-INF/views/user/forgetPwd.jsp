@@ -59,15 +59,22 @@
 	<script>
 
 		function goVerify() {
-			
-			
-			var uiEmail = document.querySelector('#uiEmail');
-			console.log(uiEmail.value.indexOf('@'));
-			if (uiEmail.value.indexOf('@')==-1 || uiEmail.value.indexOf('@')==0 || uiEmail.value.trim().length < 1 ) {
-				alert('이메일 주소를 정확히 입력해주세요.');
-				uiEmail.focus();
-				return;
-			}
+			 
+	    	  var uiEmail2 = document.querySelector('#uiEmail');
+	          if (uiEmail2.value.trim().length < 1 ) {
+	             alert('이메일 주소를 정확히 입력해주세요.');
+	             uiEmail.focus();
+	             return false;            
+	          }
+	          
+	    	 var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규표현식
+	         var uiEmail = document.querySelector('#uiEmail');
+				if(!regExp.test(uiEmail.value)){
+					console.log(uiEmail.value);
+					alert('올바른 이메일 형식이 아닙니다.');
+					return false;
+				}
+					
 			var url = "/checkPwd?uiEmail=" +uiEmail.value ;
 			var xhr = new XMLHttpRequest();
 			xhr.open('POST', url);

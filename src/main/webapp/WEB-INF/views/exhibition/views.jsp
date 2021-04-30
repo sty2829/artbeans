@@ -11,7 +11,7 @@
 <script src="/resources/user/js/exhibition/view.js"></script>
 <style>
 input[type="image"]{
-height: 30px;
+height: 40px;
 text-align: cencter;
 }
 </style>

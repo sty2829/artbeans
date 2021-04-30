@@ -71,16 +71,29 @@ function goCheck(){
 					uiName.focus();
 					return;
 				}
-
-				var uiPhoneNumber = document.querySelector('#uiPhoneNumber');
-				if (uiPhoneNumber.value.indexOf('-') == -1
-						|| uiPhoneNumber.value.trim().length < 1
-						|| uiPhoneNumber.value.trim().length > 13) {
-					alert('-를 포함한 13자리 휴대폰 번호를 입력해주세요.');
-					uiPhoneNumber.focus();
-					return;
-				}
 				
+				var uiNamepattern = /[가-힣]{2,}/;
+		  		var uiName = document.querySelector('#uiName');
+		  			if(!uiNamepattern.test(uiName.value)){
+		  				alert('올바른 이름 형식이 아닙니다.');
+		  				uiName.focus();
+		  				return;
+		  			}
+		  			
+		  		  var uiPhoneNumber2 = document.querySelector('#uiPhoneNumber');
+		          if (uiPhoneNumber2.value.trim().length < 1 ) {
+		              alert('휴대폰 번호를 정확히 입력해주세요.');
+		              uiPhoneNumber2.focus();
+		              return false;            
+		           }	
+		          
+		          var regExp3 = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/;
+		          var uiPhoneNumber = document.querySelector('#uiPhoneNumber');
+		          if (!regExp3.test(uiPhoneNumber.value)) {
+		 				alert('휴대폰 번호를 확인해주세요.');
+		 				return false;
+		 			}
+		          
 				var url = '/user-email?uiPhoneNumber=' + uiPhoneNumber.value;
 				var xhr = new XMLHttpRequest();
 				xhr.open('GET', url);

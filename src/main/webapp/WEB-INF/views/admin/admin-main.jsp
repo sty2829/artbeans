@@ -26,6 +26,7 @@ p {
 
 .topImage {
 	height: 200px;
+	cursor:pointer;
 }
 
 .top-blank {
@@ -61,7 +62,7 @@ p {
 	<div class="top-blank"></div>
 
 	<div>
-		<div class="topImage">
+		<div class="topImage" onclick="location.href='/views/admin/admin-hidden-page'">
 			<img src="/resources/admin/img/admin-main.png" alt="Image"
 				style="display: block; margin: 0px auto;">
 		</div>

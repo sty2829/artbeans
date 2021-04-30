@@ -27,7 +27,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserInfoRepository uRepo;
 	
-	
 	@Override
 	public List<UserInfo> getList(UserInfo userInfo) {
 		return uRepo.findAll();
@@ -45,13 +44,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserInfo updateUser(UserInfo ui) {	    
-	    return uRepo.saveAndFlush(ui);
+	public UserInfo updateUser(UserInfo ui) {	
+	Optional<UserInfo> opUi = uRepo.findById(ui.getUiNum());  
+	if(!opUi.isEmpty()) {
+		log.info("test=>{}",uRepo.saveAndFlush(ui));
+		return uRepo.saveAndFlush(ui);
 	}
-
-	@Override
-	public int deleteUser(Integer uiNum) {
-		return 0;
+	    return null;
 	}
 
 	@Override
@@ -109,6 +108,23 @@ public class UserServiceImpl implements UserService {
 			userInfo = opUi.get();
 			userInfo.setUiPwd(newPwd);
 			cnt = uRepo.save(userInfo).getUiNum(); //cnt가 pk를 가져옴
+		}
+		return cnt;
+	}
+
+
+	@Override
+	public int deleteUser(UserInfo userInfo) {
+		int cnt = 0;
+		Optional<UserInfo> opUi = uRepo.findById(userInfo.getUiNum());
+		log.info("opUi=>{}",opUi);
+		if(!opUi.isEmpty()) {
+			String byebye = userInfo.getUiDropOut(); 
+			userInfo = opUi.get();
+			userInfo.setUiDropOut(byebye);
+			log.info("byebye=>{}",userInfo.getUiDropOut());
+			cnt = uRepo.save(userInfo).getUiNum();
+			uRepo.deleteById(userInfo.getUiNum());
 		}
 		return cnt;
 	}

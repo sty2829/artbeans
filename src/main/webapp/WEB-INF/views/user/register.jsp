@@ -283,12 +283,21 @@
             return false;      
          }
          
+       
          var uiName = document.querySelector('#uiName'); 
          if (uiName.value.trim().length<1) {
             alert('이름을 입력해주세요.');
             uiName.focus();
             return false;
          }         
+         
+        var uiNamepattern = /[가-힣]{2,}/;
+  		var uiName = document.querySelector('#uiName');
+  			if(!uiNamepattern.test(uiName.value)){
+  				alert('올바른 이름 형식이 아닙니다.');
+  				uiName.focus();
+  				return;
+  			}
          
          var uiPhoneNumber2 = document.querySelector('#uiPhoneNumber');
          if (uiPhoneNumber2.value.trim().length < 1 ) {

@@ -66,13 +66,22 @@
 	<script>
 		function goLogin() {
 
-		var uiEmail = document.querySelector('#uiEmail');
-			if (uiEmail.value.trim().length < 1) {
-				alert('이메일을 입력해주세요.');
-				uiEmail.focus();
-				return;
-			}
-
+			 
+	    	 var uiEmail = document.querySelector('#uiEmail');
+	          if (uiEmail.value.trim().length < 1 ) {
+	             alert('이메일 주소를 정확히 입력해주세요.');
+	             uiEmail.focus();
+	             return false;            
+	          }
+	          
+	    	 var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규표현식
+	         var uiEmail = document.querySelector('#uiEmail');
+				if(!regExp.test(uiEmail.value)){
+					console.log(uiEmail.value);
+					alert('올바른 이메일 형식이 아닙니다.');
+					return false;
+				}
+					
 			var uiPwd = document.querySelector('#uiPwd');
 			if (uiPwd.value.trim().length < 1) {
 				alert('비밀번호를 입력해주세요.');
@@ -80,6 +89,13 @@
 				return;
 			}
 
+		    var regExp4 = /^[a-zA-Z0-9]{4,12}$/;
+            var uiPwd = document.querySelector('#uiPwd');
+            if (!regExp4.test(uiPwd.value)) {
+            	alert('비밀번호는 영문 대소문자와 숫자로만 입력해주세요.')
+            	return false;
+            }
+            
 			var param = {
 				uiEmail : document.querySelector('#uiEmail').value,
 				uiPwd : document.querySelector('#uiPwd').value
