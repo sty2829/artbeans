@@ -67,5 +67,8 @@ public class UserInfo {
 
 	@Column(name="code")
 	private String code;
+	
+	@Column(name="ui_drop_out")
+	private String uiDropOut;
 
 }

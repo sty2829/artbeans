@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,15 +13,15 @@
 
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <style>
-.mypage{
+.mypage {
 	margin-top: 200px;
-	height: 1000px
+	height: 400px;
 }
 </style>
 </head>
 <body>
 	<div class="container mypage">
-		<h3>${userInfo.uiName} 님의 회원정보</h3>
+		<h4 style="font-weight: bold;">${userInfo.uiName}님의 회원정보</h4>
 		<div>
 			<table class="table" id="myInformation">
 				<tbody>
@@ -60,20 +60,74 @@
 					html += '</tbody>'
 					html += '<br>'
 					html += '<button type="button"	class="btn btn-outline-danger"	onclick="location.href=\'/views/user/mypage-update?uiNum=${userInfo.uiNum}\'">'
-							+ '정보 수정' + '</button>' + '<br>' + '<button type="button" class="btn btn-outline-danger"	onclick="notYet()">'
+							+ '정보 수정' + '</button>' + '<br>' + '<button type="button" class="btn btn-outline-danger"	onclick="ByeBye()">'
 							+ '회원 탈퇴' + '</button>';
-							
+					html += '<div class="input_box" id="addBox">' + '</div>';		
 					document.querySelector('#myInformation').innerHTML = html;
 				}
 			}
 			xhr.send();
 		}
 		
-		function notYet(){
-			alert('회원가입 후 1년간 재가입 방지를 위해 탈퇴가 제한됩니다.');
+		function ByeBye(){
+			
+		document.querySelector('#addBox').innerHTML = '<h6 style="font-weight:bold; width: 100% ; margin:10px;">' + '탈퇴사유를 간단하게 기입하여 주세요.' + '<h6>';
+		document.querySelector('#addBox').innerHTML += '<input type="text" name="byebye" id="uiDropOut" style="width: 70%;">' + '<button type="button" class="btn btn-outline-danger" onclick="dropOut()">' + '확인' + '</button>';
+		
 		}
+		
+		function dropOut(){
+
+			
+// 			if(document.querySelector('#addBox').style.visibility=='visible'){
+// 				document.querySelector('#addBox').style.display = 'none';
+// 				document.querySelector('#addBox').style.visibility = 'hidden';
+// 			}else{
+// 				document.querySelector('#addBox').style.display = 'block';
+// 				document.querySelector('#addBox').style.visibility = 'visible';
+// 			}
+			
+		var uiDropOut = document.querySelector('#uiDropOut');
+		console.log(uiDropOut.value);
+		if(uiDropOut.value.trim().length<1){
+			alert('탈퇴 사유를 적어주세요.');
+			uiDropOut.focus();
+			return ;
+		}
+		
+		var dropOutpattern = /[가-힣]{2,}/;
+		var uiDropOut = document.querySelector('#uiDropOut');
+			if(!dropOutpattern.test(uiDropOut.value)){
+				alert('탈퇴 사유를 정확히 입력해주세요.');
+				uiDropOut.focus();
+				return;
+			}
+			
+		var url = "/dropOut?uiNum=" + ${userInfo.uiNum};
+		var xhr = new XMLHttpRequest(); 
+		xhr.open('POST',url);
+		xhr.onreadystatechange = function(){
+			if(xhr.status==200 && xhr.readyState==4){
+			var res = xhr.responseText;
+			console.log(res);
+				if(res>=1){
+					alert('탈퇴되었습니다. 아트빈을 이용해주셔서 감사합니다.');
+					location.href="/";
+				}else{
+					alert('탈퇴에 실패하였습니다. 다시 시도해주세요.');
+					}
+				}
+			}
+			var param ={
+					uiNum : ${userInfo.uiNum},
+					uiDropOut : document.querySelector('#uiDropOut').value		
+					}
+			xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
+			xhr.send(JSON.stringify(param));
+			}
+		
 	</script>
 
-<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

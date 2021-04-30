@@ -148,4 +148,10 @@ public class UserInfoController {
 			log.info("pwd=>{}",userInfo.getUiPwd());
 			return userService.cPwd(userInfo);
 		}
+		
+		@PostMapping("/dropOut")
+		public int dropOut(@RequestBody UserInfo userInfo) {
+			log.info("uiNum=>{}",userInfo.getUiDropOut());
+			return userService.deleteUser(userInfo);
+		}
 	}
