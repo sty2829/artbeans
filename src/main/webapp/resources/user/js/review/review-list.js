@@ -14,7 +14,6 @@ function getReviews(sort){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
-			console.log(res);
 			for(var review of res.content) {
 				html += '<div class="col-lg-8" style="cursor:pointer;" onclick="location.href=\'/views/community/review-view?rviNum=' + review.rviNum + '\'">';
 				html += '<div class="row">';
