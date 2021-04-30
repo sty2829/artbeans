@@ -10,19 +10,9 @@
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=hevj9bqhd5"></script>
 <script src="/resources/user/js/exhibition/view.js"></script>
 <style>
-input[type="checkbox"]+label {
-    display: block;
-    width: 24px;
-    height: 24px;
-    background: url('/img/sidebtn/icons8-heart-48.png') no-repeat 0 0px / contain;
-}
-
-input[type='checkbox']:checked+label {
-    background: url('/img/sidebtn/icons8-heart-40.png') no-repeat 0 1px / contain;
-}
-
-input[type="checkbox"] {
-    display: none;
+input[type="image"]{
+height: 30px;
+text-align: cencter;
 }
 </style>
 </head>
@@ -89,12 +79,12 @@ input[type="checkbox"] {
 						for(favoriteExhibition of res){	
 							getEiNums.push(favoriteExhibition.exhibitionInfo.eiNum);					
 								}if(getEiNums.includes(eiNum)){								
-									document.querySelector('#fviCheck').checked = true;
+									document.querySelector('#fviCheck').src = "/resources/user/img/sidebtn/icons8-heart-40.png";
 									
 									console.log(favoriteExhibition.fviNum);
 									document.querySelector('#fviNum').value=favoriteExhibition.fviNum;
 								}else{
-									document.querySelector('#fviCheck').checked = false;							
+									document.querySelector('#fviCheck').src = "/resources/user/img/sidebtn/icons8-heart-48.png";							
 								}								
 							}
 					}		
@@ -114,11 +104,15 @@ input[type="checkbox"] {
 					 console.log(res);
 					 if(res==1){
 						 alert('찜목록이 추가 됐습니다.');
+						 return favoriteList();
 					 }else if(res==2){
 						 alert('로그인 후 이용가능합니다. ');						 
 					 }else if(res==0){
 						 alert('찜목록이 삭제 되었습니다.');
-						 document.querySelector('#fviNum').value = null;						 
+						 document.querySelector('#fviNum').value = null;
+						 return favoriteList();
+						 
+						 
 					 }
 				 }				 
 			 }
