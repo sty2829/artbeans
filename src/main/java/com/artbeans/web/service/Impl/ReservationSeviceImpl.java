@@ -51,5 +51,10 @@ public class ReservationSeviceImpl implements ReservationService {
 		List<ReservationTimeDTO> rtList = riRepo.getReservationTime(riNum, DateUtil.StringToDate(dateStr));
 		return DateUtil.setDisableTime(rtList, dateStr);
 	}
+
+	@Override
+	public List<ReservationInfo> getReservationList(ReservationInfo reservationInfo) {		
+		return riRepo.findAll();
+	}
 	
 }

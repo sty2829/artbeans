@@ -43,4 +43,8 @@ public class ReservationController {
 		return reservationService.getReservationTimes(riNum, dateStr);
 	}
 	
+	@GetMapping("/reservation-list")
+	public List<ReservationInfo> getList(ReservationInfo reservationInfo){
+		return reservationService.getReservationList(reservationInfo);
+	}
 }

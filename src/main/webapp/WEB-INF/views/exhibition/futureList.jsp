@@ -64,6 +64,8 @@
 								<button class="dropdown-item" type="button" onclick="pricefree()">무료</button>
 							</div>
 						</div>
+						
+						<button class="btn btn-secondary" type="button" style="margin: 5px" onclick="reservationList()">예약가능</button>
 					
 				</div>
 			</div>
@@ -74,7 +76,24 @@
 				<div class="row" id="exhibitionList"></div>
 			</div>
 		</section>
-	</main>
+<script>
+function reservationList(){
+	var xhr = new XMLHttpRequest();
+	xhr.open('GET','/reservation-list'); //ReservationController
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){			
+			var res = JSON.parse(xhr.responseText);
+			console.log(res);
+			for(var reservationList of res){	
+				console.log(reservationList);
+			}
+		}
+	}
+	xhr.send();			
+}
+</script>
+		
+	</main>	
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -40,10 +40,7 @@ text-align: cencter;
 				<input type="hidden" id="fviNum">
 			</div>
 		</section>
-
-
-
-
+		
 		<section id="contact" class="contact">
 			<div class="container">
 				<div

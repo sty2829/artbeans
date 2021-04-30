@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.dto.ReservationTimeDTO;
+import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.ReservationInfo;
 
 public interface ReservationService {
@@ -14,5 +15,7 @@ public interface ReservationService {
 	int saveReservation(ReservationInfo reservationInfo);
 	
 	List<ReservationTimeDTO> getReservationTimes(Integer riNum, String dateStr);
+	
+	List<ReservationInfo> getReservationList(ReservationInfo reservationInfo);
 
 }
