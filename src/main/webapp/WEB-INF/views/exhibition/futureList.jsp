@@ -84,6 +84,7 @@ function reservationList(){
 		if(xhr.readyState==4 && xhr.status==200){			
 			var res = JSON.parse(xhr.responseText);
 			console.log(res);
+			console.log('여기맞음?');
 			for(var reservationList of res){	
 				console.log(reservationList);
 			}

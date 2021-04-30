@@ -6,26 +6,24 @@ import javax.persistence.Column;
 import javax.persistence.ColumnResult;
 import javax.persistence.ConstructorResult;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedNativeQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
-import lombok.ToString;
 
 @Data
 @Entity
-@ToString(exclude = "exhibitionInfo")
 @NamedNativeQuery(
 		name = "find_reservation_schedule_dto",
 		query = "SELECT \r\n"
@@ -169,7 +167,7 @@ public class ReservationInfo {
 	
 	@OneToOne
 	@JoinColumn(name= "ei_num")
-	@JsonBackReference
+	@JsonManagedReference
 	private ExhibitionInfo exhibitionInfo;
 	
 }

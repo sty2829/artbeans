@@ -14,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,14 +21,13 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
 import lombok.ToString;
 
 @Data
 @Entity
-@ToString(exclude = "galleryInfo")
+@ToString(exclude = {"galleryInfo","reservationInfo"})
 @Table(name = "exhibition_info")
 @DynamicUpdate
 public class ExhibitionInfo {
@@ -99,8 +97,8 @@ public class ExhibitionInfo {
 	private UserInfo userInfo;
 	
 	//양방향설정
-	@OneToOne(mappedBy = "exhibitionInfo", fetch = FetchType.EAGER)
-	@JsonManagedReference
+	@OneToOne(mappedBy = "exhibitionInfo")
+	@JsonBackReference
 	private ReservationInfo reservationInfo;
 
 }
