@@ -79,12 +79,11 @@ text-align: cencter;
 						for(favoriteExhibition of res){	
 							getEiNums.push(favoriteExhibition.exhibitionInfo.eiNum);					
 								}if(getEiNums.includes(eiNum)){								
-									document.querySelector('#fviCheck').src = "/resources/user/img/sidebtn/icons8-heart-40.png";
-									
 									console.log(favoriteExhibition.fviNum);
 									document.querySelector('#fviNum').value=favoriteExhibition.fviNum;
+									document.querySelector('#fviCheck').src = "/resources/user/img/sidebtn/addHeart.gif";
 								}else{
-									document.querySelector('#fviCheck').src = "/resources/user/img/sidebtn/icons8-heart-48.png";							
+									document.querySelector('#fviCheck').src = "/resources/user/img/sidebtn/removeHeart.gif";							
 								}								
 							}
 					}		
@@ -103,12 +102,13 @@ text-align: cencter;
 					 var res = xhr.responseText;
 					 console.log(res);
 					 if(res==1){
-						 alert('찜목록이 추가 됐습니다.');
+						 
 						 return favoriteList();
 					 }else if(res==2){
-						 alert('로그인 후 이용가능합니다. ');						 
+						 alert('로그인 후 이용가능합니다. ');
+						 location.href="/views/user/login";
 					 }else if(res==0){
-						 alert('찜목록이 삭제 되었습니다.');
+						 
 						 document.querySelector('#fviNum').value = null;
 						 return favoriteList();
 						 
