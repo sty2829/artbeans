@@ -42,6 +42,7 @@
 					html += '<tr>';
 					html += '<th> 이름</th>';
 					html += '<th> 이메일</th>';
+					html += '<th> 전화번호</th>';
 					html += '<th> 성별</th>';
 					html += '<th> 나이</th>';
 					html += '<th> 지역</th>';
@@ -52,6 +53,7 @@
 					html += '<tr>';
 					html += '<td>' + res.uiName + '</td>';
 					html += '<td>' + res.uiEmail + '</td>';
+					html += '<td>' + res.uiPhoneNumber + '</td>';
 					html += '<td>' + res.uiGender + '</td>';
 					html += '<td>' + res.uiAge + '</td>';
 					html += '<td>' + res.uiRegion + '</td>';
