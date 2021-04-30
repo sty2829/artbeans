@@ -64,7 +64,7 @@ public class ReservationSeviceImpl implements ReservationService {
 		//해당 전시회 예약정보키 와 해당 날짜로 시간대별 티켓합 리스트 호출
 		List<SumTicketTime> sttList = tiRepo.sumTicketGroupByTime(riNum, date);
 		//전시회예약정보와 시간대별 티켓합산 리스트로 시간대별 리스트 구성
-		return  DateUtil.getTimeList(eri, sttList);
+		return  DateUtil.getTimeList(eri, sttList, dateStr);
 	}
 	
 }

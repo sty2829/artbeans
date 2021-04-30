@@ -2,6 +2,9 @@ package com.artbeans.web.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -88,7 +91,7 @@ public class DateUtil {
 	    return rs;
 	}
 	
-	public static Map<String,Integer> getTimeList(ReservationInfo ri, List<SumTicketTime> sttList) {
+	public static Map<String,Integer> getTimeList(ReservationInfo ri, List<SumTicketTime> sttList, String dateStr) {
 		//시간대별 최대 티켓수 
 		Integer maxStock = ri.getRiMaxStock();
 		String startTime = ri.getRiStartTime();
@@ -96,6 +99,14 @@ public class DateUtil {
 		int startTimeInt = Integer.parseInt(startTime.substring(0,2));
 		int endTimeInt = Integer.parseInt(endTime.substring(0,2));
 		int length = endTimeInt - startTimeInt;
+		
+		
+		LocalDate today = LocalDate.now();
+		LocalDate targetDate = LocalDate.parse(dateStr, DateTimeFormatter.ISO_DATE);
+		if(today.isEqual(targetDate)) {
+			LocalTime.now().getHour();
+		}
+		
 		
 		Map<String,Integer> timeMap = new HashMap<>();
 		

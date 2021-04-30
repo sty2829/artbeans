@@ -12,32 +12,27 @@
 </head>
 <body>
    <div class="container reservationViewMain">
-      	<div class="row">
-      		<div class="col-lg-1"></div>
+      	<div class="row d-flex justify-content-center">
    			<div class="col-lg-10" style="text-align: center;">
 				<div class="section-title">
 		          <p>전시회 예약</p>
 		        </div>
    			</div>
-   			<div class="col-lg-1"></div>
    		</div>
-		<div class="row">
-			<div class="col-lg-1"></div>
+		<div class="row d-flex justify-content-center">
 			<div class="col-lg-5">
-                <img class="img-fluid" data-col="imgPath" id="imgPath"><br>
+                <img class="img-fluid" data-col="imgPath"><br>
           	</div>
 			<div class="col-lg-5" style="height: 300px">
 				<div id="mycal">
 				</div>
 			</div>
-			<div class="col-lg-1"></div>
 		</div>
-		<div class="row mt-2">
-			<div class="col-lg-1"></div>
+		<div class="row mt-2 d-flex justify-content-center">
 			<div class="col-lg-5">
 				<div class="row">
 					<div class="col-lg-12">
-					<h5 class="text-center" data-col="exhibitionName" id="eiName"></h5>
+					<h5 class="text-center" data-col="exhibitionName"></h5>
 					</div>
 				</div>
 				<div class="row mt-3">
@@ -47,17 +42,17 @@
 					</div>
 					<div class="col-lg-3 mb-3">
 						<h5>예매일자</h5>
-						<span id="tiDate"></span>
+						<span data-param="tiDate" data-col="minDate" id="tiDate"></span>
 					</div>
 					<div class="col-lg-3 mb-3">
 						<h5>예매시간</h5>
-						<span id="tiTime"></span>
+						<span data-param="tiTime" id="tiTime"></span>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-6 mb-3">
 						<h5>관람연령</h5>
-						<span data-col="audienceRating" id="tiAudienceRating"></span>
+						<span data-col="audienceRating"></span>
 					</div>
 					<div class="col-lg-6 mb-3">
 						<ul class="list-inline">
@@ -65,7 +60,7 @@
 								<h5>예매수</h5>
 							</li>
 							<li class="list-inline-item">
-								<input type="number" class="form-control" id="tiNumber"  onclick="changeNumber(this)" min="0" style="width:130px; height: 30px; text-align: center">
+								<input type="number" class="form-control" id="tiNumber"  data-param="tiNumber" data-col="maxTicket" onclick="changeNumber(this)" min="0"  value="0" style="width:130px; height: 30px; text-align: center">
 							</li>
 						</ul>
 					</div>
@@ -77,11 +72,11 @@
 					</div>
 					<div class="col-lg-3">
 						<h5>관람료</h5>
-						<span data-col="charge"></span>
+						<span data-col="charge" id="charge"></span>
 					</div>
 					<div class="col-lg-3">
 						<h5>합계금액</h5>
-						<span id="piPrice"></span>
+						<span data-param="piPrice" id="piPrice">0</span>
 					</div>
 				</div>
 			</div>
@@ -103,12 +98,10 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-1"></div>
 		</div>
 	</div>
-	<input type="hidden" id="eiNum" value="${param.eiNum}">
-	<input type="hidden" data-col="maxTicket" id="riMaxTicket">
-	<input type="hidden" id="riNum">
+	<input type="hidden" data-param="eiNum" id="eiNum" value="${param.eiNum}">
+	<input type="hidden" data-param="riNum" id="riNum" data-col="riNum">
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 <script>
 window.addEventListener('load', getSchedule);
@@ -121,15 +114,17 @@ function getSchedule(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			var objs = document.querySelectorAll('[data-col]');
-			document.querySelector('#riNum').value = res.riNum;
-			document.querySelector('#tiDate').innerHTML = res.minDate;
-			document.querySelector('#riMaxTicket').value = res.maxTicket;
 			for(obj of objs){
 				var key = obj.getAttribute('data-col');
 				var data = res[key];
-				if(key === "imgPath") {
+				if(key === 'imgPath') {
 					obj.src = '/upload/' + data;
 					data = '';
+				}else if(key === 'maxTicket'){
+					obj.max = data;
+					data = '';
+				}else if(key === 'riNum'){
+					obj.value = data;
 				}
 				obj.innerHTML = data;
 			}
@@ -152,7 +147,7 @@ function getSchedule(){
 	xhr.send();
 }
 
-function getTimeList(dateStr) {
+function getTimeList(dateStr, selectedDates) {
 	var xhr = new XMLHttpRequest();
 	var riNum = document.querySelector("#riNum").value;
 	xhr.open('GET', '/reservation/' + riNum + '/' + dateStr);
@@ -174,66 +169,76 @@ function getTimeList(dateStr) {
 					key = '0' + key;
 				}
 				html += '<li class="list-inline-item">';
-				html += '<input type="radio" class="btn-check radio-hidden" name="rtiTime" id="time' + (i+1) + '" autocomplete="off" value="' + key +'" onclick="selectTime(this)" data-ticket="' + res[key] +'">';
+				html += '<input type="radio" disabled class="btn-check radio-hidden" name="rtiTime" id="time' + (i+1) + '" autocomplete="off" value="' + key +'" onclick="selectTime(this)" data-ticket="' + res[key] +'">';
 				html += '<label class="btn btn-outline-success" for="time' + (i+1) + '" >' + key + '<br>' + res[key] +'매 </label>';
 			  	html += '</li>';
 			}
 			//타임리스트
 			document.querySelector('#timeList').innerHTML = html;
-			//1인당 최대값
+			//맥스티켓 설정
 			var first = document.querySelector("#time1");
-			first.checked = true;
-			document.querySelector('#tiTime').innerHTML = first.value;
 			var tiNumber = document.querySelector('#tiNumber');
-			var maxTicket = Number(document.querySelector('#riMaxTicket').value);
+			var maxTicket = Number(tiNumber.max);
 			var remainTicket = Number(first.getAttribute('data-ticket'));
 			tiNumber.max = remainTicket > maxTicket ? maxTicket : remainTicket;
+			
+			document.querySelector('#tiTime').innerHTML = first.value;
+			first.checked = true;
 		}
 	}
 	xhr.send();
 }
 
 function selectTime(obj){
-	var maxTicket = Number(document.querySelector('#riMaxTicket').value);
+	var tiNumber = document.querySelector('#tiNumber');
+	var maxTicket = Number(tiNumber.max);
 	var remainTicket = Number(obj.getAttribute('data-ticket'));
+	
+	tiNumber.max = remainTicket > maxTicket ? maxTicket : remainTicket;
+	
+	if(Number(tiNumber.value) > Number(tiNumber.max)){
+		tiNumber.value = tiNumber.max;
+	}
 	
 	var rtiTime = document.querySelector('#tiTime');
 	rtiTime.innerHTML = obj.value;	
 	
 }
-
+var isNumber = true;
 function changeNumber(obj){
-	var maxTicket = Number(document.querySelector('#riMaxTicket').value);
 	var selectTicket = Number(obj.value);
-	var remainTicket = Number(obj.max);
-	if(selectTicket > maxTicket){
-		alert('1인당 구매가능한 수량은 ' + maxTicket + '입니다.' );
-		return
-	}else if(selectTicket > remainTicket){
-		alert('현재 남은수량은 ' + remainTicket + ' 입니다.');
-		return
-	}else if(selectTicket < 0 ){
-		alert('티켓을 한개 이상 선택해주세요.');
-		return
-		//document.querySelector('#piPrice').innerHTMLdocument.querySelector('#piPrice').innerHTML
+	var maxTicket = Number(document.querySelector('#tiNumber').max);
+	
+	if(isNumber){
+		if(selectTicket <= 0){
+			alert('예매수는 1개 이상 선택해주세요.');
+		}else if(selectTicket >= maxTicket)
+			alert('1인당 구매가능한 수량은 ' + maxTicket + '입니다.' );
 	}
-	var charge = Number(document.querySelector('[data-col="charge"]').innerText);
+
+	isNumber = selectTicket <= 0 ? true : (selectTicket >= maxTicket) ? true : false; 
+	console.log(isNumber);
+	var charge = Number(document.querySelector('#charge').innerText);
 	document.querySelector('#piPrice').innerHTML = selectTicket * charge;
 }
 
 function goPayment(){
-	var tiDate = document.querySelector('#tiDate').innerText;
-	var tiTime = document.querySelector('#tiTime').innerText;
-	var tiNumber = document.querySelector('#tiNumber').value;
-	var piPrice = document.querySelector('#piPrice').innerText;
-	var riNum = document.querySelector("#riNum").value;
+	var tiNumber = document.querySelector('#tiNumber');
+	if(tiNumber.value < 1 || tiNumber.value == ''){
+		alert('예매수를 1장이상 골라주세요');
+		return;
+	}
 	
-	var param = '?tiDate=' + tiDate + '&';
-	param += 'tiTime=' + tiTime + '&';
-	param += 'tiNumber=' + tiNumber + '&';
-	param += 'piPrice=' + piPrice + '&';
-	param += 'riNum=' + riNum + '&';
-	param += 'eiNum=' + ${param.eiNum} + '&';
+	var objs = document.querySelectorAll('[data-param]');
+	var param = '?'
+	for(var obj of objs){
+		var key = obj.getAttribute('data-param');
+		if(obj.tagName == 'INPUT'){
+			param += key + '=' + obj.value + '&';
+		}else{
+			param += key + '=' + obj.innerText + '&';
+		}
+	}
 	
 	location.href = '/views/reservation/ticket-save/' + param
 }

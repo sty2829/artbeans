@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지 접근 불허</title>
+<title>로그인 페이지 이동</title>
 </head>
 <script>
 alert('${msg}');

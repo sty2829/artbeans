@@ -205,14 +205,13 @@ function saveReservation(){
 		}
 	}
 	
-	var riNum = document.querySelector('#riNum');
-	
 	var param = {
 			paymentInfo : {},
 			reservationInfo : {
-				riNum: riNum.value
+				riNum: document.querySelector('#riNum').value;
 			}
 	};
+	
 	var objs = document.querySelectorAll('span[class="check"],input[class="form-control"],input[type="radio"]:checked');
 	var piMethod = document.querySelector('input[type="radio"]:checked');
 	for(var obj of objs){
