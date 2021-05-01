@@ -28,7 +28,7 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="input_box" id="addBox"></div>
+		<div class="input_box" id="addBox" style="display: none"></div>
 	</div>
 
 	<script>
@@ -65,7 +65,6 @@
 					html += '<button type="button"	class="btn btn-outline-danger"	onclick="location.href=\'/views/user/mypage-update?uiNum=${userInfo.uiNum}\'">'
 							+ '정보 수정' + '</button>' + '<br>' + '<button type="button" class="btn btn-outline-danger"	onclick="ByeBye()">'
 							+ '회원 탈퇴' + '</button>';
-					//html += '<div class="input_box" id="addBox">' + '</div>';		
 					document.querySelector('#myInformation').innerHTML = html;
 				}
 			}
@@ -73,39 +72,30 @@
 		}
 		
 		function ByeBye(){
-			
-		document.querySelector('#addBox').innerHTML = '<h6 style="font-weight:bold; width: 100% ; margin:10px;">' + '탈퇴사유를 간단하게 기입하여 주세요.' + '<h6>';
-		document.querySelector('#addBox').innerHTML += '<input type="text" name="byebye" id="uiDropOut" style="width: 70%;">' + '<button type="button" class="btn btn-outline-danger" onclick="dropOut()">' + '확인' + '</button>';
-		
+			if(document.querySelector('#addBox').style.display == 'none'){
+				document.querySelector('#addBox').style.display ='';
+			}else{
+				document.querySelector('#addBox').style.display ='none';
+			}
+		    document.querySelector('#addBox').innerHTML = '<h6 style="font-weight:bold; width: 100% ; margin:10px;">' + '탈퇴사유를 간단하게 기입하여 주세요.' + '<h6>';
+		    document.querySelector('#addBox').innerHTML += '<input type="text" name="byebye" id="uiDropOut" style="width: 70%;">' + '<button type="button" class="btn btn-outline-danger" onclick="dropOut()">' + '확인' + '</button>';
 		}
 		
 		function dropOut(){
-
-			
-// 			if(document.querySelector('#addBox').style.visibility=='visible'){
-// 				document.querySelector('#addBox').style.display = 'none';
-// 				document.querySelector('#addBox').style.visibility = 'hidden';
-// 			}else{
-// 				document.querySelector('#addBox').style.display = 'block';
-// 				document.querySelector('#addBox').style.visibility = 'visible';
-// 			}
-			
 		var uiDropOut = document.querySelector('#uiDropOut');
 		console.log(uiDropOut.value);
 		if(uiDropOut.value.trim().length<1){
 			alert('탈퇴 사유를 적어주세요.');
 			uiDropOut.focus();
 			return ;
-		}
-		
+		}		
 		var dropOutpattern = /[가-힣]{2,}/;
 		var uiDropOut = document.querySelector('#uiDropOut');
 			if(!dropOutpattern.test(uiDropOut.value)){
 				alert('탈퇴 사유를 정확히 입력해주세요.');
 				uiDropOut.focus();
 				return;
-			}
-			
+			}			
 		var url = "/dropOut?uiNum=" + ${userInfo.uiNum};
 		var xhr = new XMLHttpRequest(); 
 		xhr.open('POST',url);
