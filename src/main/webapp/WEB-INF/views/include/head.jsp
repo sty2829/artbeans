@@ -23,8 +23,10 @@ position: relative;
 }
 
 #suggestListDiv {
+dislplay : flex;
+flex-direction : column;
 	width:200px;
-	top: 72%;
+	margin-top:4em ;
 	position: absolute;
 	background: white;
 }
