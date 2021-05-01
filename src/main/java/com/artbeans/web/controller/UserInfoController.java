@@ -61,12 +61,25 @@ public class UserInfoController {
 	public UserInfo login(@RequestBody UserInfo userInfo, HttpServletRequest req) {
 		UserInfo user = userService.login(userInfo);
 		log.info("user=>{}", user);
-		if (user != null) {
+		log.info("user.uiStatus=>{}", user.getUiStatus());
+		if(user.getUiStatus().equals("1")) {
 			HttpSession session = req.getSession();
 			session.setAttribute("userInfo", user);
 		}
 		return user;
 	}
+	
+	@PostMapping("/login2")
+	public String login2(@RequestBody UserInfo userInfo, HttpServletRequest req) {
+		UserInfo user = userService.login(userInfo);
+		log.info("user=>{}", user);
+		if(user!=null) {
+			HttpSession session = req.getSession();
+			session.setAttribute("userInfo", user);
+		}
+		return user.getUiStatus();
+	}
+	
 
 	@PostMapping("/logout")
 	public @ResponseBody boolean logout(HttpServletRequest req) {

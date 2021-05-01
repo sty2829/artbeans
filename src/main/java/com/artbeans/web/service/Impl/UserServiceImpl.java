@@ -47,17 +47,18 @@ public class UserServiceImpl implements UserService {
 	public UserInfo updateUser(UserInfo ui) {	
 	Optional<UserInfo> opUi = uRepo.findById(ui.getUiNum());  
 	if(!opUi.isEmpty()) {
-		log.info("test=>{}",uRepo.saveAndFlush(ui));
 		return uRepo.saveAndFlush(ui);
 	}
 	    return null;
 	}
-
+	
 	@Override
 	public UserInfo login(UserInfo ui) {
-		log.info("뭐가 넘어오지?=>{}",ui);
-		return uRepo.findByUiEmailAndUiPwd(ui.getUiEmail(), ui.getUiPwd());
+		UserInfo opUi = uRepo.findByUiEmailAndUiPwd(ui.getUiEmail(), ui.getUiPwd());
+		log.info("opUi=>{}",opUi.getUiStatus());//0 1
+		return opUi;
 	}
+	
 
 	@Override
 	public UserInfo findId(String uiPhoneNumber) {
@@ -116,18 +117,24 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int deleteUser(UserInfo userInfo) {
-		int cnt = 0;
+		String cnt = "";
 		Optional<UserInfo> opUi = uRepo.findById(userInfo.getUiNum());
 		log.info("opUi=>{}",opUi);
 		if(!opUi.isEmpty()) {
 			String byebye = userInfo.getUiDropOut(); 
 			userInfo = opUi.get();
 			userInfo.setUiDropOut(byebye);
-			log.info("byebye=>{}",userInfo.getUiDropOut());
-			cnt = uRepo.save(userInfo).getUiNum();
-			uRepo.deleteById(userInfo.getUiNum());
+			String str = "0"; // status 0
+			userInfo.getUiStatus();
+			log.info("byebye=>{}",userInfo.getUiStatus());
+			userInfo.setUiStatus(str);
+			String putname = "탈퇴한 회원입니다.";
+			userInfo.setUiName(putname);
+			cnt = uRepo.save(userInfo).getUiStatus();
+			
 		}
-		return cnt;
+		return Integer.parseInt(cnt);
 	}
 
 }
+

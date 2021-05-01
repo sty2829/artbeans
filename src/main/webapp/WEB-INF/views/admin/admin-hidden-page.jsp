@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8"> 
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
-<title>부트스트랩 테이블</title>
+<title>검색 실험용</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
 <style>
@@ -13,8 +13,6 @@
 	width:60%;
 	margin: 0px auto;
 }
-
-
 </style>
 </head>
 <body>
@@ -23,7 +21,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <div style="height:100px"></div>
 
-<div style="height:100px; width:40%; margin: 0px auto; background-color: red; border-radius: 15px; text-align: center; padding-top: 10px; font-size: 50px; color:white; font-weight: bolder;">
+<div style="height:100px; width:40%; margin: 0px auto; background-color: red; border-radius: 15px; text-align: center; padding-top: 10px; font-size: 50px; color:white; font-weight: bolder; cursor: pointer;"
+	onclick="location.href='/views/admin/admin-hidden-page2'">
 검색창
 </div>
 
@@ -80,7 +79,7 @@ function searchSomething(frm){
 		if(xhr.readyState==4 && xhr.status==200){
 			
 			var res=JSON.parse(xhr.responseText);
-			console.log(res);
+			
 			for(var searchResult of res.items){
 				var linkFirst = searchResult.link;
 				if(linkFirst.length>30){

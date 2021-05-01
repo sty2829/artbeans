@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.dto.ReservationTimeDTO;
+import com.artbeans.web.dto.Search;
 import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.ReservationInfo;
 import com.artbeans.web.repository.ExhibitionInfoRepository;
@@ -56,10 +59,9 @@ public class ReservationSeviceImpl implements ReservationService {
 	}
 
 	@Override
-	public List<ReservationInfo> getReservationList(ReservationInfo reservationInfo) {
-		 List<ReservationInfo> list = riRepo.findAll();
-		 log.info("list => {}", list);
-		return riRepo.findAll();
+	public Page<ReservationInfo> getReservationList(Pageable pageable) {
+		return riRepo.getReservationList(pageable);
+	
 	}
 	
 }

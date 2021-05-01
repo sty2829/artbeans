@@ -22,7 +22,6 @@ public class SearchAPI {
                throw new RuntimeException("검색어 인코딩 실패",e);
            }
 
-
            String apiURL = "https://openapi.naver.com/v1/search/webkr?query=" +text+"&display=10&start="+pageNum;    // json 결과
            //String apiURL = "https://openapi.naver.com/v1/search/blog.xml?query="+ text; // xml 결과
 

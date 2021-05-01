@@ -198,7 +198,7 @@ function getBeforeConfirm(page){
 			let disable = res.first ? 'disabled' : '';
 			
 			let li = '<li class="page-item ' + disable + '" onclick="getBeforeConfirm(' + res.number + ')">';
-			li += '<a class="page-link" href="#" tabindex="-1">이전</a>';
+			li += '<a class="page-link" href="#" tabindex="-1" style="color:red;">이전</a>';
 			li += '</li>';
 			
 			let startPage = Math.floor((((Number(res.number) + 1) - 1) / size)) * size + 1;
@@ -208,16 +208,20 @@ function getBeforeConfirm(page){
 			}
 			for(startPage; startPage<=endPage; startPage++){
 				if(startPage === page){
-					li += '<li class="page-item active" onclick="getBeforeConfirm(' + startPage + ')"><a class="page-link" href="#">'+ startPage +'</a></li>';
+					li += '<li class="page-item active" onclick="getBeforeConfirm(' + startPage + ')"><a class="page-link" href="#" " style="color:red; background-color:white;">'+ startPage +'</a></li>';
 					continue;
 				}
-				li += '<li class="page-item" onclick="getBeforeConfirm(' + startPage +')"><a class="page-link" href="#">'+ startPage +'</a></li>';
+				li += '<li class="page-item" onclick="getBeforeConfirm(' + startPage +')"><a class="page-link" href="#" " style="color:red; background-color:white;">'+ startPage +'</a></li>';
 			}
-			disable = res.last ? 'disabled' : '';
-			li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
-		    li += '<a class="page-link" href="#">다음</a>';
-		  	li += '</li>';
 			
+			disable = res.last ? 'disabled' : '';
+			if(disable!='disabled'){
+				li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
+			    li += '<a class="page-link" href="#" style="color:red; background-color:white;">다음</a>';
+			  	li += '</li>';
+			}else{
+				li += '';
+			}
 		  	
 		  	document.querySelector('#tBody').innerHTML = html;
 			document.querySelector('#pastPageList').innerHTML = li;

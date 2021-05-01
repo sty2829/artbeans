@@ -23,8 +23,10 @@ position: relative;
 }
 
 #suggestListDiv {
+dislplay : flex;
+flex-direction : column;
 	width:200px;
-	top: 72%;
+	margin-top:4em ;
 	position: absolute;
 	background: white;
 }
@@ -194,6 +196,7 @@ function logout(){
 							<li><a href="/views/exhibition/openingList">진행중인 전시회</a></li>
 							<li><a href="/views/exhibition/closeList">종료된 전시회</a></li>
 							<li><a href="/views/exhibition/futureList">진행 예정 전시회</a></li>
+							<li><a href="/views/exhibition/reservation">예약가능한 전시회</a></li>
 							<li><a href="/views/exhibition/calendar-list">월별 개봉 전시회</a></li>
 						</ul></li>
 
@@ -221,7 +224,7 @@ function logout(){
 
 			</nav>
 			<c:if test="${admin eq null}">
-				<c:if test="${userInfo eq null }">
+			<c:if test="${userInfo eq null}">
 			<a href="/views/user/login" style="float: right"
 				class="get-started-btn ml-auto">로그인/회원가입</a>
 				</c:if>

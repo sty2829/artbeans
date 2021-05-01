@@ -95,27 +95,29 @@
             	alert('비밀번호는 영문 대소문자와 숫자로만 입력해주세요.')
             	return false;
             }
-            
-			var param = {
-				uiEmail : document.querySelector('#uiEmail').value,
-				uiPwd : document.querySelector('#uiPwd').value
-			}
-
+ 
 			var xhr = new XMLHttpRequest();
 			xhr.open('POST', '/login');
 			xhr.onreadystatechange = function() {
-				if (xhr.readyState == 4 && xhr.status == 200) {
-					console.log(xhr.responseText);
-					if (xhr.responseText) {
-						console.log(xhr.responseText);
-						var res = JSON.parse(xhr.responseText);
+				if (xhr.readyState==4 && xhr.status==200) {
+					var res = JSON.parse(xhr.responseText);					
+					if (res.uiStatus=='1') {						
 						alert('반갑습니다');
-						location.href = '/';
+						location.href = '/';					
+						}else{
+						alert('존재하지 않는 회원입니다. 이메일과 비밀번호를 다시 확인해주세요.');
+						document.querySelector('#uiEmail').value = '';
+						document.querySelector('#uiPwd').value = '';
+						uiEmail.focus();
 						return;
+						}
+					
 					}
-					alert('아이디나 비밀번호를 확인해주세요.');
 				}
-			}
+			var param = {
+					uiEmail : document.querySelector('#uiEmail').value,
+					uiPwd : document.querySelector('#uiPwd').value
+				}
 			xhr.setRequestHeader('content-type',
 					'application/json;charset=UTF-8');
 			xhr.send(JSON.stringify(param));

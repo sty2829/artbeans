@@ -1,11 +1,12 @@
 package com.artbeans.web.service;
 
 import java.util.List;
-import java.util.Map;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.dto.ReservationTimeDTO;
-import com.artbeans.web.entity.ExhibitionInfo;
 import com.artbeans.web.entity.ReservationInfo;
 
 public interface ReservationService {
@@ -16,6 +17,6 @@ public interface ReservationService {
 	
 	List<ReservationTimeDTO> getReservationTimes(Integer riNum, String dateStr);
 	
-	List<ReservationInfo> getReservationList(ReservationInfo reservationInfo);
+	Page<ReservationInfo> getReservationList(Pageable pageable);
 
 }

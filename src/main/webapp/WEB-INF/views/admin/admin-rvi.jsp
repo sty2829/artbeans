@@ -138,13 +138,7 @@ function getReviews(page){
 			var res = JSON.parse(xhr.responseText);
 			var html='';
 			for (var review of res.content) {
-				/*
-				let reviewDate = review.moddat;
-				let tNum=reviewDate.indexOf('T');
-				reviewDate=reviewDate.substring(0,tNum);
-				*/
-				
-				
+		
 				let ContentPtag = review.rviContent;
 				let cNumLast2=ContentPtag.indexOf('</p>');
 				let cNumLast1=ContentPtag.indexOf('<p>');
@@ -177,10 +171,13 @@ function getReviews(page){
 				li += '<li class="page-item" onclick="getReviews(' + startPage +')"><a class="page-link" href="#">'+ startPage +'</a></li>';
 			}
 			disable = res.last ? 'disabled' : '';
-			li += '<li class="page-item ' + disable +'" onclick="getReviews(' + (Number(res.number)+2) +')">';
-		    li += '<a class="page-link" href="#">다음</a>';
-		  	li += '</li>';
-
+			if(disable!='disabled'){
+				li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
+			    li += '<a class="page-link" href="#">다음</a>';
+			  	li += '</li>';
+			}else{
+				li += '';
+			}
 		  	document.querySelector('#pastPageList').innerHTML = li;
 			document.querySelector('#tBody').innerHTML = html;
 			}
@@ -240,11 +237,15 @@ function rviSearchButton(page){
 				}
 				li += '<li class="page-item" onclick="getBeforeConfirm(' + startPage +')"><a class="page-link" href="#">'+ startPage +'</a></li>';
 			}
-			disable = res.last ? 'disabled' : '';
-			li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
-		    li += '<a class="page-link" href="#">다음</a>';
-		  	li += '</li>';
 			
+			disable = res.last ? 'disabled' : '';
+			if(disable!='disabled'){
+				li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
+			    li += '<a class="page-link" href="#">다음</a>';
+			  	li += '</li>';
+			}else{
+				li += '';
+			}
 			document.querySelector('#tBody').innerHTML = html;
 			document.querySelector('#pastPageList').innerHTML = li;
 		}
