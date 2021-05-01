@@ -159,10 +159,8 @@ var size = 5;
 
 function getBeforeConfirm(page){
 	let xhr = new XMLHttpRequest();
-	//'/board?size=5&page=' + (page-1);
-	//xhr.open('GET', '/exhibitions/paging?size=10&page='+(page-1)); //ExhibitionController
-	
-	xhr.open('GET', '/exhibitions?status=ALL&size=9&sort=eiNum,asc&page='+(page-1));
+
+	xhr.open('GET', '/exhibitions?status=ALL&size=9&sort=eiNum,asc&page='+(page-1));//ExhibitionController
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let res = JSON.parse(xhr.responseText);
@@ -170,7 +168,6 @@ function getBeforeConfirm(page){
 			let html='';
 			
 			for (let exhibition of res.content) {
-				//console.log(exhibition);
 				
 				html+='<tr class="row100 body" onclick="location.href =\'/views/admin/admin-ei-update?eiNum='+exhibition.eiNum+'\'">';
 				html+='<td class="cell100 column1">'+exhibition.eiNum+'</td>';
@@ -183,7 +180,6 @@ function getBeforeConfirm(page){
 				html+="</tr>";
 				}
 			
-			console.log(res);
 			
 			let disable = res.first ? 'disabled' : '';
 			let li = '<li class="page-item ' + disable + '" onclick="getBeforeConfirm(' + res.number + ')">';
@@ -226,7 +222,6 @@ function eiSearchButton(page){
 	let searchValue=document.querySelector('#eiNavBar').value;
 
 	let xhr = new XMLHttpRequest();
-	//'/board?size=5&page=' + (page-1);
 	if(selectValue=='eiName'){
 		xhr.open('GET', '/exhibition-search-bar/name?size=10&page='+(page-1)+'&eiName='+searchValue); //ExhibitionController
 	}else if(selectValue=='eiArtist'){
@@ -282,11 +277,15 @@ function eiSearchButton(page){
 				}
 				li += '<li class="page-item" onclick="getBeforeConfirm(' + startPage +')"><a class="page-link" href="#">'+ startPage +'</a></li>';
 			}
-			disable = res.last ? 'disabled' : '';
-			li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
-		    li += '<a class="page-link" href="#">다음</a>';
-		  	li += '</li>';
 			
+			disable = res.last ? 'disabled' : '';
+			if(disable!='disabled'){
+				li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
+			    li += '<a class="page-link" href="#">다음</a>';
+			  	li += '</li>';
+			}else{
+				li += '';
+			}
 			document.querySelector('#tBody').innerHTML = html;
 			document.querySelector('#pastPageList').innerHTML = li;
 		}

@@ -41,7 +41,8 @@ public class AdminController {
 		return true;
 	}
 	
-	@GetMapping("/admin/hidden-search")
+	//사용중(가온) admin-hidden-page
+	@GetMapping("/admin/hidden-search") 
 	public @ResponseBody String searchSomething(@RequestParam String search,String pageNum) {
 		return SearchAPI.resultSearch(search,pageNum);
 	}
