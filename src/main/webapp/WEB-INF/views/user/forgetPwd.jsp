@@ -81,7 +81,7 @@
 			xhr.onreadystatechange = function() {
 				if (xhr.status ==200 && xhr.readyState ==4) {
 					var res = xhr.responseText;
-					if(res== uiEmail.value){
+					if(res == uiEmail.value){
  						alert('해당 이메일로 인증번호를 전송했습니다.');
 						location.href="/views/user/findPwd";
 					}else{
@@ -90,7 +90,7 @@
 				}
 			}
 			var param = {
-				uiEmail : document.querySelector('#uiEmail').value
+				uiEmail : document.querySelector('#uiEmail').value,
 			}
 			xhr.setRequestHeader('content-type',
 					'application/json;charset=UTF-8');

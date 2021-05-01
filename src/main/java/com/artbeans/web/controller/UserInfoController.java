@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.artbeans.web.entity.UserInfo;
-import com.artbeans.web.repository.UserInfoRepository;
 import com.artbeans.web.service.UserService;
 import com.artbeans.web.util.CodeGenerator;
 
@@ -36,7 +35,6 @@ public class UserInfoController {
 	@Autowired
 	private static final String FROM_ADDRESS = "psh951009@gmail.com";
 
-	private static UserInfo userInfo;
 
 	@PostMapping("/user")
 	public int insert(@RequestBody UserInfo userInfo) {
@@ -68,18 +66,7 @@ public class UserInfoController {
 		}
 		return user;
 	}
-	
-	@PostMapping("/login2")
-	public String login2(@RequestBody UserInfo userInfo, HttpServletRequest req) {
-		UserInfo user = userService.login(userInfo);
-		log.info("user=>{}", user);
-		if(user!=null) {
-			HttpSession session = req.getSession();
-			session.setAttribute("userInfo", user);
-		}
-		return user.getUiStatus();
-	}
-	
+		
 
 	@PostMapping("/logout")
 	public @ResponseBody boolean logout(HttpServletRequest req) {
@@ -114,37 +101,11 @@ public class UserInfoController {
 		log.info("uiEmail=>{}", userService.emailCheck(uiEmail));
 		return userService.emailCheck(uiEmail);
 	}
-
+	//인증번호 받기 위한 이메일 찾기..
 	@PostMapping("/checkPwd")
 	public String authEmail(@RequestBody UserInfo ui) {
-
-		String code = CodeGenerator.getRandomCode();
-		log.info("code=>{}", code);
-
-		String title = "아트빈 비밀번호 인증메일입니다.";
-		String content = "인증번호는 " + code + "입니다." + "\r\n 해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
-		SimpleMailMessage smm = new SimpleMailMessage();
-		try {
-			smm.setTo(ui.getUiEmail());
-			smm.setFrom(FROM_ADDRESS);
-			smm.setSubject(title);
-			smm.setText(content);
-
-			mailSender.send(smm);
-			log.info("smm=>{}", smm);
-
-			UserInfo user1 = userService.right(ui.getUiEmail()); // 이메일 조회
-			user1.setCode(code); // 인증코드 넣기
-			UserInfo user = userService.updateUser(user1); // 업데이트
-			log.info("user=>{}", user);
-
-			return user.getUiEmail();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-		}
-		return null;
+		log.info("ui=>{}", userService.right(ui));
+		return userService.right(ui);
 	}
 
 	// 인증번호 일치여부 확인..

@@ -20,7 +20,7 @@ public interface UserService {
 	int emailCheck(String uiEmail);
 
 	// 인증번호 가져올 해당 이메일 찾기..
-	UserInfo right(String uiEmail);
+	String right(UserInfo userInfo);
 	//인증번호 일치..
 	UserInfo findCode(String code);
 	//새비밀번호 변경..
