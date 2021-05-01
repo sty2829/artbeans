@@ -205,7 +205,7 @@ function deleteComment(obj){
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			let res = JSON.parse(xhr.responseText);
-			if(res==0){
+			if(res==1){
 				alert('삭제가 완료되었습니다.');
 				location.href='/views/admin/admin-rvi-ci-update?rviNum='+getValue;
 			}else{

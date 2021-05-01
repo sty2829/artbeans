@@ -42,11 +42,8 @@ public interface ExhibitionService {
 	// admin-ei-update
 	void updateExhibitionInfoWithoutFile(Integer eiStatus, Integer giNum, String eiName, String eiArtist, Integer eiCharge, String eiStartDate, String eiEndDate, String eiStartTime,String eiEndTime,String eiContent,Integer uiNum,Integer eiNum)  throws Exception ;
 
-	DataTable<ExhibitionInfo> getOpeningCalendarList(String year, String month, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo);
-
-	DataTable<ExhibitionInfo> getOpeningCalendarListOneday(String eiStartDate, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo);
+	Page<ExhibitionInfo> getOpeningCalendarList(String year, String month, Pageable pageable);
+	Page<ExhibitionInfo> getOpeningCalendarListOneday(String eiStartDate, Pageable pageable);
 
 	// admin-ei 검색바
 	Page<ExhibitionInfo> findAllByEiNameLike(String eiName, Pageable pageable);

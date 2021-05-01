@@ -170,24 +170,16 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	
 	//calendar-list
 	@Override
-	public DataTable<ExhibitionInfo> getOpeningCalendarList(String year, String month, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+	public Page<ExhibitionInfo> getOpeningCalendarList(String year, String month, Pageable pageable) {
 		Page<ExhibitionInfo> pb = exhiRepo.getOpeningCalendarList(year,month, pageable);
-		dtExhibitionInfo.setData(pb.getContent());
-		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
-		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
-		return dtExhibitionInfo;
+		return pb;
 	}
 	
 	//calendar-list-oneday
 	@Override
-	public DataTable<ExhibitionInfo> getOpeningCalendarListOneday(String eiStartDate, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
+	public Page<ExhibitionInfo> getOpeningCalendarListOneday(String eiStartDate, Pageable pageable) {
 		Page<ExhibitionInfo> pb = exhiRepo.getOpeningCalendarList(eiStartDate, pageable);
-		dtExhibitionInfo.setData(pb.getContent());
-		dtExhibitionInfo.setRecordsTotal(pb.getTotalElements());
-		dtExhibitionInfo.setRecordsFiltered(pb.getTotalElements());
-		return dtExhibitionInfo;
+		return pb;
 	}
 	
 	//admin-ei 검색바

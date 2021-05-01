@@ -41,7 +41,8 @@ window.onload = function load() {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
-			for (var exhibition of res.data) {
+			console.log(res);
+			for (var exhibition of res.content) {
 				if (exhibition.eiStatus == 'CONFIRM') {
 
 					exNum = exhibition.eiStartDate.split('-');
@@ -138,7 +139,7 @@ function backButton() {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
-		for (var exhibition of res.data) {
+		for (var exhibition of res.content) {
 				if (exhibition.eiStatus == 'CONFIRM') {
 				
 					exNum = exhibition.eiStartDate.split('-');
@@ -230,7 +231,7 @@ function nextButton() {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
-			for (var exhibition of res.data) {
+			for (var exhibition of res.content) {
 				if (exhibition.eiStatus == 'CONFIRM') {
 
 					exNum = exhibition.eiStartDate.split('-');

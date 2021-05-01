@@ -64,7 +64,7 @@ function get(){
 			var res = JSON.parse(xhr.responseText);
 			var html = '';
 			
-			for(var exhibitionInfo of res.data){
+			for(var exhibitionInfo of res.content){
 				//console.log(exhibitionInfo); ///exhibition-list 로 했을때 21번부터 40번까지밖에 출력안됨
 				if(exhibitionInfo.eiStatus=='CONFIRM'){
 					html += '<div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up" >';
