@@ -12,7 +12,6 @@ import org.springframework.data.repository.query.Param;
 
 import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.dto.ReservationTimeDTO;
-import com.artbeans.web.dto.Search;
 import com.artbeans.web.entity.ReservationInfo;
 
 public interface ReservationInfoRepository extends JpaRepository<ReservationInfo, Integer> {

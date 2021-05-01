@@ -8,12 +8,9 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
-import org.springframework.context.annotation.Bean;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JavaType;
@@ -21,9 +18,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @ConstructorBinding
 @ConfigurationProperties("iamport.api")
 @Data
@@ -90,8 +85,6 @@ public class Iamport {
 	        
 	        conn.connect();
 	        
-	        int responseCode = conn.getResponseCode();
-	        
 	        StringBuffer sb = new StringBuffer();
 	        InputStreamReader in = new InputStreamReader(conn.getInputStream());
 			BufferedReader br = new BufferedReader(in);
@@ -123,10 +116,6 @@ public class Iamport {
 	        conn.setRequestProperty("Authorization", getToken());
 	        
 	        conn.connect();
-	        
-	        int responseCode = conn.getResponseCode();
-	        
-	        log.info("responseCode => {}", responseCode);
 	        
 	        StringBuffer sb = new StringBuffer();
 	        InputStreamReader in = new InputStreamReader(conn.getInputStream());
@@ -166,8 +155,6 @@ public class Iamport {
 	        
 	        conn.connect();
 	        
-	        int responseCode = conn.getResponseCode();
-	        log.info("responseCode => {}", responseCode);
 	        StringBuffer sb = new StringBuffer();
 	        InputStreamReader in = new InputStreamReader(conn.getInputStream());
 			BufferedReader br = new BufferedReader(in);
@@ -176,7 +163,6 @@ public class Iamport {
 			while ((line = br.readLine()) != null) {
 				sb.append(line);
 			}			
-			log.info("line => {}", line);
 			return getResult(sb.toString(), Cancel.class);
 	       
 	    } catch (IOException e) {
@@ -205,8 +191,6 @@ public class Iamport {
 	        
 	        conn.connect();
 	        
-	        int responseCode = conn.getResponseCode();
-	        log.info("responseCode => {}", responseCode);
 	        StringBuffer sb = new StringBuffer();
 	        InputStreamReader in = new InputStreamReader(conn.getInputStream());
 			BufferedReader br = new BufferedReader(in);
