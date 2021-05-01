@@ -117,7 +117,7 @@ function headSuggestGallery(obj){
 		}
 	}
 	xhr.send();
-
+}
 function hide(){
 	var suggestListDiv = document.querySelector('#suggestListDiv');
 	suggestListDiv.style.display='none';
