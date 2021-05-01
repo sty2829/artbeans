@@ -103,8 +103,8 @@
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', url);
 			xhr.onreadystatechange = function() {
-				if (xhr.status ==200 && xhr.readyState ==4) {
-					var res =JSON.parse(xhr.responseText);
+				if (xhr.status==200 && xhr.readyState==4) {
+					var res = JSON.parse(xhr.responseText);
 					console.log(res.code);
 					if (res.code == code.value) {
 						alert('인증에 성공하였습니다. 비밀번호 변경창으로 이동합니다!');

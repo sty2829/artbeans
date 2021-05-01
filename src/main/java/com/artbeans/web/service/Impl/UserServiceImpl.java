@@ -27,6 +27,12 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserInfoRepository uRepo;
 	
+	@Autowired
+	private static final String FROM_ADDRESS = "psh951009@gmail.com";
+
+	@Autowired
+	private JavaMailSender mailSender;
+	
 	@Override
 	public List<UserInfo> getList(UserInfo userInfo) {
 		return uRepo.findAll();
@@ -83,11 +89,38 @@ public class UserServiceImpl implements UserService {
 		}
 		return 1;
 	}
+	
 	//인증번호 코드 삽입을 위한 해당 이메일 찾기
 	@Override
-	public UserInfo right(String uiEmail) {
-		UserInfo opUi = uRepo.findByUiEmail(uiEmail);
-		return opUi;
+	public String right(UserInfo userInfo) {
+		UserInfo opUi = uRepo.findByUiEmail(userInfo.getUiEmail());
+		log.info("opUi=>{}",opUi);
+		String cnt = "";
+		if(opUi!=null) {
+			String code = CodeGenerator.getRandomCode();
+			String title = "아트빈 비밀번호 인증메일입니다.";
+			String content = "인증번호는 " + code + "입니다." + "\r\n 해당 인증번호를 인증번호 확인란에 기입하여 주세요.";
+			SimpleMailMessage smm = new SimpleMailMessage();
+			try {
+				smm.setTo(userInfo.getUiEmail());
+				smm.setFrom(FROM_ADDRESS);
+				smm.setSubject(title);
+				smm.setText(content);
+
+				mailSender.send(smm);
+				log.info("smm=>{}", smm);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			opUi.setCode(code);
+			String uiEmail = opUi.getUiEmail();
+			opUi.setUiEmail(uiEmail);
+			log.info("opUi=>{}",opUi.getCode());
+			log.info("opUi=>{}",opUi);
+			cnt = uRepo.save(opUi).getUiEmail();
+		}
+		return cnt;
 	}
 
 	
@@ -135,6 +168,7 @@ public class UserServiceImpl implements UserService {
 		}
 		return Integer.parseInt(cnt);
 	}
+
 
 }
 
