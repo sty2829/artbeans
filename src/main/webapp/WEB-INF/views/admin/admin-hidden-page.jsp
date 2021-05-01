@@ -21,8 +21,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <div style="height:100px"></div>
 
-<div style="height:100px; width:40%; margin: 0px auto; background-color: red; border-radius: 15px; text-align: center; padding-top: 10px; font-size: 50px; color:white; font-weight: bolder; cursor: pointer;"
-	onclick="location.href='/views/admin/admin-hidden-page2'">
+<div style="height:100px; width:40%; margin: 0px auto; background-color: red; border-radius: 15px; text-align: center; padding-top: 10px; font-size: 50px; color:white; font-weight: bolder; cursor: pointer;">
 검색창
 </div>
 
