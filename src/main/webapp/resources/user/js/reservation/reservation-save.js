@@ -51,6 +51,7 @@ window.onload = function(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
+			console.log(res);
 			if(res.length === 0){
 				alert('등록하신 전시회가 없습니다. 전시회 등록 부터 해주세요.');
 				location.href = '/views/exhibition/manager/insert';

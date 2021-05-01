@@ -46,10 +46,6 @@ public class UserInfo {
 	@Column(name="ui_genre")
 	private String uiGenre;
 	
-	@Column(name="ui_role", insertable = false)
-	@ColumnDefault("USER")
-	private String uiRole;
-	
 	@Column(name="ui_status", insertable = false)
 	@ColumnDefault("1")
 	private String uiStatus;

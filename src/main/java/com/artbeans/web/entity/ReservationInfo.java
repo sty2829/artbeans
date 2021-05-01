@@ -18,6 +18,7 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Data;
@@ -163,7 +164,7 @@ public class ReservationInfo {
 	private String riAudienceRating;
 	
 	@Column(name="ri_holiday")
-	private int riHoliday;
+	private Integer riHoliday;
 	
 	@OneToOne
 	@JoinColumn(name= "ei_num")
