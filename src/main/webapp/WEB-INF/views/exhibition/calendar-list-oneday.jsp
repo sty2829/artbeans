@@ -81,7 +81,7 @@ function get(){
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
 					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibitionInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
-					console.log(exhibitionInfo.fileInfo.fiPath); 
+
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibitionInfo.eiName + '</a>';
