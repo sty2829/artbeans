@@ -221,7 +221,7 @@ function logout(){
 
 			</nav>
 			<c:if test="${admin eq null}">
-				<c:if test="${userInfo eq null }">
+			<c:if test="${userInfo eq null}">
 			<a href="/views/user/login" style="float: right"
 				class="get-started-btn ml-auto">로그인/회원가입</a>
 				</c:if>

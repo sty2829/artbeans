@@ -186,7 +186,6 @@
 				}
 			xhr.setRequestHeader('content-type',
 					'application/json;charset=UTF-8');
-			console.log(JSON.stringify(param));
 			xhr.send(JSON.stringify(param));
 		}
 

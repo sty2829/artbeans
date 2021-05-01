@@ -112,7 +112,7 @@
 			if(xhr.status==200 && xhr.readyState==4){
 			var res = xhr.responseText;
 			console.log(res);
-				if(res>=1){
+				if(res=1){
 					alert('탈퇴되었습니다. 아트빈을 이용해주셔서 감사합니다.');
 					location.href="/";
 				}else{
@@ -122,7 +122,8 @@
 			}
 			var param ={
 					uiNum : ${userInfo.uiNum},
-					uiDropOut : document.querySelector('#uiDropOut').value		
+					uiDropOut : document.querySelector('#uiDropOut').value,
+					uiStatus : "0"
 					}
 			xhr.setRequestHeader('content-type','application/json;charset=UTF-8');
 			xhr.send(JSON.stringify(param));
