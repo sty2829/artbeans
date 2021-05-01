@@ -17,6 +17,6 @@ public interface ReservationService {
 	
 	List<ReservationTimeDTO> getReservationTimes(Integer riNum, String dateStr);
 	
-	Page<ReservationInfo> getReservationList(ReservationInfo reservationInfo, Pageable pageable);
+	Page<ReservationInfo> getReservationList(Pageable pageable);
 
 }

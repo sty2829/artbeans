@@ -59,8 +59,8 @@ public class ReservationSeviceImpl implements ReservationService {
 	}
 
 	@Override
-	public Page<ReservationInfo> getReservationList(ReservationInfo reservationInfo, Pageable pageable) {
-		return getReservationList(reservationInfo, pageable);
+	public Page<ReservationInfo> getReservationList(Pageable pageable) {
+		return riRepo.getReservationList(pageable);
 	
 	}
 	

@@ -48,7 +48,7 @@ public class ReservationController {
 	
 	//사용중(상혁)
 	@GetMapping("/reservation-list")
-	public Page<ReservationInfo> getList(ReservationInfo reservationInfo, Pageable pageable){
-		return reservationService.getReservationList(reservationInfo, pageable);
+	public Page<ReservationInfo> getList(Pageable pageable){
+		return reservationService.getReservationList(pageable);
 	}
 }
