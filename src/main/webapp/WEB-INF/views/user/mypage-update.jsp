@@ -181,8 +181,7 @@
 					uiAge : '${userInfo.uiAge}',
 					uiGender : '${userInfo.uiGender}',
 					uiRegion : '${userInfo.uiRegion}',
-					uiStatus :  '${userInfo.uiStatus}',
-					uiRole : '${userInfo.uiRole}'
+					uiStatus :  '${userInfo.uiStatus}'
 				}
 			xhr.setRequestHeader('content-type',
 					'application/json;charset=UTF-8');

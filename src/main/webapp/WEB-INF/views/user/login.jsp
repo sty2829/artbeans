@@ -112,8 +112,9 @@
 						uiEmail.focus();
 						return;
 						}
-					}else{
-						alert('비번확인')
+					}else{ // 아이디나 비번 불일치시 null로 500에러
+						alert('이메일과 비밀번호를 다시 확인해주세요.');
+						return;
 					}
 					
 					}

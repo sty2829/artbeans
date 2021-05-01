@@ -17,6 +17,7 @@
 	margin-top: 200px;
 	height: 400px;
 }
+
 </style>
 </head>
 <body>
@@ -78,7 +79,7 @@
 				document.querySelector('#addBox').style.display ='none';
 			}
 		    document.querySelector('#addBox').innerHTML = '<h6 style="font-weight:bold; width: 100% ; margin:10px;">' + '탈퇴사유를 간단하게 기입하여 주세요.' + '<h6>';
-		    document.querySelector('#addBox').innerHTML += '<input type="text" name="byebye" id="uiDropOut" style="width: 70%;">' + '<button type="button" class="btn btn-outline-danger" onclick="dropOut()">' + '확인' + '</button>';
+		    document.querySelector('#addBox').innerHTML += '<input type="text" name="byebye" id="uiDropOut"  style="width : 30%;">' + '<br>' + '<button type="button" class="btn btn-outline-danger" onclick="dropOut()">' + '확인' + '</button>';
 		}
 		
 		function dropOut(){
@@ -105,7 +106,7 @@
 				if(res=1){
 					alert('탈퇴되었습니다. 아트빈을 이용해주셔서 감사합니다.');
 					location.href="/";
-				}else{
+				}else{ 
 					alert('탈퇴에 실패하였습니다. 다시 시도해주세요.');
 					}
 				}
