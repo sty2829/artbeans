@@ -70,7 +70,8 @@ function check(id){
 }
 function headSuggest(target){
 	if(target.value.trim()==''){
-		return hide();		
+		document.querySelector('#suggestListDiv').innerHTML = '';
+		return;		
 	}
 	
 	headSuggestGallery(target);
