@@ -62,9 +62,9 @@ text-align: cencter;
 			}
 			location.href='/views/reservation/reservation-view?eiNum=' + eiNum;
 		}
+		window.addEventListener('load',favoriteList);
 		var url = '/favorite-exhibitions?uiNum='+uiNum;
-		 async function favoriteList(){
-			    await getExhibition();
+		 function favoriteList(){
 				var xhr = new XMLHttpRequest();
 				xhr.open('GET',url);
 				xhr.onreadystatechange = function(){
