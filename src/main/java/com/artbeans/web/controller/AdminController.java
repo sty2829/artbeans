@@ -28,7 +28,6 @@ public class AdminController {
 	public @ResponseBody Admin login(@RequestBody Admin admin, HttpServletRequest req) {
 		Admin ad = adminService.login(admin); 
 		if(ad!=null) {
-			log.info("ad=>{}",ad);
 			HttpSession session = req.getSession();
 			session.setAttribute("admin", ad);
 		}
@@ -44,8 +43,6 @@ public class AdminController {
 	
 	@GetMapping("/admin/hidden-search")
 	public @ResponseBody String searchSomething(@RequestParam String search,String pageNum) {
-		log.info("search=>{}",search);
-		log.info("pageNum=>{}",pageNum);
 		return SearchAPI.resultSearch(search,pageNum);
 	}
 	

@@ -183,6 +183,7 @@ function getBeforeConfirm(page){
 				html+="</tr>";
 				}
 			
+			console.log(res);
 			
 			let disable = res.first ? 'disabled' : '';
 			let li = '<li class="page-item ' + disable + '" onclick="getBeforeConfirm(' + res.number + ')">';
@@ -202,9 +203,13 @@ function getBeforeConfirm(page){
 				li += '<li class="page-item" onclick="getBeforeConfirm(' + startPage +')"><a class="page-link" href="#">'+ startPage +'</a></li>';
 			}
 			disable = res.last ? 'disabled' : '';
-			li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
-		    li += '<a class="page-link" href="#">다음</a>';
-		  	li += '</li>';
+			if(disable!='disabled'){
+				li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
+			    li += '<a class="page-link" href="#">다음</a>';
+			  	li += '</li>';
+			}else{
+				li += '';
+			}
 			
 			
 		  	document.querySelector('#tBody').innerHTML = html;

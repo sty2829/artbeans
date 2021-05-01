@@ -198,11 +198,15 @@ function getOpenLeftSide(page){
 				}
 				li += '<li class="page-item" onclick="getOpenLeftSide(' + startPage +')"><a class="page-link" href="#">'+ startPage +'</a></li>';
 			}
-			disable = res.last ? 'disabled' : '';
-			li += '<li class="page-item ' + disable +'" onclick="getOpenLeftSide(' + (Number(res.number)+2) +')">';
-		    li += '<a class="page-link" href="#">다음</a>';
-		  	li += '</li>';
 			
+			disable = res.last ? 'disabled' : '';
+			if(disable!='disabled'){
+				li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
+			    li += '<a class="page-link" href="#">다음</a>';
+			  	li += '</li>';
+			}else{
+				li += '';
+			}
 			
 			document.querySelector('#tBodyLeft').innerHTML = htmlLeft;
 			document.querySelector('#pastPageList').innerHTML = li;
@@ -263,10 +267,14 @@ function getOpenRightSide(page){
 				li += '<li class="page-item" onclick="getOpenRightSide(' + startPage +')"><a class="page-link" href="#">'+ startPage +'</a></li>';
 			}
 			disable = res.last ? 'disabled' : '';
-			li += '<li class="page-item ' + disable +'" onclick="getOpenRightSide(' + (Number(res.number)+2) +')">';
-		    li += '<a class="page-link" href="#">다음</a>';
-		  	li += '</li>';
 			
+			if(disable!='disabled'){
+				li += '<li class="page-item ' + disable +'" onclick="getBeforeConfirm(' + (Number(res.number)+2) +')">';
+			    li += '<a class="page-link" href="#">다음</a>';
+			  	li += '</li>';
+			}else{
+				li += '';
+			}
 			
 			document.querySelector('#tBodyRight').innerHTML = htmlRight;
 			document.querySelector('#pastPageList2').innerHTML = li;
@@ -280,7 +288,6 @@ function getPermissionEiBanner(obj){//exhibition-banner-update
 	xhr.open('POST', '/exhibition-banner-update'); //ExhibitionController /exhibition-list /exhibition-listDemo
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-				alert('배너 승인 완료');
 				location.href='/views/admin/admin-banner';
 			
 		}
@@ -297,7 +304,6 @@ function getDeniedEiBanner(obj){//exhibition-banner-update
 	xhr.open('POST', '/exhibition-banner-update'); //ExhibitionController 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
-				alert('배너 불허 완료');
 				location.href='/views/admin/admin-banner';
 			
 		}
