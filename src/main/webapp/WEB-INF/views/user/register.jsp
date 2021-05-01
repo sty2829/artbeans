@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,88 +9,89 @@
 <link rel="stylesheet" href="/resources/user/css/register1.css">
 </head>
 <body>
-<div class="container" style="margin-top:150px; width:700px; letter-spacing:-2px;">
-		<div style="width:660px; margin:0 auto; margin-bottom:50px;  border:1px solid #b7b7b7; padding-top:50px; border-radius:5px;">
+	<div class="container"
+		style="margin-top: 150px; width: 700px; letter-spacing: -2px;">
+		<div
+			style="width: 660px; margin: 0 auto; margin-bottom: 50px; border: 1px solid #b7b7b7; padding-top: 50px; border-radius: 5px;">
 
-		<div style="text-align:center; font-size:25pt; margin:0 auto;">일반 회원가입</div>
+			<div style="text-align: center; font-size: 25pt; margin: 0 auto;">일반
+				회원가입</div>
 
-		
-		<!-- 일반 회원 가입 -->
-		<table>
-		<tbody><tr>
-			<td>
-				<input type="email" placeholder="이메일" name="email" id="uiEmail">
-				<input type="button" id="chk_button" value="중복확인" onclick="emailCheck()">
-				<div class="check_font" id=email_check></div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<input type="text" placeholder="성함" name="uiName" id="uiName">
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<input type="text" id="uiPhoneNumber" name="uiPhoneNumber"
-							placeholder="휴대폰번호 (-는 필수입니다)">
-			</td>
-		</tr>	
-				<tr>
-			<td>
-				<input type="password" placeholder="비밀번호" name="uiPwd" id="uiPwd">
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<input type="password" placeholder="비밀번호 확인" name="uiPwd2" id="uiPwd2">
-			</td>
-		</tr>
-				<tr>
-			<td style="border:0px;">
-				<button type="button" class="gender_btn" onclick="setGender(1)">남</button>
-				<button type="button" class="gender_btn" onclick="setGender(2)">여</button>
-			</td>
-		</tr>
-		<tr>
-			<td style="border:0px;">																			
-				<button type="button" class="age_btn" onclick="setAge(10)">10대</button>
-				<button type="button" class="age_btn" onclick="setAge(20)">20대</button>
-				<button type="button" class="age_btn" onclick="setAge(30)">30대</button>
-				<button type="button" class="age_btn" onclick="setAge(40)">40대</button>
-				<button type="button" class="age_btn" onclick="setAge(50)">50대</button>
-				<button type="button" class="age_btn" onclick="setAge(60)">60대 이상</button>
-			</td>
-		</tr>
-		<tr>
-			<td style="border:0px;">
-				<select style="width:500px; float:left; text-align-last:center;  letter-spacing:-1px;"  name="sido" id="uiRegion"><!-- onchange="sido_chg(this)" -->
-					<option value="" style="text-align:left;">지역선택</option>
-									<option value="서울">서울</option>
-									<option value="부산">부산</option>
-									<option value="대구">대구</option>
-									<option value="인천">인천</option>
-									<option value="광주">광주</option>
-									<option value="대전">대전</option>
-									<option value="울산">울산</option>
-									<option value="세종">세종</option>
-									<option value="강원">강원</option>
-									<option value="경기">경기</option>
-									<option value="경남">경남</option>
-									<option value="경북">경북</option>
-									<option value="전남">전남</option>
-									<option value="전북">전북</option>
-									<option value="제주">제주</option>
-									<option value="충남">충남</option>
-									<option value="충북">충북</option>
-								</select>
-				<!--<select style="width:250px; text-align-last:center;  letter-spacing:-1px;" id="gugun" name="gugun">
-				</select>-->
-			</td>
-		</tr>
-			<tr>
-			<td style="border:0px;">
-				<select style="width:500px; float:left; text-align-last:center;  letter-spacing:-1px;" name="genre" id="uiGenre"><!-- onchange="genre_chg(this) -->
-					<option value="">선호하는 장르를 선택해주세요</option>
+
+			<!-- 일반 회원 가입 -->
+			<table>
+				<tbody>
+					<tr>
+						<td><input type="email" placeholder="이메일" name="email"
+							id="uiEmail"> <input type="button" id="chk_button"
+							value="중복확인" onclick="emailCheck()">
+							<div class="check_font" id=email_check></div></td>
+					</tr>
+					<tr>
+						<td><input type="text" placeholder="성함" name="uiName"
+							id="uiName"></td>
+					</tr>
+					<tr>
+						<td><input type="text" id="uiPhoneNumber"
+							name="uiPhoneNumber" placeholder="휴대폰번호 (-는 필수입니다)"></td>
+					</tr>
+					<tr>
+						<td><input type="password" placeholder="비밀번호" name="uiPwd"
+							id="uiPwd"></td>
+					</tr>
+					<tr>
+						<td><input type="password" placeholder="비밀번호 확인"
+							name="uiPwd2" id="uiPwd2"></td>
+					</tr>
+					<tr>
+						<td style="border: 0px;">
+							<button type="button" class="gender_btn" onclick="setGender(1)">남</button>
+							<button type="button" class="gender_btn" onclick="setGender(2)">여</button>
+						</td>
+					</tr>
+					<tr>
+						<td style="border: 0px;">
+							<button type="button" class="age_btn" onclick="setAge(10)">10대</button>
+							<button type="button" class="age_btn" onclick="setAge(20)">20대</button>
+							<button type="button" class="age_btn" onclick="setAge(30)">30대</button>
+							<button type="button" class="age_btn" onclick="setAge(40)">40대</button>
+							<button type="button" class="age_btn" onclick="setAge(50)">50대</button>
+							<button type="button" class="age_btn" onclick="setAge(60)">60대
+								이상</button>
+						</td>
+					</tr>
+					<tr>
+						<td style="border: 0px;"><select
+							style="width: 500px; float: left; text-align-last: center; letter-spacing: -1px;"
+							name="sido" id="uiRegion">
+								<!-- onchange="sido_chg(this)" -->
+								<option value="" style="text-align: left;">지역선택</option>
+								<option value="서울">서울</option>
+								<option value="부산">부산</option>
+								<option value="대구">대구</option>
+								<option value="인천">인천</option>
+								<option value="광주">광주</option>
+								<option value="대전">대전</option>
+								<option value="울산">울산</option>
+								<option value="세종">세종</option>
+								<option value="강원">강원</option>
+								<option value="경기">경기</option>
+								<option value="경남">경남</option>
+								<option value="경북">경북</option>
+								<option value="전남">전남</option>
+								<option value="전북">전북</option>
+								<option value="제주">제주</option>
+								<option value="충남">충남</option>
+								<option value="충북">충북</option>
+						</select> <!--<select style="width:250px; text-align-last:center;  letter-spacing:-1px;" id="gugun" name="gugun">
+				</select>--></td>
+					</tr>
+					<tr>
+						<td style="border: 0px;"><select
+							style="width: 500px; float: left; text-align-last: center; letter-spacing: -1px;"
+							name="genre" id="uiGenre">
+								<!-- onchange="genre_chg(this) -->
+								<option value="">선호하는 장르를 선택해주세요</option>
 								<option value="서양화">서양화</option>
 								<option value="동양화">동양화</option>
 								<option value="유화">유화</option>
@@ -98,16 +99,19 @@
 								<option value="설치미술">설치미술</option>
 								<option value="미디어아트">미디어아트</option>
 								<option value="사진">사진</option>
-						</select>		
-				</tbody></table>
+						</select>
+				</tbody>
+			</table>
 
-				
-		<!-- sns 회원가입 -->
-</div>
 
-		<div style="margin-bottom:10px; width:100%; float:left;" class="term_info">
+			<!-- sns 회원가입 -->
+		</div>
+
+		<div style="margin-bottom: 10px; width: 100%; float: left;"
+			class="term_info">
 			<h2>개인정보 수집 / 이용 동의 (필수)</h2>
-			<textarea readonly style="margin-bottom:10px; font-family: 'Noto Sans KR'; color:#818181; width:100%;">개인정보취급방침안내
+			<textarea readonly
+				style="margin-bottom: 10px; font-family: 'Noto Sans KR'; color: #818181; width: 100%;">개인정보취급방침안내
  아트맵(이하 "회사"라 합니다.)은 이용자들의 개인정보를 중요시하며, 정보통신망 이용촉진 및 정보보호 등에 관한 법률 및 개인정보 보호법 등 관련법상 개인정보 보호규정을 준수하고, "회원"의 개인정보를 보호하기 위해 지속적으로 노력합니다. "회사"는 이 개인정보 취급방침을 통하여 이용자들의 개인정보가 남용 되거나 유출되지 않도록 최선을 다할 것이며, 이용자가 제공하는 개인정보가 어떠한 용도와 방식으로 이용되고 있고, 개인정보 보호를 위해 어떠한 조치가 취해지고 있는지 알려드리고자 합니다. 단, 이 개인정보 취급방침은 정부의 법령 및 지침의 변경, 또는 보다 나은 서비스의 제공을 위하여 그 내용이 변경 될 수 있으니, 이용자들께서는 사이트 방문 시 수시로 그 내용을 확인하여 주시기 바라며, "회사"는 개인정보 취급방침을 개정하는 경우 웹사이트 공지사항 또는 개별공지를 통하여 공지할 것입니다. 단, "회사"의 공식사이트 이외의 웹에서 링크된 사이트에서는 "회사"의 개인정보 취급방침 정책이 적용되지 않으며 "회사"는 "회원"의 귀책사유로 인해 노출된 정보에 대해서는 일체의 책임을 지지 않습니다. 
 1. 수집하는 개인정보 항목 및 이용목적
 "회사"는 회원가입, 미술전시회,작품 관람의 편의 및 각종 서비스의 제공을 위해 이용자의 개인정보를 수집하고 있습니다. 개인정보는 다음의 수집·이용목적 이외의 용도로는 활용되지 않으며, 수집·이용목적이 변경되는 경우에는 개인정보보호법에 따라 별도의 동의를 받는 등 필요한 조치를 이행합니다.a. 회원가입 과정에서 수집하는 정보 수집방법 : 회원가입 시 화면  수집항목 : 이메일, 비밀번호, 이용자 이름(닉네임), 프로필 사진(선택), 주소(선택), 이동전화번호(선택) 이용목적 : 회원제 서비스 제공, 마케팅 활동, 업데이트 및 고지사항 안내b. 주소 등록 시  수집방법 : 주소 등록 메뉴  수집항목 : 현재 거주 주소지  이용목적 : 미술작품 구매 추천 (큐레이션) 서비스 이용을 위해c. 결제카드 등록 시  수집방법: 결제카드 등록 메뉴  수집항목: 신용카드번호, 카드유효기간, 카드 비밀번호 앞 2자리, 카드소유주 생년월일, 카드소유주 성명  이용목적: 결제 간편등록 용d. 유료서비스 이용 과정에서 수집하는 정보  수집방법 : 결제 및 결제정보 등록화면  수집항목 : 이메일, 이동전화번호, 주소  이용목적 : 유료서비스 이용에 따른 고객관리 및 협력업체 정보제공e. 그외, 서비스 이용과정에서 자동적으로 생성되어 수집되는 개인정보 수집방법 : 자동생성  수집항목 : 접속 IP정보, 접속 로그, 쿠키, 서비스 이용기록, 기기고유번호, 방문 기록 등  이용목적 : 본인식별, 부정이용 방지, 서비스 향상을 위한 이용실적 분석f. 그 외, 마케팅 이벤트 및 행사에 참여하는 과정에서 이용자 선택에 의해 닉네임, 이름, 생년월일, 성별, 이메일 주소, 블로그 주소, 학교, 회사, 기타 경품 제공 및 배송을 위해 필요한 정보 등이 수집 될 수 있습니다. 이 경우, 수집항목 및 이용목적을 별도로 회원에게 고지하여 동의를 구합니다. 
@@ -121,13 +125,17 @@
 "회사"는 개인정보 취급방침의 변경(내용 추가, 삭제 및 수정)이 있을 경우 7일전 웹사이트 또는 어플리케이션 내 공지사항을 통해 고지하고 있습니다. 또한 변경된 내용을 고객이 쉽게 확인할 수 있도록 변경 전∙후를 비교하여 공개하고 있습니다. 
 6. 고지의 의무
  현 개인정보 취급방침의 내용 추가, 삭제 및 수정 등의 변경이 있을 시에는 시행일의 7일 전부터 홈페이지의 공지사항을 통하여 고지할 것입니다.최초 공고 일자 : 2016년 12월 15일  최종 변경 및 시행 일자 : 2016년 12월 21일</textarea>
-			<input type="checkbox" id="ServiceTerms" class="blind">
-			<label for="ServiceTerms" class="png_icon2"></label>
-			<span style="font-size:18px; vertical-align:middle;">위의 이용약관에 동의합니다.</span>
+			<input type="checkbox" id="ServiceTerms" class="blind"> <label
+				for="ServiceTerms" class="png_icon2"></label> <span
+				style="font-size: 18px; vertical-align: middle;">위의 이용약관에
+				동의합니다.</span>
 		</div>
-		<div style="margin-bottom:10px; width:100%; float:left; margin-top:30px;" class="term_info">
+		<div
+			style="margin-bottom: 10px; width: 100%; float: left; margin-top: 30px;"
+			class="term_info">
 			<h2>이용 약관 동의 (필수)</h2>
-			<textarea readonly style="margin-bottom:10px; font-family: 'Noto Sans KR'; color:#818181; width:100%;">이용약관안내
+			<textarea readonly
+				style="margin-bottom: 10px; font-family: 'Noto Sans KR'; color: #818181; width: 100%;">이용약관안내
 제1장 총칙제1조
 [목적]이 약관은 아트맵 모바일 어플리케이션 아트맵 ART.Map(이하 “당사”)이 제공하는 미술전시회,미술행사,미술체험,아트 페스티벌 등 기타 미술 관련 정보 등을 제공하는 문화적 목적의 전시회조직업/정보제공업 서비스(이하 “서비스”라고 합니다)에 대한 당사와 회원간의 권리와 의무, 책임사항 및 회원의 서비스 이용절차에 관한 사항을 규정함을 목적으로 합니다.본 약관은 회사와 회원 및 이용자 간 웹 서비스 외 모바일 서비스 에 관하여도 적용 할 수 있습니다. 
 제2조 [용어의 정의]
@@ -139,291 +147,273 @@
 제5조(분쟁 해결)
 1. "회사"는 "회원"이 제기하는 정당한 의견이나 불만을 반영하고 그 피해를 보상처리하기 위해서 고객센터 또는 그에 준하는 조직을 설치, 운영합니다. 2. "회사"는 "회원"이 제기하는 불만사항 및 의견을 우선적으로 처리합니다. 다만 신속한 처리가 곤란한 경우에는 "회원"에게 그 사유와 처리일정을 즉시 통보합니다. 
 본 약관 적용일자: 2016년 12월15일</textarea>
-			<input type="checkbox" id="termsPrivacy" class="blind">
-			<label for="termsPrivacy" class="png_icon2"></label>
-			<span style="font-size:18px; vertical-align:middle;">위의 이용약관에 동의합니다.</span>
+			<input type="checkbox" id="termsPrivacy" class="blind"> <label
+				for="termsPrivacy" class="png_icon2"></label> <span
+				style="font-size: 18px; vertical-align: middle;">위의 이용약관에
+				동의합니다.</span>
 		</div>
-		<div style="width:100%; text-align:center; margin-top:30px;">
+		<div style="width: 100%; text-align: center; margin-top: 30px;">
 			<button class="btn btn-danger" onclick="goInsert()">회원가입</button>
 		</div>
 		<br>
-		
+
 	</div>
-		<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
-		   <script>
-      var emailDoubleCheck;
-      var GenderNum;
-      
-      function setGender(obj){
-         GenderNum= obj;
-         if(GenderNum=='1'){
-            GenderNum = "남";
-         } else {
-            GenderNum = "여"
-         } 
-         console.log(GenderNum);
-      }         
-      var gender_btn = document.getElementsByClassName("gender_btn");
+	<script>	
+	
+		var emailDoubleCheck;
+		var GenderNum;
 
-         function handleClick2(event) {
-           console.log(event.target);
-        
-           console.log(event.target.classList);
-
-           if (event.target.classList[1] === "gender_btn_on") {
-             event.target.classList.remove("gender_btn_on");
-           } else {
-             for (var i = 0; i < gender_btn.length; i++) {
-                gender_btn[i].classList.remove("gender_btn_on");
-             }
-
-             event.target.classList.add("gender_btn_on");
-           }
-         }
-
-         function init2() {
-           for (var i = 0; i < gender_btn.length; i++) {
-              gender_btn[i].addEventListener("click", handleClick2);
-             console.log(gender_btn.length);
-           }
-         }
-
-         init2(); //여기까지 성별
-         
-         
-      var AgeNum;   
-      function setAge(obj){
-         AgeNum= obj + "대";
-         console.log(AgeNum);
-      }
-      
-      var age_btn = document.getElementsByClassName("age_btn");
-
-         function handleClick(event) {
-           console.log(event.target);
-        
-           console.log(event.target.classList);
-
-           if (event.target.classList[1] === "age_btn_on") {
-             event.target.classList.remove("age_btn_on");
-           } else {
-             for (var i = 0; i < age_btn.length; i++) {
-               age_btn[i].classList.remove("age_btn_on");
-             }
-
-             event.target.classList.add("age_btn_on");
-           }
-         }
-
-         function init() {
-           for (var i = 0; i < age_btn.length; i++) {
-             age_btn[i].addEventListener("click", handleClick);
-             console.log(age_btn.length);
-           }
-         }
-
-         init(); // 여기까지 연령별
-      
-      function emailCheck() { 
-      var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-      var uiEmail = document.querySelector('#uiEmail');
-		if(!regExp.test(uiEmail.value)){
-			alert('올바른 이메일 형식이 아닙니다.');
+		function setGender(obj) {
+			GenderNum = obj;
+			if (GenderNum == '1') {
+				GenderNum = "남";
+			} else {
+				GenderNum = "여"
+			}
 		}
-		var uiEmail2 = document.querySelector('#uiEmail');
-            if (uiEmail2.value.trim().length < 1 ) {
-               alert('이메일 주소를 정확히 입력해주세요.');
-               uiEmail.focus();
-               return;            
-            }
-            var url = "/emailCheck?uiEmail="+uiEmail.value;
-             var xhr = new XMLHttpRequest();
-             xhr.open('GET',url);
-             xhr.onreadystatechange = function(){
-             if(xhr.status==200 && xhr.readyState==4){
-                var res = xhr.responseText;
-                if(res==1){
-                   document.querySelector('#email_check').innerText = ('이미 사용 중인 이메일입니다.');
-                   document.querySelector('#email_check').style.color = "red";
-                   document.querySelector('#email_check').style.fontSize = "14px";
-                   uiEmail.value="";
-                   emailDoubleCheck=res;//1
-                }else{
-                   document.querySelector('#email_check').innerText = ('사용가능한 이메일입니다.');
-                   document.querySelector('#email_check').style.color = "red";
-                   document.querySelector('#email_check').style.fontSize = "14px";
-                   emailDoubleCheck=res;//0
-                   }
-                }
-             }
-             xhr.send();
-          }
-            
-      function goInsert() {
-    	  
-    	  var uiEmail2 = document.querySelector('#uiEmail');
-          if (uiEmail2.value.trim().length < 1 ) {
-             alert('이메일 주소를 정확히 입력해주세요.');
-             uiEmail.focus();
-             return false;            
-          }
-          
-    	 var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규표현식
-         var uiEmail = document.querySelector('#uiEmail');
-			if(!regExp.test(uiEmail.value)){
-				console.log(uiEmail.value);
+		var gender_btn = document.getElementsByClassName("gender_btn");
+
+		function handleClick2(event) {
+
+			if (event.target.classList[1] === "gender_btn_on") {
+				event.target.classList.remove("gender_btn_on");
+			} else {
+				for (var i = 0; i < gender_btn.length; i++) {
+					gender_btn[i].classList.remove("gender_btn_on");
+				}
+
+				event.target.classList.add("gender_btn_on");
+			}
+		}
+
+		function init2() {
+			for (var i = 0; i < gender_btn.length; i++) {
+				gender_btn[i].addEventListener("click", handleClick2);
+			}
+		}
+
+		init2(); //여기까지 성별
+
+		var AgeNum;
+		function setAge(obj) {
+			AgeNum = obj + "대";
+		}
+
+		var age_btn = document.getElementsByClassName("age_btn");
+
+		function handleClick(event) {
+
+			if (event.target.classList[1] === "age_btn_on") {
+				event.target.classList.remove("age_btn_on");
+			} else {
+				for (var i = 0; i < age_btn.length; i++) {
+					age_btn[i].classList.remove("age_btn_on");
+				}
+
+				event.target.classList.add("age_btn_on");
+			}
+		}
+
+		function init() {
+			for (var i = 0; i < age_btn.length; i++) {
+				age_btn[i].addEventListener("click", handleClick);
+			}
+		}
+
+		init(); // 여기까지 연령별
+
+		function emailCheck() {
+			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			var uiEmail = document.querySelector('#uiEmail');
+			if (!regExp.test(uiEmail.value)) {
 				alert('올바른 이메일 형식이 아닙니다.');
-				return false;
 			}
-				
-         
-         if(emailDoubleCheck==1 || emailDoubleCheck==null){
-            alert('이메일 주소 입력 후 중복확인 바랍니다.');
-            uiEmail.focus();
-            return false;      
-         }
-         
-       
-         var uiName = document.querySelector('#uiName'); 
-         if (uiName.value.trim().length<1) {
-            alert('이름을 입력해주세요.');
-            uiName.focus();
-            return false;
-         }         
-         
-        var uiNamepattern = /[가-힣]{2,}/;
-  		var uiName = document.querySelector('#uiName');
-  			if(!uiNamepattern.test(uiName.value)){
-  				alert('올바른 이름 형식이 아닙니다.');
-  				uiName.focus();
-  				return;
-  			}
-         
-         var uiPhoneNumber2 = document.querySelector('#uiPhoneNumber');
-         if (uiPhoneNumber2.value.trim().length < 1 ) {
-             alert('휴대폰 번호를 정확히 입력해주세요.');
-             uiPhoneNumber2.focus();
-             return false;            
-          }	
-         
-         var regExp3 = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/;
-         var uiPhoneNumber = document.querySelector('#uiPhoneNumber');
-         if (!regExp3.test(uiPhoneNumber.value)) {
+			var uiEmail2 = document.querySelector('#uiEmail');
+			if (uiEmail2.value.trim().length < 1) {
+				alert('이메일 주소를 정확히 입력해주세요.');
+				uiEmail.focus();
+				return;
+			}
+			var url = "/emailCheck?uiEmail=" + uiEmail.value;
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', url);
+			xhr.onreadystatechange = function() {
+				if (xhr.status == 200 && xhr.readyState == 4) {
+					var res = xhr.responseText;
+					if (res ==1) {
+						document.querySelector('#email_check').innerText = ('이미 사용 중인 이메일입니다.');
+						document.querySelector('#email_check').style.color = "red";
+						document.querySelector('#email_check').style.fontSize = "14px";
+						uiEmail.value = "";
+						emailDoubleCheck = res;//1
+					} else {
+						document.querySelector('#email_check').innerText = ('사용가능한 이메일입니다.');
+						document.querySelector('#email_check').style.color = "red";
+						document.querySelector('#email_check').style.fontSize = "14px";
+						emailDoubleCheck = res;//0
+					}
+				}
+			}
+			xhr.send();
+		}
+
+		
+		
+		
+		function goInsert() {
+
+			var uiEmail2 = document.querySelector('#uiEmail');
+			console.log(uiEmail2.value);
+			if (uiEmail2.value.trim().length < 1) {
+				alert('이메일 주소를 정확히 입력해주세요.');
+				uiEmail.focus();
+				return;
+			}
+
+			var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규표현식
+			var uiEmail = document.querySelector('#uiEmail');
+			if (!regExp.test(uiEmail.value)) {
+				alert('올바른 이메일 형식이 아닙니다.');
+				return;
+			}
+
+			if (emailDoubleCheck == 1 || emailDoubleCheck == null) {
+				alert('이메일 주소 입력 후 중복확인 바랍니다.');
+				uiEmail.focus();
+				return;
+			}
+
+			var uiName = document.querySelector('#uiName');
+			if (uiName.value.trim().length < 1) {
+				alert('이름을 입력해주세요.');
+				uiName.focus();
+				return;
+			}
+
+			var uiNamepattern = /[가-힣]{2,}/;
+			var uiName = document.querySelector('#uiName');
+			if (!uiNamepattern.test(uiName.value)) {
+				alert('올바른 이름 형식이 아닙니다.');
+				uiName.focus();
+				return;
+			}
+
+			var uiPhoneNumber2 = document.querySelector('#uiPhoneNumber');
+			if (uiPhoneNumber2.value.trim().length < 1) {
+				alert('휴대폰 번호를 정확히 입력해주세요.');
+				uiPhoneNumber2.focus();
+				return;
+			}
+
+			var regExp3 = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/;
+			var uiPhoneNumber = document.querySelector('#uiPhoneNumber');
+			if (!regExp3.test(uiPhoneNumber.value)) {
 				alert('휴대폰 번호를 확인해주세요.');
-				return false;
+				return;
 			}
-        
 
-            var uiPwd = document.querySelector('#uiPwd');
-            if (uiPwd.value.trim().length < 4) {
-               alert('비밀번호를 4글자 입력해주세요.');
-               uiPwd.focus();
-               return false;
-            }
+			var uiPwd = document.querySelector('#uiPwd');
+			if (uiPwd.value.trim().length < 4) {
+				alert('비밀번호를 4글자 입력해주세요.');
+				uiPwd.focus();
+				return;
+			}
+
+			var regExp4 = /^[a-zA-Z0-9]{4,12}$/;
+			var uiPwd = document.querySelector('#uiPwd');
+			if (!regExp4.test(uiPwd.value)) {
+				alert('비밀번호는 영문 대소문자와 숫자로만 입력해주세요.')
+				return;
+			}
+
+			var uiPwd2 = document.querySelector('#uiPwd2');
+			if (!regExp4.test(uiPwd2.value)) {
+				alert('비밀번호는 영문 대소문자와 숫자로만 입력해주세요.')
+				return;
+			}
+
+			var uiPwd2 = document.querySelector('#uiPwd2');
+			if (uiPwd2.value.trim().length < 4) {
+				alert('비밀번호 확인란을 입력해주세요.');
+				uiPwd2.focus();
+				return;
+			}
+
+			var uiPwd2 = document.querySelector('#uiPwd2');
+			if (uiPwd.value != uiPwd2.value) {
+				alert('비밀번호가 일치하지 않습니다.');
+				uiPwd2.focus();
+				return;
+			}
+
+			var GenderNum;
+			function setGender(obj) {
+				GenderNum = obj;
+				if (GenderNum == "1") {
+					GenderNum = "남";
+				} else {
+					GenderNum = "여"
+				}
+			}
+
+			var AgeNum;
+			function setAge(obj) {
+				AgeNum = obj;
+				if (!AgeNum) {
+					alert('연령대를 선택해주세요.')
+				}
+			}
+
+			var uiRegion = document
+					.querySelector('select#uiRegion option:checked');
+			if (uiRegion.value.trim().length < 1) {
+				alert('지역을 선택해주세요.');
+				return;
+			}
+
+			var uiGenre = document.querySelector('#uiGenre');
+			if (uiGenre.value.trim().length < 1) {
+				alert('장르를 선택해주세요.');
+				return;
+			}
+
+			var checklist1 = document.querySelector('#ServiceTerms').checked;
+			var checklist2 = document.querySelector('#termsPrivacy').checked;
+			if (checklist1 == true && checklist2 == true) {
+				return true;
+			} else {
+				alert('이용약관에 동의해주세요.');
+				return;
+			}
 			
-            
-            var regExp4 = /^[a-zA-Z0-9]{4,12}$/;
-            var uiPwd = document.querySelector('#uiPwd');
-            if (!regExp4.test(uiPwd.value)) {
-            	alert('비밀번호는 영문 대소문자와 숫자로만 입력해주세요.')
-            	return false;
-            }
-            
-            var uiPwd2 = document.querySelector('#uiPwd2');
-            if (!regExp4.test(uiPwd2.value)) {
-            	alert('비밀번호는 영문 대소문자와 숫자로만 입력해주세요.')
-            	return false;
-            }
-            
-            var uiPwd2 = document.querySelector('#uiPwd2');
-            if (uiPwd2.value.trim().length < 4) {
-               alert('비밀번호 확인란을 입력해주세요.');
-               uiPwd2.focus();
-               return false;
-            }
-
-            var uiPwd2 = document.querySelector('#uiPwd2');
-            if (uiPwd.value != uiPwd2.value) {
-               alert('비밀번호가 일치하지 않습니다.');
-               uiPwd2.focus();
-               return false;
-            }
-
-            var GenderNum;
-            function setGender(obj) {
-               GenderNum = obj;
-               if (GenderNum == "1") {
-                  GenderNum = "남";
-               } else {
-                  GenderNum = "여"
-               }
-               console.log(GenderNum);
-            }
-
-            var AgeNum;
-            function setAge(obj) {
-               AgeNum = obj;
-               console.log(AgeNum);
-               if (!AgeNum) {
-                  alert('연령대를 선택해주세요.')
-               }
-            }
-
-            var uiRegion = document
-                  .querySelector('select#uiRegion option:checked');
-            if (uiRegion.value.trim().length < 1) {
-               alert('지역을 선택해주세요.');
-               return;
-            }
-
-            var uiGenre = document.querySelector('#uiGenre');
-            if (uiGenre.value.length < 1) {
-               alert('장르를 선택해주세요.');
-               return;
-            }
-
-            var check1 = document.querySelector('#ServiceTerms:checked');
-            if (ServiceTerms.value.length < 1) {
-               alert('이용약관에 동의해주세요.');
-            }
-
-            var checks = document.querySelector('#termsPrivacy:checked');
-            if (checks.value.trim().length < 1) {
-               alert('개인정보 수집/이용약관에 동의해주세요.');
-            }
-
-            var param = {
-               uiName : document.querySelector('#uiName').value,
-               uiEmail : document.querySelector('#uiEmail').value,
-               uiPhoneNumber : document.querySelector('#uiPhoneNumber').value,
-               uiPwd : document.querySelector('#uiPwd').value,
-               uiPwd2 : document.querySelector('#uiPwd2').value,
-               uiRegion : document.querySelector('#uiRegion').value,
-               uiGender :document.querySelector('.gender_btn_on').innerText,
-               uiAge : document.querySelector('.age_btn_on').innerText,
-               uiGenre : document.querySelector('#uiGenre').value,
-               check1 : document.querySelector('#ServiceTerms').value,
-               checks : document.querySelector('#termsPrivacy').value
-            }
-
-            console.log(param);
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/user-insert');
-            xhr.onreadystatechange = function() {
-               if (xhr.readyState == 4 && xhr.status == 200) {
-                  if (xhr.responseText) {
-                     alert('반갑습니다!');
-                     location.href="/views/user/login";
-                  }else{
-                     alert('회원가입에 실패했습니다. 다시 시도해주세요.');
-                  }
-               }
-            }
-            xhr.setRequestHeader('content-type',
-                  'application/json;charset=UTF-8');
-            xhr.send(JSON.stringify(param));
-         }
-      </script>
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', '/user-insert');
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState ==4 && xhr.status ==200) {
+					console.log(xhr.responseText);
+					if (xhr.responseText>0) {
+						alert('반갑습니다!');
+						location.href = "/views/user/login";
+					} else {
+						alert('회원가입에 실패했습니다. 다시 시도해주세요.');
+					}
+				}
+			}
+			var param = {
+				uiName : document.querySelector('#uiName').value,
+				uiEmail : document.querySelector('#uiEmail').value,
+				uiPhoneNumber : document.querySelector('#uiPhoneNumber').value,
+				uiPwd : document.querySelector('#uiPwd').value,
+				uiRegion : document.querySelector('#uiRegion').value,
+				uiGender : document.querySelector('.gender_btn_on').innerText,
+				uiAge : document.querySelector('.age_btn_on').innerText,
+				uiGenre : document.querySelector('#uiGenre').value
+			}
+			xhr.setRequestHeader('content-type',
+					'application/json;charset=UTF-8');
+			xhr.send(JSON.stringify(param));
+		}
+	</script>
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

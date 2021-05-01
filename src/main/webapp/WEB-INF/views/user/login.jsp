@@ -106,7 +106,7 @@
 						alert('반갑습니다');
 						location.href = '/';					
 						}else if(res.uiStatus=='0'){
-						alert('존재하지 않는 회원입니다. 이메일과 비밀번호를 다시 확인해주세요.');
+						alert('존재하지 않는 회원입니다.');
 						document.querySelector('#uiEmail').value = '';
 						document.querySelector('#uiPwd').value = '';
 						uiEmail.focus();

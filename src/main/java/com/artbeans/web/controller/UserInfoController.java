@@ -23,14 +23,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class UserInfoController {
 
-	@Autowired
-	private JavaMailSender mailSender;
 
 	@Autowired
 	private UserService userService;
-
-	@Autowired
-	private static final String FROM_ADDRESS = "psh951009@gmail.com";
 
 
 	@PostMapping("/user")
@@ -86,11 +81,16 @@ public class UserInfoController {
 	}
 
 	// id찾기..
-	@GetMapping("/user-email")
+	@PostMapping("/user-email")
 	public UserInfo findId(String uiPhoneNumber) {
-		log.info("userInfo=>{}", userService.findId(uiPhoneNumber));
-		return userService.findId(uiPhoneNumber);
+		UserInfo user = userService.findId(uiPhoneNumber);
+		log.info("user=>{}", userService.findId(uiPhoneNumber));
+		if(user.getUiStatus().equals("1")) {
+			return null;
+		}
+		return user;
 	}
+	
 
 	// 이메일 중복확인..
 	@GetMapping("/emailCheck")

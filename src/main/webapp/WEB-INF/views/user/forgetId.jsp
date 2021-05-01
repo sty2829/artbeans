@@ -30,39 +30,42 @@
 </head>
 <body>
 
-		<div class="container" style="margin-top:150px; width:700px; letter-spacing:-2px;">
-		
-		<div class="card o-hidden border-0" >
+	<div class="container"
+		style="margin-top: 150px; width: 700px; letter-spacing: -2px;">
+
+		<div class="card o-hidden border-0">
 			<div class="card-body">
-					<h4 class="card-title" style="text-align:center; font-weight:bold;" >아이디 찾기</h4>
-					<hr>
-					<br>	
-					<div class="card-content" >
-						 <input type="text" id="uiName" class="input-control"
-							placeholder="이름">
-					</div>
-
-					<div class="card-content" >
-						<input type="text" id="uiPhoneNumber" class="input-control"
-							placeholder="휴대폰 번호(-를 반드시 입력해주세요.)">
-					</div>
-
-					<div class="card-content">
-						<button type="button"  class="btn btn-danger" name="button" onclick="goCheck()">확인</button>
-					</div>
-					
-					<div class="card-content">
-					<a class="small" href="/views/user/register">회원가입</a> /  
-					<a class="small" href="/views/user/forgetPwd">비밀번호 찾기</a>
-				</div>
+				<h4 class="card-title"
+					style="text-align: center; font-weight: bold;">아이디 찾기</h4>
+				<hr>
+				<br>
+				<div class="card-content">
+					<input type="text" id="uiName" class="input-control"
+						placeholder="이름">
 				</div>
 
+				<div class="card-content">
+					<input type="text" id="uiPhoneNumber" class="input-control"
+						placeholder="휴대폰 번호(-를 반드시 입력해주세요.)">
+				</div>
+
+				<div class="card-content">
+					<button type="button" class="btn btn-danger" name="button"
+						onclick="goCheck()">확인</button>
+				</div>
+
+				<div class="card-content">
+					<a class="small" href="/views/user/register">회원가입</a> / <a
+						class="small" href="/views/user/forgetPwd">비밀번호 찾기</a>
+				</div>
 			</div>
 
 		</div>
 
+	</div>
+
 	<br>
-<script>
+	<script>
 function goCheck(){
 	
 				var uiName = document.querySelector('#uiName');
@@ -96,23 +99,39 @@ function goCheck(){
 		          
 				var url = '/user-email?uiPhoneNumber=' + uiPhoneNumber.value;
 				var xhr = new XMLHttpRequest();
-				xhr.open('GET', url);
+				xhr.open('POST', url);
 				xhr.onreadystatechange = function() {
-					if (xhr.status ==200 & xhr.readyState ==4) {
-							var res = JSON.parse(xhr.responseText);
-							if(res){
+					if (xhr.readyState ==4) {
+						if(xhr.status ==200){
+							console.log(xhr.responseText);
+							 var res = JSON.parse(xhr.responseText);
+							if(res.uiStatus=="1"){
 								alert('회원님의 아이디는' + res.uiEmail +' 입니다.');
-								location.href= '/views/user/login'; 
-							} else{
-								alert('존재하지 않는 사용자입니다.');
-							}
+								location.href= '/views/user/login';
+							}else if(res.uiStatus=='0'){
+								alert('존재하지 않는 회원입니다.');
+								document.querySelector('#uiName').value = '';
+								document.querySelector('#uiPhoneNumber').value = '';
+								uiName.focus();
+								return;
+								}
+							}else{ // 아이디나 비번 불일치시 null로 500에러
+							alert('이메일과 비밀번호를 다시 확인해주세요.');
+							return;
 						}
 					}
-			   xhr.send();
+				}
+				var param = {
+						uiName : document.querySelector('#uiName').value,
+						uiPhoneNumber : document.querySelector('#uiPhoneNumber').value
+					}
+				xhr.setRequestHeader('content-type',
+						'application/json;charset=UTF-8');
+				xhr.send(JSON.stringify(param));
 			}
 
 </script>
-			
+
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

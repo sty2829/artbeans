@@ -27,5 +27,6 @@ public interface UserService {
 	int cPwd(UserInfo userInfo);
 	
 	int deleteUser(UserInfo userInfo);
+
 	 
 }
