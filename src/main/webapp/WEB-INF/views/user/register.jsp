@@ -263,10 +263,9 @@
 		function goInsert() {
 
 			var uiEmail2 = document.querySelector('#uiEmail');
-			console.log(uiEmail2.value);
 			if (uiEmail2.value.trim().length < 1) {
 				alert('이메일 주소를 정확히 입력해주세요.');
-				uiEmail.focus();
+				uiEmail2.focus();
 				return;
 			}
 
@@ -380,7 +379,7 @@
 			var checklist1 = document.querySelector('#ServiceTerms').checked;
 			var checklist2 = document.querySelector('#termsPrivacy').checked;
 			if (checklist1 == true && checklist2 == true) {
-				return true;
+				//return true;
 			} else {
 				alert('이용약관에 동의해주세요.');
 				return;
