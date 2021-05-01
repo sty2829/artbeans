@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.artbeans.web.dto.DataTable;
+import com.artbeans.web.dto.ExhibitionDTO;
 import com.artbeans.web.dto.Search;
 import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.ExhibitionInfo;
@@ -52,7 +53,7 @@ public class ExhibitionController {
 	
 	// 사용중(상혁)
 	@GetMapping("/exhibition")
-	public @ResponseBody ExhibitionInfo getExhibitionInfo(@RequestParam Integer eiNum) {
+	public @ResponseBody ExhibitionDTO getExhibitionInfo(@RequestParam Integer eiNum) {
 		//log.info("eiNum=>{}", eService.getExhibitionInfo(eiNum));
 		return eService.getExhibitionInfo(eiNum);
 	}

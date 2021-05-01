@@ -11,10 +11,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.artbeans.web.dto.Search;
+import com.artbeans.web.dto.ExhibitionDTO;
 import com.artbeans.web.entity.ExhibitionInfo;
 
 public interface ExhibitionInfoRepository extends JpaRepository<ExhibitionInfo, Integer> {
+	
+	@Query("select ei from ExhibitionInfo ei where ei.eiNum = ?1")
+	ExhibitionDTO getExhibitionsByID(Integer eiNum);
 
 	public List<ExhibitionInfo> findAllByOrderByEiStatus(Pageable pageable);
 

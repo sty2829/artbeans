@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.artbeans.web.dto.DataTable;
+import com.artbeans.web.dto.ExhibitionDTO;
 import com.artbeans.web.dto.Search;
 import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.ExhibitionInfo;
@@ -104,11 +105,13 @@ public class ExhibitionInfoServiceImpl implements ExhibitionService {
 	}
 		
 	@Override
-	public ExhibitionInfo getExhibitionInfo(Integer eiNum) {
+	public ExhibitionDTO getExhibitionInfo(Integer eiNum) {
+		ExhibitionDTO dto = exhiRepo.getExhibitionsByID(eiNum);
+		log.info("dto => {}",dto);
 		Optional<ExhibitionInfo> opEt = exhiRepo.findById(eiNum);
 		if (opEt.isEmpty())
 			return null;
-		return opEt.get();
+		return dto;
 	}
 
 	@Override

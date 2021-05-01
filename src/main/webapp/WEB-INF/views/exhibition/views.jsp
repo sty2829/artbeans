@@ -63,8 +63,8 @@ text-align: cencter;
 			location.href='/views/reservation/reservation-view?eiNum=' + eiNum;
 		}
 		var url = '/favorite-exhibitions?uiNum='+uiNum;
-		 window.addEventListener('load',favoriteList);
-		 function favoriteList(){
+		 async function favoriteList(){
+			    await getExhibition();
 				var xhr = new XMLHttpRequest();
 				xhr.open('GET',url);
 				xhr.onreadystatechange = function(){
@@ -122,6 +122,8 @@ text-align: cencter;
 				xhr.send(JSON.stringify(param));
 			console.log(param);
 		 }
+		 
+		 window.addEventListener('load',getExhibition);
 	</script>
 
 
