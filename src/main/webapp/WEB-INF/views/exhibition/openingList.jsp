@@ -57,105 +57,92 @@
 													style="position: absolute; top: -96px; left: 190px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55903/25371.png?mt=bg.ol.sw.ar.lko"
+														
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 160px; left: 190px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55903/25372.png?mt=bg.ol.sw.ar.lko"
+														
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: -352px; left: 190px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55903/25370.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: -352px; left: 446px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55904/25370.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 160px; left: -66px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55902/25372.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: -96px; left: 446px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55904/25371.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: -96px; left: -66px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55902/25371.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 160px; left: 446px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55904/25372.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: -352px; left: -66px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55902/25370.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: -352px; left: 702px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55905/25370.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 160px; left: -322px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55901/25372.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: -96px; left: 702px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55905/25371.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: -96px; left: -322px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55901/25371.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 160px; left: 702px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55905/25372.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: -352px; left: -322px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55901/25370.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 											</div>
@@ -175,10 +162,8 @@
 															style="display: block; cursor: pointer;">
 													</map>
 													<img draggable="false" unselectable="on"
-														src="http://static.naver.net/maps/mantle/1x/marker-default.png"
 														alt=""
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; position: absolute; cursor: inherit; width: 22px; height: 33px; left: 0px; top: 0px;"><img
-														src="http://static.naver.net/maps/mantle/1x/dot.gif"
 														alt=""
 														usemap="#nmarker-00F39BFB-FAB8-48F0-9BF2-C233F968EBD3"
 														style="position: absolute; border: 0px; left: 0px; top: 0px; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; user-select: none; width: 22px; height: 33px;">
@@ -200,13 +185,10 @@
 										style="position: relative; width: 53px; height: 14px; margin: 0px 12px 7px 2px; overflow: hidden; pointer-events: auto;">
 										<span
 											style="display: block; margin: 0; padding: 0 4px; text-align: center; font-size: 10px; line-height: 11px; font-family: Helvetica, AppleSDGothicNeo-Light, nanumgothic, NanumGothic,&amp; amp; amp; amp; amp; quot; 나눔고딕 &amp;amp; amp; amp; amp; quot; , Dotum ,&amp;amp; amp; amp; amp; quot; 돋움 &amp;amp; amp; amp; amp; quot; , sans-serif; font-weight: bold; color: #000; text-shadow: -1px 0 rgba(255, 255, 255, 0.3), 0 1px rgba(255, 255, 255, 0.3), 1px 0 rgba(255, 255, 255, 0.3), 0 -1px rgba(255, 255, 255, 0.3);">100m</span><img
-											src="http://static.naver.net/maps/mantle/1x/scale-normal-b.png"
 											width="45" height="4" alt=""
 											style="position: absolute; left: 4px; bottom: 0px; z-index: 2; display: block; width: 45px; height: 4px; overflow: hidden; margin: 0px; padding: 0px; border: 0px none; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important;"><img
-											src="http://static.naver.net/maps/mantle/1x/scale-normal-l.png"
 											width="4" height="10" alt=""
 											style="position: absolute; left: 0; bottom: 0; z-index: 2; display: block; width: 4px; height: 10px; overflow: hidden; margin: 0; padding: 0; border: 0 none; max-width: none !important; max-height: none !important; min-width: 0 !important; min-height: 0 !important;"><img
-											src="http://static.naver.net/maps/mantle/1x/scale-normal-r.png"
 											width="4" height="10" alt=""
 											style="position: absolute; right: 0; bottom: 0; z-index: 2; display: block; width: 4px; height: 10px; overflow: hidden; margin: 0; padding: 0; border: 0 none; max-width: none !important; max-height: none !important; min-width: 0 !important; min-height: 0 !important;">
 									</div>
@@ -214,10 +196,8 @@
 								<div
 									style="border: 0px none; margin: -1px 0px 0px; padding: 0px; pointer-events: none; float: right; height: 22px;">
 									<a
-										href="https://ssl.pstatic.net/static/maps/mantle/notice/legal.html"
 										target="_blank"
 										style="display: block; width: 48px; height: 17px; overflow: hidden; margin: 0px 5px 5px 12px; pointer-events: auto;"><img
-										src="http://static.naver.net/maps/mantle/1x/naver-normal-new.png"
 										width="48" height="17" alt="NAVER"
 										style="display: block; width: 48px; height: 17px; overflow: hidden; border: 0 none; margin: 0; padding: 0; max-width: none !important; max-height: none !important; min-width: 0 !important; min-height: 0 !important;"></a>
 								</div>
@@ -236,7 +216,6 @@
 											style="font-family: Helvetica, AppleSDGothicNeo-Light, nanumgothic, NanumGothic, 나눔고딕, Dotum, 돋움, sans-serif; font-size: 11px; line-height: 19px; margin: 0px 0px 0px 5px; padding: 0px; color: rgb(68, 68, 68); float: left; pointer-events: auto; text-decoration: underline; display: none;">더보기</a>
 										<div style="float: left;">
 											<a target="_blank"
-												href="http://www.openstreetmap.org/copyright"
 												style="pointer-events: auto; white-space: pre; display: none; color: rgb(68, 68, 68);">
 												/OpenStreetMap</a>
 										</div>
@@ -254,7 +233,6 @@
 									<span
 										style="white-space: pre; color: rgb(68, 68, 68); float: left;">©
 										NAVER Corp.</span><a target="_blank"
-										href="http://www.openstreetmap.org/copyright"
 										style="pointer-events: auto; white-space: pre; color: rgb(68, 68, 68); float: left; display: none;">
 										/OpenStreetMap</a>
 								</div>
@@ -275,84 +253,72 @@
 													style="position: absolute; top: -188px; left: 384px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55958/25651.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 324px; left: 128px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55957/25653.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 68px; left: 384px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55958/25652.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 68px; left: 128px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55957/25652.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 324px; left: 384px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55958/25653.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: -188px; left: 128px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55957/25651.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: -188px; left: 640px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55959/25651.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 324px; left: -128px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55956/25653.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 68px; left: 640px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55959/25652.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 68px; left: -128px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55956/25652.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: 324px; left: 640px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55959/25653.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 												<div draggable="false" unselectable="on"
 													style="position: absolute; top: -188px; left: -128px; z-index: 0; margin: 0px; padding: 0px; border: 0px solid transparent; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; opacity: 1; width: 256px; height: 256px;">
 													<img draggable="false" unselectable="on" alt=""
 														crossorigin="anonymous" width="256" height="256"
-														src="http://nrbe.map.naver.net/styles/basic/1616667775/16/55956/25651.png?mt=bg.ol.sw.ar.lko"
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; opacity: 1; position: absolute; left: 0px; top: 0px; z-index: 0; width: 256px; height: 256px;">
 												</div>
 											</div>
@@ -372,10 +338,8 @@
 															style="display: block; cursor: pointer;">
 													</map>
 													<img draggable="false" unselectable="on"
-														src="http://static.naver.net/maps/mantle/1x/marker-default.png"
 														alt=""
 														style="margin: 0px; padding: 0px; border: 0px solid transparent; display: block; user-select: none; -webkit-user-drag: none; box-sizing: content-box !important; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; position: absolute; cursor: inherit; width: 22px; height: 33px; left: 0px; top: 0px;"><img
-														src="http://static.naver.net/maps/mantle/1x/dot.gif"
 														alt=""
 														usemap="#nmarker-633D47E4-AF31-47CE-BF95-0525424C5209"
 														style="position: absolute; border: 0px; left: 0px; top: 0px; max-width: none !important; max-height: none !important; min-width: 0px !important; min-height: 0px !important; user-select: none; width: 22px; height: 33px;">
@@ -414,13 +378,10 @@
 										style="position: relative; width: 52px; height: 14px; margin: 0px 12px 7px 2px; overflow: hidden; pointer-events: auto;">
 										<span
 											style="display: block; margin: 0; padding: 0 4px; text-align: center; font-size: 10px; line-height: 11px; font-family: Helvetica, AppleSDGothicNeo-Light, nanumgothic, NanumGothic,&amp; amp; amp; amp; amp; quot; 나눔고딕 &amp;amp; amp; amp; amp; quot; , Dotum ,&amp;amp; amp; amp; amp; quot; 돋움 &amp;amp; amp; amp; amp; quot; , sans-serif; font-weight: bold; color: #000; text-shadow: -1px 0 rgba(255, 255, 255, 0.3), 0 1px rgba(255, 255, 255, 0.3), 1px 0 rgba(255, 255, 255, 0.3), 0 -1px rgba(255, 255, 255, 0.3);">100m</span><img
-											src="http://static.naver.net/maps/mantle/1x/scale-normal-b.png"
 											width="44" height="4" alt=""
 											style="position: absolute; left: 4px;; bottom: 0; z-index: 2; display: block; width: 44px; height: 4px; overflow: hidden; margin: 0; padding: 0; border: 0 none; max-width: none !important; max-height: none !important; min-width: 0 !important; min-height: 0 !important;"><img
-											src="http://static.naver.net/maps/mantle/1x/scale-normal-l.png"
 											width="4" height="10" alt=""
 											style="position: absolute; left: 0; bottom: 0; z-index: 2; display: block; width: 4px; height: 10px; overflow: hidden; margin: 0; padding: 0; border: 0 none; max-width: none !important; max-height: none !important; min-width: 0 !important; min-height: 0 !important;"><img
-											src="http://static.naver.net/maps/mantle/1x/scale-normal-r.png"
 											width="4" height="10" alt=""
 											style="position: absolute; right: 0; bottom: 0; z-index: 2; display: block; width: 4px; height: 10px; overflow: hidden; margin: 0; padding: 0; border: 0 none; max-width: none !important; max-height: none !important; min-width: 0 !important; min-height: 0 !important;">
 									</div>
@@ -428,10 +389,8 @@
 								<div
 									style="border: 0px none; margin: -1px 0px 0px; padding: 0px; pointer-events: none; float: right; height: 22px;">
 									<a
-										href="https://ssl.pstatic.net/static/maps/mantle/notice/legal.html"
 										target="_blank"
 										style="display: block; width: 48px; height: 17px; overflow: hidden; margin: 0px 5px 5px 12px; pointer-events: auto;"><img
-										src="http://static.naver.net/maps/mantle/1x/naver-normal-new.png"
 										width="48" height="17" alt="NAVER"
 										style="display: block; width: 48px; height: 17px; overflow: hidden; border: 0 none; margin: 0; padding: 0; max-width: none !important; max-height: none !important; min-width: 0 !important; min-height: 0 !important;"></a>
 								</div>
@@ -450,7 +409,6 @@
 											style="font-family: Helvetica, AppleSDGothicNeo-Light, nanumgothic, NanumGothic, 나눔고딕, Dotum, 돋움, sans-serif; font-size: 11px; line-height: 19px; margin: 0px 0px 0px 5px; padding: 0px; color: rgb(68, 68, 68); float: left; pointer-events: auto; text-decoration: underline; display: none;">더보기</a>
 										<div style="float: left;">
 											<a target="_blank"
-												href="http://www.openstreetmap.org/copyright"
 												style="pointer-events: auto; white-space: pre; display: none; color: rgb(68, 68, 68);">
 												/OpenStreetMap</a>
 										</div>
@@ -468,13 +426,12 @@
 									<span
 										style="white-space: pre; color: rgb(68, 68, 68); float: left;">©
 										NAVER Corp.</span><a target="_blank"
-										href="http://www.openstreetmap.org/copyright"
 										style="pointer-events: auto; white-space: pre; color: rgb(68, 68, 68); float: left; display: none;">
 										/OpenStreetMap</a>
 								</div>
 							</div>
 						</div>
-						<
+						
 						<div style="clear: both; height: 10px;"></div>
 						<div class="map_bottom">
 							<span onclick="location.href='/views/user/favorite-exhibition'"
@@ -483,11 +440,6 @@
 						</div>
 						<div id="sideMapList"></div>
 					</div>
-
-
-
-
-
 
 					<div class="dropdown">
 						<button class="btn btn-secondary dropdown-toggle" type="button"
@@ -543,8 +495,6 @@
 							<button class="dropdown-item" type="button" onclick="pricefree()">무료</button>
 						</div>
 					</div>
-
-
 				</div>
 
 				<img id="sidebarCollapse"

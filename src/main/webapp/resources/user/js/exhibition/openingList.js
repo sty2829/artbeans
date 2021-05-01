@@ -360,17 +360,13 @@ count =100;
 
 
 function sideMap(idx) {
-	//sideExhibition(obj);
 	var mvCheck = document.querySelector('#mv' + idx);
-	console.log(mvCheck);
 
 	if (mvCheck) {
 		$('#mv' + idx).remove();//ch
 		$('input[name="checkMap' + idx + '"]').prop('checked', false);//체크되어 있다면 펑션 실행지 체크 해제 (false)
 		return;
 	}
-
-
 	var index = document.querySelector('div[id="ei' + idx + '"] img[name="imgPath"]').src.lastIndexOf('/');
 	var imgPath = document.querySelector('div[id="ei' + idx + '"] img[name="imgPath"]').src.substring(index + 1);
 	console.log(index);
@@ -407,12 +403,8 @@ function sideMap(idx) {
 	var map = new naver.maps.Map('map', mapOptions);
 }
 function moveMap(move) {
-	console.log(move);
 	var giAddressX = move.getAttribute('data-x');
 	var giAddressY = move.getAttribute('data-y');
-
-	console.log(giAddressX);
-	console.log(giAddressY);
 	var mapOptions = {
 		center: new naver.maps.LatLng(giAddressY, giAddressX),
 		zoom: 18
