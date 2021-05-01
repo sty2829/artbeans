@@ -138,7 +138,7 @@
 	<div style="height: 100px"></div>
 
 	<script>
-//window.onload= function(){
+
 var size = 5; 
 window.addEventListener('load', () => {
 	getOpenLeftSide(1)
