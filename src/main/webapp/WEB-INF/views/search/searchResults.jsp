@@ -23,7 +23,7 @@
   box-shadow: 3px 3px 10px #566270;
   outline: none;
   border: none;
-  border-radius: 6px;
+  
 }
 .searchInput::placeholder {
 	color: #d2d2d2;
@@ -31,26 +31,28 @@
 
 
 #totalSuggestListDiv {
+dislplay : flex;
 	width: 400px;
+	flex-direction : column;
 	margin-top: 50px;
 	position: absolute;
 	background: white;
 	padding: 0 2px;
-	border-radius: 5px;
+	
 }
 
 .totalItem {
 	height: 1.8em;
 	width: 400px;
 	outline: none;
-	border-radius: 5px;
+	
 }
 
 .totalItem:hover {
 	color: #black;
 	background: #dcdcdc;
 	width: 400px;
-	border-radius: 5px;
+	
 }
 
 
@@ -113,6 +115,7 @@ var keyword ='${param.keyword}';// header부분 검색 keyword
 console.log(keyword);
 function startSuggest(target){
 	
+	
 	if(target.value.trim()==''){
 		return hide();		
 	}
@@ -151,12 +154,16 @@ function totalSuggestGallery(obj){
 		if(xhr.readyState==4&&xhr.status==200){
 			var get = JSON.parse(xhr.responseText);
 			var html ='';
+			console.log(target.value.trim().length);
 			for(var gallery of get){
-			
+				if(get.length!=0){
 					html +=	'<div class="totalitem">'; 
 					html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ gallery.giName +'\'">'+gallery.giName+'</a>';
 					html +=	'<span class="text"></span>';
-					html += '</div>';		
+					html += '</div>';
+				}else{
+					return hide();
+				}
 		}
 			document.querySelector('#totalSuggestListDiv').innerHTML = html;
 			show();
