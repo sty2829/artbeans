@@ -58,7 +58,6 @@ function updateReview(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
-			console.log(res);
 			if(res >= 1){
 				alert('리뷰수정에 성공하였습니다.');
 				location.href = '/views/user/review/review-info';

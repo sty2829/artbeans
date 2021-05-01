@@ -13,9 +13,6 @@ import com.artbeans.web.entity.FileInfo;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
- * 파일공통입니다. 
- */
 @Slf4j
 @Component
 public class FileUtil {
@@ -41,7 +38,6 @@ public class FileUtil {
  		if(fiName==null) {
 			throw new Exception("파일은 필수 항목입니다!");
 		}
- 		log.info("fiName => {}", fiName);
 		int idx = fiName.lastIndexOf(".");
 		String extName = fiName.substring(idx);
 		String path = System.nanoTime() + extName;
@@ -49,7 +45,6 @@ public class FileUtil {
 		fileInfo.setFiSize(fiSize);
 		fileInfo.setFiPath(path);
 		fileInfo.setFiType(fiType);
-		log.info("fileInfo=>{}", fileInfo);
 		File file = new File(root + fiType + File.separator + path);
 		fileInfo.getFiFile().transferTo(file);
 		
@@ -83,13 +78,11 @@ public class FileUtil {
 	public static Map<String,String> ckeditorUploadImg(MultipartFile upload){
 		String fileName = upload.getOriginalFilename();
 		File target = new File(editorPath + fileName);
-		log.info("fileName=>{}",fileName);
 		try {
 			upload.transferTo(target);
 			Map<String,String> rMap = new HashMap<>();
 			rMap.put("uploaded","true");
 			rMap.put("url", "/upload/" + fileName);
-			log.info("rMap=>{}",rMap);
 			return rMap;
 		} catch (IllegalStateException e) {
 			e.printStackTrace();

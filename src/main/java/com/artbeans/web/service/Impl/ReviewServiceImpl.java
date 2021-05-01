@@ -84,7 +84,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public int removeReview(Integer rviNum) {
-		//이것도 수정
 		int count = 0;
 		rviRepo.deleteById(rviNum);
 		Optional<ReviewInfo> opRI = rviRepo.findById(rviNum);
@@ -131,7 +130,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public int deleteComment(Integer ciNum) {
-		//필요해서 수정합니다.
 		int count = 0;
 		ciRepo.deleteById(ciNum);
 		Optional<CommentInfo> opCI = ciRepo.findById(ciNum);

@@ -16,14 +16,12 @@ public interface TicketInfoRepository extends JpaRepository<TicketInfo, Integer>
 	
 	List<TicketInfo> findAllByReservationInfoRiNumAndTiDate(Integer riNum, Date tiDate);
 	
-	//타임리스트
 	@Query("SELECT new com.artbeans.web.dto.SumTicketTime(ti.tiTime AS time, sum(ti.tiNumber) AS sum) "
 			+ " FROM TicketInfo ti LEFT JOIN ti.reservationInfo ri "
 			+ " where ti.reservationInfo.riNum = ?1 AND ti.tiDate = ?2 AND ti.tiState != 0 "
 			+ " GROUP BY ti.tiTime")
 	List<SumTicketTime> sumTicketGroupByTime(Integer riNum, Date date);
 
-	//유저번호로 예매티켓리스트 조회
 	@Query("SELECT ti.tiNum AS tiNum, ei.eiName AS eiName,  gi.giName AS giName, "
 			+ " pi.piMerchantId AS piMerchantId, fi.fiPath AS imgPath, "
 			+ " function('date_format', ti.tiDate, '%Y-%m-%d') AS tiDate, "

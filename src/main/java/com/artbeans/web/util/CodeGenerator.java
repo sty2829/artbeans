@@ -4,10 +4,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
 
-import lombok.extern.slf4j.Slf4j;
-
-
 public class CodeGenerator {
+	
 	private static final String BASIC_CODE = "0123456789abcdefghijklmnopqrstuvwuxyABCDEFGHIJKLMNOPQRSTUVWUXY";
 	private static final int CODE_LENGTH = 6;
 	private static final int PAYMENT_CODE_LENGTH = 13;
@@ -43,16 +41,4 @@ public class CodeGenerator {
 		}
 		return sb.toString();	
 	}
-	
-	public static void main(String[] args) {
-		for( int  i=100  ;  i<=100   ; i--){
-			   if(i%5==0 ){
-			      System.out.println("만세");
-			   }
-			   if(  i%2==0  ){
-			      System.out.println( "짝수"  );
-			   }
-			}
-	}
-	
 }

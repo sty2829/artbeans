@@ -20,10 +20,8 @@ public interface ReservationInfoRepository extends JpaRepository<ReservationInfo
 	@Override
 	List<ReservationInfo> findAll();
 	
-	//전시회PK로 검색
 	ReservationInfo findByExhibitionInfoEiNum(Integer eiNum);
 	
-	//예약스케쥴쿼리
 	@Query(name = "find_reservation_schedule_dto", nativeQuery = true)
 	ReservationSchedule getReservationSchedule(@Param("eiNum") Integer eiNum);
 	

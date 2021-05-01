@@ -25,27 +25,22 @@ public class ReservationController {
 	@Autowired
 	private ReservationService reservationService;
 	
-	//파라미터 전시회 PK
-	//예약구매자가 전시회 예약화면으로 이동시 전시회예약 스케쥴
 	@GetMapping("/reservation/{eiNum}")
 	public ReservationSchedule getSchedule(@PathVariable Integer eiNum) {
 		return reservationService.getReservationSchedule(eiNum);
 	}
 
-	//전시회 예약정보 세이브
 	@PostMapping("/reservation")
 	public int saveReservation(@RequestBody ReservationInfo reservationInfo) {
 		log.info("reservationInfo => {}", reservationInfo);
 		return reservationService.saveReservation(reservationInfo);
 	}
 	
-	//해당전시회 선택한 예약날짜의 예매시간리스트 가져옴
 	@GetMapping("/reservation")
 	public List<ReservationTimeDTO> getTimeTest(Integer riNum, String dateStr) {
 		return reservationService.getReservationTimes(riNum, dateStr);
 	}
 	
-	//사용중(상혁)
 	@GetMapping("/reservation-list")
 	public Page<ReservationInfo> getList(Pageable pageable){
 		return reservationService.getReservationList(pageable);

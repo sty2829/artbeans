@@ -10,18 +10,11 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.artbeans.web.dto.ReservationSchedule;
-import com.artbeans.web.dto.SumTicketTime;
 import com.artbeans.web.dto.ReservationTimeDTO;
-import com.artbeans.web.entity.ReservationInfo;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class DateUtil {
 
 	private static final String YYYY_MM_DD = "yyyy-MM-dd";
@@ -45,7 +38,6 @@ public class DateUtil {
 			}
 		}
 		
-		//투데이 생성
 		Date date = new Date();
 		String format = sdf.format(date);
 		try {
@@ -56,12 +48,9 @@ public class DateUtil {
 		
 		Date minDate = StringToDate(rs.getMinDate());
 		
-		//투데이가 스타트date(mindate)보다 크다면 mindate에 투데이 입력 
 		if(date.compareTo(minDate) > 0) {
 			minDate = date;
 		}
-		
-		//기간 휴무일 + MAX티켓 제외리스트 합친걸 날짜순으로 정렬
 		dateList.sort(new Comparator<Date>() {
 				@Override
 				public int compare(Date o1, Date o2) {
@@ -69,18 +58,13 @@ public class DateUtil {
 				}
 			});
 		
-		//date 하루 추가위해 캘린더생성
 		Calendar cal = Calendar.getInstance();
-		//캘린더에 mindate 세팅
 		cal.setTime(minDate);
 		
-		//mindate랑 제외리스트를 비교하면서 mindate 선정   
 		for(Date d : dateList) {
 			if(d.compareTo(minDate) > 0) {
-				//제외날짜가 mindate보다 크면 for문 나감
 				break;
 			}else if(d.compareTo(minDate) == 0){
-				//mindate가 제외날짜와 같다면 하루 추가
 				cal.add(Calendar.DATE, 1);
 				minDate = cal.getTime();
 			}

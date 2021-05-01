@@ -10,7 +10,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
-@Slf4j
 public class AuthInterceptorAdmin implements HandlerInterceptor {
 	
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)

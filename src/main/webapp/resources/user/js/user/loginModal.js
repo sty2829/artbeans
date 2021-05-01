@@ -26,9 +26,7 @@ function goLogin() {
 			xhr.open('POST', '/login');
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState == 4 && xhr.status == 200) {
-					console.log(xhr.responseText);
 					if (xhr.responseText) {
-						console.log(xhr.responseText);
 						var res = JSON.parse(xhr.responseText);
 						alert('반갑습니다');
 						location.reload();

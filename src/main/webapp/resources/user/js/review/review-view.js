@@ -11,7 +11,6 @@ function getReview(){
 			for(var col of cols){
 				var key = col.getAttribute('data-col');
 				if(key === 'fiPath'){
-					console.log(res[key]);
 					col.style = 'background-image: url(\'/upload/' + res[key] + '\');'
 				}else{
 					col.innerHTML = res[key];	

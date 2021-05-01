@@ -18,75 +18,57 @@ import com.artbeans.web.entity.CommentInfo;
 import com.artbeans.web.entity.ReviewInfo;
 import com.artbeans.web.service.ReviewService;
 
-import lombok.extern.slf4j.Slf4j;
-
 @RestController
-@Slf4j
 public class ReviewController {
 
 	@Autowired
 	private ReviewService reviewService;
 	
-	//커뮤니티 리뷰리스트 호출
 	@GetMapping("/reviews")
 	public Page<ReviewDTO> getReviews(Pageable pageable) {
 		return reviewService.getReviewInfos(pageable);
 	}
 	
-	//해당유저의 리뷰 모두가져오기
 	@GetMapping("/reviews/user")
 	public Page<ReviewDTO> getUserReviews(UserSession userSession, Pageable pageable) {
 		return reviewService.getUserReviews(userSession, pageable);
 	}
 	
-	//리뷰 상세화면
 	@GetMapping("/review/{rviNum}")
 	public ReviewDTO getReview(@PathVariable Integer rviNum) {
 		return reviewService.getReviewInfo(rviNum);
 	}
 	
-	//유저리뷰 저장
 	@PostMapping("/review")
 	public int saveReview(UserSession userSession, ReviewInfo reviewInfo) throws Exception {
-		log.info("reviewInfo => {}", reviewInfo);
 		return reviewService.saveReview(userSession, reviewInfo);
 	}
 	
-	//유저리뷰 수정
 	@PatchMapping("/review")
 	public int updateReview(UserSession userSession, ReviewInfo reviewInfo) throws Exception {
 		return reviewService.updateReview(userSession, reviewInfo);
 	}
 	
-	//리뷰 삭제
 	@DeleteMapping("/review/{rviNum}")
 	public int deleteReview(@PathVariable Integer rviNum) {
-		log.info("rviNum => {}", rviNum);
 		return reviewService.removeReview(rviNum);
 	}
 	
-	
-	//리뷰댓글 저장
 	@PostMapping("/review/comment")
 	public int saveComment(UserSession userSession, @RequestBody CommentInfo commentInfo) {
-		log.info("commentInfo => {}", commentInfo);
 		return reviewService.saveComment(userSession, commentInfo);
 	}
 	
-	//해당 리뷰의 댓글 호출
 	@GetMapping("/review/comment/{rviNum}")
 	public Page<CommentDTO> getComments(@PathVariable Integer rviNum, Pageable pageable) {
 		return reviewService.getCommentInfos(rviNum, pageable);
 	}
 	
-	//리뷰댓글 수정
 	@PatchMapping("/review/comment")
 	public int updateComment(@RequestBody CommentInfo commentInfo) {
-		log.info("commentInfo => {}", commentInfo);
 		return reviewService.updateComment(commentInfo);
 	}
 	
-	//리뷰관련 comments 삭제
 	@DeleteMapping("/review/comment/{ciNum}")
 	public int deleteComment(@PathVariable Integer ciNum) {
 		return reviewService.deleteComment(ciNum);

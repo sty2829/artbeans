@@ -21,7 +21,6 @@ import com.artbeans.web.util.DateUtil;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@Slf4j
 public class ReservationSeviceImpl implements ReservationService {
 	
 	@Autowired
@@ -32,9 +31,7 @@ public class ReservationSeviceImpl implements ReservationService {
 
 	@Override
 	public ReservationSchedule getReservationSchedule(Integer eiNum) {
-		//전시회 PK로 전시회스케쥴 호출
 		ReservationSchedule rs = riRepo.getReservationSchedule(eiNum);
-		//mindate 계산후 반환
         return DateUtil.getMinDate(rs);
 	}
 	

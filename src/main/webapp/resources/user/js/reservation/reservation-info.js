@@ -70,7 +70,6 @@ function getPastTickets(page){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
 			var table = '';
-			console.log(res);
 			if(res.content.length === 0){
 				table += '<tr>';
 				table += '<td colspan="4" align="center">지난 예약이 없습니다.</td>';
