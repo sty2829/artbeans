@@ -61,11 +61,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserInfo login(UserInfo ui) {
 		UserInfo opUi = uRepo.findByUiEmailAndUiPwd(ui.getUiEmail(), ui.getUiPwd());
-		if(opUi!=null) {
 			return opUi;
-		}
-		log.info("opUi=>{}",opUi);//0 1
-		return null;
+		//log.info("opUi=>{}",opUi);//0 1
 	}
 	
 

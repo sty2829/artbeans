@@ -55,16 +55,6 @@ function getParameterByName(name) {
 var getValue = getParameterByName("eiStartDate");
 //get 방식의 value 값임
 
-/*
-var count = 0;
-window.onscroll = function(e) {
-    if((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        count++;
-        get();
-    }
-};
-*/
-
 function get(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition-calendar-oneday?size=99&eiStartDate='+getValue); //ExhibitionController
@@ -81,7 +71,7 @@ function get(){
 					html += '<article class="entry">';
 					html += '<div class="entry-img">';
 					html += '<img style="width:400px; height:400px" src=\'/resources/assets/img/exhibition/' +exhibitionInfo.fileInfo.fiPath+ '\'" class="img-fluid">';
-					console.log(exhibitionInfo.fileInfo.fiPath); 
+
 					html += '</div>';
 					html += '<h2 class="entry-title">';
 					html += '<a>' + exhibitionInfo.eiName + '</a>';

@@ -99,18 +99,22 @@
 			var xhr = new XMLHttpRequest();
 			xhr.open('POST', '/login');
 			xhr.onreadystatechange = function() {
-				if (xhr.readyState==4 && xhr.status==200) {
+				if (xhr.readyState==4) {
+					if(xhr.status==200){
 					var res = JSON.parse(xhr.responseText);					
 					if (res.uiStatus=='1') {						
 						alert('반갑습니다');
 						location.href = '/';					
-						}else{
+						}else if(res.uiStatus=='0'){
 						alert('존재하지 않는 회원입니다. 이메일과 비밀번호를 다시 확인해주세요.');
 						document.querySelector('#uiEmail').value = '';
 						document.querySelector('#uiPwd').value = '';
 						uiEmail.focus();
 						return;
 						}
+					}else{
+						alert('비번확인')
+					}
 					
 					}
 				}

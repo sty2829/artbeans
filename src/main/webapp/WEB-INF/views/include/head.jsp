@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
 <head>
 <style>
-
-.logo{
-margin: auto;
-position: relative;
+.logo {
+	margin: auto;
+	position: relative;
 }
+
 .headsearchInput {
 	display: inline-block;
 	height: 2em;
@@ -23,10 +23,10 @@ position: relative;
 }
 
 #suggestListDiv {
-dislplay : flex;
-flex-direction : column;
-	width:200px;
-	margin-top:4em ;
+	dislplay: flex;
+	flex-direction: column;
+	width: 200px;
+	margin-top: 4em;
 	position: absolute;
 	background: white;
 }
@@ -35,7 +35,6 @@ flex-direction : column;
 	height: 2em;
 	width: 200px;
 	outline: none;
-
 }
 
 .item:hover {
@@ -45,7 +44,6 @@ flex-direction : column;
 .text {
 	font-weight: bold;
 }
-
 </style>
 <jsp:include page="/WEB-INF/views/include/css.jsp"></jsp:include>
 </head>
@@ -55,11 +53,6 @@ flex-direction : column;
 	<header id="header" class="fixed-top ">
 		<div class="container">
 			<!--검 색 창   -->
-
-
-			
-
-
 		</div>
 		<script>
 function check(id){
@@ -70,7 +63,8 @@ function check(id){
 }
 function headSuggest(target){
 	if(target.value.trim()==''){
-		return hide();		
+		document.querySelector('#suggestListDiv').innerHTML = '';
+		return;		
 	}
 	
 	headSuggestGallery(target);
@@ -98,8 +92,6 @@ function headSuggest(target){
 	}
 	xhr.send();
 }
-
-
 function headSuggestGallery(obj){ 
 	if(obj.value.trim()==''){
 		return hide();		
@@ -125,7 +117,6 @@ function headSuggestGallery(obj){
 		}
 	}
 	xhr.send();
-}
 
 function hide(){
 	var suggestListDiv = document.querySelector('#suggestListDiv');
@@ -158,13 +149,13 @@ function logout(){
 					<img src="/resources/assets/img/logo.png" class="img-fluid">
 				</h1>
 			</div>
-			<form action="/views/search/searchResults?keyword=" method="get" name="frm"
-				onsubmit="return check('headsearchInput')">
+			<form action="/views/search/searchResults?keyword=" method="get"
+				name="frm" onsubmit="return check('headsearchInput')">
 				<div>
 					<div>
 						<div class="container d-flex align-items-center"">
-						
-						
+
+
 							<input autocomplete="off" type=text name="keyword"
 								placeholder="전시관,전시회 검색" class="headsearchInput"
 								id="headsearchInput" onkeyup="headSuggest(this);">
@@ -182,14 +173,15 @@ function logout(){
 			<nav class="nav-menu d-none d-lg-block">
 
 				<ul>
-				<c:if test="${userInfo ne null}">
-					<li class="drop-down"><a href="#">마이페이지</a>
-						<ul>
-							<li><a href="/views/user/mypage">나의 회원정보</a></li>
-							<li><a href="/views/user/reservation/reservation-info">나의 예약정보</a></li>
-							<li><a href="/views/user/review/review-info">나의 리뷰정보</a></li>
-							<li><a href="/views/user/favorite-exhibition">찜한 전시회목록</a></li>
-						</ul></li> 
+					<c:if test="${userInfo ne null}">
+						<li class="drop-down"><a href="#">마이페이지</a>
+							<ul>
+								<li><a href="/views/user/mypage">나의 회원정보</a></li>
+								<li><a href="/views/user/reservation/reservation-info">나의
+										예약정보</a></li>
+								<li><a href="/views/user/review/review-info">나의 리뷰정보</a></li>
+								<li><a href="/views/user/favorite-exhibition">찜한 전시회목록</a></li>
+							</ul></li>
 					</c:if>
 					<li class="drop-down"><a href="#">전시회 목록</a>
 						<ul>
@@ -216,7 +208,8 @@ function logout(){
 					<li class="drop-down"><a href="#">전시회 등록 및 수정</a>
 						<ul>
 							<li><a href="/views/exhibition/manager/insert">전시회 등록</a></li>
-							<li><a href="/views/exhibition/manager/exhibition-update">전시회 수정</a></li>
+							<li><a href="/views/exhibition/manager/exhibition-update">전시회
+									수정</a></li>
 							<li><a href="/views/exhibition/manager/reservation-save">전시회
 									예약 등록</a></li>
 						</ul></li>
@@ -224,13 +217,13 @@ function logout(){
 
 			</nav>
 			<c:if test="${admin eq null}">
-			<c:if test="${userInfo eq null}">
-			<a href="/views/user/login" style="float: right"
-				class="get-started-btn ml-auto">로그인/회원가입</a>
+				<c:if test="${userInfo eq null}">
+					<a href="/views/user/login" style="float: right"
+						class="get-started-btn ml-auto">로그인/회원가입</a>
 				</c:if>
 				<c:if test="${userInfo ne null }">
-				<a href="/views/user/login" style="float: right"
-				class="get-started-btn ml-auto" onclick="logout()">로그아웃</a>
+					<a href="/views/user/login" style="float: right"
+						class="get-started-btn ml-auto" onclick="logout()">로그아웃</a>
 				</c:if>
 			</c:if>
 			<!-- .nav-menu -->
@@ -239,6 +232,6 @@ function logout(){
 		<jsp:include page="/WEB-INF/views/include/sideicon.jsp"></jsp:include>
 	</header>
 	<!-- End Header -->
-	
+
 </body>
 </html>

@@ -112,12 +112,12 @@ dislplay : flex;
 	</main>
 	<script>
 var keyword ='${param.keyword}';// header부분 검색 keyword
-console.log(keyword);
+
 function startSuggest(target){
 	
-	
 	if(target.value.trim()==''){
-		return hide();		
+		document.querySelector('#totalSuggestListDiv').innerHTML = '';
+		return ;		
 	}
 	totalSuggestGallery(target);
 	if(!target.value.trim()) return;
@@ -128,7 +128,7 @@ xhr.open('GET','/exhibition-list'+tKeyword);
 xhr.onreadystatechange = function(){
 	if(xhr.readyState==4&& xhr.status==200){
 		var res = JSON.parse(xhr.responseText);
-		console.log(res);
+
 		html = '';
 		for(var exhibition of res){
 			html +=	'<div class="totalItem">'; 
@@ -137,7 +137,7 @@ xhr.onreadystatechange = function(){
 			html += '</div>';
 		}
 		document.querySelector('#totalSuggestListDiv').innerHTML = html;
-		show();
+	
 		}
 	}
 	xhr.send();
@@ -154,16 +154,12 @@ function totalSuggestGallery(obj){
 		if(xhr.readyState==4&&xhr.status==200){
 			var get = JSON.parse(xhr.responseText);
 			var html ='';
-			console.log(target.value.trim().length);
 			for(var gallery of get){
-				if(get.length!=0){
+			
 					html +=	'<div class="totalitem">'; 
 					html +='<a style="cursor: pointer" onclick="location.href=\'/search?keyword='+ gallery.giName +'\'">'+gallery.giName+'</a>';
 					html +=	'<span class="text"></span>';
-					html += '</div>';
-				}else{
-					return hide();
-				}
+					html += '</div>';		
 		}
 			document.querySelector('#totalSuggestListDiv').innerHTML = html;
 			show();
@@ -197,7 +193,7 @@ function topSearch(){
 		param += 'eiName='+keyword.trim()+'&'+'giName='+ keyword.trim();	
 	}
 	getGallery();
-	console.log('param1=>{}',param);
+
 	xhr.open('GET','/exhibition-list'+param);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
@@ -303,13 +299,13 @@ function getGallery(obj){
 	}else{
 		param += 'giName='+ search;
 	}
-	console.log('param2=>',param);
+
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/Gallery-lists'+param);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4&&xhr.status==200){
 			var get = JSON.parse(xhr.responseText);
-			console.log(get);
+		
 			var html ='<div><h5>검색결과 : '+get.length+'개</h5></div><br>';
 			for(var gallery of get){
 				if(gallery.giNum!=0){
