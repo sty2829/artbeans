@@ -3,12 +3,13 @@
  */
 
 
-window.onload = function (){
+function getExhibition(){
 	var xhr = new XMLHttpRequest();
 	xhr.open('GET','/exhibition?eiNum='+eiNum); //ExhibitionController
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState==4 && xhr.status==200){
 			var res = JSON.parse(xhr.responseText);
+			console.log(res);
 			var html = '<div class="col-lg-7">';
 			html += '<div style="text-align:center" class="entry-img ">';
 			html += '<img style="width:550px; height:500px" src=\'/upload/' + res.fileInfo['fiPath'] + '\'" class="img-fluid">';

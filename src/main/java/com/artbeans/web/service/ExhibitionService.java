@@ -4,13 +4,12 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 
 import com.artbeans.web.dto.DataTable;
+import com.artbeans.web.dto.ExhibitionDTO;
 import com.artbeans.web.dto.Search;
 import com.artbeans.web.dto.UserSession;
 import com.artbeans.web.entity.ExhibitionInfo;
-import com.artbeans.web.entity.GalleryInfo;
 
 public interface ExhibitionService {
 	List<ExhibitionInfo> getExhibitionInfos(ExhibitionInfo exhibitionInfo);
@@ -21,7 +20,7 @@ public interface ExhibitionService {
 	// 사용중 (상혁)
 	Page<ExhibitionInfo> getExhiAddrList(String giAddress, Search Search, Pageable pageable);
 	
-	ExhibitionInfo getExhibitionInfo(Integer eiNum);
+	ExhibitionDTO getExhibitionInfo(Integer eiNum);
 	
 	List<ExhibitionInfo> eiUpdateGetExhibitionInfo(Integer uiNum);
 	
