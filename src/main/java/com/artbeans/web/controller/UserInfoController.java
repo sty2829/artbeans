@@ -61,7 +61,8 @@ public class UserInfoController {
 	public UserInfo login(@RequestBody UserInfo userInfo, HttpServletRequest req) {
 		UserInfo user = userService.login(userInfo);
 		log.info("user=>{}", user);
-		if(user!=null) {
+		log.info("user.uiStatus=>{}", user.getUiStatus());
+		if(user.getUiStatus().equals("1")) {
 			HttpSession session = req.getSession();
 			session.setAttribute("userInfo", user);
 		}

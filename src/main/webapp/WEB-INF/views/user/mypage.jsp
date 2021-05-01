@@ -28,6 +28,7 @@
 				</tbody>
 			</table>
 		</div>
+		<div class="input_box" id="addBox"></div>
 	</div>
 
 	<script>
@@ -64,7 +65,7 @@
 					html += '<button type="button"	class="btn btn-outline-danger"	onclick="location.href=\'/views/user/mypage-update?uiNum=${userInfo.uiNum}\'">'
 							+ '정보 수정' + '</button>' + '<br>' + '<button type="button" class="btn btn-outline-danger"	onclick="ByeBye()">'
 							+ '회원 탈퇴' + '</button>';
-					html += '<div class="input_box" id="addBox">' + '</div>';		
+					//html += '<div class="input_box" id="addBox">' + '</div>';		
 					document.querySelector('#myInformation').innerHTML = html;
 				}
 			}

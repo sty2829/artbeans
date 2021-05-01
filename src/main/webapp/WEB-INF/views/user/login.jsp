@@ -100,17 +100,18 @@
 			xhr.open('POST', '/login');
 			xhr.onreadystatechange = function() {
 				if (xhr.readyState==4 && xhr.status==200) {
-					var res = xhr.responseText;
-					console.log(res.uiStatus);
-					console.log(res.uiStatus=='1');
-					if (res.uiStatus=='1') {
-						
+					var res = JSON.parse(xhr.responseText);					
+					if (res.uiStatus=='1') {						
 						alert('반갑습니다');
-						location.href = '/';
-					
+						location.href = '/';					
 						}else{
 						alert('존재하지 않는 회원입니다. 이메일과 비밀번호를 다시 확인해주세요.');
+						document.querySelector('#uiEmail').value = '';
+						document.querySelector('#uiPwd').value = '';
+						uiEmail.focus();
+						return;
 						}
+					
 					}
 				}
 			var param = {
