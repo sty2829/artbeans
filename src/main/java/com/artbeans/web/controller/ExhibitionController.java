@@ -110,16 +110,14 @@ public class ExhibitionController {
 
 	// exhibition calendar
 	@GetMapping("/exhibition-calendar")
-	public @ResponseBody DataTable<ExhibitionInfo> getOpeningCalendarList(String year, String month, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		return eService.getOpeningCalendarList(year, month, pageable, dtExhibitionInfo);
+	public @ResponseBody Page<ExhibitionInfo> getOpeningCalendarList(String year, String month, Pageable pageable) {
+		return eService.getOpeningCalendarList(year, month, pageable);
 	}
 
 	// exhibition calendar oneday
 	@GetMapping("/exhibition-calendar-oneday")
-	public @ResponseBody DataTable<ExhibitionInfo> getOpeningCalendarListOneday(String eiStartDate, Pageable pageable,
-			DataTable<ExhibitionInfo> dtExhibitionInfo) {
-		return eService.getOpeningCalendarListOneday(eiStartDate, pageable, dtExhibitionInfo);
+	public @ResponseBody Page<ExhibitionInfo> getOpeningCalendarListOneday(String eiStartDate, Pageable pageable) {
+		return eService.getOpeningCalendarListOneday(eiStartDate, pageable);
 	}
 
 	// admin-ei 검색바

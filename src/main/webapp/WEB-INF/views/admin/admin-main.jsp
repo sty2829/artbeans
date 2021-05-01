@@ -30,7 +30,7 @@ p {
 }
 
 .top-blank {
-	height: 200px;
+	height: 100px;
 }
 
 .bottom-blank {
