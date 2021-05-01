@@ -3,6 +3,8 @@ package com.artbeans.web.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.artbeans.web.dto.ReservationSchedule;
 import com.artbeans.web.dto.ReservationTimeDTO;
+import com.artbeans.web.dto.Search;
 import com.artbeans.web.entity.ReservationInfo;
 import com.artbeans.web.service.ReservationService;
 
@@ -43,8 +46,9 @@ public class ReservationController {
 		return reservationService.getReservationTimes(riNum, dateStr);
 	}
 	
+	//사용중(상혁)
 	@GetMapping("/reservation-list")
-	public List<ReservationInfo> getList(ReservationInfo reservationInfo){
-		return reservationService.getReservationList(reservationInfo);
+	public Page<ReservationInfo> getList(ReservationInfo reservationInfo, Pageable pageable){
+		return reservationService.getReservationList(reservationInfo, pageable);
 	}
 }

@@ -194,6 +194,7 @@ function logout(){
 							<li><a href="/views/exhibition/openingList">진행중인 전시회</a></li>
 							<li><a href="/views/exhibition/closeList">종료된 전시회</a></li>
 							<li><a href="/views/exhibition/futureList">진행 예정 전시회</a></li>
+							<li><a href="/views/exhibition/reservation">예약가능한 전시회</a></li>
 							<li><a href="/views/exhibition/calendar-list">월별 개봉 전시회</a></li>
 						</ul></li>
 
