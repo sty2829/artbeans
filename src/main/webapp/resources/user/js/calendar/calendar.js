@@ -41,7 +41,7 @@ window.onload = function load() {
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			var res = JSON.parse(xhr.responseText);
-			console.log(res);
+			
 			for (var exhibition of res.content) {
 				if (exhibition.eiStatus == 'CONFIRM') {
 
