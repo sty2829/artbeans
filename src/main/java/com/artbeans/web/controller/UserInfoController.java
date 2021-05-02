@@ -75,7 +75,6 @@ public class UserInfoController {
 
 	@PostMapping("/user-insert")
 	public Integer userInsert(@RequestBody UserInfo ui) {
-		log.info("ui=>{}", ui);
 		UserInfo userInfo = userService.saveUser(ui);
 		return userInfo.getUiNum();
 	}
@@ -84,8 +83,7 @@ public class UserInfoController {
 	@PostMapping("/user-email")
 	public UserInfo findId(String uiPhoneNumber) {
 		UserInfo user = userService.findId(uiPhoneNumber);
-		log.info("user=>{}", userService.findId(uiPhoneNumber));
-		if(user.getUiStatus().equals("1")) {
+		if(user.getUiStatus().equals("0")) {
 			return null;
 		}
 		return user;
@@ -95,7 +93,6 @@ public class UserInfoController {
 	// 이메일 중복확인..
 	@GetMapping("/emailCheck")
 	public int emailCheck(String uiEmail) {
-		log.info("uiEmail=>{}", userService.emailCheck(uiEmail));
 		return userService.emailCheck(uiEmail);
 	}
 	//인증번호 받기 위한 이메일 찾기..
@@ -108,20 +105,17 @@ public class UserInfoController {
 	// 인증번호 일치여부 확인..
 	@GetMapping("/verificationCode")
 	public UserInfo verify(String code) {
-		log.info("code=>{}", userService.findCode(code));
 		return userService.findCode(code);
 	}
 
 	// 새 비밀번호 변경
 	@PostMapping("/changePwd")
 	public int change(@RequestBody UserInfo userInfo) {
-		log.info("pwd=>{}", userInfo.getUiPwd());
 		return userService.cPwd(userInfo);
 	}
 
 	@PostMapping("/dropOut")
 	public int dropOut(@RequestBody UserInfo userInfo) {
-		log.info("uiNum=>{}", userInfo.getUiDropOut());
 		return userService.deleteUser(userInfo);
 	}
 }

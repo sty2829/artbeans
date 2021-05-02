@@ -94,7 +94,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String right(UserInfo userInfo) {
 		UserInfo opUi = uRepo.findByUiEmail(userInfo.getUiEmail());
-		log.info("opUi=>{}",opUi);
 		String cnt = "";
 		if(opUi!=null) {
 			String code = CodeGenerator.getRandomCode();
@@ -108,7 +107,6 @@ public class UserServiceImpl implements UserService {
 				smm.setText(content);
 
 				mailSender.send(smm);
-				log.info("smm=>{}", smm);
 				
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -116,8 +114,6 @@ public class UserServiceImpl implements UserService {
 			opUi.setCode(code);
 			String uiEmail = opUi.getUiEmail();
 			opUi.setUiEmail(uiEmail);
-			log.info("opUi=>{}",opUi.getCode());
-			log.info("opUi=>{}",opUi);
 			cnt = uRepo.save(opUi).getUiEmail();
 		}
 		return cnt;

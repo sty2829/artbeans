@@ -103,9 +103,9 @@ function goCheck(){
 				xhr.onreadystatechange = function() {
 					if (xhr.readyState ==4) {
 						if(xhr.status ==200){
-							console.log(xhr.responseText);
+							 console.log(xhr.responseText);
 							 var res = JSON.parse(xhr.responseText);
-							if(res.uiStatus=="1"){
+							if(res.uiStatus=='1'){
 								alert('회원님의 아이디는' + res.uiEmail +' 입니다.');
 								location.href= '/views/user/login';
 							}else if(res.uiStatus=='0'){
