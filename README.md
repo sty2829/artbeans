@@ -79,9 +79,9 @@ https://artbeans.site/
 
 <img src="https://user-images.githubusercontent.com/75354017/117139466-3e58f500-ade7-11eb-85e0-ec93fcf438da.jpg" />
 
+## 메인화면
 
-
-
+<p align="center"><img src="https://user-images.githubusercontent.com/75354017/117161177-ac5be700-adfc-11eb-8204-438655a3b9ca.gif" width="150px" /></p>
 
 ## 담당역할
 
