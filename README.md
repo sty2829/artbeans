@@ -2,6 +2,7 @@
 ![logo](https://user-images.githubusercontent.com/75354017/117138096-8840db80-ade5-11eb-91ff-306ac4616c72.png)
 
 ARTBEANS는 미술 전시회 홍보를 원하는 미술관 및 큐레이터에게 전시회 정보를 받아서 
+![logo](https://user-images.githubusercontent.com/75354017/117138341-d9e96600-ade5-11eb-8274-85528540e3d3.jpg)
 
 전시회 관람을 원하는 사람들에게 해당정보를 서비스하는 플랫폼입니다.
 
@@ -67,5 +68,5 @@ ARTBEANS는 미술 전시회 홍보를 원하는 미술관 및 큐레이터에�
 </table>
 
 ## 개발환경
+![logo](https://user-images.githubusercontent.com/75354017/117138359-dfdf4700-ade5-11eb-8239-1b7892dddae1.jpg)
 
-![logo](https://user-images.githubusercontent.com/75354017/117138145-955dca80-ade5-11eb-8e65-e1da788de5ef.jpg)
