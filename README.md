@@ -72,6 +72,3 @@ ARTBEANS는 미술 전시회 홍보를 원하는 미술관 및 큐레이터에�
 ## 개발환경
 
 ![image-20210505210001756](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210505210001756.png)
-$$
-
-$$
