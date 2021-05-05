@@ -1,5 +1,3 @@
-[TOC]
-
 ## ARTBEANS
 
 ![image-20210505195510286](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210505195510286.png)
