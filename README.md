@@ -1,2 +1,0 @@
-# artbeans
-artbeans project
