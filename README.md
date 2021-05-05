@@ -1,6 +1,5 @@
 ## ARTBEANS
-
-![image-20210505195510286](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210505195510286.png)
+![logo](https://user-images.githubusercontent.com/75354017/117138096-8840db80-ade5-11eb-91ff-306ac4616c72.png)
 
 ARTBEANS는 미술 전시회 홍보를 원하는 미술관 및 큐레이터에게 전시회 정보를 받아서 
 
@@ -69,4 +68,4 @@ ARTBEANS는 미술 전시회 홍보를 원하는 미술관 및 큐레이터에�
 
 ## 개발환경
 
-![image-20210505210001756](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210505210001756.png)
+![logo](https://user-images.githubusercontent.com/75354017/117138145-955dca80-ade5-11eb-8e65-e1da788de5ef.jpg)
