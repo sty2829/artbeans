@@ -92,7 +92,7 @@ $$
 
 - 전시회 예약화면
 
-  <p align="center"><img src="https://user-images.githubusercontent.com/75354017/117143002-4e72d380-adeb-11eb-993e-8aa7be782474.png" style="width: 500px; align: center;"/></p>
+  <p align="center"><img src="https://user-images.githubusercontent.com/75354017/117143002-4e72d380-adeb-11eb-993e-8aa7be782474.png" width="500px"/></p>
 
 **화면설명**  
 
