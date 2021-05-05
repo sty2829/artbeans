@@ -1,6 +1,6 @@
 ## ARTBEANS
 
-<p align="center"><img src="https://user-images.githubusercontent.com/75354017/117138096-8840db80-ade5-11eb-91ff-306ac4616c72.png" alt="image-20210505195510286" style="width:50px;" /></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/75354017/117138096-8840db80-ade5-11eb-91ff-306ac4616c72.png" alt="image-20210505195510286" width="150px" /></p>
 
 ARTBEANS는 미술 전시회 홍보를 원하는 미술관 및 큐레이터에게 전시회 정보를 받아서 
 
