@@ -81,7 +81,7 @@ https://artbeans.site/
 
 ## 메인화면
 
-<p align="center"><img src="https://user-images.githubusercontent.com/75354017/117161177-ac5be700-adfc-11eb-8204-438655a3b9ca.gif" width="150px" /></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/75354017/117162052-68b5ad00-adfd-11eb-82a2-4df32ad2c111.gif"/></p>
 
 ## 담당역할
 
@@ -91,7 +91,7 @@ https://artbeans.site/
 
 - 전시회 관련자 예약등록
 
-<p align="center"><img src="https://user-images.githubusercontent.com/75354017/117161724-21c7b780-adfd-11eb-8841-a69d696c49d2.gif"/></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/75354017/117144212-a231ec80-adec-11eb-9c7e-8ffdd6b9cbe9.png" /></p>
 
 **화면설명**  
 
