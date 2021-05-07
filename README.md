@@ -179,4 +179,5 @@ https://artbeans.site/
 
 2.  해당 후기의 댓글을 작성할 수 있으며 해당 댓글의 작성자면 수정과 삭제가 가능하다.
 
+<details> <summary>상세 내용 확인</summary> <div markdown="1">  div 에 markdown attribute 를 1 로  하는 이유는 div 안에서 markdown 을 사용하기 위해서 입니다.   </div> </details>
    
