@@ -91,7 +91,7 @@ https://artbeans.site/
 
 - 전시회 관련자 예약등록
 
-<p align="center"><img src="https://user-images.githubusercontent.com/75354017/117144212-a231ec80-adec-11eb-9c7e-8ffdd6b9cbe9.png" /></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/75354017/117143002-4e72d380-adeb-11eb-993e-8aa7be782474.png" /></p>
 
 **화면설명**  
 
