@@ -94,7 +94,8 @@ https://artbeans.site/
         	구현설명
     	</h5>
         <p>
-        	개발자가 COMMIT 하면 Github에서 Webhook으로 이벤트가 발생하여 Jenkins에서 소스를 내려받고 자동으로 AWS에 배포
+        	개발자가 COMMIT 하면 Github에서 Webhook으로 이벤트가 발생하여 <br>
+		Jenkins에서 소스를 내려받고 자동으로 AWS에 배포
         </p>
 </div>
 </details>
