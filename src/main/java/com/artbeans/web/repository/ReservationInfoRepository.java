@@ -28,6 +28,6 @@ public interface ReservationInfoRepository extends JpaRepository<ReservationInfo
 	@Query(name = "find_reservation_time_dto", nativeQuery = true)
 	List<ReservationTimeDTO> getReservationTime(@Param("riNum") Integer riNum, @Param("targetDate") Date targetDate);
 	
-	@Query("SELECT ri FROM ReservationInfo ri where ri.riEndTime < current_date")	
+	@Query("SELECT ri FROM ReservationInfo ri where ri.riEndDate > current_date")	
 	Page<ReservationInfo> getReservationList(Pageable pageable);
 }   

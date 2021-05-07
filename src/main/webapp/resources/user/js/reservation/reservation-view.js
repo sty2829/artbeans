@@ -1,5 +1,18 @@
 // 전시회 예약정보 화면 JS
 window.addEventListener('load', getSchedule);
+function compareDate(maxDate){
+    var year = maxDate.substring(0,4);
+    var month = maxDate.substring(5,7);
+    var date = maxDate.substring(8,10);
+    var endDate = new Date(Number(year), Number(month)-1, Number(date));
+    endDate.setDate(endDate.getDate()+1);
+    var today = new Date();
+    if(today.getTime() > endDate.getTime()){
+    	alert('예약일정이 끝났습니다.');
+    	history.back();
+    }
+}
+
 
 function getSchedule(){
 	var eiNum = document.querySelector('#eiNum');
@@ -8,6 +21,7 @@ function getSchedule(){
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState == 4 && xhr.status == 200){
 			var res = JSON.parse(xhr.responseText);
+		    compareDate(res.maxDate);
 			var objs = document.querySelectorAll('[data-col]');
 			for(obj of objs){
 				var key = obj.getAttribute('data-col');

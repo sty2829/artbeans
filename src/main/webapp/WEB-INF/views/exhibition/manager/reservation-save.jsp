@@ -90,7 +90,7 @@
               <input type="text" class="form-control is-invalid" id="riEndTime" onchange="check(this)" style="background-color: white">
               <label class="mt-3"></label>
               <br>
-              <button class="get-started-btn ml-auto" onclick="insert()" >전시회 예약등록 신청</button>
+              <button class="get-started-btn ml-auto" onclick="insert()" >전시회 예약등록</button>
           </div>
         </div>
       </div>
