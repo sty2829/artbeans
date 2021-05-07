@@ -33,7 +33,7 @@ https://artbeans.site/
           <img src="https://avatars.githubusercontent.com/u/75354017?v=4" width="100px" style="max-width:100%;">
           <br>
           <sub>
-            <b>심태윤</b>
+            <b>본인 심태윤</b>
           </sub>
         </a>
         <br>
@@ -77,7 +77,7 @@ https://artbeans.site/
 
 ## ERD
 
-<img src="https://user-images.githubusercontent.com/75354017/117139466-3e58f500-ade7-11eb-85e0-ec93fcf438da.jpg" />
+<img src="https://user-images.githubusercontent.com/75354017/117389046-b4b04100-af26-11eb-85e2-8ce6473a0354.png" />
 
 ## 메인화면
 
@@ -180,4 +180,3 @@ https://artbeans.site/
 2.  해당 후기의 댓글을 작성할 수 있으며 해당 댓글의 작성자면 수정과 삭제가 가능하다.
 
    
-
