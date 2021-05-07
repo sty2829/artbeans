@@ -75,8 +75,7 @@ https://artbeans.site/
 
 
 ## 개발환경
-
-<img src="https://user-images.githubusercontent.com/75354017/117419321-65cecf80-af57-11eb-9274-157999b01d11.png"  />
+<img src="https://user-images.githubusercontent.com/75354017/117420912-fa85fd00-af58-11eb-9464-666c6241301c.png"  />
 
 ## ERD
 
