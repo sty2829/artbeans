@@ -102,7 +102,7 @@
 	</div>
 	<input type="hidden" data-param="eiNum" id="eiNum" value="${param.eiNum}">
 	<input type="hidden" data-param="riNum" id="riNum" data-col="riNum">
-<script src="/resources/user/js/reservation/reservation-view.js"></script>	
+<script src="/resources/user/js/reservation/reservation-view.js"></script>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 </body>
 </html>

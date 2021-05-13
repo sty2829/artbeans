@@ -40,6 +40,7 @@ function getSchedule(){
 			getTimeList(res.minDate);
 			flatpickr('#mycal', {
 				inline: true,
+				locale: 'ko',
 				time_24hr: true,
 				minDate: res.minDate,
 				maxDate: res.maxDate,
